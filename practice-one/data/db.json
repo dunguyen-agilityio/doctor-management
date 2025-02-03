@@ -1,0 +1,370 @@
+{
+  "foods": [
+    {
+      "id": 22,
+      "name": "Pizza",
+      "weight": 200,
+      "ingredients": [
+        {
+          "name": "Bread",
+          "value": 200
+        },
+        {
+          "id": 2,
+          "name": "Meat (Chicken)",
+          "value": 500
+        },
+        {
+          "id": 3,
+          "name": "Cacumber",
+          "value": 300
+        },
+        {
+          "id": 4,
+          "name": "Onion",
+          "value": 200
+        }
+      ],
+      "nutritional": {
+        "calories": 100,
+        "carbs": 100,
+        "protein": 100,
+        "fat": 100
+      },
+      "category": 1,
+      "color": "RED",
+      "imgUrl": "https://img.freepik.com/free-vector/group-food-containing-essential-vitamin-k_1308-161798.jpg",
+      "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
+      "favorite": 0
+    },
+    {
+      "id": 1,
+      "name": "Chicken",
+      "weight": 400,
+      "color": "RED",
+      "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
+      "nutritional": {
+        "calories": 200,
+        "carbs": 100,
+        "fat": 100,
+        "protein": 100
+      },
+      "category": 7,
+      "ingredients": [
+        {
+          "name": "Bread",
+          "value": 200
+        },
+        {
+          "id": 2,
+          "name": "Meat (Chicken)",
+          "value": 500
+        },
+        {
+          "id": 3,
+          "name": "Cacumber",
+          "value": 300
+        },
+        {
+          "id": 4,
+          "name": "Onion",
+          "value": 200
+        }
+      ],
+      "imgUrl": "https://img.freepik.com/free-vector/hand-drawn-flat-design-poke-illustration_23-2149268467.jpg",
+      "favorite": 1
+    },
+    {
+      "id": 4,
+      "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
+      "name": "Fish",
+      "weight": 400,
+      "color": "YELLOW",
+      "nutritional": {
+        "calories": 200,
+        "carbs": 100,
+        "fat": 100,
+        "protein": 100
+      },
+      "category": 3,
+      "ingredients": [
+        {
+          "id": 1,
+          "name": "Bread",
+          "value": 200
+        },
+        {
+          "id": 2,
+          "name": "Meat (Chicken)",
+          "value": 500
+        },
+        {
+          "id": 3,
+          "name": "Cacumber",
+          "value": 300
+        },
+        {
+          "id": 4,
+          "name": "Onion",
+          "value": 200
+        }
+      ],
+      "imgUrl": "https://img.freepik.com/free-vector/realistic-vegetables-glass-bowl_1284-15361.jpg",
+      "favorite": 1
+    },
+    {
+      "id": 5,
+      "name": "Bacon",
+      "weight": 400,
+      "color": "GREEN",
+      "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
+      "nutritional": {
+        "calories": 200,
+        "carbs": 100,
+        "fat": 100,
+        "protein": 100
+      },
+      "category": 3,
+      "ingredients": [
+        {
+          "id": 1,
+          "name": "Bread",
+          "value": 200
+        },
+        {
+          "id": 2,
+          "name": "Meat (Chicken)",
+          "value": 500
+        },
+        {
+          "id": 3,
+          "name": "Cacumber",
+          "value": 300
+        },
+        {
+          "id": 4,
+          "name": "Onion",
+          "value": 200
+        }
+      ],
+      "imgUrl": "https://img.freepik.com/free-vector/vegetables-colored-icons-flat-set_1284-34003.jpg",
+      "favorite": 0
+    },
+    {
+      "id": 6,
+      "name": "Chicken",
+      "weight": 400,
+      "color": "RED",
+      "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
+      "nutritional": {
+        "calories": 200,
+        "carbs": 100,
+        "fat": 100,
+        "protein": 100
+      },
+      "favorite": 0,
+      "category": 2,
+      "ingredients": [
+        {
+          "id": 1,
+          "name": "Bread",
+          "value": 200
+        },
+        {
+          "id": 2,
+          "name": "Meat (Chicken)",
+          "value": 500
+        },
+        {
+          "id": 3,
+          "name": "Cacumber",
+          "value": 300
+        },
+        {
+          "id": 4,
+          "name": "Onion",
+          "value": 200
+        }
+      ],
+      "imgUrl": "https://img.freepik.com/premium-vector/bowl-vegetables-salad-fresh-delicious_24911-5504.jpg"
+    },
+    {
+      "id": 7,
+      "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
+      "name": "Beef",
+      "weight": 400,
+      "color": "GREEN",
+      "nutritional": {
+        "calories": 200,
+        "carbs": 100,
+        "fat": 100,
+        "protein": 100
+      },
+      "category": 2,
+      "ingredients": [
+        {
+          "id": 1,
+          "name": "Bread",
+          "value": 200
+        },
+        {
+          "id": 2,
+          "name": "Meat (Chicken)",
+          "value": 500
+        },
+        {
+          "id": 3,
+          "name": "Cacumber",
+          "value": 300
+        },
+        {
+          "id": 4,
+          "name": "Onion",
+          "value": 200
+        }
+      ],
+      "imgUrl": "https://img.freepik.com/free-vector/vegetable-salad-vegans-vegetarians-3d-illustration-meal-with-lettuce-tomatoes-onions-brussel-sprouts-celery-feta-cheese-3d-style-white-background-food-healthy-eating-concept_778687-1632.jpg",
+      "favorite": 0
+    },
+    {
+      "id": 8,
+      "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
+      "name": "Pork",
+      "weight": 400,
+      "color": "RED",
+      "nutritional": {
+        "calories": 200,
+        "carbs": 100,
+        "fat": 100,
+        "protein": 100
+      },
+      "category": 3,
+      "ingredients": [
+        {
+          "id": 1,
+          "name": "Bread",
+          "value": 200
+        },
+        {
+          "id": 2,
+          "name": "Meat (Chicken)",
+          "value": 500
+        },
+        {
+          "id": 3,
+          "name": "Cacumber",
+          "value": 300
+        },
+        {
+          "id": 4,
+          "name": "Onion",
+          "value": 200
+        }
+      ],
+      "imgUrl": "https://img.freepik.com/free-vector/vegetable-salad-vegans-vegetarians-3d-illustration-meal-with-lettuce-tomatoes-onions-brussel-sprouts-celery-feta-cheese-3d-style-white-background-food-healthy-eating-concept_778687-1632.jpg",
+      "favorite": 0
+    },
+    {
+      "id": 9,
+      "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
+      "name": "Fish",
+      "weight": 400,
+      "color": "ORANGE",
+      "nutritional": {
+        "calories": 200,
+        "carbs": 100,
+        "fat": 100,
+        "protein": 100
+      },
+      "category": 3,
+      "ingredients": [
+        {
+          "id": 1,
+          "name": "Bread",
+          "value": 200
+        },
+        {
+          "id": 2,
+          "name": "Meat (Chicken)",
+          "value": 500
+        },
+        {
+          "id": 3,
+          "name": "Cacumber",
+          "value": 300
+        },
+        {
+          "id": 4,
+          "name": "Onion",
+          "value": 200
+        }
+      ],
+      "imgUrl": "https://img.freepik.com/free-vector/vegetable-salad-vegans-vegetarians-3d-illustration-meal-with-lettuce-tomatoes-onions-brussel-sprouts-celery-feta-cheese-3d-style-white-background-food-healthy-eating-concept_778687-1632.jpg",
+      "favorite": 0
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Fast Food"
+    },
+    {
+      "id": 2,
+      "name": "Breakfast"
+    },
+    {
+      "id": 3,
+      "name": "Lunch"
+    },
+    {
+      "id": 4,
+      "name": "Dinner"
+    },
+    {
+      "id": 5,
+      "name": "Fruits"
+    },
+    {
+      "id": 6,
+      "name": "Vegetables"
+    },
+    {
+      "id": 7,
+      "name": "Dry fruits"
+    },
+    {
+      "id": 8,
+      "name": "Non-Veg"
+    },
+    {
+      "id": 9,
+      "name": "Greenish"
+    }
+  ],
+  "ingredients": [
+    {
+      "id": 1,
+      "name": "Bread"
+    },
+    {
+      "id": 2,
+      "name": "Meat (Chicken)"
+    },
+    {
+      "id": 3,
+      "name": "Cacumber"
+    },
+    {
+      "id": 4,
+      "name": "Onion"
+    }
+  ],
+  "nutritionals": [
+    {
+      "calories": 100,
+      "carbs": 100,
+      "protein": 100,
+      "fat": 100
+    }
+  ]
+}
