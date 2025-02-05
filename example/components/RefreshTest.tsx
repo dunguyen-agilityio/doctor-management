@@ -1,6 +1,6 @@
 import React from "react";
 import { RefreshControl, ScrollView, StyleSheet, Text } from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const RefreshTest = () => {
   const [refreshing, setRefreshing] = React.useState(false);
@@ -13,18 +13,16 @@ const RefreshTest = () => {
   }, []);
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <ScrollView
-          contentContainerStyle={styles.scrollView}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-        >
-          <Text>Pull down to see RefreshControl indicator</Text>
-        </ScrollView>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        contentContainerStyle={styles.scrollView}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <Text>Pull down to see RefreshControl indicator</Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
