@@ -1,3 +1,5 @@
+import AlertTest from "@/components/AlertTest";
+import AndroidToastTest from "@/components/AndroidToastTest";
 import CheckboxTest from "@/components/CheckboxTest";
 import DrawerLayoutAndroidTest from "@/components/DrawerLayoutAndroidTest";
 import KeyboardAvoidingComponent from "@/components/KeyboardAvoidingComponent";
@@ -12,7 +14,9 @@ const Products = () => {
     <View
       style={{ height: "100%", justifyContent: "center", alignItems: "center" }}
     >
-      <DrawerLayoutAndroidTest />
+      <AlertTest />
+      <AndroidToastTest />
+      {/* <DrawerLayoutAndroidTest />
       <TouchableHighlight
         activeOpacity={0.6}
         underlayColor="#DDDDDD"
@@ -26,7 +30,7 @@ const Products = () => {
       <StatusBarTest />
       <KeyboardAvoidingComponent />
       <TestModal />
-      <RefreshTest />
+      <RefreshTest /> */}
     </View>
   );
 };
