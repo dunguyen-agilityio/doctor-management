@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 
-import { RootStackParamsList } from '@navigation';
+import { RootScreenNavigationProps, RootStackParamsList } from '@navigation';
 import { useFood } from '@hooks';
 import {
   Back,
@@ -12,14 +12,15 @@ import {
   Nutritional,
   Text,
 } from '@components';
-import { CATEGORIES, COLORS, DETAIL } from '@constants';
+import { CATEGORIES, DETAIL } from '@constants';
 
 type DetailRoute = RouteProp<RootStackParamsList, typeof DETAIL>;
 
 const Details = () => {
   const route = useRoute<DetailRoute>();
+  const { goBack } = useNavigation<RootScreenNavigationProps<typeof DETAIL>>();
 
-  const { id, onChange, onBack } = route.params;
+  const { id, onChange } = route.params;
 
   const { data, addFavorite, removeFavorite } = useFood(id);
 
@@ -29,7 +30,7 @@ const Details = () => {
     setIsMore((prev) => !prev);
   }, []);
 
-  const handlePress = useCallback(async () => {
+  const handleFavorite = useCallback(async () => {
     let newData;
     if (data) {
       const { favorite } = data;
@@ -51,13 +52,22 @@ const Details = () => {
     return null;
   }
 
-  const { color, imgUrl, category, name } = data;
+  const {
+    color,
+    imgUrl,
+    category,
+    name,
+    favorite,
+    desc,
+    ingredients,
+    nutritional,
+  } = data;
 
   const categoryName = CATEGORIES.find(({ id }) => id == category)?.name || '';
 
   return (
     <View style={styles.container}>
-      <Back left={20} onPress={onBack} />
+      <Back left={20} onPress={goBack} />
 
       <View style={styles.header}>
         <FoodImage imgUrl={imgUrl} color={color} type="large" />
@@ -67,7 +77,7 @@ const Details = () => {
         <Text fontSize="xl-6">{categoryName}</Text>
       </View>
 
-      {data.nutritional && <Nutritional nutritional={data.nutritional} />}
+      <Nutritional nutritional={nutritional} />
 
       <View style={styles.details}>
         <Text fontSize="xxl-0" fontWeight="600">
@@ -75,7 +85,7 @@ const Details = () => {
         </Text>
 
         <Text fontSize="xl-5">
-          {isMore ? data.desc : data.desc?.substring(0, 150) + '...'}
+          {isMore ? desc : desc.substring(0, 150) + '...'}
           <Text
             onPress={handleReadMore}
             fontSize="xl-5"
@@ -88,16 +98,16 @@ const Details = () => {
 
         {/* Display Ingrediants */}
 
-        {data.ingredients && <Ingredients data={data.ingredients} />}
+        <Ingredients data={ingredients} />
 
         {/* add Favorite */}
 
         <Button
           width={'100%'}
           borderRadius={9}
-          onPress={handlePress}
+          onPress={handleFavorite}
           customStyle={{ paddingVertical: 9, width: '100%', marginTop: 27 }}
-          {...(data.favorite
+          {...(favorite
             ? {
                 type: 'secondary',
                 label: 'UnFavorite',

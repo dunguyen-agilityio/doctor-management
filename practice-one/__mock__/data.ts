@@ -1,4 +1,4 @@
-import { IArtcile, IFood, TIngredient, TNutritional } from '@types';
+import { IArticle, IFood, TIngredient, TNutritional } from '@types';
 
 export const MOCK_FOODS: IFood[] = [
   {
@@ -18,7 +18,7 @@ export const MOCK_FOODS: IFood[] = [
       },
       {
         id: 3,
-        name: 'Cacumber',
+        name: 'Cucumber',
         value: 300,
       },
       {
@@ -66,7 +66,7 @@ export const MOCK_FOODS: IFood[] = [
       },
       {
         id: 3,
-        name: 'Cacumber',
+        name: 'Cucumber',
         value: 300,
       },
       {
@@ -105,7 +105,7 @@ export const MOCK_FOODS: IFood[] = [
       },
       {
         id: 3,
-        name: 'Cacumber',
+        name: 'Cucumber',
         value: 300,
       },
       {
@@ -144,7 +144,7 @@ export const MOCK_FOODS: IFood[] = [
       },
       {
         id: 3,
-        name: 'Cacumber',
+        name: 'Cucumber',
         value: 300,
       },
       {
@@ -184,7 +184,7 @@ export const MOCK_FOODS: IFood[] = [
       },
       {
         id: 3,
-        name: 'Cacumber',
+        name: 'Cucumber',
         value: 300,
       },
       {
@@ -222,7 +222,7 @@ export const MOCK_FOODS: IFood[] = [
       },
       {
         id: 3,
-        name: 'Cacumber',
+        name: 'Cucumber',
         value: 300,
       },
       {
@@ -261,7 +261,7 @@ export const MOCK_FOODS: IFood[] = [
       },
       {
         id: 3,
-        name: 'Cacumber',
+        name: 'Cucumber',
         value: 300,
       },
       {
@@ -300,7 +300,7 @@ export const MOCK_FOODS: IFood[] = [
       },
       {
         id: 3,
-        name: 'Cacumber',
+        name: 'Cucumber',
         value: 300,
       },
       {
@@ -315,7 +315,7 @@ export const MOCK_FOODS: IFood[] = [
   },
 ];
 
-export const MOCK_ACTICLES: IArtcile[] = [
+export const MOCK_ARTICLES: IArticle[] = [
   {
     id: 1,
     title: 'The pros and cons of fast food.',
@@ -349,7 +349,7 @@ export const MOCK_INGREDIENTS: TIngredient[] = [
   },
   {
     id: 3,
-    name: 'Cacumber',
+    name: 'Cucumber',
     value: 200,
   },
   {

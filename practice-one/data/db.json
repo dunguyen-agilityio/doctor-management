@@ -162,7 +162,7 @@
         "fat": 100,
         "protein": 100
       },
-      "favorite": 0,
+      "favorite": 1,
       "category": 2,
       "ingredients": [
         {

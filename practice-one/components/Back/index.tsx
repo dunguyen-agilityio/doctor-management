@@ -1,5 +1,4 @@
-import React, { memo, useCallback } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { memo } from 'react';
 import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 interface BackProps {

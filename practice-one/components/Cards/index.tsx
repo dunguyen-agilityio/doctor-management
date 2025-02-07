@@ -2,8 +2,8 @@ import React, { memo, useCallback } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 
 import Card from './Card';
-import { IArtcile } from '@types';
-import { MOCK_ACTICLES } from '@__mock__';
+import { IArticle } from '@types';
+import { MOCK_ARTICLES } from '@__mock__';
 
 const Cards = () => {
   const handleItemSeparatorComponent = useCallback(
@@ -12,16 +12,16 @@ const Cards = () => {
   );
 
   const handleRenderItem = useCallback(
-    ({ item }: { item: IArtcile }) => <Card {...item} color={item.color} />,
+    ({ item }: { item: IArticle }) => <Card {...item} color={item.color} />,
     []
   );
 
-  const handleKeyExtractor = useCallback((item: IArtcile) => item.id + '', []);
+  const handleKeyExtractor = useCallback((item: IArticle) => item.id + '', []);
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
-        data={MOCK_ACTICLES}
+        data={MOCK_ARTICLES}
         keyExtractor={handleKeyExtractor}
         renderItem={handleRenderItem}
         horizontal
@@ -38,6 +38,7 @@ const Cards = () => {
 export default memo(Cards);
 
 const styles = StyleSheet.create({
+  container: { paddingHorizontal: 16 },
   slide: {
     height: 'auto',
     flexWrap: 'wrap',
