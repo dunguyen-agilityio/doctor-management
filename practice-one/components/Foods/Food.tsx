@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Image, Pressable, StyleSheet } from 'react-native';
 
 import { IFood } from '@types';
 import { Text } from '../common';
@@ -42,7 +42,7 @@ const Food = ({
   disabled?: boolean;
   onPress?: (id: number) => void;
 }) => {
-  const { name, weight, category, nutritional, id } = data;
+  const { name, weight, category, nutritional, id, imgUrl } = data;
   const { calories } = nutritional || { calories: {} };
 
   const handlePress = useCallback(() => {

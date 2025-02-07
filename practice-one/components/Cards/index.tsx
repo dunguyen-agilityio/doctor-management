@@ -5,21 +5,21 @@ import Card from './Card';
 import { IArtcile } from '@types';
 import { MOCK_ACTICLES } from '@__mock__';
 
-const Cards = ({ marginTop = 0 }: { marginTop?: number }) => {
+const Cards = () => {
   const handleItemSeparatorComponent = useCallback(
     () => <View style={styles.item} />,
     []
   );
 
   const handleRenderItem = useCallback(
-    ({ item }: { item: IArtcile }) => <Card {...item} type={item.color} />,
+    ({ item }: { item: IArtcile }) => <Card {...item} color={item.color} />,
     []
   );
 
   const handleKeyExtractor = useCallback((item: IArtcile) => item.id + '', []);
 
   return (
-    <View style={styles.container}>
+    <View>
       <FlatList
         data={MOCK_ACTICLES}
         keyExtractor={handleKeyExtractor}
@@ -27,7 +27,7 @@ const Cards = ({ marginTop = 0 }: { marginTop?: number }) => {
         horizontal
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={handleItemSeparatorComponent}
-        style={[styles.slide, marginTop ? { marginTop: marginTop } : {}]}
+        style={[styles.slide]}
       />
 
       <View style={styles.separator}></View>
@@ -38,10 +38,10 @@ const Cards = ({ marginTop = 0 }: { marginTop?: number }) => {
 export default memo(Cards);
 
 const styles = StyleSheet.create({
-  container: {},
   slide: {
     height: 'auto',
     flexWrap: 'wrap',
+    marginTop: 16,
   },
   separator: {
     height: 20,

@@ -1,33 +1,12 @@
-import { Food, FoodImage, FoodsHorizontal, FoodsVertical } from './Foods';
-import { Text, Input, Button } from './common';
-import Search from './Search';
-import Categories from './Categories';
-import Cards, { Card } from './Cards';
-import Back from './Back';
-import Nutritional from './Nutritional';
-import Loading from './Loading';
-import Empty from './Empty';
-import Header from './Header';
-import NotFound from './NotFound';
-import Ingredients from './Ingredients';
-
-export {
-  Food,
-  FoodImage,
-  Categories,
-  FoodsHorizontal,
-  FoodsVertical,
-  Text,
-  Search,
-  Header,
-  Card,
-  Nutritional,
-  Loading,
-  Cards,
-  Back,
-  Input,
-  Empty,
-  NotFound,
-  Ingredients,
-  Button,
-};
+export { FoodsList, FoodImage } from './Foods';
+export { Text, Input, Button } from './common';
+export { default as Search } from './Search';
+export { default as Categories } from './Categories';
+export { default as Cards, Card } from './Cards';
+export { default as Back } from './Back';
+export { default as Nutritional } from './Nutritional';
+export { default as Loading } from './Loading';
+export { default as Empty } from './Empty';
+export { default as Header } from './Header';
+export { default as NotFound } from './NotFound';
+export { default as Ingredients } from './Ingredients';

@@ -1,6 +1,7 @@
 import { COLOR } from '@constants';
 import { IInfo } from './common';
 
+import { LinearGradient } from 'expo-linear-gradient';
 type Ingredients = 'Bread' | 'Meat (Chicken)' | 'Cacumber' | 'Onion';
 
 type Categories =
@@ -35,6 +36,7 @@ interface IArtcile extends IInfo {
   image: string;
   title: string;
   color: 'green' | 'secondary';
+  backgroundColor: LinearGradient['props']['colors'];
 }
 
 interface IFood extends IInfo {

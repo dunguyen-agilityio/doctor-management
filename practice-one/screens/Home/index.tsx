@@ -2,25 +2,18 @@ import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { FoodOptions, useFood } from '@hooks';
+import { FoodOptions, useFood, useFoods } from '@hooks';
 import { RootScreenNavigationProps } from '@navigation';
-import {
-  Header,
-  Search,
-  Cards,
-  Categories,
-  FoodsHorizontal,
-  FoodsVertical,
-} from '@components';
-import { DETAIL, SEARCH, HOME } from '@constants';
-import { IFood } from '@types';
+import { Header, Search, Cards, Categories, Text } from '@components';
+import { DETAIL, SEARCH, HOME, COLORS } from '@constants';
+import { FoodsList } from '@components/Foods';
 
 const HomeScreen = () => {
   const { navigate, goBack } =
     useNavigation<RootScreenNavigationProps<typeof HOME>>();
-  const { data, fetch, setQuery, query } = useFood<IFood[]>();
+  const { data, fetch, setQuery, query } = useFoods();
 
-  const { categories }: FoodOptions = query || {};
+  const { categories }: FoodOptions = query;
 
   const handlePressItem = useCallback(
     (id: number) => {
@@ -31,7 +24,7 @@ const HomeScreen = () => {
 
   const handleChangeTag = useCallback(
     (ids: number[]) => {
-      if (ids) setQuery({ categories: ids });
+      if (ids) setQuery((prev) => ({ ...prev, categories: ids }));
     },
     [setQuery]
   );
@@ -45,16 +38,22 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <Header />
       <Search onFocus={handleFocusSearch} isFocus={false} />
-      <Categories marginTop={17} onSelect={handleChangeTag} />
-      {(categories === undefined || categories.length === 0) && (
-        <Cards marginTop={17} />
-      )}
-      {data &&
-        (categories === undefined || categories.length === 0 ? (
-          <FoodsHorizontal foods={data} onPressItem={handlePressItem} />
-        ) : (
-          <FoodsVertical foods={data} onPressItem={handlePressItem} />
-        ))}
+      <Categories onSelect={handleChangeTag} />
+      <Cards />
+      <FoodsList
+        foods={data}
+        onPressItem={handlePressItem}
+        slots={{ list: { horizontal: true } }}
+        title={
+          <Text
+            fontSize="xxl-0"
+            fontWeight="700"
+            customStyle={{ marginTop: 22, marginLeft: 8 }}
+          >
+            All Food
+          </Text>
+        }
+      />
     </View>
   );
 };
@@ -65,7 +64,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 60,
-    paddingHorizontal: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.WHITE,
   },
 });

@@ -8,7 +8,6 @@ const Empty = () => {
   return (
     <View style={styles.container}>
       <EmptyImage />
-
       <Text
         fontSize="xxl-2"
         fontWeight="500"

@@ -1,21 +1,25 @@
 import React, { useCallback } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import {
+  FlatList,
+  FlatListProps,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from 'react-native';
 
 import { IFood } from '@types';
-import { Text } from '@components/common';
 import Food from './Food';
 import FoodImage from './FoodImage';
+import { COLORS } from '@constants';
 
 export interface FoodsProps {
+  title?: React.ReactNode;
   foods: IFood[] | null;
   onPressItem?: (id: number) => void;
+  slots?: { container?: ViewStyle; list?: Partial<FlatListProps<IFood>> };
 }
 
-const Foods = ({
-  horizontal,
-  foods,
-  onPressItem,
-}: FoodsProps & { horizontal?: boolean }) => {
+const FoodsList = ({ foods, slots, title = null, onPressItem }: FoodsProps) => {
   const handleItemSeparatorComponent = useCallback(
     () => <View style={{ marginLeft: 18, height: 18 }} />,
     []
@@ -28,61 +32,37 @@ const Foods = ({
 
   const handleKeyExtractor = useCallback((item: IFood) => item.id + '', []);
 
+  const { list, container } = slots || {};
+
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          ...(!horizontal && { alignItems: 'center' }),
-        },
-      ]}
-    >
-      {horizontal && (
-        <Text
-          fontSize="xxl-0"
-          fontWeight="700"
-          customStyle={{ marginTop: 22, marginLeft: 8 }}
-        >
-          All Food
-        </Text>
-      )}
+    <View style={[styles.container, container]}>
+      {title}
       <FlatList
-        style={styles.list}
         data={foods}
         keyExtractor={handleKeyExtractor}
         renderItem={handleRenderItem}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={handleItemSeparatorComponent}
-        {...(horizontal
-          ? { horizontal }
-          : { ...styles.vertical, columnWrapperStyle: styles.itemStyle })}
+        {...list}
+        style={[styles.list, list?.style]}
       />
     </View>
   );
 };
 
-const FoodsVertical = (props: FoodsProps) => <Foods {...props} />;
-const FoodsHorizontal = (props: FoodsProps) => <Foods {...props} horizontal />;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'flex-start',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.WHITE,
+    paddingHorizontal: 16,
   },
   list: {
     marginTop: 15,
   },
-  vertical: {
-    numColumns: 2,
-    width: 326,
-    justifyContent: 'space-between',
-  },
-  horizontal: {},
-  itemStyle: {
-    justifyContent: 'space-between',
-  },
+  vertical: {},
+  itemStyle: {},
 });
 
-export { Food, FoodImage, FoodsVertical, FoodsHorizontal };
+export { FoodsList, FoodImage };

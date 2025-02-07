@@ -1,5 +1,10 @@
 import React, { memo, ReactNode } from 'react';
-import { Text, TextStyle, ViewStyle } from 'react-native';
+import {
+  Text,
+  TextStyle,
+  TextProps as RNTextProps,
+  ViewStyle,
+} from 'react-native';
 import {
   COLORS,
   FONT_SIZES,
@@ -26,9 +31,8 @@ export const TEXT_COLOR = {
   green: COLORS.DARK_GREEN,
 };
 
-interface TextProps {
+export interface TextProps extends RNTextProps {
   color?: COLOR_TYPES;
-  onPress?: () => void;
   textAlign?: boolean;
   fontSize?: FONT_SIZE_TYPE;
   fontWeight?: FONT_WEIGHT_TYPE;
@@ -37,21 +41,22 @@ interface TextProps {
 }
 
 const CustomText = ({
-  fontSize,
+  fontSize = 'm',
   fontWeight,
   color = 'regular',
   onPress,
   children,
   customStyle,
 }: TextProps) => {
-  const _fontSize = fontSize ? FONT_SIZES[fontSize] : 14;
-  const _color = TEXT_COLOR[color];
-
   return (
     <Text
       onPress={onPress}
       style={[
-        { fontSize: _fontSize, fontWeight, color: _color },
+        {
+          fontSize: FONT_SIZES[fontSize] ?? 14,
+          fontWeight,
+          color: TEXT_COLOR[color],
+        },
         { ...customStyle },
       ]}
     >

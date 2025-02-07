@@ -42,10 +42,11 @@ export default memo(Search);
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    backgroundColor: COLORS.LIGHT_PUPLE,
+    backgroundColor: COLORS.LIGHT_PURPLE,
     borderRadius: 15,
     zIndex: 1,
     marginTop: 14,
+    paddingHorizontal: 16,
   },
   text: {
     fontSize: 13,

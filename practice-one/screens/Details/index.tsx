@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 
@@ -7,14 +7,12 @@ import { useFood } from '@hooks';
 import {
   Back,
   Button,
-  Food,
+  FoodImage,
   Ingredients,
-  Loading,
   Nutritional,
   Text,
 } from '@components';
-import { DETAIL } from '@constants';
-import { IFood } from '@types';
+import { CATEGORIES, COLORS, DETAIL } from '@constants';
 
 type DetailRoute = RouteProp<RootStackParamsList, typeof DETAIL>;
 
@@ -23,7 +21,7 @@ const Details = () => {
 
   const { id, onChange, onBack } = route.params;
 
-  const { data, addFavorite, removeFavorite, fetch } = useFood<IFood>({ id });
+  const { data, addFavorite, removeFavorite } = useFood(id);
 
   const [isMore, setIsMore] = useState(false);
 
@@ -43,22 +41,30 @@ const Details = () => {
       }
 
       if (newData && onChange) {
-        fetch && fetch();
         onChange();
       }
     }
-  }, [addFavorite, data, fetch, id, onChange, removeFavorite]);
+  }, [addFavorite, data, id, onChange, removeFavorite]);
 
-  if (data === undefined) {
-    return <Loading />;
+  // Show error
+  if (!data) {
+    return null;
   }
+
+  const { color, imgUrl, category, name } = data;
+
+  const categoryName = CATEGORIES.find(({ id }) => id == category)?.name || '';
 
   return (
     <View style={styles.container}>
       <Back left={20} onPress={onBack} />
 
-      <View style={styles.avatar}>
-        <Food data={data} type="large" disabled />
+      <View style={styles.header}>
+        <FoodImage imgUrl={imgUrl} color={color} type="large" />
+        <Text fontWeight="700" fontSize="xxl-2">
+          {name}
+        </Text>
+        <Text fontSize="xl-6">{categoryName}</Text>
       </View>
 
       {data.nutritional && <Nutritional nutritional={data.nutritional} />}
@@ -111,10 +117,11 @@ const styles = StyleSheet.create({
     paddingTop: 63,
     backgroundColor: '#fff',
   },
-  avatar: {
+  header: {
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingBottom: 16,
   },
   details: {
     paddingHorizontal: 20,

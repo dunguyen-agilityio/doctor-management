@@ -5,50 +5,20 @@ import { fetchData } from '@utils';
 import { API_FOOD } from '@constants';
 
 export interface FoodOptions {
-  name?: string;
-  categories?: number[];
+  name: string;
+  categories: number[];
 }
 
-interface useFoodInit {
-  id?: number;
-  isFavorite?: boolean;
-}
-
-export function useFood<T>(initValue?: useFoodInit) {
-  const { id, isFavorite = false } = initValue || {};
-  const [reload, setReload] = useState(false);
-  const [data, setData] = useState<T>();
+export function useFood(id: number) {
+  const [data, setData] = useState<IFood | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error>();
-  const [query, setQuery] = useState<FoodOptions>();
 
   useEffect(() => {
     async function getData() {
       setLoading(true);
       try {
-        let url;
-        if (id) {
-          url = `${API_FOOD}/${id}`;
-        } else if (query === undefined) {
-          url = API_FOOD;
-        } else {
-          const { categories, name } = query;
-
-          let _url = API_FOOD;
-          name && (_url += `?name_like=${name}`);
-
-          let newUrl = '';
-          if (categories) {
-            newUrl = _url.includes('?') ? '&' : '?';
-            categories.forEach((item) => {
-              newUrl += `category=${item}&`;
-            });
-          }
-          url = _url + newUrl.substring(0, newUrl.length - 1);
-        }
-        if (isFavorite)
-          url = url + (url.includes('?') ? '&' : '?') + 'favorite=1';
-        const data = await fetchData<T>({ url });
+        const data = await fetchData<IFood>({ url: `${API_FOOD}/${id}` });
         setData(data);
       } catch (error) {
         setError(new Error('Failed to fetch data.'));
@@ -56,7 +26,7 @@ export function useFood<T>(initValue?: useFoodInit) {
       setLoading(false);
     }
     getData();
-  }, [id, isFavorite, query, reload]);
+  }, [id]);
 
   async function addFavorite(id: number) {
     try {
@@ -90,6 +60,52 @@ export function useFood<T>(initValue?: useFoodInit) {
     }
   }
 
+  return {
+    data,
+    loading,
+    error,
+    removeFavorite,
+    addFavorite,
+  };
+}
+
+export function useFoods() {
+  const [reload, setReload] = useState(false);
+  const [data, setData] = useState<IFood[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error>();
+  const [query, setQuery] = useState<FoodOptions>({ categories: [], name: '' });
+
+  useEffect(() => {
+    async function getData() {
+      setLoading(true);
+      try {
+        const { categories, name } = query;
+        const searchParams = new URLSearchParams();
+
+        if (name) {
+          searchParams.set('name_like', name);
+        }
+
+        categories.forEach((item) => {
+          searchParams.append('category', item.toString());
+        });
+
+        const data = await fetchData<IFood[]>({
+          url: `${API_FOOD}?${searchParams.toString()}`,
+        });
+
+        setData(data);
+      } catch (error) {
+        setError(new Error('Failed to fetch data.'));
+      }
+
+      setLoading(false);
+    }
+
+    getData();
+  }, [query, reload]);
+
   const fetch = useCallback(() => setReload((prev) => !prev), []);
 
   return {
@@ -99,7 +115,5 @@ export function useFood<T>(initValue?: useFoodInit) {
     query,
     setQuery,
     fetch,
-    addFavorite,
-    removeFavorite,
   };
 }

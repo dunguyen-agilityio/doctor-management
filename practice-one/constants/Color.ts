@@ -1,6 +1,6 @@
 export const COLORS = {
   PRIMARY: '#91C788',
-  WHITE: '#FFFFFF',
+  WHITE: '#fff',
   GRAY: '#5C5C5C',
   PINK: '#91C788',
   LIGHT_GRAY: '#ECECEC',
@@ -10,7 +10,7 @@ export const COLORS = {
   BLACK: '#000000',
   LIGHT_BLACK: '#330600',
   WARNING: '#DA6317',
-  LIGHT_PUPLE: '#FFF3F1',
+  LIGHT_PURPLE: '#FFF3F1',
   GREEN: '#27AE60',
   ORANGE: '#D89E4A',
   YELLOW: '#F2C94C',

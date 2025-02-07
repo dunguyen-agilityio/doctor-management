@@ -29,7 +29,7 @@ const FoodImage = ({
   imgUrl,
   color,
   type = 'medium',
-}: IFood & { type: Size }) => {
+}: Pick<IFood, 'imgUrl' | 'color'> & { type: Size }) => {
   const _color = useMemo(() => {
     switch (color) {
       case 'RED':
@@ -50,7 +50,7 @@ const FoodImage = ({
   const { layer2, image, layer1 } = TYPE_STYLES[type];
 
   return (
-    <View>
+    <View style={styles.container}>
       <View
         style={[
           styles.layer1,
@@ -62,7 +62,7 @@ const FoodImage = ({
             borderRadius: layer1 / 2,
           },
         ]}
-      ></View>
+      />
       <View
         style={[
           styles.layer2,
@@ -75,8 +75,16 @@ const FoodImage = ({
             left: (layer1 - layer2) / 2,
           },
         ]}
+      />
+      <View
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}
       >
-        <Image source={{ uri: imgUrl }} style={[styles.image, { ...image }]} />
+        <Image source={{ uri: imgUrl }} style={[styles.image, image]} />
       </View>
     </View>
   );
@@ -98,10 +106,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   image: {
-    position: 'absolute',
     zIndex: 2,
     resizeMode: 'contain',
-    right: -20,
-    bottom: -10,
   },
 });

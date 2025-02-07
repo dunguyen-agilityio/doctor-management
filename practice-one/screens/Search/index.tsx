@@ -1,24 +1,17 @@
 import { StyleSheet, View } from 'react-native';
 import React, { useCallback } from 'react';
 
-import { useFood } from '@hooks';
+import { useFoods } from '@hooks';
 import { useNavigation } from '@react-navigation/native';
 import { RootScreenNavigationProps } from '@navigation';
-import {
-  Empty,
-  FoodsVertical,
-  Header,
-  Loading,
-  Search,
-  Categories,
-} from '@components';
+import { Empty, Header, Loading, Search, Categories } from '@components';
 import { DETAIL, SEARCH } from '@constants';
-import { IFood } from '@types';
+import { FoodsList } from '@components/Foods';
 
 const SearchScreen = () => {
   const { navigate, goBack } =
     useNavigation<RootScreenNavigationProps<typeof SEARCH>>();
-  const { loading, data, setQuery, query, fetch } = useFood<IFood[]>();
+  const { loading, data, setQuery, query, fetch } = useFoods();
 
   const handleChangeTextSearch = useCallback(
     (text: string) => {
@@ -47,14 +40,27 @@ const SearchScreen = () => {
 
       <Search value={query?.name} onChangeText={handleChangeTextSearch} />
 
-      <Categories marginTop={17} onSelect={handleSelectTag} />
+      <Categories onSelect={handleSelectTag} />
 
       {loading ? (
         <Loading marginTop={120} />
       ) : data === undefined || data.length === 0 ? (
         <Empty />
       ) : (
-        <FoodsVertical foods={data} onPressItem={handlePressItem} />
+        <FoodsList
+          foods={data}
+          onPressItem={handlePressItem}
+          slots={{
+            container: {
+              alignItems: 'center',
+            },
+            list: {
+              columnWrapperStyle: styles.itemStyle,
+              numColumns: 2,
+              style: { width: '100%' },
+            },
+          }}
+        />
       )}
     </View>
   );
@@ -68,5 +74,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     paddingTop: 62,
     padding: 16,
+  },
+  list: {
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  itemStyle: {
+    justifyContent: 'space-between',
   },
 });

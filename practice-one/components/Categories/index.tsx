@@ -7,11 +7,10 @@ import { Button } from '@components/common';
 import { CATEGORIES } from '@constants';
 
 export interface ICategories {
-  marginTop?: number;
   onSelect?: (ids: number[]) => void;
 }
 
-const Categories = ({ marginTop, onSelect }: ICategories) => {
+const Categories = ({ onSelect }: ICategories) => {
   const [tags, setTags] = useState<number[]>([]);
 
   const handlePressTag = useCallback(
@@ -54,7 +53,7 @@ const Categories = ({ marginTop, onSelect }: ICategories) => {
   );
 
   return (
-    <View style={[styles.container, { marginTop: marginTop }]}>
+    <View style={styles.container}>
       <FlatList
         data={CATEGORIES}
         showsHorizontalScrollIndicator={false}
@@ -72,6 +71,7 @@ export default memo(Categories);
 const styles = StyleSheet.create({
   container: {
     height: 26,
+    marginTop: 16,
   },
   item: {
     marginLeft: 7,

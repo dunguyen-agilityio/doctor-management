@@ -32,8 +32,8 @@
         "fat": 100
       },
       "category": 1,
-      "color": "RED",
-      "imgUrl": "https://img.freepik.com/free-vector/group-food-containing-essential-vitamin-k_1308-161798.jpg",
+      "color": "PURPLE",
+      "imgUrl": "https://s3-alpha-sig.figma.com/img/0d17/c4d2/3b2ee1931e0c9de420fcbd861f82a29a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Kk7cHm44D-dhlRtVx3PsLJimx9ElGp1B1ZVxjk~020IbqEEYgd83GQp-7--731jfo0qy4U42pvGksvbN5HjY6OQO8iei44zogdIMdsFzfmaXFwuhNsjH4dZvZ0u0UTPrxiNPVcy969pmpPKjehOI7wPI4iCIaFeZVgMFbLuH0h4b-P0RAdrpZVKE9--rAS540cWY71ix8OHIENnsj~91X8wuOfoZh1NNgs1rWRZew8PMO3y8vEsyyD62OX6oYAfDVEA83TkVKq7Xxti8mVQMx7-A-Cs6T4h1L1QLE0cPUXRGwV-C3DjCTXt5zI0vlGIzWh~hPbGzH57VtGhqWDrX0Q__",
       "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
       "favorite": 0
     },
@@ -71,7 +71,7 @@
           "value": 200
         }
       ],
-      "imgUrl": "https://img.freepik.com/free-vector/hand-drawn-flat-design-poke-illustration_23-2149268467.jpg",
+      "imgUrl": "https://s3-alpha-sig.figma.com/img/92bb/3288/1f0c9ee8a584922ac42d2c63941ed711?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=DkZ~DgUsw5fGRQJ-oQ3pLzhPt4rWty7W1E3FuISFl3CMc3UAZN7q2yv41LJ0hML8pJPioSlx9nibQf5xY-Wv-aWaUIFMnT-Y3ROkyDP2MI3ntlnAAf02GCCbNzUDNXCrvYlCCpIj8xfYgjnIaAFRtHfU2EO8PbOnFFvW~RL6fHW~0JcRdbia9NCZEPD4LCEjfYVVguJE7m-E4PefFJqT3u9A9ECJRbPdErWfRQEafXycPtbKH98mGCCY427cs1icatsTnuLLhT5-1XOxFbZNWtei5KvVEjAeRNBiwoRKwcf~HzKTvJZZzlapwsFmcm6kUsIsegsX~TBu7D31y~IrGQ__",
       "favorite": 1
     },
     {
@@ -109,14 +109,14 @@
           "value": 200
         }
       ],
-      "imgUrl": "https://img.freepik.com/free-vector/realistic-vegetables-glass-bowl_1284-15361.jpg",
+      "imgUrl": "https://s3-alpha-sig.figma.com/img/ce40/50ef/6e0815c95cff360f30af0a3f72587763?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=QSnxvqr7GJPobUgcd~pF1uoUj6RKBYWSGyuB7QjW6N8bHHDnuPJvtj01-aq7TqZ~PGc~nbZOlMGs1JresVE56~Nds9xyhryHFT26pIdO2YB0vQwBrVtEIpu9eemDR1GNTglkqZ~Ggvov14U5hCHYQ02hpa2pt553GmwZZPSMYtevIElCAcb8ra9uvioxzFwBkoxt0WicVmNbXYdzKC9BUOXbS8skjo0wYAatBLstsAW9drteQjzyXqfT5lcXgvjbgjC4tiw87k1uRVVwKTPweLul931xNhWo73NjtO~yMoAzVJdyS96mtbFcvC0uXKdDqFMBC9icNam4PVa7GQQBFA__",
       "favorite": 1
     },
     {
       "id": 5,
       "name": "Bacon",
       "weight": 400,
-      "color": "GREEN",
+      "color": "YELLOW",
       "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
       "nutritional": {
         "calories": 200,
@@ -147,14 +147,14 @@
           "value": 200
         }
       ],
-      "imgUrl": "https://img.freepik.com/free-vector/vegetables-colored-icons-flat-set_1284-34003.jpg",
+      "imgUrl": "https://s3-alpha-sig.figma.com/img/ce40/50ef/6e0815c95cff360f30af0a3f72587763?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=QSnxvqr7GJPobUgcd~pF1uoUj6RKBYWSGyuB7QjW6N8bHHDnuPJvtj01-aq7TqZ~PGc~nbZOlMGs1JresVE56~Nds9xyhryHFT26pIdO2YB0vQwBrVtEIpu9eemDR1GNTglkqZ~Ggvov14U5hCHYQ02hpa2pt553GmwZZPSMYtevIElCAcb8ra9uvioxzFwBkoxt0WicVmNbXYdzKC9BUOXbS8skjo0wYAatBLstsAW9drteQjzyXqfT5lcXgvjbgjC4tiw87k1uRVVwKTPweLul931xNhWo73NjtO~yMoAzVJdyS96mtbFcvC0uXKdDqFMBC9icNam4PVa7GQQBFA__",
       "favorite": 0
     },
     {
       "id": 6,
       "name": "Chicken",
       "weight": 400,
-      "color": "RED",
+      "color": "GREEN",
       "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
       "nutritional": {
         "calories": 200,
@@ -186,14 +186,14 @@
           "value": 200
         }
       ],
-      "imgUrl": "https://img.freepik.com/premium-vector/bowl-vegetables-salad-fresh-delicious_24911-5504.jpg"
+      "imgUrl": "https://s3-alpha-sig.figma.com/img/ea57/73fb/4188637e4f004451b7049044c6d5cf09?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=qfhTYWGaHYVMbevum5nsropJuRzNrDIgCOnpBwN8DM58a0JJQpLrmmaSodmePhOSji85MHe~mKtxdabYnIhZ420ivIVRpCjpe~xVNA8iXEeqkZUtwSlM6LKFrXFDAG4-WyjuVz7H29~F1XNXrwByGo7to5z93vop3S7UVl0V3MUeoI1sTqI1~mvaDZQ0WOm9GALbOvbqYd5ep1K5D94KkxAK7FM0DndAxhrQD1QBcNgz04VuquXO8iGwlN3YRHfFPT3K1PI~tsVC86udinX762j0itpDozWpLXI2TpoFAMUHkTLPGe7Vk0mkj8w5RBEwQb1y1Kp9diAZWAf2DMgf1Q__"
     },
     {
       "id": 7,
       "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
       "name": "Beef",
       "weight": 400,
-      "color": "GREEN",
+      "color": "ORANGE",
       "nutritional": {
         "calories": 200,
         "carbs": 100,
@@ -223,7 +223,7 @@
           "value": 200
         }
       ],
-      "imgUrl": "https://img.freepik.com/free-vector/vegetable-salad-vegans-vegetarians-3d-illustration-meal-with-lettuce-tomatoes-onions-brussel-sprouts-celery-feta-cheese-3d-style-white-background-food-healthy-eating-concept_778687-1632.jpg",
+      "imgUrl": "https://s3-alpha-sig.figma.com/img/1195/a5d9/ce99595ec8883464d6e7b9847019316a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=X~kkMYqR9VFuMlTvHSyYWIBo5ayIDz2QSN6UCUrODM8KC0iI1yzdU3EuQ~99VC2kEI2DG5JXWiEqnlzxtV5gd-A4i6CVVNFQM5uVgYZg7R~R9zLr-2qnPboaZs9qqvBJfrjpKaOoVuMwGjNyXg5xg5NtuxG2Fsd075U57wQejpC8CUWI75ixP7XwT9Mt6dxn4wfXPGikNpThkMUaBLR2O5S2pmtp-Vo3~NlEaGlpo3wHi0vgCL~bZETkVL8dP1kZcI8u69S86pjjqe--8jyD53~K7i-tvnm6LqcSlSCBUqoU5Dpo~41ZYI1g8PHIrRvR3MR14DWni~cyoKQIrrY8bg__",
       "favorite": 0
     },
     {
@@ -231,7 +231,7 @@
       "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
       "name": "Pork",
       "weight": 400,
-      "color": "RED",
+      "color": "GREEN",
       "nutritional": {
         "calories": 200,
         "carbs": 100,
@@ -261,7 +261,7 @@
           "value": 200
         }
       ],
-      "imgUrl": "https://img.freepik.com/free-vector/vegetable-salad-vegans-vegetarians-3d-illustration-meal-with-lettuce-tomatoes-onions-brussel-sprouts-celery-feta-cheese-3d-style-white-background-food-healthy-eating-concept_778687-1632.jpg",
+      "imgUrl": "https://s3-alpha-sig.figma.com/img/3a8a/d941/5bc05e5bc5a689b2dad6dacf2ea179ea?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=K1rvncVwxb~ff7hUlJxlKfoT2I8M6nMbwbOtN7lZzNnDPygNPEi6udzAx~jaSMOb-bDU6YPK33fCadA~yiPHpLXOrkGbIILWfG2snjGlCxAh7ucq~BJ0aEufXTGl9mHjY5HjNRzDMY1fTX0qb8DqqEe8npqn5Uxpexyopp9VJMNqL2Fs77b9OHqo~zc4bLi4E8EguM12SJv28AM06jUCglsajVBE0S77w~1bGGqXrQ6FEGhFGiLAWLhidhBXvv~vQW13aVPrh2uMVrLH1c26O88OqUywNIrDv0l6ZN~Yhpn1HG2zu4TP3zC3XBK2a8sbZ5-vcQdA0U407Z4ucWMfZg__",
       "favorite": 0
     },
     {
@@ -269,7 +269,7 @@
       "desc": "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
       "name": "Fish",
       "weight": 400,
-      "color": "ORANGE",
+      "color": "GREEN",
       "nutritional": {
         "calories": 200,
         "carbs": 100,
@@ -299,7 +299,7 @@
           "value": 200
         }
       ],
-      "imgUrl": "https://img.freepik.com/free-vector/vegetable-salad-vegans-vegetarians-3d-illustration-meal-with-lettuce-tomatoes-onions-brussel-sprouts-celery-feta-cheese-3d-style-white-background-food-healthy-eating-concept_778687-1632.jpg",
+      "imgUrl": "https://s3-alpha-sig.figma.com/img/3a8a/d941/5bc05e5bc5a689b2dad6dacf2ea179ea?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=K1rvncVwxb~ff7hUlJxlKfoT2I8M6nMbwbOtN7lZzNnDPygNPEi6udzAx~jaSMOb-bDU6YPK33fCadA~yiPHpLXOrkGbIILWfG2snjGlCxAh7ucq~BJ0aEufXTGl9mHjY5HjNRzDMY1fTX0qb8DqqEe8npqn5Uxpexyopp9VJMNqL2Fs77b9OHqo~zc4bLi4E8EguM12SJv28AM06jUCglsajVBE0S77w~1bGGqXrQ6FEGhFGiLAWLhidhBXvv~vQW13aVPrh2uMVrLH1c26O88OqUywNIrDv0l6ZN~Yhpn1HG2zu4TP3zC3XBK2a8sbZ5-vcQdA0U407Z4ucWMfZg__",
       "favorite": 0
     }
   ],
