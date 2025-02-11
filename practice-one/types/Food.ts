@@ -2,9 +2,10 @@ import { COLOR } from '@constants';
 import { IInfo } from './common';
 
 import { LinearGradient } from 'expo-linear-gradient';
-type Ingredients = 'Bread' | 'Meat (Chicken)' | 'Cacumber' | 'Onion';
 
-type Categories =
+export type Ingredients = 'Bread' | 'Meat (Chicken)' | 'Cucumber' | 'Onion';
+
+export type Categories =
   | 'Fast Food'
   | 'Breakfast'
   | 'Lunch'
@@ -15,47 +16,37 @@ type Categories =
   | 'Non-Veg'
   | 'Greenish';
 
-interface ICategory {
+export interface ICategory {
   id: number;
   name?: Categories;
 }
 
-type TIngredient = IInfo & {
+export type TIngredient = IInfo & {
   name: Ingredients;
   value: number;
 };
 
-type TNutritional = {
+export type TNutritional = {
   calories: number;
   fat: number;
   carbs: number;
   protein: number;
 };
 
-interface IArtcile extends IInfo {
+export interface IArticle extends IInfo {
   image: string;
   title: string;
   color: 'green' | 'secondary';
   backgroundColor: LinearGradient['props']['colors'];
 }
 
-interface IFood extends IInfo {
-  category?: number;
-  weight?: number;
-  color?: COLOR;
-  desc?: string;
-  imgUrl?: string;
-  favorite?: 0 | 1;
-  nutritional?: TNutritional;
-  ingredients?: TIngredient[];
+export interface IFood extends IInfo {
+  category: number;
+  weight: number;
+  color: COLOR;
+  desc: string;
+  imgUrl: string;
+  favorite: 0 | 1;
+  nutritional: TNutritional;
+  ingredients: TIngredient[];
 }
-
-export {
-  IFood,
-  TNutritional,
-  ICategory,
-  TIngredient,
-  Categories,
-  Ingredients,
-  IArtcile,
-};

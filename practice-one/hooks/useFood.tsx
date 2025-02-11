@@ -1,13 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { IFood } from '@types';
 import { fetchData } from '@utils';
 import { API_FOOD } from '@constants';
-
-export interface FoodOptions {
-  name: string;
-  categories: number[];
-}
+import { FoodOptions, getFoods } from '@services/food';
+import { useQuery } from '@tanstack/react-query';
 
 export function useFood(id: number) {
   const [data, setData] = useState<IFood | null>(null);
@@ -70,50 +67,18 @@ export function useFood(id: number) {
 }
 
 export function useFoods() {
-  const [reload, setReload] = useState(false);
-  const [data, setData] = useState<IFood[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error>();
-  const [query, setQuery] = useState<FoodOptions>({ categories: [], name: '' });
+  const [options, setOptions] = useState<FoodOptions>({
+    categories: [],
+    query: '',
+  });
 
-  useEffect(() => {
-    async function getData() {
-      setLoading(true);
-      try {
-        const { categories, name } = query;
-        const searchParams = new URLSearchParams();
+  const query = useQuery({
+    queryKey: ['foods'],
+    queryFn: () => {
+      console.log('called');
+      return getFoods(options);
+    },
+  });
 
-        if (name) {
-          searchParams.set('name_like', name);
-        }
-
-        categories.forEach((item) => {
-          searchParams.append('category', item.toString());
-        });
-
-        const data = await fetchData<IFood[]>({
-          url: `${API_FOOD}?${searchParams.toString()}`,
-        });
-
-        setData(data);
-      } catch (error) {
-        setError(new Error('Failed to fetch data.'));
-      }
-
-      setLoading(false);
-    }
-
-    getData();
-  }, [query, reload]);
-
-  const fetch = useCallback(() => setReload((prev) => !prev), []);
-
-  return {
-    data,
-    loading,
-    error,
-    query,
-    setQuery,
-    fetch,
-  };
+  return { ...query, options, setOptions };
 }

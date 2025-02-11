@@ -1,5 +1,5 @@
 import { StyleSheet, FlatList, View } from 'react-native';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo } from 'react';
 
 import { COLORS } from '@constants';
 import { ICategory } from '@types';
@@ -7,50 +7,46 @@ import { Button } from '@components/common';
 import { CATEGORIES } from '@constants';
 
 export interface ICategories {
-  onSelect?: (ids: number[]) => void;
+  onSelect: (ids: number[]) => void;
+  select: number[];
 }
 
-const Categories = ({ onSelect }: ICategories) => {
-  const [tags, setTags] = useState<number[]>([]);
+const Categories = ({ select, onSelect }: ICategories) => {
+  const handlePressTag = (id: number) => {
+    const newTags = select.includes(id)
+      ? select.filter((item) => item !== id)
+      : [...select, id];
+    onSelect(newTags);
+  };
 
-  const handlePressTag = useCallback(
-    (id: number) => {
-      let newTags;
-      if (tags.includes(id)) newTags = tags.filter((item) => item !== id);
-      else newTags = [...tags, id];
-      onSelect && onSelect(newTags);
-      setTags(newTags);
-    },
-    [onSelect, tags]
-  );
+  const handleItemSeparatorComponent = () => <View style={styles.item} />;
 
-  const handleItemSeparatorComponent = useCallback(
-    () => <View style={styles.item} />,
-    []
-  );
+  const handleKeyExtractor = (item: ICategory) => item.id + '';
 
-  const handleKeyExtractor = useCallback((item: ICategory) => item.id + '', []);
+  const handleRenderItem = ({
+    item,
+    index,
+  }: {
+    item: ICategory;
+    index: number;
+  }) => {
+    const { id, name } = item;
+    const isActive = select.includes(id);
 
-  const handleRenderItem = useCallback(
-    ({ item }: { item: ICategory }) => {
-      const { id, name } = item;
-
-      const isActive = tags.includes(id);
-
-      return (
-        <Button
-          label={name}
-          type={isActive ? 'active' : 'default'}
-          customStyle={{
-            ...styles.tag,
-            ...(isActive && { ...styles.active }),
-          }}
-          onPress={() => handlePressTag(id)}
-        />
-      );
-    },
-    [handlePressTag, tags]
-  );
+    return (
+      <Button
+        label={name}
+        type={isActive ? 'active' : 'default'}
+        customStyle={{
+          ...styles.tag,
+          ...(isActive && { ...styles.active }),
+          ...(index == 0 && { marginLeft: 16 }),
+          ...(index == CATEGORIES.length - 1 && { marginRight: 16 }),
+        }}
+        onPress={() => handlePressTag(id)}
+      />
+    );
+  };
 
   return (
     <View style={styles.container}>
