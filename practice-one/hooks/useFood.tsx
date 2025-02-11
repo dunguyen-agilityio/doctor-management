@@ -1,84 +1,68 @@
-import { useEffect, useState } from 'react';
-
 import { IFood } from '@types';
-import { fetchData } from '@utils';
 import { API_FOOD } from '@constants';
-import { FoodOptions, getFoods } from '@services/food';
-import { useQuery } from '@tanstack/react-query';
+import { getFoods } from '@services/food';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useFoodsStore } from '@stores/food';
 
-export function useFood(id: number) {
-  const [data, setData] = useState<IFood | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error>();
+import { useFilterStore } from '@stores/filter';
+import { apiClient } from '@services/http-client';
 
-  useEffect(() => {
-    async function getData() {
-      setLoading(true);
-      try {
-        const data = await fetchData<IFood>({ url: `${API_FOOD}/${id}` });
-        setData(data);
-      } catch (error) {
-        setError(new Error('Failed to fetch data.'));
-      }
-      setLoading(false);
-    }
-    getData();
-  }, [id]);
+export const getFoodById = async (id: number) => {
+  const data = await apiClient.get<IFood>(`${API_FOOD}/${id}`);
+  return data;
+};
 
-  async function addFavorite(id: number) {
-    try {
-      const food = await fetchData<IFood>({ url: `${API_FOOD}/${id}` });
-      if (food && food.favorite === 0) {
-        const newFood = await fetchData<IFood>({
-          url: `foods/${id}`,
-          method: 'PUT',
-          body: { ...food, favorite: 1 },
-        });
-        return newFood;
-      }
-    } catch (error) {
-      setError(new Error('Failed to fetch data.'));
-    }
-  }
+export const updateFood = async (food: IFood) => {
+  const { id } = food;
 
-  async function removeFavorite(id: number) {
-    try {
-      const food = await fetchData<IFood>({ url: `${API_FOOD}/${id}` });
-      if (food && food.favorite === 1) {
-        const newFood = await fetchData<IFood>({
-          url: `foods/${id}`,
-          method: 'PUT',
-          body: { ...food, favorite: 0 },
-        });
-        return newFood;
-      }
-    } catch (error) {
-      setError(new Error('Failed to fetch data.'));
-    }
-  }
-
-  return {
-    data,
-    loading,
-    error,
-    removeFavorite,
-    addFavorite,
-  };
-}
-
-export function useFoods() {
-  const [options, setOptions] = useState<FoodOptions>({
-    categories: [],
-    query: '',
+  const newFood = await apiClient.put<IFood>(`foods/${id}`, {
+    body: food,
   });
 
+  return newFood;
+};
+
+export function useFoods() {
+  const { categories, query: search } = useFilterStore();
+
+  const setFoods = useFoodsStore(({ setFoods }) => setFoods);
+
+  const queryKey = ['foods', 'foods' + search, ...categories];
+
   const query = useQuery({
-    queryKey: ['foods'],
-    queryFn: () => {
-      console.log('called');
-      return getFoods(options);
+    queryKey,
+    queryFn: async () => {
+      const foods = await getFoods({
+        categories,
+        query: search,
+      });
+      setFoods(foods);
+      return foods;
     },
   });
 
-  return { ...query, options, setOptions };
+  return query;
+}
+
+export function useFoodsFavorite() {
+  const { categories, query: search } = useFilterStore();
+  const queryClient = useQueryClient();
+
+  const setFoods = useFoodsStore(({ setFoods }) => setFoods);
+
+  const query = useQuery({
+    queryKey: ['foods-favorite'],
+    queryFn: async () => {
+      const foods = await getFoods({
+        categories,
+        favorite: 1,
+        query: search,
+      });
+      queryClient.setQueryData(['foods-favorite'], foods);
+      setFoods(foods, true);
+      return foods;
+    },
+  });
+
+  return query;
 }

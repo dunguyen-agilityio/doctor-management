@@ -22,7 +22,7 @@ class APIClient {
 
   private apiRequest = async <T>(
     url: string,
-    init?: RequestOption
+    init?: RequestOption,
   ): Promise<T> => {
     const { method = 'GET', body, headers } = init || {};
 
@@ -42,7 +42,6 @@ class APIClient {
         body: JSON.stringify(body),
       }),
     };
-
     const res = await fetch(`${API_ENDPOINT}/${url}`, options);
 
     if (!res.ok) {
