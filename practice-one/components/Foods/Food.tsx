@@ -1,75 +1,46 @@
 import React, { memo, useCallback } from 'react';
-import { Image, Pressable, StyleSheet } from 'react-native';
+import {
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  ViewStyle,
+} from 'react-native';
 
 import { IFood } from '@types';
-import { Text } from '../common';
-import { CATEGORIES, COLORS } from '@constants';
-import FoodImage from './FoodImage';
+import { COLORS } from '@constants';
+import FoodImage from '../FoodImage';
 
 type FOOD_TYPES = 'medium' | 'large';
 
-const FOOD_STYLE = {
-  medium: {
-    title: {
-      fontSize: 17,
-      fontWeight: '700',
-    },
-    subtitle: {
-      fontSize: 13,
-      fontWeight: '400',
-    },
-  },
-  large: {
-    title: {
-      fontSize: 22,
-      fontWeight: '700',
-    },
-    subtitle: {
-      fontSize: 16,
-      fontWeight: '400',
-    },
-  },
-};
-
 const Food = ({
   data,
-  type = 'medium',
   disabled = false,
   onPress,
+  style,
 }: {
   data: IFood;
   type?: FOOD_TYPES;
   disabled?: boolean;
   onPress?: (id: number) => void;
+  style?: StyleProp<ViewStyle>;
 }) => {
-  const { name, weight, category, nutritional, id, imgUrl } = data;
+  const { name, weight, nutritional, id, color, imgUrl } = data;
   const { calories } = nutritional || { calories: {} };
 
   const handlePress = useCallback(() => {
     onPress && onPress(id);
   }, [id, onPress]);
 
-  const { subtitle, title } = FOOD_STYLE[type];
-
   return (
     <Pressable
-      {...(disabled && { disabled })}
-      style={[styles.container, styles[type]]}
+      disabled={disabled}
+      style={[styles.container, style]}
       onPress={handlePress}
     >
-      <FoodImage {...data} type={type} />
-
-      <Text customStyle={{ marginTop: 14, ...title }}>{name}</Text>
-
-      {type === 'medium' ? (
-        <Text customStyle={{ marginTop: 10, ...subtitle }}>
-          {`${calories} cal/${weight} kg`}
-        </Text>
-      ) : (
-        <Text customStyle={{ marginTop: 0, ...subtitle }}>
-          {CATEGORIES.find(({ id }) => id === category)?.name}
-        </Text>
-      )}
+      <FoodImage color={color} imgUrl={imgUrl} type="medium" />
+      <Text style={styles.name}>{name}</Text>
+      <Text style={styles.description}>{`${calories} cal/${weight} kg`}</Text>
     </Pressable>
   );
 };
@@ -86,12 +57,11 @@ const styles = StyleSheet.create({
     paddingBottom: 18,
     paddingHorizontal: 27,
     paddingVertical: 17,
-  },
-  medium: {
     borderColor: '#DBDBDB',
     borderWidth: 1,
     height: 192,
-    width: 154,
+    minWidth: 154,
   },
-  large: {},
+  name: { marginTop: 14, fontSize: 17, fontWeight: '700' },
+  description: { marginTop: 10, fontSize: 13, fontWeight: '400' },
 });

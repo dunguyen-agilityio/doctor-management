@@ -7,12 +7,10 @@ import { Text } from '@components/common';
 const Ingredients = ({ data }: { data: TIngredient[] }) => {
   const [isAll, setIsAll] = useState(false);
 
-  const ingrediants = useMemo(() => {
+  const ingredients = useMemo(() => {
     if (data) {
-      if (data) {
-        const ingrediants = Object.values(data);
-        return isAll ? ingrediants : ingrediants.slice(0, 2);
-      }
+      const ingredients = Object.values(data);
+      return isAll ? ingredients : ingredients.slice(0, 2);
     }
   }, [data, isAll]);
   const Item = ({ name, value }: TIngredient) => {
@@ -35,12 +33,12 @@ const Ingredients = ({ data }: { data: TIngredient[] }) => {
 
   const handleRenderItem = useCallback(
     ({ item }: { item: TIngredient }) => <Item {...item} />,
-    []
+    [],
   );
 
   const handleKeyExtractor = useCallback(
     (item: TIngredient) => item.id + '',
-    []
+    [],
   );
 
   const handleSeeAll = useCallback(() => {
@@ -49,10 +47,10 @@ const Ingredients = ({ data }: { data: TIngredient[] }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.ingrediant}>
-        <View style={styles.ingrediantHeader}>
+      <View style={styles.ingredient}>
+        <View style={styles.ingredientHeader}>
           <Text fontSize="xxl-0" fontWeight="600">
-            Ingrediants
+            Ingredients
           </Text>
           <Text
             fontSize="ms-1"
@@ -66,7 +64,7 @@ const Ingredients = ({ data }: { data: TIngredient[] }) => {
         <View></View>
       </View>
       <FlatList
-        data={ingrediants}
+        data={ingredients}
         keyExtractor={handleKeyExtractor}
         renderItem={handleRenderItem}
       />
@@ -86,10 +84,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
   },
-  ingrediant: {
+  ingredient: {
     marginTop: 20,
   },
-  ingrediantHeader: {
+  ingredientHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

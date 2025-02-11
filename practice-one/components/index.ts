@@ -1,8 +1,8 @@
-export { FoodsList, FoodImage } from './Foods';
+export { default as FoodsList } from './Foods';
 export { Text, Input, Button } from './common';
-export { default as Search } from './Search';
+export { default as SearchInput } from './SearchInput';
 export { default as Categories } from './Categories';
-export { default as Cards, Card } from './Cards';
+export { default as Cards } from './Cards';
 export { default as Back } from './Back';
 export { default as Nutritional } from './Nutritional';
 export { default as Loading } from './Loading';
@@ -10,3 +10,4 @@ export { default as Empty } from './Empty';
 export { default as Header } from './Header';
 export { default as NotFound } from './NotFound';
 export { default as Ingredients } from './Ingredients';
+export { default as FoodImage } from './FoodImage';

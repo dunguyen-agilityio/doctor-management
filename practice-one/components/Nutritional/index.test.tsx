@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@utils/test-utils';
+import { render } from '@utils/test-utils';
 
 import Nutritional from './index';
 import { MOCK_NUTRITIONAL } from '@__mock__';
@@ -14,8 +14,8 @@ describe('Test Ingredient', () => {
         expect(component.getByText(key)).toBeTruthy();
         expect(
           component.getByText(
-            `${nutritional[key as keyof typeof nutritional]}g`
-          )
+            `${nutritional[key as keyof typeof nutritional]}g`,
+          ),
         ).toBeTruthy();
       });
     });

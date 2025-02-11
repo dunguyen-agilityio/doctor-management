@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { memo } from 'react';
 import {
   FlatList,
   FlatListProps,
+  StyleProp,
   StyleSheet,
   View,
   ViewStyle,
@@ -9,50 +10,50 @@ import {
 
 import { IFood } from '@types';
 import Food from './Food';
-import FoodImage from './FoodImage';
 import { COLORS, DETAIL, HOME } from '@constants';
 
-import Loading from '@components/Loading';
-import { Text } from '@components/common';
 import { useNavigation } from '@react-navigation/native';
 import { RootScreenNavigationProps } from '@navigation';
 import NotFound from '@components/NotFound';
-import { useFoods } from '@hooks';
+import { FoodState, useFoodsStore } from '@stores/food';
 
 export interface FoodsProps {
   title?: React.ReactNode;
   onPressItem?: (id: number) => void;
-  slots?: { container?: ViewStyle; list?: Partial<FlatListProps<IFood>> };
+  slots?: {
+    container?: ViewStyle;
+    list?: Partial<FlatListProps<number>>;
+    item?: StyleProp<ViewStyle>;
+  };
+  foods?: IFood[];
+  getIds: (state: FoodState) => number[];
 }
 
-const FoodsList = ({ slots, title = null }: FoodsProps) => {
+const FoodsList = ({ slots, title = null, getIds }: FoodsProps) => {
   const { navigate } = useNavigation<RootScreenNavigationProps<typeof HOME>>();
-  const { data: foods, isError, isLoading } = useFoods();
+  const ids = useFoodsStore(getIds);
+  const byId = useFoodsStore(({ byId }) => byId);
 
   const handlePressItem = (id: number) => {
     navigate(DETAIL, { id });
   };
 
-  const handleItemSeparatorComponent = useCallback(
-    () => <View style={{ marginLeft: 18, height: 18 }} />,
-    []
+  const handleItemSeparatorComponent = () => (
+    <View style={styles.itemSeparator} />
+  );
+  const { list, container, item: itemStyle } = slots || {};
+
+  const handleRenderItem = ({ item }: { item: number }) => (
+    <Food
+      data={byId[item]}
+      onPress={handlePressItem}
+      style={[styles.item, itemStyle]}
+    />
   );
 
-  const handleRenderItem = ({ item }: { item: IFood }) => (
-    <Food data={item} onPress={handlePressItem} />
-  );
+  const handleKeyExtractor = (item: number) => item + '';
 
-  const handleKeyExtractor = useCallback((item: IFood) => item.id + '', []);
-
-  const { list, container } = slots || {};
-
-  if (isLoading) return <Loading />;
-
-  if (isError) {
-    return <Text>Error</Text>;
-  }
-
-  if (!foods?.length) {
+  if (!getIds?.length) {
     return (
       <View style={styles.container}>
         <NotFound marginTop={200} />
@@ -64,12 +65,15 @@ const FoodsList = ({ slots, title = null }: FoodsProps) => {
     <View style={[styles.container, container]}>
       {title}
       <FlatList
-        data={foods}
+        data={ids}
         keyExtractor={handleKeyExtractor}
         renderItem={handleRenderItem}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={handleItemSeparatorComponent}
+        contentContainerStyle={{
+          paddingHorizontal: 5,
+        }}
         {...list}
         style={[styles.list, list?.style]}
       />
@@ -82,13 +86,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-start',
     backgroundColor: COLORS.WHITE,
-    paddingHorizontal: 16,
   },
   list: {
     marginTop: 15,
   },
-  vertical: {},
-  itemStyle: {},
+  item: { justifyContent: 'space-between' },
+  itemSeparator: { marginLeft: 18, height: 18 },
 });
 
-export { FoodsList, FoodImage };
+export default memo(FoodsList);

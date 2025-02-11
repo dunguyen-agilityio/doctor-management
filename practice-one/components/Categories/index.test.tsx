@@ -1,5 +1,5 @@
 import { CATEGORIES } from '@constants';
-import { render, screen, fireEvent } from '@utils/test-utils';
+import { render, screen } from '@utils/test-utils';
 import React from 'react';
 
 import Categories from './index';
@@ -7,7 +7,7 @@ import Categories from './index';
 const mockOnPress = jest.fn();
 
 const setup = () => {
-  const component = render(<Categories />);
+  const component = render(<Categories onSelect={mockOnPress} select={[]} />);
   expect(component.toJSON()).toMatchSnapshot();
 };
 

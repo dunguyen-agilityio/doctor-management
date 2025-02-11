@@ -1,34 +1,36 @@
 import React, { useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { Header, SearchInput, Cards, FoodsList, Text } from '@components';
+import { COLORS, HOME, SEARCH } from '@constants';
+import FoodCategories from '@components/FoodCategories';
+
 import { useNavigation } from '@react-navigation/native';
 
-import { useFoods } from '@hooks';
 import { RootScreenNavigationProps } from '@navigation';
-import { Header, Search, Cards, Categories, Text } from '@components';
-import { SEARCH, HOME, COLORS } from '@constants';
-import { FoodsList } from '@components/Foods';
+import FoodsContainer from '@components/FoodsContainer';
 
 const HomeScreen = () => {
   const { navigate } = useNavigation<RootScreenNavigationProps<typeof HOME>>();
-  const { options, setOptions } = useFoods();
 
-  const handleChangeTag = (ids: number[]) => {
-    setOptions((prev) => ({ ...prev, categories: ids }));
-  };
-
-  const handleFocusSearch = useCallback(() => {
+  const handleNavigateToSearch = useCallback(() => {
     navigate(SEARCH);
-    return false;
   }, [navigate]);
 
   return (
-    <View style={styles.container}>
+    <FoodsContainer style={styles.container}>
       <Header />
-      <Search onFocus={handleFocusSearch} isFocus={false} />
-      <Categories onSelect={handleChangeTag} select={options.categories} />
+      <SearchInput onFocus={handleNavigateToSearch} />
+      <FoodCategories />
       <Cards />
       <FoodsList
-        slots={{ list: { horizontal: true } }}
+        getIds={({ allIds }) => allIds}
+        slots={{
+          list: {
+            horizontal: true,
+            contentContainerStyle: { marginHorizontal: 16 },
+          },
+        }}
         title={
           <Text
             fontSize="xxl-0"
@@ -39,7 +41,7 @@ const HomeScreen = () => {
           </Text>
         }
       />
-    </View>
+    </FoodsContainer>
   );
 };
 

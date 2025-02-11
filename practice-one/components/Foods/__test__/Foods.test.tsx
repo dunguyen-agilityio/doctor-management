@@ -1,13 +1,12 @@
-import { render, screen, fireEvent } from '@utils/test-utils';
+import { render, screen } from '@utils/test-utils';
 import React from 'react';
-import { FoodsProps, FoodsHorizontal } from '../index';
+import { FoodsProps } from '../index';
 
 import { MOCK_FOODS } from '@__mock__';
-
-const mockFoodOnPress = jest.fn();
+import { FoodsList } from '@components';
 
 function setup(props: FoodsProps) {
-  return render(<FoodsHorizontal {...props} />);
+  return render(<FoodsList {...props} />);
 }
 
 describe('Component', () => {

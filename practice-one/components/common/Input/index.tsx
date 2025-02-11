@@ -1,78 +1,51 @@
-import React, { useCallback, memo, useRef } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import React, {
+  useCallback,
+  memo,
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+} from 'react';
+import { StyleSheet, TextInput, TextInputProps } from 'react-native';
 
-import Text from '../Text';
 import { COLORS } from '@constants';
 
-const INPUT_STYLES = {
-  default: {
-    color: COLORS.BLACK,
-    placeholderTextColor: COLORS.SECONDARY,
-    backgroundColor: COLORS.SECONDARY,
-  },
-};
-
-type INPUT_TYPES = 'default';
-
-interface InputProps {
+interface InputProps extends TextInputProps {
   field: string;
-  value: string;
-  label?: string;
-  ref?: TextInput;
-  placeholder?: string;
-  type?: INPUT_TYPES;
-  onChangeText: (value: string, field?: string) => void;
-  onBlur?: () => void;
-  onFocus?: () => void;
+  onChangeText?: (value: string, field?: string) => void;
 }
-const Input = ({
-  field,
-  ref,
-  value,
-  label,
-  placeholder,
-  type = 'default',
-  onChangeText,
-  onBlur,
-  onFocus,
-}: InputProps) => {
-  const inputRef = useRef<TextInput>(ref || null);
 
-  const handleChangeInput = useCallback(
-    (value: string) => {
-      onChangeText(value, field);
+export default memo(
+  forwardRef<Pick<TextInput, 'focus'>, InputProps>(
+    ({ field, onChangeText, ...rest }, ref) => {
+      const inputRef = useRef<TextInput>(null);
+
+      useImperativeHandle(ref, () => {
+        return {
+          focus: () => {
+            inputRef.current?.focus();
+          },
+        };
+      });
+
+      const handleChangeInput = useCallback(
+        (value: string) => {
+          onChangeText?.(value, field);
+        },
+        [field, onChangeText],
+      );
+
+      return (
+        <TextInput
+          placeholderTextColor={COLORS.SECONDARY}
+          onChangeText={handleChangeInput}
+          style={[styles.input, { color: COLORS.BLACK }]}
+          ref={inputRef}
+          {...rest}
+        />
+      );
     },
-    [field, onChangeText]
-  );
-
-  const inputType = INPUT_STYLES[type];
-
-  return (
-    <View>
-      {label && (
-        <Text
-          fontSize="m"
-          fontWeight="400"
-          customStyle={{ color: inputType.color }}
-        >
-          {label}
-        </Text>
-      )}
-      <TextInput
-        value={value}
-        placeholder={placeholder}
-        onBlur={onBlur}
-        ref={inputRef}
-        placeholderTextColor={inputType.placeholderTextColor}
-        onFocus={onFocus}
-        onChangeText={handleChangeInput}
-        style={[styles.input, { color: inputType.color }]}
-      />
-    </View>
-  );
-};
-
-export default memo(Input);
+  ),
+);
 
 const styles = StyleSheet.create({
   input: {

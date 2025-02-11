@@ -1,10 +1,9 @@
 import React, { memo } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { Button, Text } from '../common';
 import { ArrowICon, COLORS } from '@constants';
-import { IArtcile } from '@types';
+import { IArticle } from '@types';
 export interface CardProps {
   title: string;
   image: string;
@@ -13,7 +12,12 @@ export interface CardProps {
 
 type CARD_TYPES = 'green' | 'secondary';
 
-const Card = (props: IArtcile) => {
+const buttonColor = {
+  green: COLORS.GREEN,
+  secondary: COLORS.SECONDARY,
+};
+
+const Card = (props: IArticle) => {
   const { image, color = 'green', title, backgroundColor } = props;
 
   return (
@@ -37,26 +41,16 @@ const Card = (props: IArtcile) => {
         }}
       />
       <View style={styles.info}>
-        <Text fontSize="ms-0" fontWeight="600" color={color}>
+        <Text style={[styles.articleText, { color: buttonColor[color] }]}>
           Article
         </Text>
-
-        <Text fontSize="xl-7" fontWeight="600" customStyle={{ marginTop: 4 }}>
-          {title}
-        </Text>
-
-        <Button
-          paddingHorizontal={19}
-          paddingVertical={6}
-          borderRadius={8}
-          marginTop={8}
-          type={color}
+        <Text style={styles.title}>{title}</Text>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: buttonColor[color] }]}
         >
-          <Text fontSize="ms" fontWeight="600" color="white">
-            Read now
-          </Text>
+          <Text style={styles.buttonText}>Read now</Text>
           <ArrowICon />
-        </Button>
+        </TouchableOpacity>
       </View>
     </LinearGradient>
   );
@@ -65,6 +59,18 @@ const Card = (props: IArtcile) => {
 export default memo(Card);
 
 const styles = StyleSheet.create({
+  articleText: {
+    fontSize: 10,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+  },
+  title: {
+    fontSize: 17,
+    fontWeight: '600',
+    marginTop: 4,
+    fontFamily: 'Signika',
+    color: COLORS.LIGHT_BLACK,
+  },
   container: {
     height: 169,
     width: 320,
@@ -79,5 +85,19 @@ const styles = StyleSheet.create({
     maxWidth: '60%',
     color: COLORS.LIGHT_BLACK,
     padding: 32,
+  },
+  button: {
+    paddingVertical: 6,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    marginTop: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 104,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 12,
+    fontWeight: '600',
   },
 });
