@@ -1,64 +1,64 @@
-import { StyleSheet, FlatList, View } from 'react-native';
-import React, { memo } from 'react';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import React, { memo, useState } from 'react';
 
 import { COLORS } from '@constants';
-import { ICategory } from '@types';
-import { Button } from '@components/common';
+
 import { CATEGORIES } from '@constants';
+import {
+  GestureHandlerRootView,
+  ScrollView,
+} from 'react-native-gesture-handler';
 
 export interface ICategories {
   onSelect: (ids: number[]) => void;
   select: number[];
 }
 
-const Categories = ({ select, onSelect }: ICategories) => {
+const Categories = ({ onSelect }: ICategories) => {
+  const [select, setSelect] = useState<number[]>([]);
+
   const handlePressTag = (id: number) => {
-    const newTags = select.includes(id)
-      ? select.filter((item) => item !== id)
-      : [...select, id];
-    onSelect(newTags);
-  };
+    setSelect((prev) => {
+      const newTags = prev.includes(id)
+        ? prev.filter((item) => item !== id)
+        : [...prev, id];
 
-  const handleItemSeparatorComponent = () => <View style={styles.item} />;
+      onSelect(newTags);
 
-  const handleKeyExtractor = (item: ICategory) => item.id + '';
-
-  const handleRenderItem = ({
-    item,
-    index,
-  }: {
-    item: ICategory;
-    index: number;
-  }) => {
-    const { id, name } = item;
-    const isActive = select.includes(id);
-
-    return (
-      <Button
-        label={name}
-        type={isActive ? 'active' : 'default'}
-        customStyle={{
-          ...styles.tag,
-          ...(isActive && { ...styles.active }),
-          ...(index == 0 && { marginLeft: 16 }),
-          ...(index == CATEGORIES.length - 1 && { marginRight: 16 }),
-        }}
-        onPress={() => handlePressTag(id)}
-      />
-    );
+      return newTags;
+    });
   };
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={CATEGORIES}
-        showsHorizontalScrollIndicator={false}
+    <GestureHandlerRootView style={styles.container}>
+      <ScrollView
         horizontal
-        ItemSeparatorComponent={handleItemSeparatorComponent}
-        keyExtractor={handleKeyExtractor}
-        renderItem={handleRenderItem}
-      />
-    </View>
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled
+        contentContainerStyle={styles.contentContainerStyle}
+      >
+        {CATEGORIES.map(({ name, id }, idx) => {
+          const isActive = select.includes(id);
+
+          return (
+            <TouchableOpacity
+              key={id}
+              style={[
+                styles.button,
+                isActive && styles.buttonActive,
+                {
+                  ...(idx == 0 && { marginLeft: 16 }),
+                  ...(idx == CATEGORIES.length - 1 && { marginRight: 16 }),
+                },
+              ]}
+              onPress={() => handlePressTag(id)}
+            >
+              <Text style={styles.textButton}>{name}</Text>
+            </TouchableOpacity>
+          );
+        })}
+      </ScrollView>
+    </GestureHandlerRootView>
   );
 };
 
@@ -69,17 +69,22 @@ const styles = StyleSheet.create({
     height: 26,
     marginTop: 16,
   },
+  contentContainerStyle: { gap: 16 },
   item: {
     marginLeft: 7,
   },
-  tag: {
+  buttonActive: {
+    backgroundColor: COLORS.LIGHT_GREEN,
+    borderWidth: 1,
+    borderColor: COLORS.GREEN,
+  },
+  button: {
+    backgroundColor: COLORS.LIGHT_GRAY,
     borderRadius: 8,
     paddingVertical: 4,
     paddingHorizontal: 10,
   },
-  active: {
-    backgroundColor: 'rgba(28, 195, 121, 0.1)',
-    borderWidth: 1,
-    borderColor: COLORS.GREEN,
+  textButton: {
+    fontSize: 13,
   },
 });

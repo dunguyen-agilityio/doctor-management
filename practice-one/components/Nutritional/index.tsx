@@ -5,7 +5,7 @@ import { COLOR } from '@constants';
 import { TNutritional } from '@types';
 import { Text } from '@components/common';
 
-interface INatritional {
+interface INutritional {
   title: string;
   value: number;
 }
@@ -25,7 +25,7 @@ const Nutritional = ({
     }));
   }, [nutritional]);
 
-  const Item = ({ title, value }: INatritional) => (
+  const Item = ({ title, value }: INutritional) => (
     <View>
       <Text fontSize="xl-6" customStyle={{ textTransform: 'capitalize' }}>
         {title}
@@ -39,16 +39,16 @@ const Nutritional = ({
 
   const handleItemSeparatorComponent = useCallback(
     () => <View style={{ marginLeft: 40 }} />,
-    []
+    [],
   );
 
-  const handleRenderItem = useCallback(({ item }: { item: INatritional }) => {
+  const handleRenderItem = useCallback(({ item }: { item: INutritional }) => {
     return <Item {...item} />;
   }, []);
 
   const handleKeyExtractor = useCallback(
-    (item: INatritional) => item.title + '',
-    []
+    (item: INutritional) => item.title + '',
+    [],
   );
 
   return (

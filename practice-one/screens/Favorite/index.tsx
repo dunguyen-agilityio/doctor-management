@@ -1,37 +1,30 @@
-import { StyleSheet, View } from 'react-native';
-import React, { useCallback } from 'react';
+import { StyleSheet } from 'react-native';
+import React from 'react';
 
-import { useFoods } from '@hooks';
-import { Search } from '@components';
+import { FoodsList, SearchInput } from '@components';
 import { COLORS } from '@constants';
-import { FoodsList } from '@components/Foods';
+
+import FoodsContainer from '@components/FoodsContainer';
 
 const FavoriteScreen = () => {
-  const { setOptions } = useFoods();
-
-  const handleChangeTextSearch = useCallback(
-    (text: string) => {
-      setOptions((prev) => ({ ...prev, name: text }));
-    },
-    [setOptions]
-  );
-
   return (
-    <View style={styles.container}>
-      <Search value={''} onChangeText={handleChangeTextSearch} />
+    <FoodsContainer style={styles.container} favorite={1}>
+      <SearchInput />
       <FoodsList
+        getIds={({ favoriteIds }) => favoriteIds}
         slots={{
           container: {
             alignItems: 'center',
           },
           list: {
-            columnWrapperStyle: styles.itemStyle,
+            columnWrapperStyle: styles.item,
             numColumns: 2,
             style: { width: '100%' },
           },
+          item: { marginHorizontal: 18 },
         }}
       />
-    </View>
+    </FoodsContainer>
   );
 };
 
@@ -42,9 +35,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.WHITE,
     paddingTop: 62,
-    paddingHorizontal: 16,
   },
-  itemStyle: {
+  item: {
     justifyContent: 'space-between',
+    paddingHorizontal: 10,
   },
 });

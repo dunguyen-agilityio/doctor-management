@@ -11,7 +11,7 @@ const Loading = ({ marginTop }: { marginTop?: number }) => {
       duration: 1000,
       useNativeDriver: false,
       easing: Easing.linear,
-    })
+    }),
   ).start();
 
   const spin = rotation.interpolate({
@@ -33,7 +33,10 @@ export default memo(Loading);
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
+    position: 'absolute',
+    zIndex: 10,
+    height: '100%',
   },
 });

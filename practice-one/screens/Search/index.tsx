@@ -1,49 +1,34 @@
-import { StyleSheet, View } from 'react-native';
-import React, { useCallback } from 'react';
+import { StyleSheet } from 'react-native';
+import React from 'react';
 
-import { useFoods } from '@hooks';
-
-import { Header, Search, Categories } from '@components';
-import { FoodsList } from '@components/Foods';
+import { Header, SearchInput, FoodsList } from '@components';
+import { COLORS } from '@constants';
+import FoodCategories from '@components/FoodCategories';
+import FoodsContainer from '@components/FoodsContainer';
 
 const SearchScreen = () => {
-  const { options, setOptions } = useFoods();
-
-  const handleChangeTextSearch = useCallback(
-    (text: string) => {
-      setOptions((prev) => ({ ...prev, query: text }));
-    },
-    [setOptions]
-  );
-
-  const handleSelectTag = useCallback(
-    (ids: number[]) => {
-      if (ids) setOptions((prev) => ({ ...prev, categories: ids }));
-    },
-    [setOptions]
-  );
-
   return (
-    <View style={styles.container}>
+    <FoodsContainer style={styles.container}>
       <Header />
-
-      <Search value={options.query} onChangeText={handleChangeTextSearch} />
-
-      <Categories onSelect={handleSelectTag} select={options.categories} />
-
+      <SearchInput />
+      <FoodCategories />
       <FoodsList
+        getIds={({ allIds }) => allIds}
         slots={{
           container: {
             alignItems: 'center',
           },
           list: {
-            columnWrapperStyle: styles.itemStyle,
+            columnWrapperStyle: styles.item,
             numColumns: 2,
             style: { width: '100%' },
           },
+          item: {
+            marginHorizontal: 18,
+          },
         }}
       />
-    </View>
+    </FoodsContainer>
   );
 };
 
@@ -52,15 +37,15 @@ export default SearchScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.WHITE,
     paddingTop: 62,
-    padding: 16,
   },
   list: {
     justifyContent: 'space-between',
     width: '100%',
   },
-  itemStyle: {
+  item: {
     justifyContent: 'space-between',
+    paddingHorizontal: 10,
   },
 });

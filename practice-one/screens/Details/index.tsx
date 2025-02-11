@@ -1,140 +1,117 @@
-import React, { useCallback, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-
-import { RootScreenNavigationProps, RootStackParamsList } from '@navigation';
-import { useFood } from '@hooks';
+import React from 'react';
 import {
-  Back,
-  Button,
-  FoodImage,
-  Ingredients,
-  Nutritional,
+  ActivityIndicator,
+  StyleSheet,
   Text,
-} from '@components';
-import { CATEGORIES, DETAIL } from '@constants';
+  TouchableOpacity,
+} from 'react-native';
+import { RouteProp, useRoute } from '@react-navigation/native';
+
+import { RootStackParamsList } from '@navigation';
+import { getFoodById, updateFood } from '@hooks';
+import { CATEGORIES, COLORS, DETAIL } from '@constants';
+import FoodInfo from '@components/FoodInfo';
+import { Loading } from '@components';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useFoodsStore } from '@stores/food';
+import { IFood } from '@types';
 
 type DetailRoute = RouteProp<RootStackParamsList, typeof DETAIL>;
 
 const Details = () => {
   const route = useRoute<DetailRoute>();
-  const { goBack } = useNavigation<RootScreenNavigationProps<typeof DETAIL>>();
+  const { id } = route.params;
 
-  const { id, onChange } = route.params;
+  const setFood = useFoodsStore(({ setFood }) => setFood);
 
-  const { data, addFavorite, removeFavorite } = useFood(id);
-
-  const [isMore, setIsMore] = useState(false);
-
-  const handleReadMore = useCallback(() => {
-    setIsMore((prev) => !prev);
-  }, []);
-
-  const handleFavorite = useCallback(async () => {
-    let newData;
-    if (data) {
-      const { favorite } = data;
-
-      if (favorite === 0) {
-        if (addFavorite) newData = await addFavorite(id);
-      } else if (removeFavorite) {
-        newData = await removeFavorite(id);
-      }
-
-      if (newData && onChange) {
-        onChange();
-      }
-    }
-  }, [addFavorite, data, id, onChange, removeFavorite]);
+  const { isLoading, data } = useQuery({
+    queryKey: ['foods', id + ''],
+    queryFn: async () => {
+      const food = await getFoodById(id);
+      setFood(food);
+      return food;
+    },
+  });
 
   // Show error
   if (!data) {
     return null;
   }
 
-  const {
-    color,
-    imgUrl,
-    category,
-    name,
-    favorite,
-    desc,
-    ingredients,
-    nutritional,
-  } = data;
+  const { color, imgUrl, category, name, desc, ingredients, nutritional } =
+    data;
 
   const categoryName = CATEGORIES.find(({ id }) => id == category)?.name || '';
 
   return (
-    <View style={styles.container}>
-      <Back left={20} onPress={goBack} />
-
-      <View style={styles.header}>
-        <FoodImage imgUrl={imgUrl} color={color} type="large" />
-        <Text fontWeight="700" fontSize="xxl-2">
-          {name}
-        </Text>
-        <Text fontSize="xl-6">{categoryName}</Text>
-      </View>
-
-      <Nutritional nutritional={nutritional} />
-
-      <View style={styles.details}>
-        <Text fontSize="xxl-0" fontWeight="600">
-          Details
-        </Text>
-
-        <Text fontSize="xl-5">
-          {isMore ? desc : desc.substring(0, 150) + '...'}
-          <Text
-            onPress={handleReadMore}
-            fontSize="xl-5"
-            color="primary"
-            customStyle={{ marginTop: 4 }}
-          >
-            {isMore ? `\bRead less.` : `\bRead more.`}
-          </Text>
-        </Text>
-
-        {/* Display Ingrediants */}
-
-        <Ingredients data={ingredients} />
-
-        {/* add Favorite */}
-
-        <Button
-          width={'100%'}
-          borderRadius={9}
-          onPress={handleFavorite}
-          customStyle={{ paddingVertical: 9, width: '100%', marginTop: 27 }}
-          {...(favorite
-            ? {
-                type: 'secondary',
-                label: 'UnFavorite',
-              }
-            : { type: 'primary', label: 'Add to Favorite' })}
-        />
-      </View>
-    </View>
+    <FoodInfo
+      category={categoryName}
+      color={color}
+      desc={desc}
+      imgUrl={imgUrl}
+      name={name}
+      ingredients={ingredients}
+      nutritional={nutritional}
+    >
+      <FavoriteButton />
+      {isLoading && <Loading />}
+    </FoodInfo>
   );
 };
 
 export default Details;
 
+const FavoriteButton = () => {
+  const queryClient = useQueryClient();
+  const route = useRoute<RouteProp<RootStackParamsList, 'Detail-Screen'>>();
+  const id = route.params.id;
+  const food = useFoodsStore(({ byId }) => byId[id]);
+  const { addFavorite, removeFavorite, setFood } = useFoodsStore();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: updateFood,
+    onSuccess: (updated) => {
+      queryClient.invalidateQueries({ queryKey: ['foods-favorite'] });
+      setFood(updated);
+    },
+  });
+
+  const { favorite } = food;
+
+  const handleFavorite = () => {
+    mutate({ ...food, favorite: favorite ? 0 : 1 });
+    (favorite ? removeFavorite : addFavorite)(id);
+  };
+
+  return (
+    <TouchableOpacity
+      onPress={handleFavorite}
+      style={styles.button}
+      disabled={isPending}
+    >
+      {isPending ? (
+        <ActivityIndicator size="small" color="#0000ff" />
+      ) : (
+        <Text style={styles.textButton}>
+          {favorite ? 'UnFavorites' : 'Add to Favorites'}
+        </Text>
+      )}
+    </TouchableOpacity>
+  );
+};
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 63,
-    backgroundColor: '#fff',
-  },
-  header: {
+  button: {
     width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: 16,
+    borderRadius: 9,
+    paddingVertical: 9,
+    marginTop: 27,
+    backgroundColor: COLORS.PRIMARY,
   },
-  details: {
-    paddingHorizontal: 20,
-    marginTop: 19,
+  textButton: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: COLORS.WHITE,
+    textAlign: 'center',
   },
 });

@@ -1,24 +1,20 @@
-import React, { memo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React from 'react';
+import { Button, Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { Text, Button } from '@components/common';
 import { QuestionIcon } from '@constants';
 
 const Header = () => {
   return (
     <View style={styles.container}>
-      <Text fontSize="xxl-3" fontWeight="800">
-        {`Want to eat\nhealthy Food?`}
-      </Text>
-
-      <Button customStyle={styles.buttonHelp}>
+      <Text style={styles.header}>{`Want to eat\nhealthy Food?`}</Text>
+      <Pressable style={styles.buttonHelp}>
         <QuestionIcon />
-      </Button>
+      </Pressable>
     </View>
   );
 };
 
-export default memo(Header);
+export default Header;
 
 const styles = StyleSheet.create({
   container: {
@@ -28,9 +24,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 20,
   },
+  header: {
+    fontSize: 23,
+    fontWeight: '800',
+    lineHeight: 32,
+  },
   buttonHelp: {
     width: 35,
     height: 35,
-    borderRadius: 35 / 2,
+    borderRadius: '100%',
+    backgroundColor: '#00000021',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

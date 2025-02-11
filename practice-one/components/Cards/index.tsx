@@ -1,58 +1,61 @@
-import React, { memo, useCallback } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import React, { memo } from 'react';
+import { StyleSheet, View } from 'react-native';
 
-import Card from './Card';
-import { IArticle } from '@types';
 import { MOCK_ARTICLES } from '@__mock__';
+import Card from './Card';
+import {
+  GestureHandlerRootView,
+  Pressable,
+  ScrollView,
+} from 'react-native-gesture-handler';
 
 const Cards = () => {
-  const handleItemSeparatorComponent = useCallback(
-    () => <View style={styles.item} />,
-    []
-  );
-
-  const handleRenderItem = useCallback(
-    ({ item }: { item: IArticle }) => <Card {...item} color={item.color} />,
-    []
-  );
-
-  const handleKeyExtractor = useCallback((item: IArticle) => item.id + '', []);
-
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={MOCK_ARTICLES}
-        keyExtractor={handleKeyExtractor}
-        renderItem={handleRenderItem}
+    <GestureHandlerRootView style={{ height: 220 }}>
+      <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={handleItemSeparatorComponent}
-        style={[styles.slide]}
-      />
-
-      <View style={styles.separator}></View>
-    </View>
+        contentContainerStyle={styles.container}
+        pagingEnabled
+      >
+        {MOCK_ARTICLES.map((item) => (
+          <Card key={item.id} {...item} />
+        ))}
+      </ScrollView>
+      <View style={styles.navigation}>
+        <Pressable style={[styles.item, styles.activeItem]} />
+        <Pressable style={[styles.item]} />
+        <Pressable style={[styles.item]} />
+      </View>
+    </GestureHandlerRootView>
   );
 };
 
 export default memo(Cards);
 
 const styles = StyleSheet.create({
-  container: { paddingHorizontal: 16 },
-  slide: {
-    height: 'auto',
-    flexWrap: 'wrap',
+  container: {
+    paddingHorizontal: 16,
+    gap: 16,
     marginTop: 16,
   },
-  separator: {
+  navigation: {
     height: 20,
     width: '100%',
-    backgroundColor: '#FFFFFF',
-    marginTop: 23,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 10,
   },
   item: {
-    marginHorizontal: 16,
+    height: 8,
+    width: 12,
+    backgroundColor: 'rgba(255, 132, 115, 0.5)',
+    borderRadius: 16,
+  },
+  activeItem: {
+    backgroundColor: '#FF8473',
+    width: 20,
+    height: 10,
   },
 });
-
-export { Card };
