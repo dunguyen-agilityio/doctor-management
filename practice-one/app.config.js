@@ -30,6 +30,13 @@ export const expo = {
     apiEndpoint: process.env.API_ENDPOINT,
     storybook: false,
   },
-  plugins: ['expo-font'],
+  plugins: [
+    [
+      'expo-font',
+      {
+        fonts: ['./assets/fonts/Manrope.ttf', './assets/fonts/Signika.ttf'],
+      },
+    ],
+  ],
   newArchEnabled: true,
 };
