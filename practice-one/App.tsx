@@ -27,6 +27,7 @@ const Navigation = createStaticNavigation(RootStack);
 const App = () => {
   const [fontsLoaded] = useFonts({
     Manrope: require('@assets/fonts/Manrope.ttf'),
+    Signika: require('@assets/fonts/Signika.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {

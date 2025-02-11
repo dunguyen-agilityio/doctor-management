@@ -10,11 +10,12 @@ import {
   SEARCH,
   SearchMenu,
 } from '@constants';
+import { FoodOptions } from '@services/food';
 
 export type TabParamsList = {
   [FAVORITE]: undefined;
   [HOME]: undefined;
-  [SEARCH]: undefined;
+  [SEARCH]?: Pick<FoodOptions, 'query'>;
 };
 
 const TabNavigator = () => {

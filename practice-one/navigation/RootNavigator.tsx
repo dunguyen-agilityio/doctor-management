@@ -4,9 +4,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { DetailsScreen, SplashScreen } from '@screens';
 import TabNavigator, { TabParamsList } from './TabNavigator';
 import { DETAIL, ROOT, SPLASH } from '@constants';
+import { FoodOptions } from '@services/food';
 
 export type RootStackParamsList = {
-  [ROOT]: undefined;
+  [ROOT]: FoodOptions;
   [SPLASH]: undefined;
   [DETAIL]: {
     id: number;
