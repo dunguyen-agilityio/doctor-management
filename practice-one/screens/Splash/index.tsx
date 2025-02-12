@@ -1,14 +1,15 @@
-import React, { useEffect, useRef } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { Animated, Easing, StyleSheet, View } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 
-import { Text } from '@components';
+import { useNavigation } from '@react-navigation/native';
+
 import { RootScreenNavigationProps } from '@navigation';
-import { LoadingImage, ROOT, SPLASH, SplashImage } from '@constants';
+
+import { COLORS, LoadingImage, ROUTES, SplashImage } from '@constants';
 
 const SplashScreen = () => {
   const { navigate } =
-    useNavigation<RootScreenNavigationProps<typeof SPLASH>>();
+    useNavigation<RootScreenNavigationProps<typeof ROUTES.SPLASH>>();
   const animation = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const SplashScreen = () => {
       useNativeDriver: false, // not supported in expo
       easing: Easing.inOut(Easing.ease),
     }).start(() => {
-      navigate(ROOT);
+      navigate(ROUTES.ROOT);
     });
   }, [navigate, animation]);
 
@@ -27,24 +28,9 @@ const SplashScreen = () => {
       <View style={styles.background}>
         <SplashImage />
         <LoadingImage />
-        <Text
-          fontSize="xxl"
-          fontWeight="800"
-          color="primary"
-          customStyle={{
-            marginTop: 20,
-            textTransform: 'uppercase',
-            textAlign: 'center',
-          }}
-        >
-          Laomica
-        </Text>
-        <Text
-          fontWeight="500"
-          fontSize="xl-6"
-          customStyle={{ marginTop: 12, textAlign: 'center' }}
-        >
-          {`Stay Heatlthy and beatifull\nwith us!`}
+        <Text style={styles.title}>Laomica</Text>
+        <Text style={styles.description}>
+          {`Stay Healthy and beautiful\nwith us!`}
         </Text>
       </View>
     </Animated.View>
@@ -63,5 +49,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
+  },
+  title: {
+    fontWeight: '800',
+    fontSize: 32,
+    color: COLORS.PRIMARY,
+    marginTop: 20,
+    textTransform: 'uppercase',
+    textAlign: 'center',
+  },
+  description: {
+    fontWeight: '500',
+    fontSize: 16,
+    marginTop: 12,
+    textAlign: 'center',
   },
 });

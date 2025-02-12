@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react-native';
-import CenterView from '../CenterView';
 
+import CenterView from '../CenterView';
 import Example from './index';
 
 storiesOf('Example', module)

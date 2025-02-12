@@ -1,5 +1,5 @@
 import { render } from '@utils/test-utils';
-import React from 'react';
+
 import Card, { CardProps } from '../Card';
 
 function setup(props?: CardProps) {

@@ -1,6 +1,7 @@
-import { StyleSheet, View, Animated, Easing } from 'react-native';
-import React, { memo } from 'react';
-import { LoadingImage } from '@constants/Image';
+import { memo } from 'react';
+import { Animated, Easing, StyleSheet, View } from 'react-native';
+
+import { LoadingImage } from '@constants';
 
 const Loading = ({ marginTop }: { marginTop?: number }) => {
   const rotation = new Animated.Value(0);

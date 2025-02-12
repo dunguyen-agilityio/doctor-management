@@ -1,6 +1,8 @@
-import { render, RenderOptions } from '@testing-library/react-native';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
+
+import { RenderOptions, render } from '@testing-library/react-native';
 
 const AllTheProviders = ({ children }: { children: ReactElement }) => {
   return <NavigationContainer>{children}</NavigationContainer>;

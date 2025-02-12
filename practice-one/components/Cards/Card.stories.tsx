@@ -1,9 +1,8 @@
-import { storiesOf } from '@storybook/react-native';
-import React from 'react';
-
-import CenterView from '@mstorybook/stories/CenterView';
-import Card from '../Card';
 import { MOCK_ARTICLES } from '@__mock__';
+import { storiesOf } from '@storybook/react-native';
+import CenterView from '@storybook/stories/CenterView';
+
+import Card from './Card';
 
 const acticleFirst = MOCK_ARTICLES[0];
 const { name = 'The Food', image = '' } = acticleFirst;

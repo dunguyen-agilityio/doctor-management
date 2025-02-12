@@ -1,31 +1,35 @@
-import React from 'react';
 import {
   ActivityIndicator,
   StyleSheet,
   Text,
   TouchableOpacity,
 } from 'react-native';
+
 import { RouteProp, useRoute } from '@react-navigation/native';
 
-import { RootStackParamsList } from '@navigation';
-import { getFoodById, updateFood } from '@hooks';
-import { CATEGORIES, COLORS, DETAIL } from '@constants';
-import FoodInfo from '@components/FoodInfo';
-import { Loading } from '@components';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useFoodsStore } from '@stores/food';
-import { IFood } from '@types';
 
-type DetailRoute = RouteProp<RootStackParamsList, typeof DETAIL>;
+import { RootStackParamsList } from '@navigation';
+
+import { FoodInfo, Loading } from '@components';
+
+import { CATEGORIES, COLORS, ROUTES } from '@constants';
+
+import { useFoodsStore } from '@stores/food';
+
+import { getFoodById, updateFood } from '@services/food';
+
+type DetailRoute = RouteProp<RootStackParamsList, typeof ROUTES.DETAIL>;
 
 const Details = () => {
   const route = useRoute<DetailRoute>();
   const { id } = route.params;
 
   const setFood = useFoodsStore(({ setFood }) => setFood);
+  const food = useFoodsStore(({ byId }) => byId[id]);
 
-  const { isLoading, data } = useQuery({
-    queryKey: ['foods', id + ''],
+  const { isLoading } = useQuery({
+    queryKey: ['foods', 'foods' + id],
     queryFn: async () => {
       const food = await getFoodById(id);
       setFood(food);
@@ -33,13 +37,12 @@ const Details = () => {
     },
   });
 
-  // Show error
-  if (!data) {
-    return null;
+  if (isLoading) {
+    return <Loading />;
   }
 
   const { color, imgUrl, category, name, desc, ingredients, nutritional } =
-    data;
+    food;
 
   const categoryName = CATEGORIES.find(({ id }) => id == category)?.name || '';
 
@@ -63,7 +66,7 @@ export default Details;
 
 const FavoriteButton = () => {
   const queryClient = useQueryClient();
-  const route = useRoute<RouteProp<RootStackParamsList, 'Detail-Screen'>>();
+  const route = useRoute<RouteProp<RootStackParamsList, ROUTES.DETAIL>>();
   const id = route.params.id;
   const food = useFoodsStore(({ byId }) => byId[id]);
   const { addFavorite, removeFavorite, setFood } = useFoodsStore();
@@ -73,6 +76,7 @@ const FavoriteButton = () => {
     onSuccess: (updated) => {
       queryClient.invalidateQueries({ queryKey: ['foods-favorite'] });
       setFood(updated);
+      (favorite ? removeFavorite : addFavorite)(id);
     },
   });
 
@@ -80,7 +84,6 @@ const FavoriteButton = () => {
 
   const handleFavorite = () => {
     mutate({ ...food, favorite: favorite ? 0 : 1 });
-    (favorite ? removeFavorite : addFavorite)(id);
   };
 
   return (

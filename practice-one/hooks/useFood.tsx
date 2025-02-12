@@ -1,33 +1,19 @@
-import { IFood } from '@types';
-import { API_FOOD } from '@constants';
-import { getFoods } from '@services/food';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useFoodsStore } from '@stores/food';
+import { useQuery } from '@tanstack/react-query';
 
-import { useFilterStore } from '@stores/filter';
-import { apiClient } from '@services/http-client';
+import { useFoodsStore } from '@stores';
 
-export const getFoodById = async (id: number) => {
-  const data = await apiClient.get<IFood>(`${API_FOOD}/${id}`);
-  return data;
-};
+import { FoodOptions, getFoods } from '@services';
 
-export const updateFood = async (food: IFood) => {
-  const { id } = food;
-
-  const newFood = await apiClient.put<IFood>(`foods/${id}`, {
-    body: food,
-  });
-
-  return newFood;
-};
-
-export function useFoods() {
-  const { categories, query: search } = useFilterStore();
-
+export function useFoods({
+  categories = [],
+  favorite,
+  query: search,
+}: FoodOptions) {
   const setFoods = useFoodsStore(({ setFoods }) => setFoods);
 
-  const queryKey = ['foods', 'foods' + search, ...categories];
+  const mainKey = favorite ? 'foods-favorite' : 'foods';
+
+  const queryKey = [mainKey, mainKey + search, ...categories];
 
   const query = useQuery({
     queryKey,
@@ -35,31 +21,9 @@ export function useFoods() {
       const foods = await getFoods({
         categories,
         query: search,
+        favorite,
       });
-      setFoods(foods);
-      return foods;
-    },
-  });
-
-  return query;
-}
-
-export function useFoodsFavorite() {
-  const { categories, query: search } = useFilterStore();
-  const queryClient = useQueryClient();
-
-  const setFoods = useFoodsStore(({ setFoods }) => setFoods);
-
-  const query = useQuery({
-    queryKey: ['foods-favorite'],
-    queryFn: async () => {
-      const foods = await getFoods({
-        categories,
-        favorite: 1,
-        query: search,
-      });
-      queryClient.setQueryData(['foods-favorite'], foods);
-      setFoods(foods, true);
+      setFoods(foods, !!favorite);
       return foods;
     },
   });

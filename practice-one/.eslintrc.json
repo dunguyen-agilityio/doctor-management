@@ -18,11 +18,13 @@
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "@typescript-eslint/no-empty-function": "off",
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "react": {
-      "version": "detect" // ✅ Automatically detect React version
+      "version": "detect"
     }
   }
 }

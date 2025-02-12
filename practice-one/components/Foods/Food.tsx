@@ -1,29 +1,20 @@
-import React, { memo, useCallback } from 'react';
-import {
-  Pressable,
-  StyleProp,
-  StyleSheet,
-  Text,
-  ViewStyle,
-} from 'react-native';
+import { memo, useCallback } from 'react';
+import { Pressable, StyleSheet, Text } from 'react-native';
+
+import { COLORS } from '@constants';
 
 import { IFood } from '@types';
-import { COLORS } from '@constants';
-import FoodImage from '../FoodImage';
 
-type FOOD_TYPES = 'medium' | 'large';
+import FoodImage from '../FoodImage';
 
 const Food = ({
   data,
   disabled = false,
   onPress,
-  style,
 }: {
   data: IFood;
-  type?: FOOD_TYPES;
   disabled?: boolean;
   onPress?: (id: number) => void;
-  style?: StyleProp<ViewStyle>;
 }) => {
   const { name, weight, nutritional, id, color, imgUrl } = data;
   const { calories } = nutritional || { calories: {} };
@@ -35,7 +26,7 @@ const Food = ({
   return (
     <Pressable
       disabled={disabled}
-      style={[styles.container, style]}
+      style={styles.container}
       onPress={handlePress}
     >
       <FoodImage color={color} imgUrl={imgUrl} type="medium" />

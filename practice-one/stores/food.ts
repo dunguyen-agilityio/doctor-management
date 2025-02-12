@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 import { IFood } from '@types';
 
 export interface FoodState {
@@ -23,32 +24,25 @@ export const DEFAULT_FOOD_STATE: FoodState = {
 export const useFoodsStore = create<FoodState & FoodActions>((set) => ({
   ...DEFAULT_FOOD_STATE,
   setFoods: (foods: IFood[], isFavorite?: boolean) => {
-    set(({ byId, allIds, favoriteIds }) => {
-      const prevIds = isFavorite ? favoriteIds : allIds;
+    set(({ byId }) => {
+      // const prevIds = isFavorite ? favoriteIds : allIds;
       const ids = foods.map((item) => {
         byId[item.id] = item;
         return item.id;
       });
 
-      const newAllIds = Array.from(new Set([...prevIds, ...ids]));
+      // const newAllIds = Array.from(new Set([...prevIds, ...ids]));
 
       return {
         foods,
-        [isFavorite ? 'favoriteIds' : 'allIds']: newAllIds,
+        [isFavorite ? 'favoriteIds' : 'allIds']: ids,
         byId,
       };
     });
   },
   setFood: (food: IFood) => {
     set(({ byId }) => {
-      const current = byId[food.id];
-
-      if (current) {
-        Object.assign(current, food);
-      } else {
-        byId[food.id] = food;
-      }
-
+      byId[food.id] = food;
       return { byId };
     });
   },
@@ -69,3 +63,7 @@ export const useFoodsStore = create<FoodState & FoodActions>((set) => ({
     });
   },
 }));
+
+export const idsSelector = ({ allIds }: FoodState) => allIds;
+
+export const favoriteIdsSelector = ({ favoriteIds }: FoodState) => favoriteIds;

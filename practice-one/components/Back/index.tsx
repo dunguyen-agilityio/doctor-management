@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
-import { StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { memo } from 'react';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 interface BackProps {
   top?: number;

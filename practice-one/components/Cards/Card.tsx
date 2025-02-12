@@ -1,9 +1,12 @@
-import React, { memo } from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { memo } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { ArrowICon, COLORS } from '@constants';
+
 import { IArticle } from '@types';
+
 export interface CardProps {
   title: string;
   image: string;

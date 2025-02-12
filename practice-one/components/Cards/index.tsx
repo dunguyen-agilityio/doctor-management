@@ -1,17 +1,14 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView } from 'react-native-gesture-handler';
 
 import { MOCK_ARTICLES } from '@__mock__';
+
 import Card from './Card';
-import {
-  GestureHandlerRootView,
-  Pressable,
-  ScrollView,
-} from 'react-native-gesture-handler';
 
 const Cards = () => {
   return (
-    <GestureHandlerRootView style={{ height: 220 }}>
+    <View style={{ height: 220 }}>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -27,7 +24,7 @@ const Cards = () => {
         <Pressable style={[styles.item]} />
         <Pressable style={[styles.item]} />
       </View>
-    </GestureHandlerRootView>
+    </View>
   );
 };
 

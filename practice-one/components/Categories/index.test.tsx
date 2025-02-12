@@ -1,6 +1,6 @@
 import { CATEGORIES } from '@constants';
+
 import { render, screen } from '@utils/test-utils';
-import React from 'react';
 
 import Categories from './index';
 

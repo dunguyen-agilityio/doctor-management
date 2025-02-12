@@ -1,8 +1,8 @@
-import React from 'react';
+import { MOCK_NUTRITIONAL } from '@__mock__';
+
 import { render } from '@utils/test-utils';
 
 import Nutritional from './index';
-import { MOCK_NUTRITIONAL } from '@__mock__';
 
 describe('Test Ingredient', () => {
   if (MOCK_NUTRITIONAL) {

@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 
 import { RootScreenNavigationProps } from '@navigation';
+
 import { Back, FoodImage, Nutritional } from '@components';
-import { COLORS, DETAIL } from '@constants';
+
+import { COLORS, ROUTES } from '@constants';
+
 import { IFood } from '@types';
 
 interface FoodInfoProps
@@ -22,7 +26,8 @@ const FoodInfo = ({
   nutritional,
   children,
 }: React.PropsWithChildren<FoodInfoProps>) => {
-  const { goBack } = useNavigation<RootScreenNavigationProps<typeof DETAIL>>();
+  const { goBack } =
+    useNavigation<RootScreenNavigationProps<typeof ROUTES.DETAIL>>();
 
   return (
     <View style={styles.container}>
