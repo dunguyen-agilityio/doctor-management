@@ -1,13 +1,9 @@
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import React, { memo, useState } from 'react';
+import { memo, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import { COLORS } from '@constants';
-
 import { CATEGORIES } from '@constants';
-import {
-  GestureHandlerRootView,
-  ScrollView,
-} from 'react-native-gesture-handler';
 
 export interface ICategories {
   onSelect: (ids: number[]) => void;
@@ -30,7 +26,7 @@ const Categories = ({ onSelect }: ICategories) => {
   };
 
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -58,7 +54,7 @@ const Categories = ({ onSelect }: ICategories) => {
           );
         })}
       </ScrollView>
-    </GestureHandlerRootView>
+    </View>
   );
 };
 

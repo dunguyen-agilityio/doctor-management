@@ -1,18 +1,16 @@
-import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { DetailsScreen, SplashScreen } from '@screens';
+
+import { ROUTES } from '@constants';
+
 import TabNavigator, { TabParamsList } from './TabNavigator';
-import { DETAIL, ROOT, SPLASH } from '@constants';
-import { FoodOptions } from '@services/food';
 
 export type RootStackParamsList = {
-  [ROOT]: FoodOptions;
-  [SPLASH]: undefined;
-  [DETAIL]: {
+  [ROUTES.ROOT]: undefined;
+  [ROUTES.SPLASH]: undefined;
+  [ROUTES.DETAIL]: {
     id: number;
-    onChange?: () => void;
-    onBack?: () => void;
   };
 } & TabParamsList;
 
@@ -28,9 +26,9 @@ const RootNavigator = () => {
       }}
     >
       <RootStack.Group>
-        <RootStack.Screen name={SPLASH} component={SplashScreen} />
-        <RootStack.Screen name={ROOT} component={TabNavigator} />
-        <RootStack.Screen name={DETAIL} component={DetailsScreen} />
+        <RootStack.Screen name={ROUTES.SPLASH} component={SplashScreen} />
+        <RootStack.Screen name={ROUTES.ROOT} component={TabNavigator} />
+        <RootStack.Screen name={ROUTES.DETAIL} component={DetailsScreen} />
       </RootStack.Group>
     </RootStack.Navigator>
   );

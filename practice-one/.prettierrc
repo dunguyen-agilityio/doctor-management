@@ -5,5 +5,25 @@
   "tabWidth": 2,
   "useTabs": false,
   "endOfLine": "auto",
-  "arrowParens": "always"
+  "arrowParens": "always",
+  "importOrder": [
+    "^react",
+    "^react-native",
+    "^@react-navigation/(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^@navigation",
+    "^@screens",
+    "^@components",
+    "^@constants",
+    "^@types",
+    "^@stores",
+    "^@services",
+    "^@utils/(.*)$",
+    "^@hooks/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderBuiltinModulesToTop": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

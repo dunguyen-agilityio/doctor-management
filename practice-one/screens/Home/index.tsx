@@ -1,45 +1,44 @@
-import React, { useCallback } from 'react';
-import { StyleSheet } from 'react-native';
-
-import { Header, SearchInput, Cards, FoodsList, Text } from '@components';
-import { COLORS, HOME, SEARCH } from '@constants';
-import FoodCategories from '@components/FoodCategories';
+import { useCallback } from 'react';
+import { StyleSheet, Text } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
 import { RootScreenNavigationProps } from '@navigation';
-import FoodsContainer from '@components/FoodsContainer';
+
+import {
+  Cards,
+  FoodCategories,
+  FoodsContainer,
+  FoodsList,
+  Header,
+  SearchInput,
+} from '@components';
+
+import { COLORS, ROUTES } from '@constants';
+
+import { querySelector } from '@stores/filter';
+import { idsSelector } from '@stores/food';
 
 const HomeScreen = () => {
-  const { navigate } = useNavigation<RootScreenNavigationProps<typeof HOME>>();
+  const { navigate } =
+    useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
 
   const handleNavigateToSearch = useCallback(() => {
-    navigate(SEARCH);
+    navigate(ROUTES.SEARCH);
   }, [navigate]);
 
   return (
-    <FoodsContainer style={styles.container}>
+    <FoodsContainer style={styles.container} getQuery={querySelector}>
       <Header />
-      <SearchInput onFocus={handleNavigateToSearch} />
+      <SearchInput onFocus={handleNavigateToSearch} getQuery={querySelector} />
       <FoodCategories />
       <Cards />
       <FoodsList
-        getIds={({ allIds }) => allIds}
-        slots={{
-          list: {
-            horizontal: true,
-            contentContainerStyle: { marginHorizontal: 16 },
-          },
-        }}
-        title={
-          <Text
-            fontSize="xxl-0"
-            fontWeight="700"
-            customStyle={{ marginTop: 22, marginLeft: 8 }}
-          >
-            All Food
-          </Text>
-        }
+        style={styles.list}
+        emptyContent={null}
+        idsSelector={idsSelector}
+        horizontal
+        title={<Text style={styles.title}>All Food</Text>}
       />
     </FoodsContainer>
   );
@@ -52,5 +51,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 60,
     backgroundColor: COLORS.WHITE,
+  },
+  list: { marginTop: 15 },
+  title: {
+    fontWeight: '700',
+    fontSize: 20,
+    marginTop: 22,
+    marginLeft: 8,
   },
 });

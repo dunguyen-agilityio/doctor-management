@@ -1,8 +1,7 @@
-import { storiesOf } from '@storybook/react-native';
-import { action } from '@storybook/addon-actions';
-import React from 'react';
-
 import CenterView from '@mstorybook/stories/CenterView';
+import { action } from '@storybook/addon-actions';
+import { storiesOf } from '@storybook/react-native';
+
 import Back from '../index';
 
 storiesOf('Back', module)

@@ -1,9 +1,9 @@
-import React, { memo, useCallback, useMemo } from 'react';
-import { FlatList, StyleSheet, View, ViewStyle } from 'react-native';
+import { memo, useCallback, useMemo } from 'react';
+import { FlatList, StyleSheet, Text, View, ViewStyle } from 'react-native';
 
-import { COLOR } from '@constants';
+import { COLOR, COLORS } from '@constants';
+
 import { TNutritional } from '@types';
-import { Text } from '@components/common';
 
 interface INutritional {
   title: string;
@@ -27,13 +27,8 @@ const Nutritional = ({
 
   const Item = ({ title, value }: INutritional) => (
     <View>
-      <Text fontSize="xl-6" customStyle={{ textTransform: 'capitalize' }}>
-        {title}
-      </Text>
-
-      <Text fontSize="xxl-4" color="secondary">
-        {`${value}g`}
-      </Text>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.value}>{`${value}g`}</Text>
     </View>
   );
 
@@ -73,4 +68,10 @@ const styles = StyleSheet.create({
     paddingVertical: 19,
     alignItems: 'center',
   },
+  title: {
+    fontSize: 16,
+    textTransform: 'capitalize',
+    color: COLORS.PRIMARY,
+  },
+  value: { fontSize: 24, color: COLORS.SECONDARY },
 });

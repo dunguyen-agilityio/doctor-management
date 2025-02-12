@@ -1,13 +1,13 @@
 export { default as FoodsList } from './Foods';
-export { Text, Input, Button } from './common';
 export { default as SearchInput } from './SearchInput';
 export { default as Categories } from './Categories';
 export { default as Cards } from './Cards';
 export { default as Back } from './Back';
 export { default as Nutritional } from './Nutritional';
 export { default as Loading } from './Loading';
-export { default as Empty } from './Empty';
 export { default as Header } from './Header';
 export { default as NotFound } from './NotFound';
-export { default as Ingredients } from './Ingredients';
 export { default as FoodImage } from './FoodImage';
+export { default as FoodInfo } from './FoodInfo';
+export { default as FoodsContainer } from './FoodsContainer';
+export { default as FoodCategories } from './FoodCategories';

@@ -1,5 +1,7 @@
-import { API_FOOD } from '@constants';
+import { API_ENTITIES } from '@constants';
+
 import { IFood } from '@types';
+
 import { apiClient } from './http-client';
 
 export interface FoodOptions {
@@ -28,8 +30,23 @@ export const getFoods = async ({
   }
 
   const response = await apiClient.get<IFood[]>(
-    `${API_FOOD}?${searchParams.toString()}`,
+    `${API_ENTITIES.FOODS}?${searchParams.toString()}`,
   );
 
   return response;
+};
+
+export const getFoodById = async (id: number) => {
+  const data = await apiClient.get<IFood>(`${API_ENTITIES.FOODS}/${id}`);
+  return data;
+};
+
+export const updateFood = async (food: IFood) => {
+  const { id } = food;
+
+  const newFood = await apiClient.put<IFood>(`${API_ENTITIES.FOODS}/${id}`, {
+    body: food,
+  });
+
+  return newFood;
 };

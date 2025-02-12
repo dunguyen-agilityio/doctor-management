@@ -1,38 +1,55 @@
-import React, { memo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { Text } from '@components/common';
-import { NotFoundImage } from '@constants';
+import { COLORS, NotFoundImage } from '@constants';
 
-const NotFound = ({ marginTop }: { marginTop?: number }) => {
+const NO_FOODS_FOUND_DESCRIPTION = `You don't save any food. Go ahead, search\nand save your favorite food`;
+const NO_FOODS_FOUND_TITLE = 'No Foods Found';
+
+const NotFound = ({
+  description = NO_FOODS_FOUND_DESCRIPTION,
+  image = <NotFoundImage />,
+  title = NO_FOODS_FOUND_TITLE,
+}: {
+  title?: string;
+  description?: string;
+  image?: React.ReactNode;
+}) => {
   return (
-    <View style={[styles.container, { marginTop }]}>
-      <NotFoundImage />
+    <View style={styles.container}>
+      <View style={styles.header}>
+        {image}
+        <Text style={styles.title}>{title}</Text>
+      </View>
 
-      <Text
-        customStyle={{ marginTop: 24, color: '#696969' }}
-        fontSize="xxl-2"
-        fontWeight="500"
-      >
-        No Foods Found
-      </Text>
-
-      <Text
-        fontSize="ms-3"
-        color="gray"
-        customStyle={{ marginTop: 8, textAlign: 'center' }}
-      >
-        {`You don't save any food. Go ahead, search\nand save your favorite food`}
-      </Text>
+      <Text style={styles.description}>{description}</Text>
     </View>
   );
 };
 
-export default memo(NotFound);
+export default NotFound;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    width: '100%',
+  },
+  header: {
+    gap: 24,
+    alignItems: 'center',
+  },
+  title: {
+    marginTop: 24,
+    color: '#696969',
+    fontSize: 22,
+    fontWeight: '500',
+    lineHeight: 31,
+  },
+  description: {
+    fontSize: 13,
+    color: COLORS.GRAY,
+    textAlign: 'center',
   },
 });

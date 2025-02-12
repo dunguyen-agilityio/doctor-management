@@ -1,7 +1,8 @@
-import { COLOR } from '@constants';
-import { IInfo } from './common';
-
 import { LinearGradient } from 'expo-linear-gradient';
+
+import { COLOR } from '@constants';
+
+import { IInfo } from './common';
 
 export type Ingredients = 'Bread' | 'Meat (Chicken)' | 'Cucumber' | 'Onion';
 

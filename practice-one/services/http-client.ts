@@ -25,6 +25,7 @@ class APIClient {
     init?: RequestOption,
   ): Promise<T> => {
     const { method = 'GET', body, headers } = init || {};
+    console.log(method + ': ', url);
 
     const hasBody = method === 'POST' || method === 'PUT';
 

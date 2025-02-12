@@ -1,9 +1,10 @@
-import { render, screen } from '@utils/test-utils';
-import React from 'react';
-import { FoodsProps } from '../index';
-
 import { MOCK_FOODS } from '@__mock__';
+
 import { FoodsList } from '@components';
+
+import { render, screen } from '@utils/test-utils';
+
+import { FoodsProps } from '../index';
 
 function setup(props: FoodsProps) {
   return render(<FoodsList {...props} />);

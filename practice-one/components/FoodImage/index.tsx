@@ -1,7 +1,8 @@
-import React, { memo, useMemo } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { memo, useMemo } from 'react';
+import { Image, StyleSheet, View } from 'react-native';
 
 import { COLORS } from '@constants';
+
 import { IFood } from '@types';
 
 type Size = 'medium' | 'large';

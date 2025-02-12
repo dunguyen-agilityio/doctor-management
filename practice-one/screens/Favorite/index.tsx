@@ -1,29 +1,49 @@
 import { StyleSheet } from 'react-native';
-import React from 'react';
+import { ScrollView } from 'react-native-gesture-handler';
 
-import { FoodsList, SearchInput } from '@components';
-import { COLORS } from '@constants';
+import { useFocusEffect } from '@react-navigation/native';
 
-import FoodsContainer from '@components/FoodsContainer';
+import { FoodsContainer, FoodsList, NotFound, SearchInput } from '@components';
+
+import {
+  favoriteIdsSelector,
+  favoriteQuerySelector,
+  useFilterStore,
+} from '@stores';
 
 const FavoriteScreen = () => {
+  const setFilter = useFilterStore(({ setFilter }) => setFilter);
+
+  useFocusEffect(() => {
+    return () => {
+      setFilter({ favoriteQuery: '' });
+    };
+  });
+
+  const handleSearch = (query: string) => {
+    setFilter({ favoriteQuery: query });
+  };
+
   return (
-    <FoodsContainer style={styles.container} favorite={1}>
-      <SearchInput />
-      <FoodsList
-        getIds={({ favoriteIds }) => favoriteIds}
-        slots={{
-          container: {
-            alignItems: 'center',
-          },
-          list: {
-            columnWrapperStyle: styles.item,
-            numColumns: 2,
-            style: { width: '100%' },
-          },
-          item: { marginHorizontal: 18 },
-        }}
-      />
+    <FoodsContainer
+      style={styles.container}
+      favorite={1}
+      getQuery={favoriteQuerySelector}
+    >
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
+        <SearchInput
+          onChangeQuery={handleSearch}
+          getQuery={favoriteQuerySelector}
+        />
+        <FoodsList
+          idsSelector={favoriteIdsSelector}
+          emptyContent={<NotFound />}
+          style={styles.list}
+        />
+      </ScrollView>
     </FoodsContainer>
   );
 };
@@ -32,12 +52,10 @@ export default FavoriteScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: COLORS.WHITE,
     paddingTop: 62,
   },
-  item: {
-    justifyContent: 'space-between',
-    paddingHorizontal: 10,
+  list: {
+    marginTop: 24,
+    width: '100%',
   },
 });
