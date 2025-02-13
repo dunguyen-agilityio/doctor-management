@@ -6,7 +6,7 @@ import { useImmerReducer } from 'use-immer';
 import { foodsReducer } from './reducer';
 import { FoodsAction, FoodsState } from './reducer';
 
-export const DEFAULT_FOODS_STATE: FoodsState = { byId: {}, ids: [] };
+export const DEFAULT_FOODS_STATE: FoodsState = { foods: [] };
 
 export const FoodsContext = createContext(DEFAULT_FOODS_STATE);
 export const FoodsDispatchContext = createContext<React.Dispatch<FoodsAction>>(

@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -10,14 +10,15 @@ import { RootScreenNavigationProps } from '@navigation';
 
 import {
   ArticlesSlider,
-  FoodCategories,
+  Categories,
   FoodsContainer,
-  FoodsList,
   Header,
   SearchInput,
 } from '@components';
 
-import { COLORS, ROUTES } from '@constants';
+import { CATEGORIES, COLORS, ROUTES } from '@constants';
+
+import HomeContainer from './container';
 
 const HomeScreen = () => {
   const { navigate } =
@@ -29,20 +30,18 @@ const HomeScreen = () => {
 
   return (
     <FoodsProvider>
-      <FoodsContainer
-        style={styles.container}
-        fallback={<Text>Loading...</Text>}
-      >
+      <View style={styles.container}>
         <Header />
         <SearchInput onFocus={handleNavigateToSearch} />
-        <FoodCategories />
+        <Categories onSelect={handleNavigateToSearch} categories={CATEGORIES} />
         <ArticlesSlider articles={MOCK_ARTICLES} />
-        <FoodsList
-          style={styles.list}
-          horizontal
-          title={<Text style={styles.title}>All Food</Text>}
-        />
-      </FoodsContainer>
+        <HomeContainer>
+          <FoodsContainer
+            slotProps={{ list: { horizontal: true } }}
+            ListTitleComponent={<Text style={styles.title}>All Food</Text>}
+          />
+        </HomeContainer>
+      </View>
     </FoodsProvider>
   );
 };

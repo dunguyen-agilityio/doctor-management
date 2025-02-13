@@ -18,8 +18,8 @@
     "^@types",
     "^@stores",
     "^@services",
-    "^@utils/(.*)$",
-    "^@hooks/(.*)$",
+    "^@utils",
+    "^@hooks",
     "^[./]"
   ],
   "importOrderSeparation": true,

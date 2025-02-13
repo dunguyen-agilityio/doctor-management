@@ -1,27 +1,51 @@
-import React, { useContext } from 'react';
-import { StyleSheet } from 'react-native';
+import React, { useCallback, useContext, useRef } from 'react';
+import { TextInput } from 'react-native';
 
-import { SearchContext } from '@contexts/search/provider';
+import { useFocusEffect } from '@react-navigation/native';
 
-import { FoodsContainer } from '@components';
+import { SearchActionContext, SearchContext } from '@contexts/search/provider';
 
-const FavoriteContainer = ({ children }: React.PropsWithChildren) => {
+import { Loading, SearchInput } from '@components';
+import ErrorFallback from '@components/Error';
+
+import { useFoods } from '@hooks';
+
+const FavoriteContainer = ({
+  children,
+  fallback = <Loading />,
+}: React.PropsWithChildren<{ fallback?: React.ReactNode }>) => {
   const query = useContext(SearchContext);
+  const setQuery = useContext(SearchActionContext);
+
+  const searchInputRef = useRef<TextInput>(null);
+
+  const { error, isLoading } = useFoods({
+    query,
+    favorite: 1,
+    queryKey: 'foods-favorite',
+  });
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        setQuery('');
+        if (searchInputRef.current) {
+          searchInputRef.current.clear();
+        }
+      };
+    }, [setQuery]),
+  );
+
+  if (error)
+    return <ErrorFallback error={error} resetErrorBoundary={() => {}} />;
 
   return (
-    <FoodsContainer
-      style={styles.container}
-      options={{ query, favorite: 1, queryKey: 'foods-favorite' }}
-    >
+    <>
+      <SearchInput onChangeText={setQuery} />
       {children}
-    </FoodsContainer>
+      {isLoading && fallback}
+    </>
   );
 };
 
 export default FavoriteContainer;
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 62,
-  },
-});
