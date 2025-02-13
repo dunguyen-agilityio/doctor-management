@@ -1,29 +1,24 @@
+import { View } from 'react-native';
+
 import { MOCK_ARTICLES } from '@__mock__';
-import { storiesOf } from '@storybook/react-native';
-import CenterView from '@storybook/stories/CenterView';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import Card from './Card';
 
-const acticleFirst = MOCK_ARTICLES[0];
-const { name = 'The Food', image = '' } = acticleFirst;
+const meta = {
+  title: 'Card',
+  component: Card,
+  decorators: [
+    (Story) => (
+      <View style={{ padding: 16, alignItems: 'flex-start' }}>
+        <Story />
+      </View>
+    ),
+  ],
+} satisfies Meta<typeof Card>;
 
-storiesOf('Card', module)
-  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add('default', () => (
-    <Card
-      title={name}
-      image={image}
-      backgroundColor={['', '']}
-      color="green"
-      id={1}
-    />
-  ))
-  .add('secondary', () => (
-    <Card
-      title={name}
-      image={image}
-      backgroundColor={['', '']}
-      color="green"
-      id={1}
-    />
-  ));
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { args: MOCK_ARTICLES[0] };
