@@ -1,60 +1,26 @@
-import { memo, useCallback, useMemo } from 'react';
-import { FlatList, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { memo, useMemo } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { COLOR, COLORS } from '@constants';
+import { COLORS } from '@constants';
 
 import { TNutritional } from '@types';
 
-interface INutritional {
-  title: string;
-  value: number;
-}
-
-const Nutritional = ({
-  nutritional,
-  customStyles,
-}: {
-  nutritional: TNutritional;
-  color?: COLOR;
-  customStyles?: ViewStyle;
-}) => {
-  const vi = useMemo(() => {
-    return Object.entries(nutritional).map(([x, y]) => ({
-      title: x,
-      value: y,
+const Nutritional = ({ nutritional }: { nutritional: TNutritional }) => {
+  const nutritionalList = useMemo(() => {
+    return Object.entries(nutritional).map(([title, value]) => ({
+      title,
+      value,
     }));
   }, [nutritional]);
 
-  const Item = ({ title, value }: INutritional) => (
-    <View>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.value}>{`${value}g`}</Text>
-    </View>
-  );
-
-  const handleItemSeparatorComponent = useCallback(
-    () => <View style={{ marginLeft: 40 }} />,
-    [],
-  );
-
-  const handleRenderItem = useCallback(({ item }: { item: INutritional }) => {
-    return <Item {...item} />;
-  }, []);
-
-  const handleKeyExtractor = useCallback(
-    (item: INutritional) => item.title + '',
-    [],
-  );
-
   return (
-    <View style={[styles.container, customStyles]}>
-      <FlatList
-        data={vi}
-        horizontal
-        renderItem={handleRenderItem}
-        ItemSeparatorComponent={handleItemSeparatorComponent}
-        keyExtractor={handleKeyExtractor}
-      />
+    <View style={styles.container}>
+      {nutritionalList.map(({ title, value }) => (
+        <View key={title}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.value}>{`${value}g`}</Text>
+        </View>
+      ))}
     </View>
   );
 };
@@ -67,6 +33,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 19,
     alignItems: 'center',
+    flexDirection: 'row',
+    gap: 40,
   },
   title: {
     fontSize: 16,

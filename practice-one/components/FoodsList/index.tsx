@@ -16,9 +16,7 @@ import Food from '../FoodCard';
 export interface FoodsProps {
   title?: React.ReactNode;
   horizontal?: boolean;
-  foods?: IFood[];
   emptyContent?: React.ReactNode;
-  onPressItem?: (id: number) => void;
   style?: ViewStyle;
 }
 

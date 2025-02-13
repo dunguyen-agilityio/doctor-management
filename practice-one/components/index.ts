@@ -1,7 +1,7 @@
 export { default as FoodsList } from './FoodsList';
 export { default as SearchInput } from './SearchInput';
 export { default as Categories } from './Categories';
-export { default as Cards } from './Cards';
+export { default as ArticlesSlider } from './ArticlesSlider';
 export { default as Back } from './Back';
 export { default as Nutritional } from './Nutritional';
 export { default as Loading } from './Loading';

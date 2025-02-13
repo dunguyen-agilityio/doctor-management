@@ -1,13 +1,14 @@
 import { View } from 'react-native';
 
-import { MOCK_ARTICLES } from '@__mock__';
+import { MOCK_FOODS } from '@__mock__';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Card from './Card';
+import FoodCard from './index';
 
 const meta = {
-  title: 'Card',
-  component: Card,
+  title: 'FoodCard',
+  component: FoodCard,
+  argTypes: { onPress: { action: 'pressed' } },
   decorators: [
     (Story) => (
       <View style={{ padding: 16, alignItems: 'flex-start' }}>
@@ -15,10 +16,10 @@ const meta = {
       </View>
     ),
   ],
-} satisfies Meta<typeof Card>;
+} satisfies Meta<typeof FoodCard>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = { args: MOCK_ARTICLES[0] };
+export const Default: Story = { args: { data: MOCK_FOODS[0] } };
