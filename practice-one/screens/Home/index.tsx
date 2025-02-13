@@ -3,12 +3,13 @@ import { StyleSheet, Text } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
+import { MOCK_ARTICLES } from '@__mock__';
 import FoodsProvider from '@contexts/foods/provider';
 
 import { RootScreenNavigationProps } from '@navigation';
 
 import {
-  Cards,
+  ArticlesSlider,
   FoodCategories,
   FoodsContainer,
   FoodsList,
@@ -35,7 +36,7 @@ const HomeScreen = () => {
         <Header />
         <SearchInput onFocus={handleNavigateToSearch} />
         <FoodCategories />
-        <Cards />
+        <ArticlesSlider articles={MOCK_ARTICLES} />
         <FoodsList
           style={styles.list}
           horizontal

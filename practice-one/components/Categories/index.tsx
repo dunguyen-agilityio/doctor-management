@@ -5,12 +5,14 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { COLORS } from '@constants';
 import { CATEGORIES } from '@constants';
 
+import { ICategory } from '@types';
+
 export interface ICategories {
-  onSelect: (ids: string[]) => void;
-  select: string[];
+  onSelect?: (ids: string[]) => void;
+  categories: ICategory[];
 }
 
-const Categories = ({ onSelect }: ICategories) => {
+const Categories = ({ onSelect, categories }: ICategories) => {
   const [select, setSelect] = useState<string[]>([]);
 
   const handlePressTag = (id: string) => {
@@ -19,7 +21,7 @@ const Categories = ({ onSelect }: ICategories) => {
         ? prev.filter((item) => item !== id)
         : [...prev, id];
 
-      onSelect(newTags);
+      onSelect?.(newTags);
 
       return newTags;
     });
@@ -33,7 +35,7 @@ const Categories = ({ onSelect }: ICategories) => {
         pagingEnabled
         contentContainerStyle={styles.contentContainerStyle}
       >
-        {CATEGORIES.map(({ name, id }, idx) => {
+        {categories.map(({ name, id }, idx) => {
           const isActive = select.includes(String(id));
 
           return (

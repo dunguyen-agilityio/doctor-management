@@ -1,23 +1,24 @@
 import { memo } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Pressable, ScrollView } from 'react-native-gesture-handler';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
-import { MOCK_ARTICLES } from '@__mock__';
+import Article from '@components/Article';
 
-import Card from './Card';
+import { IArticle } from '@types';
 
-const Cards = () => {
+const Slider = ({ articles }: { articles: IArticle[] }) => {
   return (
-    <View style={{ height: 220 }}>
+    <View style={styles.container}>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.container}
-        pagingEnabled
+        showsVerticalScrollIndicator={false}
       >
-        {MOCK_ARTICLES.map((item) => (
-          <Card key={item.id} {...item} />
-        ))}
+        <View style={styles.list}>
+          {articles.map((item) => (
+            <Article key={item.id} {...item} />
+          ))}
+        </View>
       </ScrollView>
       <View style={styles.navigation}>
         <Pressable style={[styles.item, styles.activeItem]} />
@@ -28,14 +29,14 @@ const Cards = () => {
   );
 };
 
-export default memo(Cards);
+export default memo(Slider);
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
-    gap: 16,
     marginTop: 16,
+    height: 220,
   },
+  list: { flexDirection: 'row', gap: 16, paddingHorizontal: 16 },
   navigation: {
     height: 20,
     width: '100%',
