@@ -1,32 +1,20 @@
-import { useQuery } from '@tanstack/react-query';
+import { useContext } from 'react';
 
-import { useFoodsStore } from '@stores';
+import { FoodsDispatchContext } from '@contexts/foods';
+import { useQuery } from '@tanstack/react-query';
 
 import { FoodOptions, getFoods } from '@services';
 
-export function useFoods({
-  categories = [],
-  favorite,
-  query: search,
-}: FoodOptions) {
-  const setFoods = useFoodsStore(({ setFoods }) => setFoods);
+export function useFoods(options: FoodOptions) {
+  const { categories = [], query, queryKey = 'foods' } = options;
+  const dispatch = useContext(FoodsDispatchContext);
 
-  const mainKey = favorite ? 'foods-favorite' : 'foods';
-
-  const queryKey = [mainKey, mainKey + search, ...categories];
-
-  const query = useQuery({
-    queryKey,
+  return useQuery({
+    queryKey: [queryKey, query, ...categories],
     queryFn: async () => {
-      const foods = await getFoods({
-        categories,
-        query: search,
-        favorite,
-      });
-      setFoods(foods, !!favorite);
+      const foods = await getFoods(options);
+      dispatch({ type: 'GET_FOODS', payload: foods });
       return foods;
     },
   });
-
-  return query;
 }

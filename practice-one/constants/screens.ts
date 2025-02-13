@@ -3,6 +3,5 @@ export enum ROUTES {
   SEARCH = 'Search-Screen',
   DETAIL = 'Detail-Screen',
   FAVORITE = 'Favorite-Screen',
-  SPLASH = 'Splash-Screen',
   ROOT = 'Root-Screen',
 }

@@ -1,4 +1,4 @@
 export type IInfo = {
-  id: number;
+  id: string;
   name?: string;
 };

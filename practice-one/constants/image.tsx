@@ -11,11 +11,8 @@ export const NotFoundImage = () => (
   />
 );
 
-export const LoadingImage = () => (
-  <Image
-    source={require('@assets/images/loading_2x.png')}
-    style={styles.loading}
-  />
+export const Logo = () => (
+  <Image source={require('@assets/images/logo.png')} style={styles.loading} />
 );
 
 export const ArrowICon = () => (

@@ -6,14 +6,14 @@ import { COLORS } from '@constants';
 import { CATEGORIES } from '@constants';
 
 export interface ICategories {
-  onSelect: (ids: number[]) => void;
-  select: number[];
+  onSelect: (ids: string[]) => void;
+  select: string[];
 }
 
 const Categories = ({ onSelect }: ICategories) => {
-  const [select, setSelect] = useState<number[]>([]);
+  const [select, setSelect] = useState<string[]>([]);
 
-  const handlePressTag = (id: number) => {
+  const handlePressTag = (id: string) => {
     setSelect((prev) => {
       const newTags = prev.includes(id)
         ? prev.filter((item) => item !== id)
@@ -34,7 +34,7 @@ const Categories = ({ onSelect }: ICategories) => {
         contentContainerStyle={styles.contentContainerStyle}
       >
         {CATEGORIES.map(({ name, id }, idx) => {
-          const isActive = select.includes(id);
+          const isActive = select.includes(String(id));
 
           return (
             <TouchableOpacity
@@ -47,7 +47,7 @@ const Categories = ({ onSelect }: ICategories) => {
                   ...(idx == CATEGORIES.length - 1 && { marginRight: 16 }),
                 },
               ]}
-              onPress={() => handlePressTag(id)}
+              onPress={() => handlePressTag(String(id))}
             >
               <Text style={styles.textButton}>{name}</Text>
             </TouchableOpacity>

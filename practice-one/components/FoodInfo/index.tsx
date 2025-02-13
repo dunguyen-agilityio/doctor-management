@@ -1,13 +1,9 @@
-import { useState } from 'react';
+import { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
+import { FoodImage, Nutritional, Toggle } from '@components';
 
-import { RootScreenNavigationProps } from '@navigation';
-
-import { Back, FoodImage, Nutritional } from '@components';
-
-import { COLORS, ROUTES } from '@constants';
+import { COLORS } from '@constants';
 
 import { IFood } from '@types';
 
@@ -24,14 +20,9 @@ const FoodInfo = ({
   desc,
   ingredients,
   nutritional,
-  children,
-}: React.PropsWithChildren<FoodInfoProps>) => {
-  const { goBack } =
-    useNavigation<RootScreenNavigationProps<typeof ROUTES.DETAIL>>();
-
+}: FoodInfoProps) => {
   return (
     <View style={styles.container}>
-      <Back left={20} onPress={goBack} />
       <View style={styles.header}>
         <FoodImage imgUrl={imgUrl} color={color} type="large" />
         <Text style={styles.name}>{name}</Text>
@@ -57,58 +48,50 @@ const FoodInfo = ({
             </Toggle>
           </Text>
         </View>
-        <View style={styles.session}>
-          <Toggle>
-            {({ isToggle, toggle }) => {
-              const subIngredients = isToggle
-                ? ingredients
-                : ingredients.slice(0, 2);
-              return (
-                <>
-                  <View
-                    style={{
-                      justifyContent: 'space-between',
-                      flexDirection: 'row',
-                    }}
-                  >
-                    <Text style={styles.title}>Ingredients</Text>
-
-                    <Text onPress={toggle} style={styles.seeAll}>
-                      {isToggle ? `\bSee less.` : `\bSee all`}
-                    </Text>
-                  </View>
-                  <View style={styles.ingredients}>
-                    {subIngredients.map(({ id, name, value }, idx) => (
-                      <View style={styles.ingredientItem} key={id + idx}>
-                        <View style={styles.listBullet}>
-                          <Text style={styles.bullet}>•</Text>
-                          <Text style={styles.ingredientText}>{name}</Text>
-                        </View>
-                        <Text
-                          style={styles.ingredientText}
-                        >{`${value} cal`}</Text>
+        <Toggle>
+          {({ isToggle, toggle }) => {
+            const subIngredients = isToggle
+              ? ingredients
+              : ingredients.slice(0, 2);
+            return (
+              <View style={styles.session}>
+                <View
+                  style={{
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                  }}
+                >
+                  <Text style={styles.title}>Ingredients</Text>
+                  <Text onPress={toggle} style={styles.seeAll}>
+                    {isToggle ? `\bSee less.` : `\bSee all`}
+                  </Text>
+                </View>
+                <View>
+                  {subIngredients.map(({ id, name, value }, idx) => (
+                    <View style={styles.ingredientItem} key={id + idx}>
+                      <View style={styles.listBullet}>
+                        <Text style={styles.bullet}>•</Text>
+                        <Text style={styles.ingredientText}>{name}</Text>
                       </View>
-                    ))}
-                  </View>
-                </>
-              );
-            }}
-          </Toggle>
-        </View>
-        {children}
+                      <Text
+                        style={styles.ingredientText}
+                      >{`${value} cal`}</Text>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            );
+          }}
+        </Toggle>
       </View>
     </View>
   );
 };
 
-export default FoodInfo;
+export default memo(FoodInfo);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 63,
-    backgroundColor: COLORS.WHITE,
-  },
+  container: { gap: 4 },
   header: {
     width: '100%',
     alignItems: 'center',
@@ -116,21 +99,8 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   details: {
-    paddingHorizontal: 20,
     marginTop: 19,
     gap: 20,
-  },
-  button: {
-    width: '100%',
-    borderRadius: 9,
-    paddingVertical: 9,
-    marginTop: 27,
-  },
-  textButton: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: COLORS.WHITE,
-    textAlign: 'center',
   },
   name: {
     fontSize: 22,
@@ -145,7 +115,6 @@ const styles = StyleSheet.create({
     color: COLORS.LIGHT_1_GRAY,
   },
   readMore: { color: COLORS.PRIMARY },
-  ingredients: {},
   ingredientItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -175,20 +144,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-const Toggle = ({
-  children,
-}: {
-  children: (params: {
-    isToggle: boolean;
-    setIsToggle: React.Dispatch<React.SetStateAction<boolean>>;
-    toggle: () => void;
-  }) => React.ReactNode;
-}) => {
-  const [isToggle, setIsToggle] = useState(false);
-  return children({
-    isToggle,
-    setIsToggle,
-    toggle: () => setIsToggle((prev) => !prev),
-  });
-};

@@ -1,11 +1,11 @@
 import { memo, useCallback } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
+import FoodImage from '@components/FoodImage';
+
 import { COLORS } from '@constants';
 
 import { IFood } from '@types';
-
-import FoodImage from '../FoodImage';
 
 const Food = ({
   data,
@@ -14,7 +14,7 @@ const Food = ({
 }: {
   data: IFood;
   disabled?: boolean;
-  onPress?: (id: number) => void;
+  onPress?: (id: string) => void;
 }) => {
   const { name, weight, nutritional, id, color, imgUrl } = data;
   const { calories } = nutritional || { calories: {} };
