@@ -9,7 +9,13 @@ interface BackProps {
   onPress?: () => void;
 }
 
-const Back = ({ top, left, right, bottom, onPress }: BackProps) => {
+const Back = ({
+  top = 0,
+  left = 0,
+  right = 0,
+  bottom = 0,
+  onPress,
+}: BackProps) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <Image

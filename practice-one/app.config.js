@@ -3,10 +3,10 @@ export const expo = {
   slug: 'app',
   version: '1.0.0',
   orientation: 'portrait',
-  icon: './assets/icons/icon.png',
+  icon: './assets/images/logo.png',
   userInterfaceStyle: 'light',
   splash: {
-    image: './assets/icons/splash.png',
+    image: './assets/images/logo.png',
     resizeMode: 'contain',
     backgroundColor: '#ffffff',
   },
