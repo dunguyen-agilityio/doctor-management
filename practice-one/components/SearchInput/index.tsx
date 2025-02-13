@@ -1,10 +1,9 @@
 import {
   forwardRef,
+  memo,
   useCallback,
-  useContext,
   useImperativeHandle,
   useRef,
-  useState,
 } from 'react';
 import {
   StyleSheet,
@@ -14,27 +13,21 @@ import {
   View,
 } from 'react-native';
 
-import { SearchActionContext, SearchContext } from '@contexts/search/provider';
-
 import { COLORS, SearchIcon } from '@constants';
 
 import { debounce } from '@utils/debounce';
 
-interface SearchInputProps extends TextInputProps {
-  onFocus?: () => void;
-}
-
 const SearchInput = (
-  props: SearchInputProps,
-  ref: React.ForwardedRef<Pick<TextInput, 'focus'>>,
+  { onChangeText, ...otherProps }: TextInputProps,
+  ref: React.ForwardedRef<Pick<TextInput, 'focus' | 'clear'>>,
 ) => {
   const inputRef = useRef<TextInput>(null);
-  const query = useContext(SearchContext);
-  const setQuery = useContext(SearchActionContext);
-  const [value, setValue] = useState(query);
 
   useImperativeHandle(ref, () => ({
     focus: handleFocus,
+    clear: () => {
+      inputRef.current?.clear?.();
+    },
   }));
 
   const handleFocus = () => {
@@ -43,10 +36,9 @@ const SearchInput = (
 
   const handleChangeText = useCallback(
     (value: string) => {
-      setValue(value);
-      debounce(setQuery, 500)(value);
+      onChangeText && debounce(onChangeText, 500)(value);
     },
-    [setQuery],
+    [onChangeText],
   );
 
   return (
@@ -58,8 +50,7 @@ const SearchInput = (
           style={styles.input}
           ref={inputRef}
           placeholder="Search for healthy food"
-          value={value}
-          {...props}
+          {...otherProps}
         />
 
         <View style={styles.iconSearch}>
@@ -70,7 +61,7 @@ const SearchInput = (
   );
 };
 
-export default forwardRef(SearchInput);
+export default memo(forwardRef(SearchInput));
 
 const styles = StyleSheet.create({
   container: {

@@ -1,9 +1,7 @@
-import { useCallback, useContext } from 'react';
-import { FlatList, StyleSheet, View, ViewStyle } from 'react-native';
+import { useCallback } from 'react';
+import { FlatList, FlatListProps, StyleSheet, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
-
-import { FoodsContext } from '@contexts/foods';
 
 import { RootScreenNavigationProps } from '@navigation';
 
@@ -13,22 +11,20 @@ import { IFood } from '@types';
 
 import Food from '../FoodCard';
 
-export interface FoodsProps {
+export interface FoodsListProps extends Partial<FlatListProps<IFood>> {
   title?: React.ReactNode;
   horizontal?: boolean;
-  emptyContent?: React.ReactNode;
-  style?: ViewStyle;
+  foods: IFood[];
 }
 
 const FoodsList = ({
   title = null,
-  emptyContent = null,
   horizontal,
-  ...rest
-}: FoodsProps) => {
+  foods,
+  ...otherProps
+}: FoodsListProps) => {
   const { navigate } =
     useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
-  const { byId, ids } = useContext(FoodsContext);
 
   const handlePressItem = useCallback(
     (id: string) => {
@@ -37,43 +33,35 @@ const FoodsList = ({
     [navigate],
   );
 
-  const handleRenderItem = useCallback(
-    ({ item }: { item: string }) => {
-      return <Food data={byId[item]} onPress={handlePressItem} />;
+  const renderItem = useCallback(
+    ({ item }: { item: IFood }) => {
+      return <Food data={item} onPress={handlePressItem} />;
     },
-    [handlePressItem, byId],
+    [handlePressItem],
   );
 
-  const handleKeyExtractor = useCallback((item: string) => item, []);
+  const keyExtractor = useCallback((item: IFood) => item.id, []);
 
   return (
     <View style={styles.container}>
       {title}
-      {ids.length ? (
-        <FlatList
-          data={ids}
-          keyExtractor={handleKeyExtractor}
-          renderItem={handleRenderItem}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          horizontal={horizontal}
-          contentContainerStyle={[
-            styles.itemSeparator,
-            {
-              alignItems: 'flex-start',
-              marginHorizontal: 'auto',
-              minWidth: 326,
-            },
-          ]}
-          {...(!horizontal && {
-            columnWrapperStyle: styles.itemSeparator,
-            numColumns: 2,
-          })}
-          {...rest}
-        />
-      ) : (
-        emptyContent
-      )}
+      <FlatList
+        {...otherProps}
+        data={foods}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        horizontal={horizontal}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[
+          styles.listContainer,
+          horizontal ? styles.horizontalList : styles.verticalList,
+        ]}
+        {...(!horizontal && {
+          columnWrapperStyle: [styles.listContainer],
+          numColumns: 2,
+        })}
+      />
     </View>
   );
 };
@@ -82,12 +70,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.WHITE,
-    alignContent: 'center',
     paddingHorizontal: 20,
     paddingBottom: 20,
   },
-  itemSeparator: {
+  listContainer: {
     gap: 18,
+    minWidth: 326,
+  },
+  verticalList: { alignItems: 'center' },
+  horizontalList: {
+    marginHorizontal: 'auto',
   },
 });
 

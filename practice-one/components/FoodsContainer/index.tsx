@@ -1,36 +1,30 @@
-import { StyleSheet, Text, View, ViewProps } from 'react-native';
+import { useContext } from 'react';
+import { StyleSheet, View, ViewProps } from 'react-native';
 
-import { useFoods } from '@hooks';
+import { FoodsContext } from '@contexts/foods';
 
-import { Loading } from '@components';
+import { FoodsList } from '@components';
+import { FoodsListProps } from '@components/FoodsList';
 
 import { COLORS } from '@constants';
 
-import { FoodOptions } from '@services';
-
 interface FoodsContainerProps extends ViewProps {
-  options?: FoodOptions;
-  fallback?: React.ReactNode;
-  emptyContent?: React.ReactNode;
+  slotProps?: { list: Partial<FoodsListProps> };
+  ListTitleComponent?: React.ReactNode;
 }
 
 const FoodsContainer = ({
-  children,
-  style,
-  options = {},
-  fallback = <Loading />,
-  ...rest
-}: React.PropsWithChildren<FoodsContainerProps>) => {
-  const { error, isLoading, data } = useFoods(options);
-
-  if (!isLoading && (error || !data)) {
-    return <Text>Error</Text>;
-  }
+  slotProps,
+  ListTitleComponent,
+}: FoodsContainerProps) => {
+  const { foods } = useContext(FoodsContext);
+  const { list } = slotProps ?? {};
+  console.log('rerender');
 
   return (
-    <View {...rest} style={[styles.container, style]}>
-      {children}
-      {isLoading && fallback}
+    <View style={styles.container}>
+      {ListTitleComponent}
+      <FoodsList {...list} foods={foods} style={styles.list} />
     </View>
   );
 };
@@ -43,10 +37,4 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.WHITE,
   },
   list: { marginTop: 15 },
-  title: {
-    fontWeight: '700',
-    fontSize: 20,
-    marginTop: 22,
-    marginLeft: 8,
-  },
 });

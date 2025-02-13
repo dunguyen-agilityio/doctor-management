@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -8,25 +8,12 @@ import { CATEGORIES } from '@constants';
 import { ICategory } from '@types';
 
 export interface ICategories {
-  onSelect?: (ids: string[]) => void;
+  onSelect?: (id: string) => void;
   categories: ICategory[];
+  values?: string[];
 }
 
-const Categories = ({ onSelect, categories }: ICategories) => {
-  const [select, setSelect] = useState<string[]>([]);
-
-  const handlePressTag = (id: string) => {
-    setSelect((prev) => {
-      const newTags = prev.includes(id)
-        ? prev.filter((item) => item !== id)
-        : [...prev, id];
-
-      onSelect?.(newTags);
-
-      return newTags;
-    });
-  };
-
+const Categories = ({ onSelect, categories, values = [] }: ICategories) => {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -36,7 +23,7 @@ const Categories = ({ onSelect, categories }: ICategories) => {
         contentContainerStyle={styles.contentContainerStyle}
       >
         {categories.map(({ name, id }, idx) => {
-          const isActive = select.includes(String(id));
+          const isActive = values.includes(String(id));
 
           return (
             <TouchableOpacity
@@ -49,7 +36,7 @@ const Categories = ({ onSelect, categories }: ICategories) => {
                   ...(idx == CATEGORIES.length - 1 && { marginRight: 16 }),
                 },
               ]}
-              onPress={() => handlePressTag(String(id))}
+              onPress={() => onSelect?.(String(id))}
             >
               <Text style={styles.textButton}>{name}</Text>
             </TouchableOpacity>

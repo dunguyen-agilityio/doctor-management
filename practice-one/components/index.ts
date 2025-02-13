@@ -10,6 +10,5 @@ export { default as NotFound } from './NotFound';
 export { default as FoodImage } from './FoodImage';
 export { default as FoodInfo } from './FoodInfo';
 export { default as FoodsContainer } from './FoodsContainer';
-export { default as FoodCategories } from './FoodCategories';
 export { default as Toggle } from './Toggle';
 export { default as FavoriteButton } from './FavoriteButton';
