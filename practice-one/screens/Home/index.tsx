@@ -3,6 +3,8 @@ import { StyleSheet, Text } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
+import FoodsProvider from '@contexts/foods/provider';
+
 import { RootScreenNavigationProps } from '@navigation';
 
 import {
@@ -16,9 +18,6 @@ import {
 
 import { COLORS, ROUTES } from '@constants';
 
-import { querySelector } from '@stores/filter';
-import { idsSelector } from '@stores/food';
-
 const HomeScreen = () => {
   const { navigate } =
     useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
@@ -28,19 +27,22 @@ const HomeScreen = () => {
   }, [navigate]);
 
   return (
-    <FoodsContainer style={styles.container} getQuery={querySelector}>
-      <Header />
-      <SearchInput onFocus={handleNavigateToSearch} getQuery={querySelector} />
-      <FoodCategories />
-      <Cards />
-      <FoodsList
-        style={styles.list}
-        emptyContent={null}
-        idsSelector={idsSelector}
-        horizontal
-        title={<Text style={styles.title}>All Food</Text>}
-      />
-    </FoodsContainer>
+    <FoodsProvider>
+      <FoodsContainer
+        style={styles.container}
+        fallback={<Text>Loading...</Text>}
+      >
+        <Header />
+        <SearchInput onFocus={handleNavigateToSearch} />
+        <FoodCategories />
+        <Cards />
+        <FoodsList
+          style={styles.list}
+          horizontal
+          title={<Text style={styles.title}>All Food</Text>}
+        />
+      </FoodsContainer>
+    </FoodsProvider>
   );
 };
 

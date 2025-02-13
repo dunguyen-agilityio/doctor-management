@@ -1,20 +1,18 @@
-import { useCallback } from 'react';
+import { useContext } from 'react';
+
+import {
+  FiltersActionContext,
+  FiltersContext,
+} from '@contexts/filters/provider';
 
 import Categories from '@components/Categories';
 
-import { useFilterStore } from '@stores/filter';
-
 const FoodCategories = () => {
-  const { categories, setFilter } = useFilterStore();
+  console.log('FoodCategories');
+  const categories = useContext(FiltersContext);
+  const setCategories = useContext(FiltersActionContext);
 
-  const handleChangeTag = useCallback(
-    (ids: number[]) => {
-      setFilter({ categories: ids });
-    },
-    [setFilter],
-  );
-
-  return <Categories onSelect={handleChangeTag} select={categories} />;
+  return <Categories onSelect={setCategories} select={categories} />;
 };
 
 export default FoodCategories;

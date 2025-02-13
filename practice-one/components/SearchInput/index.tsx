@@ -1,6 +1,7 @@
 import {
   forwardRef,
   useCallback,
+  useContext,
   useImperativeHandle,
   useRef,
   useState,
@@ -13,24 +14,23 @@ import {
   View,
 } from 'react-native';
 
-import { COLORS, SearchIcon } from '@constants';
+import { SearchActionContext, SearchContext } from '@contexts/search/provider';
 
-import { FilterState, useFilterStore } from '@stores/filter';
+import { COLORS, SearchIcon } from '@constants';
 
 import { debounce } from '@utils/debounce';
 
 interface SearchInputProps extends TextInputProps {
-  onChangeQuery?: (query: string) => void;
-  getQuery: (state: FilterState) => string;
   onFocus?: () => void;
 }
 
 const SearchInput = (
-  { getQuery, onChangeQuery, ...rest }: SearchInputProps,
+  props: SearchInputProps,
   ref: React.ForwardedRef<Pick<TextInput, 'focus'>>,
 ) => {
-  const query = useFilterStore(getQuery);
   const inputRef = useRef<TextInput>(null);
+  const query = useContext(SearchContext);
+  const setQuery = useContext(SearchActionContext);
   const [value, setValue] = useState(query);
 
   useImperativeHandle(ref, () => ({
@@ -44,9 +44,9 @@ const SearchInput = (
   const handleChangeText = useCallback(
     (value: string) => {
       setValue(value);
-      if (onChangeQuery) debounce(onChangeQuery, 500)(value);
+      debounce(setQuery, 500)(value);
     },
-    [onChangeQuery],
+    [setQuery],
   );
 
   return (
@@ -59,7 +59,7 @@ const SearchInput = (
           ref={inputRef}
           placeholder="Search for healthy food"
           value={value}
-          {...rest}
+          {...props}
         />
 
         <View style={styles.iconSearch}>

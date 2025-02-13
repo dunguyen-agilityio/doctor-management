@@ -6,15 +6,14 @@ import { apiClient } from './http-client';
 
 export interface FoodOptions {
   query?: string;
-  categories?: number[];
+  categories?: string[];
   favorite?: 0 | 1;
+  queryKey?: string;
 }
 
-export const getFoods = async ({
-  categories = [],
-  query,
-  favorite,
-}: FoodOptions): Promise<IFood[]> => {
+export const getFoods = async (options: FoodOptions = {}): Promise<IFood[]> => {
+  // await new Promise((res) => setTimeout(res, 10000));
+  const { categories = [], query, favorite } = options;
   const searchParams = new URLSearchParams();
 
   if (query) {
@@ -36,7 +35,7 @@ export const getFoods = async ({
   return response;
 };
 
-export const getFoodById = async (id: number) => {
+export const getFoodById = async (id: string) => {
   const data = await apiClient.get<IFood>(`${API_ENTITIES.FOODS}/${id}`);
   return data;
 };

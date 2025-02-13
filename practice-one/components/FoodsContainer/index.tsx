@@ -6,28 +6,31 @@ import { Loading } from '@components';
 
 import { COLORS } from '@constants';
 
-import { FilterState, useFilterStore } from '@stores/filter';
+import { FoodOptions } from '@services';
+
+interface FoodsContainerProps extends ViewProps {
+  options?: FoodOptions;
+  fallback?: React.ReactNode;
+  emptyContent?: React.ReactNode;
+}
 
 const FoodsContainer = ({
   children,
-  favorite,
-  getQuery,
   style,
-}: React.PropsWithChildren<
-  ViewProps & { favorite?: 0 | 1; getQuery: (state: FilterState) => string }
->) => {
-  const query = useFilterStore(getQuery);
-  const categories = useFilterStore(({ categories }) => categories);
-  const { isError, isLoading } = useFoods({ query, favorite, categories });
+  options = {},
+  fallback = <Loading />,
+  ...rest
+}: React.PropsWithChildren<FoodsContainerProps>) => {
+  const { error, isLoading, data } = useFoods(options);
 
-  if (isError) {
+  if (!isLoading && (error || !data)) {
     return <Text>Error</Text>;
   }
 
   return (
-    <View style={[styles.container, style]}>
+    <View {...rest} style={[styles.container, style]}>
       {children}
-      {isLoading && <Loading />}
+      {isLoading && fallback}
     </View>
   );
 };
@@ -38,5 +41,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.WHITE,
+  },
+  list: { marginTop: 15 },
+  title: {
+    fontWeight: '700',
+    fontSize: 20,
+    marginTop: 22,
+    marginLeft: 8,
   },
 });
