@@ -1,4 +1,4 @@
-export { default as FoodsList } from './Foods';
+export { default as FoodsList } from './FoodsList';
 export { default as SearchInput } from './SearchInput';
 export { default as Categories } from './Categories';
 export { default as Cards } from './Cards';
