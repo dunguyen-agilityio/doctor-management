@@ -7,7 +7,7 @@ import { COLORS } from '@constants';
 
 import { IFood } from '@types';
 
-const Food = ({
+const FoodCard = ({
   data,
   disabled = false,
   onPress,
@@ -36,7 +36,7 @@ const Food = ({
   );
 };
 
-export default memo(Food);
+export default memo(FoodCard);
 
 const styles = StyleSheet.create({
   container: {

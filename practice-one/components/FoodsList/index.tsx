@@ -11,7 +11,7 @@ import { COLORS, ROUTES } from '@constants';
 
 import { IFood } from '@types';
 
-import Food from '../Food';
+import Food from '../FoodCard';
 
 export interface FoodsProps {
   title?: React.ReactNode;

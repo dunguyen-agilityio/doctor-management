@@ -32,8 +32,9 @@ const normalizeData = <T extends { id: string }>(
 export const foodsReducer = (state: FoodsState, actions: FoodsAction) => {
   switch (actions.type) {
     case 'GET_FOODS':
-      const { ids } = normalizeData(actions.payload, state.byId);
-      state.ids = ids;
+      // eslint-disable-next-line no-case-declarations
+      const { ids: newIds } = normalizeData(actions.payload, state.byId);
+      state.ids = newIds;
       break;
 
     default:

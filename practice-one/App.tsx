@@ -29,7 +29,6 @@ const App = () => {
   });
 
   useEffect(() => {
-    appIsReady;
     async function prepare() {
       try {
         await new Promise((res) => setTimeout(res, 2000));
