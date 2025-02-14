@@ -16,12 +16,14 @@ export const expo = {
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: true,
+    bundleIdentifier: 'com.anonymous.app',
   },
   android: {
     adaptiveIcon: {
       foregroundImage: './assets/icons/adaptive-icon.png',
       backgroundColor: '#FFFFFF',
     },
+    package: 'com.anonymous.app',
   },
   web: {
     favicon: './assets/icons/favicon.png',
@@ -31,6 +33,7 @@ export const expo = {
     storybook: false,
   },
   plugins: [
+    'expo-dev-menu',
     [
       'expo-font',
       {
