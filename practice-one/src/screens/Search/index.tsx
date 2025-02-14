@@ -1,12 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 
-import FiltersProvider from '@contexts/filters/provider';
-import FoodsProvider from '@contexts/foods/provider';
-import SearchProvider from '@contexts/search/provider';
+import FiltersProvider from '@/contexts/filters/provider';
+import FoodsProvider from '@/contexts/foods/provider';
+import SearchProvider from '@/contexts/search/provider';
 
-import { FoodsContainer, Header, NotFound } from '@components';
+import { FoodsContainer, Header, NotFound } from '@/components';
 
-import { COLORS, EmptyImage } from '@constants';
+import { COLORS, EmptyImage } from '@/constants';
 
 import SearchContainer from './container';
 

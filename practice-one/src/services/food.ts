@@ -1,6 +1,6 @@
-import { API_ENTITIES } from '@constants';
+import { API_ENTITIES } from '@/constants';
 
-import { IFood } from '@types';
+import { IFood } from '@/types';
 
 import { apiClient } from './http-client';
 

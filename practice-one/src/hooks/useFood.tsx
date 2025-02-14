@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 
-import { FoodsDispatchContext } from '@contexts/foods';
+import { FoodsDispatchContext } from '@/contexts/foods';
 import { useQuery } from '@tanstack/react-query';
 
-import { FoodOptions, getFoods } from '@services';
+import { FoodOptions, getFoods } from '@/services';
 
 export function useFoods(options: FoodOptions) {
   const { categories = [], query, queryKey = 'foods' } = options;

@@ -1,21 +1,19 @@
 import { memo } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import FoodImage from '@components/FoodImage';
+import FoodImage, { FoodImageSize } from '@/components/FoodImage';
 
-import { COLORS } from '@constants';
+import { COLORS } from '@/constants';
 
-import { IFood, TNutritional } from '@types';
+import { IFood, TNutritional } from '@/types';
 
 export interface FoodCardProps
   extends Pick<IFood, 'imgUrl' | 'name' | 'id' | 'weight' | 'color'>,
     Pick<TNutritional, 'calories'> {
-  disabled?: boolean;
   onPress?: (id: string) => void;
 }
 
 const FoodCard = ({
-  disabled = false,
   calories,
   imgUrl,
   name,
@@ -29,12 +27,8 @@ const FoodCard = ({
   };
 
   return (
-    <Pressable
-      disabled={disabled}
-      style={styles.container}
-      onPress={handlePress}
-    >
-      <FoodImage color={color} imgUrl={imgUrl} type="medium" />
+    <Pressable style={styles.container} onPress={handlePress}>
+      <FoodImage color={color} imgUrl={imgUrl} type={FoodImageSize.medium} />
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.description}>{`${calories} cal/${weight} kg`}</Text>
     </Pressable>

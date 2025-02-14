@@ -13,9 +13,9 @@ import {
   View,
 } from 'react-native';
 
-import { COLORS, SearchIcon } from '@constants';
+import { COLORS, SearchIcon } from '@/constants';
 
-import { debounce } from '@utils/debounce';
+import { debounce } from '@/utils/debounce';
 
 const SearchInput = (
   { onChangeText, ...otherProps }: TextInputProps,

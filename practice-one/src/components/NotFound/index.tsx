@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { COLORS, NotFoundImage } from '@constants';
+import { COLORS, NotFoundImage } from '@/constants';
 
 const NO_FOODS_FOUND_DESCRIPTION = `You don't save any food. Go ahead, search\nand save your favorite food`;
 const NO_FOODS_FOUND_TITLE = 'No Foods Found';
@@ -15,8 +15,8 @@ const NotFound = ({
   image?: React.ReactNode;
 }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
+    <View testID="not-found-container" style={styles.container}>
+      <View testID="not-found-header" style={styles.header}>
         {image}
         <Text style={styles.title}>{title}</Text>
       </View>

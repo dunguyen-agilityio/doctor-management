@@ -1,6 +1,6 @@
-import { MOCK_NUTRITIONAL } from '@__mock__';
+import { render } from '@/utils/test-utils';
 
-import { render } from '@utils/test-utils';
+import { MOCK_NUTRITIONAL } from '@/mocks/nutritional';
 
 import Nutritional from './index';
 

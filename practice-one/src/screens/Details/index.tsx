@@ -4,15 +4,15 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { RootScreenNavigationProps, RootStackParamsList } from '@navigation';
+import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
 
-import { Back, FavoriteButton, FoodInfo, Loading } from '@components';
+import { Back, FavoriteButton, FoodInfo, Loading } from '@/components';
 
-import { CATEGORIES, COLORS, ROUTES } from '@constants';
+import { CATEGORIES, COLORS, ROUTES } from '@/constants';
 
-import { IFood } from '@types';
+import { IFood } from '@/types';
 
-import { getFoodById } from '@services/food';
+import { getFoodById } from '@/services/food';
 
 type DetailRoute = RouteProp<RootStackParamsList, typeof ROUTES.DETAIL>;
 

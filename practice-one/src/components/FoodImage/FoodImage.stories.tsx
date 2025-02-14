@@ -1,9 +1,10 @@
 import { View } from 'react-native';
 
-import { MOCK_FOODS } from '@__mock__';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import FoodImage from './index';
+import { MOCK_FOODS } from '@/mocks';
+
+import FoodImage, { FoodImageSize } from './index';
 
 const meta = {
   title: 'FoodImage',
@@ -23,6 +24,10 @@ type Story = StoryObj<typeof meta>;
 
 const { color, imgUrl } = MOCK_FOODS[0];
 
-export const Large: Story = { args: { color, imgUrl, type: 'large' } };
+export const Large: Story = {
+  args: { color, imgUrl, type: FoodImageSize.large },
+};
 
-export const Medium: Story = { args: { color, imgUrl, type: 'medium' } };
+export const Medium: Story = {
+  args: { color, imgUrl, type: FoodImageSize.medium },
+};

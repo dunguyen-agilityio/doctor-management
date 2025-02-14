@@ -2,10 +2,10 @@ import { memo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { COLORS } from '@constants';
-import { CATEGORIES } from '@constants';
+import { COLORS } from '@/constants';
+import { CATEGORIES } from '@/constants';
 
-import { ICategory } from '@types';
+import { ICategory } from '@/types';
 
 export interface ICategories {
   onSelect?: (id: string) => void;
@@ -36,7 +36,7 @@ const Categories = ({ onSelect, categories, values = [] }: ICategories) => {
                   ...(idx == CATEGORIES.length - 1 && { marginRight: 16 }),
                 },
               ]}
-              onPress={() => onSelect?.(String(id))}
+              onPress={() => onSelect?.(id)}
             >
               <Text style={styles.textButton}>{name}</Text>
             </TouchableOpacity>

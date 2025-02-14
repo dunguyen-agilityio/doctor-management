@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchInput Component matches snapshot 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "#FFF3F1",
+      "borderRadius": 15,
+      "marginHorizontal": 16,
+      "marginTop": 14,
+      "position": "relative",
+      "zIndex": 1,
+    }
+  }
+>
+  <TextInput
+    onChangeText={[Function]}
+    placeholder="Search for healthy food"
+    placeholderTextColor="#FF8473"
+    style={
+      {
+        "color": "#000000",
+        "fontSize": 13,
+        "fontWeight": "400",
+        "paddingHorizontal": 60,
+        "paddingVertical": 14,
+      }
+    }
+  />
+  <View
+    style={
+      {
+        "left": 21,
+        "position": "absolute",
+        "top": "50%",
+        "transform": [
+          {
+            "translateY": -10,
+          },
+        ],
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "testUri": "../../../src/assets/icons/iconsearch.png",
+        }
+      }
+    />
+  </View>
+</View>
+`;

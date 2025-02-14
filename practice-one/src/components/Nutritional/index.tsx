@@ -1,17 +1,15 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { COLORS } from '@constants';
+import { COLORS } from '@/constants';
 
-import { TNutritional } from '@types';
+import { TNutritional } from '@/types';
 
 const Nutritional = ({ nutritional }: { nutritional: TNutritional }) => {
-  const nutritionalList = useMemo(() => {
-    return Object.entries(nutritional).map(([title, value]) => ({
-      title,
-      value,
-    }));
-  }, [nutritional]);
+  const nutritionalList = Object.entries(nutritional).map(([title, value]) => ({
+    title,
+    value,
+  }));
 
   return (
     <View style={styles.container}>
