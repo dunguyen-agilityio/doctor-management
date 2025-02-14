@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
 
-import { Logo } from '@constants';
+import { Logo } from '@/constants';
 
 const Loading = ({ marginTop }: { marginTop?: number }) => {
   const rotation = new Animated.Value(0);
@@ -21,8 +21,11 @@ const Loading = ({ marginTop }: { marginTop?: number }) => {
   });
 
   return (
-    <View style={[styles.container, { marginTop }]}>
-      <Animated.View style={{ transform: [{ rotate: spin }] }}>
+    <View style={[styles.container, { marginTop }]} testID="loading-container">
+      <Animated.View
+        style={{ transform: [{ rotate: spin }] }}
+        testID="loading-logo"
+      >
         <Logo />
       </Animated.View>
     </View>

@@ -1,12 +1,12 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { QuestionIcon } from '@constants';
+import { QuestionIcon } from '@/constants';
 
 const Header = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>{`Want to eat\nhealthy Food?`}</Text>
-      <Pressable style={styles.buttonHelp}>
+      <Pressable style={styles.buttonHelp} testID="question-icon" role="button">
         <QuestionIcon />
       </Pressable>
     </View>

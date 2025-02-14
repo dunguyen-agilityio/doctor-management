@@ -1,4 +1,4 @@
-import { IFood } from '@types';
+import { IFood } from '@/types';
 
 export type FoodsState = { foods: IFood[] };
 

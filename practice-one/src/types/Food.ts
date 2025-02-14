@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { COLOR } from '@constants';
+import { COLOR } from '@/constants';
 
 import { IInfo } from './common';
 

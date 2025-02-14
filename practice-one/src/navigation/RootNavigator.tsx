@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { DetailsScreen } from '@screens';
+import { DetailsScreen } from '@/screens';
 
-import { ROUTES } from '@constants';
+import { ROUTES } from '@/constants';
 
 import TabNavigator, { TabParamsList } from './TabNavigator';
 

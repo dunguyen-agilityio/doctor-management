@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Loading } from '@components';
-import ErrorFallback from '@components/Error';
+import { Loading } from '@/components';
+import ErrorFallback from '@/components/Error';
 
-import { useFoods } from '@hooks';
+import { useFoods } from '@/hooks';
 
 const HomeContainer = ({
   children,

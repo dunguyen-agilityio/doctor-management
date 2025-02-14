@@ -3,11 +3,11 @@ import { FlatList, FlatListProps, StyleSheet, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { RootScreenNavigationProps } from '@navigation';
+import { RootScreenNavigationProps } from '@/navigation';
 
-import { COLORS, ROUTES } from '@constants';
+import { COLORS, ROUTES } from '@/constants';
 
-import { IFood } from '@types';
+import { IFood } from '@/types';
 
 import Food from '../FoodCard';
 
@@ -59,10 +59,11 @@ const FoodsList = ({
   );
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="foods-list-container">
       {title}
       <FlatList
         {...otherProps}
+        testID="foods-list"
         data={foods}
         keyExtractor={keyExtractor}
         renderItem={renderItem}

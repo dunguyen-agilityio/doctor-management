@@ -1,4 +1,4 @@
-import { ICategory } from '@types';
+import { ICategory } from '@/types';
 
 export const CATEGORIES: ICategory[] = [
   { id: '1', name: 'Breakfast' },

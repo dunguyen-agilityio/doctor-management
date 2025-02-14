@@ -1,7 +1,8 @@
 import { View } from 'react-native';
 
-import { MOCK_ARTICLES } from '@__mock__';
 import type { Meta, StoryObj } from '@storybook/react';
+
+import { MOCK_ARTICLES } from '@/mocks';
 
 import Article from './index';
 

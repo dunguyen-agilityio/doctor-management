@@ -6,15 +6,15 @@ import { useFocusEffect } from '@react-navigation/native';
 import {
   FiltersActionContext,
   FiltersContext,
-} from '@contexts/filters/provider';
-import { SearchActionContext, SearchContext } from '@contexts/search/provider';
+} from '@/contexts/filters/provider';
+import { SearchActionContext, SearchContext } from '@/contexts/search/provider';
 
-import { Categories, Loading, SearchInput } from '@components';
-import ErrorFallback from '@components/Error';
+import { Categories, Loading, SearchInput } from '@/components';
+import ErrorFallback from '@/components/Error';
 
-import { CATEGORIES } from '@constants';
+import { CATEGORIES } from '@/constants';
 
-import { useFoods } from '@hooks';
+import { useFoods } from '@/hooks';
 
 const SearchContainer = ({
   children,

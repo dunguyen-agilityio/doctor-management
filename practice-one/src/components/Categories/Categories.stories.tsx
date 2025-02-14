@@ -2,7 +2,7 @@ import { View } from 'react-native';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { CATEGORIES } from '@constants';
+import { CATEGORIES } from '@/constants';
 
 import Categories from './index';
 

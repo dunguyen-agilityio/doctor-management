@@ -1,14 +1,17 @@
 import { memo, useMemo } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
-import { COLORS } from '@constants';
+import { COLORS } from '@/constants';
 
-import { IFood } from '@types';
+import { IFood } from '@/types';
 
-type Size = 'medium' | 'large';
+export enum FoodImageSize {
+  'medium',
+  'large',
+}
 
 const TYPE_STYLES = {
-  medium: {
+  [FoodImageSize.medium]: {
     layer1: 92,
     layer2: 68,
     image: {
@@ -16,7 +19,7 @@ const TYPE_STYLES = {
       height: 80,
     },
   },
-  large: {
+  [FoodImageSize.large]: {
     layer1: 157,
     layer2: 116,
     image: {
@@ -26,12 +29,14 @@ const TYPE_STYLES = {
   },
 };
 
+export const DEFAULT_IMAGE = '@/assets/images/logo.png';
+
 const FoodImage = ({
   imgUrl,
   color,
-  type = 'medium',
-}: Pick<IFood, 'imgUrl' | 'color'> & { type: Size }) => {
-  const _color = useMemo(() => {
+  type = FoodImageSize.medium,
+}: Pick<IFood, 'imgUrl' | 'color'> & { type: FoodImageSize }) => {
+  const getColor = () => {
     switch (color) {
       case 'RED':
         return COLORS.RED;
@@ -44,9 +49,10 @@ const FoodImage = ({
       case 'GREEN':
         return COLORS.GREEN;
       case 'PRIMARY':
+      default:
         return COLORS.PRIMARY;
     }
-  }, [color]);
+  };
 
   const { layer2, image, layer1 } = TYPE_STYLES[type];
 
@@ -56,19 +62,20 @@ const FoodImage = ({
         style={[
           styles.layer1,
           {
-            backgroundColor: _color,
+            backgroundColor: getColor(),
             opacity: 0.2,
             height: layer1,
             width: layer1,
             borderRadius: layer1 / 2,
           },
         ]}
+        testID="layer1"
       />
       <View
         style={[
           styles.layer2,
           {
-            backgroundColor: _color,
+            backgroundColor: getColor(),
             width: layer2,
             height: layer2,
             borderRadius: layer2 / 2,
@@ -76,6 +83,7 @@ const FoodImage = ({
             left: (layer1 - layer2) / 2,
           },
         ]}
+        testID="layer2"
       />
       <View
         style={{
@@ -85,7 +93,11 @@ const FoodImage = ({
           justifyContent: 'flex-end',
         }}
       >
-        <Image source={{ uri: imgUrl }} style={[styles.image, image]} />
+        <Image
+          source={{ uri: imgUrl || DEFAULT_IMAGE }}
+          style={[styles.image, image]}
+          testID="image"
+        />
       </View>
     </View>
   );

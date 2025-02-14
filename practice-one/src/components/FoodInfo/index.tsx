@@ -1,11 +1,13 @@
 import { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { FoodImage, Nutritional, Toggle } from '@components';
+import { FoodImage, Nutritional, Toggle } from '@/components';
 
-import { COLORS } from '@constants';
+import { COLORS } from '@/constants';
 
-import { IFood } from '@types';
+import { IFood } from '@/types';
+
+import { FoodImageSize } from '../FoodImage';
 
 interface FoodInfoProps
   extends Omit<IFood, 'category' | 'id' | 'favorite' | 'weight'> {
@@ -24,7 +26,7 @@ const FoodInfo = ({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <FoodImage imgUrl={imgUrl} color={color} type="large" />
+        <FoodImage imgUrl={imgUrl} color={color} type={FoodImageSize.large} />
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.category}>{category}</Text>
       </View>

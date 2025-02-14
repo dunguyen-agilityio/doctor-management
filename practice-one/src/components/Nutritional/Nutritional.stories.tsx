@@ -1,5 +1,6 @@
-import { MOCK_NUTRITIONAL } from '@__mock__';
 import type { Meta, StoryObj } from '@storybook/react';
+
+import { MOCK_NUTRITIONAL } from '@/mocks';
 
 import Nutritional from './index';
 

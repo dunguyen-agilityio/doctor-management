@@ -1,9 +1,10 @@
 import { Text, View } from 'react-native';
 
-import { MOCK_FOODS } from '@__mock__';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import NotFound from '@components/NotFound';
+import NotFound from '@/components/NotFound';
+
+import { MOCK_FOODS } from '@/mocks';
 
 import FoodList from './index';
 

@@ -8,11 +8,11 @@ import {
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { COLORS } from '@constants';
+import { COLORS } from '@/constants';
 
-import { IFood } from '@types';
+import { IFood } from '@/types';
 
-import { updateFood } from '@services';
+import { updateFood } from '@/services';
 
 interface FavoriteButtonProps {
   favorite: boolean;
@@ -51,7 +51,11 @@ const FavoriteButton = ({ favorite, id, onRefetch }: FavoriteButtonProps) => {
       disabled={isPending}
     >
       {isPending ? (
-        <ActivityIndicator size="small" color="#0000ff" />
+        <ActivityIndicator
+          size="small"
+          color="#0000ff"
+          testID="activity-indicator"
+        />
       ) : (
         <Text style={styles.textButton}>
           {hasFavorite ? 'UnFavorites' : 'Add to Favorites'}

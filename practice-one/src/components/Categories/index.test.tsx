@@ -1,21 +1,38 @@
-import { CATEGORIES } from '@constants';
+import { CATEGORIES, COLORS } from '@/constants';
 
-import { render, screen } from '@utils/test-utils';
+import { fireEvent, render } from '@/utils/test-utils';
 
 import Categories from './index';
 
-const mockOnPress = jest.fn();
+describe('Categories Component', () => {
+  it('renders all categories', () => {
+    const { getByText } = render(<Categories categories={CATEGORIES} />);
 
-const setup = () => {
-  const component = render(<Categories onSelect={mockOnPress} select={[]} />);
-  expect(component.toJSON()).toMatchSnapshot();
-};
-
-describe('Categories', () => {
-  it('should render List', () => {
-    setup();
     CATEGORIES.forEach((category) => {
-      expect(screen.getByText(category.name || '')).toBeTruthy();
+      expect(getByText(category.name)).toBeTruthy();
     });
+  });
+
+  it('calls onSelect when a category is pressed', () => {
+    const mockOnSelect = jest.fn();
+    const { name, id } = CATEGORIES[0];
+    const { getByText } = render(
+      <Categories categories={CATEGORIES} onSelect={mockOnSelect} />,
+    );
+
+    fireEvent.press(getByText(name));
+    expect(mockOnSelect).toHaveBeenCalledWith(id);
+  });
+
+  it('applies active styles when a category is selected', () => {
+    const { name, id } = CATEGORIES[1];
+    const { getByText } = render(
+      <Categories categories={CATEGORIES} values={[id]} />,
+    );
+
+    const activeCategory = getByText(name);
+    expect(activeCategory.parent?.parent?.props.style).toEqual(
+      expect.objectContaining({ borderColor: COLORS.GREEN }),
+    );
   });
 });

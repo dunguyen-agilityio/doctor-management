@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Article Component matches snapshot 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  colors={
+    [
+      4289984168,
+      4293656563,
+    ]
+  }
+  endPoint={
+    [
+      1,
+      1,
+    ]
+  }
+  locations={
+    [
+      0,
+      0.5,
+    ]
+  }
+  startPoint={
+    [
+      0,
+      0,
+    ]
+  }
+  style={
+    {
+      "borderRadius": 32,
+      "height": 169,
+      "justifyContent": "space-between",
+      "overflow": "hidden",
+      "paddingRight": 0,
+      "position": "relative",
+      "resizeMode": "contain",
+      "width": 320,
+    }
+  }
+>
+  <Image
+    resizeMode="contain"
+    source={
+      {
+        "uri": "https://s3-alpha-sig.figma.com/img/8b33/a5b6/24d2e37a7dcbf108d35e8be410c96a58?Expires=1739750400&Key-Pair-Id=A"PKAQ4GOSFWCW27IBOMQ"&Signature=avSEEtN22vSh8aq5Gzzi~bofxqRUv6YwaUlTa0ZvmTH6S-UnlgE4S3sKXqlu~YtbnlHLtmBqMsfniDWO"WRRccMEfs2zvaqOmrx6bTqBQuqMauI8qc93mWyLi0PlDjWuA2OukEGCFPxfF"~3cSSgMkCnxXpkiSUh6UvXQCHUGrb3smseU6TKWtbBp3MHkG5pCP8NKockzv0FBZQvuLgITaGQ9mFpD3Th5xHP0qpGfG6HUrDD6bSnKTLopvWrJ~8XyYweSy7yi6yiwEsT-KeC2zdXQGy5mMAGc0VuVPQeUcbmesl9SE4qGiNx7kTe59Qg41NHJ-mFj1aVEhu50Amx6m8g__",
+      }
+    }
+    style={
+      {
+        "bottom": 0,
+        "height": "80%",
+        "minWidth": 160,
+        "position": "absolute",
+        "right": "-32%",
+        "width": "100%",
+      }
+    }
+  />
+  <View
+    style={
+      {
+        "color": "#330600",
+        "maxWidth": "60%",
+        "padding": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontSize": 10,
+            "fontWeight": "600",
+            "textTransform": "uppercase",
+          },
+          {
+            "color": "#27AE60",
+          },
+        ]
+      }
+    >
+      Article
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#330600",
+          "fontFamily": "Signika",
+          "fontSize": 17,
+          "fontWeight": "600",
+          "marginTop": 4,
+        }
+      }
+    >
+      The pros and cons of fast food.
+    </Text>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#27AE60",
+          "borderRadius": 8,
+          "flexDirection": "row",
+          "marginTop": 8,
+          "opacity": 1,
+          "paddingHorizontal": 16,
+          "paddingVertical": 6,
+          "width": 104,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontSize": 12,
+            "fontWeight": "600",
+          }
+        }
+      >
+        Read now
+      </Text>
+      <Image
+        source={
+          {
+            "testUri": "../../../src/assets/icons/arrow.png",
+          }
+        }
+      />
+    </View>
+  </View>
+</ViewManagerAdapter_ExpoLinearGradient>
+`;

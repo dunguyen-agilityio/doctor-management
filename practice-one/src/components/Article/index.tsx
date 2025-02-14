@@ -3,24 +3,24 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { ArrowICon, COLORS } from '@constants';
+import { ArrowICon, COLORS } from '@/constants';
 
-import { IArticle } from '@types';
+import { IArticle } from '@/types';
 
-export interface CardProps {
+type ARTICLE_TYPES = 'green' | 'secondary';
+
+export interface ArticleProps {
   title: string;
   image: string;
-  type?: CARD_TYPES;
+  type?: ARTICLE_TYPES;
 }
-
-type CARD_TYPES = 'green' | 'secondary';
 
 const buttonColor = {
   green: COLORS.GREEN,
   secondary: COLORS.SECONDARY,
 };
 
-const Card = (props: IArticle) => {
+const Article = (props: IArticle) => {
   const { image, color = 'green', title, backgroundColor } = props;
 
   return (
@@ -59,7 +59,7 @@ const Card = (props: IArticle) => {
   );
 };
 
-export default memo(Card);
+export default memo(Article);
 
 const styles = StyleSheet.create({
   articleText: {

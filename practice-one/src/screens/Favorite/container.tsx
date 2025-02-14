@@ -3,12 +3,12 @@ import { TextInput } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
 
-import { SearchActionContext, SearchContext } from '@contexts/search/provider';
+import { SearchActionContext, SearchContext } from '@/contexts/search/provider';
 
-import { Loading, SearchInput } from '@components';
-import ErrorFallback from '@components/Error';
+import { Loading, SearchInput } from '@/components';
+import ErrorFallback from '@/components/Error';
 
-import { useFoods } from '@hooks';
+import { useFoods } from '@/hooks';
 
 const FavoriteContainer = ({
   children,

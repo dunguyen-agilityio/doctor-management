@@ -3,12 +3,12 @@ import { StyleSheet, View } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
 
-import FoodsProvider from '@contexts/foods/provider';
-import { SearchProvider } from '@contexts/search';
+import FoodsProvider from '@/contexts/foods/provider';
+import { SearchProvider } from '@/contexts/search';
 
-import { FoodsContainer, NotFound } from '@components';
+import { FoodsContainer, NotFound } from '@/components';
 
-import { COLORS } from '@constants';
+import { COLORS } from '@/constants';
 
 import FavoriteContainer from './container';
 

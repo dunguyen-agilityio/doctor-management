@@ -3,10 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { MOCK_ARTICLES } from '@__mock__';
-import FoodsProvider from '@contexts/foods/provider';
+import FoodsProvider from '@/contexts/foods/provider';
 
-import { RootScreenNavigationProps } from '@navigation';
+import { RootScreenNavigationProps } from '@/navigation';
 
 import {
   ArticlesSlider,
@@ -14,9 +13,11 @@ import {
   FoodsContainer,
   Header,
   SearchInput,
-} from '@components';
+} from '@/components';
 
-import { CATEGORIES, COLORS, ROUTES } from '@constants';
+import { CATEGORIES, COLORS, ROUTES } from '@/constants';
+
+import { MOCK_ARTICLES } from '@/mocks';
 
 import HomeContainer from './container';
 

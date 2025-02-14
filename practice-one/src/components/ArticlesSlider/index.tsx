@@ -2,9 +2,9 @@ import { memo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import Article from '@components/Article';
+import Article from '@/components/Article';
 
-import { IArticle } from '@types';
+import { IArticle } from '@/types';
 
 const Slider = ({ articles }: { articles: IArticle[] }) => {
   return (
