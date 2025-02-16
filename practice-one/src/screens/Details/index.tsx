@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
@@ -6,7 +7,13 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
 
-import { Back, FavoriteButton, FoodInfo, Loading } from '@/components';
+import {
+  Back,
+  ErrorFallback,
+  FavoriteButton,
+  FoodInfo,
+  Loading,
+} from '@/components';
 
 import { CATEGORIES, COLORS, ROUTES } from '@/constants';
 
@@ -21,51 +28,47 @@ const Details = () => {
   const queryClient = useQueryClient();
   const { goBack } =
     useNavigation<RootScreenNavigationProps<typeof ROUTES.DETAIL>>();
+
   const { id } = route.params;
 
-  const { isLoading, data, refetch } = useQuery({
-    queryKey: ['foods', 'foods/' + id],
+  const { isLoading, data, error, refetch } = useQuery<IFood>({
+    queryKey: [`food-${id}`],
     queryFn: async () => {
       const food = await getFoodById(id);
-      queryClient.setQueryData<IFood>(['foods/' + id], food);
+      queryClient.setQueryData<IFood>([`food-${id}`], food);
       return food;
     },
   });
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  const categoryName = useMemo(() => {
+    return (
+      CATEGORIES.find(({ id: catId }) => catId === data?.category)?.name ||
+      'Unknown'
+    );
+  }, [data?.category]);
 
-  if (!data) return null;
-
-  const {
-    color,
-    imgUrl,
-    category,
-    name,
-    desc,
-    ingredients,
-    nutritional,
-    favorite,
-  } = data;
-
-  const categoryName = CATEGORIES.find(({ id }) => id == category)?.name || '';
+  if (isLoading) return <Loading />;
+  if (error || !data)
+    return <ErrorFallback error={error as Error} onRetry={refetch} />;
 
   return (
     <View style={styles.container}>
-      {isLoading && <Loading />}
       <Back onPress={goBack} />
       <FoodInfo
         category={categoryName}
-        color={color}
-        desc={desc}
-        imgUrl={imgUrl}
-        name={name}
-        ingredients={ingredients}
-        nutritional={nutritional}
+        color={data.color}
+        desc={data.desc}
+        imgUrl={data.imgUrl}
+        name={data.name}
+        ingredients={data.ingredients}
+        nutritional={data.nutritional}
       />
       <View style={styles.buttonWrapper}>
-        <FavoriteButton favorite={!!favorite} id={id} onRefetch={refetch} />
+        <FavoriteButton
+          favorite={!!data.favorite}
+          id={id}
+          onRefetch={refetch}
+        />
       </View>
     </View>
   );

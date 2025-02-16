@@ -2,15 +2,15 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 const ErrorFallback = ({
   error,
-  resetErrorBoundary,
+  onRetry,
 }: {
   error: Error;
-  resetErrorBoundary?: () => void;
+  onRetry?: () => void;
 }) => (
-  <View style={styles.container}>
+  <View style={styles.container} testID="error-fallback">
     <Text style={styles.title}>Something went wrong:</Text>
     <Text style={styles.errorMessage}>{error.message}</Text>
-    <Button title="Try Again" onPress={resetErrorBoundary} />
+    <Button title="Try Again" onPress={onRetry} />
   </View>
 );
 
@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    backgroundColor: '#F8D7DA', // Light red background for error indication
+    backgroundColor: '#F8D7DA',
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#721C24', // Dark red color for the title
+    color: '#721C24',
     marginBottom: 10,
   },
   errorMessage: {

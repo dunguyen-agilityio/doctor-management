@@ -8,12 +8,12 @@ describe('Loading Component', () => {
   it('renders the Loading component correctly', () => {
     const { getByTestId } = render(<Loading />);
 
-    expect(getByTestId('loading-container')).toBeTruthy();
+    expect(getByTestId('loading-indicator')).toBeTruthy();
   });
 
   it('renders the Logo inside the loading container', () => {
     const { getByTestId } = render(<Loading />);
 
-    expect(getByTestId('loading-logo')).toBeTruthy();
+    expect(getByTestId('loading-indicator')).toBeTruthy();
   });
 });

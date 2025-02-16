@@ -35,19 +35,23 @@ const FoodInfo = ({
         <View style={styles.session}>
           <Text style={styles.title}>Details</Text>
           <Text style={styles.description}>
-            <Toggle>
-              {({ isToggle, toggle }) => (
-                <>
-                  {isToggle ? desc : desc.substring(0, 150) + '...'}
-                  <Text
-                    onPress={toggle}
-                    style={[styles.description, styles.readMore]}
-                  >
-                    {isToggle ? `\bRead less.` : `\bRead more.`}
-                  </Text>
-                </>
-              )}
-            </Toggle>
+            {desc.length > 150 ? (
+              <Toggle>
+                {({ isToggle, toggle }) => (
+                  <>
+                    {isToggle ? desc : desc.substring(0, 150) + '...'}
+                    <Text
+                      onPress={toggle}
+                      style={[styles.description, styles.readMore]}
+                    >
+                      {isToggle ? `\bRead less.` : `\bRead more.`}
+                    </Text>
+                  </>
+                )}
+              </Toggle>
+            ) : (
+              desc
+            )}
           </Text>
         </View>
         <Toggle>

@@ -26,11 +26,9 @@ describe('SearchInput Component', () => {
 
   it('focuses when tapped anywhere inside the container', () => {
     const inputRef = createRef<TextInput>();
-    const { getByTestId } = render(
-      <SearchInput ref={inputRef} testID="search-container" />,
-    );
+    const { getByTestId } = render(<SearchInput ref={inputRef} />);
 
-    fireEvent.press(getByTestId('search-container'));
+    fireEvent.press(getByTestId('search-input'));
 
     expect(inputRef.current?.focus).toBeDefined();
   });

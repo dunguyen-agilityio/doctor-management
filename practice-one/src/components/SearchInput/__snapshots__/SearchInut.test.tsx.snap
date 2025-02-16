@@ -44,6 +44,7 @@ exports[`SearchInput Component matches snapshot 1`] = `
         "paddingVertical": 14,
       }
     }
+    testID="search-input"
   />
   <View
     style={

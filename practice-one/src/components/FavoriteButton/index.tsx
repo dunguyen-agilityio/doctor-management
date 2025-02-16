@@ -49,6 +49,7 @@ const FavoriteButton = ({ favorite, id, onRefetch }: FavoriteButtonProps) => {
       onPress={handleFavorite}
       style={styles.button}
       disabled={isPending}
+      testID="favorite-button"
     >
       {isPending ? (
         <ActivityIndicator

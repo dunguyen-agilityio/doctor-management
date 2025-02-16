@@ -12,3 +12,4 @@ export { default as FoodInfo } from './FoodInfo';
 export { default as FoodsContainer } from './FoodsContainer';
 export { default as Toggle } from './Toggle';
 export { default as FavoriteButton } from './FavoriteButton';
+export { default as ErrorFallback } from './ErrorFallback';

@@ -1,7 +1,4 @@
-import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
-
-import { useFocusEffect } from '@react-navigation/native';
 
 import FoodsProvider from '@/contexts/foods/provider';
 import { SearchProvider } from '@/contexts/search';
@@ -10,11 +7,9 @@ import { FoodsContainer, NotFound } from '@/components';
 
 import { COLORS } from '@/constants';
 
-import FavoriteContainer from './container';
+import FavoriteContainer from './FavoriteContainer';
 
 const FavoriteScreen = () => {
-  useFocusEffect(useCallback(() => {}, []));
-
   return (
     <SearchProvider>
       <FoodsProvider>

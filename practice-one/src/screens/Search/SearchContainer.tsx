@@ -10,7 +10,7 @@ import {
 import { SearchActionContext, SearchContext } from '@/contexts/search/provider';
 
 import { Categories, Loading, SearchInput } from '@/components';
-import ErrorFallback from '@/components/Error';
+import ErrorFallback from '@/components/ErrorFallback';
 
 import { CATEGORIES } from '@/constants';
 
@@ -52,8 +52,7 @@ const SearchContainer = ({
     [setFilters],
   );
 
-  if (error)
-    return <ErrorFallback error={error} resetErrorBoundary={() => {}} />;
+  if (error) return <ErrorFallback error={error} />;
 
   return (
     <View style={{ flex: 1 }}>

@@ -12,7 +12,7 @@ describe('FoodInfo Component', () => {
     ...MOCK_FOOD,
     ingredients: MOCK_FOOD.ingredients.slice(0, 2),
     category: CATEGORIES[0].name,
-    desc: 'A nutritious vegetable that is great for health and vision.',
+    desc: 'A nutritious vegetable that is great for health and vision. A nutritious vegetable that is great for health and vision. A nutritious vegetable that is great for health and vision. A nutritious vegetable that is great for health and vision.',
   };
   const { name, category, ingredients } = defaultProps;
 

@@ -17,7 +17,7 @@ const Back = ({
   onPress,
 }: BackProps) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} testID="back-button">
       <Image
         source={require('@/assets/icons/back.png')}
         style={[styles.icon, { top, left, right, bottom }]}
