@@ -1,21 +1,19 @@
-import React, { useCallback, useContext, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { TextInput } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
 
-import { SearchActionContext, SearchContext } from '@/contexts/search/provider';
-
 import { Loading, SearchInput } from '@/components';
-import ErrorFallback from '@/components/Error';
+import ErrorFallback from '@/components/ErrorFallback';
 
 import { useFoods } from '@/hooks';
+import { useSearchQuery } from '@/hooks';
 
 const FavoriteContainer = ({
   children,
   fallback = <Loading />,
 }: React.PropsWithChildren<{ fallback?: React.ReactNode }>) => {
-  const query = useContext(SearchContext);
-  const setQuery = useContext(SearchActionContext);
+  const { query, setQuery } = useSearchQuery();
 
   const searchInputRef = useRef<TextInput>(null);
 
@@ -29,15 +27,12 @@ const FavoriteContainer = ({
     useCallback(() => {
       return () => {
         setQuery('');
-        if (searchInputRef.current) {
-          searchInputRef.current.clear();
-        }
+        searchInputRef.current?.clear();
       };
     }, [setQuery]),
   );
 
-  if (error)
-    return <ErrorFallback error={error} resetErrorBoundary={() => {}} />;
+  if (error) return <ErrorFallback error={error} />;
 
   return (
     <>

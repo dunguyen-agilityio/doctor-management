@@ -21,11 +21,8 @@ const Loading = ({ marginTop }: { marginTop?: number }) => {
   });
 
   return (
-    <View style={[styles.container, { marginTop }]} testID="loading-container">
-      <Animated.View
-        style={{ transform: [{ rotate: spin }] }}
-        testID="loading-logo"
-      >
+    <View style={[styles.container, { marginTop }]} testID="loading-indicator">
+      <Animated.View style={{ transform: [{ rotate: spin }] }}>
         <Logo />
       </Animated.View>
     </View>

@@ -4,6 +4,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import Article from '@/components/Article';
 
+import { COLORS } from '@/constants';
+
 import { IArticle } from '@/types';
 
 const Slider = ({ articles }: { articles: IArticle[] }) => {
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   activeItem: {
-    backgroundColor: '#FF8473',
+    backgroundColor: COLORS.SECONDARY,
     width: 20,
     height: 10,
   },

@@ -12,7 +12,6 @@ export interface FoodOptions {
 }
 
 export const getFoods = async (options: FoodOptions = {}): Promise<IFood[]> => {
-  // await new Promise((res) => setTimeout(res, 10000));
   const { categories = [], query, favorite } = options;
   const searchParams = new URLSearchParams();
 
@@ -36,6 +35,7 @@ export const getFoods = async (options: FoodOptions = {}): Promise<IFood[]> => {
 };
 
 export const getFoodById = async (id: string) => {
+  console.log('id: ' + id);
   const data = await apiClient.get<IFood>(`${API_ENTITIES.FOODS}/${id}`);
   return data;
 };

@@ -8,7 +8,7 @@ import { FoodsContainer, Header, NotFound } from '@/components';
 
 import { COLORS, EmptyImage } from '@/constants';
 
-import SearchContainer from './container';
+import SearchContainer from './SearchContainer';
 
 const SearchScreen = () => {
   return (

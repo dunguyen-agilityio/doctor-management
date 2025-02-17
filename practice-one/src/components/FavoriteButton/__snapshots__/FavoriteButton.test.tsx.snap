@@ -39,6 +39,7 @@ exports[`FavoriteButton Component matches snapshot 1`] = `
       "width": "100%",
     }
   }
+  testID="favorite-button"
 >
   <Text
     style={

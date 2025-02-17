@@ -42,7 +42,7 @@ export interface IArticle extends IInfo {
 }
 
 export interface IFood extends IInfo {
-  category: number;
+  category: string;
   weight: number;
   color: COLOR;
   desc: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Loading } from '@/components';
-import ErrorFallback from '@/components/Error';
+import ErrorFallback from '@/components/ErrorFallback';
 
 import { useFoods } from '@/hooks';
 
@@ -13,8 +13,7 @@ const HomeContainer = ({
     queryKey: 'foods',
   });
 
-  if (error)
-    return <ErrorFallback error={error} resetErrorBoundary={() => {}} />;
+  if (error) return <ErrorFallback error={error} />;
 
   return (
     <>

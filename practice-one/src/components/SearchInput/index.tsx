@@ -51,6 +51,7 @@ const SearchInput = (
           ref={inputRef}
           placeholder="Search for healthy food"
           {...otherProps}
+          testID="search-input"
         />
 
         <View style={styles.iconSearch}>

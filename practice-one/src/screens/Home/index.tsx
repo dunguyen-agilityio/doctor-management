@@ -19,7 +19,7 @@ import { CATEGORIES, COLORS, ROUTES } from '@/constants';
 
 import { MOCK_ARTICLES } from '@/mocks';
 
-import HomeContainer from './container';
+import HomeContainer from './HomeContainer';
 
 const HomeScreen = () => {
   const { navigate } =
