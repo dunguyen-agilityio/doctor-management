@@ -21,7 +21,7 @@ const buttonColor = {
 };
 
 const Article = (props: IArticle) => {
-  const { image, color = 'green', title, backgroundColor } = props;
+  const { image, color, title, backgroundColor } = props;
 
   return (
     <LinearGradient

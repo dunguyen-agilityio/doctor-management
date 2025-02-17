@@ -1,3 +1,5 @@
+import { produce } from 'immer';
+
 import { IFood } from '@/types';
 
 export type FoodsState = { foods: IFood[] };
@@ -10,12 +12,14 @@ export type FoodsAction = {
 export const DEFAULT_FOODS_STATE: FoodsState = { foods: [] };
 
 export const foodsReducer = (state: FoodsState, actions: FoodsAction) => {
-  switch (actions.type) {
-    case 'GET_FOODS':
-      state.foods = actions.payload;
-      break;
+  return produce(state, (draftState) => {
+    switch (actions.type) {
+      case 'GET_FOODS':
+        draftState.foods = actions.payload;
+        break;
 
-    default:
-      break;
-  }
+      default:
+        break;
+    }
+  });
 };
