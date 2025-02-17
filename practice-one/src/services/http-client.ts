@@ -45,10 +45,17 @@ class APIClient {
     const res = await fetch(`${API_ENDPOINT}/${url}`, options);
 
     if (!res.ok) {
-      throw new Error('Failed to fetch: ' + url);
+      const errorMessage = await res.text();
+      throw new Error(
+        `Failed to fetch ${url}: ${res.status} - ${errorMessage}`,
+      );
     }
 
-    return (await res.json()) as T;
+    const contentType = res.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      return (await res.json()) as T;
+    }
+    throw new Error(`Unexpected response type from ${url}`);
   };
 
   async get<T>(url: string, init?: Omit<RequestOption, 'method'>) {
@@ -56,9 +63,7 @@ class APIClient {
   }
 
   async post<T>(url: string, init?: Omit<RequestOption, 'method'>) {
-    const { ...rest } = init || {};
-
-    return this.apiRequest<T>(url, { ...rest, method: 'POST' });
+    return this.apiRequest<T>(url, { ...init, method: 'POST' });
   }
 
   async put<T>(url: string, init?: Omit<RequestOption, 'method'>) {

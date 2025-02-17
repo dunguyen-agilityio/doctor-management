@@ -35,7 +35,6 @@ export const getFoods = async (options: FoodOptions = {}): Promise<IFood[]> => {
 };
 
 export const getFoodById = async (id: string) => {
-  console.log('id: ' + id);
   const data = await apiClient.get<IFood>(`${API_ENTITIES.FOODS}/${id}`);
   return data;
 };

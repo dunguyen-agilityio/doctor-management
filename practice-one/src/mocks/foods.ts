@@ -33,7 +33,7 @@ export const MOCK_FOODS: IFood[] = [
       protein: 100,
       fat: 100,
     },
-    category: 1,
+    category: '1',
     color: 'RED',
     imgUrl:
       'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a2.png?alt=media&token=abe65f60-e23e-48d9-a2c8-13c9e3ccb921',
@@ -52,7 +52,7 @@ export const MOCK_FOODS: IFood[] = [
       fat: 100,
       protein: 100,
     },
-    category: 7,
+    category: '7',
     ingredients: [
       {
         id: '1',
@@ -91,7 +91,7 @@ export const MOCK_FOODS: IFood[] = [
       fat: 100,
       protein: 100,
     },
-    category: 3,
+    category: '3',
     ingredients: [
       {
         id: '1',
@@ -122,7 +122,7 @@ export const MOCK_FOODS: IFood[] = [
     id: '5',
     name: 'Bacon',
     weight: 400,
-    color: 'GREEN',
+    color: 'PURPLE',
     desc: "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
     nutritional: {
       calories: 200,
@@ -130,7 +130,7 @@ export const MOCK_FOODS: IFood[] = [
       fat: 100,
       protein: 100,
     },
-    category: 3,
+    category: '3',
     ingredients: [
       {
         id: '1',
@@ -170,7 +170,7 @@ export const MOCK_FOODS: IFood[] = [
       protein: 100,
     },
     favorite: 0,
-    category: 2,
+    category: '2',
     ingredients: [
       {
         id: '1',
@@ -208,7 +208,7 @@ export const MOCK_FOODS: IFood[] = [
       fat: 100,
       protein: 100,
     },
-    category: 2,
+    category: '2',
     ingredients: [
       {
         id: '1',
@@ -240,14 +240,14 @@ export const MOCK_FOODS: IFood[] = [
     desc: "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
     name: 'Pork',
     weight: 400,
-    color: 'RED',
+    color: 'PRIMARY',
     nutritional: {
       calories: 200,
       carbs: 100,
       fat: 100,
       protein: 100,
     },
-    category: 3,
+    category: '3',
     ingredients: [
       {
         id: '1',
@@ -286,7 +286,7 @@ export const MOCK_FOODS: IFood[] = [
       fat: 100,
       protein: 100,
     },
-    category: 3,
+    category: '3',
     ingredients: [
       {
         id: '1',

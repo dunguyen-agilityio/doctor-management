@@ -19,9 +19,7 @@ describe('FoodImage Component', () => {
   });
 
   it('renders fallback image when imgUrl is empty', () => {
-    const { getByTestId } = render(
-      <FoodImage imgUrl="" color="GREEN" type={FoodImageSize.medium} />,
-    );
+    const { getByTestId } = render(<FoodImage imgUrl="" color="GREEN" />);
     const image = getByTestId('image');
 
     expect(image.props.source.uri).toBe(DEFAULT_IMAGE);

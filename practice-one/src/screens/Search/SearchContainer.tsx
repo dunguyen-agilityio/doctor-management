@@ -1,31 +1,24 @@
-import React, { useCallback, useContext, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { TextInput, View } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
-
-import {
-  FiltersActionContext,
-  FiltersContext,
-} from '@/contexts/filters/provider';
-import { SearchActionContext, SearchContext } from '@/contexts/search/provider';
 
 import { Categories, Loading, SearchInput } from '@/components';
 import ErrorFallback from '@/components/ErrorFallback';
 
 import { CATEGORIES } from '@/constants';
 
-import { useFoods } from '@/hooks';
+import { useFoods, useSearchQuery } from '@/hooks';
+import { useFilters } from '@/hooks';
 
 const SearchContainer = ({
   children,
   fallback = <Loading />,
 }: React.PropsWithChildren<{ fallback?: React.ReactNode }>) => {
-  const query = useContext(SearchContext);
-  const categories = useContext(FiltersContext);
+  const { query, setQuery } = useSearchQuery();
+  const { filters: categories, setFilters } = useFilters();
   const { error, isLoading } = useFoods({ categories, query });
   const searchInputRef = useRef<TextInput>(null);
-  const setFilters = useContext(FiltersActionContext);
-  const setQuery = useContext(SearchActionContext);
 
   useFocusEffect(
     useCallback(() => {

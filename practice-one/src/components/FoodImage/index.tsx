@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 import { COLORS } from '@/constants';
@@ -35,7 +35,7 @@ const FoodImage = ({
   imgUrl,
   color,
   type = FoodImageSize.medium,
-}: Pick<IFood, 'imgUrl' | 'color'> & { type: FoodImageSize }) => {
+}: Pick<IFood, 'imgUrl' | 'color'> & { type?: FoodImageSize }) => {
   const getColor = () => {
     switch (color) {
       case 'RED':
