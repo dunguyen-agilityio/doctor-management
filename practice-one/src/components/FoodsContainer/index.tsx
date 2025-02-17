@@ -22,9 +22,11 @@ const FoodsContainer = ({
   return (
     <View style={styles.container}>
       {ListTitleComponent}
-      <View style={styles.list}>
-        <FoodsList {...slotProps?.list} foods={foods} />
-      </View>
+      {foods && (
+        <View style={styles.list}>
+          <FoodsList {...slotProps?.list} foods={foods} />
+        </View>
+      )}
     </View>
   );
 };

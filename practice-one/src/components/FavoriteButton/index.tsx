@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import {
   ActivityIndicator,
+  Platform,
   StyleSheet,
   Text,
+  ToastAndroid,
   TouchableOpacity,
 } from 'react-native';
 
@@ -26,7 +28,7 @@ const FavoriteButton = ({ favorite, id, onRefetch }: FavoriteButtonProps) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
-      const food = queryClient.getQueryData<IFood>(['foods/' + id]);
+      const food = queryClient.getQueryData<IFood>([`food-${id}`]);
 
       if (food) {
         const { favorite } = food;
@@ -37,6 +39,9 @@ const FavoriteButton = ({ favorite, id, onRefetch }: FavoriteButtonProps) => {
       await queryClient.invalidateQueries({ queryKey: ['foods-favorite'] });
       setHasFavorite((prev) => !prev);
       onRefetch?.();
+      if (Platform.OS === 'android') {
+        ToastAndroid.show('Updated success!', ToastAndroid.SHORT);
+      }
     },
   });
 
