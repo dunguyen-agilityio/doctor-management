@@ -111,3 +111,5 @@ node_modules.js
 
 android/
 ios/
+
+.expo/
