@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { DevSettings, StyleSheet, View } from 'react-native';
 
 import * as Font from 'expo-font';
+import { hide, preventAutoHideAsync, setOptions } from 'expo-splash-screen';
 
 import App from '@/App';
-import { hide, preventAutoHideAsync, setOptions } from 'expo-splash-screen';
 
 import { COLORS } from '@/constants';
 
