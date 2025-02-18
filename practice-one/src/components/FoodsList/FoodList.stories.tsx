@@ -11,6 +11,10 @@ import FoodList from './index';
 const meta = {
   title: 'FoodList',
   component: FoodList,
+  argTypes: {
+    title: { control: 'text' },
+    horizontal: { control: 'boolean' },
+  },
   decorators: [
     (Story) => (
       <View style={{ padding: 16, alignItems: 'flex-start', flex: 1 }}>
@@ -33,5 +37,9 @@ export const WithTitle: Story = {
 };
 
 export const Horizontal: Story = {
-  args: { title: <Text>All Food</Text>, foods: MOCK_FOODS, horizontal: true },
+  args: { foods: MOCK_FOODS, horizontal: true },
+};
+
+export const Vertical: Story = {
+  args: { foods: MOCK_FOODS },
 };

@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 
+import { FoodContext } from '@/contexts/food';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
@@ -25,7 +26,6 @@ type DetailRoute = RouteProp<RootStackParamsList, typeof ROUTES.DETAIL>;
 
 const Details = () => {
   const route = useRoute<DetailRoute>();
-  const queryClient = useQueryClient();
   const { goBack } =
     useNavigation<RootScreenNavigationProps<typeof ROUTES.DETAIL>>();
 
@@ -35,17 +35,18 @@ const Details = () => {
     queryKey: [`food-${id}`],
     queryFn: async () => {
       const food = await getFoodById(id);
-      queryClient.setQueryData<IFood>([`food-${id}`], food);
       return food;
     },
+    staleTime: 1000 * 60 * 5,
   });
 
-  const categoryName = useMemo(() => {
-    return (
-      CATEGORIES.find(({ id: catId }) => catId === data?.category)?.name ||
-      'Unknown'
-    );
-  }, [data?.category]);
+  const { category, favorite, favoriteId } = data ?? {};
+
+  const categoryName = useMemo(
+    () =>
+      CATEGORIES.find(({ id: catId }) => catId === category)?.name || 'Unknown',
+    [category],
+  );
 
   if (isLoading) return <Loading />;
   if (error || !data)
@@ -64,11 +65,7 @@ const Details = () => {
         nutritional={data.nutritional}
       />
       <View style={styles.buttonWrapper}>
-        <FavoriteButton
-          favorite={!!data.favorite}
-          id={id}
-          onRefetch={refetch}
-        />
+        <FavoriteButton favorite={favorite} id={id} favoriteId={favoriteId} />
       </View>
     </View>
   );
@@ -81,7 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.WHITE,
     paddingHorizontal: 20,
-    paddingTop: 63,
   },
   buttonWrapper: { paddingHorizontal: 10 },
 });

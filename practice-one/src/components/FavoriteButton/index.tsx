@@ -12,33 +12,31 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { COLORS } from '@/constants';
 
-import { IFood } from '@/types';
-
-import { updateFood } from '@/services';
+import { addFoodToFavorite, removeFoodToFavorite } from '@/services';
 
 interface FavoriteButtonProps {
-  favorite: boolean;
+  favorite?: boolean;
   id: string;
-  onRefetch?: () => void;
+  favoriteId?: string;
 }
 
-const FavoriteButton = ({ favorite, id, onRefetch }: FavoriteButtonProps) => {
+const FavoriteButton = ({ favorite, id, favoriteId }: FavoriteButtonProps) => {
   const queryClient = useQueryClient();
   const [hasFavorite, setHasFavorite] = useState(favorite);
 
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
-      const food = queryClient.getQueryData<IFood>([`food-${id}`]);
-
-      if (food) {
-        const { favorite } = food;
-        return updateFood({ ...food, favorite: favorite ? 0 : 1 });
+      if (favorite && favoriteId) {
+        await removeFoodToFavorite(favoriteId);
+      } else {
+        await addFoodToFavorite(id);
       }
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['foods-favorite'] });
+      await queryClient.invalidateQueries({ queryKey: [`food-${id}`] });
       setHasFavorite((prev) => !prev);
-      onRefetch?.();
+
       if (Platform.OS === 'android') {
         ToastAndroid.show('Updated success!', ToastAndroid.SHORT);
       }

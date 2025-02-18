@@ -34,9 +34,42 @@ export const getFoods = async (options: FoodOptions = {}): Promise<IFood[]> => {
   return response;
 };
 
-export const getFoodById = async (id: string) => {
-  const data = await apiClient.get<IFood>(`${API_ENTITIES.FOODS}/${id}`);
-  return data;
+type FavoriteFood = { id: string; food: IFood };
+
+export const getFavoriteFoods = async (
+  options: FoodOptions = {},
+): Promise<IFood[]> => {
+  const { query } = options;
+  const searchParams = new URLSearchParams();
+
+  searchParams.set('_expand', 'food');
+
+  if (query) {
+    searchParams.set('name_like', query);
+  }
+
+  const response = await apiClient.get<FavoriteFood[]>(
+    `${API_ENTITIES.FAVORITES}?${searchParams.toString()}`,
+  );
+
+  const foods = response.map(
+    ({ food, id }) => ({ ...food, favorite: true, favoriteId: id }) as IFood,
+  );
+
+  return foods;
+};
+
+type FoodWithFavoritesResponse = IFood & { favorites: [{ id: string }] };
+
+export const getFoodById = async (id: string): Promise<IFood> => {
+  const { favorites, ...rest } = await apiClient.get<FoodWithFavoritesResponse>(
+    `${API_ENTITIES.FOODS}/${id}?_embed=favorites`,
+  );
+
+  if (!favorites.length) return rest;
+
+  const [{ id: favoriteId }] = favorites;
+  return { ...rest, favorite: !!favoriteId, favoriteId };
 };
 
 export const updateFood = async (food: IFood) => {
@@ -47,4 +80,21 @@ export const updateFood = async (food: IFood) => {
   });
 
   return newFood;
+};
+
+export const addFoodToFavorite = async (id: string) => {
+  const newFavorite = await apiClient.post<IFood>(
+    `${API_ENTITIES.FAVORITES}?_expand=food`,
+    {
+      body: { foodId: id },
+    },
+  );
+
+  return newFavorite;
+};
+
+export const removeFoodToFavorite = async (id: string) => {
+  await apiClient.delete(`${API_ENTITIES.FAVORITES}/${id}`, {
+    body: { foodId: id },
+  });
 };

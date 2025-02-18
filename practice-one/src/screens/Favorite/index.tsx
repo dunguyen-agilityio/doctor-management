@@ -33,7 +33,7 @@ export default FavoriteScreen;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 62,
+    // paddingTop: 62,
     flex: 1,
     backgroundColor: COLORS.WHITE,
   },
