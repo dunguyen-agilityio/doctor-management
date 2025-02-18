@@ -9,9 +9,7 @@
   "importOrder": [
     "^react",
     "^react-native",
-    "^@react-navigation/(.*)$",
-    "^expo-font",
-    "<THIRD_PARTY_MODULES>",
+    "(^@react-navigation/(.*)$|<THIRD_PARTY_MODULES>|expo-font|expo-splash-screen|@tanstack/react-query)",
     "^@/navigation",
     "^@/screens",
     "^@/components",
