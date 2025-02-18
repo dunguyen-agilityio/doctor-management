@@ -6,7 +6,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Loading, SearchInput } from '@/components';
 import ErrorFallback from '@/components/ErrorFallback';
 
-import { useFoods } from '@/hooks';
+import { useFavoriteFoods } from '@/hooks';
 import { useSearchQuery } from '@/hooks';
 
 const FavoriteContainer = ({
@@ -17,11 +17,7 @@ const FavoriteContainer = ({
 
   const searchInputRef = useRef<TextInput>(null);
 
-  const { error, isLoading } = useFoods({
-    query,
-    favorite: 1,
-    queryKey: 'foods-favorite',
-  });
+  const { error, isLoading } = useFavoriteFoods({ query });
 
   useFocusEffect(
     useCallback(() => {

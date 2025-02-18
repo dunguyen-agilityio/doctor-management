@@ -47,7 +47,8 @@ export interface IFood extends IInfo {
   color: COLOR;
   desc: string;
   imgUrl: string;
-  favorite: 0 | 1;
+  favorite: boolean;
   nutritional: TNutritional;
   ingredients: TIngredient[];
+  favoriteId?: string;
 }
