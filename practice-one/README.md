@@ -1,10 +1,8 @@
-# Practice One - Healthy Food application use React Native
+# Practice One - Healthy Food application using React Native
 
 ## 1. Overview
 
-- Build an Healthy Food application using React Native.
-- Design [Link](<https://www.figma.com/file/LLkkEV64nhoR8empRw79Kl/Healthy-Food-App-(Community)?node-id=201%3A144&t=iVpH44LU0tyuYvtG-0>)
-- Estimate [Link](https://docs.google.com/document/d/1Jvl29kde7wCuMfnNveRaB5h_X4srX4RId8C_CJ51KsU/edit#)
+- The Healthy Food App is a React Native application that helps users browse and manage their favorite healthy meals. It includes features such as searching, filtering, and favoriting food items.
 
 ## 2. Tech stack
 
@@ -19,11 +17,20 @@
 
 ## 3. Target
 
-- This practice will build about React Native
-- Apply [React Navigation](https://reactnavigation.org/)
-- Apply Storybook to test application, Unit test coverage should greater than 80%
+- This practice will build a mobile application using React Native.
+- Apply React Navigation for seamless navigation.
+- Apply Storybook to test UI components, ensuring a unit test coverage greater than 80%.
 
 ## 4. Requirements
+
+The application consists of four main screens following to this [design](<https://www.figma.com/file/LLkkEV64nhoR8empRw79Kl/Healthy-Food-App-(Community)?node-id=201%3A144&t=iVpH44LU0tyuYvtG-0>):
+
+- **Features**
+  - Horizontal & vertical food listing
+  - Search & filtering by categories
+  - Favorite management (add/remove)
+  - Smooth navigation between screens
+  - Storybook UI testing
 
 ## 6. Prerequisites
 
