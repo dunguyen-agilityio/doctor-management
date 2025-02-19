@@ -1,2 +1,2 @@
 cd practice-one
-pnpm test
+npm run test
