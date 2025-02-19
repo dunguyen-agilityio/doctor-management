@@ -1,9 +1,11 @@
 import { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { COLOR } from '@/constants';
 
 import { TNutritional } from '@/types';
+
+import Text from '../Text';
 
 const Nutritional = ({ nutritional }: { nutritional: TNutritional }) => {
   const nutritionalList = Object.entries(nutritional).map(([title, value]) => ({
@@ -15,8 +17,10 @@ const Nutritional = ({ nutritional }: { nutritional: TNutritional }) => {
     <View style={styles.container}>
       {nutritionalList.map(({ title, value }) => (
         <View key={title}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.value}>{`${value}g`}</Text>
+          <Text variant="body6" color={COLOR.PRIMARY}>
+            {title}
+          </Text>
+          <Text variant="body4" color={COLOR.SECONDARY}>{`${value}g`}</Text>
         </View>
       ))}
     </View>
@@ -34,10 +38,4 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 40,
   },
-  title: {
-    fontSize: 16,
-    textTransform: 'capitalize',
-    color: COLOR.PRIMARY,
-  },
-  value: { fontSize: 24, color: COLOR.SECONDARY },
 });

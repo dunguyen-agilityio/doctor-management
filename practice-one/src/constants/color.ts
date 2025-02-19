@@ -17,4 +17,5 @@ export const COLOR = {
   LIGHT_GREEN: 'rgba(28, 195, 121, 0.1)',
   DARK_GREEN: '#1CC379',
   SECONDARY: '#FF8473',
+  BLACK_BEAN: '#330600',
 };

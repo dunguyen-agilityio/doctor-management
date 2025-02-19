@@ -1,11 +1,13 @@
 import { memo } from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 
 import FoodImage, { FoodImageSize } from '@/components/FoodImage';
 
 import { COLOR } from '@/constants';
 
 import { IFood, TNutritional } from '@/types';
+
+import Text from '../Text';
 
 export interface FoodCardProps
   extends Pick<IFood, 'imgUrl' | 'name' | 'id' | 'weight' | 'color'>,
@@ -29,8 +31,13 @@ const FoodCard = ({
   return (
     <Pressable style={styles.container} onPress={handlePress}>
       <FoodImage color={color} imgUrl={imgUrl} type={FoodImageSize.medium} />
-      <Text style={styles.name}>{name}</Text>
-      <Text style={styles.description}>{`${calories} cal/${weight} kg`}</Text>
+      <Text variant="title2" style={styles.name}>
+        {name}
+      </Text>
+      <Text
+        variant="body2"
+        style={styles.description}
+      >{`${calories} cal/${weight} kg`}</Text>
     </Pressable>
   );
 };
@@ -52,6 +59,6 @@ const styles = StyleSheet.create({
     height: 192,
     minWidth: 154,
   },
-  name: { marginTop: 14, fontSize: 17, fontWeight: '700' },
-  description: { marginTop: 10, fontSize: 13, fontWeight: '400' },
+  name: { marginTop: 14 },
+  description: { marginTop: 10 },
 });

@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -12,6 +12,7 @@ import {
   Header,
   SearchInput,
 } from '@/components';
+import Text from '@/components/Text';
 
 import { CATEGORIES, COLOR, ROUTES } from '@/constants';
 
@@ -39,7 +40,11 @@ const HomeScreen = () => {
         <HomeContainer>
           <FoodsContainer
             slotProps={{ list: { horizontal: true } }}
-            ListTitleComponent={<Text style={styles.title}>All Food</Text>}
+            ListTitleComponent={
+              <Text variant="title3" style={styles.title}>
+                All Food
+              </Text>
+            }
           />
         </HomeContainer>
       </View>
@@ -56,8 +61,6 @@ const styles = StyleSheet.create({
   },
   list: { marginTop: 15 },
   title: {
-    fontWeight: '700',
-    fontSize: 20,
     marginTop: 22,
     marginLeft: 8,
   },

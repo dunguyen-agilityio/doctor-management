@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound Component renders correctly with default props 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "gap": 8,
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+  testID="not-found-container"
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "gap": 24,
+      }
+    }
+    testID="not-found-header"
+  >
+    <Image
+      source={
+        {
+          "testUri": "../../../assets/images/not_found_2x.png",
+        }
+      }
+      style={
+        {
+          "height": 96,
+          "width": 96,
+        }
+      }
+      testID="not-found-image"
+    />
+    <Text
+      style={
+        [
+          {
+            "color": "#FF8473",
+            "textTransform": undefined,
+          },
+          {
+            "fontSize": 15,
+            "fontWeight": "600",
+            "lineHeight": 23,
+          },
+          {
+            "marginTop": 24,
+          },
+        ]
+      }
+    >
+      No Foods Found
+    </Text>
+  </View>
+  <Text
+    style={
+      [
+        {
+          "color": "#5C5C5C",
+          "textTransform": undefined,
+        },
+        {
+          "fontSize": 13,
+          "lineHeight": 18,
+        },
+        undefined,
+      ]
+    }
+  >
+    You don't save any food. Go ahead, search
+and save your favorite food
+  </Text>
+</View>
+`;

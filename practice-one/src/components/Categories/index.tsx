@@ -1,12 +1,14 @@
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { memo } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { COLOR } from '@/constants';
 import { CATEGORIES } from '@/constants';
 
 import { ICategory } from '@/types';
+
+import Text from '../Text';
 
 export interface ICategories {
   onSelect?: (id: string) => void;
@@ -39,7 +41,7 @@ const Categories = ({ onSelect, categories, values = [] }: ICategories) => {
               ]}
               onPress={() => onSelect?.(id)}
             >
-              <Text style={styles.textButton}>{name}</Text>
+              <Text variant="body1">{name}</Text>
             </TouchableOpacity>
           );
         })}
@@ -69,8 +71,5 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 4,
     paddingHorizontal: 10,
-  },
-  textButton: {
-    fontSize: 13,
   },
 });

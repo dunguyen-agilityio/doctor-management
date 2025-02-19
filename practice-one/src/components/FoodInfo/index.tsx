@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { FoodImage, Nutritional, Toggle } from '@/components';
 
@@ -8,6 +8,7 @@ import { COLOR } from '@/constants';
 import { IFood } from '@/types';
 
 import { FoodImageSize } from '../FoodImage';
+import Text from '../Text';
 
 interface FoodInfoProps
   extends Omit<IFood, 'category' | 'id' | 'favorite' | 'weight'> {
@@ -27,22 +28,23 @@ const FoodInfo = ({
     <View style={styles.container}>
       <View style={styles.header}>
         <FoodImage imgUrl={imgUrl} color={color} type={FoodImageSize.large} />
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.category}>{category}</Text>
+        <Text variant="title1">{name}</Text>
+        <Text variant="body6">{category}</Text>
       </View>
       <Nutritional nutritional={nutritional} />
       <View style={styles.details}>
         <View style={styles.session}>
-          <Text style={styles.title}>Details</Text>
-          <Text style={styles.description}>
+          <Text variant="subtitle1">Details</Text>
+          <Text variant="body7" color={COLOR.LIGHT_1_GRAY}>
             {desc.length > 150 ? (
               <Toggle>
                 {({ isToggle, toggle }) => (
                   <>
                     {isToggle ? desc : desc.substring(0, 150) + '...'}
                     <Text
+                      variant="body7"
+                      color={COLOR.PRIMARY}
                       onPress={toggle}
-                      style={[styles.description, styles.readMore]}
                     >
                       {isToggle ? `\bRead less.` : `\bRead more.`}
                     </Text>
@@ -67,8 +69,8 @@ const FoodInfo = ({
                     flexDirection: 'row',
                   }}
                 >
-                  <Text style={styles.title}>Ingredients</Text>
-                  <Text onPress={toggle} style={styles.seeAll}>
+                  <Text variant="subtitle1">Ingredients</Text>
+                  <Text onPress={toggle} color={COLOR.PRIMARY} variant="body5">
                     {isToggle ? `\bSee less.` : `\bSee all`}
                   </Text>
                 </View>
@@ -76,12 +78,10 @@ const FoodInfo = ({
                   {subIngredients.map(({ id, name, value }, idx) => (
                     <View style={styles.ingredientItem} key={id + idx}>
                       <View style={styles.listBullet}>
-                        <Text style={styles.bullet}>•</Text>
-                        <Text style={styles.ingredientText}>{name}</Text>
+                        <Text variant="subtitle3">•</Text>
+                        <Text variant="subtitle3">{name}</Text>
                       </View>
-                      <Text
-                        style={styles.ingredientText}
-                      >{`${value} cal`}</Text>
+                      <Text variant="subtitle3">{`${value} cal`}</Text>
                     </View>
                   ))}
                 </View>
@@ -108,45 +108,18 @@ const styles = StyleSheet.create({
     marginTop: 19,
     gap: 20,
   },
-  name: {
-    fontSize: 22,
-    fontWeight: '700',
-  },
-  category: {
-    fontSize: 16,
-  },
-  title: { fontSize: 20, fontWeight: '600' },
-  description: {
-    fontSize: 15,
-    color: COLOR.LIGHT_1_GRAY,
-  },
-  readMore: { color: COLOR.PRIMARY },
   ingredientItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 8,
   },
-  ingredientText: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: COLOR.LIGHT_1_GRAY,
-  },
   session: {
     gap: 4,
-  },
-  seeAll: {
-    color: COLOR.PRIMARY,
-    fontSize: 11,
-    fontWeight: '500',
-  },
-  bullet: {
-    fontSize: 20,
-    marginRight: 8,
-    color: COLOR.LIGHT_1_GRAY,
   },
   listBullet: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 8,
   },
 });
