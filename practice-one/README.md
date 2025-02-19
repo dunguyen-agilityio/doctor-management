@@ -1,4 +1,4 @@
-# Practice - React Native
+# Practice One - Healthy Food application use React Native
 
 ## 1. Overview
 
@@ -6,103 +6,152 @@
 - Design [Link](<https://www.figma.com/file/LLkkEV64nhoR8empRw79Kl/Healthy-Food-App-(Community)?node-id=201%3A144&t=iVpH44LU0tyuYvtG-0>)
 - Estimate [Link](https://docs.google.com/document/d/1Jvl29kde7wCuMfnNveRaB5h_X4srX4RId8C_CJ51KsU/edit#)
 
-## 2. Technical
+## 2. Tech stack
 
-- React Native
-- React Hooks
-- React Navigation
+- Framework: React Native 0.77
+- Expo: Expo SDK
+- State Management: Context API
+- Navigation: React Navigation
+- Backend: Json-server
+- Testing: Jest, React Testing Library
+- Linting & Formatting: ESLint, Prettier, Husky
 - Storybook
-- Json server
 
-## 3. Editor
+## 3. Target
 
-- Vs code
-
-## 4. Target
-
-- This practice will let you understand more about React Native
+- This practice will build about React Native
 - Apply [React Navigation](https://reactnavigation.org/)
 - Apply Storybook to test application, Unit test coverage should greater than 80%
 
-## 5. Getting Started
+## 4. Requirements
 
-- Node: v.18
-- React: v.18.1.0
-- React Native: v.0.70.5
-- expo: v.47.0.13
+## 6. Prerequisites
 
-- Clone repository:
+**_Before you begin, ensure you have the following installed:_**
 
-  > ```
-  > git clone https://github.com/dunguyen-3112/training-react-native.git
-  > ```
+- **System Requirements:**
 
-- Check out the branch: develop
-
-  > ```
-  > git checkout develop
-  > ```
-
-  > ```
-  > cd app
-  > ```
-
-- Install package dependencies:
-
-* Use npm:
-
-  > ```
-  > npm install
-  > ```
-
-* Use yarn:
-  > ```
-  > yarn install
-  > ```
-
-- Run application:
-
-* If use **ubuntu** only run:
-
-  > ```
-  > ./run.bash
-  > ```
-
-* Get ipv4 system:
-
-  > ```
-  >   // line 5 in constants/API.ts
-  >   const ip = <ipv4>
-  >   //Example: const ip = '192.168.1.8'
-  >
-  >   // line 8 in file packages.json
-  >
-  >   {
-  >       ...
-  >       scripts:{
-  >           ...
-  >
-  >           "server": "npx json-server --host <ipv4> ./data/db.json",
-  >           ...
-  >       }
-  >       ...
-  >
-  >   }
-  >
-  > ```
-
-- Type commandline to run application:
-
-  - Run Server
+  - Node.js (>= 20.x)
+  - npm (>= 11.x)
+  - Expo CLI (>= 7.x) → Install globally with:
 
     > ```
-    > yarn server
+    > npm install -g expo-cli
     > ```
 
-  - Run App
-    > ```
-    > yarn android
-    > ```
+  - React (>= 18.x)
+  - React Native (0.76.7)
+  - expo (47.0.13)
+  - Android Studio (for Android Emulator)
+  - Expo Go (For Testing on Physical Devices)
+
+- **Install Expo Go on your phone:**
+  - Android (Play Store)
+
+## 5. Installation
+
+**Clone repository**:
+
+> ```
+> git clone git@gitlab.asoft-python.com:du.nguyen/react-native-training.git
+> ```
+
+**Check out the branch**:
+
+> ```
+> git checkout practice-one
+> ```
+
+> ```
+> cd practice-one
+> ```
+
+**Install package dependencies**:
+
+> ```
+> npm install
+> ```
+
+**Setup Environment Variables**
+
+- Create a .env file and add the following keys:
+
+> ```
+> API_ENDPOINT=http://localhost:3000
+> ```
+
+**Run application (Expo CLI)**
+
+> ```
+> npx expo start
+> ```
+
+**_or_**
+
+> ```
+> npm run android
+> ```
+
+## 6. Project Structure
+
+> ```
+> /practice-one
+> │── .husky/ # Git Hooks
+> │── assets/ # Images, Icons
+> │── src/
+> │ │── components/ # Reusable UI Components
+> │ │── screens/ # App Screens
+> │ │── navigation/ # App Navigation
+> │ │── hooks/ # Custom Hooks
+> │ │── services/ # API Calls
+> │ │── store/ # Zustand / Redux Store
+> │ │── utils/ # Helper Functions
+> │ │── types/ # TypeScript Types
+> │── .gitignore
+> │── .prettierrc
+> │── .eslint.json
+> │── app.json # Expo Config
+> │── package.json
+> │── README.md
+> ```
+
+## 7. Running Tests
+
+**To run tests, use**
+
+> ```
+> npm run test
+> ```
+
+**For Storybook UI Testing**
+
+> ```
+> npm run storybook
+> ```
+
+## 8. Storybook Guide
+
+**To document UI components, follow these steps:**
+
+- Create a Component.stories.tsx file in src/components/.
+- Write stories using the Storybook format.
+- Run `npm run storybook` to view your components.
+
+## 9. Documentation
+
+- All project documentation is stored in Google Drive.
+  [📂 Healthy Food App Docs](http://localhost:3000)
+
+## 10. Development & Debugging
+
+- Expo Debugging Tools
+- Use Expo Go app to preview on real devices.
+- Debug with React Native Debugger.
+- View logs using:
+
+  > ```
+  > npx expo start --clear
+  > ```
 
 ## 6. Author
 
