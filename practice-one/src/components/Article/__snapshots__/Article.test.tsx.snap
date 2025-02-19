@@ -70,13 +70,21 @@ exports[`Article Component matches snapshot 1`] = `
       style={
         [
           {
-            "fontSize": 10,
-            "fontWeight": "600",
-            "textTransform": "uppercase",
+            "color": "#000000",
+            "textTransform": undefined,
           },
           {
-            "color": "#27AE60",
+            "fontFamily": "Signika",
+            "fontSize": 10,
+            "fontWeight": "600",
+            "lineHeight": 14,
+            "textTransform": "uppercase",
           },
+          [
+            {
+              "color": "#27AE60",
+            },
+          ],
         ]
       }
     >
@@ -84,13 +92,21 @@ exports[`Article Component matches snapshot 1`] = `
     </Text>
     <Text
       style={
-        {
-          "color": "#330600",
-          "fontFamily": "Signika",
-          "fontSize": 17,
-          "fontWeight": "600",
-          "marginTop": 4,
-        }
+        [
+          {
+            "color": "#000000",
+            "textTransform": undefined,
+          },
+          {
+            "color": "#330600",
+            "fontFamily": "Signika",
+            "fontSize": 17,
+            "fontWeight": "600",
+          },
+          {
+            "marginTop": 4,
+          },
+        ]
       }
     >
       The pros and cons of fast food.
@@ -139,11 +155,19 @@ exports[`Article Component matches snapshot 1`] = `
     >
       <Text
         style={
-          {
-            "color": "white",
-            "fontSize": 12,
-            "fontWeight": "600",
-          }
+          [
+            {
+              "color": "#fff",
+              "textTransform": undefined,
+            },
+            {
+              "fontFamily": "Signika",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "lineHeight": 20,
+            },
+            undefined,
+          ]
         }
       >
         Read now

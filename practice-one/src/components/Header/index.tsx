@@ -1,11 +1,12 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
+import Text from '../Text';
 import { QuestionIcon } from '../icons';
 
 const Header = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>{`Want to eat\nhealthy Food?`}</Text>
+      <Text variant="main2">{`Want to eat\nhealthy Food?`}</Text>
       <Pressable style={styles.buttonHelp} testID="question-icon" role="button">
         <QuestionIcon />
       </Pressable>
@@ -26,7 +27,6 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 23,
     fontWeight: '800',
-    lineHeight: 32,
   },
   buttonHelp: {
     width: 35,

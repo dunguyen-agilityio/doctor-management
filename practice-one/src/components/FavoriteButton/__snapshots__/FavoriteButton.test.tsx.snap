@@ -31,8 +31,10 @@ exports[`FavoriteButton Component matches snapshot 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     {
+      "alignItems": "center",
       "backgroundColor": "#91C788",
       "borderRadius": 9,
+      "justifyContent": "center",
       "marginTop": 27,
       "opacity": 1,
       "paddingVertical": 9,
@@ -43,12 +45,18 @@ exports[`FavoriteButton Component matches snapshot 1`] = `
 >
   <Text
     style={
-      {
-        "color": "#fff",
-        "fontSize": 20,
-        "fontWeight": "600",
-        "textAlign": "center",
-      }
+      [
+        {
+          "color": "#fff",
+          "textTransform": undefined,
+        },
+        {
+          "fontSize": 20,
+          "fontWeight": "600",
+          "lineHeight": 30,
+        },
+        undefined,
+      ]
     }
   >
     Add to Favorites

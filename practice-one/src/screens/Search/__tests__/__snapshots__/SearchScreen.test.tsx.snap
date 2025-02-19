@@ -22,11 +22,19 @@ exports[`SearchContainer match snapshot 1`] = `
   >
     <Text
       style={
-        {
-          "fontSize": 23,
-          "fontWeight": "800",
-          "lineHeight": 32,
-        }
+        [
+          {
+            "color": "#000000",
+            "textTransform": undefined,
+          },
+          {
+            "color": "#5C5C5C",
+            "fontSize": 23,
+            "fontWeight": "800",
+            "lineHeight": 32,
+          },
+          undefined,
+        ]
       }
     >
       Want to eat
@@ -225,9 +233,17 @@ healthy Food?
         >
           <Text
             style={
-              {
-                "fontSize": 13,
-              }
+              [
+                {
+                  "color": "#000000",
+                  "textTransform": undefined,
+                },
+                {
+                  "fontSize": 13,
+                  "lineHeight": 18,
+                },
+                undefined,
+              ]
             }
           >
             Breakfast
@@ -273,9 +289,17 @@ healthy Food?
         >
           <Text
             style={
-              {
-                "fontSize": 13,
-              }
+              [
+                {
+                  "color": "#000000",
+                  "textTransform": undefined,
+                },
+                {
+                  "fontSize": 13,
+                  "lineHeight": 18,
+                },
+                undefined,
+              ]
             }
           >
             Dinner
@@ -321,9 +345,17 @@ healthy Food?
         >
           <Text
             style={
-              {
-                "fontSize": 13,
-              }
+              [
+                {
+                  "color": "#000000",
+                  "textTransform": undefined,
+                },
+                {
+                  "fontSize": 13,
+                  "lineHeight": 18,
+                },
+                undefined,
+              ]
             }
           >
             Dry fruits
@@ -369,9 +401,17 @@ healthy Food?
         >
           <Text
             style={
-              {
-                "fontSize": 13,
-              }
+              [
+                {
+                  "color": "#000000",
+                  "textTransform": undefined,
+                },
+                {
+                  "fontSize": 13,
+                  "lineHeight": 18,
+                },
+                undefined,
+              ]
             }
           >
             Lunch
@@ -417,9 +457,17 @@ healthy Food?
         >
           <Text
             style={
-              {
-                "fontSize": 13,
-              }
+              [
+                {
+                  "color": "#000000",
+                  "textTransform": undefined,
+                },
+                {
+                  "fontSize": 13,
+                  "lineHeight": 18,
+                },
+                undefined,
+              ]
             }
           >
             Vegetables
@@ -465,9 +513,17 @@ healthy Food?
         >
           <Text
             style={
-              {
-                "fontSize": 13,
-              }
+              [
+                {
+                  "color": "#000000",
+                  "textTransform": undefined,
+                },
+                {
+                  "fontSize": 13,
+                  "lineHeight": 18,
+                },
+                undefined,
+              ]
             }
           >
             Greenish
@@ -513,9 +569,17 @@ healthy Food?
         >
           <Text
             style={
-              {
-                "fontSize": 13,
-              }
+              [
+                {
+                  "color": "#000000",
+                  "textTransform": undefined,
+                },
+                {
+                  "fontSize": 13,
+                  "lineHeight": 18,
+                },
+                undefined,
+              ]
             }
           >
             Non-Veg
@@ -562,9 +626,17 @@ healthy Food?
         >
           <Text
             style={
-              {
-                "fontSize": 13,
-              }
+              [
+                {
+                  "color": "#000000",
+                  "textTransform": undefined,
+                },
+                {
+                  "fontSize": 13,
+                  "lineHeight": 18,
+                },
+                undefined,
+              ]
             }
           >
             Fast Food
@@ -677,13 +749,21 @@ healthy Food?
                 style={
                   [
                     {
-                      "fontSize": 10,
-                      "fontWeight": "600",
-                      "textTransform": "uppercase",
+                      "color": "#000000",
+                      "textTransform": undefined,
                     },
                     {
-                      "color": "#27AE60",
+                      "fontFamily": "Signika",
+                      "fontSize": 10,
+                      "fontWeight": "600",
+                      "lineHeight": 14,
+                      "textTransform": "uppercase",
                     },
+                    [
+                      {
+                        "color": "#27AE60",
+                      },
+                    ],
                   ]
                 }
               >
@@ -691,13 +771,21 @@ healthy Food?
               </Text>
               <Text
                 style={
-                  {
-                    "color": "#330600",
-                    "fontFamily": "Signika",
-                    "fontSize": 17,
-                    "fontWeight": "600",
-                    "marginTop": 4,
-                  }
+                  [
+                    {
+                      "color": "#000000",
+                      "textTransform": undefined,
+                    },
+                    {
+                      "color": "#330600",
+                      "fontFamily": "Signika",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                    },
+                    {
+                      "marginTop": 4,
+                    },
+                  ]
                 }
               >
                 The pros and cons of fast food.
@@ -746,11 +834,19 @@ healthy Food?
               >
                 <Text
                   style={
-                    {
-                      "color": "white",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                    }
+                    [
+                      {
+                        "color": "#fff",
+                        "textTransform": undefined,
+                      },
+                      {
+                        "fontFamily": "Signika",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                    ]
                   }
                 >
                   Read now
@@ -834,13 +930,21 @@ healthy Food?
                 style={
                   [
                     {
-                      "fontSize": 10,
-                      "fontWeight": "600",
-                      "textTransform": "uppercase",
+                      "color": "#000000",
+                      "textTransform": undefined,
                     },
                     {
-                      "color": "#FF8473",
+                      "fontFamily": "Signika",
+                      "fontSize": 10,
+                      "fontWeight": "600",
+                      "lineHeight": 14,
+                      "textTransform": "uppercase",
                     },
+                    [
+                      {
+                        "color": "#FF8473",
+                      },
+                    ],
                   ]
                 }
               >
@@ -848,13 +952,21 @@ healthy Food?
               </Text>
               <Text
                 style={
-                  {
-                    "color": "#330600",
-                    "fontFamily": "Signika",
-                    "fontSize": 17,
-                    "fontWeight": "600",
-                    "marginTop": 4,
-                  }
+                  [
+                    {
+                      "color": "#000000",
+                      "textTransform": undefined,
+                    },
+                    {
+                      "color": "#330600",
+                      "fontFamily": "Signika",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                    },
+                    {
+                      "marginTop": 4,
+                    },
+                  ]
                 }
               >
                 The pros and cons of vegetable
@@ -903,11 +1015,19 @@ healthy Food?
               >
                 <Text
                   style={
-                    {
-                      "color": "white",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                    }
+                    [
+                      {
+                        "color": "#fff",
+                        "textTransform": undefined,
+                      },
+                      {
+                        "fontFamily": "Signika",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                    ]
                   }
                 >
                   Read now

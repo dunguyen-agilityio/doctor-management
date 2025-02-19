@@ -31,7 +31,8 @@ describe('Categories Component', () => {
     );
 
     const activeCategory = getByText(name);
-    expect(activeCategory.parent?.parent?.props.style).toEqual(
+
+    expect(activeCategory.parent?.parent?.parent?.props.style).toEqual(
       expect.objectContaining({ borderColor: COLOR.GREEN }),
     );
   });

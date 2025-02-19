@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { COLOR } from '@/constants';
 
+import Text from '../Text';
 import { NotFoundImage } from '../icons';
 
 const NO_FOODS_FOUND_DESCRIPTION = `You don't save any food. Go ahead, search\nand save your favorite food`;
@@ -20,10 +21,14 @@ const NotFound = ({
     <View testID="not-found-container" style={styles.container}>
       <View testID="not-found-header" style={styles.header}>
         {image}
-        <Text style={styles.title}>{title}</Text>
+        <Text variant="subtitle2" style={styles.title} color={COLOR.SECONDARY}>
+          {title}
+        </Text>
       </View>
 
-      <Text style={styles.description}>{description}</Text>
+      <Text variant="body1" color={COLOR.GRAY}>
+        {description}
+      </Text>
     </View>
   );
 };
@@ -44,14 +49,8 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 24,
-    color: '#696969',
-    fontSize: 22,
-    fontWeight: '500',
-    lineHeight: 31,
   },
   description: {
-    fontSize: 13,
-    color: COLOR.GRAY,
     textAlign: 'center',
   },
 });

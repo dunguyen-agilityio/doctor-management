@@ -1,12 +1,13 @@
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { memo } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { COLOR } from '@/constants';
 
 import { IArticle } from '@/types';
 
+import Text from '../Text';
 import { ArrowICon } from '../icons';
 
 const buttonColor = {
@@ -36,14 +37,18 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
         }}
       />
       <View style={styles.info}>
-        <Text style={[styles.articleText, { color: buttonColor[color] }]}>
+        <Text variant="subtitle5" style={[{ color: buttonColor[color] }]}>
           Article
         </Text>
-        <Text style={styles.title}>{title}</Text>
+        <Text variant="subtitle4" style={styles.title}>
+          {title}
+        </Text>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: buttonColor[color] }]}
         >
-          <Text style={styles.buttonText}>Read now</Text>
+          <Text variant="subtitle6" color={COLOR.WHITE}>
+            Read now
+          </Text>
           <ArrowICon />
         </TouchableOpacity>
       </View>
@@ -54,17 +59,8 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
 export default memo(Article);
 
 const styles = StyleSheet.create({
-  articleText: {
-    fontSize: 10,
-    fontWeight: '600',
-    textTransform: 'uppercase',
-  },
   title: {
-    fontSize: 17,
-    fontWeight: '600',
     marginTop: 4,
-    fontFamily: 'Signika',
-    color: COLOR.LIGHT_BLACK,
   },
   container: {
     height: 169,
@@ -89,10 +85,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: 104,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 12,
-    fontWeight: '600',
   },
 });

@@ -3,7 +3,6 @@ import {
   ActivityIndicator,
   Platform,
   StyleSheet,
-  Text,
   ToastAndroid,
   TouchableOpacity,
 } from 'react-native';
@@ -13,6 +12,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { COLOR } from '@/constants';
 
 import { addFoodToFavorite, removeFoodToFavorite } from '@/services';
+
+import Text from '../Text';
 
 interface FavoriteButtonProps {
   favorite?: boolean;
@@ -61,7 +62,7 @@ const FavoriteButton = ({ favorite, id, favoriteId }: FavoriteButtonProps) => {
           testID="activity-indicator"
         />
       ) : (
-        <Text style={styles.textButton}>
+        <Text variant="subtitle1" color={COLOR.WHITE}>
           {hasFavorite ? 'UnFavorites' : 'Add to Favorites'}
         </Text>
       )}
@@ -78,11 +79,7 @@ const styles = StyleSheet.create({
     paddingVertical: 9,
     marginTop: 27,
     backgroundColor: COLOR.PRIMARY,
-  },
-  textButton: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: COLOR.WHITE,
-    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
