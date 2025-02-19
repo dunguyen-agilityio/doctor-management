@@ -1,1 +1,1 @@
-export { default as FilterProvider } from './provider';
+export * from './provider';

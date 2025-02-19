@@ -1,8 +1,9 @@
-import { memo } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { COLORS } from '@/constants';
+import { memo } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+import { COLOR } from '@/constants';
 import { CATEGORIES } from '@/constants';
 
 import { ICategory } from '@/types';
@@ -59,12 +60,12 @@ const styles = StyleSheet.create({
     marginLeft: 7,
   },
   buttonActive: {
-    backgroundColor: COLORS.LIGHT_GREEN,
+    backgroundColor: COLOR.LIGHT_GREEN,
     borderWidth: 1,
-    borderColor: COLORS.GREEN,
+    borderColor: COLOR.GREEN,
   },
   button: {
-    backgroundColor: COLORS.LIGHT_GRAY,
+    backgroundColor: COLOR.LIGHT_GRAY,
     borderRadius: 8,
     paddingVertical: 4,
     paddingHorizontal: 10,

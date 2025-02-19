@@ -1,13 +1,10 @@
-import React from 'react';
-
-import { NavigationContainer } from '@react-navigation/native';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { fireEvent, render } from '@testing-library/react-native';
 
 import HomeScreen from '@/screens/Home';
 
 import { ROUTES } from '@/constants';
+
+import { fireEvent, render } from '@/utils/test-utils';
 
 const mockNavigate = jest.fn();
 
@@ -23,11 +20,9 @@ describe('HomeScreen', () => {
 
   const renderWithProviders = () =>
     render(
-      <NavigationContainer>
-        <QueryClientProvider client={queryClient}>
-          <HomeScreen />
-        </QueryClientProvider>
-      </NavigationContainer>,
+      <QueryClientProvider client={queryClient}>
+        <HomeScreen />
+      </QueryClientProvider>,
     );
 
   beforeEach(() => {

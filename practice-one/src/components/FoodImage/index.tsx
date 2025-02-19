@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
-import { COLORS } from '@/constants';
+import { COLOR } from '@/constants';
 
 import { IFood } from '@/types';
 
@@ -29,7 +29,7 @@ const TYPE_STYLES = {
   },
 };
 
-export const DEFAULT_IMAGE = '@/assets/images/logo.png';
+export const DEFAULT_IMAGE = '@assets/images/logo.png';
 
 const FoodImage = ({
   imgUrl,
@@ -39,18 +39,18 @@ const FoodImage = ({
   const getColor = () => {
     switch (color) {
       case 'RED':
-        return COLORS.RED;
+        return COLOR.RED;
       case 'PURPLE':
-        return COLORS.PURPLE;
+        return COLOR.PURPLE;
       case 'ORANGE':
-        return COLORS.ORANGE;
+        return COLOR.ORANGE;
       case 'YELLOW':
-        return COLORS.YELLOW;
+        return COLOR.YELLOW;
       case 'GREEN':
-        return COLORS.GREEN;
+        return COLOR.GREEN;
       case 'PRIMARY':
       default:
-        return COLORS.PRIMARY;
+        return COLOR.PRIMARY;
     }
   };
 

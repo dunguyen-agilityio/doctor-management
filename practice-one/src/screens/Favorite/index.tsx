@@ -1,11 +1,11 @@
 import { StyleSheet, View } from 'react-native';
 
-import FoodsProvider from '@/contexts/foods/provider';
-import { SearchProvider } from '@/contexts/search';
-
 import { FoodsContainer, NotFound } from '@/components';
 
-import { COLORS } from '@/constants';
+import { COLOR } from '@/constants';
+
+import { FoodsProvider } from '@/contexts/foods';
+import { SearchProvider } from '@/contexts/search';
 
 import FavoriteContainer from './FavoriteContainer';
 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     // paddingTop: 62,
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLOR.WHITE,
   },
   list: {
     marginTop: 24,

@@ -1,4 +1,4 @@
-import { CATEGORIES, COLORS } from '@/constants';
+import { CATEGORIES, COLOR } from '@/constants';
 
 import { fireEvent, render } from '@/utils/test-utils';
 
@@ -32,7 +32,7 @@ describe('Categories Component', () => {
 
     const activeCategory = getByText(name);
     expect(activeCategory.parent?.parent?.props.style).toEqual(
-      expect.objectContaining({ borderColor: COLORS.GREEN }),
+      expect.objectContaining({ borderColor: COLOR.GREEN }),
     );
   });
 });

@@ -10,7 +10,7 @@ import {
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { COLORS } from '@/constants';
+import { COLOR } from '@/constants';
 
 import { addFoodToFavorite, removeFoodToFavorite } from '@/services';
 
@@ -77,12 +77,12 @@ const styles = StyleSheet.create({
     borderRadius: 9,
     paddingVertical: 9,
     marginTop: 27,
-    backgroundColor: COLORS.PRIMARY,
+    backgroundColor: COLOR.PRIMARY,
   },
   textButton: {
     fontSize: 20,
     fontWeight: '600',
-    color: COLORS.WHITE,
+    color: COLOR.WHITE,
     textAlign: 'center',
   },
 });

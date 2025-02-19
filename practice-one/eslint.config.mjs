@@ -3,6 +3,7 @@ import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
+import sortImport from 'eslint-plugin-import';
 import prettier from 'eslint-plugin-prettier';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -26,6 +27,7 @@ export default [
       '**/*.json',
       '**/.storybook/*',
       'android/*',
+      'jest.setup.js',
     ],
   },
   ...compat.extends(
@@ -39,6 +41,7 @@ export default [
       '@typescript-eslint': typescriptEslint,
       prettier,
       'react-hooks': fixupPluginRules(reactHooks),
+      import: sortImport,
     },
 
     languageOptions: {

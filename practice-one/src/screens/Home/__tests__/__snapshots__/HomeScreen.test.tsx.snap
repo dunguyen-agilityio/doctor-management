@@ -6,7 +6,6 @@ exports[`HomeScreen match snapshot 1`] = `
     {
       "backgroundColor": "#fff",
       "flex": 1,
-      "paddingTop": 60,
     }
   }
 >
@@ -79,7 +78,7 @@ healthy Food?
       <Image
         source={
           {
-            "testUri": "../../../src/assets/icons/question.png",
+            "testUri": "../../../assets/icons/question.png",
           }
         }
       />
@@ -148,7 +147,7 @@ healthy Food?
       <Image
         source={
           {
-            "testUri": "../../../src/assets/icons/iconsearch.png",
+            "testUri": "../../../assets/icons/iconsearch.png",
           }
         }
       />
@@ -759,7 +758,7 @@ healthy Food?
                 <Image
                   source={
                     {
-                      "testUri": "../../../src/assets/icons/arrow.png",
+                      "testUri": "../../../assets/icons/arrow.png",
                     }
                   }
                 />
@@ -916,7 +915,7 @@ healthy Food?
                 <Image
                   source={
                     {
-                      "testUri": "../../../src/assets/icons/arrow.png",
+                      "testUri": "../../../assets/icons/arrow.png",
                     }
                   }
                 />
@@ -1071,123 +1070,227 @@ healthy Food?
   <View
     style={
       {
-        "backgroundColor": "#fff",
-        "flex": 1,
+        "gap": 20,
+        "marginTop": 20,
+        "paddingHorizontal": 20,
       }
     }
+    testID="food-skeleton"
   >
-    <Text
-      style={
-        {
-          "fontSize": 20,
-          "fontWeight": "700",
-          "marginLeft": 8,
-          "marginTop": 22,
-        }
-      }
-    >
-      All Food
-    </Text>
     <View
       style={
         {
-          "flex": 1,
-          "paddingTop": 15,
+          "backgroundColor": "#E0E0E0",
+          "height": 16,
+          "marginTop": 10,
+          "width": 80,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "flexDirection": "row",
+          "gap": 20,
         }
       }
     >
       <View
         style={
           {
+            "alignItems": "center",
             "backgroundColor": "#fff",
-            "flex": 1,
-            "gap": 18,
-            "paddingBottom": 20,
-            "paddingHorizontal": 20,
+            "borderColor": "#DBDBDB",
+            "borderRadius": 20,
+            "borderWidth": 1,
+            "height": 192,
+            "justifyContent": "space-around",
+            "minWidth": 154,
+            "paddingBottom": 18,
+            "paddingHorizontal": 27,
+            "paddingTop": 17,
+            "paddingVertical": 17,
           }
         }
-        testID="foods-list-container"
       >
-        <RCTScrollView
-          contentContainerStyle={
-            [
-              {
-                "gap": 18,
-              },
-              {
-                "marginHorizontal": "auto",
-              },
-            ]
-          }
-          data={[]}
-          getItem={[Function]}
-          getItemCount={[Function]}
-          horizontal={true}
-          keyExtractor={[Function]}
-          onContentSizeChange={[Function]}
-          onLayout={[Function]}
-          onMomentumScrollBegin={[Function]}
-          onMomentumScrollEnd={[Function]}
-          onScroll={[Function]}
-          onScrollBeginDrag={[Function]}
-          onScrollEndDrag={[Function]}
-          removeClippedSubviews={false}
-          renderItem={[Function]}
-          scrollEventThrottle={0.0001}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[]}
-          testID="foods-list"
-          viewabilityConfigCallbackPairs={[]}
-        >
-          <View />
-        </RCTScrollView>
-      </View>
-    </View>
-  </View>
-  <View
-    style={
-      [
-        {
-          "alignItems": "center",
-          "height": "100%",
-          "justifyContent": "center",
-          "position": "absolute",
-          "width": "100%",
-          "zIndex": 10,
-        },
-        {
-          "marginTop": undefined,
-        },
-      ]
-    }
-    testID="loading-indicator"
-  >
-    <View
-      collapsable={false}
-      style={
-        {
-          "transform": [
+        <View
+          style={
             {
-              "rotate": "0deg",
-            },
-          ],
-        }
-      }
-    >
-      <Image
-        source={
-          {
-            "testUri": "../../../src/assets/images/logo.png",
+              "backgroundColor": "#E0E0E0",
+              "borderRadius": 8,
+              "height": 60,
+              "width": 60,
+            }
           }
-        }
+        />
+        <View
+          style={
+            {
+              "backgroundColor": "#E0E0E0",
+              "height": 14,
+              "marginTop": 10,
+              "width": "80%",
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "backgroundColor": "#E0E0E0",
+              "height": 14,
+              "marginTop": 10,
+              "width": "80%",
+            }
+          }
+        />
+      </View>
+      <View
         style={
           {
-            "height": 122,
-            "width": 122,
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#DBDBDB",
+            "borderRadius": 20,
+            "borderWidth": 1,
+            "height": 192,
+            "justifyContent": "space-around",
+            "minWidth": 154,
+            "paddingBottom": 18,
+            "paddingHorizontal": 27,
+            "paddingTop": 17,
+            "paddingVertical": 17,
           }
         }
-      />
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "#E0E0E0",
+              "borderRadius": 8,
+              "height": 60,
+              "width": 60,
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "backgroundColor": "#E0E0E0",
+              "height": 14,
+              "marginTop": 10,
+              "width": "80%",
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "backgroundColor": "#E0E0E0",
+              "height": 14,
+              "marginTop": 10,
+              "width": "80%",
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#DBDBDB",
+            "borderRadius": 20,
+            "borderWidth": 1,
+            "height": 192,
+            "justifyContent": "space-around",
+            "minWidth": 154,
+            "paddingBottom": 18,
+            "paddingHorizontal": 27,
+            "paddingTop": 17,
+            "paddingVertical": 17,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "#E0E0E0",
+              "borderRadius": 8,
+              "height": 60,
+              "width": 60,
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "backgroundColor": "#E0E0E0",
+              "height": 14,
+              "marginTop": 10,
+              "width": "80%",
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "backgroundColor": "#E0E0E0",
+              "height": 14,
+              "marginTop": 10,
+              "width": "80%",
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#DBDBDB",
+            "borderRadius": 20,
+            "borderWidth": 1,
+            "height": 192,
+            "justifyContent": "space-around",
+            "minWidth": 154,
+            "paddingBottom": 18,
+            "paddingHorizontal": 27,
+            "paddingTop": 17,
+            "paddingVertical": 17,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "#E0E0E0",
+              "borderRadius": 8,
+              "height": 60,
+              "width": 60,
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "backgroundColor": "#E0E0E0",
+              "height": 14,
+              "marginTop": 10,
+              "width": "80%",
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "backgroundColor": "#E0E0E0",
+              "height": 14,
+              "marginTop": 10,
+              "width": "80%",
+            }
+          }
+        />
+      </View>
     </View>
   </View>
 </View>

@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { QuestionIcon } from '@/constants';
+import { QuestionIcon } from '../icons';
 
 const Header = () => {
   return (

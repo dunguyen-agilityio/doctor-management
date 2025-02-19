@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import ErrorFallback from '@/components/ErrorFallback';
@@ -17,7 +16,7 @@ const HomeContainer = ({
 
   if (isLoading) {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} testID="food-skeleton">
         <View style={styles.textSkeleton} />
         <View style={styles.list}>
           {Array(4)

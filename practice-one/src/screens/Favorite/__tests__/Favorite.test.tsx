@@ -1,11 +1,9 @@
-import React from 'react';
-
-import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
-
+import { useFocusEffect } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render } from '@testing-library/react-native';
 
 import FavoriteScreen from '@/screens/Favorite';
+
+import { render } from '@/utils/test-utils';
 
 jest.mock('@react-navigation/native', () => ({
   ...jest.requireActual('@react-navigation/native'),
@@ -18,9 +16,7 @@ describe('FavoriteScreen', () => {
   const renderWithProviders = () =>
     render(
       <QueryClientProvider client={queryClient}>
-        <NavigationContainer>
-          <FavoriteScreen />
-        </NavigationContainer>
+        <FavoriteScreen />
       </QueryClientProvider>,
     );
 

@@ -1,6 +1,6 @@
-import { render } from '@testing-library/react-native';
+import { COLOR } from '@/constants';
 
-import { COLORS } from '@/constants';
+import { render } from '@/utils/test-utils';
 
 import { MOCK_FOODS } from '@/mocks';
 
@@ -44,7 +44,7 @@ describe('FoodImage Component', () => {
 
     expect(layer1.props.style).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ backgroundColor: COLORS.PRIMARY }),
+        expect.objectContaining({ backgroundColor: COLOR.PRIMARY }),
       ]),
     );
   });

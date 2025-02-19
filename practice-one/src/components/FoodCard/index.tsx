@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 
 import FoodImage, { FoodImageSize } from '@/components/FoodImage';
 
-import { COLORS } from '@/constants';
+import { COLOR } from '@/constants';
 
 import { IFood, TNutritional } from '@/types';
 
@@ -40,7 +40,7 @@ export default memo(FoodCard);
 const styles = StyleSheet.create({
   container: {
     borderRadius: 20,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLOR.WHITE,
     alignItems: 'center',
     justifyContent: 'space-around',
     paddingTop: 17,

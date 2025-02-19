@@ -1,5 +1,4 @@
-import React, { type PropsWithChildren, useState } from 'react';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 
 export const SearchContext = createContext('');
 
@@ -7,7 +6,7 @@ export const SearchActionContext = createContext<
   React.Dispatch<React.SetStateAction<string>>
 >(() => {});
 
-const SearchProvider = ({ children }: PropsWithChildren) => {
+export const SearchProvider = ({ children }: React.PropsWithChildren) => {
   const [query, setQuery] = useState('');
 
   return (
@@ -18,5 +17,3 @@ const SearchProvider = ({ children }: PropsWithChildren) => {
     </SearchContext.Provider>
   );
 };
-
-export default SearchProvider;

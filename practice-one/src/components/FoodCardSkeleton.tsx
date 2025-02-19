@@ -1,7 +1,6 @@
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { COLORS } from '@/constants';
+import { COLOR } from '@/constants';
 
 const FoodCardSkeleton = () => {
   return (
@@ -16,7 +15,7 @@ const FoodCardSkeleton = () => {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 20,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLOR.WHITE,
     alignItems: 'center',
     justifyContent: 'space-around',
     paddingTop: 17,

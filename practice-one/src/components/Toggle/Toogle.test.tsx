@@ -1,7 +1,6 @@
-import React from 'react';
 import { Button, Text, View } from 'react-native';
 
-import { fireEvent, render } from '@testing-library/react-native';
+import { fireEvent, render } from '@/utils/test-utils';
 
 import Toggle from './index';
 

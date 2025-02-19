@@ -1,7 +1,7 @@
-import React, { createRef } from 'react';
+import { createRef } from 'react';
 import { TextInput } from 'react-native';
 
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { fireEvent, render, waitFor } from '@/utils/test-utils';
 
 import SearchInput from '../SearchInput';
 

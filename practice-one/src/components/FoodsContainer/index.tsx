@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
 
-import { FoodsContext } from '@/contexts/foods';
-
 import { FoodsList } from '@/components';
 import { FoodsListProps } from '@/components/FoodsList';
 
-import { COLORS } from '@/constants';
+import { COLOR } from '@/constants';
+
+import { FoodsContext } from '@/contexts/foods';
 
 interface FoodsContainerProps extends ViewProps {
   slotProps?: { list: Partial<FoodsListProps> };
@@ -36,7 +36,7 @@ export default FoodsContainer;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLOR.WHITE,
   },
   list: { paddingTop: 15, flex: 1 },
 });

@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { RootScreenNavigationProps } from '@/navigation';
 
-import { COLORS, ROUTES } from '@/constants';
+import { COLOR, ROUTES } from '@/constants';
 
 import { IFood } from '@/types';
 
@@ -80,7 +80,7 @@ const FoodsList = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLOR.WHITE,
     paddingHorizontal: 20,
     paddingBottom: 20,
     gap: 18,

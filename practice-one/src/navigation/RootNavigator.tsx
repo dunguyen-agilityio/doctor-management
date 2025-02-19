@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { DetailsScreen } from '@/screens';
+import DetailsScreen from '@/screens/Details';
 
 import { ROUTES } from '@/constants';
 

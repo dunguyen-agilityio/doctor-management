@@ -1,12 +1,11 @@
 import { StyleSheet, View } from 'react-native';
 
-import FiltersProvider from '@/contexts/filters/provider';
-import FoodsProvider from '@/contexts/foods/provider';
-import SearchProvider from '@/contexts/search/provider';
-
 import { FoodsContainer, Header, NotFound } from '@/components';
+import { EmptyImage } from '@/components/icons';
 
-import { COLORS, EmptyImage } from '@/constants';
+import { COLOR } from '@/constants';
+
+import { FiltersProvider, FoodsProvider, SearchProvider } from '@/contexts';
 
 import SearchContainer from './SearchContainer';
 
@@ -45,6 +44,6 @@ const styles = StyleSheet.create({
   container: {
     // paddingTop: 62,
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLOR.WHITE,
   },
 });

@@ -1,6 +1,6 @@
-import { Text, View } from 'react-native';
-
 import type { Meta, StoryObj } from '@storybook/react';
+
+import { Text, View } from 'react-native';
 
 import NotFound from '@/components/NotFound';
 

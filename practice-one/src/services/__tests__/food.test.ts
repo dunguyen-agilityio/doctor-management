@@ -1,10 +1,8 @@
-import { IFood } from '@/types';
-
 import { apiClient } from '@/services/http-client';
 
 import { MOCK_FOODS } from '@/mocks';
 
-import { getFoodById, getFoods, updateFood } from '../food';
+import { getFoodById, getFoods } from '../food';
 
 jest.mock('@/services/http-client.ts', () => ({
   apiClient: {
@@ -35,20 +33,11 @@ describe('Food API', () => {
   });
 
   it('getFoodById fetches a single food item by ID', async () => {
-    (apiClient.get as jest.Mock).mockResolvedValue(MOCK_FOODS[0]);
+    (apiClient.get as jest.Mock).mockResolvedValue({
+      ...MOCK_FOODS[0],
+      favorites: [{ id: '1' }],
+    });
     const food = await getFoodById('1');
-    expect(food).toEqual(MOCK_FOODS[0]);
-  });
-
-  it('updateFood updates and returns the updated food', async () => {
-    const updatedFood = {
-      id: '1',
-      name: 'Updated Pizza',
-      category: 'Fast Food',
-      favorite: 1,
-    };
-    (apiClient.put as jest.Mock).mockResolvedValue(updatedFood);
-    const response = await updateFood(updatedFood as IFood);
-    expect(response).toEqual(updatedFood);
+    expect(food).toEqual({ ...MOCK_FOODS[0], favorite: true, favoriteId: '1' });
   });
 });

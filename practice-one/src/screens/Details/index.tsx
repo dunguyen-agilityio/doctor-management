@@ -2,9 +2,7 @@ import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-
-import { FoodContext } from '@/contexts/food';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
 
@@ -16,7 +14,7 @@ import {
   Loading,
 } from '@/components';
 
-import { CATEGORIES, COLORS, ROUTES } from '@/constants';
+import { CATEGORIES, COLOR, ROUTES } from '@/constants';
 
 import { IFood } from '@/types';
 
@@ -76,7 +74,7 @@ export default Details;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLOR.WHITE,
     paddingHorizontal: 20,
   },
   buttonWrapper: { paddingHorizontal: 10 },

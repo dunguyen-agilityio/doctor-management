@@ -1,16 +1,10 @@
-import { NavigationContainer } from '@react-navigation/native';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react-native';
 
 import Details from '@/screens/Details';
 
 import { getFoodById } from '@/services/food';
+
+import { fireEvent, render, screen, waitFor } from '@/utils/test-utils';
 
 jest.mock('@/services/food', () => ({
   getFoodById: jest.fn(),
@@ -33,9 +27,7 @@ describe('Details Screen', () => {
   const renderWithProviders = () => {
     return render(
       <QueryClientProvider client={queryClient}>
-        <NavigationContainer>
-          <Details />
-        </NavigationContainer>
+        <Details />
       </QueryClientProvider>,
     );
   };

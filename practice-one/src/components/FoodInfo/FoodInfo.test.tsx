@@ -1,6 +1,6 @@
-import { fireEvent, render } from '@testing-library/react-native';
-
 import { CATEGORIES } from '@/constants';
+
+import { fireEvent, render } from '@/utils/test-utils';
 
 import { MOCK_FOODS } from '@/mocks';
 

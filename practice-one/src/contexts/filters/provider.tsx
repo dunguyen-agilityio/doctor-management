@@ -1,5 +1,4 @@
-import React, { type PropsWithChildren, useState } from 'react';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 
 export const FiltersContext = createContext<string[]>([]);
 
@@ -7,7 +6,7 @@ export const FiltersActionContext = createContext<
   React.Dispatch<React.SetStateAction<string[]>>
 >(() => {});
 
-const FiltersProvider = ({ children }: PropsWithChildren) => {
+export const FiltersProvider = ({ children }: React.PropsWithChildren) => {
   const [filters, setFilters] = useState<string[]>([]);
 
   return (
@@ -18,5 +17,3 @@ const FiltersProvider = ({ children }: PropsWithChildren) => {
     </FiltersContext.Provider>
   );
 };
-
-export default FiltersProvider;

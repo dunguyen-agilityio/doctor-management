@@ -1,8 +1,6 @@
-import React from 'react';
-
-import { render } from '@testing-library/react-native';
-
 import Loading from '@/components/Loading';
+
+import { render } from '@/utils/test-utils';
 
 describe('Loading Component', () => {
   it('renders the Loading component correctly', () => {

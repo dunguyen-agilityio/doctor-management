@@ -1,7 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { COLOR } from '@/constants';
-
 import { IInfo } from './common';
 
 export type Ingredients = 'Bread' | 'Meat (Chicken)' | 'Cucumber' | 'Onion';
@@ -44,7 +42,21 @@ export interface IArticle extends IInfo {
 export interface IFood extends IInfo {
   category: string;
   weight: number;
-  color: COLOR;
+  color:
+    | 'WHITE'
+    | 'LIGHT_GRAY'
+    | 'GRAY'
+    | 'ORANGE'
+    | 'GREEN'
+    | 'BLACK'
+    | 'YELLOW'
+    | 'RED'
+    | 'PURPLE'
+    | 'DEFAULT'
+    | 'LIGHT_GREEN'
+    | 'LIGHT_BLACK'
+    | 'PRIMARY'
+    | 'SECONDARY';
   desc: string;
   imgUrl: string;
   favorite: boolean;

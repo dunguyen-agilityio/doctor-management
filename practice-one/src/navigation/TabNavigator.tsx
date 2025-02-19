@@ -1,8 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { FavoriteScreen, HomeScreen, SearchScreen } from '@/screens';
+import FavoriteScreen from '@/screens/Favorite';
+import HomeScreen from '@/screens/Home';
+import SearchScreen from '@/screens/Search';
 
-import { FavoriteMenu, HomeMenu, ROUTES, SearchMenu } from '@/constants';
+import { FavoriteMenu, HomeMenu, SearchMenu } from '@/components/icons';
+
+import { ROUTES } from '@/constants';
 
 export type TabParamsList = {
   [ROUTES.FAVORITE]?: { favorite: boolean };
