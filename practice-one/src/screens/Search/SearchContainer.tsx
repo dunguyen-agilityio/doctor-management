@@ -1,15 +1,13 @@
-import React, { useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { TextInput, View } from 'react-native';
 
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 
-import { Categories, Loading, SearchInput } from '@/components';
-import ErrorFallback from '@/components/ErrorFallback';
+import { Categories, ErrorFallback, Loading, SearchInput } from '@/components';
 
 import { CATEGORIES } from '@/constants';
 
-import { useFoods, useSearchQuery } from '@/hooks';
-import { useFilters } from '@/hooks';
+import { useFilters, useFoods, useSearchQuery } from '@/hooks';
 
 const SearchContainer = ({
   children,
@@ -20,16 +18,18 @@ const SearchContainer = ({
   const { error, isLoading } = useFoods({ categories, query });
   const searchInputRef = useRef<TextInput>(null);
 
+  const isFocused = useIsFocused();
+
   useFocusEffect(
     useCallback(() => {
+      const timer = setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 100);
+
       return () => {
-        setQuery('');
-        setFilters([]);
-        if (searchInputRef.current) {
-          searchInputRef.current.clear();
-        }
+        clearTimeout(timer);
       };
-    }, [setFilters, setQuery]),
+    }, []),
   );
 
   const handlePressTag = useCallback(
@@ -49,7 +49,11 @@ const SearchContainer = ({
 
   return (
     <View style={{ flex: 1 }}>
-      <SearchInput ref={searchInputRef} onChangeText={setQuery} />
+      <SearchInput
+        ref={searchInputRef}
+        onChangeText={setQuery}
+        autoFocus={isFocused}
+      />
       <Categories
         categories={CATEGORIES}
         onSelect={handlePressTag}

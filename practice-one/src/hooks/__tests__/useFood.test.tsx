@@ -1,13 +1,16 @@
+import { jest } from '@jest/globals';
+
 import { Text } from 'react-native';
 
-import { FoodsDispatchContext } from '@/contexts/foods';
-import { jest } from '@jest/globals';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render, screen, waitFor } from '@testing-library/react-native';
 
 import { FoodOptions, getFoods } from '@/services';
 
+import { render, screen, waitFor } from '@/utils/test-utils';
+
 import { MOCK_FOODS } from '@/mocks';
+
+import { FoodsDispatchContext } from '@/contexts/foods';
 
 import { useFoods } from '../useFood';
 
@@ -27,7 +30,7 @@ const TestComponent = ({ options }: { options: FoodOptions }) => {
 
 describe('useFoods Hook', () => {
   it('should fetch foods and dispatch to context', async () => {
-    (getFoods as jest.Mock).mockResolvedValue(MOCK_FOODS);
+    (getFoods as jest.Mock<typeof getFoods>).mockResolvedValue(MOCK_FOODS);
 
     const dispatch = jest.fn();
     const options = { categories: ['fruit'], query: 'apple' };

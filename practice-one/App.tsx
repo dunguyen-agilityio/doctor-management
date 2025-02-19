@@ -4,11 +4,10 @@ import { DevSettings, StyleSheet, View } from 'react-native';
 import * as Font from 'expo-font';
 import { hide, preventAutoHideAsync, setOptions } from 'expo-splash-screen';
 
-import App from '@/App';
-
-import { COLORS } from '@/constants';
+import { COLOR } from '@/constants';
 
 import { default as StorybookUI } from './.storybook';
+import App from './src/App';
 
 preventAutoHideAsync();
 
@@ -19,8 +18,8 @@ setOptions({
 
 const AppRoot = () => {
   const [fontLoaded] = Font.useFonts({
-    Manrope: require('@/assets/fonts/Manrope.ttf'),
-    Signika: require('@/assets/fonts/Signika.ttf'),
+    Manrope: require('@assets/fonts/Manrope.ttf'),
+    Signika: require('@assets/fonts/Signika.ttf'),
   });
 
   const [showStorybook, setShowStorybook] = useState(false);
@@ -55,6 +54,6 @@ export default AppRoot;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLOR.WHITE,
   },
 });

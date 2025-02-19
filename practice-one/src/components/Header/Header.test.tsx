@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { render } from '@testing-library/react-native';
+import { render } from '@/utils/test-utils';
 
 import Header from './index';
 

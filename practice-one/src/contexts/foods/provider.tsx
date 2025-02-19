@@ -1,7 +1,6 @@
-import React from 'react';
-import { createContext } from 'react';
-
 import { useImmerReducer } from 'use-immer';
+
+import { createContext } from 'react';
 
 import { DEFAULT_FOODS_STATE, foodsReducer } from './reducer';
 import { FoodsAction } from './reducer';
@@ -11,7 +10,7 @@ export const FoodsDispatchContext = createContext<React.Dispatch<FoodsAction>>(
   () => {},
 );
 
-const FoodsProvider = ({ children }: React.PropsWithChildren) => {
+export const FoodsProvider = ({ children }: React.PropsWithChildren) => {
   const [state, dispatch] = useImmerReducer(foodsReducer, DEFAULT_FOODS_STATE);
 
   return (
@@ -22,5 +21,3 @@ const FoodsProvider = ({ children }: React.PropsWithChildren) => {
     </FoodsContext.Provider>
   );
 };
-
-export default FoodsProvider;

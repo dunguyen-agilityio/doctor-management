@@ -9,7 +9,7 @@ export type FailedResponse = { data?: null; error: { message: string } };
 
 class APIClient {
   private static _apiClient: APIClient;
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+
   private constructor() {}
 
   static get apiClient() {

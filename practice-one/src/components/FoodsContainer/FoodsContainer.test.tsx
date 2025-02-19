@@ -1,26 +1,22 @@
-import React from 'react';
 import { Text } from 'react-native';
-
-import { NavigationContainer } from '@react-navigation/native';
-
-import { FoodsContext } from '@/contexts/foods';
-import { render } from '@testing-library/react-native';
 
 import FoodsContainer from '@/components/FoodsContainer';
 import { FoodsListProps } from '@/components/FoodsList';
 
+import { render } from '@/utils/test-utils';
+
 import { MOCK_FOODS } from '@/mocks';
+
+import { FoodsContext } from '@/contexts/foods';
 
 describe('FoodsContainer', () => {
   const [{ name: name1 }, { name: name2 }] = MOCK_FOODS;
 
   it('renders correctly with food items', () => {
     const { getByText } = render(
-      <NavigationContainer>
-        <FoodsContext.Provider value={{ foods: MOCK_FOODS }}>
-          <FoodsContainer />
-        </FoodsContext.Provider>
-      </NavigationContainer>,
+      <FoodsContext.Provider value={{ foods: MOCK_FOODS }}>
+        <FoodsContainer />
+      </FoodsContext.Provider>,
     );
 
     expect(getByText(name1)).toBeTruthy();
@@ -29,11 +25,9 @@ describe('FoodsContainer', () => {
 
   it('renders without crashing when foods list is empty', () => {
     const { queryByText } = render(
-      <NavigationContainer>
-        <FoodsContext.Provider value={{ foods: [] }}>
-          <FoodsContainer />
-        </FoodsContext.Provider>
-      </NavigationContainer>,
+      <FoodsContext.Provider value={{ foods: [] }}>
+        <FoodsContainer />
+      </FoodsContext.Provider>,
     );
 
     expect(queryByText(name1)).toBeNull();
@@ -42,11 +36,9 @@ describe('FoodsContainer', () => {
 
   it('renders ListTitleComponent when provided', () => {
     const { getByText } = render(
-      <NavigationContainer>
-        <FoodsContext.Provider value={{ foods: MOCK_FOODS }}>
-          <FoodsContainer ListTitleComponent={<Text>Food List</Text>} />
-        </FoodsContext.Provider>
-      </NavigationContainer>,
+      <FoodsContext.Provider value={{ foods: MOCK_FOODS }}>
+        <FoodsContainer ListTitleComponent={<Text>Food List</Text>} />
+      </FoodsContext.Provider>,
     );
 
     expect(getByText('Food List')).toBeTruthy();
@@ -56,11 +48,9 @@ describe('FoodsContainer', () => {
     const slotProps: Partial<FoodsListProps> = { horizontal: true };
 
     const { getByTestId } = render(
-      <NavigationContainer>
-        <FoodsContext.Provider value={{ foods: MOCK_FOODS }}>
-          <FoodsContainer slotProps={{ list: slotProps }} />
-        </FoodsContext.Provider>
-      </NavigationContainer>,
+      <FoodsContext.Provider value={{ foods: MOCK_FOODS }}>
+        <FoodsContainer slotProps={{ list: slotProps }} />
+      </FoodsContext.Provider>,
     );
 
     expect(getByTestId('foods-list').props).toEqual(

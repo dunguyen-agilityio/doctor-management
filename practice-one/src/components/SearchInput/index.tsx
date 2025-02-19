@@ -13,9 +13,11 @@ import {
   View,
 } from 'react-native';
 
-import { COLORS, SearchIcon } from '@/constants';
+import { COLOR } from '@/constants';
 
 import { debounce } from '@/utils/debounce';
+
+import { SearchIcon } from '../icons';
 
 const SearchInput = (
   { onChangeText, ...otherProps }: TextInputProps,
@@ -36,7 +38,7 @@ const SearchInput = (
 
   const handleChangeText = useCallback(
     (value: string) => {
-      onChangeText && debounce(onChangeText, 500)(value);
+      if (onChangeText) debounce(onChangeText, 500)(value);
     },
     [onChangeText],
   );
@@ -45,7 +47,7 @@ const SearchInput = (
     <TouchableWithoutFeedback onPress={handleFocus}>
       <View style={styles.container}>
         <TextInput
-          placeholderTextColor={COLORS.SECONDARY}
+          placeholderTextColor={COLOR.SECONDARY}
           onChangeText={handleChangeText}
           style={styles.input}
           ref={inputRef}
@@ -67,7 +69,7 @@ export default memo(forwardRef(SearchInput));
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    backgroundColor: COLORS.LIGHT_PURPLE,
+    backgroundColor: COLOR.LIGHT_PURPLE,
     borderRadius: 15,
     zIndex: 1,
     marginTop: 14,
@@ -78,12 +80,12 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     paddingVertical: 14,
     paddingHorizontal: 60,
-    color: COLORS.BLACK,
+    color: COLOR.BLACK,
   },
   text: {
     fontSize: 13,
     fontWeight: '400',
-    color: COLORS.WARNING,
+    color: COLOR.WARNING,
     paddingVertical: 14,
     paddingHorizontal: 60,
   },

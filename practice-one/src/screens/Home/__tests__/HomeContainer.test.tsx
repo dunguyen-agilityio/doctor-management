@@ -1,8 +1,8 @@
-import React from 'react';
 import { Text } from 'react-native';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render, screen } from '@testing-library/react-native';
+
+import { render, screen } from '@/utils/test-utils';
 
 import { useFoods } from '@/hooks';
 
@@ -52,7 +52,7 @@ describe('HomeContainer', () => {
 
     renderWithProviders();
 
-    expect(screen.getByTestId('loading-indicator')).toBeTruthy();
+    expect(screen.getByTestId('food-skeleton')).toBeTruthy();
   });
 
   it('displays ErrorFallback component when an error occurs', () => {

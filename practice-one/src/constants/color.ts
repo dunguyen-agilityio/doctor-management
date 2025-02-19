@@ -1,4 +1,4 @@
-export const COLORS = {
+export const COLOR = {
   PRIMARY: '#91C788',
   WHITE: '#fff',
   GRAY: '#5C5C5C',
@@ -18,19 +18,3 @@ export const COLORS = {
   DARK_GREEN: '#1CC379',
   SECONDARY: '#FF8473',
 };
-
-export type COLOR =
-  | 'WHITE'
-  | 'LIGHT_GRAY'
-  | 'GRAY'
-  | 'ORANGE'
-  | 'GREEN'
-  | 'BLACK'
-  | 'YELLOW'
-  | 'RED'
-  | 'PURPLE'
-  | 'DEFAULT'
-  | 'LIGHT_GREEN'
-  | 'LIGHT_BLACK'
-  | 'PRIMARY'
-  | 'SECONDARY';

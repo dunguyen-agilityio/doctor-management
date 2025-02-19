@@ -63,7 +63,7 @@ exports[`SearchInput Component matches snapshot 1`] = `
     <Image
       source={
         {
-          "testUri": "../../../src/assets/icons/iconsearch.png",
+          "testUri": "../../../assets/icons/iconsearch.png",
         }
       }
     />

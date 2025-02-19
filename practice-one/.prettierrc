@@ -7,9 +7,8 @@
   "endOfLine": "auto",
   "arrowParens": "always",
   "importOrder": [
-    "^react",
-    "^react-native",
-    "(^@react-navigation/(.*)$|<THIRD_PARTY_MODULES>|expo-font|expo-splash-screen|@tanstack/react-query)",
+    "(^react$|^react-native$)",
+    "(<THIRD_PARTY_MODULES>|expo-font|expo-splash-screen|@react-navigation/native|@tanstack/react-query)",
     "^@/navigation",
     "^@/screens",
     "^@/components",
@@ -19,10 +18,10 @@
     "^@/utils",
     "^@/hooks",
     "^@/mocks",
+    "^@/contexts",
     "^[./]"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "importOrderBuiltinModulesToTop": true,
   "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

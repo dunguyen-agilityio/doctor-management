@@ -1,6 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
-
 import FoodCard from '@/components/FoodCard';
+
+import { fireEvent, render, screen } from '@/utils/test-utils';
 
 import { MOCK_FOODS } from '@/mocks';
 

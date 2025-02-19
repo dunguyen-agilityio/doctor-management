@@ -1,13 +1,11 @@
-import React, { useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { TextInput } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
 
-import { Loading, SearchInput } from '@/components';
-import ErrorFallback from '@/components/ErrorFallback';
+import { ErrorFallback, Loading, SearchInput } from '@/components';
 
-import { useFavoriteFoods } from '@/hooks';
-import { useSearchQuery } from '@/hooks';
+import { useFavoriteFoods, useSearchQuery } from '@/hooks';
 
 const FavoriteContainer = ({
   children,

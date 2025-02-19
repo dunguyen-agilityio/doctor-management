@@ -1,9 +1,8 @@
-import React from 'react';
 import { Text } from 'react-native';
 
-import { render } from '@testing-library/react-native';
+import { COLOR } from '@/constants';
 
-import { COLORS } from '@/constants';
+import { render } from '@/utils/test-utils';
 
 import { MOCK_FOODS } from '@/mocks';
 
@@ -11,6 +10,7 @@ import FoodsList from './index';
 
 // Mock the useNavigation hook
 jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
   useNavigation: () => ({
     navigate: jest.fn(),
   }),
@@ -46,7 +46,7 @@ describe('FoodsList Component', () => {
     const container = getByTestId('foods-list-container');
     expect(container.props.style).toEqual({
       flex: 1,
-      backgroundColor: COLORS.WHITE,
+      backgroundColor: COLOR.WHITE,
       paddingHorizontal: 20,
       paddingBottom: 20,
       gap: 18,

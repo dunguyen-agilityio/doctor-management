@@ -3,8 +3,6 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
-import FoodsProvider from '@/contexts/foods/provider';
-
 import { RootScreenNavigationProps } from '@/navigation';
 
 import {
@@ -15,9 +13,11 @@ import {
   SearchInput,
 } from '@/components';
 
-import { CATEGORIES, COLORS, ROUTES } from '@/constants';
+import { CATEGORIES, COLOR, ROUTES } from '@/constants';
 
 import { MOCK_ARTICLES } from '@/mocks';
+
+import { FoodsProvider } from '@/contexts/foods';
 
 import HomeContainer from './HomeContainer';
 
@@ -52,7 +52,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLOR.WHITE,
   },
   list: { marginTop: 15 },
   title: {

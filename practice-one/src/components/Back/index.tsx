@@ -19,7 +19,7 @@ const Back = ({
   return (
     <TouchableOpacity onPress={onPress} testID="back-button">
       <Image
-        source={require('@/assets/icons/back.png')}
+        source={require('@assets/icons/back.png')}
         style={[styles.icon, { top, left, right, bottom }]}
       />
     </TouchableOpacity>

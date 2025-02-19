@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
+import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { RootNavigator } from '@/navigation';
 
-import { COLORS, Logo, SplashImage } from '@/constants';
+import { COLOR } from '@/constants';
+
+import { Logo, SplashImage } from './components/icons';
 
 const queryClient = new QueryClient();
 
@@ -61,12 +63,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLOR.WHITE,
   },
   title: {
     fontWeight: '800',
     fontSize: 32,
-    color: COLORS.PRIMARY,
+    color: COLOR.PRIMARY,
     marginTop: 20,
     textTransform: 'uppercase',
     textAlign: 'center',

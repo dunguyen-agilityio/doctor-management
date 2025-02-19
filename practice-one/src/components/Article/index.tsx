@@ -1,28 +1,20 @@
+import { LinearGradient } from 'expo-linear-gradient';
+
 import { memo } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { LinearGradient } from 'expo-linear-gradient';
-
-import { ArrowICon, COLORS } from '@/constants';
+import { COLOR } from '@/constants';
 
 import { IArticle } from '@/types';
 
-type ARTICLE_TYPES = 'green' | 'secondary';
-
-export interface ArticleProps {
-  title: string;
-  image: string;
-  type?: ARTICLE_TYPES;
-}
+import { ArrowICon } from '../icons';
 
 const buttonColor = {
-  green: COLORS.GREEN,
-  secondary: COLORS.SECONDARY,
+  green: COLOR.GREEN,
+  secondary: COLOR.SECONDARY,
 };
 
-const Article = (props: IArticle) => {
-  const { image, color, title, backgroundColor } = props;
-
+const Article = ({ image, color, title, backgroundColor }: IArticle) => {
   return (
     <LinearGradient
       colors={backgroundColor}
@@ -72,7 +64,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginTop: 4,
     fontFamily: 'Signika',
-    color: COLORS.LIGHT_BLACK,
+    color: COLOR.LIGHT_BLACK,
   },
   container: {
     height: 169,
@@ -86,7 +78,7 @@ const styles = StyleSheet.create({
   },
   info: {
     maxWidth: '60%',
-    color: COLORS.LIGHT_BLACK,
+    color: COLOR.LIGHT_BLACK,
     padding: 32,
   },
   button: {

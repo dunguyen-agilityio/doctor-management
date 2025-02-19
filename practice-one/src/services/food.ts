@@ -72,16 +72,6 @@ export const getFoodById = async (id: string): Promise<IFood> => {
   return { ...rest, favorite: !!favoriteId, favoriteId };
 };
 
-export const updateFood = async (food: IFood) => {
-  const { id } = food;
-
-  const newFood = await apiClient.put<IFood>(`${API_ENTITIES.FOODS}/${id}`, {
-    body: food,
-  });
-
-  return newFood;
-};
-
 export const addFoodToFavorite = async (id: string) => {
   const newFavorite = await apiClient.post<IFood>(
     `${API_ENTITIES.FAVORITES}?_expand=food`,

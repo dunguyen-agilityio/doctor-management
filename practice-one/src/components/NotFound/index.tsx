@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { COLORS, NotFoundImage } from '@/constants';
+import { COLOR } from '@/constants';
+
+import { NotFoundImage } from '../icons';
 
 const NO_FOODS_FOUND_DESCRIPTION = `You don't save any food. Go ahead, search\nand save your favorite food`;
 const NO_FOODS_FOUND_TITLE = 'No Foods Found';
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 13,
-    color: COLORS.GRAY,
+    color: COLOR.GRAY,
     textAlign: 'center',
   },
 });

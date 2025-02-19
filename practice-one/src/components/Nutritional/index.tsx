@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { COLORS } from '@/constants';
+import { COLOR } from '@/constants';
 
 import { TNutritional } from '@/types';
 
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     textTransform: 'capitalize',
-    color: COLORS.PRIMARY,
+    color: COLOR.PRIMARY,
   },
-  value: { fontSize: 24, color: COLORS.SECONDARY },
+  value: { fontSize: 24, color: COLOR.SECONDARY },
 });

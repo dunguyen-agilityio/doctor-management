@@ -1,5 +1,3 @@
-import { API_ENDPOINT } from '@/constants';
-
 import { apiClient } from '../http-client';
 
 global.fetch = jest.fn();

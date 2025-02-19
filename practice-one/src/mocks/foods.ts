@@ -38,7 +38,7 @@ export const MOCK_FOODS: IFood[] = [
     imgUrl:
       'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a2.png?alt=media&token=abe65f60-e23e-48d9-a2c8-13c9e3ccb921',
     desc: "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
-    favorite: 0,
+    favorite: false,
   },
   {
     id: '1',
@@ -77,7 +77,7 @@ export const MOCK_FOODS: IFood[] = [
     ],
     imgUrl:
       'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a2.png?alt=media&token=abe65f60-e23e-48d9-a2c8-13c9e3ccb921',
-    favorite: 1,
+    favorite: true,
   },
   {
     id: '4',
@@ -116,7 +116,7 @@ export const MOCK_FOODS: IFood[] = [
     ],
     imgUrl:
       'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a5.png?alt=media&token=af718429-aabf-4329-91e5-439cff65e187',
-    favorite: 0,
+    favorite: false,
   },
   {
     id: '5',
@@ -155,7 +155,7 @@ export const MOCK_FOODS: IFood[] = [
     ],
     imgUrl:
       'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a6.png?alt=media&token=e16ecdc8-e597-464d-90ce-0c6b64e0c5a8',
-    favorite: 1,
+    favorite: true,
   },
   {
     id: '6',
@@ -169,7 +169,7 @@ export const MOCK_FOODS: IFood[] = [
       fat: 100,
       protein: 100,
     },
-    favorite: 0,
+    favorite: false,
     category: '2',
     ingredients: [
       {
@@ -233,7 +233,7 @@ export const MOCK_FOODS: IFood[] = [
     ],
     imgUrl:
       'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a6.png?alt=media&token=e16ecdc8-e597-464d-90ce-0c6b64e0c5a8',
-    favorite: 0,
+    favorite: false,
   },
   {
     id: '8',
@@ -272,7 +272,7 @@ export const MOCK_FOODS: IFood[] = [
     ],
     imgUrl:
       'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a2.png?alt=media&token=abe65f60-e23e-48d9-a2c8-13c9e3ccb921',
-    favorite: 0,
+    favorite: false,
   },
   {
     id: '9',
@@ -311,6 +311,6 @@ export const MOCK_FOODS: IFood[] = [
     ],
     imgUrl:
       'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a2.png?alt=media&token=abe65f60-e23e-48d9-a2c8-13c9e3ccb921',
-    favorite: 0,
+    favorite: false,
   },
 ];

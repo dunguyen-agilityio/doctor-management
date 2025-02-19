@@ -1,10 +1,8 @@
-import React from 'react';
 import { Text } from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render, screen } from '@testing-library/react-native';
+
+import { render, screen } from '@/utils/test-utils';
 
 import { useFoods } from '@/hooks';
 
@@ -35,13 +33,11 @@ describe('SearchContainer', () => {
 
   const renderWithProviders = () =>
     render(
-      <NavigationContainer>
-        <QueryClientProvider client={mockQueryClient}>
-          <SearchContainer>
-            <Text testID="child-content">Content Loaded</Text>
-          </SearchContainer>
-        </QueryClientProvider>
-      </NavigationContainer>,
+      <QueryClientProvider client={mockQueryClient}>
+        <SearchContainer>
+          <Text testID="child-content">Content Loaded</Text>
+        </SearchContainer>
+      </QueryClientProvider>,
     );
 
   it('renders children when there is no error or loading state', () => {

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { FoodImage, Nutritional, Toggle } from '@/components';
 
-import { COLORS } from '@/constants';
+import { COLOR } from '@/constants';
 
 import { IFood } from '@/types';
 
@@ -118,9 +118,9 @@ const styles = StyleSheet.create({
   title: { fontSize: 20, fontWeight: '600' },
   description: {
     fontSize: 15,
-    color: COLORS.LIGHT_1_GRAY,
+    color: COLOR.LIGHT_1_GRAY,
   },
-  readMore: { color: COLORS.PRIMARY },
+  readMore: { color: COLOR.PRIMARY },
   ingredientItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -130,20 +130,20 @@ const styles = StyleSheet.create({
   ingredientText: {
     fontSize: 15,
     fontWeight: '600',
-    color: COLORS.LIGHT_1_GRAY,
+    color: COLOR.LIGHT_1_GRAY,
   },
   session: {
     gap: 4,
   },
   seeAll: {
-    color: COLORS.PRIMARY,
+    color: COLOR.PRIMARY,
     fontSize: 11,
     fontWeight: '500',
   },
   bullet: {
     fontSize: 20,
     marginRight: 8,
-    color: COLORS.LIGHT_1_GRAY,
+    color: COLOR.LIGHT_1_GRAY,
   },
   listBullet: {
     flexDirection: 'row',

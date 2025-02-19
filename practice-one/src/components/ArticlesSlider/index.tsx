@@ -1,10 +1,11 @@
+import { ScrollView } from 'react-native-gesture-handler';
+
 import { memo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 
 import Article from '@/components/Article';
 
-import { COLORS } from '@/constants';
+import { COLOR } from '@/constants';
 
 import { IArticle } from '@/types';
 
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   activeItem: {
-    backgroundColor: COLORS.SECONDARY,
+    backgroundColor: COLOR.SECONDARY,
     width: 20,
     height: 10,
   },

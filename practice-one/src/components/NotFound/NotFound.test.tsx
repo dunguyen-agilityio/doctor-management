@@ -1,9 +1,8 @@
-import React from 'react';
-import { Image, Text } from 'react-native';
+import { Image } from 'react-native';
 
-import { render } from '@testing-library/react-native';
+import { COLOR } from '@/constants';
 
-import { COLORS } from '@/constants';
+import { render } from '@/utils/test-utils';
 
 import NotFound from './index';
 
@@ -49,7 +48,7 @@ describe('NotFound Component', () => {
     const description = getByText(defaultDescription);
     expect(description.props.style).toEqual({
       fontSize: 13,
-      color: COLORS.GRAY,
+      color: COLOR.GRAY,
       textAlign: 'center',
     });
   });
