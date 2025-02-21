@@ -2,11 +2,16 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { View } from 'react-native';
 
-import Text from './index';
+import { COLOR } from '@/constants';
+
+import Text, { TextColor } from './index';
 
 const meta = {
   title: 'Text',
   component: Text,
+  argTypes: {
+    color: { control: 'select', options: Object.keys(TextColor) },
+  },
   args: { children: 'Hello World!' },
   decorators: [
     (Story) => (
@@ -48,3 +53,5 @@ export const SubTitle2: Story = { args: { variant: 'subtitle2' } };
 export const SubTitle3: Story = { args: { variant: 'subtitle3' } };
 
 export const SubTitle4: Story = { args: { variant: 'subtitle4' } };
+
+export const WithColor: Story = { args: { color: COLOR.RED } };

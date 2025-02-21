@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   Text as RNText,
   TextProps as RNTextProps,
@@ -7,29 +8,69 @@ import {
 
 import { COLOR } from '@/constants';
 
+import { isInEnum } from '@/utils/enum';
+
+export enum TextColor {
+  PRIMARY = 'PRIMARY',
+  SECONDARY = 'SECONDARY',
+  TERTIARY = 'TERTIARY',
+  FOURTH = 'FOURTH',
+}
+
+const getTextColor = (color: keyof typeof TextColor) => {
+  switch (color) {
+    case TextColor.PRIMARY:
+      return COLOR.PRIMARY;
+
+    case TextColor.SECONDARY:
+      return COLOR.SECONDARY;
+
+    case TextColor.TERTIARY:
+      return COLOR.BLACK_BEAN;
+
+    case TextColor.FOURTH:
+      return COLOR.DARK_GREEN;
+  }
+};
+
 interface TextProps extends RNTextProps {
   variant?: keyof typeof styles;
-  color?: TextStyle['color'];
+  color?: TextColor | string;
   textTransform?: TextStyle['textTransform'];
 }
 
 const Text = ({
   variant = 'base',
-  color = COLOR.BLACK,
+  color,
   textTransform,
   style,
   ...props
 }: TextProps) => {
-  return (
-    <RNText
-      style={[{ color, textTransform }, styles[variant], style]}
-      {...props}
-    />
-  );
+  const customStyle = useMemo(() => {
+    const textColor = color
+      ? isInEnum(TextColor, color)
+        ? getTextColor(color)
+        : color
+      : COLOR.PRIMARY;
+
+    const compose = {
+      ...styles.base,
+      ...styles[variant],
+      color: textColor,
+      textTransform,
+    };
+
+    return compose;
+  }, [color, textTransform, variant]);
+
+  return <RNText style={[customStyle, style]} {...props} />;
 };
 
 const styles = StyleSheet.create({
-  base: { fontWeight: '400', fontFamily: 'Manrope', letterSpacing: -0.24 },
+  base: {
+    fontWeight: '400',
+    fontFamily: 'Manrope',
+  },
   main1: {
     fontWeight: '800',
     fontSize: 32,
@@ -39,7 +80,6 @@ const styles = StyleSheet.create({
   main2: {
     fontWeight: '800',
     fontSize: 23,
-    color: COLOR.GRAY,
     lineHeight: 32,
   },
   title1: {
@@ -72,7 +112,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Signika',
     fontSize: 17,
     fontWeight: '600',
-    color: COLOR.BLACK_BEAN,
+    lineHeight: 24,
   },
   subtitle5: {
     fontFamily: 'Signika',

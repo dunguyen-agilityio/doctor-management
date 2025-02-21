@@ -35,7 +35,7 @@ const FoodInfo = ({
       <View style={styles.details}>
         <View style={styles.session}>
           <Text variant="subtitle1">Details</Text>
-          <Text variant="body7" color={COLOR.LIGHT_1_GRAY}>
+          <Text variant="body7" color={COLOR.GRAY}>
             {desc.length > 150 ? (
               <Toggle>
                 {({ isToggle, toggle }) => (

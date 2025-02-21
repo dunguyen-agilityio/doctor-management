@@ -17,7 +17,11 @@ const Nutritional = ({ nutritional }: { nutritional: TNutritional }) => {
     <View style={styles.container}>
       {nutritionalList.map(({ title, value }) => (
         <View key={title}>
-          <Text variant="body6" color={COLOR.PRIMARY}>
+          <Text
+            variant="body6"
+            color={COLOR.PRIMARY}
+            textTransform="capitalize"
+          >
             {title}
           </Text>
           <Text variant="body4" color={COLOR.SECONDARY}>{`${value}g`}</Text>

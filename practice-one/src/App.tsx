@@ -37,7 +37,7 @@ const App = () => {
       <View style={styles.splash}>
         <SplashImage />
         <Logo />
-        <Text style={styles.title} variant="main" color={COLOR.PRIMARY}>
+        <Text style={styles.title} variant="main1" color={COLOR.PRIMARY}>
           Laomica
         </Text>
         <Text variant="body3" style={styles.description}>

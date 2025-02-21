@@ -30,7 +30,7 @@ exports[`FavoriteScreen match snapshot 1`] = `
     onStartShouldSetResponder={[Function]}
     style={
       {
-        "backgroundColor": "#FFF3F1",
+        "backgroundColor": "#fff3f1",
         "borderRadius": 15,
         "marginHorizontal": 16,
         "marginTop": 14,
@@ -42,7 +42,7 @@ exports[`FavoriteScreen match snapshot 1`] = `
     <TextInput
       onChangeText={[Function]}
       placeholder="Search for healthy food"
-      placeholderTextColor="#FF8473"
+      placeholderTextColor="#ff8473"
       style={
         {
           "color": "#000000",
