@@ -26,7 +26,14 @@ const HomeScreen = () => {
   const { navigate } =
     useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
 
-  const handleNavigateToSearch = useCallback(() => {
+  const handleFilter = useCallback(
+    (ids: string[]) => {
+      navigate(ROUTES.SEARCH, { categories: ids });
+    },
+    [navigate],
+  );
+
+  const handleSearch = useCallback(() => {
     navigate(ROUTES.SEARCH);
   }, [navigate]);
 
@@ -34,8 +41,8 @@ const HomeScreen = () => {
     <FoodsProvider>
       <View style={styles.container}>
         <Header />
-        <SearchInput onFocus={handleNavigateToSearch} />
-        <Categories onSelect={handleNavigateToSearch} categories={CATEGORIES} />
+        <SearchInput onFocus={handleSearch} />
+        <Categories onChange={handleFilter} categories={CATEGORIES} />
         <ArticlesSlider articles={MOCK_ARTICLES} />
         <HomeContainer>
           <FoodsContainer
