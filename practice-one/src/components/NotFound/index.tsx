@@ -26,9 +26,7 @@ const NotFound = ({
         </Text>
       </View>
 
-      <Text variant="body1" color={COLOR.GRAY}>
-        {description}
-      </Text>
+      <Text variant="body1">{description}</Text>
     </View>
   );
 };
