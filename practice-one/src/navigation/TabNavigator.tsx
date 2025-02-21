@@ -8,10 +8,12 @@ import { FavoriteMenu, HomeMenu, SearchMenu } from '@/components/icons';
 
 import { ROUTES } from '@/constants';
 
+import { FoodOptions } from '@/services';
+
 export type TabParamsList = {
   [ROUTES.FAVORITE]?: { favorite: boolean };
   [ROUTES.HOME]: undefined;
-  [ROUTES.SEARCH]: undefined;
+  [ROUTES.SEARCH]?: FoodOptions;
 };
 
 const TabNavigator = () => {

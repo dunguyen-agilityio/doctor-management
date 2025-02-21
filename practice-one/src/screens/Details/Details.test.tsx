@@ -1,5 +1,3 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 import Details from '@/screens/Details';
 
 import { getFoodById } from '@/services/food';
@@ -22,34 +20,13 @@ jest.mock('@react-navigation/native', () => ({
 }));
 
 describe('Details Screen', () => {
-  let queryClient: QueryClient;
-
-  const renderWithProviders = () => {
-    return render(
-      <QueryClientProvider client={queryClient}>
-        <Details />
-      </QueryClientProvider>,
-    );
+  const renderComponent = () => {
+    return render(<Details />);
   };
-
-  beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          gcTime: 0, // Prevents cache from persisting between tests
-          retry: false, // Ensures predictable API failures
-        },
-      },
-    });
-  });
-
-  afterEach(() => {
-    queryClient.clear(); // Clears cache after each test
-  });
 
   it('renders loading state initially', () => {
     (getFoodById as jest.Mock).mockImplementation(() => new Promise(() => {}));
-    renderWithProviders();
+    renderComponent();
     expect(screen.getByTestId('loading-indicator')).toBeTruthy();
   });
 
@@ -66,7 +43,7 @@ describe('Details Screen', () => {
       favorite: 1,
     });
 
-    renderWithProviders();
+    renderComponent();
 
     await waitFor(() => expect(screen.getByText('Pizza')).toBeTruthy());
     expect(screen.getByText('Delicious pizza with cheese')).toBeTruthy();
@@ -76,7 +53,7 @@ describe('Details Screen', () => {
   it('shows error message on API failure', async () => {
     (getFoodById as jest.Mock).mockRejectedValue(new Error('Network error'));
 
-    renderWithProviders();
+    renderComponent();
 
     await waitFor(() =>
       expect(screen.getByText(/Something went wrong/i)).toBeTruthy(),
@@ -96,7 +73,7 @@ describe('Details Screen', () => {
       favorite: 1,
     });
 
-    renderWithProviders();
+    renderComponent();
     await waitFor(() => expect(screen.getByText('Pizza')).toBeTruthy());
 
     fireEvent.press(screen.getByTestId('back-button'));
