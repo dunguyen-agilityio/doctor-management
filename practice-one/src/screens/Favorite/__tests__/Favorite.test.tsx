@@ -1,5 +1,4 @@
 import { useFocusEffect } from '@react-navigation/native';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import FavoriteScreen from '@/screens/Favorite';
 
@@ -11,33 +10,20 @@ jest.mock('@react-navigation/native', () => ({
 }));
 
 describe('FavoriteScreen', () => {
-  let queryClient: QueryClient;
-
-  const renderWithProviders = () =>
-    render(
-      <QueryClientProvider client={queryClient}>
-        <FavoriteScreen />
-      </QueryClientProvider>,
-    );
-
-  beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: { queries: { retry: false } },
-    });
-  });
+  const renderComponent = () => render(<FavoriteScreen />);
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   it('match snapshot', () => {
-    const tree = renderWithProviders().toJSON();
+    const tree = renderComponent().toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it('calls useFocusEffect when screen is focused', () => {
-    renderWithProviders();
+    renderComponent();
 
     expect(useFocusEffect).toHaveBeenCalled();
   });

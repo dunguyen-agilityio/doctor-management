@@ -1,18 +1,43 @@
+import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
+
+import {
+  RouteProp,
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
+
+import { RootScreenNavigationProps, TabParamsList } from '@/navigation';
 
 import { FoodsContainer, Header, NotFound } from '@/components';
 import { EmptyImage } from '@/components/icons';
 
-import { COLOR } from '@/constants';
+import { COLOR, ROUTES } from '@/constants';
 
 import { FiltersProvider, FoodsProvider, SearchProvider } from '@/contexts';
 
 import SearchContainer from './SearchContainer';
 
+type SearchRoute = RouteProp<TabParamsList, typeof ROUTES.SEARCH>;
+
 const SearchScreen = () => {
+  const route = useRoute<SearchRoute>();
+
+  const { setParams } =
+    useNavigation<RootScreenNavigationProps<typeof ROUTES.SEARCH>>();
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        setParams({ categories: [] });
+      };
+    }, [setParams]),
+  );
+
   return (
-    <SearchProvider>
-      <FiltersProvider>
+    <SearchProvider defaultValue={route.params?.query}>
+      <FiltersProvider defaultValue={route.params?.categories}>
         <FoodsProvider>
           <View style={styles.container}>
             <Header />
@@ -42,7 +67,6 @@ export default SearchScreen;
 
 const styles = StyleSheet.create({
   container: {
-    // paddingTop: 62,
     flex: 1,
     backgroundColor: COLOR.WHITE,
   },

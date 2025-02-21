@@ -1,7 +1,5 @@
 import { Text } from 'react-native';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 import { render, screen } from '@/utils/test-utils';
 
 import { useFoods } from '@/hooks';
@@ -13,36 +11,21 @@ jest.mock('@/hooks', () => ({
 }));
 
 describe('HomeContainer', () => {
-  let mockQueryClient: QueryClient;
-
-  beforeEach(() => {
-    mockQueryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false,
-          gcTime: 0,
-        },
-      },
-    });
-  });
-
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  const renderWithProviders = () =>
+  const setup = () =>
     render(
-      <QueryClientProvider client={mockQueryClient}>
-        <HomeContainer>
-          <Text testID="child-content">Content Loaded</Text>
-        </HomeContainer>
-      </QueryClientProvider>,
+      <HomeContainer>
+        <Text testID="child-content">Content Loaded</Text>
+      </HomeContainer>,
     );
 
   it('renders children when there is no error or loading state', () => {
     (useFoods as jest.Mock).mockReturnValue({ isLoading: false, error: null });
 
-    renderWithProviders();
+    setup();
 
     expect(screen.getByTestId('child-content')).toBeTruthy();
   });
@@ -50,7 +33,7 @@ describe('HomeContainer', () => {
   it('shows Loading component when loading', () => {
     (useFoods as jest.Mock).mockReturnValue({ isLoading: true, error: null });
 
-    renderWithProviders();
+    setup();
 
     expect(screen.getByTestId('food-skeleton')).toBeTruthy();
   });
@@ -61,7 +44,7 @@ describe('HomeContainer', () => {
       error: new Error('Network Error'),
     });
 
-    renderWithProviders();
+    setup();
 
     expect(screen.getByTestId('error-fallback')).toBeTruthy();
   });

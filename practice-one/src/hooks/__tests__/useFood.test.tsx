@@ -2,8 +2,6 @@ import { jest } from '@jest/globals';
 
 import { Text } from 'react-native';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 import { FoodOptions, getFoods } from '@/services';
 
 import { render, screen, waitFor } from '@/utils/test-utils';
@@ -17,8 +15,6 @@ import { useFoods } from '../useFood';
 jest.mock('@/services', () => ({
   getFoods: jest.fn(),
 }));
-
-const queryClient = new QueryClient();
 
 const TestComponent = ({ options }: { options: FoodOptions }) => {
   const { data, isLoading, isError } = useFoods(options);
@@ -37,9 +33,7 @@ describe('useFoods Hook', () => {
 
     render(
       <FoodsDispatchContext.Provider value={dispatch}>
-        <QueryClientProvider client={queryClient}>
-          <TestComponent options={options} />
-        </QueryClientProvider>
+        <TestComponent options={options} />
       </FoodsDispatchContext.Provider>,
     );
 

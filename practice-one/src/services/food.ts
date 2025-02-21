@@ -1,4 +1,4 @@
-import { API_ENTITIES } from '@/constants';
+import { API_ENTITIES, QUERY_KEYS } from '@/constants';
 
 import { IFood } from '@/types';
 
@@ -12,8 +12,10 @@ export interface FoodOptions {
 }
 
 export const getFoods = async (options: FoodOptions = {}): Promise<IFood[]> => {
-  const { categories = [], query, favorite } = options;
+  const { categories = [], query, queryKey = QUERY_KEYS.FOOD } = options;
   const searchParams = new URLSearchParams();
+
+  let url = API_ENTITIES.FOODS;
 
   if (query) {
     searchParams.set('name_like', query);
@@ -23,41 +25,28 @@ export const getFoods = async (options: FoodOptions = {}): Promise<IFood[]> => {
     searchParams.append('category', item.toString());
   });
 
-  if (favorite !== undefined) {
-    searchParams.set('favorite', favorite + '');
+  const isFavorite = queryKey === QUERY_KEYS.FOOD_FAVORITE;
+
+  if (isFavorite) {
+    url = API_ENTITIES.FAVORITES;
+    searchParams.set('_expand', 'food');
   }
 
-  const response = await apiClient.get<IFood[]>(
-    `${API_ENTITIES.FOODS}?${searchParams.toString()}`,
-  );
+  const response = await apiClient.get(`${url}?${searchParams.toString()}`);
 
-  return response;
+  if (isFavorite) {
+    const favoriteFood = response as FavoriteFood[];
+    const foods = favoriteFood.map(
+      ({ food, id }) => ({ ...food, favorite: true, favoriteId: id }) as IFood,
+    );
+
+    return foods;
+  }
+
+  return response as IFood[];
 };
 
 type FavoriteFood = { id: string; food: IFood };
-
-export const getFavoriteFoods = async (
-  options: FoodOptions = {},
-): Promise<IFood[]> => {
-  const { query } = options;
-  const searchParams = new URLSearchParams();
-
-  searchParams.set('_expand', 'food');
-
-  if (query) {
-    searchParams.set('name_like', query);
-  }
-
-  const response = await apiClient.get<FavoriteFood[]>(
-    `${API_ENTITIES.FAVORITES}?${searchParams.toString()}`,
-  );
-
-  const foods = response.map(
-    ({ food, id }) => ({ ...food, favorite: true, favoriteId: id }) as IFood,
-  );
-
-  return foods;
-};
 
 type FoodWithFavoritesResponse = IFood & { favorites: [{ id: string }] };
 

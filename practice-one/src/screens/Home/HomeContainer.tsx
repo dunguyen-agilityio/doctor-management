@@ -8,9 +8,7 @@ import { useFoods } from '@/hooks';
 const HomeContainer = ({
   children,
 }: React.PropsWithChildren<{ fallback?: React.ReactNode }>) => {
-  const { error, isLoading } = useFoods({
-    queryKey: 'foods',
-  });
+  const { error, isLoading } = useFoods();
 
   if (error) return <ErrorFallback error={error} />;
 
