@@ -1,5 +1,3 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 import HomeScreen from '@/screens/Home';
 
 import { ROUTES } from '@/constants';
@@ -16,33 +14,19 @@ jest.mock('@react-navigation/native', () => ({
 }));
 
 describe('HomeScreen', () => {
-  let queryClient: QueryClient;
+  const renderScreen = () => render(<HomeScreen />);
 
-  const renderWithProviders = () =>
-    render(
-      <QueryClientProvider client={queryClient}>
-        <HomeScreen />
-      </QueryClientProvider>,
-    );
-
-  beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: { queries: { retry: false } },
-    });
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+  // afterEach(() => {
+  //   jest.clearAllMocks();
+  // });
 
   it('match snapshot', () => {
-    const tree = renderWithProviders().toJSON();
-
+    const tree = renderScreen().toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('navigates to the Search screen when SearchInput is focused', () => {
-    const { getByTestId } = renderWithProviders();
+    const { getByTestId } = renderScreen();
 
     fireEvent(getByTestId('search-input'), 'focus');
 

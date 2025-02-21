@@ -14,14 +14,14 @@ describe('Categories Component', () => {
   });
 
   it('calls onSelect when a category is pressed', () => {
-    const mockOnSelect = jest.fn();
+    const mockOnChange = jest.fn();
     const { name, id } = CATEGORIES[0];
     const { getByText } = render(
-      <Categories categories={CATEGORIES} onSelect={mockOnSelect} />,
+      <Categories categories={CATEGORIES} onChange={mockOnChange} />,
     );
 
     fireEvent.press(getByText(name));
-    expect(mockOnSelect).toHaveBeenCalledWith(id);
+    expect(mockOnChange).toHaveBeenCalledWith([id]);
   });
 
   it('applies active styles when a category is selected', () => {

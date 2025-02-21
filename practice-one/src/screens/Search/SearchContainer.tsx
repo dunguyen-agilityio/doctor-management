@@ -32,19 +32,6 @@ const SearchContainer = ({
     }, []),
   );
 
-  const handlePressTag = useCallback(
-    (id: string) => {
-      setFilters((prev) => {
-        const newTags = prev.includes(id)
-          ? prev.filter((item) => item !== id)
-          : [...prev, id];
-
-        return newTags;
-      });
-    },
-    [setFilters],
-  );
-
   if (error) return <ErrorFallback error={error} />;
 
   return (
@@ -56,7 +43,7 @@ const SearchContainer = ({
       />
       <Categories
         categories={CATEGORIES}
-        onSelect={handlePressTag}
+        onChange={setFilters}
         values={categories}
       />
       {children}

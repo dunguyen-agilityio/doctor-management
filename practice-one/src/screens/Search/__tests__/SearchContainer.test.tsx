@@ -1,7 +1,5 @@
 import { Text } from 'react-native';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 import { render, screen } from '@/utils/test-utils';
 
 import { useFoods } from '@/hooks';
@@ -14,30 +12,15 @@ jest.mock('@/hooks', () => ({
 }));
 
 describe('SearchContainer', () => {
-  let mockQueryClient: QueryClient;
-
-  beforeEach(() => {
-    mockQueryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false,
-          gcTime: 0,
-        },
-      },
-    });
-  });
-
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   const renderWithProviders = () =>
     render(
-      <QueryClientProvider client={mockQueryClient}>
-        <SearchContainer>
-          <Text testID="child-content">Content Loaded</Text>
-        </SearchContainer>
-      </QueryClientProvider>,
+      <SearchContainer>
+        <Text testID="child-content">Content Loaded</Text>
+      </SearchContainer>,
     );
 
   it('renders children when there is no error or loading state', () => {
