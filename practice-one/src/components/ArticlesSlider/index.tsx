@@ -1,7 +1,11 @@
-import { ScrollView } from 'react-native-gesture-handler';
+import { useSharedValue } from 'react-native-reanimated';
+import Carousel, {
+  CarouselRenderItem,
+  Pagination,
+} from 'react-native-reanimated-carousel';
 
-import { memo } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { memo, useCallback } from 'react';
+import { Dimensions, StyleSheet, View } from 'react-native';
 
 import Article from '@/components/Article';
 
@@ -9,52 +13,85 @@ import { COLOR } from '@/constants';
 
 import { IArticle } from '@/types';
 
-const Slider = ({ articles }: { articles: IArticle[] }) => {
+const window = Dimensions.get('window');
+
+const modeConfig = {
+  parallaxScrollingScale: 1,
+  parallaxScrollingOffset: 50,
+};
+
+const ArticleSlider = ({ articles }: { articles: IArticle[] }) => {
+  const progress = useSharedValue<number>(0);
+
+  const renderItem: CarouselRenderItem<IArticle> = useCallback(
+    ({ item, index }) => (
+      <View
+        style={{
+          paddingLeft: 16,
+          paddingRight: index === 0 ? 16 : 0,
+        }}
+      >
+        <Article {...item} />
+      </View>
+    ),
+    [],
+  );
+
   return (
     <View style={styles.container}>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.list}>
-          {articles.map((item) => (
-            <Article key={item.id} {...item} />
-          ))}
-        </View>
-      </ScrollView>
-      <View style={styles.navigation}>
-        <Pressable style={[styles.item, styles.activeItem]} />
-        <Pressable style={[styles.item]} />
-        <Pressable style={[styles.item]} />
+      <View style={styles.carousel}>
+        <Carousel
+          data={articles}
+          loop={false}
+          pagingEnabled
+          snapEnabled
+          width={window.width}
+          style={styles.carousel}
+          mode="parallax"
+          modeConfig={modeConfig}
+          onProgressChange={progress}
+          renderItem={renderItem}
+        />
       </View>
+
+      <Pagination.Custom<{ id: string }>
+        progress={progress}
+        data={articles.map((id) => id)}
+        size={20}
+        dotStyle={styles.dot}
+        activeDotStyle={styles.activeDot}
+        containerStyle={styles.pagination}
+        horizontal
+      />
     </View>
   );
 };
 
-export default memo(Slider);
+export default memo(ArticleSlider);
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 16,
-    height: 220,
   },
-  list: { flexDirection: 'row', gap: 16, paddingHorizontal: 16 },
-  navigation: {
+  carousel: {
+    height: (20 / 100) * window.height,
+  },
+  pagination: {
     height: 20,
-    width: '100%',
+    width: 30,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     gap: 10,
+    marginTop: 23,
   },
-  item: {
+  dot: {
     height: 8,
     width: 12,
     backgroundColor: 'rgba(255, 132, 115, 0.5)',
     borderRadius: 16,
   },
-  activeItem: {
+  activeDot: {
     backgroundColor: COLOR.SECONDARY,
     width: 20,
     height: 10,

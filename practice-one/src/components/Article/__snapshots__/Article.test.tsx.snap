@@ -29,13 +29,15 @@ exports[`Article Component matches snapshot 1`] = `
   style={
     {
       "borderRadius": 32,
-      "height": 169,
+      "height": 266.8,
       "justifyContent": "space-between",
+      "minHeight": 170,
+      "minWidth": 320,
       "overflow": "hidden",
       "paddingRight": 0,
       "position": "relative",
       "resizeMode": "contain",
-      "width": 320,
+      "width": 637.5,
     }
   }
 >
@@ -43,7 +45,7 @@ exports[`Article Component matches snapshot 1`] = `
     resizeMode="contain"
     source={
       {
-        "uri": "https://s3-alpha-sig.figma.com/img/8b33/a5b6/24d2e37a7dcbf108d35e8be410c96a58?Expires=1739750400&Key-Pair-Id=A"PKAQ4GOSFWCW27IBOMQ"&Signature=avSEEtN22vSh8aq5Gzzi~bofxqRUv6YwaUlTa0ZvmTH6S-UnlgE4S3sKXqlu~YtbnlHLtmBqMsfniDWO"WRRccMEfs2zvaqOmrx6bTqBQuqMauI8qc93mWyLi0PlDjWuA2OukEGCFPxfF"~3cSSgMkCnxXpkiSUh6UvXQCHUGrb3smseU6TKWtbBp3MHkG5pCP8NKockzv0FBZQvuLgITaGQ9mFpD3Th5xHP0qpGfG6HUrDD6bSnKTLopvWrJ~8XyYweSy7yi6yiwEsT-KeC2zdXQGy5mMAGc0VuVPQeUcbmesl9SE4qGiNx7kTe59Qg41NHJ-mFj1aVEhu50Amx6m8g__",
+        "uri": "https://res.cloudinary.com/dn5vw6fjp/image/upload/v1740114016/24d2e37a7dcbf108d35e8be410c96a58_uifiia.png",
       }
     }
     style={
@@ -60,6 +62,7 @@ exports[`Article Component matches snapshot 1`] = `
   <View
     style={
       {
+        "alignItems": "flex-start",
         "color": "#330600",
         "maxWidth": "60%",
         "padding": 32,
@@ -70,21 +73,14 @@ exports[`Article Component matches snapshot 1`] = `
       style={
         [
           {
-            "color": "#000000",
-            "textTransform": undefined,
-          },
-          {
+            "color": "#27ae60",
             "fontFamily": "Signika",
             "fontSize": 10,
             "fontWeight": "600",
             "lineHeight": 14,
-            "textTransform": "uppercase",
+            "textTransform": undefined,
           },
-          [
-            {
-              "color": "#27AE60",
-            },
-          ],
+          undefined,
         ]
       }
     >
@@ -94,14 +90,12 @@ exports[`Article Component matches snapshot 1`] = `
       style={
         [
           {
-            "color": "#000000",
-            "textTransform": undefined,
-          },
-          {
             "color": "#330600",
             "fontFamily": "Signika",
             "fontSize": 17,
             "fontWeight": "600",
+            "lineHeight": 24,
+            "textTransform": undefined,
           },
           {
             "marginTop": 4,
@@ -109,7 +103,7 @@ exports[`Article Component matches snapshot 1`] = `
         ]
       }
     >
-      The pros and cons of fast food.
+      The pros and cons of vegetable
     </Text>
     <View
       accessibilityState={
@@ -142,7 +136,7 @@ exports[`Article Component matches snapshot 1`] = `
       style={
         {
           "alignItems": "center",
-          "backgroundColor": "#27AE60",
+          "backgroundColor": "#27ae60",
           "borderRadius": 8,
           "flexDirection": "row",
           "marginTop": 8,
@@ -158,13 +152,11 @@ exports[`Article Component matches snapshot 1`] = `
           [
             {
               "color": "#fff",
-              "textTransform": undefined,
-            },
-            {
               "fontFamily": "Signika",
               "fontSize": 12,
               "fontWeight": "600",
               "lineHeight": 20,
+              "textTransform": undefined,
             },
             undefined,
           ]
