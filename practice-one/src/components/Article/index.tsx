@@ -1,13 +1,19 @@
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { memo } from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import { COLOR } from '@/constants';
 
 import { IArticle } from '@/types';
 
-import Text from '../Text';
+import Text, { TextColor } from '../Text';
 import { ArrowICon } from '../icons';
 
 const buttonColor = {
@@ -37,10 +43,14 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
         }}
       />
       <View style={styles.info}>
-        <Text variant="subtitle5" style={[{ color: buttonColor[color] }]}>
+        <Text variant="subtitle5" color={buttonColor[color]}>
           Article
         </Text>
-        <Text variant="subtitle4" style={styles.title}>
+        <Text
+          variant="subtitle4"
+          style={styles.title}
+          color={TextColor.TERTIARY}
+        >
           {title}
         </Text>
         <TouchableOpacity
@@ -58,13 +68,14 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
 
 export default memo(Article);
 
+const window = Dimensions.get('window');
+
 const styles = StyleSheet.create({
-  title: {
-    marginTop: 4,
-  },
   container: {
-    height: 169,
-    width: 320,
+    height: (20 / 100) * window.height,
+    width: (85 / 100) * window.width,
+    minWidth: 320,
+    minHeight: 170,
     justifyContent: 'space-between',
     borderRadius: 32,
     resizeMode: 'contain',
@@ -72,10 +83,14 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     overflow: 'hidden',
   },
+  title: {
+    marginTop: 4,
+  },
   info: {
     maxWidth: '60%',
     color: COLOR.LIGHT_BLACK,
     padding: 32,
+    alignItems: 'flex-start',
   },
   button: {
     paddingVertical: 6,
