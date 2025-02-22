@@ -39,7 +39,7 @@ The application consists of four main screens following to this [design](<https:
 - **System Requirements:**
 
   - Node.js (>= 20.x)
-  - npm (>= 11.x)
+  - npm (>= 10.x)
   - Expo CLI (>= 7.x) → Install globally with:
 
     > ```
