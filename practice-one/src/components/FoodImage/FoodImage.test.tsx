@@ -2,12 +2,12 @@ import { COLOR } from '@/constants';
 
 import { render } from '@/utils/test-utils';
 
-import { MOCK_FOODS } from '@/mocks/foods';
+import { MOCK_FOOD_LIST } from '@/mocks/food';
 
 import FoodImage, { DEFAULT_IMAGE, FoodImageSize } from './index';
 
 describe('FoodImage Component', () => {
-  const { imgUrl, color } = MOCK_FOODS[0];
+  const { imgUrl, color } = MOCK_FOOD_LIST[0];
   const defaultProps = { imgUrl, color, type: FoodImageSize.large };
 
   it('renders correctly with given props', () => {

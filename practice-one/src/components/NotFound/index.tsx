@@ -5,13 +5,13 @@ import { COLOR } from '@/constants';
 import Text from '../Text';
 import { NotFoundImage } from '../icons';
 
-const NO_FOODS_FOUND_DESCRIPTION = `You don't save any food. Go ahead, search\nand save your favorite food`;
-const NO_FOODS_FOUND_TITLE = 'No Foods Found';
+const NO_FOOD_FOUND_DESCRIPTION = `You don't save any food. Go ahead, search\nand save your favorite food`;
+const NO_FOOD_FOUND_TITLE = 'No Food Found';
 
 const NotFound = ({
-  description = NO_FOODS_FOUND_DESCRIPTION,
+  description = NO_FOOD_FOUND_DESCRIPTION,
   image = <NotFoundImage />,
-  title = NO_FOODS_FOUND_TITLE,
+  title = NO_FOOD_FOUND_TITLE,
 }: {
   title?: string;
   description?: string;
@@ -49,5 +49,7 @@ const styles = StyleSheet.create({
   },
   description: {
     textAlign: 'center',
+    lineHeight: 22,
+    letterSpacing: -0.24,
   },
 });

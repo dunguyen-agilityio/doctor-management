@@ -1,6 +1,6 @@
 import { IFood } from '@/types';
 
-export const MOCK_FOODS: IFood[] = [
+export const MOCK_FOOD_LIST: IFood[] = [
   {
     id: '22',
     name: 'Pizza',
@@ -36,7 +36,7 @@ export const MOCK_FOODS: IFood[] = [
     category: '1',
     color: 'RED',
     imgUrl:
-      'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a2.png?alt=media&token=abe65f60-e23e-48d9-a2c8-13c9e3ccb921',
+      'https://s3-alpha-sig.figma.com/img/0d17/c4d2/3b2ee1931e0c9de420fcbd861f82a29a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Kk7cHm44D-dhlRtVx3PsLJimx9ElGp1B1ZVxjk~020IbqEEYgd83GQp-7--731jfo0qy4U42pvGksvbN5HjY6OQO8iei44zogdIMdsFzfmaXFwuhNsjH4dZvZ0u0UTPrxiNPVcy969pmpPKjehOI7wPI4iCIaFeZVgMFbLuH0h4b-P0RAdrpZVKE9--rAS540cWY71ix8OHIENnsj~91X8wuOfoZh1NNgs1rWRZew8PMO3y8vEsyyD62OX6oYAfDVEA83TkVKq7Xxti8mVQMx7-A-Cs6T4h1L1QLE0cPUXRGwV-C3DjCTXt5zI0vlGIzWh~hPbGzH57VtGhqWDrX0Q__',
     desc: "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
     favorite: false,
   },
@@ -76,7 +76,7 @@ export const MOCK_FOODS: IFood[] = [
       },
     ],
     imgUrl:
-      'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a2.png?alt=media&token=abe65f60-e23e-48d9-a2c8-13c9e3ccb921',
+      'https://s3-alpha-sig.figma.com/img/0d17/c4d2/3b2ee1931e0c9de420fcbd861f82a29a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Kk7cHm44D-dhlRtVx3PsLJimx9ElGp1B1ZVxjk~020IbqEEYgd83GQp-7--731jfo0qy4U42pvGksvbN5HjY6OQO8iei44zogdIMdsFzfmaXFwuhNsjH4dZvZ0u0UTPrxiNPVcy969pmpPKjehOI7wPI4iCIaFeZVgMFbLuH0h4b-P0RAdrpZVKE9--rAS540cWY71ix8OHIENnsj~91X8wuOfoZh1NNgs1rWRZew8PMO3y8vEsyyD62OX6oYAfDVEA83TkVKq7Xxti8mVQMx7-A-Cs6T4h1L1QLE0cPUXRGwV-C3DjCTXt5zI0vlGIzWh~hPbGzH57VtGhqWDrX0Q__',
     favorite: true,
   },
   {
@@ -115,7 +115,7 @@ export const MOCK_FOODS: IFood[] = [
       },
     ],
     imgUrl:
-      'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a5.png?alt=media&token=af718429-aabf-4329-91e5-439cff65e187',
+      'https://s3-alpha-sig.figma.com/img/0d17/c4d2/3b2ee1931e0c9de420fcbd861f82a29a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Kk7cHm44D-dhlRtVx3PsLJimx9ElGp1B1ZVxjk~020IbqEEYgd83GQp-7--731jfo0qy4U42pvGksvbN5HjY6OQO8iei44zogdIMdsFzfmaXFwuhNsjH4dZvZ0u0UTPrxiNPVcy969pmpPKjehOI7wPI4iCIaFeZVgMFbLuH0h4b-P0RAdrpZVKE9--rAS540cWY71ix8OHIENnsj~91X8wuOfoZh1NNgs1rWRZew8PMO3y8vEsyyD62OX6oYAfDVEA83TkVKq7Xxti8mVQMx7-A-Cs6T4h1L1QLE0cPUXRGwV-C3DjCTXt5zI0vlGIzWh~hPbGzH57VtGhqWDrX0Q__',
     favorite: false,
   },
   {
@@ -154,7 +154,7 @@ export const MOCK_FOODS: IFood[] = [
       },
     ],
     imgUrl:
-      'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a6.png?alt=media&token=e16ecdc8-e597-464d-90ce-0c6b64e0c5a8',
+      'https://s3-alpha-sig.figma.com/img/0d17/c4d2/3b2ee1931e0c9de420fcbd861f82a29a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Kk7cHm44D-dhlRtVx3PsLJimx9ElGp1B1ZVxjk~020IbqEEYgd83GQp-7--731jfo0qy4U42pvGksvbN5HjY6OQO8iei44zogdIMdsFzfmaXFwuhNsjH4dZvZ0u0UTPrxiNPVcy969pmpPKjehOI7wPI4iCIaFeZVgMFbLuH0h4b-P0RAdrpZVKE9--rAS540cWY71ix8OHIENnsj~91X8wuOfoZh1NNgs1rWRZew8PMO3y8vEsyyD62OX6oYAfDVEA83TkVKq7Xxti8mVQMx7-A-Cs6T4h1L1QLE0cPUXRGwV-C3DjCTXt5zI0vlGIzWh~hPbGzH57VtGhqWDrX0Q__',
     favorite: true,
   },
   {
@@ -194,7 +194,7 @@ export const MOCK_FOODS: IFood[] = [
       },
     ],
     imgUrl:
-      'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a2.png?alt=media&token=abe65f60-e23e-48d9-a2c8-13c9e3ccb921',
+      'https://s3-alpha-sig.figma.com/img/0d17/c4d2/3b2ee1931e0c9de420fcbd861f82a29a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Kk7cHm44D-dhlRtVx3PsLJimx9ElGp1B1ZVxjk~020IbqEEYgd83GQp-7--731jfo0qy4U42pvGksvbN5HjY6OQO8iei44zogdIMdsFzfmaXFwuhNsjH4dZvZ0u0UTPrxiNPVcy969pmpPKjehOI7wPI4iCIaFeZVgMFbLuH0h4b-P0RAdrpZVKE9--rAS540cWY71ix8OHIENnsj~91X8wuOfoZh1NNgs1rWRZew8PMO3y8vEsyyD62OX6oYAfDVEA83TkVKq7Xxti8mVQMx7-A-Cs6T4h1L1QLE0cPUXRGwV-C3DjCTXt5zI0vlGIzWh~hPbGzH57VtGhqWDrX0Q__',
   },
   {
     id: '7',
@@ -232,7 +232,7 @@ export const MOCK_FOODS: IFood[] = [
       },
     ],
     imgUrl:
-      'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a6.png?alt=media&token=e16ecdc8-e597-464d-90ce-0c6b64e0c5a8',
+      'https://s3-alpha-sig.figma.com/img/0d17/c4d2/3b2ee1931e0c9de420fcbd861f82a29a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Kk7cHm44D-dhlRtVx3PsLJimx9ElGp1B1ZVxjk~020IbqEEYgd83GQp-7--731jfo0qy4U42pvGksvbN5HjY6OQO8iei44zogdIMdsFzfmaXFwuhNsjH4dZvZ0u0UTPrxiNPVcy969pmpPKjehOI7wPI4iCIaFeZVgMFbLuH0h4b-P0RAdrpZVKE9--rAS540cWY71ix8OHIENnsj~91X8wuOfoZh1NNgs1rWRZew8PMO3y8vEsyyD62OX6oYAfDVEA83TkVKq7Xxti8mVQMx7-A-Cs6T4h1L1QLE0cPUXRGwV-C3DjCTXt5zI0vlGIzWh~hPbGzH57VtGhqWDrX0Q__',
     favorite: false,
   },
   {
@@ -240,7 +240,7 @@ export const MOCK_FOODS: IFood[] = [
     desc: "Note that in TypeScript, you can define the return type of the function using a colon (:) after the function parameter list. In this example, we don't explicitly define the return type, but TypeScript will infer that the return type is a Promise that resolves to a JSON object.",
     name: 'Pork',
     weight: 400,
-    color: 'PRIMARY',
+    color: 'GREEN',
     nutritional: {
       calories: 200,
       carbs: 100,
@@ -271,7 +271,7 @@ export const MOCK_FOODS: IFood[] = [
       },
     ],
     imgUrl:
-      'https://firebasestorage.googleapis.com/v0/b/react-my-example.appspot.com/o/a2.png?alt=media&token=abe65f60-e23e-48d9-a2c8-13c9e3ccb921',
+      'https://s3-alpha-sig.figma.com/img/0d17/c4d2/3b2ee1931e0c9de420fcbd861f82a29a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Kk7cHm44D-dhlRtVx3PsLJimx9ElGp1B1ZVxjk~020IbqEEYgd83GQp-7--731jfo0qy4U42pvGksvbN5HjY6OQO8iei44zogdIMdsFzfmaXFwuhNsjH4dZvZ0u0UTPrxiNPVcy969pmpPKjehOI7wPI4iCIaFeZVgMFbLuH0h4b-P0RAdrpZVKE9--rAS540cWY71ix8OHIENnsj~91X8wuOfoZh1NNgs1rWRZew8PMO3y8vEsyyD62OX6oYAfDVEA83TkVKq7Xxti8mVQMx7-A-Cs6T4h1L1QLE0cPUXRGwV-C3DjCTXt5zI0vlGIzWh~hPbGzH57VtGhqWDrX0Q__',
     favorite: false,
   },
   {

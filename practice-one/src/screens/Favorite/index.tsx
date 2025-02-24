@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
-import { FoodsList, Loading, NotFound, SearchInput } from '@/components';
+import { FoodList, Loading, NotFound, SearchInput } from '@/components';
 
 import { COLOR } from '@/constants';
 
@@ -25,7 +25,7 @@ const FavoriteScreen = () => {
   return (
     <View style={styles.container}>
       <SearchInput onChangeText={searchByName} />
-      <FoodsList foods={displayFavorites} />
+      <FoodList data={displayFavorites} />
     </View>
   );
 };

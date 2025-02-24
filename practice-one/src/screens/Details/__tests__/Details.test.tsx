@@ -5,7 +5,7 @@ import Details from '@/screens/Details';
 
 import { fireEvent, render, waitFor } from '@/utils/test-utils';
 
-import { MOCK_FOODS } from '@/mocks/foods';
+import { MOCK_FOOD_LIST } from '@/mocks/food';
 
 jest.mock('@tanstack/react-query', () => ({
   ...jest.requireActual('@tanstack/react-query'),
@@ -17,7 +17,7 @@ jest.mock('@/services/food', () => ({
 }));
 
 describe('Details Screen', () => {
-  const mockFood = MOCK_FOODS[0];
+  const mockFood = MOCK_FOOD_LIST[0];
   const mockGoBack = jest.fn();
   const mockRouteParams = { params: { id: '1' } };
 

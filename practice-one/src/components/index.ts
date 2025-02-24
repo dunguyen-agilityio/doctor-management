@@ -1,4 +1,4 @@
-export { default as FoodsList } from './FoodsList';
+export { default as FoodList } from './FoodList';
 export { default as SearchInput } from './SearchInput';
 export { default as Categories } from './Categories';
 export { default as ArticlesSlider } from './ArticlesSlider';
@@ -9,7 +9,7 @@ export { default as Header } from './Header';
 export { default as NotFound } from './NotFound';
 export { default as FoodImage } from './FoodImage';
 export { default as FoodInfo } from './FoodInfo';
-export { default as FoodsContainer } from './FoodsContainer';
+export { default as FoodContainer } from './FoodContainer';
 export { default as Toggle } from './Toggle';
 export { default as ErrorFallback } from './ErrorFallback';
 export { default as FoodListSkeleton } from './FoodListSkeleton';

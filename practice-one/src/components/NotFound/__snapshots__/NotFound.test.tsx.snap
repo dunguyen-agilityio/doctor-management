@@ -37,37 +37,32 @@ exports[`NotFound Component renders correctly with default props 1`] = `
     />
     <Text
       style={
-        [
-          {
-            "color": "#696969",
-            "fontFamily": "Manrope",
-            "fontSize": 15,
-            "fontWeight": "600",
-            "lineHeight": 23,
-            "textTransform": undefined,
-          },
-          undefined,
-        ]
+        {
+          "color": "#696969",
+          "fontFamily": "Manrope",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "letterSpacing": 0,
+          "lineHeight": 23,
+          "textTransform": undefined,
+        }
       }
     >
-      No Foods Found
+      No Food Found
     </Text>
   </View>
   <Text
     style={
-      [
-        {
-          "color": "#7e7e7e",
-          "fontFamily": "Manrope",
-          "fontSize": 13,
-          "fontWeight": "400",
-          "lineHeight": 18,
-          "textTransform": undefined,
-        },
-        {
-          "textAlign": "center",
-        },
-      ]
+      {
+        "color": "#7e7e7e",
+        "fontFamily": "Manrope",
+        "fontSize": 13,
+        "fontWeight": "400",
+        "letterSpacing": -0.24,
+        "lineHeight": 22,
+        "textAlign": "center",
+        "textTransform": undefined,
+      }
     }
   >
     You don't save any food. Go ahead, search

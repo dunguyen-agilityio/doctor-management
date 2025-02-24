@@ -9,7 +9,7 @@ import Categories from './index';
 const meta = {
   title: 'Categories',
   component: Categories,
-  argTypes: { onChange: { action: 'selected' } },
+  argTypes: { onSelect: { action: 'selected' } },
   decorators: [
     (Story) => (
       <View style={{ padding: 16, alignItems: 'flex-start' }}>

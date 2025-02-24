@@ -15,9 +15,7 @@ describe('Text Component', () => {
     const textElement = getByText('Title Text');
 
     expect(textElement.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ fontSize: 22, fontWeight: '700' }), // title1 style
-      ]),
+      expect.objectContaining({ fontSize: 22, fontWeight: '700' }), // title1 style
     );
   });
 
@@ -28,9 +26,7 @@ describe('Text Component', () => {
     const textElement = getByText('Colored Text');
 
     expect(textElement.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ color: COLOR.SECONDARY }),
-      ]),
+      expect.objectContaining({ color: COLOR.SECONDARY }),
     );
   });
 
@@ -40,7 +36,7 @@ describe('Text Component', () => {
     const textElement = getByText('Custom Color');
 
     expect(textElement.props.style).toEqual(
-      expect.arrayContaining([expect.objectContaining({ color: customColor })]),
+      expect.objectContaining({ color: customColor }),
     );
   });
 
@@ -51,9 +47,7 @@ describe('Text Component', () => {
     const textElement = getByText('Uppercase');
 
     expect(textElement.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ textTransform: 'uppercase' }),
-      ]),
+      expect.objectContaining({ textTransform: 'uppercase' }),
     );
   });
 });

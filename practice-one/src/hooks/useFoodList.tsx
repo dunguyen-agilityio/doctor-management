@@ -4,7 +4,7 @@ import { QUERY_KEYS } from '@/constants/query';
 
 import { FoodOptions, getFoodList } from '@/services/food';
 
-export function useFoods({ categories = [], query = '' }: FoodOptions = {}) {
+export function useFoodList({ categories = [], query = '' }: FoodOptions = {}) {
   const infiniteQuery = useInfiniteQuery({
     queryKey: [QUERY_KEYS.FOOD, query, ...categories],
     initialPageParam: 1,
