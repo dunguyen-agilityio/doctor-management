@@ -10,7 +10,7 @@ const ErrorFallback = ({
   <View style={styles.container} testID="error-fallback">
     <Text style={styles.title}>Something went wrong:</Text>
     <Text style={styles.errorMessage}>{error.message}</Text>
-    <Button title="Try Again" onPress={onRetry} />
+    {onRetry && <Button title="Try Again" onPress={onRetry} />}
   </View>
 );
 

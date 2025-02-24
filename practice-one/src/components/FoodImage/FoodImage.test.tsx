@@ -2,7 +2,7 @@ import { COLOR } from '@/constants';
 
 import { render } from '@/utils/test-utils';
 
-import { MOCK_FOODS } from '@/mocks';
+import { MOCK_FOODS } from '@/mocks/foods';
 
 import FoodImage, { DEFAULT_IMAGE, FoodImageSize } from './index';
 

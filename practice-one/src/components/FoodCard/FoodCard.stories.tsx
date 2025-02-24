@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { View } from 'react-native';
 
-import { MOCK_FOODS } from '@/mocks';
+import { MOCK_FOODS } from '@/mocks/foods';
 
 import FoodCard, { FoodCardProps } from './index';
 

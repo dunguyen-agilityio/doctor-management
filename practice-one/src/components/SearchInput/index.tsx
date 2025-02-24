@@ -1,15 +1,9 @@
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import {
-  forwardRef,
-  memo,
-  useCallback,
-  useImperativeHandle,
-  useRef,
-} from 'react';
-import {
+  Pressable,
   StyleSheet,
   TextInput,
   TextInputProps,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 
@@ -20,60 +14,55 @@ import { debounce } from '@/utils/debounce';
 import { SearchIcon } from '../icons';
 
 const SearchInput = (
-  { onChangeText, ...otherProps }: TextInputProps,
+  { onChangeText, onPress, ...otherProps }: TextInputProps,
   ref: React.ForwardedRef<Pick<TextInput, 'focus' | 'clear'>>,
 ) => {
   const inputRef = useRef<TextInput>(null);
 
-  useImperativeHandle(ref, () => ({
-    focus: handleFocus,
-    clear: () => {
-      inputRef.current?.clear?.();
-    },
-  }));
-
-  const handleFocus = () => {
-    inputRef?.current?.focus();
-  };
-
-  const handleChangeText = useCallback(
-    (value: string) => {
-      if (onChangeText) debounce(onChangeText, 500)(value);
-    },
-    [onChangeText],
+  useImperativeHandle(
+    ref,
+    () => ({
+      focus: () => inputRef.current?.focus(),
+      clear: () => {
+        return inputRef.current?.clear();
+      },
+    }),
+    [],
   );
 
+  const debouncedOnChangeText = debounce((value: string) => {
+    onChangeText?.(value);
+  }, 500);
+
   return (
-    <TouchableWithoutFeedback onPress={handleFocus}>
-      <View style={styles.container}>
+    <Pressable onPress={onPress}>
+      <View style={styles.container} testID="search-input">
         <TextInput
-          placeholderTextColor={COLOR.SECONDARY}
-          onChangeText={handleChangeText}
-          style={styles.input}
           ref={inputRef}
           placeholder="Search for healthy food"
+          placeholderTextColor={COLOR.SECONDARY}
+          onChangeText={debouncedOnChangeText}
+          style={styles.input}
           {...otherProps}
-          testID="search-input"
         />
-
         <View style={styles.iconSearch}>
           <SearchIcon />
         </View>
       </View>
-    </TouchableWithoutFeedback>
+    </Pressable>
   );
 };
 
-export default memo(forwardRef(SearchInput));
+export default forwardRef(SearchInput);
 
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
     backgroundColor: COLOR.LIGHT_PURPLE,
     borderRadius: 15,
-    zIndex: 1,
     marginTop: 14,
     marginHorizontal: 16,
+    height: 46,
   },
   input: {
     fontSize: 13,
@@ -81,13 +70,6 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 60,
     color: COLOR.BLACK,
-  },
-  text: {
-    fontSize: 13,
-    fontWeight: '400',
-    color: COLOR.WARNING,
-    paddingVertical: 14,
-    paddingHorizontal: 60,
   },
   iconSearch: {
     position: 'absolute',

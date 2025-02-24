@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import NotFound from '@/components/NotFound';
 
-import { MOCK_FOODS } from '@/mocks';
+import { MOCK_FOODS } from '@/mocks/foods';
 
 import FoodList from './index';
 
@@ -12,7 +12,6 @@ const meta = {
   title: 'FoodList',
   component: FoodList,
   argTypes: {
-    title: { control: 'text' },
     horizontal: { control: 'boolean' },
   },
   decorators: [
@@ -30,10 +29,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Empty: Story = {
   args: { ListEmptyComponent: <NotFound />, foods: [] },
-};
-
-export const WithTitle: Story = {
-  args: { title: <Text>All Food</Text>, foods: MOCK_FOODS },
 };
 
 export const Horizontal: Story = {

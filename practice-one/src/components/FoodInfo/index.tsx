@@ -3,33 +3,30 @@ import { StyleSheet, View } from 'react-native';
 
 import { FoodImage, Nutritional, Toggle } from '@/components';
 
-import { COLOR } from '@/constants';
+import { CATEGORIES, COLOR } from '@/constants';
 
 import { IFood } from '@/types';
 
 import { FoodImageSize } from '../FoodImage';
 import Text from '../Text';
 
-interface FoodInfoProps
-  extends Omit<IFood, 'category' | 'id' | 'favorite' | 'weight'> {
-  category: string;
+interface FoodInfoProps {
+  food: IFood;
 }
 
-const FoodInfo = ({
-  color,
-  imgUrl,
-  category,
-  name,
-  desc,
-  ingredients,
-  nutritional,
-}: FoodInfoProps) => {
+const FoodInfo = ({ food }: FoodInfoProps) => {
+  const { color, imgUrl, category, name, desc, ingredients, nutritional } =
+    food;
+
+  const categoryName =
+    CATEGORIES.find(({ id: catId }) => catId === category)?.name || 'Unknown';
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <FoodImage imgUrl={imgUrl} color={color} type={FoodImageSize.large} />
         <Text variant="title1">{name}</Text>
-        <Text variant="body6">{category}</Text>
+        <Text variant="body6">{categoryName}</Text>
       </View>
       <Nutritional nutritional={nutritional} />
       <View style={styles.details}>
