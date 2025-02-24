@@ -1,35 +1,43 @@
+import { useNavigation } from '@react-navigation/native';
+
 import HomeScreen from '@/screens/Home';
 
-import { ROUTES } from '@/constants';
+import { CATEGORIES, ROUTES } from '@/constants';
 
 import { fireEvent, render } from '@/utils/test-utils';
 
-const mockNavigate = jest.fn();
-
-jest.mock('@react-navigation/native', () => ({
-  ...jest.requireActual('@react-navigation/native'),
-  useNavigation: () => ({
-    navigate: mockNavigate,
-  }),
-}));
-
 describe('HomeScreen', () => {
-  const renderScreen = () => render(<HomeScreen />);
+  const mockNavigate = jest.fn();
+  const [{ name: categoryName, id: categoryId }] = CATEGORIES;
 
-  // afterEach(() => {
-  //   jest.clearAllMocks();
-  // });
-
-  it('match snapshot', () => {
-    const tree = renderScreen().toJSON();
-    expect(tree).toMatchSnapshot();
+  beforeEach(() => {
+    (useNavigation as jest.Mock).mockReturnValue({ navigate: mockNavigate });
   });
 
-  it('navigates to the Search screen when SearchInput is focused', () => {
-    const { getByTestId } = renderScreen();
+  it('renders all main components', () => {
+    const { getByText, getByPlaceholderText } = render(<HomeScreen />);
 
-    fireEvent(getByTestId('search-input'), 'focus');
+    expect(getByText('All Food')).toBeTruthy(); // Checks header title in FoodsContainer
+    expect(getByPlaceholderText('Search for healthy food')).toBeTruthy(); // Search input
+  });
 
-    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.SEARCH);
+  it('navigates to search screen when search input is focused', () => {
+    const { getByPlaceholderText } = render(<HomeScreen />);
+
+    fireEvent(getByPlaceholderText('Search for healthy food'), 'focus');
+
+    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.SEARCH, {
+      autoFocus: true,
+    });
+  });
+
+  it('navigates to search screen with category filter when a category is selected', () => {
+    const { getByText } = render(<HomeScreen />);
+
+    fireEvent.press(getByText(categoryName));
+
+    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.SEARCH, {
+      category: categoryId,
+    });
   });
 });

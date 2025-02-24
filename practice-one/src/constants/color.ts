@@ -18,4 +18,6 @@ export const COLOR = {
   SECONDARY: '#ff8473',
   BLACK_BEAN: '#330600',
   LIGHT_GREEN: '#91c788',
+  GREY: '#e0e0e0',
+  TERTIARY: '#696969',
 };
