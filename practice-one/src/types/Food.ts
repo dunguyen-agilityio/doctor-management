@@ -1,9 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { IInfo } from './common';
-
-export type Ingredients = 'Bread' | 'Meat (Chicken)' | 'Cucumber' | 'Onion';
-
 export type Categories =
   | 'Fast Food'
   | 'Breakfast'
@@ -20,8 +16,9 @@ export interface ICategory {
   name: Categories;
 }
 
-export type TIngredient = IInfo & {
-  name: Ingredients;
+export type TIngredient = {
+  id: string;
+  name: string;
   value: number;
 };
 
@@ -32,31 +29,20 @@ export type TNutritional = {
   protein: number;
 };
 
-export interface IArticle extends IInfo {
+export interface IArticle {
+  id: string;
   image: string;
   title: string;
   color: 'green' | 'secondary';
   backgroundColor: LinearGradient['props']['colors'];
 }
 
-export interface IFood extends IInfo {
+export interface IFood {
+  id: string;
+  name: string;
   category: string;
   weight: number;
-  color:
-    | 'WHITE'
-    | 'LIGHT_GRAY'
-    | 'GRAY'
-    | 'ORANGE'
-    | 'GREEN'
-    | 'BLACK'
-    | 'YELLOW'
-    | 'RED'
-    | 'PURPLE'
-    | 'DEFAULT'
-    | 'LIGHT_GREEN'
-    | 'LIGHT_BLACK'
-    | 'PRIMARY'
-    | 'SECONDARY';
+  color: 'ORANGE' | 'GREEN' | 'YELLOW' | 'RED' | 'PURPLE';
   desc: string;
   imgUrl: string;
   favorite: boolean;

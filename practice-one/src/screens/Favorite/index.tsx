@@ -1,31 +1,32 @@
 import { StyleSheet, View } from 'react-native';
 
-import { FoodsContainer, NotFound } from '@/components';
+import { FoodsList, Loading, NotFound, SearchInput } from '@/components';
 
 import { COLOR } from '@/constants';
 
-import { FoodsProvider } from '@/contexts/foods';
-import { SearchProvider } from '@/contexts/search';
-
-import FavoriteContainer from './FavoriteContainer';
+import { useFavorite } from '@/hooks/useFavorite';
 
 const FavoriteScreen = () => {
+  const { isLoading, favorites, displayFavorites, searchByName } =
+    useFavorite();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (favorites.length === 0) {
+    return (
+      <View style={styles.emptyContainer}>
+        <NotFound />
+      </View>
+    );
+  }
+
   return (
-    <SearchProvider>
-      <FoodsProvider>
-        <View style={styles.container}>
-          <FavoriteContainer>
-            <FoodsContainer
-              slotProps={{
-                list: {
-                  ListEmptyComponent: <NotFound />,
-                },
-              }}
-            />
-          </FavoriteContainer>
-        </View>
-      </FoodsProvider>
-    </SearchProvider>
+    <View style={styles.container}>
+      <SearchInput onChangeText={searchByName} />
+      <FoodsList foods={displayFavorites} />
+    </View>
   );
 };
 
@@ -33,12 +34,13 @@ export default FavoriteScreen;
 
 const styles = StyleSheet.create({
   container: {
-    // paddingTop: 62,
     flex: 1,
     backgroundColor: COLOR.WHITE,
+    gap: 16,
   },
-  list: {
-    marginTop: 24,
-    width: '100%',
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

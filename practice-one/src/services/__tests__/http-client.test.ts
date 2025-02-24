@@ -9,12 +9,20 @@ afterEach(() => {
 describe('APIClient', () => {
   it('GET request should return success response', async () => {
     (global.fetch as jest.Mock).mockResolvedValue({
-      headers: { get: () => ['application/json'] },
+      headers: {
+        get: (type: string) => {
+          if (type === 'content-type') {
+            return ['application/json'];
+          }
+
+          return null;
+        },
+      },
       ok: true,
-      json: jest.fn().mockResolvedValue({ data: 'success' }),
+      json: jest.fn().mockResolvedValue('success'),
     });
     const response = await apiClient.get<{ data: string }>('test');
-    expect(response).toEqual({ data: 'success' });
+    expect(response).toEqual({ data: 'success', meta: null });
   });
 
   it('GET request should return success response', async () => {
@@ -72,13 +80,4 @@ describe('APIClient', () => {
       `Failed to fetch test: 404 - error`,
     );
   });
-
-  //   it('should handle API errors', async () => {
-  //     server.use(
-  //       rest.get(`${API_ENDPOINT}/test`, (req, res, ctx) => {
-  //         return res(ctx.status(500), ctx.json({ message: 'Internal Server Error' }));
-  //       })
-  //     );
-  //     await expect(apiClient.get('test')).rejects.toThrow('Failed to fetch test: 500 - {"message":"Internal Server Error"}');
-  //   });
 });

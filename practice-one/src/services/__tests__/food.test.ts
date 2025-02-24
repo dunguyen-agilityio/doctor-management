@@ -1,8 +1,8 @@
 import { apiClient } from '@/services/http-client';
 
-import { MOCK_FOODS } from '@/mocks';
+import { MOCK_FOODS } from '@/mocks/foods';
 
-import { getFoodById, getFoods } from '../food';
+import { getFavoriteFoodList, getFoodById, getFoodList } from '../food';
 
 jest.mock('@/services/http-client.ts', () => ({
   apiClient: {
@@ -12,32 +12,59 @@ jest.mock('@/services/http-client.ts', () => ({
 }));
 
 describe('Food API', () => {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it('getFoods fetches food list', async () => {
-    (apiClient.get as jest.Mock).mockResolvedValue([]);
-    const foods = await getFoods();
+  it('getFavoriteFoodList fetches food list', async () => {
+    (apiClient.get as jest.Mock).mockResolvedValue({ data: [] });
+    const foods = await getFavoriteFoodList([]);
     expect(foods).toEqual([]);
   });
 
-  it('getFoods fetches food list', async () => {
-    (apiClient.get as jest.Mock).mockResolvedValue(MOCK_FOODS);
-    const foods = await getFoods({
-      categories: ['A'],
-      favorite: 1,
-      query: 'abc',
-    });
+  it('getFavoriteFoodList fetches food list', async () => {
+    (apiClient.get as jest.Mock).mockResolvedValue({ data: MOCK_FOODS });
+    const foods = await getFavoriteFoodList(['1']);
     expect(foods).toEqual(MOCK_FOODS);
   });
 
   it('getFoodById fetches a single food item by ID', async () => {
-    (apiClient.get as jest.Mock).mockResolvedValue({
-      ...MOCK_FOODS[0],
-      favorites: [{ id: '1' }],
-    });
+    (apiClient.get as jest.Mock).mockResolvedValue({ data: MOCK_FOODS[0] });
     const food = await getFoodById('1');
-    expect(food).toEqual({ ...MOCK_FOODS[0], favorite: true, favoriteId: '1' });
+    expect(food).toEqual(MOCK_FOODS[0]);
+  });
+
+  it('fetches food list successfully', async () => {
+    const mockFoods = MOCK_FOODS.slice(0, 2);
+
+    (apiClient.get as jest.Mock).mockResolvedValue({
+      data: mockFoods,
+      meta: { total: MOCK_FOODS.length },
+    });
+    const result = await getFoodList({ page: 1, pageSize: 2, query: 'test' });
+
+    expect(result.data).toEqual(mockFoods);
+    expect(result.hasMore).toBe(true);
+  });
+
+  it('fetches food list successfully', async () => {
+    const mockFoods = MOCK_FOODS.slice(0, 2);
+
+    (apiClient.get as jest.Mock).mockResolvedValue({
+      data: mockFoods,
+    });
+    const result = await getFoodList({ pageSize: 2, query: 'test' });
+
+    expect(result.data).toEqual(mockFoods);
+    expect(result.hasMore).toBe(false);
+  });
+
+  it('fetches food list successfully', async () => {
+    const mockFoods = MOCK_FOODS.slice(0, 2);
+
+    (apiClient.get as jest.Mock).mockResolvedValue({
+      data: mockFoods,
+      meta: { total: 4 },
+    });
+    const result = await getFoodList({ page: 2, pageSize: 2 });
+
+    expect(result.data).toEqual(mockFoods);
+    expect(result.hasMore).toBe(false);
   });
 });
