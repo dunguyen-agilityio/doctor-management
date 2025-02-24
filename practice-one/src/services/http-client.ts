@@ -20,13 +20,10 @@ class APIClient {
     return this._apiClient;
   }
 
-  private apiRequest = async <T>(
-    url: string,
-    init?: RequestOption,
-  ): Promise<T> => {
+  private apiRequest = async (url: string, init?: RequestOption) => {
     const { method = 'GET', body, headers } = init || {};
 
-    const hasBody = method === 'POST' || method === 'PUT';
+    const hasBody = ['POST', 'PUT'].includes(method);
 
     const customHeader = {
       ...headers,
@@ -42,6 +39,7 @@ class APIClient {
         body: JSON.stringify(body),
       }),
     };
+
     const res = await fetch(`${API_ENDPOINT}/${url}`, options);
 
     if (!res.ok) {
@@ -51,27 +49,41 @@ class APIClient {
       );
     }
 
-    const contentType = res.headers.get('content-type');
-    if (contentType && contentType.includes('application/json')) {
-      return (await res.json()) as T;
-    }
-    throw new Error(`Unexpected response type from ${url}`);
+    return res;
   };
 
-  async get<T>(url: string, init?: Omit<RequestOption, 'method'>) {
-    return this.apiRequest<T>(url, init);
+  async get<T>(
+    url: string,
+    init?: Omit<RequestOption, 'method'>,
+  ): Promise<{
+    data: T;
+    meta: { total: number } | null;
+  }> {
+    const res = await this.apiRequest(url, init);
+    const contentType = res.headers.get('content-type');
+
+    if (contentType && contentType.includes('application/json')) {
+      const data = (await res.json()) as T;
+      const total = res.headers.get('X-Total-Count');
+      return { data, meta: total ? { total: Number(total) } : null };
+    }
+
+    throw new Error(`Unexpected response type from ${url}`);
   }
 
   async post<T>(url: string, init?: Omit<RequestOption, 'method'>) {
-    return this.apiRequest<T>(url, { ...init, method: 'POST' });
+    const res = await this.apiRequest(url, { ...init, method: 'POST' });
+    return res.json() as T;
   }
 
   async put<T>(url: string, init?: Omit<RequestOption, 'method'>) {
-    return this.apiRequest<T>(url, { ...init, method: 'PUT' });
+    const res = await this.apiRequest(url, { ...init, method: 'PUT' });
+    return res.json() as T;
   }
 
-  async delete(url: string, init?: Omit<RequestOption, 'method'>) {
-    return this.apiRequest(url, { ...init, method: 'DELETE' });
+  async delete<T>(url: string, init?: Omit<RequestOption, 'method'>) {
+    const res = await this.apiRequest(url, { ...init, method: 'DELETE' });
+    return res.json() as T;
   }
 }
 
