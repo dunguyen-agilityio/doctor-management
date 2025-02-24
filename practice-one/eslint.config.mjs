@@ -78,6 +78,8 @@ export default [
           ignoreRestSiblings: true,
         },
       ],
+      'no-unused-expressions': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
     },
   },
 ];

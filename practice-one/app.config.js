@@ -40,6 +40,12 @@ export const expo = {
         fonts: ['./assets/fonts/Manrope.ttf', './assets/fonts/Signika.ttf'],
       },
     ],
+    [
+      'expo-dev-client',
+      {
+        launchMode: 'most-recent',
+      },
+    ],
   ],
   newArchEnabled: true,
 };
