@@ -24,7 +24,7 @@ exports[`NotFound Component renders correctly with default props 1`] = `
     <Image
       source={
         {
-          "testUri": "../../../assets/images/not_found_2x.png",
+          "testUri": "../../../assets/images/not-found.png",
         }
       }
       style={

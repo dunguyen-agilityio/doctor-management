@@ -53,7 +53,7 @@ const Details = () => {
   return (
     <View style={styles.container}>
       <IconButton
-        icon={require('@assets/icons/back.png')}
+        icon={require('@assets/icons/arrow-left.png')}
         onPress={goBack}
         testID="back-button"
       />
