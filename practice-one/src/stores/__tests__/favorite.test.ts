@@ -5,10 +5,10 @@ import { QUERY_KEYS } from '@/constants';
 
 import { IFood } from '@/types';
 
-import { MOCK_FOODS } from '@/mocks/foods';
+import { MOCK_FOOD_LIST } from '@/mocks/food';
 
-const mockFood: IFood = MOCK_FOODS[0];
-const mockFood2: IFood = MOCK_FOODS[1];
+const mockFood: IFood = MOCK_FOOD_LIST[0];
+const mockFood2: IFood = MOCK_FOOD_LIST[1];
 
 describe('useFavoriteStore', () => {
   afterEach(() => {

@@ -6,7 +6,7 @@ import FiltersProvider from '@/contexts/filters';
 import SearchProvider from '@/contexts/search';
 
 describe('SearchContainer', () => {
-  it('renders FoodsContainer match snapshot', () => {
+  it('renders FoodContainer match snapshot', () => {
     const tree = render(
       <SearchProvider>
         <FiltersProvider>

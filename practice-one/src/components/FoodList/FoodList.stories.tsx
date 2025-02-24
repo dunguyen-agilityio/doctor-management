@@ -4,7 +4,7 @@ import { View } from 'react-native';
 
 import NotFound from '@/components/NotFound';
 
-import { MOCK_FOODS } from '@/mocks/foods';
+import { MOCK_FOOD_LIST } from '@/mocks/food';
 
 import FoodList from './index';
 
@@ -28,13 +28,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Empty: Story = {
-  args: { ListEmptyComponent: <NotFound />, foods: [] },
+  args: { ListEmptyComponent: <NotFound />, data: [] },
 };
 
 export const Horizontal: Story = {
-  args: { foods: MOCK_FOODS, horizontal: true },
+  args: { data: MOCK_FOOD_LIST, horizontal: true },
 };
 
 export const Vertical: Story = {
-  args: { foods: MOCK_FOODS },
+  args: { data: MOCK_FOOD_LIST },
 };

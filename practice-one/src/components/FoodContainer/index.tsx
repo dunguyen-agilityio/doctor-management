@@ -1,40 +1,40 @@
 import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { FoodsList } from '@/components';
-import { FoodsListProps } from '@/components/FoodsList';
+import { FoodList } from '@/components';
+import { FoodListProps } from '@/components/FoodList';
 
 import { COLOR } from '@/constants';
 
 import { FoodOptions } from '@/services/food';
 
-import { useFoods } from '@/hooks/useFood';
+import { useFoodList } from '@/hooks/useFoodList';
 
-interface FoodsContainerProps {
-  slotProps?: { list: Partial<FoodsListProps> };
+interface FoodContainerProps {
+  slotProps?: { list: Partial<FoodListProps> };
   Fallback?: React.ReactNode;
   options?: FoodOptions;
 }
 
-const FoodsContainer = ({
+const FoodContainer = ({
   slotProps,
   Fallback = null,
   options,
-}: FoodsContainerProps) => {
-  const { isLoading, data, fetchNextPage } = useFoods(options);
+}: FoodContainerProps) => {
+  const { isLoading, data, fetchNextPage } = useFoodList(options);
 
   const handleEndReached = useCallback(() => {
     fetchNextPage();
   }, [fetchNextPage]);
 
   return (
-    <View style={styles.container} testID="foods-container">
+    <View style={styles.container} testID="food-container">
       <View style={styles.list}>
         {isLoading && Fallback}
         {data && (
-          <FoodsList
+          <FoodList
             {...slotProps?.list}
-            foods={data}
+            data={data}
             onEndReached={handleEndReached}
           />
         )}
@@ -43,7 +43,7 @@ const FoodsContainer = ({
   );
 };
 
-export default FoodsContainer;
+export default FoodContainer;
 
 const styles = StyleSheet.create({
   container: {

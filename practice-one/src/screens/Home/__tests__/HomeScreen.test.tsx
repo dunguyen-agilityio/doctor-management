@@ -17,7 +17,7 @@ describe('HomeScreen', () => {
   it('renders all main components', () => {
     const { getByText, getByPlaceholderText } = render(<HomeScreen />);
 
-    expect(getByText('All Food')).toBeTruthy(); // Checks header title in FoodsContainer
+    expect(getByText('All Food')).toBeTruthy(); // Checks header title in FoodContainer
     expect(getByPlaceholderText('Search for healthy food')).toBeTruthy(); // Search input
   });
 

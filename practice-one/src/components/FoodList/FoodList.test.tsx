@@ -1,17 +1,19 @@
 import { render } from '@/utils/test-utils';
 
-import { MOCK_FOODS } from '@/mocks/foods';
+import { MOCK_FOOD_LIST } from '@/mocks/food';
 
-import FoodsList from './index';
+import FoodList from './index';
 
-describe('FoodsList Component', () => {
-  const [{ name: name1 }, { name: name2 }] = MOCK_FOODS;
+describe('FoodList Component', () => {
+  const [{ name: name1 }, { name: name2 }] = MOCK_FOOD_LIST;
 
   it('renders correctly with default props', () => {
-    const { getByText, getByTestId } = render(<FoodsList foods={MOCK_FOODS} />);
+    const { getByText, getByTestId } = render(
+      <FoodList data={MOCK_FOOD_LIST} />,
+    );
 
     // Check if the FlatList is rendered
-    const flatList = getByTestId('foods-list');
+    const flatList = getByTestId('food-list');
     expect(flatList).toBeTruthy();
 
     // Check if the Food components are rendered
@@ -20,10 +22,12 @@ describe('FoodsList Component', () => {
   });
 
   it('renders correctly with horizontal layout', () => {
-    const { getByTestId } = render(<FoodsList foods={MOCK_FOODS} horizontal />);
+    const { getByTestId } = render(
+      <FoodList data={MOCK_FOOD_LIST} horizontal />,
+    );
 
     // Check if the FlatList has horizontal layout
-    const flatList = getByTestId('foods-list');
+    const flatList = getByTestId('food-list');
     expect(flatList.props.horizontal).toBe(true);
   });
 });

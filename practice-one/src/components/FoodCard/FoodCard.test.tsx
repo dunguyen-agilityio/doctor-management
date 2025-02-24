@@ -2,12 +2,12 @@ import FoodCard from '@/components/FoodCard';
 
 import { fireEvent, render, screen } from '@/utils/test-utils';
 
-import { MOCK_FOODS } from '@/mocks/foods';
+import { MOCK_FOOD_LIST } from '@/mocks/food';
 
 const mockOnPress = jest.fn();
 
 describe('FoodCard Component', () => {
-  const { nutritional, name, id, weight, ...rest } = MOCK_FOODS[0];
+  const { nutritional, name, id, weight, ...rest } = MOCK_FOOD_LIST[0];
   const { calories } = nutritional;
   const foodProps = {
     ...rest,

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SearchContainer renders FoodsContainer match snapshot 1`] = `
+exports[`SearchContainer renders FoodContainer match snapshot 1`] = `
 <View
   style={
     {
@@ -8,7 +8,7 @@ exports[`SearchContainer renders FoodsContainer match snapshot 1`] = `
       "flex": 1,
     }
   }
-  testID="foods-container"
+  testID="food-container"
 >
   <View
     style={

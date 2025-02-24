@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { FoodsContainer, Loading, NotFound } from '@/components';
+import { FoodContainer, Loading, NotFound } from '@/components';
 import { EmptyImage } from '@/components/icons';
 
 import { FiltersContext } from '@/contexts/filters';
@@ -11,7 +11,7 @@ const SearchContainer = () => {
   const categories = useContext(FiltersContext);
 
   return (
-    <FoodsContainer
+    <FoodContainer
       options={{ categories, query }}
       Fallback={<Loading />}
       slotProps={{

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { View } from 'react-native';
 
-import { MOCK_FOODS } from '@/mocks/foods';
+import { MOCK_FOOD_LIST } from '@/mocks/food';
 
 import FoodCard, { FoodCardProps } from './index';
 
@@ -23,7 +23,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const { color, name, id, imgUrl, nutritional, weight } = MOCK_FOODS[0];
+const { color, name, id, imgUrl, nutritional, weight } = MOCK_FOOD_LIST[0];
 
 const args: FoodCardProps = {
   color,

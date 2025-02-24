@@ -1,7 +1,7 @@
 import { useFavoriteStore } from '@/stores/favorite';
 import { fireEvent, render } from '@testing-library/react-native';
 
-import { MOCK_FOODS } from '@/mocks/foods';
+import { MOCK_FOOD_LIST } from '@/mocks/food';
 
 import FavoriteButton from '../FavoriteButton';
 
@@ -16,7 +16,7 @@ describe('FavoriteButton', () => {
   const mockAddToFavorite = jest.fn();
   const mockRemoveFromFavorite = jest.fn();
 
-  const mockFood = MOCK_FOODS[0];
+  const mockFood = MOCK_FOOD_LIST[0];
 
   it('renders "Add to Favorites" when item is not favorited', () => {
     useFavorite.mockReturnValue({
@@ -31,7 +31,7 @@ describe('FavoriteButton', () => {
 
   it('renders "Unfavorite" when item is already in favorites', () => {
     useFavorite.mockReturnValue({
-      favorites: MOCK_FOODS,
+      favorites: MOCK_FOOD_LIST,
       addToFavorite: mockAddToFavorite,
       removeFromFavorite: mockRemoveFromFavorite,
     });

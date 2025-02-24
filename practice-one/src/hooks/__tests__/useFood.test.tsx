@@ -2,17 +2,17 @@ import { getFoodList } from '@/services/food';
 
 import { renderHook, waitFor } from '@/utils/test-utils';
 
-import { useFoods } from '@/hooks/useFood';
+import { useFoodList } from '@/hooks/useFoodList';
 
-import { MOCK_FOODS } from '@/mocks/foods';
+import { MOCK_FOOD_LIST } from '@/mocks/food';
 
-const [food1, food2] = MOCK_FOODS;
+const [food1, food2] = MOCK_FOOD_LIST;
 
 jest.mock('@/services/food', () => ({
   getFoodList: jest.fn(),
 }));
 
-describe('useFoods', () => {
+describe('useFoodList', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -32,7 +32,7 @@ describe('useFoods', () => {
         hasMore: false,
       });
 
-    const { result } = renderHook(() => useFoods());
+    const { result } = renderHook(() => useFoodList());
 
     expect(result.current.isLoading).toBe(true);
 

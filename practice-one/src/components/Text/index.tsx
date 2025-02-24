@@ -47,15 +47,17 @@ const Text = ({
     ...styles[variant],
     color: textColor,
     textTransform,
+    ...(Array.isArray(style) ? Object.assign({}, ...style) : style),
   };
 
-  return <RNText style={[customStyle, style]} {...props} />;
+  return <RNText style={customStyle} {...props} />;
 };
 
 const styles = StyleSheet.create({
   base: {
     fontWeight: '400',
     fontFamily: 'Manrope',
+    letterSpacing: 0,
   },
   main1: {
     fontWeight: '800',

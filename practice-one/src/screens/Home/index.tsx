@@ -12,8 +12,8 @@ import { RootScreenNavigationProps } from '@/navigation';
 import {
   ArticlesSlider,
   Categories,
+  FoodContainer,
   FoodListSkeleton,
-  FoodsContainer,
   Header,
   SearchInput,
   Text,
@@ -42,7 +42,7 @@ const HomeScreen = () => {
       <SearchInput onFocus={handleSearch} />
       <Categories onSelect={handleFilter} categories={CATEGORIES} />
       <ArticlesSlider articles={MOCK_ARTICLES} />
-      <FoodsContainer
+      <FoodContainer
         slotProps={{
           list: {
             horizontal: true,

@@ -10,20 +10,19 @@ import { COLOR, ROUTES } from '@/constants';
 import { IFood } from '@/types';
 
 import FoodCard from '../FoodCard';
-import NotFound from '../NotFound';
 
-export interface FoodsListProps extends Partial<FlatListProps<IFood>> {
+export interface FoodListProps extends Partial<FlatListProps<IFood>> {
   horizontal?: boolean;
-  foods?: IFood[] | null;
+  data?: IFood[] | null;
 }
 
-const FoodsList = ({
+const FoodList = ({
   horizontal,
-  foods,
+  data,
   // eslint-disable-next-line react/prop-types
   ListHeaderComponent = null,
   ...otherProps
-}: FoodsListProps) => {
+}: FoodListProps) => {
   const { navigate } =
     useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
 
@@ -61,12 +60,12 @@ const FoodsList = ({
   );
 
   return (
-    <View style={styles.container} testID="foods-list-container">
+    <View style={styles.container} testID="food-list-container">
       {horizontal ? (ListHeaderComponent as React.ReactNode) : null}
       <FlatList
         {...otherProps}
-        testID="foods-list"
-        data={foods}
+        testID="food-list"
+        data={data}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         horizontal={horizontal}
@@ -101,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FoodsList;
+export default FoodList;

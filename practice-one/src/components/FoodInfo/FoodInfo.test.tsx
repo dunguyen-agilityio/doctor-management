@@ -4,7 +4,7 @@ import { IFood } from '@/types';
 
 import { fireEvent, render, waitFor } from '@/utils/test-utils';
 
-import { MOCK_FOODS } from '@/mocks/foods';
+import { MOCK_FOOD_LIST } from '@/mocks/food';
 
 import FoodInfo from './index';
 
@@ -13,11 +13,11 @@ jest.mock('@/services/food', () => ({
 }));
 
 describe('FoodInfo Component', () => {
-  const MOCK_FOOD = MOCK_FOODS[0];
+  const food = MOCK_FOOD_LIST[0];
   const { id: categoryValue, name: categoryName } = CATEGORIES[0];
   const mockFood = {
-    ...MOCK_FOOD,
-    ingredients: MOCK_FOOD.ingredients.slice(0, 2),
+    ...food,
+    ingredients: food.ingredients.slice(0, 2),
     category: categoryValue,
     desc: 'A nutritious vegetable that is great for health and vision. A nutritious vegetable that is great for health and vision. A nutritious vegetable that is great for health and vision. A nutritious vegetable that is great for health and vision.',
   };

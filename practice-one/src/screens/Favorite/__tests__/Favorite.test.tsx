@@ -4,7 +4,7 @@ import { fireEvent, render } from '@/utils/test-utils';
 
 import { useFavorite } from '@/hooks/useFavorite';
 
-import { MOCK_FOODS } from '@/mocks/foods';
+import { MOCK_FOOD_LIST } from '@/mocks/food';
 
 jest.mock('@/hooks/useFavorite', () => ({
   useFavorite: jest.fn(),
@@ -35,18 +35,18 @@ describe('FavoriteScreen', () => {
     expect(getByTestId('not-found')).toBeTruthy();
   });
 
-  it('renders SearchInput and FoodsList when there are favorites', () => {
+  it('renders SearchInput and FoodList when there are favorites', () => {
     (useFavorite as jest.Mock).mockReturnValue({
       isLoading: false,
-      favorites: MOCK_FOODS,
-      displayFavorites: MOCK_FOODS,
+      favorites: MOCK_FOOD_LIST,
+      displayFavorites: MOCK_FOOD_LIST,
       searchByName: jest.fn(),
     });
 
     const { getByPlaceholderText, getByTestId } = render(<FavoriteScreen />);
 
     expect(getByPlaceholderText('Search for healthy food')).toBeTruthy();
-    expect(getByTestId('foods-list')).toBeTruthy();
+    expect(getByTestId('food-list')).toBeTruthy();
   });
 
   it('calls searchByName when text is entered', () => {
@@ -55,8 +55,8 @@ describe('FavoriteScreen', () => {
 
     (useFavorite as jest.Mock).mockReturnValue({
       isLoading: false,
-      favorites: MOCK_FOODS,
-      displayFavorites: MOCK_FOODS,
+      favorites: MOCK_FOOD_LIST,
+      displayFavorites: MOCK_FOOD_LIST,
       searchByName: mockSearchByName,
     });
 
