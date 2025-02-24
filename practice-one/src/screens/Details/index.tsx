@@ -1,24 +1,18 @@
-import { useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 
 import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
 
-import {
-  Back,
-  ErrorFallback,
-  FavoriteButton,
-  FoodInfo,
-  Loading,
-} from '@/components';
+import { ErrorFallback, FoodInfo } from '@/components';
+import IconButton from '@/components/IconButton';
 
-import { CATEGORIES, COLOR, ROUTES } from '@/constants';
-
-import { IFood } from '@/types';
+import { COLOR, ROUTES } from '@/constants';
 
 import { getFoodById } from '@/services/food';
+
+import FavoriteButton from './FavoriteButton';
 
 type DetailRoute = RouteProp<RootStackParamsList, typeof ROUTES.DETAIL>;
 
@@ -26,45 +20,45 @@ const Details = () => {
   const route = useRoute<DetailRoute>();
   const { goBack } =
     useNavigation<RootScreenNavigationProps<typeof ROUTES.DETAIL>>();
-
   const { id } = route.params;
 
-  const { isLoading, data, error, refetch } = useQuery<IFood>({
+  const {
+    isLoading,
+    error,
+    data: food,
+  } = useQuery({
     queryKey: [`food-${id}`],
-    queryFn: async () => {
-      const food = await getFoodById(id);
-      return food;
-    },
+    queryFn: () => getFoodById(id),
     staleTime: 1000 * 60 * 5,
   });
 
-  const { category, favorite, favoriteId } = data ?? {};
+  if (isLoading) {
+    return (
+      <ActivityIndicator
+        size="large"
+        color={COLOR.LIGHT_GREEN}
+        testID="loading-indicator"
+      />
+    );
+  }
 
-  const categoryName = useMemo(
-    () =>
-      CATEGORIES.find(({ id: catId }) => catId === category)?.name || 'Unknown',
-    [category],
-  );
-
-  if (isLoading) return <Loading />;
-  if (error || !data)
-    return <ErrorFallback error={error as Error} onRetry={refetch} />;
+  if (error || !food) {
+    return (
+      <ErrorFallback
+        error={error || ({ message: 'Error fetching food details' } as Error)}
+      />
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <Back onPress={goBack} />
-      <FoodInfo
-        category={categoryName}
-        color={data.color}
-        desc={data.desc}
-        imgUrl={data.imgUrl}
-        name={data.name}
-        ingredients={data.ingredients}
-        nutritional={data.nutritional}
+      <IconButton
+        icon={require('@assets/icons/back.png')}
+        onPress={goBack}
+        testID="back-button"
       />
-      <View style={styles.buttonWrapper}>
-        <FavoriteButton favorite={favorite} id={id} favoriteId={favoriteId} />
-      </View>
+      <FoodInfo food={food} />
+      <FavoriteButton id={id} food={food} />
     </View>
   );
 };
@@ -76,6 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLOR.WHITE,
     paddingHorizontal: 20,
+    paddingTop: 4,
   },
-  buttonWrapper: { paddingHorizontal: 10 },
 });
