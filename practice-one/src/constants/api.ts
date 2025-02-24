@@ -1,7 +1,7 @@
 import Constants from 'expo-constants';
 
 export const API_ENTITIES = {
-  FOODS: 'foods',
+  FOOD_LIST: 'food-list',
   FAVORITES: 'favorites',
 };
 

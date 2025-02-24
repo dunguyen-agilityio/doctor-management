@@ -1,32 +1,44 @@
-import { useContext } from 'react';
-import { StyleSheet, View, ViewProps } from 'react-native';
+import { useCallback } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import { FoodsList } from '@/components';
 import { FoodsListProps } from '@/components/FoodsList';
 
 import { COLOR } from '@/constants';
 
-import { FoodsContext } from '@/contexts/foods';
+import { FoodOptions } from '@/services/food';
 
-interface FoodsContainerProps extends ViewProps {
+import { useFoods } from '@/hooks/useFood';
+
+interface FoodsContainerProps {
   slotProps?: { list: Partial<FoodsListProps> };
-  ListTitleComponent?: React.ReactNode;
+  Fallback?: React.ReactNode;
+  options?: FoodOptions;
 }
 
 const FoodsContainer = ({
   slotProps,
-  ListTitleComponent,
+  Fallback = null,
+  options,
 }: FoodsContainerProps) => {
-  const { foods } = useContext(FoodsContext);
+  const { isLoading, data, fetchNextPage } = useFoods(options);
+
+  const handleEndReached = useCallback(() => {
+    fetchNextPage();
+  }, [fetchNextPage]);
 
   return (
-    <View style={styles.container}>
-      {ListTitleComponent}
-      {foods && (
-        <View style={styles.list}>
-          <FoodsList {...slotProps?.list} foods={foods} />
-        </View>
-      )}
+    <View style={styles.container} testID="foods-container">
+      <View style={styles.list}>
+        {isLoading && Fallback}
+        {data && (
+          <FoodsList
+            {...slotProps?.list}
+            foods={data}
+            onEndReached={handleEndReached}
+          />
+        )}
+      </View>
     </View>
   );
 };

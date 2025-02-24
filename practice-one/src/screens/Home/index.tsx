@@ -1,5 +1,9 @@
-import { useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import {
+  NativeSyntheticEvent,
+  StyleSheet,
+  TextInputFocusEventData,
+  View,
+} from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -8,54 +12,50 @@ import { RootScreenNavigationProps } from '@/navigation';
 import {
   ArticlesSlider,
   Categories,
+  FoodListSkeleton,
   FoodsContainer,
   Header,
   SearchInput,
+  Text,
 } from '@/components';
-import Text from '@/components/Text';
 
 import { CATEGORIES, COLOR, ROUTES } from '@/constants';
 
-import { MOCK_ARTICLES } from '@/mocks';
-
-import { FoodsProvider } from '@/contexts/foods';
-
-import HomeContainer from './HomeContainer';
+import { MOCK_ARTICLES } from '@/mocks/article';
 
 const HomeScreen = () => {
   const { navigate } =
     useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
 
-  const handleFilter = useCallback(
-    (ids: string[]) => {
-      navigate(ROUTES.SEARCH, { categories: ids });
-    },
-    [navigate],
-  );
+  const handleFilter = (id: string) => {
+    navigate(ROUTES.SEARCH, { category: id });
+  };
 
-  const handleSearch = useCallback(() => {
-    navigate(ROUTES.SEARCH);
-  }, [navigate]);
+  const handleSearch = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    e?.currentTarget.blur(); // Ensuring blur happens first
+    navigate(ROUTES.SEARCH, { autoFocus: true });
+  };
 
   return (
-    <FoodsProvider>
-      <View style={styles.container}>
-        <Header />
-        <SearchInput onFocus={handleSearch} />
-        <Categories onChange={handleFilter} categories={CATEGORIES} />
-        <ArticlesSlider articles={MOCK_ARTICLES} />
-        <HomeContainer>
-          <FoodsContainer
-            slotProps={{ list: { horizontal: true } }}
-            ListTitleComponent={
+    <View style={styles.container}>
+      <Header />
+      <SearchInput onFocus={handleSearch} />
+      <Categories onSelect={handleFilter} categories={CATEGORIES} />
+      <ArticlesSlider articles={MOCK_ARTICLES} />
+      <FoodsContainer
+        slotProps={{
+          list: {
+            horizontal: true,
+            ListHeaderComponent: (
               <Text variant="title3" style={styles.title}>
                 All Food
               </Text>
-            }
-          />
-        </HomeContainer>
-      </View>
-    </FoodsProvider>
+            ),
+          },
+        }}
+        Fallback={<FoodListSkeleton title="All Food" />}
+      />
+    </View>
   );
 };
 
@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLOR.WHITE,
   },
-  list: { marginTop: 15 },
   title: {
     marginTop: 22,
     marginLeft: 8,

@@ -1,53 +1,46 @@
-import { jest } from '@jest/globals';
+import { getFoodList } from '@/services/food';
 
-import { Text } from 'react-native';
+import { renderHook, waitFor } from '@/utils/test-utils';
 
-import { FoodOptions, getFoods } from '@/services';
+import { useFoods } from '@/hooks/useFood';
 
-import { render, screen, waitFor } from '@/utils/test-utils';
+import { MOCK_FOODS } from '@/mocks/foods';
 
-import { MOCK_FOODS } from '@/mocks';
+const [food1, food2] = MOCK_FOODS;
 
-import { FoodsDispatchContext } from '@/contexts/foods';
-
-import { useFoods } from '../useFood';
-
-jest.mock('@/services', () => ({
-  getFoods: jest.fn(),
+jest.mock('@/services/food', () => ({
+  getFoodList: jest.fn(),
 }));
 
-const TestComponent = ({ options }: { options: FoodOptions }) => {
-  const { data, isLoading, isError } = useFoods(options);
+describe('useFoods', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
-  if (isLoading) return <Text>Loading...</Text>;
-  if (isError) return <Text>Error</Text>;
-  return <Text>{data ? data.length : 0}</Text>;
-};
+  it('fetches and paginates food list', async () => {
+    (getFoodList as jest.Mock)
+      .mockResolvedValueOnce({
+        data: [food1],
+        nextPage: 2,
+        prevPage: undefined,
+        hasMore: true,
+      })
+      .mockResolvedValueOnce({
+        data: [food2],
+        nextPage: undefined,
+        prevPage: 1,
+        hasMore: false,
+      });
 
-describe('useFoods Hook', () => {
-  it('should fetch foods and dispatch to context', async () => {
-    (getFoods as jest.Mock<typeof getFoods>).mockResolvedValue(MOCK_FOODS);
+    const { result } = renderHook(() => useFoods());
 
-    const dispatch = jest.fn();
-    const options = { categories: ['fruit'], query: 'apple' };
+    expect(result.current.isLoading).toBe(true);
 
-    render(
-      <FoodsDispatchContext.Provider value={dispatch}>
-        <TestComponent options={options} />
-      </FoodsDispatchContext.Provider>,
-    );
+    expect(result.current.data).toBeUndefined();
 
-    await waitFor(() => expect(getFoods).toHaveBeenCalledWith(options));
-    await waitFor(() =>
-      expect(dispatch).toHaveBeenCalledWith({
-        type: 'GET_FOODS',
-        payload: MOCK_FOODS,
-      }),
-    );
+    await waitFor(() => expect(result.current.data).toEqual([food1]));
 
-    // Check if the foods are rendered
-    await waitFor(() =>
-      expect(screen.getByText(String(MOCK_FOODS.length))).toBeTruthy(),
-    );
+    await result.current.fetchNextPage();
+    await waitFor(() => expect(result.current.data).toEqual([food1, food2]));
   });
 });
