@@ -5,7 +5,7 @@ import IconButton from '../IconButton';
 describe('IconButton', () => {
   it('renders correctly', () => {
     const { getByTestId } = render(
-      <IconButton icon={require('@assets/icons/back.png')} />,
+      <IconButton icon={require('@assets/icons/arrow-left.png')} />,
     );
     expect(getByTestId('icon-button')).toBeTruthy();
   });
@@ -14,7 +14,7 @@ describe('IconButton', () => {
     const onPressMock = jest.fn();
     const { getByTestId } = render(
       <IconButton
-        icon={require('@assets/icons/back.png')}
+        icon={require('@assets/icons/arrow-left.png')}
         onPress={onPressMock}
       />,
     );
@@ -26,7 +26,7 @@ describe('IconButton', () => {
   it('applies correct positioning props', () => {
     const { getByTestId } = render(
       <IconButton
-        icon={require('@assets/icons/back.png')}
+        icon={require('@assets/icons/arrow-left.png')}
         top={10}
         left={20}
       />,

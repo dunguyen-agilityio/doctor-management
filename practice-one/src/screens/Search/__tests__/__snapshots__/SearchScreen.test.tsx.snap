@@ -164,7 +164,7 @@ healthy Food?
         <Image
           source={
             {
-              "testUri": "../../../assets/icons/iconsearch.png",
+              "testUri": "../../../assets/icons/icon-search.png",
             }
           }
         />
@@ -908,7 +908,7 @@ healthy Food?
         <Image
           source={
             {
-              "testUri": "../../../assets/icons/iconsearch.png",
+              "testUri": "../../../assets/icons/icon-search.png",
             }
           }
         />

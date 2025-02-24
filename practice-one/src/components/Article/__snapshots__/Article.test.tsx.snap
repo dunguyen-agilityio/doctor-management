@@ -160,7 +160,7 @@ exports[`Article Component matches snapshot 1`] = `
       <Image
         source={
           {
-            "testUri": "../../../assets/icons/arrow.png",
+            "testUri": "../../../assets/icons/arrow-right-bold.png",
           }
         }
       />

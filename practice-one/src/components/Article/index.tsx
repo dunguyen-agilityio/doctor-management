@@ -14,7 +14,7 @@ import { COLOR } from '@/constants';
 import { IArticle } from '@/types';
 
 import Text, { TextColor } from '../Text';
-import { ArrowICon } from '../icons';
+import { ArrowRightBoldICon } from '../icons';
 
 const buttonColor = {
   green: COLOR.GREEN,
@@ -59,7 +59,7 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
           <Text variant="subtitle6" color={COLOR.WHITE}>
             Read now
           </Text>
-          <ArrowICon />
+          <ArrowRightBoldICon />
         </TouchableOpacity>
       </View>
     </LinearGradient>

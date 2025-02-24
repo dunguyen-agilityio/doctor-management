@@ -1,12 +1,12 @@
 import { Image, StyleSheet } from 'react-native';
 
 export const EmptyImage = () => (
-  <Image source={require('@assets/images/empty_2x.png')} style={styles.empty} />
+  <Image source={require('@assets/images/empty.png')} style={styles.empty} />
 );
 
 export const NotFoundImage = () => (
   <Image
-    source={require('@assets/images/not_found_2x.png')}
+    source={require('@assets/images/not-found.png')}
     style={styles.notFound}
     testID="not-found-image"
   />
@@ -16,8 +16,8 @@ export const Logo = () => (
   <Image source={require('@assets/images/logo.png')} style={styles.loading} />
 );
 
-export const ArrowICon = () => (
-  <Image source={require('@assets/icons/arrow.png')} />
+export const ArrowRightBoldICon = () => (
+  <Image source={require('@assets/icons/arrow-right-bold.png')} />
 );
 
 export const QuestionIcon = () => (
@@ -25,26 +25,26 @@ export const QuestionIcon = () => (
 );
 
 export const SearchIcon = () => (
-  <Image source={require('@assets/icons/iconsearch.png')} />
+  <Image source={require('@assets/icons/icon-search.png')} />
 );
 
 export const FavoriteMenu = ({ isFill = false }: { isFill?: boolean }) => {
   const path = isFill
-    ? require('@assets/icons/favoritefill.png')
+    ? require('@assets/icons/favorite-fill.png')
     : require('@assets/icons/favorite.png');
   return <Image source={path} />;
 };
 
 export const HomeMenu = ({ isFill = false }: { isFill?: boolean }) => {
   const path = isFill
-    ? require('@assets/icons/homefill.png')
+    ? require('@assets/icons/home-fill.png')
     : require('@assets/icons/home.png');
   return <Image source={path} />;
 };
 
 export const SearchMenu = ({ isFill = false }: { isFill?: boolean }) => {
   const path = isFill
-    ? require('@assets/icons/searchfill.png')
+    ? require('@assets/icons/search-fill.png')
     : require('@assets/icons/search.png');
   return <Image source={path} />;
 };

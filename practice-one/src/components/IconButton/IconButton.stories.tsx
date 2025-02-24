@@ -21,11 +21,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const PositionedTopLeft: Story = {
-  args: { icon: require('@assets/icons/back.png'), top: 10, left: 10 },
+  args: { icon: require('@assets/icons/arrow-left.png'), top: 10, left: 10 },
   argTypes: { onPress: { action: 'Pressed' } },
 };
 
 export const Default: Story = {
-  args: { icon: require('@assets/icons/back.png') },
+  args: { icon: require('@assets/icons/arrow-left.png') },
   argTypes: { onPress: { action: 'Pressed' } },
 };
