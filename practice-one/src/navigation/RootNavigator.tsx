@@ -17,13 +17,7 @@ const RootNavigator = () => {
   const RootStack = createNativeStackNavigator<RootStackParamsList>();
 
   return (
-    <RootStack.Navigator
-      screenOptions={() => {
-        return {
-          headerShown: false,
-        };
-      }}
-    >
+    <RootStack.Navigator screenOptions={{ headerShown: false }}>
       <RootStack.Group>
         <RootStack.Screen name={ROUTES.ROOT} component={TabNavigator} />
         <RootStack.Screen name={ROUTES.DETAIL} component={DetailsScreen} />

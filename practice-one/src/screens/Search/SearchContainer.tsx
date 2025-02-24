@@ -1,54 +1,31 @@
-import { useCallback, useRef } from 'react';
-import { TextInput, View } from 'react-native';
+import { useContext } from 'react';
 
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { FoodsContainer, Loading, NotFound } from '@/components';
+import { EmptyImage } from '@/components/icons';
 
-import { Categories, ErrorFallback, Loading, SearchInput } from '@/components';
+import { FiltersContext } from '@/contexts/filters';
+import { SearchContext } from '@/contexts/search';
 
-import { CATEGORIES } from '@/constants';
-
-import { useFilters, useFoods, useSearchQuery } from '@/hooks';
-
-const SearchContainer = ({
-  children,
-  fallback = <Loading />,
-}: React.PropsWithChildren<{ fallback?: React.ReactNode }>) => {
-  const { query, setQuery } = useSearchQuery();
-  const { filters: categories, setFilters } = useFilters();
-  const { error, isLoading } = useFoods({ categories, query });
-  const searchInputRef = useRef<TextInput>(null);
-
-  const isFocused = useIsFocused();
-
-  useFocusEffect(
-    useCallback(() => {
-      const timer = setTimeout(() => {
-        searchInputRef.current?.focus();
-      }, 100);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }, []),
-  );
-
-  if (error) return <ErrorFallback error={error} />;
+const SearchContainer = () => {
+  const query = useContext(SearchContext);
+  const categories = useContext(FiltersContext);
 
   return (
-    <View style={{ flex: 1 }}>
-      <SearchInput
-        ref={searchInputRef}
-        onChangeText={setQuery}
-        autoFocus={isFocused}
-      />
-      <Categories
-        categories={CATEGORIES}
-        onChange={setFilters}
-        values={categories}
-      />
-      {children}
-      {isLoading && fallback}
-    </View>
+    <FoodsContainer
+      options={{ categories, query }}
+      Fallback={<Loading />}
+      slotProps={{
+        list: {
+          ListEmptyComponent: (
+            <NotFound
+              image={<EmptyImage />}
+              description="Try searching with a different keyword or tweak your search a little."
+              title="No Results Found"
+            />
+          ),
+        },
+      }}
+    />
   );
 };
 

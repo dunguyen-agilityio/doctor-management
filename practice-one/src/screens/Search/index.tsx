@@ -1,5 +1,7 @@
-import { useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { CategoriesWithContext } from '@/hocs/CategoriesWithContext';
+
+import { useCallback, useRef } from 'react';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 import {
   RouteProp,
@@ -10,54 +12,49 @@ import {
 
 import { RootScreenNavigationProps, TabParamsList } from '@/navigation';
 
-import { FoodsContainer, Header, NotFound } from '@/components';
-import { EmptyImage } from '@/components/icons';
+import { Header, SearchInput } from '@/components';
 
 import { COLOR, ROUTES } from '@/constants';
 
-import { FiltersProvider, FoodsProvider, SearchProvider } from '@/contexts';
+import FiltersProvider from '@/contexts/filters';
+import SearchProvider from '@/contexts/search';
 
 import SearchContainer from './SearchContainer';
 
 type SearchRoute = RouteProp<TabParamsList, typeof ROUTES.SEARCH>;
+type SearchNavigation = RootScreenNavigationProps<typeof ROUTES.SEARCH>;
 
 const SearchScreen = () => {
   const route = useRoute<SearchRoute>();
+  const { setParams } = useNavigation<SearchNavigation>();
+  const searchInputRef = useRef<TextInput>(null);
 
-  const { setParams } =
-    useNavigation<RootScreenNavigationProps<typeof ROUTES.SEARCH>>();
+  const defaultParams = route.params ?? {};
+  const { category, autoFocus = false } = defaultParams;
 
   useFocusEffect(
     useCallback(() => {
+      if (autoFocus) {
+        searchInputRef.current?.focus();
+      }
+
       return () => {
-        setParams({ categories: [] });
+        setParams({
+          autoFocus: false,
+        });
       };
-    }, [setParams]),
+    }, [autoFocus, setParams]),
   );
 
   return (
-    <SearchProvider defaultValue={route.params?.query}>
-      <FiltersProvider defaultValue={route.params?.categories}>
-        <FoodsProvider>
-          <View style={styles.container}>
-            <Header />
-            <SearchContainer>
-              <FoodsContainer
-                slotProps={{
-                  list: {
-                    ListEmptyComponent: (
-                      <NotFound
-                        image={<EmptyImage />}
-                        description={`Try search for a different keyword or\n tweak your search a little`}
-                        title="No Results Found"
-                      />
-                    ),
-                  },
-                }}
-              />
-            </SearchContainer>
-          </View>
-        </FoodsProvider>
+    <SearchProvider>
+      <FiltersProvider initial={category}>
+        <View style={styles.container}>
+          <Header />
+          <SearchInput autoFocus={autoFocus} ref={searchInputRef} />
+          <CategoriesWithContext />
+          <SearchContainer />
+        </View>
       </FiltersProvider>
     </SearchProvider>
   );
