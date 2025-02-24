@@ -8,33 +8,32 @@ import { FavoriteMenu, HomeMenu, SearchMenu } from '@/components/icons';
 
 import { ROUTES } from '@/constants';
 
-import { FoodOptions } from '@/services';
-
 export type TabParamsList = {
-  [ROUTES.FAVORITE]?: { favorite: boolean };
+  [ROUTES.FAVORITE]: { favorite: boolean };
   [ROUTES.HOME]: undefined;
-  [ROUTES.SEARCH]?: FoodOptions;
+  [ROUTES.SEARCH]: { autoFocus?: boolean; query?: string; category?: string };
+};
+
+const Tab = createBottomTabNavigator<TabParamsList>();
+
+const getTabIcon = (routeName: keyof TabParamsList, focused: boolean) => {
+  const icons = {
+    [ROUTES.FAVORITE]: <FavoriteMenu isFill={focused} />,
+    [ROUTES.HOME]: <HomeMenu isFill={focused} />,
+    [ROUTES.SEARCH]: <SearchMenu isFill={focused} />,
+  };
+
+  return icons[routeName] || null;
 };
 
 const TabNavigator = () => {
-  const Tab = createBottomTabNavigator<TabParamsList>();
-
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarLabel: '',
         tabBarStyle: { height: 80 },
-        tabBarIcon: ({ focused }) => {
-          switch (route.name) {
-            case ROUTES.FAVORITE:
-              return <FavoriteMenu isFill={focused} />;
-            case ROUTES.HOME:
-              return <HomeMenu isFill={focused} />;
-            case ROUTES.SEARCH:
-              return <SearchMenu isFill={focused} />;
-          }
-        },
+        tabBarIcon: ({ focused }) => getTabIcon(route.name, focused),
         unmountOnBlur: true,
       })}
     >
