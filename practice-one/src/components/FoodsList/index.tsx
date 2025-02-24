@@ -9,18 +9,19 @@ import { COLOR, ROUTES } from '@/constants';
 
 import { IFood } from '@/types';
 
-import Food from '../FoodCard';
+import FoodCard from '../FoodCard';
+import NotFound from '../NotFound';
 
 export interface FoodsListProps extends Partial<FlatListProps<IFood>> {
-  title?: React.ReactNode;
   horizontal?: boolean;
-  foods: IFood[];
+  foods?: IFood[] | null;
 }
 
 const FoodsList = ({
-  title = null,
   horizontal,
   foods,
+  // eslint-disable-next-line react/prop-types
+  ListHeaderComponent = null,
   ...otherProps
 }: FoodsListProps) => {
   const { navigate } =
@@ -34,8 +35,8 @@ const FoodsList = ({
   );
 
   const renderItem = useCallback(
-    ({ item }: { item: IFood }) => (
-      <Food
+    ({ item, index }: { item: IFood; index: number }) => (
+      <FoodCard
         calories={item.nutritional.calories}
         color={item.color}
         id={item.id}
@@ -43,9 +44,10 @@ const FoodsList = ({
         weight={item.weight}
         name={item.name}
         onPress={handlePressItem}
+        marginLeft={horizontal && index === 0 ? 16 : 0}
       />
     ),
-    [handlePressItem],
+    [handlePressItem, horizontal],
   );
 
   const keyExtractor = useCallback((item: IFood) => item.id, []);
@@ -60,7 +62,7 @@ const FoodsList = ({
 
   return (
     <View style={styles.container} testID="foods-list-container">
-      {title}
+      {horizontal ? (ListHeaderComponent as React.ReactNode) : null}
       <FlatList
         {...otherProps}
         testID="foods-list"
@@ -72,6 +74,9 @@ const FoodsList = ({
         showsVerticalScrollIndicator={false}
         contentContainerStyle={contentContainerStyle}
         {...(!horizontal && { numColumns: 2, columnWrapperStyle: { gap: 18 } })}
+        scrollEnabled={true}
+        onStartReachedThreshold={0.5}
+        ListHeaderComponent={horizontal ? null : ListHeaderComponent}
       />
     </View>
   );
@@ -79,11 +84,9 @@ const FoodsList = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: COLOR.WHITE,
-    paddingHorizontal: 20,
-    paddingBottom: 20,
     gap: 18,
+    flex: 1,
   },
   listContainer: {
     gap: 18,

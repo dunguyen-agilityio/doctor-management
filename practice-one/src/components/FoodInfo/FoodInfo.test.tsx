@@ -1,35 +1,48 @@
 import { CATEGORIES } from '@/constants';
 
-import { fireEvent, render } from '@/utils/test-utils';
+import { IFood } from '@/types';
 
-import { MOCK_FOODS } from '@/mocks';
+import { fireEvent, render, waitFor } from '@/utils/test-utils';
+
+import { MOCK_FOODS } from '@/mocks/foods';
 
 import FoodInfo from './index';
 
+jest.mock('@/services/food', () => ({
+  getFoodById: jest.fn(),
+}));
+
 describe('FoodInfo Component', () => {
   const MOCK_FOOD = MOCK_FOODS[0];
-  const defaultProps = {
+  const { id: categoryValue, name: categoryName } = CATEGORIES[0];
+  const mockFood = {
     ...MOCK_FOOD,
     ingredients: MOCK_FOOD.ingredients.slice(0, 2),
-    category: CATEGORIES[0].name,
+    category: categoryValue,
     desc: 'A nutritious vegetable that is great for health and vision. A nutritious vegetable that is great for health and vision. A nutritious vegetable that is great for health and vision. A nutritious vegetable that is great for health and vision.',
   };
-  const { name, category, ingredients } = defaultProps;
+  const { name, ingredients } = mockFood;
 
-  it('renders correctly with all props', () => {
-    const { getByText } = render(<FoodInfo {...defaultProps} />);
+  const renderComponent = (food = mockFood) => render(<FoodInfo food={food} />);
 
-    expect(getByText(name)).toBeTruthy();
-    expect(getByText(category)).toBeTruthy();
-    expect(getByText(`${ingredients[0].value} cal`)).toBeTruthy();
-    expect(getByText(ingredients[0].name)).toBeTruthy();
+  it('renders correctly with all props', async () => {
+    const { getByText } = renderComponent();
+
+    await waitFor(() => {
+      expect(getByText(name)).toBeTruthy();
+      expect(getByText(categoryName)).toBeTruthy();
+      expect(getByText(`${ingredients[0].value} cal`)).toBeTruthy();
+      expect(getByText(ingredients[0].name)).toBeTruthy();
+    });
   });
 
-  it('truncates description and expands on toggle', () => {
-    const { getByText } = render(<FoodInfo {...defaultProps} />);
-    expect(
-      getByText(/A nutritious vegetable that is great for health.../),
-    ).toBeTruthy();
+  it('truncates description and expands on toggle', async () => {
+    const { getByText } = renderComponent();
+    await waitFor(() => {
+      expect(
+        getByText(/A nutritious vegetable that is great for health.../),
+      ).toBeTruthy();
+    });
 
     fireEvent.press(getByText('\bRead more.'));
     expect(
@@ -42,19 +55,18 @@ describe('FoodInfo Component', () => {
     ).toBeTruthy();
   });
 
-  it('shows only two ingredients initially and expands on toggle', () => {
-    const { getByText, queryByText } = render(
-      <FoodInfo
-        {...defaultProps}
-        ingredients={[
-          ...defaultProps.ingredients,
-          { id: '3', name: 'Cucumber', value: 2 },
-        ]}
-      />,
-    );
+  it('shows only two ingredients initially and expands on toggle', async () => {
+    const food = {
+      ...mockFood,
+      ingredients: [...ingredients, { id: '3', name: 'Cucumber', value: 100 }],
+    } as IFood;
+    const { getByText, queryByText } = renderComponent(food);
 
-    expect(getByText(ingredients[0].name)).toBeTruthy();
-    expect(getByText(ingredients[1].name)).toBeTruthy();
+    await waitFor(() => {
+      expect(getByText(ingredients[0].name)).toBeTruthy();
+      expect(getByText(ingredients[1].name)).toBeTruthy();
+    });
+
     expect(queryByText('Cucumber')).toBeFalsy();
 
     fireEvent.press(getByText('\bSee all'));

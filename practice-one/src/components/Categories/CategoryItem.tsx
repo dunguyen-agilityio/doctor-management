@@ -18,7 +18,6 @@ interface CategoryItemProps extends TouchableOpacityProps {
 const CategoryItem = ({
   isActive,
   id,
-  style,
   children,
   marginLeft = 0,
   marginRight = 0,
@@ -31,14 +30,14 @@ const CategoryItem = ({
 
   return (
     <TouchableOpacity
+      onPress={handlePress}
+      {...props}
       style={[
         styles.button,
         isActive && styles.buttonActive,
         { marginLeft, marginRight },
-        style,
+        props.style,
       ]}
-      onPress={handlePress}
-      {...props}
     >
       <Text variant="body1" style={isActive && { fontWeight: '500' }}>
         {children}

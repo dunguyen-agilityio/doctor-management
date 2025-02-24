@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import {
   Text as RNText,
   TextProps as RNTextProps,
@@ -17,20 +16,11 @@ export enum TextColor {
   FOURTH = 'FOURTH',
 }
 
-const getTextColor = (color: keyof typeof TextColor) => {
-  switch (color) {
-    case TextColor.PRIMARY:
-      return COLOR.PRIMARY;
-
-    case TextColor.SECONDARY:
-      return COLOR.SECONDARY;
-
-    case TextColor.TERTIARY:
-      return COLOR.BLACK_BEAN;
-
-    case TextColor.FOURTH:
-      return COLOR.DARK_GREEN;
-  }
+const TEXT_COLOR_MAP: Record<TextColor, string> = {
+  [TextColor.PRIMARY]: COLOR.PRIMARY,
+  [TextColor.SECONDARY]: COLOR.SECONDARY,
+  [TextColor.TERTIARY]: COLOR.BLACK_BEAN,
+  [TextColor.FOURTH]: COLOR.DARK_GREEN,
 };
 
 interface TextProps extends RNTextProps {
@@ -46,22 +36,18 @@ const Text = ({
   style,
   ...props
 }: TextProps) => {
-  const customStyle = useMemo(() => {
-    const textColor = color
-      ? isInEnum(TextColor, color)
-        ? getTextColor(color)
-        : color
-      : COLOR.PRIMARY;
+  const textColor = color
+    ? isInEnum(TextColor, color)
+      ? TEXT_COLOR_MAP[color]
+      : color
+    : COLOR.PRIMARY;
 
-    const compose = {
-      ...styles.base,
-      ...styles[variant],
-      color: textColor,
-      textTransform,
-    };
-
-    return compose;
-  }, [color, textTransform, variant]);
+  const customStyle = {
+    ...styles.base,
+    ...styles[variant],
+    color: textColor,
+    textTransform,
+  };
 
   return <RNText style={[customStyle, style]} {...props} />;
 };
@@ -107,7 +93,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 23,
   },
-  subtitle3: {},
+  subtitle3: { fontSize: 14, fontWeight: '500', lineHeight: 22 },
   subtitle4: {
     fontFamily: 'Signika',
     fontSize: 17,

@@ -13,6 +13,8 @@ export interface FoodCardProps
   extends Pick<IFood, 'imgUrl' | 'name' | 'id' | 'weight' | 'color'>,
     Pick<TNutritional, 'calories'> {
   onPress?: (id: string) => void;
+  marginRight?: number;
+  marginLeft?: number;
 }
 
 const FoodCard = ({
@@ -22,6 +24,8 @@ const FoodCard = ({
   id,
   color,
   weight,
+  marginLeft,
+  marginRight,
   onPress,
 }: FoodCardProps) => {
   const handlePress = () => {
@@ -29,7 +33,10 @@ const FoodCard = ({
   };
 
   return (
-    <Pressable style={styles.container} onPress={handlePress}>
+    <Pressable
+      style={[styles.container, { marginLeft, marginRight }]}
+      onPress={handlePress}
+    >
       <FoodImage color={color} imgUrl={imgUrl} type={FoodImageSize.medium} />
       <Text variant="title2" style={styles.name}>
         {name}

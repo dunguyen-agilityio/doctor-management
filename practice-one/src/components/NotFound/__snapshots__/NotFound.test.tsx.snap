@@ -11,7 +11,7 @@ exports[`NotFound Component renders correctly with default props 1`] = `
       "width": "100%",
     }
   }
-  testID="not-found-container"
+  testID="not-found"
 >
   <View
     style={
@@ -20,7 +20,6 @@ exports[`NotFound Component renders correctly with default props 1`] = `
         "gap": 24,
       }
     }
-    testID="not-found-header"
   >
     <Image
       source={
@@ -40,16 +39,14 @@ exports[`NotFound Component renders correctly with default props 1`] = `
       style={
         [
           {
-            "color": "#ff8473",
+            "color": "#696969",
             "fontFamily": "Manrope",
             "fontSize": 15,
             "fontWeight": "600",
             "lineHeight": 23,
             "textTransform": undefined,
           },
-          {
-            "marginTop": 24,
-          },
+          undefined,
         ]
       }
     >
@@ -60,14 +57,16 @@ exports[`NotFound Component renders correctly with default props 1`] = `
     style={
       [
         {
-          "color": "#5c5c5c",
+          "color": "#7e7e7e",
           "fontFamily": "Manrope",
           "fontSize": 13,
           "fontWeight": "400",
           "lineHeight": 18,
           "textTransform": undefined,
         },
-        undefined,
+        {
+          "textAlign": "center",
+        },
       ]
     }
   >

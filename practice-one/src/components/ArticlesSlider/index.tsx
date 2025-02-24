@@ -30,6 +30,7 @@ const ArticleSlider = ({ articles }: { articles: IArticle[] }) => {
           paddingLeft: 16,
           paddingRight: index === 0 ? 16 : 0,
         }}
+        testID="article-item"
       >
         <Article {...item} />
       </View>
@@ -38,7 +39,7 @@ const ArticleSlider = ({ articles }: { articles: IArticle[] }) => {
   );
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="article-slider">
       <View style={styles.carousel}>
         <Carousel
           data={articles}
@@ -54,15 +55,17 @@ const ArticleSlider = ({ articles }: { articles: IArticle[] }) => {
         />
       </View>
 
-      <Pagination.Custom<{ id: string }>
-        progress={progress}
-        data={articles.map((id) => id)}
-        size={20}
-        dotStyle={styles.dot}
-        activeDotStyle={styles.activeDot}
-        containerStyle={styles.pagination}
-        horizontal
-      />
+      <View testID="pagination">
+        <Pagination.Custom<{ id: string }>
+          progress={progress}
+          data={articles.map((id) => id)}
+          size={20}
+          dotStyle={styles.dot}
+          activeDotStyle={styles.activeDot}
+          containerStyle={styles.pagination}
+          horizontal
+        />
+      </View>
     </View>
   );
 };

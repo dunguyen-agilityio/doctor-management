@@ -1,6 +1,5 @@
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { memo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { CATEGORIES } from '@/constants';
@@ -12,33 +11,10 @@ import CategoryItem from './CategoryItem';
 export interface ICategories {
   categories: ICategory[];
   values?: string[];
-  onChange?: (values: string[]) => void;
+  onSelect?: (select: string) => void;
 }
 
-const Categories = ({
-  categories,
-  values: initial = [],
-  onChange,
-}: ICategories) => {
-  const [values, setValues] = useState(initial);
-
-  const handleSelect = (id: string) => {
-    setValues((prev) => {
-      const set = new Set(prev);
-
-      if (set.has(id)) {
-        set.delete(id);
-      } else {
-        set.add(id);
-      }
-
-      const newValues = Array.from(set);
-
-      onChange?.(newValues);
-      return newValues;
-    });
-  };
-
+const Categories = ({ categories, values = [], onSelect }: ICategories) => {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -52,10 +28,11 @@ const Categories = ({
 
           return (
             <CategoryItem
+              testID="category-item"
               key={id}
               marginLeft={idx == 0 ? 16 : 0}
               marginRight={idx == CATEGORIES.length - 1 ? 16 : 0}
-              onPressItem={handleSelect}
+              onPressItem={onSelect}
               isActive={isActive}
               id={id}
             >
@@ -68,7 +45,7 @@ const Categories = ({
   );
 };
 
-export default memo(Categories);
+export default Categories;
 
 const styles = StyleSheet.create({
   container: {

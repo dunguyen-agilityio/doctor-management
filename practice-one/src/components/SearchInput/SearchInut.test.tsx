@@ -1,40 +1,72 @@
+import { fireEvent, render } from '@testing-library/react-native';
+
 import { createRef } from 'react';
 import { TextInput } from 'react-native';
 
-import { fireEvent, render, waitFor } from '@/utils/test-utils';
+import SearchInput from '@/components/SearchInput';
 
-import SearchInput from '../SearchInput';
+describe('SearchInput', () => {
+  it('renders correctly', () => {
+    const { getByTestId, getByPlaceholderText } = render(
+      <SearchInput placeholder="Search for healthy food" />,
+    );
 
-describe('SearchInput Component', () => {
-  it('renders correctly with placeholder', () => {
-    const { getByPlaceholderText } = render(<SearchInput />);
-    const input = getByPlaceholderText('Search for healthy food');
-    expect(input).toBeTruthy();
+    expect(getByTestId('search-input')).toBeTruthy();
+    expect(getByPlaceholderText('Search for healthy food')).toBeTruthy();
   });
 
-  it('calls onChangeText when typing', async () => {
-    const mockOnChangeText = jest.fn();
+  it('calls onChangeText with debounced input', async () => {
+    jest.useFakeTimers();
+    const onChangeTextMock = jest.fn();
     const { getByPlaceholderText } = render(
-      <SearchInput onChangeText={mockOnChangeText} />,
+      <SearchInput onChangeText={onChangeTextMock} />,
     );
 
     const input = getByPlaceholderText('Search for healthy food');
     fireEvent.changeText(input, 'apple');
 
-    await waitFor(() => expect(mockOnChangeText).toHaveBeenCalledWith('apple'));
+    jest.advanceTimersByTime(500);
+
+    expect(onChangeTextMock).toHaveBeenCalledWith('apple');
   });
 
-  it('focuses when tapped anywhere inside the container', () => {
-    const inputRef = createRef<TextInput>();
-    const { getByTestId } = render(<SearchInput ref={inputRef} />);
+  it('calls onPress when tapped', () => {
+    const onPressMock = jest.fn();
+    const { getByTestId } = render(<SearchInput onPress={onPressMock} />);
 
     fireEvent.press(getByTestId('search-input'));
 
-    expect(inputRef.current?.focus).toBeDefined();
+    expect(onPressMock).toHaveBeenCalled();
   });
 
-  it('matches snapshot', () => {
-    const tree = render(<SearchInput />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it('exposes focus and clear methods via ref', () => {
+    const ref = createRef<{ focus: () => void; clear: () => void }>();
+    render(<SearchInput ref={ref} />);
+
+    // Ensure ref is assigned
+    expect(ref.current).toBeTruthy();
+    expect(typeof ref.current?.focus).toBe('function');
+    expect(typeof ref.current?.clear).toBe('function');
+  });
+
+  it('calls focus and clear methods on TextInput ref', () => {
+    const ref = createRef<{ focus: () => void; clear: () => void }>();
+    render(<SearchInput ref={ref} />);
+
+    // Spy on TextInput methods
+    const focusSpy = jest.spyOn(TextInput.prototype, 'focus');
+    const clearSpy = jest.spyOn(TextInput.prototype, 'clear');
+
+    ref.current?.focus();
+
+    expect(focusSpy).toHaveBeenCalled();
+
+    ref.current?.clear();
+
+    expect(clearSpy).toHaveBeenCalled();
+
+    // Cleanup spies
+    focusSpy.mockRestore();
+    clearSpy.mockRestore();
   });
 });

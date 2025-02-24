@@ -17,11 +17,11 @@ describe('Categories Component', () => {
     const mockOnChange = jest.fn();
     const { name, id } = CATEGORIES[0];
     const { getByText } = render(
-      <Categories categories={CATEGORIES} onChange={mockOnChange} />,
+      <Categories categories={CATEGORIES} onSelect={mockOnChange} />,
     );
 
     fireEvent.press(getByText(name));
-    expect(mockOnChange).toHaveBeenCalledWith([id]);
+    expect(mockOnChange).toHaveBeenCalledWith(id);
   });
 
   it('applies active styles when a category is selected', () => {

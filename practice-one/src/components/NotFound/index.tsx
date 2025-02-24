@@ -18,15 +18,17 @@ const NotFound = ({
   image?: React.ReactNode;
 }) => {
   return (
-    <View testID="not-found-container" style={styles.container}>
-      <View testID="not-found-header" style={styles.header}>
+    <View testID="not-found" style={styles.container}>
+      <View style={styles.header}>
         {image}
-        <Text variant="subtitle2" style={styles.title} color={COLOR.SECONDARY}>
+        <Text variant="subtitle2" color={COLOR.TERTIARY}>
           {title}
         </Text>
       </View>
 
-      <Text variant="body1">{description}</Text>
+      <Text variant="body1" color={COLOR.GRAY} style={styles.description}>
+        {description}
+      </Text>
     </View>
   );
 };
@@ -44,9 +46,6 @@ const styles = StyleSheet.create({
   header: {
     gap: 24,
     alignItems: 'center',
-  },
-  title: {
-    marginTop: 24,
   },
   description: {
     textAlign: 'center',

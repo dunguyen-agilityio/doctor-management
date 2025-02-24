@@ -2,7 +2,7 @@ import FoodCard from '@/components/FoodCard';
 
 import { fireEvent, render, screen } from '@/utils/test-utils';
 
-import { MOCK_FOODS } from '@/mocks';
+import { MOCK_FOODS } from '@/mocks/foods';
 
 const mockOnPress = jest.fn();
 
