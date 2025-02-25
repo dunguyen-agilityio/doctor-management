@@ -37,11 +37,12 @@ exports[`SearchScreen match snapshot 1`] = `
 healthy Food?
     </Text>
     <View
+      accessibilityRole="button"
       accessibilityState={
         {
           "busy": undefined,
           "checked": undefined,
-          "disabled": undefined,
+          "disabled": false,
           "expanded": undefined,
           "selected": undefined,
         }
@@ -66,19 +67,27 @@ healthy Food?
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
-      role="button"
       style={
         [
           {
             "alignItems": "center",
-            "borderRadius": "100%",
+            "borderRadius": 8,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+            "paddingVertical": 6,
+          },
+          {
+            "alignItems": "center",
+            "borderRadius": 100,
             "justifyContent": "center",
           },
           {
             "backgroundColor": "#00000021",
+            "opacity": 1,
             "width": 35,
           },
           {
+            "aspectRatio": 1,
             "height": 35,
           },
           undefined,
@@ -738,11 +747,12 @@ exports[`SearchScreen match snapshot 2`] = `
 healthy Food?
     </Text>
     <View
+      accessibilityRole="button"
       accessibilityState={
         {
           "busy": undefined,
           "checked": undefined,
-          "disabled": undefined,
+          "disabled": false,
           "expanded": undefined,
           "selected": undefined,
         }
@@ -767,19 +777,27 @@ healthy Food?
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
-      role="button"
       style={
         [
           {
             "alignItems": "center",
-            "borderRadius": "100%",
+            "borderRadius": 8,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+            "paddingVertical": 6,
+          },
+          {
+            "alignItems": "center",
+            "borderRadius": 100,
             "justifyContent": "center",
           },
           {
             "backgroundColor": "#00000021",
+            "opacity": 1,
             "width": 35,
           },
           {
+            "aspectRatio": 1,
             "height": 35,
           },
           undefined,
