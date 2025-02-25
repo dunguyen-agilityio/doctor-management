@@ -19,7 +19,7 @@ const FoodInfo = ({ food }: FoodInfoProps) => {
     food;
 
   const categoryName =
-    CATEGORIES.find(({ id: catId }) => catId === category)?.name || 'Unknown';
+    CATEGORIES.find(({ id: catId }) => catId == category)?.name || 'Unknown';
 
   return (
     <View style={styles.container}>
@@ -40,7 +40,7 @@ const FoodInfo = ({ food }: FoodInfoProps) => {
                     {isToggle ? desc : desc.substring(0, 150) + '...'}
                     <Text
                       variant="body7"
-                      color={COLOR.PRIMARY}
+                      color={COLOR.LIGHT_GREEN}
                       onPress={toggle}
                     >
                       {isToggle ? `\bRead less.` : `\bRead more.`}
@@ -67,7 +67,11 @@ const FoodInfo = ({ food }: FoodInfoProps) => {
                   }}
                 >
                   <Text variant="subtitle1">Ingredients</Text>
-                  <Text onPress={toggle} color={COLOR.PRIMARY} variant="body5">
+                  <Text
+                    onPress={toggle}
+                    color={COLOR.LIGHT_GREEN}
+                    variant="body5"
+                  >
                     {isToggle ? `\bSee less.` : `\bSee all`}
                   </Text>
                 </View>

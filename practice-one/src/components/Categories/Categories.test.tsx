@@ -27,7 +27,7 @@ describe('Categories Component', () => {
   it('applies active styles when a category is selected', () => {
     const { name, id } = CATEGORIES[1];
     const { getByText } = render(
-      <Categories categories={CATEGORIES} values={[id]} />,
+      <Categories categories={CATEGORIES} categoriesValue={[id]} />,
     );
 
     const activeCategory = getByText(name);

@@ -6,38 +6,43 @@ import { FoodListProps } from '@/components/FoodList';
 
 import { COLOR } from '@/constants';
 
-import { FoodOptions } from '@/services/food';
-
 import { useFoodList } from '@/hooks/useFoodList';
 
-interface FoodContainerProps {
+export interface FoodContainerProps {
   slotProps?: { list: Partial<FoodListProps> };
   Fallback?: React.ReactNode;
-  options?: FoodOptions;
+  categoriesValue?: string[];
+  query?: string;
 }
 
 const FoodContainer = ({
   slotProps,
   Fallback = null,
-  options,
+  categoriesValue,
+  query,
 }: FoodContainerProps) => {
-  const { isLoading, data, fetchNextPage } = useFoodList(options);
+  const { isLoading, isFetchingNextPage, data, fetchNextPage } = useFoodList({
+    categoriesValue,
+    query,
+  });
 
   const handleEndReached = useCallback(() => {
     fetchNextPage();
   }, [fetchNextPage]);
 
+  const { ListFooterComponent = null, ...listProps } = slotProps?.list ?? {};
+
+  if (isLoading) return Fallback;
+
   return (
     <View style={styles.container} testID="food-container">
       <View style={styles.list}>
-        {isLoading && Fallback}
-        {data && (
-          <FoodList
-            {...slotProps?.list}
-            data={data}
-            onEndReached={handleEndReached}
-          />
-        )}
+        <FoodList
+          {...listProps}
+          data={data}
+          onEndReached={handleEndReached}
+          ListFooterComponent={isFetchingNextPage ? ListFooterComponent : null}
+        />
       </View>
     </View>
   );

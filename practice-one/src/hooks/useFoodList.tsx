@@ -4,11 +4,15 @@ import { QUERY_KEYS } from '@/constants/query';
 
 import { FoodOptions, getFoodList } from '@/services/food';
 
-export function useFoodList({ categories = [], query = '' }: FoodOptions = {}) {
+export function useFoodList({
+  categoriesValue = [],
+  query = '',
+}: FoodOptions = {}) {
   const infiniteQuery = useInfiniteQuery({
-    queryKey: [QUERY_KEYS.FOOD, query, ...categories],
+    queryKey: [QUERY_KEYS.FOOD, query, ...categoriesValue],
     initialPageParam: 1,
-    queryFn: ({ pageParam: page }) => getFoodList({ query, categories, page }),
+    queryFn: ({ pageParam: page }) =>
+      getFoodList({ query, categoriesValue, page }),
     getNextPageParam: (lastPage) => lastPage.nextPage,
     getPreviousPageParam: (firstPage) => firstPage.prevPage,
     placeholderData: (prevData) => prevData,

@@ -9,12 +9,16 @@ import { ICategory } from '@/types';
 import CategoryItem from './CategoryItem';
 
 export interface ICategories {
-  categories: ICategory[];
-  values?: string[];
+  categories?: ICategory[];
+  categoriesValue?: string[];
   onSelect?: (select: string) => void;
 }
 
-const Categories = ({ categories, values = [], onSelect }: ICategories) => {
+const Categories = ({
+  categories = [],
+  categoriesValue = [],
+  onSelect,
+}: ICategories) => {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -24,7 +28,7 @@ const Categories = ({ categories, values = [], onSelect }: ICategories) => {
         contentContainerStyle={styles.contentContainerStyle}
       >
         {categories.map(({ name, id }, idx) => {
-          const isActive = values.includes(String(id));
+          const isActive = categoriesValue.includes(String(id));
 
           return (
             <CategoryItem

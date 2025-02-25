@@ -27,6 +27,28 @@ describe('APIClient', () => {
 
   it('GET request should return success response', async () => {
     (global.fetch as jest.Mock).mockResolvedValue({
+      headers: {
+        get: (type: string) => {
+          if (type === 'content-type') {
+            return 'application/json';
+          }
+
+          if (type === 'X-Total-Count') {
+            return 10;
+          }
+
+          return null;
+        },
+      },
+      ok: true,
+      json: jest.fn().mockResolvedValue('success'),
+    });
+    const response = await apiClient.get<{ data: string }>('test');
+    expect(response).toEqual({ data: 'success', meta: { total: 10 } });
+  });
+
+  it('GET request should return error response', async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
       headers: { get: () => ['html/text'] },
       ok: true,
     });

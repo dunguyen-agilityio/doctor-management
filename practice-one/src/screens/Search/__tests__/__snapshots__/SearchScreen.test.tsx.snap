@@ -146,6 +146,7 @@ healthy Food?
             "paddingVertical": 14,
           }
         }
+        value=""
       />
       <View
         style={
@@ -679,66 +680,47 @@ healthy Food?
   </View>
   <View
     style={
-      {
-        "backgroundColor": "#fff",
-        "flex": 1,
-      }
+      [
+        {
+          "alignItems": "center",
+          "height": "100%",
+          "justifyContent": "center",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 10,
+        },
+        {
+          "marginTop": undefined,
+        },
+      ]
     }
-    testID="food-container"
+    testID="loading-indicator"
   >
     <View
+      collapsable={false}
       style={
         {
-          "flex": 1,
-          "paddingTop": 15,
+          "transform": [
+            {
+              "rotate": "0deg",
+            },
+          ],
         }
       }
     >
-      <View
-        style={
-          [
-            {
-              "alignItems": "center",
-              "height": "100%",
-              "justifyContent": "center",
-              "position": "absolute",
-              "width": "100%",
-              "zIndex": 10,
-            },
-            {
-              "marginTop": undefined,
-            },
-          ]
-        }
-        testID="loading-indicator"
-      >
-        <View
-          collapsable={false}
-          style={
-            {
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-            }
+      <Image
+        source={
+          {
+            "testUri": "../../../assets/images/logo.png",
           }
-        >
-          <Image
-            source={
-              {
-                "testUri": "../../../assets/images/logo.png",
-              }
-            }
-            style={
-              {
-                "height": 122,
-                "width": 122,
-              }
-            }
-          />
-        </View>
-      </View>
+        }
+        style={
+          {
+            "height": 122,
+            "width": 122,
+          }
+        }
+      />
     </View>
   </View>
 </View>
@@ -890,6 +872,7 @@ healthy Food?
             "paddingVertical": 14,
           }
         }
+        value=""
       />
       <View
         style={
@@ -1423,66 +1406,47 @@ healthy Food?
   </View>
   <View
     style={
-      {
-        "backgroundColor": "#fff",
-        "flex": 1,
-      }
+      [
+        {
+          "alignItems": "center",
+          "height": "100%",
+          "justifyContent": "center",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 10,
+        },
+        {
+          "marginTop": undefined,
+        },
+      ]
     }
-    testID="food-container"
+    testID="loading-indicator"
   >
     <View
+      collapsable={false}
       style={
         {
-          "flex": 1,
-          "paddingTop": 15,
+          "transform": [
+            {
+              "rotate": "0deg",
+            },
+          ],
         }
       }
     >
-      <View
-        style={
-          [
-            {
-              "alignItems": "center",
-              "height": "100%",
-              "justifyContent": "center",
-              "position": "absolute",
-              "width": "100%",
-              "zIndex": 10,
-            },
-            {
-              "marginTop": undefined,
-            },
-          ]
-        }
-        testID="loading-indicator"
-      >
-        <View
-          collapsable={false}
-          style={
-            {
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-            }
+      <Image
+        source={
+          {
+            "testUri": "../../../assets/images/logo.png",
           }
-        >
-          <Image
-            source={
-              {
-                "testUri": "../../../assets/images/logo.png",
-              }
-            }
-            style={
-              {
-                "height": 122,
-                "width": 122,
-              }
-            }
-          />
-        </View>
-      </View>
+        }
+        style={
+          {
+            "height": 122,
+            "width": 122,
+          }
+        }
+      />
     </View>
   </View>
 </View>

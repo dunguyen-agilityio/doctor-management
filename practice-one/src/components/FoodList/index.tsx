@@ -51,12 +51,15 @@ const FoodList = ({
 
   const keyExtractor = useCallback((item: IFood) => item.id, []);
 
+  const isEmpty = !data?.length;
+
   const contentContainerStyle = useMemo(
     () => [
       styles.listContainer,
       horizontal ? styles.horizontalList : styles.verticalList,
+      isEmpty && styles.listEmpty,
     ],
-    [horizontal],
+    [horizontal, isEmpty],
   );
 
   return (
@@ -97,6 +100,9 @@ const styles = StyleSheet.create({
   },
   horizontalList: {
     marginHorizontal: 'auto',
+  },
+  listEmpty: {
+    flex: 1,
   },
 });
 

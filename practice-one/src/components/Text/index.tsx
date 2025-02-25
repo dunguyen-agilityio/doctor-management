@@ -36,19 +36,15 @@ const Text = ({
   style,
   ...props
 }: TextProps) => {
-  const textColor = color
-    ? isInEnum(TextColor, color)
-      ? TEXT_COLOR_MAP[color]
-      : color
-    : COLOR.PRIMARY;
+  const textColor =
+    TEXT_COLOR_MAP[color as TextColor] ?? color ?? COLOR.PRIMARY;
 
-  const customStyle = {
-    ...styles.base,
-    ...styles[variant],
-    color: textColor,
-    textTransform,
-    ...(Array.isArray(style) ? Object.assign({}, ...style) : style),
-  };
+  const customStyle = StyleSheet.flatten([
+    styles.base,
+    styles[variant],
+    { color: textColor, textTransform },
+    style,
+  ]);
 
   return <RNText style={customStyle} {...props} />;
 };

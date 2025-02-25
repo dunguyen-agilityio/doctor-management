@@ -19,7 +19,7 @@ describe('SearchInput', () => {
     jest.useFakeTimers();
     const onChangeTextMock = jest.fn();
     const { getByPlaceholderText } = render(
-      <SearchInput onChangeText={onChangeTextMock} />,
+      <SearchInput onSearch={onChangeTextMock} />,
     );
 
     const input = getByPlaceholderText('Search for healthy food');

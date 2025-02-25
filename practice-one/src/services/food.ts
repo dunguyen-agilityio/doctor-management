@@ -6,7 +6,7 @@ import { apiClient } from './http-client';
 
 export interface FoodOptions {
   query?: string;
-  categories?: string[];
+  categoriesValue?: string[];
   page?: number;
   pageSize?: number;
 }
@@ -19,14 +19,14 @@ export const getFoodList = async (
   nextPage?: number;
   prevPage?: number;
 }> => {
-  const { categories = [], page = 1, pageSize = 25, query } = options;
+  const { categoriesValue = [], page = 1, pageSize = 25, query } = options;
 
   const searchParams = new URLSearchParams();
 
   searchParams.set('_page', String(page));
   searchParams.set('_limit', String(pageSize));
   if (query) searchParams.set('name_like', query);
-  categories.forEach((item) =>
+  categoriesValue.forEach((item) =>
     searchParams.append('category', item.toString()),
   );
 
