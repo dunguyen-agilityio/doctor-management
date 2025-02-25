@@ -64,6 +64,7 @@ exports[`Article Component matches snapshot 1`] = `
       {
         "alignItems": "flex-start",
         "color": "#330600",
+        "gap": 4,
         "maxWidth": "60%",
         "padding": 32,
       }
@@ -93,7 +94,6 @@ exports[`Article Component matches snapshot 1`] = `
           "fontWeight": "600",
           "letterSpacing": 0,
           "lineHeight": 24,
-          "marginTop": 4,
           "textTransform": undefined,
         }
       }
@@ -120,26 +120,36 @@ exports[`Article Component matches snapshot 1`] = `
       }
       accessible={true}
       collapsable={false}
-      focusable={false}
+      focusable={true}
+      onBlur={[Function]}
       onClick={[Function]}
+      onFocus={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
+      role="button"
       style={
-        {
-          "alignItems": "center",
-          "backgroundColor": "#27ae60",
-          "borderRadius": 8,
-          "flexDirection": "row",
-          "marginTop": 8,
-          "opacity": 1,
-          "paddingHorizontal": 16,
-          "paddingVertical": 6,
-          "width": 104,
-        }
+        [
+          {
+            "borderRadius": 8,
+            "paddingHorizontal": 16,
+            "paddingVertical": 6,
+          },
+          {
+            "backgroundColor": "#27ae60",
+            "width": 104,
+          },
+          false,
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "gap": 4,
+            "marginTop": 4,
+          },
+        ]
       }
     >
       <Text

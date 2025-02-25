@@ -1,5 +1,6 @@
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
+import Button from '../Button';
 import Text from '../Text';
 import { QuestionIcon } from '../icons';
 
@@ -7,9 +8,14 @@ const Header = () => {
   return (
     <View style={styles.container}>
       <Text variant="main2">{`Want to eat\nhealthy Food?`}</Text>
-      <Pressable style={styles.buttonHelp} testID="question-icon" role="button">
+      <Button
+        testID="question-icon"
+        variant="icon"
+        width={35}
+        backgroundColor="#00000021"
+      >
         <QuestionIcon />
-      </Pressable>
+      </Button>
     </View>
   );
 };
@@ -27,13 +33,5 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 23,
     fontWeight: '800',
-  },
-  buttonHelp: {
-    width: 35,
-    height: 35,
-    borderRadius: '100%',
-    backgroundColor: '#00000021',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });

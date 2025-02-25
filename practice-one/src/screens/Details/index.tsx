@@ -1,3 +1,5 @@
+import withFavorite from '@/hocs/withFavorite';
+
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
@@ -5,14 +7,19 @@ import { useQuery } from '@tanstack/react-query';
 
 import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
 
-import { ErrorFallback, FoodInfo } from '@/components';
+import { ErrorFallback, FoodInfo, Text } from '@/components';
+import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
 
 import { COLOR, ROUTES } from '@/constants';
 
 import { getFoodById } from '@/services/food';
 
-import FavoriteButton from './FavoriteButton';
+const FavoriteButton = withFavorite(Button, (hasFavorite) => (
+  <Text variant="subtitle1" color={COLOR.WHITE}>
+    {hasFavorite ? 'Unfavorite' : 'Add to Favorites'}
+  </Text>
+));
 
 type DetailRoute = RouteProp<RootStackParamsList, typeof ROUTES.DETAIL>;
 
@@ -58,7 +65,7 @@ const Details = () => {
         testID="back-button"
       />
       <FoodInfo food={food} />
-      <FavoriteButton id={id} food={food} />
+      <FavoriteButton id={id} food={food} style={styles.button} />
     </View>
   );
 };
@@ -71,5 +78,10 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.WHITE,
     paddingHorizontal: 20,
     paddingTop: 4,
+  },
+  button: {
+    marginTop: 27,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

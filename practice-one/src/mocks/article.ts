@@ -4,7 +4,7 @@ export const MOCK_ARTICLES: IArticle[] = [
   {
     id: '1',
     title: 'The pros and cons of vegetable',
-    color: 'green',
+    color: 'primary',
     backgroundColor: ['#b3f6a8', '#ebfff3'],
     image:
       'https://res.cloudinary.com/dn5vw6fjp/image/upload/v1740114016/24d2e37a7dcbf108d35e8be410c96a58_uifiia.png',
@@ -20,7 +20,7 @@ export const MOCK_ARTICLES: IArticle[] = [
   {
     id: '3',
     title: 'The pros and cons of vegetable',
-    color: 'green',
+    color: 'primary',
     backgroundColor: ['#b3f6a8', '#ebfff3'],
     image:
       'https://res.cloudinary.com/dn5vw6fjp/image/upload/v1740114016/24d2e37a7dcbf108d35e8be410c96a58_uifiia.png',

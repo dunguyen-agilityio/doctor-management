@@ -18,3 +18,13 @@ jest.mock('react-native-reanimated', () => {
 
   return Reanimated;
 });
+
+jest.mock('expo-font', () => ({
+  loadAsync: jest.fn(),
+  isLoaded: jest.fn().mockReturnValue(true), // Mock isLoaded function
+}));
+
+// Mock @expo/vector-icons
+jest.mock('@expo/vector-icons', () => ({
+  MaterialIcons: (props) => `MaterialIcons: ${JSON.stringify(props)}`,
+}));

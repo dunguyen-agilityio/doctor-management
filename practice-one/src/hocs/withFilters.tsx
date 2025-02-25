@@ -1,7 +1,7 @@
 import { useFilters } from '@/hooks/useFilters';
 
 const withFilters = <T,>(Component: (props: T) => React.ReactNode) => {
-  const WithFiltersFood = (props: T) => {
+  const WithFilters = (props: T) => {
     const { filters, setFilters } = useFilters();
 
     const toggleFilter = (id: string) => {
@@ -17,7 +17,7 @@ const withFilters = <T,>(Component: (props: T) => React.ReactNode) => {
     );
   };
 
-  return WithFiltersFood;
+  return WithFilters;
 };
 
 export default withFilters;
