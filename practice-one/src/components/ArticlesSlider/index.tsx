@@ -5,15 +5,14 @@ import Carousel, {
 } from 'react-native-reanimated-carousel';
 
 import { memo, useCallback } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import Article from '@/components/Article';
 
 import { COLOR } from '@/constants';
+import { WINDOW_HEIGHT, WINDOW_WIDTH } from '@/constants/dimensions';
 
 import { IArticle } from '@/types';
-
-const window = Dimensions.get('window');
 
 const modeConfig = {
   parallaxScrollingScale: 1,
@@ -46,7 +45,7 @@ const ArticleSlider = ({ articles }: { articles: IArticle[] }) => {
           loop={false}
           pagingEnabled
           snapEnabled
-          width={window.width}
+          width={WINDOW_WIDTH}
           style={styles.carousel}
           mode="parallax"
           modeConfig={modeConfig}
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   carousel: {
-    height: (20 / 100) * window.height,
+    height: (20 / 100) * WINDOW_HEIGHT,
   },
   pagination: {
     height: 20,

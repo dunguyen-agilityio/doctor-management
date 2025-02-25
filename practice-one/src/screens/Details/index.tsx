@@ -1,13 +1,13 @@
 import withFavorite from '@/hocs/withFavorite';
 
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 
 import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
 
-import { ErrorFallback, FoodInfo, Text } from '@/components';
+import { ErrorFallback, FoodInfo, Loading, Text } from '@/components';
 import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
 
@@ -40,13 +40,7 @@ const Details = () => {
   });
 
   if (isLoading) {
-    return (
-      <ActivityIndicator
-        size="large"
-        color={COLOR.LIGHT_GREEN}
-        testID="loading-indicator"
-      />
-    );
+    return <Loading />;
   }
 
   if (error || !food) {
