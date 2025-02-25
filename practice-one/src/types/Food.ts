@@ -33,7 +33,7 @@ export interface IArticle {
   id: string;
   image: string;
   title: string;
-  color: 'green' | 'secondary';
+  color: 'primary' | 'secondary';
   backgroundColor: LinearGradient['props']['colors'];
 }
 

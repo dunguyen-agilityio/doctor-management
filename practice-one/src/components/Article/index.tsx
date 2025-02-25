@@ -1,23 +1,18 @@
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { memo } from 'react';
-import {
-  Dimensions,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Dimensions, Image, StyleSheet, View } from 'react-native';
 
 import { COLOR } from '@/constants';
 
 import { IArticle } from '@/types';
 
+import Button from '../Button';
 import Text, { TextColor } from '../Text';
 import { ArrowRightBoldICon } from '../icons';
 
 const buttonColor = {
-  green: COLOR.GREEN,
+  primary: COLOR.GREEN,
   secondary: COLOR.SECONDARY,
 };
 
@@ -46,21 +41,19 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
         <Text variant="subtitle5" color={buttonColor[color]}>
           Article
         </Text>
-        <Text
-          variant="subtitle4"
-          style={styles.title}
-          color={TextColor.TERTIARY}
-        >
+        <Text variant="subtitle4" color={TextColor.TERTIARY}>
           {title}
         </Text>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: buttonColor[color] }]}
+        <Button
+          style={styles.button}
+          width={104}
+          backgroundColor={buttonColor[color]}
         >
           <Text variant="subtitle6" color={COLOR.WHITE}>
             Read now
           </Text>
           <ArrowRightBoldICon />
-        </TouchableOpacity>
+        </Button>
       </View>
     </LinearGradient>
   );
@@ -83,22 +76,17 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     overflow: 'hidden',
   },
-  title: {
-    marginTop: 4,
-  },
   info: {
     maxWidth: '60%',
     color: COLOR.LIGHT_BLACK,
     padding: 32,
     alignItems: 'flex-start',
+    gap: 4,
   },
   button: {
-    paddingVertical: 6,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-    marginTop: 8,
     flexDirection: 'row',
     alignItems: 'center',
-    width: 104,
+    gap: 4,
+    marginTop: 4,
   },
 });

@@ -68,14 +68,21 @@ healthy Food?
       onStartShouldSetResponder={[Function]}
       role="button"
       style={
-        {
-          "alignItems": "center",
-          "backgroundColor": "#00000021",
-          "borderRadius": "100%",
-          "height": 35,
-          "justifyContent": "center",
-          "width": 35,
-        }
+        [
+          {
+            "alignItems": "center",
+            "borderRadius": "100%",
+            "justifyContent": "center",
+          },
+          {
+            "backgroundColor": "#00000021",
+            "width": 35,
+          },
+          {
+            "height": 35,
+          },
+          undefined,
+        ]
       }
       testID="question-icon"
     >
@@ -89,88 +96,56 @@ healthy Food?
     </View>
   </View>
   <View
-    accessibilityState={
+    style={
       {
-        "busy": undefined,
-        "checked": undefined,
-        "disabled": undefined,
-        "expanded": undefined,
-        "selected": undefined,
+        "backgroundColor": "#fff3f1",
+        "borderRadius": 15,
+        "height": 46,
+        "marginHorizontal": 16,
+        "marginTop": 14,
+        "position": "relative",
       }
     }
-    accessibilityValue={
-      {
-        "max": undefined,
-        "min": undefined,
-        "now": undefined,
-        "text": undefined,
-      }
-    }
-    accessible={true}
-    collapsable={false}
-    focusable={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
+    testID="search-input"
   >
     <View
       style={
         {
-          "backgroundColor": "#fff3f1",
-          "borderRadius": 15,
-          "height": 46,
-          "marginHorizontal": 16,
-          "marginTop": 14,
-          "position": "relative",
+          "left": 21,
+          "position": "absolute",
+          "top": "50%",
+          "transform": [
+            {
+              "translateY": -10,
+            },
+          ],
         }
       }
-      testID="search-input"
     >
-      <TextInput
-        autoFocus={false}
-        onChangeText={[Function]}
-        placeholder="Search for healthy food"
-        placeholderTextColor="#ff8473"
-        style={
+      <Image
+        source={
           {
-            "color": "#000000",
-            "fontSize": 13,
-            "fontWeight": "400",
-            "paddingHorizontal": 60,
-            "paddingVertical": 14,
+            "testUri": "../../../assets/icons/icon-search.png",
           }
         }
-        value=""
       />
-      <View
-        style={
-          {
-            "left": 21,
-            "position": "absolute",
-            "top": "50%",
-            "transform": [
-              {
-                "translateY": -10,
-              },
-            ],
-          }
-        }
-      >
-        <Image
-          source={
-            {
-              "testUri": "../../../assets/icons/icon-search.png",
-            }
-          }
-        />
-      </View>
     </View>
+    <TextInput
+      autoFocus={false}
+      defaultValue=""
+      onChangeText={[Function]}
+      placeholder="Search for healthy food"
+      placeholderTextColor="#ff8473"
+      style={
+        {
+          "color": "#000000",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "paddingHorizontal": 60,
+          "paddingVertical": 14,
+        }
+      }
+    />
   </View>
   <View
     style={
@@ -794,14 +769,21 @@ healthy Food?
       onStartShouldSetResponder={[Function]}
       role="button"
       style={
-        {
-          "alignItems": "center",
-          "backgroundColor": "#00000021",
-          "borderRadius": "100%",
-          "height": 35,
-          "justifyContent": "center",
-          "width": 35,
-        }
+        [
+          {
+            "alignItems": "center",
+            "borderRadius": "100%",
+            "justifyContent": "center",
+          },
+          {
+            "backgroundColor": "#00000021",
+            "width": 35,
+          },
+          {
+            "height": 35,
+          },
+          undefined,
+        ]
       }
       testID="question-icon"
     >
@@ -815,88 +797,56 @@ healthy Food?
     </View>
   </View>
   <View
-    accessibilityState={
+    style={
       {
-        "busy": undefined,
-        "checked": undefined,
-        "disabled": undefined,
-        "expanded": undefined,
-        "selected": undefined,
+        "backgroundColor": "#fff3f1",
+        "borderRadius": 15,
+        "height": 46,
+        "marginHorizontal": 16,
+        "marginTop": 14,
+        "position": "relative",
       }
     }
-    accessibilityValue={
-      {
-        "max": undefined,
-        "min": undefined,
-        "now": undefined,
-        "text": undefined,
-      }
-    }
-    accessible={true}
-    collapsable={false}
-    focusable={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
+    testID="search-input"
   >
     <View
       style={
         {
-          "backgroundColor": "#fff3f1",
-          "borderRadius": 15,
-          "height": 46,
-          "marginHorizontal": 16,
-          "marginTop": 14,
-          "position": "relative",
+          "left": 21,
+          "position": "absolute",
+          "top": "50%",
+          "transform": [
+            {
+              "translateY": -10,
+            },
+          ],
         }
       }
-      testID="search-input"
     >
-      <TextInput
-        autoFocus={true}
-        onChangeText={[Function]}
-        placeholder="Search for healthy food"
-        placeholderTextColor="#ff8473"
-        style={
+      <Image
+        source={
           {
-            "color": "#000000",
-            "fontSize": 13,
-            "fontWeight": "400",
-            "paddingHorizontal": 60,
-            "paddingVertical": 14,
+            "testUri": "../../../assets/icons/icon-search.png",
           }
         }
-        value=""
       />
-      <View
-        style={
-          {
-            "left": 21,
-            "position": "absolute",
-            "top": "50%",
-            "transform": [
-              {
-                "translateY": -10,
-              },
-            ],
-          }
-        }
-      >
-        <Image
-          source={
-            {
-              "testUri": "../../../assets/icons/icon-search.png",
-            }
-          }
-        />
-      </View>
     </View>
+    <TextInput
+      autoFocus={true}
+      defaultValue=""
+      onChangeText={[Function]}
+      placeholder="Search for healthy food"
+      placeholderTextColor="#ff8473"
+      style={
+        {
+          "color": "#000000",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "paddingHorizontal": 60,
+          "paddingVertical": 14,
+        }
+      }
+    />
   </View>
   <View
     style={

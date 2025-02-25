@@ -7,8 +7,6 @@ import {
 
 import { COLOR } from '@/constants';
 
-import { isInEnum } from '@/utils/enum';
-
 export enum TextColor {
   PRIMARY = 'PRIMARY',
   SECONDARY = 'SECONDARY',

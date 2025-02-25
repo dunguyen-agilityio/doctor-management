@@ -31,12 +31,14 @@ describe('SearchInput', () => {
   });
 
   it('calls onPress when tapped', () => {
-    const onPressMock = jest.fn();
-    const { getByTestId } = render(<SearchInput onPress={onPressMock} />);
+    const onSearchMock = jest.fn();
+    const { getByTestId } = render(
+      <SearchInput onSearch={onSearchMock} query="abc" />,
+    );
 
-    fireEvent.press(getByTestId('search-input'));
+    fireEvent.press(getByTestId('clear-button'));
 
-    expect(onPressMock).toHaveBeenCalled();
+    expect(onSearchMock).toHaveBeenCalledWith('');
   });
 
   it('exposes focus and clear methods via ref', () => {

@@ -1,16 +1,13 @@
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+
 import { forwardRef, useImperativeHandle, useRef } from 'react';
-import {
-  Pressable,
-  StyleSheet,
-  TextInput,
-  TextInputProps,
-  View,
-} from 'react-native';
+import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
 
 import { COLOR } from '@/constants';
 
 import { debounce } from '@/utils/debounce';
 
+import Button from '../Button';
 import { SearchIcon } from '../icons';
 
 interface SearchInputProps extends TextInputProps {
@@ -39,23 +36,38 @@ const SearchInput = (
     onSearch?.(value);
   }, 500);
 
+  const handleClear = () => {
+    onSearch?.('');
+    inputRef.current?.clear();
+  };
+
   return (
-    <Pressable onPress={onPress}>
-      <View style={styles.container} testID="search-input">
-        <TextInput
-          {...otherProps}
-          ref={inputRef}
-          placeholder="Search for healthy food"
-          placeholderTextColor={COLOR.SECONDARY}
-          style={styles.input}
-          onChangeText={debouncedChangeText}
-          value={query}
-        />
-        <View style={styles.iconSearch}>
-          <SearchIcon />
-        </View>
+    <View style={styles.container} testID="search-input">
+      <View style={styles.iconSearch}>
+        <SearchIcon />
       </View>
-    </Pressable>
+      <TextInput
+        {...otherProps}
+        ref={inputRef}
+        placeholder="Search for healthy food"
+        placeholderTextColor={COLOR.SECONDARY}
+        style={styles.input}
+        defaultValue={query}
+        onChangeText={debouncedChangeText}
+      />
+      {query && (
+        <Button
+          variant="icon"
+          width={12}
+          onPress={handleClear}
+          style={styles.clearButton}
+          backgroundColor="transparent"
+          testID="clear-button"
+        >
+          <MaterialIcons name="clear" size={12} color={COLOR.GREEN} />
+        </Button>
+      )}
+    </View>
   );
 };
 
@@ -82,5 +94,11 @@ const styles = StyleSheet.create({
     left: 21,
     top: '50%',
     transform: [{ translateY: -10 }],
+  },
+  clearButton: {
+    position: 'absolute',
+    right: 16,
+    top: '50%',
+    transform: [{ translateY: '-50%' }],
   },
 });
