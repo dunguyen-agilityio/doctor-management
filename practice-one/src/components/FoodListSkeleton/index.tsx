@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingLeft: 16,
   },
-  list: { marginTop: 15, flexDirection: 'row', gap: 16 },
+  list: { flexDirection: 'row', gap: 16 },
   title: {
     width: 80,
     height: 20,
