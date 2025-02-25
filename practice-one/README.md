@@ -105,19 +105,21 @@ The application consists of four main screens following to this [design](<https:
 > /practice-one
 > │── .husky/ # Git Hooks
 > │── assets/ # Images, Icons
+> |── .storybook/
+> |── android/
 > │── src/
 > │ │── components/ # Reusable UI Components
 > │ │── screens/ # App Screens
 > │ │── navigation/ # App Navigation
 > │ │── hooks/ # Custom Hooks
 > │ │── services/ # API Calls
-> │ │── store/ # Zustand / Redux Store
+> │ │── store/ # Zustand
 > │ │── utils/ # Helper Functions
 > │ │── types/ # TypeScript Types
 > │── .gitignore
 > │── .prettierrc
 > │── .eslint.json
-> │── app.json # Expo Config
+> │── app.config.js # Expo Config
 > │── package.json
 > │── README.md
 > ```
