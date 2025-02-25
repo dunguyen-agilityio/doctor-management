@@ -54,7 +54,11 @@ const HomeScreen = () => {
             ListFooterComponent: <FoodListSkeleton length={1} />,
           },
         }}
-        Fallback={<FoodListSkeleton title="All Food" />}
+        Fallback={
+          <View style={styles.fallback}>
+            <FoodListSkeleton title="All Food" />
+          </View>
+        }
       />
     </View>
   );
@@ -70,5 +74,8 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 22,
     marginLeft: 8,
+  },
+  fallback: {
+    marginTop: 15,
   },
 });
