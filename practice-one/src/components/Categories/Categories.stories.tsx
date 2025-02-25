@@ -28,6 +28,6 @@ export const Default: Story = { args: { categories: CATEGORIES } };
 export const WithValues: Story = {
   args: {
     categories: CATEGORIES,
-    values: CATEGORIES.slice(0, 2).map(({ id }) => id),
+    categoriesValue: CATEGORIES.slice(0, 2).map(({ id }) => id),
   },
 };

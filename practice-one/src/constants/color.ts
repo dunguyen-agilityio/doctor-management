@@ -1,7 +1,7 @@
 export const COLOR = {
   PRIMARY: '#5c5c5c',
   WHITE: '#fff',
-  PINK: '#91c788',
+  LIGHT_GREEN: '#91c788',
   LIGHT_GRAY: '#ececec',
   GRAY: '#7e7e7e',
   RED: '#ea1502',
@@ -17,7 +17,6 @@ export const COLOR = {
   DARK_GREEN: '#1cc379',
   SECONDARY: '#ff8473',
   BLACK_BEAN: '#330600',
-  LIGHT_GREEN: '#91c788',
   GREY: '#e0e0e0',
   TERTIARY: '#696969',
 };

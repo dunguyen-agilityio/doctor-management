@@ -51,6 +51,7 @@ const HomeScreen = () => {
                 All Food
               </Text>
             ),
+            ListFooterComponent: <FoodListSkeleton length={1} />,
           },
         }}
         Fallback={<FoodListSkeleton title="All Food" />}

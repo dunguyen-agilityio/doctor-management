@@ -13,8 +13,13 @@ import { debounce } from '@/utils/debounce';
 
 import { SearchIcon } from '../icons';
 
+interface SearchInputProps extends TextInputProps {
+  onSearch?: (value: string) => void;
+  query?: string;
+}
+
 const SearchInput = (
-  { onChangeText, onPress, ...otherProps }: TextInputProps,
+  { onSearch, onPress, query, ...otherProps }: SearchInputProps,
   ref: React.ForwardedRef<Pick<TextInput, 'focus' | 'clear'>>,
 ) => {
   const inputRef = useRef<TextInput>(null);
@@ -30,20 +35,21 @@ const SearchInput = (
     [],
   );
 
-  const debouncedOnChangeText = debounce((value: string) => {
-    onChangeText?.(value);
+  const debouncedChangeText = debounce((value: string) => {
+    onSearch?.(value);
   }, 500);
 
   return (
     <Pressable onPress={onPress}>
       <View style={styles.container} testID="search-input">
         <TextInput
+          {...otherProps}
           ref={inputRef}
           placeholder="Search for healthy food"
           placeholderTextColor={COLOR.SECONDARY}
-          onChangeText={debouncedOnChangeText}
           style={styles.input}
-          {...otherProps}
+          onChangeText={debouncedChangeText}
+          value={query}
         />
         <View style={styles.iconSearch}>
           <SearchIcon />

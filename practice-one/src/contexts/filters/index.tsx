@@ -14,11 +14,17 @@ const FiltersProvider = ({
 }: React.PropsWithChildren<{ initial?: string }>) => {
   const [filters, setFilters] = useState<string[]>([]);
 
+  const isEmpty = !filters.length;
+
   useEffect(() => {
     if (initial) {
       setFilters([initial]);
     }
-  }, [initial]);
+
+    return () => {
+      if (!isEmpty) setFilters([]);
+    };
+  }, [initial, isEmpty]);
 
   return (
     <FiltersActionContext.Provider value={setFilters}>

@@ -14,18 +14,18 @@ const FavoriteScreen = () => {
     return <Loading />;
   }
 
-  if (favorites.length === 0) {
-    return (
-      <View style={styles.emptyContainer}>
-        <NotFound />
-      </View>
-    );
-  }
+  const isEmpty = favorites.length === 0;
 
   return (
     <View style={styles.container}>
-      <SearchInput onChangeText={searchByName} />
-      <FoodList data={displayFavorites} />
+      {isEmpty ? (
+        <NotFound />
+      ) : (
+        <>
+          <SearchInput onSearch={searchByName} />
+          <FoodList data={displayFavorites} ListEmptyComponent={<NotFound />} />
+        </>
+      )}
     </View>
   );
 };
@@ -37,10 +37,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLOR.WHITE,
     gap: 16,
-  },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
