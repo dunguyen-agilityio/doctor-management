@@ -32,7 +32,7 @@ The application consists of four main screens following to this [design](<https:
   - Smooth navigation between screens
   - Storybook UI testing
 
-## 6. Prerequisites
+## 5. Prerequisites
 
 **_Before you begin, ensure you have the following installed:_**
 
@@ -55,7 +55,7 @@ The application consists of four main screens following to this [design](<https:
 - **Install Expo Go on your phone:**
   - Android (Play Store)
 
-## 5. Installation
+## 6. Installation
 
 **Clone repository**:
 
@@ -99,30 +99,32 @@ The application consists of four main screens following to this [design](<https:
 > npm run android
 > ```
 
-## 6. Project Structure
+## 7. Project Structure
 
 > ```
 > /practice-one
 > │── .husky/ # Git Hooks
 > │── assets/ # Images, Icons
+> |── .storybook/
+> |── android/
 > │── src/
 > │ │── components/ # Reusable UI Components
 > │ │── screens/ # App Screens
 > │ │── navigation/ # App Navigation
 > │ │── hooks/ # Custom Hooks
 > │ │── services/ # API Calls
-> │ │── store/ # Zustand / Redux Store
+> │ │── store/ # Zustand
 > │ │── utils/ # Helper Functions
 > │ │── types/ # TypeScript Types
 > │── .gitignore
 > │── .prettierrc
 > │── .eslint.json
-> │── app.json # Expo Config
+> │── app.config.js # Expo Config
 > │── package.json
 > │── README.md
 > ```
 
-## 7. Running Tests
+## 8. Running Tests
 
 **To run tests, use**
 
@@ -136,18 +138,13 @@ The application consists of four main screens following to this [design](<https:
 > npm run storybook
 > ```
 
-## 8. Storybook Guide
+## 9. Storybook Guide
 
 **To document UI components, follow these steps:**
 
 - Create a Component.stories.tsx file in src/components/.
 - Write stories using the Storybook format.
 - Run `npm run storybook` to view your components.
-
-## 9. Documentation
-
-- All project documentation is stored in Google Drive.
-  [📂 Healthy Food App Docs](http://localhost:3000)
 
 ## 10. Development & Debugging
 
@@ -160,6 +157,6 @@ The application consists of four main screens following to this [design](<https:
   > npx expo start --clear
   > ```
 
-## 6. Author
+## 11. Author
 
 - Du Nguyen
