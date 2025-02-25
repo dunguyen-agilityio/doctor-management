@@ -1,9 +1,10 @@
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { memo } from 'react';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 import { COLOR } from '@/constants';
+import { WINDOW_HEIGHT, WINDOW_WIDTH } from '@/constants/dimensions';
 
 import { IArticle } from '@/types';
 
@@ -61,12 +62,10 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
 
 export default memo(Article);
 
-const window = Dimensions.get('window');
-
 const styles = StyleSheet.create({
   container: {
-    height: (20 / 100) * window.height,
-    width: (85 / 100) * window.width,
+    height: (20 / 100) * WINDOW_HEIGHT,
+    width: (85 / 100) * WINDOW_WIDTH,
     minWidth: 320,
     minHeight: 170,
     justifyContent: 'space-between',
