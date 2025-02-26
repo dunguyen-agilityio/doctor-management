@@ -64,7 +64,7 @@ const SearchInput = (
           backgroundColor="transparent"
           testID="clear-button"
         >
-          <MaterialIcons name="clear" size={12} color={COLOR.GREEN} />
+          <MaterialIcons name="clear" size={12} color={COLOR.RED} />
         </Button>
       )}
     </View>

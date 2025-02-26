@@ -4,13 +4,15 @@ import { View } from 'react-native';
 
 import { COLOR } from '@/constants';
 
-import Text, { TextColor } from './index';
+import { TEXT_COLOR } from '@/types';
+
+import Text from './index';
 
 const meta = {
   title: 'Text',
   component: Text,
   argTypes: {
-    color: { control: 'select', options: Object.keys(TextColor) },
+    color: { control: 'select', options: Object.keys(TEXT_COLOR) },
   },
   args: { children: 'Hello World!' },
   decorators: [

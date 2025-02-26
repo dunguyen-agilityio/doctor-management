@@ -7,23 +7,18 @@ import {
 
 import { COLOR } from '@/constants';
 
-export enum TextColor {
-  PRIMARY = 'PRIMARY',
-  SECONDARY = 'SECONDARY',
-  TERTIARY = 'TERTIARY',
-  FOURTH = 'FOURTH',
-}
+import { TEXT_COLOR } from '@/types';
 
-const TEXT_COLOR_MAP: Record<TextColor, string> = {
-  [TextColor.PRIMARY]: COLOR.PRIMARY,
-  [TextColor.SECONDARY]: COLOR.SECONDARY,
-  [TextColor.TERTIARY]: COLOR.BLACK_BEAN,
-  [TextColor.FOURTH]: COLOR.DARK_GREEN,
+const TEXT_COLOR_MAP: Record<TEXT_COLOR, string> = {
+  [TEXT_COLOR.PRIMARY]: COLOR.PRIMARY,
+  [TEXT_COLOR.SECONDARY]: COLOR.SECONDARY,
+  [TEXT_COLOR.TERTIARY]: COLOR.BLACK_BEAN,
+  [TEXT_COLOR.FOURTH]: COLOR.DARK_GREEN,
 };
 
 interface TextProps extends RNTextProps {
   variant?: keyof typeof styles;
-  color?: TextColor | string;
+  color?: TEXT_COLOR | string;
   textTransform?: TextStyle['textTransform'];
 }
 
@@ -35,7 +30,7 @@ const Text = ({
   ...props
 }: TextProps) => {
   const textColor =
-    TEXT_COLOR_MAP[color as TextColor] ?? color ?? COLOR.PRIMARY;
+    TEXT_COLOR_MAP[color as TEXT_COLOR] ?? color ?? COLOR.PRIMARY;
 
   const customStyle = StyleSheet.flatten([
     styles.base,

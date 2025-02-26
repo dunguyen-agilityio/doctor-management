@@ -1,76 +1,67 @@
-import { Image, StyleSheet } from 'react-native';
+import { Image, ImageProps } from 'react-native';
 
-export const EmptyImage = () => (
-  <Image source={require('@assets/images/empty.png')} style={styles.empty} />
+import { WINDOW_WIDTH } from '@/constants/dimensions';
+
+export enum APP_ICONS {
+  EMPTY = require('@assets/images/empty.png'),
+  NOT_FOUND = require('@assets/images/not-found.png'),
+  LOGO = require('@assets/images/logo.png'),
+  ARROW_RIGHT_BOLD = require('@assets/icons/arrow-right-bold.png'),
+  ARROW_LEFT = require('@assets/icons/arrow-left.png'),
+  QUESTION = require('@assets/icons/question.png'),
+  SEARCH = require('@assets/icons/icon-search.png'),
+  FAVORITE = require('@assets/icons/favorite.png'),
+  FAVORITE_FILL = require('@assets/icons/favorite-fill.png'),
+  HOME = require('@assets/icons/home.png'),
+  HOME_FILL = require('@assets/icons/home-fill.png'),
+  SEARCH_MENU = require('@assets/icons/search.png'),
+  SEARCH_MENU_FILL = require('@assets/icons/search-fill.png'),
+  SPLASH = require('@assets/images/pattern.png'),
+}
+
+type IconProps = ImageProps & { source: APP_ICONS };
+
+export const Icon = ({ source, ...props }: IconProps) => (
+  <Image source={source} {...props} />
 );
 
+// Using the reusable Icon component
+export const EmptyImage = () => (
+  <Icon source={APP_ICONS.EMPTY} style={{ width: 108, height: 96 }} />
+);
 export const NotFoundImage = () => (
-  <Image
-    source={require('@assets/images/not-found.png')}
-    style={styles.notFound}
+  <Icon
+    source={APP_ICONS.NOT_FOUND}
     testID="not-found-image"
+    style={{ width: 96, height: 96 }}
   />
 );
-
 export const Logo = () => (
-  <Image source={require('@assets/images/logo.png')} style={styles.loading} />
+  <Icon source={APP_ICONS.LOGO} style={{ width: 122, height: 122 }} />
 );
-
-export const ArrowRightBoldICon = () => (
-  <Image source={require('@assets/icons/arrow-right-bold.png')} />
+export const ArrowRightBoldIcon = () => (
+  <Icon source={APP_ICONS.ARROW_RIGHT_BOLD} />
 );
+export const QuestionIcon = () => <Icon source={APP_ICONS.QUESTION} />;
+export const SearchIcon = () => <Icon source={APP_ICONS.SEARCH} />;
 
-export const QuestionIcon = () => (
-  <Image source={require('@assets/icons/question.png')} />
+// Conditional Icons
+export const FavoriteMenu = ({ isFill = false }: { isFill?: boolean }) => (
+  <Icon source={isFill ? APP_ICONS.FAVORITE_FILL : APP_ICONS.FAVORITE} />
 );
-
-export const SearchIcon = () => (
-  <Image source={require('@assets/icons/icon-search.png')} />
+export const HomeMenu = ({ isFill = false }: { isFill?: boolean }) => (
+  <Icon source={isFill ? APP_ICONS.HOME_FILL : APP_ICONS.HOME} />
 );
-
-export const FavoriteMenu = ({ isFill = false }: { isFill?: boolean }) => {
-  const path = isFill
-    ? require('@assets/icons/favorite-fill.png')
-    : require('@assets/icons/favorite.png');
-  return <Image source={path} />;
-};
-
-export const HomeMenu = ({ isFill = false }: { isFill?: boolean }) => {
-  const path = isFill
-    ? require('@assets/icons/home-fill.png')
-    : require('@assets/icons/home.png');
-  return <Image source={path} />;
-};
-
-export const SearchMenu = ({ isFill = false }: { isFill?: boolean }) => {
-  const path = isFill
-    ? require('@assets/icons/search-fill.png')
-    : require('@assets/icons/search.png');
-  return <Image source={path} />;
-};
+export const SearchMenu = ({ isFill = false }: { isFill?: boolean }) => (
+  <Icon source={isFill ? APP_ICONS.SEARCH_MENU_FILL : APP_ICONS.SEARCH_MENU} />
+);
 
 export const SplashImage = () => (
-  <Image
-    source={require('@assets/images/pattern.png')}
-    style={styles.topImage}
+  <Icon
+    source={APP_ICONS.SPLASH}
+    resizeMode="cover"
+    style={{ width: WINDOW_WIDTH }}
   />
 );
 
-export const styles = StyleSheet.create({
-  empty: {
-    height: 96,
-    width: 108,
-  },
-  notFound: {
-    width: 96,
-    height: 96,
-  },
-  loading: {
-    width: 122,
-    height: 122,
-  },
-  topImage: {
-    width: '100%',
-    resizeMode: 'cover',
-  },
-});
+export const ArrowLeft = () => <Icon source={APP_ICONS.ARROW_LEFT} />;

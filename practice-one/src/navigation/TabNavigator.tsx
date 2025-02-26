@@ -4,7 +4,7 @@ import FavoriteScreen from '@/screens/Favorite';
 import HomeScreen from '@/screens/Home';
 import SearchScreen from '@/screens/Search';
 
-import { FavoriteMenu, HomeMenu, SearchMenu } from '@/components/icons';
+import { FavoriteMenu, HomeMenu, SearchMenu } from '@/components';
 
 import { ROUTES } from '@/constants';
 
