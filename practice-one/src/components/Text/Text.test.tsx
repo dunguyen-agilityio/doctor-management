@@ -1,8 +1,10 @@
 import { render } from '@testing-library/react-native';
 
-import Text, { TextColor } from '@/components/Text';
+import Text from '@/components/Text';
 
 import { COLOR } from '@/constants';
+
+import { TEXT_COLOR } from '@/types';
 
 describe('Text Component', () => {
   it('renders correctly with default props', () => {
@@ -21,7 +23,7 @@ describe('Text Component', () => {
 
   it('applies correct color from TextColor enum', () => {
     const { getByText } = render(
-      <Text color={TextColor.SECONDARY}>Colored Text</Text>,
+      <Text color={TEXT_COLOR.SECONDARY}>Colored Text</Text>,
     );
     const textElement = getByText('Colored Text');
 

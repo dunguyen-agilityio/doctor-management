@@ -19,7 +19,6 @@ export interface FoodListProps extends Partial<FlatListProps<IFood>> {
 const FoodList = ({
   horizontal,
   data,
-  // eslint-disable-next-line react/prop-types
   ListHeaderComponent = null,
   ...otherProps
 }: FoodListProps) => {
@@ -75,7 +74,10 @@ const FoodList = ({
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={contentContainerStyle}
-        {...(!horizontal && { numColumns: 2, columnWrapperStyle: { gap: 18 } })}
+        {...(!horizontal && {
+          numColumns: 2,
+          columnWrapperStyle: { gap: 18 },
+        })}
         scrollEnabled={true}
         onStartReachedThreshold={0.5}
         ListHeaderComponent={horizontal ? null : ListHeaderComponent}

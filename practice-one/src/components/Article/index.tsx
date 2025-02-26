@@ -3,14 +3,13 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { memo } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
+import { ArrowRightBoldIcon } from '@/components';
+import { Button, Text } from '@/components';
+
 import { COLOR } from '@/constants';
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from '@/constants/dimensions';
 
-import { IArticle } from '@/types';
-
-import Button from '../Button';
-import Text, { TextColor } from '../Text';
-import { ArrowRightBoldICon } from '../icons';
+import { IArticle, TEXT_COLOR } from '@/types';
 
 const buttonColor = {
   primary: COLOR.GREEN,
@@ -42,7 +41,7 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
         <Text variant="subtitle5" color={buttonColor[color]}>
           Article
         </Text>
-        <Text variant="subtitle4" color={TextColor.TERTIARY}>
+        <Text variant="subtitle4" color={TEXT_COLOR.TERTIARY}>
           {title}
         </Text>
         <Button
@@ -53,7 +52,7 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
           <Text variant="subtitle6" color={COLOR.WHITE}>
             Read now
           </Text>
-          <ArrowRightBoldICon />
+          <ArrowRightBoldIcon />
         </Button>
       </View>
     </LinearGradient>

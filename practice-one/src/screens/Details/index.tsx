@@ -1,5 +1,3 @@
-import withFavorite from '@/hocs/withFavorite';
-
 import { StyleSheet, View } from 'react-native';
 
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
@@ -7,13 +5,20 @@ import { useQuery } from '@tanstack/react-query';
 
 import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
 
-import { ErrorFallback, FoodInfo, Loading, Text } from '@/components';
-import Button from '@/components/Button';
-import IconButton from '@/components/IconButton';
+import {
+  ArrowLeft,
+  Button,
+  ErrorFallback,
+  FoodInfo,
+  Loading,
+  Text,
+} from '@/components';
 
 import { COLOR, ROUTES } from '@/constants';
 
 import { getFoodById } from '@/services/food';
+
+import withFavorite from '@/hocs/withFavorite';
 
 const FavoriteButton = withFavorite(Button, (hasFavorite) => (
   <Text variant="subtitle1" color={COLOR.WHITE}>
@@ -53,11 +58,14 @@ const Details = () => {
 
   return (
     <View style={styles.container}>
-      <IconButton
-        icon={require('@assets/icons/arrow-left.png')}
+      <Button
+        variant="icon"
         onPress={goBack}
         testID="back-button"
-      />
+        backgroundColor="transparent"
+      >
+        <ArrowLeft />
+      </Button>
       <FoodInfo food={food} />
       <FavoriteButton id={id} food={food} style={styles.button} />
     </View>

@@ -1,11 +1,11 @@
+import { memo, useCallback } from 'react';
+import { StyleSheet, View } from 'react-native';
+
 import { useSharedValue } from 'react-native-reanimated';
 import Carousel, {
   CarouselRenderItem,
   Pagination,
 } from 'react-native-reanimated-carousel';
-
-import { memo, useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
 
 import Article from '@/components/Article';
 

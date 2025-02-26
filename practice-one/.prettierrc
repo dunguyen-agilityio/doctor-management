@@ -8,7 +8,7 @@
   "arrowParens": "always",
   "importOrder": [
     "(^react$|^react-native$)",
-    "(<THIRD_PARTY_MODULES>|expo-font|expo-splash-screen|@react-navigation/native|@tanstack/react-query)",
+    "(<THIRD_PARTY_MODULES>|expo-font|^react-native-reanimated|expo-splash-screen|@react-navigation/native|@tanstack/react-query)",
     "^@/navigation",
     "^@/screens",
     "^@/components",
@@ -19,6 +19,7 @@
     "^@/hooks",
     "^@/mocks",
     "^@/contexts",
+    "^@/hocs",
     "^[./]"
   ],
   "importOrderSeparation": true,

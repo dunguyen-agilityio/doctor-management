@@ -19,15 +19,19 @@ interface ButtonProps extends PressableProps {
   style?: StyleProp<ViewStyle>;
 }
 
+const ICON_SIZE = 20;
+
 const Button: React.FC<ButtonProps> = ({
   children,
   isLoading = false,
   style,
   variant = 'contained',
-  width = '100%',
+  width,
   backgroundColor = COLOR.LIGHT_GREEN,
   ...props
 }) => {
+  const isIcon = variant === 'icon';
+
   return (
     <Pressable
       {...props}
@@ -35,7 +39,13 @@ const Button: React.FC<ButtonProps> = ({
         styles.base,
         styles[variant],
         { width, backgroundColor, opacity: pressed ? 0.8 : 1 },
-        variant === 'icon' && { height: width, aspectRatio: 1 },
+        isIcon && {
+          height: width ?? ICON_SIZE,
+          width: width ?? ICON_SIZE,
+          aspectRatio: 1,
+          paddingVertical: 0,
+          paddingHorizontal: 0,
+        },
         style,
       ]}
       accessibilityRole="button"

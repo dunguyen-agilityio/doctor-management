@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { createContext } from 'react';
 
-import { EMPTY_FUNCTION } from '@/constants/funtion';
-
 export const FiltersContext = createContext<string[]>([]);
 
-export const FiltersActionContext =
-  createContext<React.Dispatch<React.SetStateAction<string[]>>>(EMPTY_FUNCTION);
+export const FiltersActionContext = createContext<
+  React.Dispatch<React.SetStateAction<string[]>>
+>(() => {});
 
 const FiltersProvider = ({
   children,
@@ -14,17 +13,11 @@ const FiltersProvider = ({
 }: React.PropsWithChildren<{ initial?: string }>) => {
   const [filters, setFilters] = useState<string[]>([]);
 
-  const isEmpty = !filters.length;
-
   useEffect(() => {
     if (initial) {
       setFilters([initial]);
     }
-
-    return () => {
-      if (!isEmpty) setFilters([]);
-    };
-  }, [initial, isEmpty]);
+  }, [initial]);
 
   return (
     <FiltersActionContext.Provider value={setFilters}>

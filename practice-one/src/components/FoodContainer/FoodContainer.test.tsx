@@ -1,5 +1,4 @@
-import { Text } from '@/components';
-import FoodContainer from '@/components/FoodContainer';
+import { FoodContainer, Text } from '@/components';
 
 import { fireEvent, render } from '@/utils/test-utils';
 

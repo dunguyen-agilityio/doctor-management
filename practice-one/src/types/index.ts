@@ -1,2 +1,2 @@
-export { IInfo } from './common';
+export * from './text';
 export * from './Food';

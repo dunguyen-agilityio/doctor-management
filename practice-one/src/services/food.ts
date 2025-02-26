@@ -1,4 +1,4 @@
-import { API_ENTITIES } from '@/constants';
+import { API_ENTITIES, PAGE_SIZE } from '@/constants';
 
 import { IFood } from '@/types';
 
@@ -11,27 +11,34 @@ export interface FoodOptions {
   pageSize?: number;
 }
 
-export const getFoodList = async (
-  options: FoodOptions,
-): Promise<{
+type TGetFoodListResponse = {
   data: IFood[];
   hasMore?: boolean;
   nextPage?: number;
   prevPage?: number;
-}> => {
-  const { categoriesValue = [], page = 1, pageSize = 25, query } = options;
+};
 
+export const getFoodList = async ({
+  categoriesValue = [],
+  page = 1,
+  pageSize = PAGE_SIZE,
+  query,
+}: FoodOptions): Promise<TGetFoodListResponse> => {
   const searchParams = new URLSearchParams();
 
   searchParams.set('_page', String(page));
   searchParams.set('_limit', String(pageSize));
+
   if (query) searchParams.set('name_like', query);
+
   categoriesValue.forEach((item) =>
     searchParams.append('category', item.toString()),
   );
 
   const url = `${API_ENTITIES.FOOD_LIST}?${searchParams.toString()}`;
+
   const { data, meta } = await apiClient.get<IFood[]>(url);
+
   const totalItems = meta?.total || 0;
   const totalPages = Math.ceil(totalItems / pageSize);
 

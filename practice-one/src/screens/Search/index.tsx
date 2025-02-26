@@ -1,9 +1,5 @@
-import withFilters from '@/hocs/withFilters';
-import withSearch from '@/hocs/withSearch';
-
-import { useCallback, useRef } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
-import { ActivityIndicator } from 'react-native';
+import { useCallback, useContext, useRef } from 'react';
+import { ActivityIndicator, StyleSheet, TextInput, View } from 'react-native';
 
 import {
   RouteProp,
@@ -14,14 +10,23 @@ import {
 
 import { RootScreenNavigationProps, TabParamsList } from '@/navigation';
 
-import { Categories, Header, SearchInput } from '@/components';
-import { FoodContainer, Loading, NotFound } from '@/components';
-import { EmptyImage } from '@/components/icons';
+import {
+  Categories,
+  EmptyImage,
+  FoodContainer,
+  Header,
+  Loading,
+  NotFound,
+  SearchInput,
+} from '@/components';
 
 import { CATEGORIES, COLOR, ROUTES } from '@/constants';
 
-import FiltersProvider from '@/contexts/filters';
+import FiltersProvider, { FiltersActionContext } from '@/contexts/filters';
 import SearchProvider from '@/contexts/search';
+
+import withFilters from '@/hocs/withFilters';
+import withSearch from '@/hocs/withSearch';
 
 type SearchRoute = RouteProp<TabParamsList, typeof ROUTES.SEARCH>;
 type SearchNavigation = RootScreenNavigationProps<typeof ROUTES.SEARCH>;
@@ -36,6 +41,7 @@ const SearchScreen = () => {
   const route = useRoute<SearchRoute>();
   const { setParams } = useNavigation<SearchNavigation>();
   const searchInputRef = useRef<TextInput>(null);
+  const setFilters = useContext(FiltersActionContext);
 
   const defaultParams = route.params ?? {};
   const { category, autoFocus = false } = defaultParams;
@@ -59,9 +65,11 @@ const SearchScreen = () => {
           setParams({
             category: undefined,
           });
+
+          setFilters([]);
         };
       }
-    }, [autoFocus, setParams, category]),
+    }, [autoFocus, category, setParams, setFilters]),
   );
 
   return (

@@ -8,10 +8,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { RootNavigator } from '@/navigation';
 
-import { COLOR } from '@/constants';
+import { Logo, SplashImage, Text } from '@/components';
 
-import Text from './components/Text';
-import { Logo, SplashImage } from './components/icons';
+import { COLOR } from '@/constants';
 
 const queryClient = new QueryClient();
 
