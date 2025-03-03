@@ -14,4 +14,5 @@ export { default as ErrorFallback } from './ErrorFallback';
 export { default as FoodListSkeleton } from './FoodListSkeleton';
 export { default as Text } from './Text';
 export { default as Button } from './Button';
-export * from './icons';
+export { default as Logo } from './Logo';
+export * from './Icon';

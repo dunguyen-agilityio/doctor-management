@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
 
-import { Logo } from '../icons';
+import Logo from '../Logo';
 
 const Loading = ({ marginTop }: { marginTop?: number }) => {
   const rotation = new Animated.Value(0);

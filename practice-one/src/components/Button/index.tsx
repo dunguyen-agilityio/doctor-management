@@ -11,7 +11,7 @@ import { StyleProp } from 'react-native';
 
 import { COLOR } from '@/constants';
 
-interface ButtonProps extends PressableProps {
+export interface ButtonProps extends PressableProps {
   variant?: 'contained' | 'outlined' | 'icon';
   isLoading?: boolean;
   width?: ViewStyle['width'];

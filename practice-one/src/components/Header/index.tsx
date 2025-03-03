@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native';
 
 import Button from '../Button';
+import { APP_ICONS, Icon } from '../Icon';
 import Text from '../Text';
-import { QuestionIcon } from '../icons';
 
 const Header = () => {
   return (
@@ -14,7 +14,7 @@ const Header = () => {
         width={35}
         backgroundColor="#00000021"
       >
-        <QuestionIcon />
+        <Icon source={APP_ICONS.QUESTION} />
       </Button>
     </View>
   );
