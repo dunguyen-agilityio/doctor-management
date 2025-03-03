@@ -29,8 +29,11 @@ export const expo = {
     favicon: './assets/icons/favicon.png',
   },
   extra: {
-    apiEndpoint: process.env.API_ENDPOINT,
+    apiEndpoint: process.env.EXPO_PUBLIC_API_ENDPOINT,
     storybook: false,
+    eas: {
+      projectId: '76e99b1c-d747-4d86-8dd2-b546b1426373',
+    },
   },
   plugins: [
     'expo-dev-menu',
@@ -48,4 +51,5 @@ export const expo = {
     ],
   ],
   newArchEnabled: true,
+  jsEngine: 'hermes',
 };
