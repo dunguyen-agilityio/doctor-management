@@ -1,10 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { StyleSheet } from 'react-native';
+
 import FavoriteScreen from '@/screens/Favorite';
 import HomeScreen from '@/screens/Home';
 import SearchScreen from '@/screens/Search';
 
-import { FavoriteMenu, HomeMenu, SearchMenu } from '@/components';
+import { APP_ICONS, Icon } from '@/components';
 
 import { ROUTES } from '@/constants';
 
@@ -18,9 +20,17 @@ const Tab = createBottomTabNavigator<TabParamsList>();
 
 const getTabIcon = (routeName: keyof TabParamsList, focused: boolean) => {
   const icons = {
-    [ROUTES.FAVORITE]: <FavoriteMenu isFill={focused} />,
-    [ROUTES.HOME]: <HomeMenu isFill={focused} />,
-    [ROUTES.SEARCH]: <SearchMenu isFill={focused} />,
+    [ROUTES.FAVORITE]: (
+      <Icon source={focused ? APP_ICONS.FAVORITE_FILL : APP_ICONS.FAVORITE} />
+    ),
+    [ROUTES.HOME]: (
+      <Icon source={focused ? APP_ICONS.HOME_FILL : APP_ICONS.HOME} />
+    ),
+    [ROUTES.SEARCH]: (
+      <Icon
+        source={focused ? APP_ICONS.SEARCH_MENU_FILL : APP_ICONS.SEARCH_MENU}
+      />
+    ),
   };
 
   return icons[routeName] || null;
@@ -32,9 +42,8 @@ const TabNavigator = () => {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarLabel: '',
-        tabBarStyle: { height: 80 },
+        tabBarStyle: styles.tabBarStyle,
         tabBarIcon: ({ focused }) => getTabIcon(route.name, focused),
-        unmountOnBlur: true,
       })}
     >
       <Tab.Screen name={ROUTES.HOME} component={HomeScreen} />
@@ -49,3 +58,7 @@ const TabNavigator = () => {
 };
 
 export default TabNavigator;
+
+const styles = StyleSheet.create({
+  tabBarStyle: { height: 80 },
+});

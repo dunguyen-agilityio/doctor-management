@@ -89,6 +89,9 @@ healthy Food?
           {
             "aspectRatio": 1,
             "height": 35,
+            "paddingHorizontal": 0,
+            "paddingVertical": 0,
+            "width": 35,
           },
           undefined,
         ]
@@ -799,6 +802,9 @@ healthy Food?
           {
             "aspectRatio": 1,
             "height": 35,
+            "paddingHorizontal": 0,
+            "paddingVertical": 0,
+            "width": 35,
           },
           undefined,
         ]

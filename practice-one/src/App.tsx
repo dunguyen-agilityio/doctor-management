@@ -8,9 +8,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { RootNavigator } from '@/navigation';
 
-import { Logo, SplashImage, Text } from '@/components';
+import { APP_ICONS, Icon, Logo, Text } from '@/components';
 
 import { COLOR } from '@/constants';
+
+import { WINDOW_WIDTH } from './constants/dimensions';
 
 const queryClient = new QueryClient();
 
@@ -34,7 +36,11 @@ const App = () => {
   if (!appIsReady) {
     return (
       <View style={styles.splash}>
-        <SplashImage />
+        <Icon
+          source={APP_ICONS.SPLASH}
+          resizeMode="cover"
+          style={styles.splashIcon}
+        />
         <Logo />
         <Text style={styles.title} variant="main1" color={COLOR.PRIMARY}>
           Laomica
@@ -76,6 +82,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     textAlign: 'center',
   },
+  splashIcon: { width: WINDOW_WIDTH },
 });
 
 export default App;

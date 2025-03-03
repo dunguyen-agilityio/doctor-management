@@ -6,10 +6,11 @@ import { useQuery } from '@tanstack/react-query';
 import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
 
 import {
-  ArrowLeft,
+  APP_ICONS,
   Button,
   ErrorFallback,
   FoodInfo,
+  Icon,
   Loading,
   Text,
 } from '@/components';
@@ -64,7 +65,7 @@ const Details = () => {
         testID="back-button"
         backgroundColor="transparent"
       >
-        <ArrowLeft />
+        <Icon source={APP_ICONS.ARROW_LEFT} />
       </Button>
       <FoodInfo food={food} />
       <FavoriteButton id={id} food={food} style={styles.button} />

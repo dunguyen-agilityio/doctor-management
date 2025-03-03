@@ -11,10 +11,11 @@ import {
 import { RootScreenNavigationProps, TabParamsList } from '@/navigation';
 
 import {
+  APP_ICONS,
   Categories,
-  EmptyImage,
   FoodContainer,
   Header,
+  Icon,
   Loading,
   NotFound,
   SearchInput,
@@ -85,11 +86,17 @@ const SearchScreen = () => {
               list: {
                 ListEmptyComponent: (
                   <NotFound
-                    image={<EmptyImage />}
+                    image={
+                      <Icon
+                        source={APP_ICONS.EMPTY}
+                        style={styles.emptyImage}
+                      />
+                    }
                     description="Try searching with a different keyword or tweak your search a little."
                     title="No Results Found"
                   />
                 ),
+                numColumns: 2,
                 ListFooterComponent: (
                   <ActivityIndicator size="large" color={COLOR.GREEN} />
                 ),
@@ -112,5 +119,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLOR.WHITE,
+  },
+  emptyImage: {
+    width: 108,
+    height: 96,
   },
 });

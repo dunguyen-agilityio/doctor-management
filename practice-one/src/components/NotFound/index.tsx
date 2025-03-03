@@ -2,15 +2,21 @@ import { StyleSheet, View } from 'react-native';
 
 import { COLOR } from '@/constants';
 
+import { APP_ICONS, Icon } from '../Icon';
 import Text from '../Text';
-import { NotFoundImage } from '../icons';
 
 const NO_FOOD_FOUND_DESCRIPTION = `You don't save any food. Go ahead, search\nand save your favorite food`;
 const NO_FOOD_FOUND_TITLE = 'No Food Found';
 
 const NotFound = ({
   description = NO_FOOD_FOUND_DESCRIPTION,
-  image = <NotFoundImage />,
+  image = (
+    <Icon
+      source={APP_ICONS.NOT_FOUND}
+      testID="not-found-image"
+      style={styles.image}
+    />
+  ),
   title = NO_FOOD_FOUND_TITLE,
 }: {
   title?: string;
@@ -51,5 +57,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 22,
     letterSpacing: -0.24,
+  },
+  image: {
+    width: 96,
+    height: 96,
   },
 });

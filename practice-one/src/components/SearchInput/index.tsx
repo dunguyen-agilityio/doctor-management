@@ -8,7 +8,7 @@ import { COLOR } from '@/constants';
 import { debounce } from '@/utils/debounce';
 
 import Button from '../Button';
-import { SearchIcon } from '../icons';
+import { APP_ICONS, Icon } from '../Icon';
 
 interface SearchInputProps extends TextInputProps {
   onSearch?: (value: string) => void;
@@ -44,7 +44,7 @@ const SearchInput = (
   return (
     <View style={styles.container} testID="search-input">
       <View style={styles.iconSearch}>
-        <SearchIcon />
+        <Icon source={APP_ICONS.SEARCH} />
       </View>
       <TextInput
         {...otherProps}

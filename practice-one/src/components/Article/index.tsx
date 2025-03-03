@@ -3,7 +3,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { memo } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
-import { ArrowRightBoldIcon } from '@/components';
+import { APP_ICONS, Icon } from '@/components';
 import { Button, Text } from '@/components';
 
 import { COLOR } from '@/constants';
@@ -52,7 +52,7 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
           <Text variant="subtitle6" color={COLOR.WHITE}>
             Read now
           </Text>
-          <ArrowRightBoldIcon />
+          <Icon source={APP_ICONS.ARROW_RIGHT_BOLD} />
         </Button>
       </View>
     </LinearGradient>
