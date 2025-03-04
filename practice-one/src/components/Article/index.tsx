@@ -4,11 +4,12 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Button, Text } from '@/components';
-
 import { APP_ICONS, COLOR, WINDOW_HEIGHT, WINDOW_WIDTH } from '@/constants';
 
 import { IArticle, TEXT_COLOR } from '@/types';
+
+import Button from '../Button';
+import Text from '../Text';
 
 const buttonColor = {
   primary: COLOR.GREEN,

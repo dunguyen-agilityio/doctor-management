@@ -21,11 +21,28 @@ exports[`NotFound Component renders correctly with default props 1`] = `
       }
     }
   >
-    <Image
-      source={
+    <ViewManagerAdapter_ExpoImage
+      containerViewRef={"[React.ref]"}
+      contentFit="cover"
+      contentPosition={
         {
-          "testUri": "../../../assets/images/not-found.png",
+          "left": "50%",
+          "top": "50%",
         }
+      }
+      height={96}
+      nativeViewRef={"[React.ref]"}
+      onError={[Function]}
+      onLoad={[Function]}
+      onLoadStart={[Function]}
+      onProgress={[Function]}
+      placeholder={[]}
+      source={
+        [
+          {
+            "testUri": "../../../assets/images/not-found.png",
+          },
+        ]
       }
       style={
         {
@@ -34,6 +51,8 @@ exports[`NotFound Component renders correctly with default props 1`] = `
         }
       }
       testID="not-found-image"
+      transition={null}
+      width={96}
     />
     <Text
       style={

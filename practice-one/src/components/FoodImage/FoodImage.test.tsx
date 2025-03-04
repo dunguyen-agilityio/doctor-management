@@ -15,14 +15,20 @@ describe('FoodImage Component', () => {
     const image = getByTestId('image');
 
     expect(image).toBeTruthy();
-    expect(image.props.source.uri).toBe(defaultProps.imgUrl);
+    expect(image.props.source).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ uri: defaultProps.imgUrl }),
+      ]),
+    );
   });
 
   it('renders fallback image when imgUrl is empty', () => {
     const { getByTestId } = render(<FoodImage imgUrl="" color="GREEN" />);
     const image = getByTestId('image');
 
-    expect(image.props.source.uri).toBe(DEFAULT_IMAGE);
+    expect(image.props.source).toEqual(
+      expect.arrayContaining([expect.objectContaining({ uri: DEFAULT_IMAGE })]),
+    );
   });
 
   it('applies correct size styles based on type', () => {
@@ -30,9 +36,7 @@ describe('FoodImage Component', () => {
     const image = getByTestId('image');
 
     expect(image.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ width: 140, height: 110 }),
-      ]),
+      expect.objectContaining({ width: 140, height: 110 }),
     );
   });
 

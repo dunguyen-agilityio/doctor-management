@@ -1,110 +1,47 @@
 import { Image } from 'expo-image';
 
-import { useCallback, useContext, useRef } from 'react';
-import { ActivityIndicator, StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import {
-  RouteProp,
-  useFocusEffect,
-  useNavigation,
-  useRoute,
-} from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 
-import { RootScreenNavigationProps, TabParamsList } from '@/navigation';
+import { TabParamsList } from '@/navigation';
 
-import {
-  Categories,
-  FoodContainer,
-  Header,
-  Loading,
-  NotFound,
-  SearchInput,
-} from '@/components';
+import { Header, NotFound } from '@/components';
 
-import { APP_ICONS, CATEGORIES, COLOR, ROUTES } from '@/constants';
+import { APP_ICONS, COLOR, ROUTES } from '@/constants';
 
-import FiltersProvider, { FiltersActionContext } from '@/contexts/filters';
+import FiltersProvider from '@/contexts/filters';
 import SearchProvider from '@/contexts/search';
 
-import withFilters from '@/hocs/withFilters';
-import withSearch from '@/hocs/withSearch';
+import SearchFood from './SearchFood';
 
 type SearchRoute = RouteProp<TabParamsList, typeof ROUTES.SEARCH>;
-type SearchNavigation = RootScreenNavigationProps<typeof ROUTES.SEARCH>;
-
-const FoodContainerWithSearchAndFilters = withFilters(
-  withSearch(FoodContainer),
-);
-const CategoriesWithContext = withFilters(Categories);
-const SearchInputWithContext = withSearch(SearchInput);
 
 const SearchScreen = () => {
   const route = useRoute<SearchRoute>();
-  const { setParams } = useNavigation<SearchNavigation>();
-  const searchInputRef = useRef<TextInput>(null);
-  const setFilters = useContext(FiltersActionContext);
 
   const defaultParams = route.params ?? {};
-  const { category, autoFocus = false } = defaultParams;
-
-  useFocusEffect(
-    useCallback(() => {
-      if (autoFocus) {
-        setTimeout(() => {
-          searchInputRef.current?.focus();
-        }, 100);
-
-        return () => {
-          setParams({
-            autoFocus: false,
-          });
-        };
-      }
-
-      if (category) {
-        return () => {
-          setParams({
-            category: undefined,
-          });
-
-          setFilters([]);
-        };
-      }
-    }, [autoFocus, category, setParams, setFilters]),
-  );
+  const { category, autoFocus } = defaultParams;
 
   return (
     <SearchProvider>
       <FiltersProvider initial={category}>
         <View style={styles.container}>
           <Header />
-          <SearchInputWithContext autoFocus={autoFocus} ref={searchInputRef} />
-          <CategoriesWithContext categories={CATEGORIES} />
-          <FoodContainerWithSearchAndFilters
-            Fallback={<Loading />}
-            slotProps={{
-              list: {
-                ListEmptyComponent: (
-                  <NotFound
-                    image={
-                      <Image
-                        source={APP_ICONS.EMPTY}
-                        style={styles.emptyImage}
-                      />
-                    }
-                    description="Try searching with a different keyword or tweak your search a little."
-                    title="No Results Found"
-                  />
-                ),
-                numColumns: 2,
-                ListFooterComponent: (
-                  <ActivityIndicator size="large" color={COLOR.GREEN} />
-                ),
-                ListFooterComponentStyle: {
-                  alignSelf: 'center',
-                  marginVertical: 16,
-                },
-              },
+          <SearchFood
+            autoFocus={autoFocus}
+            ListEmptyComponent={
+              <NotFound
+                image={
+                  <Image source={APP_ICONS.EMPTY} style={styles.emptyImage} />
+                }
+                description="Try searching with a different keyword or tweak your search a little."
+                title="No Results Found"
+              />
+            }
+            ListFooterComponentStyle={{
+              alignSelf: 'center',
+              marginVertical: 16,
             }}
           />
         </View>

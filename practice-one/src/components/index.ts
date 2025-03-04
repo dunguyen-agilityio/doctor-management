@@ -8,7 +8,6 @@ export { default as Header } from './Header';
 export { default as NotFound } from './NotFound';
 export { default as FoodImage } from './FoodImage';
 export { default as FoodInfo } from './FoodInfo';
-export { default as FoodContainer } from './FoodContainer';
 export { default as Toggle } from './Toggle';
 export { default as ErrorFallback } from './ErrorFallback';
 export { default as FoodListSkeleton } from './FoodListSkeleton';

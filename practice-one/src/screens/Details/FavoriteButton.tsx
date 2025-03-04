@@ -24,11 +24,7 @@ const FavoriteButton = ({ food }: { food: IFood }) => {
   };
 
   return (
-    <Button
-      onPress={toggleFavorite}
-      backgroundColor="transparent"
-      style={styles.button}
-    >
+    <Button onPress={toggleFavorite} style={styles.button}>
       <Text variant="subtitle1" color={COLOR.WHITE}>
         {hasFavorite ? 'Unfavorite' : 'Add to Favorites'}
       </Text>

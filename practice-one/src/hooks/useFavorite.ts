@@ -13,9 +13,9 @@ export const useFavorite = () => {
   const { setFavorites } = store;
 
   const query = useQuery({
-    queryKey: [QUERY_KEYS.FOOD_FAVORITE],
+    queryKey: [QUERY_KEYS.FAVORITE_FOOD],
     queryFn: async () => {
-      const favorites = await getStorage<string[]>(QUERY_KEYS.FOOD_FAVORITE);
+      const favorites = await getStorage<string[]>(QUERY_KEYS.FAVORITE_FOOD);
 
       if (!favorites) return [];
 

@@ -34,7 +34,7 @@ const TYPE_STYLES = {
 export const DEFAULT_IMAGE = '@assets/images/logo.png';
 
 const FoodImage = ({
-  imgUrl = DEFAULT_IMAGE,
+  imgUrl,
   color,
   type = FoodImageSize.medium,
 }: Pick<IFood, 'imgUrl' | 'color'> & { type?: FoodImageSize }) => {
@@ -100,7 +100,7 @@ const FoodImage = ({
         }}
       >
         <Image
-          source={imgUrl}
+          source={imgUrl || DEFAULT_IMAGE}
           style={[styles.image, image]}
           testID="image"
           transition={1000}

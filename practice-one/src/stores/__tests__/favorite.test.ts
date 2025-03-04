@@ -22,33 +22,39 @@ describe('useFavoriteStore', () => {
 
     expect(useFavoriteStore.getState().favorites).toContainEqual(mockFood);
     expect(AsyncStorage.setItem).toHaveBeenCalledWith(
-      expect.any(String),
-      JSON.stringify([mockFood.id]),
+      QUERY_KEYS.FAVORITE_FOOD,
+      JSON.stringify({ state: { favorites: [mockFood.id] }, version: 0 }),
     );
   });
 
   it('should remove a food item from favorites', async () => {
     const { addToFavorite, removeFromFavorite } = useFavoriteStore.getState();
 
-    addToFavorite(mockFood);
-    addToFavorite(mockFood2);
-    removeFromFavorite(mockFood.id);
-
     expect(useFavoriteStore.getState().favorites).not.toContainEqual(mockFood);
+    addToFavorite(mockFood);
     expect(AsyncStorage.setItem).toHaveBeenNthCalledWith(
       1,
-      QUERY_KEYS.FOOD_FAVORITE,
-      JSON.stringify([mockFood.id]),
+      QUERY_KEYS.FAVORITE_FOOD,
+      JSON.stringify({ state: { favorites: [mockFood.id] }, version: 0 }),
     );
+    addToFavorite(mockFood2);
     expect(AsyncStorage.setItem).toHaveBeenNthCalledWith(
       2,
-      QUERY_KEYS.FOOD_FAVORITE,
-      JSON.stringify([mockFood.id, mockFood2.id]),
+      QUERY_KEYS.FAVORITE_FOOD,
+      JSON.stringify({
+        state: { favorites: [mockFood.id, mockFood2.id] },
+        version: 0,
+      }),
     );
+    removeFromFavorite(mockFood.id);
+
     expect(AsyncStorage.setItem).toHaveBeenNthCalledWith(
       3,
-      QUERY_KEYS.FOOD_FAVORITE,
-      JSON.stringify([mockFood2.id]),
+      QUERY_KEYS.FAVORITE_FOOD,
+      JSON.stringify({
+        state: { favorites: [mockFood2.id] },
+        version: 0,
+      }),
     );
   });
 

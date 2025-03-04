@@ -98,12 +98,37 @@ healthy Food?
       }
       testID="question-icon"
     >
-      <Image
-        source={
+      <ViewManagerAdapter_ExpoImage
+        containerViewRef={"[React.ref]"}
+        contentFit="cover"
+        contentPosition={
           {
-            "testUri": "../../../assets/icons/question.png",
+            "left": "50%",
+            "top": "50%",
           }
         }
+        height={14}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        source={
+          [
+            {
+              "testUri": "../../../assets/icons/question.png",
+            },
+          ]
+        }
+        style={
+          {
+            "height": 14,
+            "width": 9,
+          }
+        }
+        transition={null}
+        width={9}
       />
     </View>
   </View>
@@ -120,9 +145,34 @@ healthy Food?
     }
     testID="search-input"
   >
-    <View
+    <ViewManagerAdapter_ExpoImage
+      containerViewRef={"[React.ref]"}
+      contentFit="cover"
+      contentPosition={
+        {
+          "left": "50%",
+          "top": "50%",
+        }
+      }
+      height={24}
+      left={21}
+      nativeViewRef={"[React.ref]"}
+      onError={[Function]}
+      onLoad={[Function]}
+      onLoadStart={[Function]}
+      onProgress={[Function]}
+      placeholder={[]}
+      position="absolute"
+      source={
+        [
+          {
+            "testUri": "../../../assets/icons/icon-search.png",
+          },
+        ]
+      }
       style={
         {
+          "height": 24,
           "left": 21,
           "position": "absolute",
           "top": "50%",
@@ -131,20 +181,21 @@ healthy Food?
               "translateY": -10,
             },
           ],
+          "width": 24,
         }
       }
-    >
-      <Image
-        source={
+      top="50%"
+      transform={
+        [
           {
-            "testUri": "../../../assets/icons/icon-search.png",
-          }
-        }
-      />
-    </View>
+            "translateY": -10,
+          },
+        ]
+      }
+      transition={null}
+      width={24}
+    />
     <TextInput
-      autoFocus={false}
-      defaultValue=""
       onChangeText={[Function]}
       placeholder="Search for healthy food"
       placeholderTextColor="#ff8473"
@@ -695,11 +746,28 @@ healthy Food?
         }
       }
     >
-      <Image
-        source={
+      <ViewManagerAdapter_ExpoImage
+        containerViewRef={"[React.ref]"}
+        contentFit="cover"
+        contentPosition={
           {
-            "testUri": "../../../assets/images/logo.png",
+            "left": "50%",
+            "top": "50%",
           }
+        }
+        height={122}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        source={
+          [
+            {
+              "testUri": "../../../assets/images/logo.png",
+            },
+          ]
         }
         style={
           {
@@ -707,6 +775,8 @@ healthy Food?
             "width": 122,
           }
         }
+        transition={null}
+        width={122}
       />
     </View>
   </View>
@@ -811,12 +881,37 @@ healthy Food?
       }
       testID="question-icon"
     >
-      <Image
-        source={
+      <ViewManagerAdapter_ExpoImage
+        containerViewRef={"[React.ref]"}
+        contentFit="cover"
+        contentPosition={
           {
-            "testUri": "../../../assets/icons/question.png",
+            "left": "50%",
+            "top": "50%",
           }
         }
+        height={14}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        source={
+          [
+            {
+              "testUri": "../../../assets/icons/question.png",
+            },
+          ]
+        }
+        style={
+          {
+            "height": 14,
+            "width": 9,
+          }
+        }
+        transition={null}
+        width={9}
       />
     </View>
   </View>
@@ -833,9 +928,34 @@ healthy Food?
     }
     testID="search-input"
   >
-    <View
+    <ViewManagerAdapter_ExpoImage
+      containerViewRef={"[React.ref]"}
+      contentFit="cover"
+      contentPosition={
+        {
+          "left": "50%",
+          "top": "50%",
+        }
+      }
+      height={24}
+      left={21}
+      nativeViewRef={"[React.ref]"}
+      onError={[Function]}
+      onLoad={[Function]}
+      onLoadStart={[Function]}
+      onProgress={[Function]}
+      placeholder={[]}
+      position="absolute"
+      source={
+        [
+          {
+            "testUri": "../../../assets/icons/icon-search.png",
+          },
+        ]
+      }
       style={
         {
+          "height": 24,
           "left": 21,
           "position": "absolute",
           "top": "50%",
@@ -844,20 +964,21 @@ healthy Food?
               "translateY": -10,
             },
           ],
+          "width": 24,
         }
       }
-    >
-      <Image
-        source={
+      top="50%"
+      transform={
+        [
           {
-            "testUri": "../../../assets/icons/icon-search.png",
-          }
-        }
-      />
-    </View>
+            "translateY": -10,
+          },
+        ]
+      }
+      transition={null}
+      width={24}
+    />
     <TextInput
-      autoFocus={true}
-      defaultValue=""
       onChangeText={[Function]}
       placeholder="Search for healthy food"
       placeholderTextColor="#ff8473"
@@ -1408,11 +1529,28 @@ healthy Food?
         }
       }
     >
-      <Image
-        source={
+      <ViewManagerAdapter_ExpoImage
+        containerViewRef={"[React.ref]"}
+        contentFit="cover"
+        contentPosition={
           {
-            "testUri": "../../../assets/images/logo.png",
+            "left": "50%",
+            "top": "50%",
           }
+        }
+        height={122}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        source={
+          [
+            {
+              "testUri": "../../../assets/images/logo.png",
+            },
+          ]
         }
         style={
           {
@@ -1420,6 +1558,8 @@ healthy Food?
             "width": 122,
           }
         }
+        transition={null}
+        width={122}
       />
     </View>
   </View>

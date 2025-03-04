@@ -1,9 +1,9 @@
-import { fireEvent, render } from '@testing-library/react-native';
-
 import { createRef } from 'react';
 import { TextInput } from 'react-native';
 
 import SearchInput from '@/components/SearchInput';
+
+import { fireEvent, render } from '@/utils/test-utils';
 
 describe('SearchInput', () => {
   it('renders correctly', () => {

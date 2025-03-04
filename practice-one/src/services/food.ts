@@ -9,6 +9,7 @@ export interface FoodOptions {
   categoriesValue?: string[];
   page?: number;
   pageSize?: number;
+  queryKey?: string;
 }
 
 type TGetFoodListResponse = {

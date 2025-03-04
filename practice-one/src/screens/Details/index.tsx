@@ -1,5 +1,6 @@
 import { Image } from 'expo-image';
 
+import { memo, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
@@ -7,19 +8,13 @@ import { useQuery } from '@tanstack/react-query';
 
 import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
 
-import { Button, ErrorFallback, FoodInfo, Loading, Text } from '@/components';
+import { Button, ErrorFallback, FoodInfo, Loading } from '@/components';
 
 import { APP_ICONS, COLOR, ROUTES } from '@/constants';
 
 import { getFoodById } from '@/services/food';
 
-import withFavorite from '@/hocs/withFavorite';
-
-const FavoriteButton = withFavorite(Button, (hasFavorite) => (
-  <Text variant="subtitle1" color={COLOR.WHITE}>
-    {hasFavorite ? 'Unfavorite' : 'Add to Favorites'}
-  </Text>
-));
+import FavoriteButton from './FavoriteButton';
 
 type DetailRoute = RouteProp<RootStackParamsList, typeof ROUTES.DETAIL>;
 
@@ -62,7 +57,7 @@ const Details = () => {
         <Image source={APP_ICONS.ARROW_LEFT} style={styles.icon} />
       </Button>
       <FoodInfo food={food} />
-      <FavoriteButton id={id} food={food} style={styles.button} />
+      <FavoriteButton food={food} />
     </View>
   );
 };

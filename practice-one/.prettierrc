@@ -19,7 +19,6 @@
     "^@/hooks",
     "^@/mocks",
     "^@/contexts",
-    "^@/hocs",
     "^[./]"
   ],
   "importOrderSeparation": true,

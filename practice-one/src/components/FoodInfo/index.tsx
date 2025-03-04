@@ -1,14 +1,14 @@
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { FoodImage, Nutritional, Toggle } from '@/components';
-
 import { CATEGORIES, COLOR } from '@/constants';
 
 import { IFood } from '@/types';
 
-import { FoodImageSize } from '../FoodImage';
+import FoodImage, { FoodImageSize } from '../FoodImage';
+import Nutritional from '../Nutritional';
 import Text from '../Text';
+import Toggle from '../Toggle';
 
 interface FoodInfoProps {
   food: IFood;
