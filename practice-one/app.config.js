@@ -1,6 +1,6 @@
 export const expo = {
-  name: 'app',
-  slug: 'app',
+  name: 'healthy-food',
+  slug: 'healthy-food',
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/images/logo.png',
