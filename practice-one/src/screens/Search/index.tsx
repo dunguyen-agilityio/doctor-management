@@ -1,3 +1,5 @@
+import { Image } from 'expo-image';
+
 import { useCallback, useContext, useRef } from 'react';
 import { ActivityIndicator, StyleSheet, TextInput, View } from 'react-native';
 
@@ -11,17 +13,15 @@ import {
 import { RootScreenNavigationProps, TabParamsList } from '@/navigation';
 
 import {
-  APP_ICONS,
   Categories,
   FoodContainer,
   Header,
-  Icon,
   Loading,
   NotFound,
   SearchInput,
 } from '@/components';
 
-import { CATEGORIES, COLOR, ROUTES } from '@/constants';
+import { APP_ICONS, CATEGORIES, COLOR, ROUTES } from '@/constants';
 
 import FiltersProvider, { FiltersActionContext } from '@/contexts/filters';
 import SearchProvider from '@/contexts/search';
@@ -87,7 +87,7 @@ const SearchScreen = () => {
                 ListEmptyComponent: (
                   <NotFound
                     image={
-                      <Icon
+                      <Image
                         source={APP_ICONS.EMPTY}
                         style={styles.emptyImage}
                       />

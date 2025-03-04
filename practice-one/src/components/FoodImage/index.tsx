@@ -1,5 +1,7 @@
+import { Image } from 'expo-image';
+
 import { memo } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { COLOR } from '@/constants';
 
@@ -32,7 +34,7 @@ const TYPE_STYLES = {
 export const DEFAULT_IMAGE = '@assets/images/logo.png';
 
 const FoodImage = ({
-  imgUrl,
+  imgUrl = DEFAULT_IMAGE,
   color,
   type = FoodImageSize.medium,
 }: Pick<IFood, 'imgUrl' | 'color'> & { type?: FoodImageSize }) => {
@@ -40,15 +42,19 @@ const FoodImage = ({
     switch (color) {
       case 'RED':
         return COLOR.RED;
+
       case 'PURPLE':
         return COLOR.PURPLE;
+
       case 'ORANGE':
         return COLOR.ORANGE;
+
       case 'YELLOW':
         return COLOR.YELLOW;
+
       case 'GREEN':
         return COLOR.GREEN;
-      case 'PRIMARY':
+
       default:
         return COLOR.PRIMARY;
     }
@@ -94,9 +100,11 @@ const FoodImage = ({
         }}
       >
         <Image
-          source={{ uri: imgUrl || DEFAULT_IMAGE }}
+          source={imgUrl}
           style={[styles.image, image]}
           testID="image"
+          transition={1000}
+          contentFit="contain"
         />
       </View>
     </View>
@@ -120,6 +128,5 @@ const styles = StyleSheet.create({
   },
   image: {
     zIndex: 2,
-    resizeMode: 'contain',
   },
 });

@@ -1,8 +1,10 @@
+import { Image } from 'expo-image';
+
 import { StyleSheet } from 'react-native';
 
-import { APP_ICONS, Icon } from '../Icon';
+import { APP_ICONS } from '@/constants';
 
-const Logo = () => <Icon source={APP_ICONS.LOGO} style={styles.logo} />;
+const Logo = () => <Image source={APP_ICONS.LOGO} style={styles.logo} />;
 
 const styles = StyleSheet.create({
   logo: {

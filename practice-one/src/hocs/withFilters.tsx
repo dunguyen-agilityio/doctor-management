@@ -1,16 +1,23 @@
+import { useCallback } from 'react';
+
 import { useFilters } from '@/hooks/useFilters';
 
 const withFilters = <T,>(Component: (props: T) => React.ReactNode) => {
   const WithFilters = (props: T) => {
     const { filters, setFilters } = useFilters();
 
-    const toggleFilter = (id: string) => {
-      const newFilters = filters.includes(id)
-        ? filters.filter((category) => category !== id)
-        : [...filters, id];
+    const toggleFilter = useCallback(
+      (id: string) => {
+        setFilters((prev) => {
+          const newFilters = prev.includes(id)
+            ? prev.filter((category) => category !== id)
+            : [...prev, id];
 
-      setFilters(newFilters);
-    };
+          return newFilters;
+        });
+      },
+      [setFilters],
+    );
 
     return (
       <Component {...props} onSelect={toggleFilter} categoriesValue={filters} />

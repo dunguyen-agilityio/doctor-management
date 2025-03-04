@@ -1,13 +1,12 @@
+import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { memo } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { APP_ICONS, Icon } from '@/components';
 import { Button, Text } from '@/components';
 
-import { COLOR } from '@/constants';
-import { WINDOW_HEIGHT, WINDOW_WIDTH } from '@/constants/dimensions';
+import { APP_ICONS, COLOR, WINDOW_HEIGHT, WINDOW_WIDTH } from '@/constants';
 
 import { IArticle, TEXT_COLOR } from '@/types';
 
@@ -26,16 +25,10 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
       style={styles.container}
     >
       <Image
-        source={{ uri: image }}
-        resizeMode="contain"
-        style={{
-          height: '80%',
-          width: '100%',
-          minWidth: 160,
-          position: 'absolute',
-          right: '-32%',
-          bottom: 0,
-        }}
+        source={image}
+        contentFit="contain"
+        style={styles.image}
+        transition={1000}
       />
       <View style={styles.info}>
         <Text variant="subtitle5" color={buttonColor[color]}>
@@ -52,7 +45,7 @@ const Article = ({ image, color, title, backgroundColor }: IArticle) => {
           <Text variant="subtitle6" color={COLOR.WHITE}>
             Read now
           </Text>
-          <Icon source={APP_ICONS.ARROW_RIGHT_BOLD} />
+          <Image source={APP_ICONS.ARROW_RIGHT_BOLD} style={styles.icon} />
         </Button>
       </View>
     </LinearGradient>
@@ -86,5 +79,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 4,
     marginTop: 4,
+  },
+  image: {
+    height: '80%',
+    width: '100%',
+    minWidth: 160,
+    position: 'absolute',
+    right: '-32%',
+    bottom: 0,
+  },
+  icon: {
+    width: 12,
+    height: 12,
   },
 });

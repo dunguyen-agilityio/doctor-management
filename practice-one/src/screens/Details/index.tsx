@@ -1,3 +1,5 @@
+import { Image } from 'expo-image';
+
 import { StyleSheet, View } from 'react-native';
 
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
@@ -5,17 +7,9 @@ import { useQuery } from '@tanstack/react-query';
 
 import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
 
-import {
-  APP_ICONS,
-  Button,
-  ErrorFallback,
-  FoodInfo,
-  Icon,
-  Loading,
-  Text,
-} from '@/components';
+import { Button, ErrorFallback, FoodInfo, Loading, Text } from '@/components';
 
-import { COLOR, ROUTES } from '@/constants';
+import { APP_ICONS, COLOR, ROUTES } from '@/constants';
 
 import { getFoodById } from '@/services/food';
 
@@ -65,7 +59,7 @@ const Details = () => {
         testID="back-button"
         backgroundColor="transparent"
       >
-        <Icon source={APP_ICONS.ARROW_LEFT} />
+        <Image source={APP_ICONS.ARROW_LEFT} style={styles.icon} />
       </Button>
       <FoodInfo food={food} />
       <FavoriteButton id={id} food={food} style={styles.button} />
@@ -86,5 +80,9 @@ const styles = StyleSheet.create({
     marginTop: 27,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  icon: {
+    width: 20,
+    height: 12,
   },
 });

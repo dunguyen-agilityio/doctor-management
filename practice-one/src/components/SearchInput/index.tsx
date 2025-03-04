@@ -1,14 +1,15 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { Image } from 'expo-image';
 
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
 
 import { COLOR } from '@/constants';
+import { APP_ICONS } from '@/constants';
 
 import { debounce } from '@/utils/debounce';
 
 import Button from '../Button';
-import { APP_ICONS, Icon } from '../Icon';
 
 interface SearchInputProps extends TextInputProps {
   onSearch?: (value: string) => void;
@@ -43,9 +44,7 @@ const SearchInput = (
 
   return (
     <View style={styles.container} testID="search-input">
-      <View style={styles.iconSearch}>
-        <Icon source={APP_ICONS.SEARCH} />
-      </View>
+      <Image source={APP_ICONS.SEARCH} style={styles.iconSearch} />
       <TextInput
         {...otherProps}
         ref={inputRef}
@@ -94,6 +93,8 @@ const styles = StyleSheet.create({
     left: 21,
     top: '50%',
     transform: [{ translateY: -10 }],
+    width: 24,
+    height: 24,
   },
   clearButton: {
     position: 'absolute',

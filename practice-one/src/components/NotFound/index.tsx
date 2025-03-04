@@ -1,8 +1,10 @@
+import { Image } from 'expo-image';
+
 import { StyleSheet, View } from 'react-native';
 
 import { COLOR } from '@/constants';
+import { APP_ICONS } from '@/constants';
 
-import { APP_ICONS, Icon } from '../Icon';
 import Text from '../Text';
 
 const NO_FOOD_FOUND_DESCRIPTION = `You don't save any food. Go ahead, search\nand save your favorite food`;
@@ -11,7 +13,7 @@ const NO_FOOD_FOUND_TITLE = 'No Food Found';
 const NotFound = ({
   description = NO_FOOD_FOUND_DESCRIPTION,
   image = (
-    <Icon
+    <Image
       source={APP_ICONS.NOT_FOUND}
       testID="not-found-image"
       style={styles.image}

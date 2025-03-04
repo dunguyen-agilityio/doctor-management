@@ -1,18 +1,18 @@
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StatusBar, StyleSheet, View } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { RootNavigator } from '@/navigation';
 
-import { APP_ICONS, Icon, Logo, Text } from '@/components';
+import { Logo, Text } from '@/components';
 
-import { COLOR } from '@/constants';
-
-import { WINDOW_WIDTH } from './constants/dimensions';
+import { APP_ICONS, BLUR_HASH, COLOR, WINDOW_WIDTH } from '@/constants';
 
 const queryClient = new QueryClient();
 
@@ -36,11 +36,23 @@ const App = () => {
   if (!appIsReady) {
     return (
       <View style={styles.splash}>
-        <Icon
-          source={APP_ICONS.SPLASH}
-          resizeMode="cover"
-          style={styles.splashIcon}
-        />
+        <StatusBar hidden />
+        <View style={{ position: 'relative' }}>
+          <Image
+            source={APP_ICONS.SPLASH}
+            contentFit="fill"
+            style={styles.splashIcon}
+            placeholder={{ blurhash: BLUR_HASH }}
+            transition={1000}
+          />
+          <LinearGradient
+            colors={['#FFFFFF', 'rgba(255, 255, 255, 0)']}
+            locations={[0, 1]}
+            start={{ x: 0, y: 1 }} // Top
+            end={{ x: 0, y: 0 }} // Bottom
+            style={{ position: 'absolute', inset: 0 }}
+          />
+        </View>
         <Logo />
         <Text style={styles.title} variant="main1" color={COLOR.PRIMARY}>
           Laomica
@@ -82,7 +94,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     textAlign: 'center',
   },
-  splashIcon: { width: WINDOW_WIDTH },
+  splashIcon: { width: WINDOW_WIDTH, height: 400 },
 });
 
 export default App;
