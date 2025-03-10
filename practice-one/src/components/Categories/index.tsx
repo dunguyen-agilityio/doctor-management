@@ -21,7 +21,7 @@ const Categories = ({
   onSelect,
 }: ICategories) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="categories">
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}

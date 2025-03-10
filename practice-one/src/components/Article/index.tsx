@@ -16,14 +16,27 @@ const buttonColor = {
   secondary: COLOR.SECONDARY,
 };
 
-const Article = ({ image, color, title, backgroundColor }: IArticle) => {
+interface ArticleProps extends IArticle {
+  marginRight: number;
+  marginLeft: number;
+}
+
+const Article = ({
+  image,
+  color,
+  title,
+  backgroundColor,
+  marginLeft,
+  marginRight,
+}: ArticleProps) => {
   return (
     <LinearGradient
       colors={backgroundColor}
       locations={[0, 0.5]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
-      style={styles.container}
+      style={[styles.container, { marginLeft, marginRight }]}
+      testID="article-item"
     >
       <Image
         source={image}

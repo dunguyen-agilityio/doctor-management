@@ -14,3 +14,4 @@ export { default as FoodListSkeleton } from './FoodListSkeleton';
 export { default as Text } from './Text';
 export { default as Button } from './Button';
 export { default as Logo } from './Logo';
+export { default as TabIcon } from './TabIcon';

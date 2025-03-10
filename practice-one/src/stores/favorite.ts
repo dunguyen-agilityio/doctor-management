@@ -6,8 +6,6 @@ import { QUERY_KEYS } from '@/constants';
 
 import { IFood } from '@/types';
 
-import { getFavoriteFoodList } from '@/services/food';
-
 type FavoriteState = {
   favorites: IFood[];
   displayFavorites: IFood[];
@@ -18,7 +16,6 @@ type FavoriteAction = {
   removeFromFavorite: (foodId: string) => void;
   setFavorites: (data: IFood[]) => void;
   searchByName: (name: string) => void;
-  initialize: () => Promise<void>;
 };
 
 const isLikeString = (fullString: string, query: string) =>
@@ -44,7 +41,6 @@ export const useFavoriteStore = create<FavoriteState & FavoriteAction>()(
       },
 
       removeFromFavorite: (foodId) => {
-        if (!foodId) return; // Guard against invalid ID
         set((state) => {
           const newFavorites = state.favorites.filter((f) => f.id !== foodId);
           return {
@@ -64,23 +60,6 @@ export const useFavoriteStore = create<FavoriteState & FavoriteAction>()(
             ? state.favorites.filter((f) => isLikeString(f.name || '', name))
             : state.favorites,
         }));
-      },
-
-      initialize: async () => {
-        try {
-          const storedIds = await AsyncStorage.getItem(
-            QUERY_KEYS.FAVORITE_FOOD,
-          );
-          if (storedIds) {
-            const { state }: { state: { favorites: [] } } =
-              JSON.parse(storedIds);
-
-            const response = await getFavoriteFoodList(state.favorites);
-            set({ favorites: response, displayFavorites: response });
-          }
-        } catch (error) {
-          console.error('Failed to initialize favorites:', error);
-        }
       },
     }),
     {

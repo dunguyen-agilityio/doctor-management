@@ -1,5 +1,3 @@
-import { useFavoriteStore } from '@/stores/favorite';
-
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
@@ -9,10 +7,12 @@ import { COLOR } from '@/constants';
 
 import type { IFood } from '@/types';
 
+import { useFavorite } from '@/hooks/useFavorite';
+
 const FavoriteButton = ({ food }: { food: IFood }) => {
   const { id: foodId } = food;
 
-  const { favorites, addToFavorite, removeFromFavorite } = useFavoriteStore();
+  const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
 
   const hasFavorite = useMemo(
     () => favorites.some(({ id }) => foodId === id),

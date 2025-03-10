@@ -12,7 +12,6 @@ import { RootScreenNavigationProps } from '@/navigation';
 import {
   ArticlesSlider,
   Categories,
-  FoodListSkeleton,
   Header,
   SearchInput,
   Text,

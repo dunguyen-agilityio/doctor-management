@@ -1,9 +1,9 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 
 import Details from '@/screens/Details';
 
-import { fireEvent, render, waitFor } from '@/utils/test-utils';
+import { render, waitFor } from '@/utils/test-utils';
 
 import { MOCK_FOOD_LIST } from '@/mocks/food';
 
@@ -18,11 +18,9 @@ jest.mock('@/services/food', () => ({
 
 describe('Details Screen', () => {
   const mockFood = MOCK_FOOD_LIST[0];
-  const mockGoBack = jest.fn();
   const mockRouteParams = { params: { id: '1' } };
 
   beforeEach(() => {
-    (useNavigation as jest.Mock).mockReturnValue({ goBack: mockGoBack });
     (useRoute as jest.Mock).mockReturnValue(mockRouteParams);
   });
 
@@ -63,17 +61,5 @@ describe('Details Screen', () => {
       expect(getByText(name)).toBeTruthy();
       expect(getByText('Add to Favorites')).toBeTruthy();
     });
-  });
-
-  it('calls goBack when Back button is pressed', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      isLoading: false,
-      data: mockFood,
-    });
-
-    const { getByTestId } = render(<Details />);
-    fireEvent.press(getByTestId('back-button'));
-
-    expect(mockGoBack).toHaveBeenCalled();
   });
 });

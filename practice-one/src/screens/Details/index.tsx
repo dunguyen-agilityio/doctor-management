@@ -1,16 +1,13 @@
-import { Image } from 'expo-image';
-
-import { memo, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 
-import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
+import { RootStackParamsList } from '@/navigation';
 
-import { Button, ErrorFallback, FoodInfo, Loading } from '@/components';
+import { ErrorFallback, FoodInfo, Loading } from '@/components';
 
-import { APP_ICONS, COLOR, ROUTES } from '@/constants';
+import { COLOR, QUERY_KEYS, ROUTES } from '@/constants';
 
 import { getFoodById } from '@/services/food';
 
@@ -20,8 +17,6 @@ type DetailRoute = RouteProp<RootStackParamsList, typeof ROUTES.DETAIL>;
 
 const Details = () => {
   const route = useRoute<DetailRoute>();
-  const { goBack } =
-    useNavigation<RootScreenNavigationProps<typeof ROUTES.DETAIL>>();
   const { id } = route.params;
 
   const {
@@ -29,7 +24,7 @@ const Details = () => {
     error,
     data: food,
   } = useQuery({
-    queryKey: [`food-${id}`],
+    queryKey: [QUERY_KEYS.FOOD_BY_ID(id)],
     queryFn: () => getFoodById(id),
     staleTime: 1000 * 60 * 5,
   });
@@ -48,14 +43,6 @@ const Details = () => {
 
   return (
     <View style={styles.container}>
-      <Button
-        variant="icon"
-        onPress={goBack}
-        testID="back-button"
-        backgroundColor="transparent"
-      >
-        <Image source={APP_ICONS.ARROW_LEFT} style={styles.icon} />
-      </Button>
       <FoodInfo food={food} />
       <FavoriteButton food={food} />
     </View>

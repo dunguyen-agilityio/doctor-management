@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import DetailsScreen from '@/screens/Details';
 
-import { ROUTES } from '@/constants';
+import { APP_ICONS, ROUTES } from '@/constants';
 
 import TabNavigator, { TabParamsList } from './TabNavigator';
 
@@ -20,7 +20,16 @@ const RootNavigator = () => {
     <RootStack.Navigator screenOptions={{ headerShown: false }}>
       <RootStack.Group>
         <RootStack.Screen name={ROUTES.ROOT} component={TabNavigator} />
-        <RootStack.Screen name={ROUTES.DETAIL} component={DetailsScreen} />
+        <RootStack.Screen
+          name={ROUTES.DETAIL}
+          component={DetailsScreen}
+          options={{
+            headerShown: true,
+            title: '',
+            headerShadowVisible: false,
+            headerBackImageSource: APP_ICONS.ARROW_LEFT,
+          }}
+        />
       </RootStack.Group>
     </RootStack.Navigator>
   );

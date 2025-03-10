@@ -6,7 +6,7 @@ import { apiClient } from './http-client';
 
 export interface FoodOptions {
   query?: string;
-  categoriesValue?: string[];
+  filters?: string[];
   page?: number;
   pageSize?: number;
   queryKey?: string;
@@ -20,7 +20,7 @@ type TGetFoodListResponse = {
 };
 
 export const getFoodList = async ({
-  categoriesValue = [],
+  filters = [],
   page = 1,
   pageSize = PAGE_SIZE,
   query,
@@ -32,9 +32,7 @@ export const getFoodList = async ({
 
   if (query) searchParams.set('name_like', query);
 
-  categoriesValue.forEach((item) =>
-    searchParams.append('category', item.toString()),
-  );
+  filters.forEach((item) => searchParams.append('category', item.toString()));
 
   const url = `${API_ENTITIES.FOOD_LIST}?${searchParams.toString()}`;
 

@@ -1,7 +1,7 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Image } from 'expo-image';
 
-import { forwardRef, useImperativeHandle, useRef } from 'react';
+import { forwardRef, memo, useImperativeHandle, useRef } from 'react';
 import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
 
 import { COLOR } from '@/constants';
@@ -70,7 +70,7 @@ const SearchInput = (
   );
 };
 
-export default forwardRef(SearchInput);
+export default memo(forwardRef(SearchInput));
 
 const styles = StyleSheet.create({
   container: {

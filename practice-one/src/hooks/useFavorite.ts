@@ -14,14 +14,23 @@ export const useFavorite = () => {
 
   const query = useQuery({
     queryKey: [QUERY_KEYS.FAVORITE_FOOD],
+    refetchOnMount: false,
     queryFn: async () => {
-      const favorites = await getStorage<string[]>(QUERY_KEYS.FAVORITE_FOOD);
+      try {
+        const storage = await getStorage<{ state: { favorites: [] } }>(
+          QUERY_KEYS.FAVORITE_FOOD,
+        );
 
-      if (!favorites) return [];
+        if (storage) {
+          const response = await getFavoriteFoodList(storage.state.favorites);
+          setFavorites(response);
+          return response;
+        }
+      } catch (error) {
+        console.error('Failed to initialize favorites:', error);
+      }
 
-      const response = await getFavoriteFoodList(favorites);
-      setFavorites(response);
-      return response;
+      return [];
     },
   });
 

@@ -1,9 +1,14 @@
 import { useCallback, useRef } from 'react';
-import { ActivityIndicator, StyleSheet, TextInput } from 'react-native';
+import { ActivityIndicator, StyleSheet, TextInput, View } from 'react-native';
 
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import {
+  RouteProp,
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 
-import { RootScreenNavigationProps } from '@/navigation';
+import { RootScreenNavigationProps, TabParamsList } from '@/navigation';
 
 import { Categories, FoodList, Loading, SearchInput } from '@/components';
 import { FoodListProps } from '@/components/FoodList';
@@ -16,43 +21,23 @@ import { useSearchQuery } from '@/hooks/useSearchQuery';
 
 type SearchNavigation = RootScreenNavigationProps<typeof ROUTES.SEARCH>;
 
-const SearchFood = ({
-  autoFocus,
-  ...otherProps
-}: FoodListProps & { autoFocus?: boolean }) => {
+const SearchFood = (props: FoodListProps) => {
   const { setParams } = useNavigation<SearchNavigation>();
-
+  const { query, setQuery } = useSearchQuery();
   const searchInputRef = useRef<TextInput>(null);
+  const route = useRoute<RouteProp<TabParamsList, typeof ROUTES.SEARCH>>();
 
   const { filters, setFilters } = useFilters();
-  const { query, setQuery } = useSearchQuery();
 
-  const { isLoading, data, isFetchingNextPage, fetchNextPage } = useFoodList({
-    categoriesValue: filters,
-    query,
-    queryKey: QUERY_KEYS.SEARCH_FOOD,
-  });
-
-  const handleEndReached = useCallback(() => {
-    fetchNextPage();
-  }, [fetchNextPage]);
-
+  const { autoFocus, category } = route.params ?? {};
   useFocusEffect(
     useCallback(() => {
+      setFilters((prev) => (category ? [category] : prev.length ? [] : prev));
+
       return () => {
-        setFilters((prev) => {
-          const isFilter = !prev.length;
-
-          if (isFilter) {
-            setParams({
-              category: undefined,
-            });
-          }
-
-          return prev;
-        });
+        if (category) setParams({ category: undefined });
       };
-    }, [setParams, setFilters]),
+    }, [category, setFilters, setParams]),
   );
 
   useFocusEffect(
@@ -60,11 +45,10 @@ const SearchFood = ({
       if (autoFocus) {
         setTimeout(() => {
           searchInputRef.current?.focus();
-        }, 100);
+        });
       }
 
       return () => {
-        setQuery('');
         searchInputRef.current?.clear();
 
         if (autoFocus) {
@@ -73,7 +57,7 @@ const SearchFood = ({
           });
         }
       };
-    }, [autoFocus, setParams, setQuery]),
+    }, [autoFocus, setParams]),
   );
 
   const toggleFilter = useCallback(
@@ -89,14 +73,26 @@ const SearchFood = ({
     [setFilters],
   );
 
+  const { isLoading, data, isFetchingNextPage, isRefetching, fetchNextPage } =
+    useFoodList({
+      filters,
+      query,
+      queryKey: QUERY_KEYS.SEARCH_FOOD,
+    });
+
+  const handleEndReached = useCallback(() => {
+    fetchNextPage();
+  }, [fetchNextPage]);
+
   return (
-    <>
+    <View style={styles.container}>
       <SearchInput onSearch={setQuery} ref={searchInputRef} />
       <Categories
         categories={CATEGORIES}
         categoriesValue={filters}
         onSelect={toggleFilter}
       />
+      {isRefetching && <Loading />}
 
       {isLoading ? (
         <Loading />
@@ -105,21 +101,23 @@ const SearchFood = ({
           style={styles.list}
           data={data}
           onEndReached={handleEndReached}
-          ListFooterComponent={
-            isFetchingNextPage ? (
-              <ActivityIndicator size="large" color={COLOR.GREEN} />
-            ) : null
-          }
-          {...otherProps}
+          {...props}
         />
       )}
-    </>
+
+      {isFetchingNextPage ? (
+        <View style={{ paddingVertical: 20 }}>
+          <ActivityIndicator size="large" color={COLOR.GREEN} />
+        </View>
+      ) : null}
+    </View>
   );
 };
 
 export default SearchFood;
 
 const styles = StyleSheet.create({
+  container: { flex: 1, paddingBottom: 16 },
   list: {
     marginTop: 15,
   },

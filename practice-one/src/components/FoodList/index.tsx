@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { FlatList, FlatListProps, StyleSheet, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -112,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FoodList;
+export default memo(FoodList);

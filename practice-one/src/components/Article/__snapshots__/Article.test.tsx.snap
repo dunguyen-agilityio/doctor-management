@@ -27,19 +27,26 @@ exports[`Article Component matches snapshot 1`] = `
     ]
   }
   style={
-    {
-      "borderRadius": 32,
-      "height": 266.8,
-      "justifyContent": "space-between",
-      "minHeight": 170,
-      "minWidth": 320,
-      "overflow": "hidden",
-      "paddingRight": 0,
-      "position": "relative",
-      "resizeMode": "contain",
-      "width": 637.5,
-    }
+    [
+      {
+        "borderRadius": 32,
+        "height": 266.8,
+        "justifyContent": "space-between",
+        "minHeight": 170,
+        "minWidth": 320,
+        "overflow": "hidden",
+        "paddingRight": 0,
+        "position": "relative",
+        "resizeMode": "contain",
+        "width": 637.5,
+      },
+      {
+        "marginLeft": undefined,
+        "marginRight": undefined,
+      },
+    ]
   }
+  testID="article-item"
 >
   <ViewManagerAdapter_ExpoImage
     bottom={0}

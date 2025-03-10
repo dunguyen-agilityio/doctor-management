@@ -15,7 +15,7 @@ const FoodListSkeleton = ({
   const items = Array(length).fill(0);
 
   return (
-    <View style={styles.container} testID="food-skeleton">
+    <View style={styles.container} testID="food-list-skeleton">
       {title && (
         <View style={styles.title}>
           <Text color={COLOR.GREY}>{title}</Text>

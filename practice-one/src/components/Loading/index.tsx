@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
 
 import Logo from '../Logo';
@@ -29,7 +28,7 @@ const Loading = ({ marginTop }: { marginTop?: number }) => {
   );
 };
 
-export default memo(Loading);
+export default Loading;
 
 const styles = StyleSheet.create({
   container: {
