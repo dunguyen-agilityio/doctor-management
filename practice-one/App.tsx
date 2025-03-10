@@ -1,17 +1,31 @@
-import { useEffect, useState } from 'react';
-import { DevSettings, StyleSheet, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import * as Font from 'expo-font';
+import { useEffect, useState } from 'react';
+import { DevSettings, StyleSheet } from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { loadAsync } from 'expo-font';
 import {
   hideAsync,
   preventAutoHideAsync,
   setOptions,
 } from 'expo-splash-screen';
 
+import { RootNavigator } from '@/navigation';
+
+import SplashScreen from '@/screens/Splash';
+
 import { COLOR } from '@/constants';
 
-import { default as StorybookUI } from './.storybook';
-import App from './src/App';
+const queryClient = new QueryClient();
+
+let StorybookUI: () => React.JSX.Element;
+
+if (__DEV__) {
+  StorybookUI = require('./.storybook');
+}
 
 preventAutoHideAsync();
 
@@ -22,6 +36,7 @@ setOptions({
 
 const AppRoot = () => {
   const [showStorybook, setShowStorybook] = useState(false);
+  const [appIsReady, setAppIsReady] = useState(false);
 
   useEffect(() => {
     if (__DEV__) {
@@ -29,15 +44,10 @@ const AppRoot = () => {
         setShowStorybook((prev) => !prev);
       });
     }
-  }, []);
 
-  const [appIsReady, setAppIsReady] = useState(false);
-
-  useEffect(() => {
     async function prepare() {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        await Font.loadAsync({
+        await loadAsync({
           Manrope: require('@assets/fonts/Manrope.ttf'),
           Signika: require('@assets/fonts/Signika.ttf'),
         });
@@ -51,12 +61,21 @@ const AppRoot = () => {
     prepare();
   }, []);
 
-  if (!appIsReady) return null;
+  if (!appIsReady) return <SplashScreen />;
 
   return (
-    <View style={styles.container}>
-      {showStorybook ? <StorybookUI /> : <App />}
-    </View>
+    <GestureHandlerRootView style={styles.container}>
+      {showStorybook ? (
+        <StorybookUI />
+      ) : (
+        <QueryClientProvider client={queryClient}>
+          <StatusBar />
+          <NavigationContainer>
+            <RootNavigator />
+          </NavigationContainer>
+        </QueryClientProvider>
+      )}
+    </GestureHandlerRootView>
   );
 };
 
@@ -66,5 +85,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLOR.WHITE,
+    paddingTop: 60,
   },
 });

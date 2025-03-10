@@ -7,8 +7,8 @@ export const expo = {
   userInterfaceStyle: 'light',
   splash: {
     image: './assets/images/logo.png',
-    resizeMode: 'contain',
     backgroundColor: '#ffffff',
+    resizeMode: 'contain',
   },
   updates: {
     fallbackToCacheTimeout: 0,
