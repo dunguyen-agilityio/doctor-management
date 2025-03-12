@@ -1,7 +1,6 @@
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Logo, Text } from '@/components';

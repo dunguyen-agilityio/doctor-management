@@ -24,7 +24,7 @@ const queryClient = new QueryClient();
 let StorybookUI: () => React.JSX.Element;
 
 if (__DEV__) {
-  StorybookUI = require('./.storybook');
+  StorybookUI = require('./.storybook').default;
 }
 
 preventAutoHideAsync();
