@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useSharedValue } from 'react-native-reanimated';
@@ -20,19 +20,11 @@ const modeConfig = {
 };
 
 const ArticleSlider = ({ articles }: { articles: IArticle[] }) => {
-  const progress = useSharedValue<number>(0);
+  const progress = useSharedValue(0);
 
   const renderItem: CarouselRenderItem<IArticle> = useCallback(
     ({ item, index }) => (
-      <View
-        style={{
-          paddingLeft: 16,
-          paddingRight: index === 0 ? 16 : 0,
-        }}
-        testID="article-item"
-      >
-        <Article {...item} />
-      </View>
+      <Article marginLeft={16} marginRight={index === 0 ? 16 : 0} {...item} />
     ),
     [],
   );
@@ -69,7 +61,7 @@ const ArticleSlider = ({ articles }: { articles: IArticle[] }) => {
   );
 };
 
-export default memo(ArticleSlider);
+export default ArticleSlider;
 
 const styles = StyleSheet.create({
   container: {

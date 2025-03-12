@@ -1,5 +1,5 @@
-import { memo } from 'react';
-import { Image, ImageProps } from 'react-native';
+export const BLUR_HASH =
+  '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
 export enum APP_ICONS {
   EMPTY = require('@assets/images/empty.png'),
@@ -17,11 +17,3 @@ export enum APP_ICONS {
   SEARCH_MENU_FILL = require('@assets/icons/search-fill.png'),
   SPLASH = require('@assets/images/pattern.png'),
 }
-
-type IconProps = ImageProps & { source: APP_ICONS };
-
-export const Icon = memo(({ source, ...props }: IconProps) => (
-  <Image source={source} {...props} />
-));
-
-Icon.displayName = 'Icon';

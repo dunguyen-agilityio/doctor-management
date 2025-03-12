@@ -1,38 +1,22 @@
 import { StyleSheet, View } from 'react-native';
 
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 
-import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
+import { RootStackParamsList } from '@/navigation';
 
-import {
-  APP_ICONS,
-  Button,
-  ErrorFallback,
-  FoodInfo,
-  Icon,
-  Loading,
-  Text,
-} from '@/components';
+import { ErrorFallback, FoodInfo, Loading } from '@/components';
 
-import { COLOR, ROUTES } from '@/constants';
+import { COLOR, QUERY_KEYS, ROUTES } from '@/constants';
 
 import { getFoodById } from '@/services/food';
 
-import withFavorite from '@/hocs/withFavorite';
-
-const FavoriteButton = withFavorite(Button, (hasFavorite) => (
-  <Text variant="subtitle1" color={COLOR.WHITE}>
-    {hasFavorite ? 'Unfavorite' : 'Add to Favorites'}
-  </Text>
-));
+import FavoriteButton from './FavoriteButton';
 
 type DetailRoute = RouteProp<RootStackParamsList, typeof ROUTES.DETAIL>;
 
 const Details = () => {
   const route = useRoute<DetailRoute>();
-  const { goBack } =
-    useNavigation<RootScreenNavigationProps<typeof ROUTES.DETAIL>>();
   const { id } = route.params;
 
   const {
@@ -40,7 +24,7 @@ const Details = () => {
     error,
     data: food,
   } = useQuery({
-    queryKey: [`food-${id}`],
+    queryKey: [QUERY_KEYS.FOOD_BY_ID(id)],
     queryFn: () => getFoodById(id),
     staleTime: 1000 * 60 * 5,
   });
@@ -59,16 +43,8 @@ const Details = () => {
 
   return (
     <View style={styles.container}>
-      <Button
-        variant="icon"
-        onPress={goBack}
-        testID="back-button"
-        backgroundColor="transparent"
-      >
-        <Icon source={APP_ICONS.ARROW_LEFT} />
-      </Button>
       <FoodInfo food={food} />
-      <FavoriteButton id={id} food={food} style={styles.button} />
+      <FavoriteButton food={food} />
     </View>
   );
 };
@@ -86,5 +62,9 @@ const styles = StyleSheet.create({
     marginTop: 27,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  icon: {
+    width: 20,
+    height: 12,
   },
 });

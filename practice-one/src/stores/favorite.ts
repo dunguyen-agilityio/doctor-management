@@ -1,11 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { QUERY_KEYS } from '@/constants';
 
 import { IFood } from '@/types';
 
-export type FavoriteState = {
+type FavoriteState = {
   favorites: IFood[];
   displayFavorites: IFood[];
 };
@@ -18,57 +19,55 @@ type FavoriteAction = {
 };
 
 const isLikeString = (fullString: string, query: string) =>
-  fullString.toLowerCase().includes(query.toLowerCase());
+  fullString.toLowerCase().includes(query.toLowerCase().trim());
 
-export const useFavoriteStore = create<FavoriteState & FavoriteAction>(
-  (set) => ({
-    favorites: [],
-    displayFavorites: [],
+export const useFavoriteStore = create<FavoriteState & FavoriteAction>()(
+  persist(
+    (set) => ({
+      favorites: [],
+      displayFavorites: [],
 
-    addToFavorite: async (food: IFood) => {
-      set((state) => {
-        if (state.favorites.some(({ id }) => id === food.id)) {
-          return {}; // Prevent duplicate entries
-        }
+      addToFavorite: (food) => {
+        set((state) => {
+          if (!food?.id || state.favorites.some((f) => f.id === food.id)) {
+            return state; // No change if invalid or duplicate
+          }
+          const newFavorites = [...state.favorites, food];
+          return {
+            favorites: newFavorites,
+            displayFavorites: newFavorites,
+          };
+        });
+      },
 
-        const newFavorites = [...state.favorites, food];
-        const favoriteIds = newFavorites.map(({ id }) => id);
+      removeFromFavorite: (foodId) => {
+        set((state) => {
+          const newFavorites = state.favorites.filter((f) => f.id !== foodId);
+          return {
+            favorites: newFavorites,
+            displayFavorites: newFavorites,
+          };
+        });
+      },
 
-        AsyncStorage.setItem(
-          QUERY_KEYS.FOOD_FAVORITE,
-          JSON.stringify(favoriteIds),
-        );
+      setFavorites: (favorites) => {
+        set({ favorites, displayFavorites: favorites });
+      },
 
-        return { favorites: newFavorites, displayFavorites: newFavorites };
-      });
+      searchByName: (name) => {
+        set((state) => ({
+          displayFavorites: name
+            ? state.favorites.filter((f) => isLikeString(f.name || '', name))
+            : state.favorites,
+        }));
+      },
+    }),
+    {
+      name: QUERY_KEYS.FAVORITE_FOOD, // Storage key
+      storage: createJSONStorage(() => AsyncStorage), // Use AsyncStorage
+      partialize: (state) => ({
+        favorites: state.favorites.map(({ id }) => id), // Store only IDs
+      }),
     },
-
-    removeFromFavorite: async (foodId: string) => {
-      set((state) => {
-        const newFavorites = state.favorites.filter(({ id }) => id !== foodId);
-        const favoriteIds = newFavorites.map(({ id }) => id);
-
-        AsyncStorage.setItem(
-          QUERY_KEYS.FOOD_FAVORITE,
-          JSON.stringify(favoriteIds),
-        );
-
-        return { favorites: newFavorites, displayFavorites: newFavorites };
-      });
-    },
-
-    setFavorites: (favorites) => {
-      set({ favorites, displayFavorites: favorites });
-    },
-
-    searchByName: (name: string) => {
-      set((state) => ({
-        displayFavorites: name
-          ? state.favorites.filter(({ name: fullName }) =>
-              isLikeString(fullName, name),
-            )
-          : state.favorites,
-      }));
-    },
-  }),
+  ),
 );

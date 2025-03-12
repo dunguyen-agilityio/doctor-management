@@ -1,5 +1,6 @@
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { CATEGORIES } from '@/constants';
@@ -20,7 +21,7 @@ const Categories = ({
   onSelect,
 }: ICategories) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="categories">
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -49,7 +50,7 @@ const Categories = ({
   );
 };
 
-export default Categories;
+export default memo(Categories);
 
 const styles = StyleSheet.create({
   container: {

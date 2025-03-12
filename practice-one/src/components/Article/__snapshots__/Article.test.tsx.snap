@@ -27,26 +27,53 @@ exports[`Article Component matches snapshot 1`] = `
     ]
   }
   style={
-    {
-      "borderRadius": 32,
-      "height": 266.8,
-      "justifyContent": "space-between",
-      "minHeight": 170,
-      "minWidth": 320,
-      "overflow": "hidden",
-      "paddingRight": 0,
-      "position": "relative",
-      "resizeMode": "contain",
-      "width": 637.5,
-    }
-  }
->
-  <Image
-    resizeMode="contain"
-    source={
+    [
       {
-        "uri": "https://res.cloudinary.com/dn5vw6fjp/image/upload/v1740114016/24d2e37a7dcbf108d35e8be410c96a58_uifiia.png",
+        "borderRadius": 32,
+        "height": 266.8,
+        "justifyContent": "space-between",
+        "minHeight": 170,
+        "minWidth": 320,
+        "overflow": "hidden",
+        "paddingRight": 0,
+        "position": "relative",
+        "resizeMode": "contain",
+        "width": 637.5,
+      },
+      {
+        "marginLeft": undefined,
+        "marginRight": undefined,
+      },
+    ]
+  }
+  testID="article-item"
+>
+  <ViewManagerAdapter_ExpoImage
+    bottom={0}
+    containerViewRef={"[React.ref]"}
+    contentFit="contain"
+    contentPosition={
+      {
+        "left": "50%",
+        "top": "50%",
       }
+    }
+    height="80%"
+    minWidth={160}
+    nativeViewRef={"[React.ref]"}
+    onError={[Function]}
+    onLoad={[Function]}
+    onLoadStart={[Function]}
+    onProgress={[Function]}
+    placeholder={[]}
+    position="absolute"
+    right="-32%"
+    source={
+      [
+        {
+          "uri": "https://res.cloudinary.com/dn5vw6fjp/image/upload/v1740114016/24d2e37a7dcbf108d35e8be410c96a58_uifiia.png",
+        },
+      ]
     }
     style={
       {
@@ -58,6 +85,12 @@ exports[`Article Component matches snapshot 1`] = `
         "width": "100%",
       }
     }
+    transition={
+      {
+        "duration": 1000,
+      }
+    }
+    width="100%"
   />
   <View
     style={
@@ -173,12 +206,37 @@ exports[`Article Component matches snapshot 1`] = `
       >
         Read now
       </Text>
-      <Image
-        source={
+      <ViewManagerAdapter_ExpoImage
+        containerViewRef={"[React.ref]"}
+        contentFit="cover"
+        contentPosition={
           {
-            "testUri": "../../../assets/icons/arrow-right-bold.png",
+            "left": "50%",
+            "top": "50%",
           }
         }
+        height={12}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        source={
+          [
+            {
+              "testUri": "../../../assets/icons/arrow-right-bold.png",
+            },
+          ]
+        }
+        style={
+          {
+            "height": 12,
+            "width": 12,
+          }
+        }
+        transition={null}
+        width={12}
       />
     </View>
   </View>

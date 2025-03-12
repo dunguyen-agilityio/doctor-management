@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { FlatList, FlatListProps, StyleSheet, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -74,13 +74,14 @@ const FoodList = ({
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={contentContainerStyle}
-        {...(!horizontal && {
-          numColumns: 2,
-          columnWrapperStyle: { gap: 18 },
-        })}
+        numColumns={horizontal ? undefined : 2}
+        columnWrapperStyle={horizontal ? null : styles.columnWrapperStyle}
         scrollEnabled={true}
         onStartReachedThreshold={0.5}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
         ListHeaderComponent={horizontal ? null : ListHeaderComponent}
+        removeClippedSubviews
       />
     </View>
   );
@@ -106,6 +107,9 @@ const styles = StyleSheet.create({
   listEmpty: {
     flex: 1,
   },
+  columnWrapperStyle: {
+    gap: 18,
+  },
 });
 
-export default FoodList;
+export default memo(FoodList);

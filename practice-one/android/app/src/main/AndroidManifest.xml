@@ -25,7 +25,7 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="com.anonymous.app"/>
-        <data android:scheme="exp+app"/>
+        <data android:scheme="exp+healthy-food"/>
       </intent-filter>
     </activity>
   </application>

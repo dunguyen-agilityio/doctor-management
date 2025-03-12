@@ -1,18 +1,16 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { QUERY_KEYS } from '@/constants/query';
-
 import { FoodOptions, getFoodList } from '@/services/food';
 
 export function useFoodList({
-  categoriesValue = [],
+  filters = [],
   query = '',
+  queryKey,
 }: FoodOptions = {}) {
   const infiniteQuery = useInfiniteQuery({
-    queryKey: [QUERY_KEYS.FOOD, query, ...categoriesValue],
+    queryKey: [queryKey, query, ...filters],
     initialPageParam: 1,
-    queryFn: ({ pageParam: page }) =>
-      getFoodList({ query, categoriesValue, page }),
+    queryFn: ({ pageParam: page }) => getFoodList({ query, filters, page }),
     getNextPageParam: (lastPage) => lastPage.nextPage,
     getPreviousPageParam: (firstPage) => firstPage.prevPage,
     placeholderData: (prevData) => prevData,

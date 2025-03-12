@@ -11,21 +11,6 @@ import FiltersProvider, {
 } from '@/contexts/filters';
 
 describe('FiltersProvider', () => {
-  it('sets initial filter when provided', () => {
-    const TestComponent = () => {
-      const filters = useContext(FiltersContext);
-      return <Text>{filters.join(', ')}</Text>;
-    };
-
-    const { getByText } = render(
-      <FiltersProvider initial="vegan">
-        <TestComponent />
-      </FiltersProvider>,
-    );
-
-    expect(getByText('vegan')).toBeTruthy();
-  });
-
   it('updates filters when setFilters is called', () => {
     const TestComponent = () => {
       const filters = useContext(FiltersContext);

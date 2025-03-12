@@ -1,6 +1,6 @@
 import { TouchableOpacityProps } from 'react-native-gesture-handler';
 
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { COLOR } from '@/constants';

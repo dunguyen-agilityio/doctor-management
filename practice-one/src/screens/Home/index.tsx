@@ -12,8 +12,6 @@ import { RootScreenNavigationProps } from '@/navigation';
 import {
   ArticlesSlider,
   Categories,
-  FoodContainer,
-  FoodListSkeleton,
   Header,
   SearchInput,
   Text,
@@ -22,6 +20,8 @@ import {
 import { CATEGORIES, COLOR, ROUTES } from '@/constants';
 
 import { MOCK_ARTICLES } from '@/mocks/article';
+
+import HomeFood from './HomeFood';
 
 const HomeScreen = () => {
   const { navigate } =
@@ -42,22 +42,12 @@ const HomeScreen = () => {
       <SearchInput onFocus={handleSearch} />
       <Categories onSelect={handleFilter} categories={CATEGORIES} />
       <ArticlesSlider articles={MOCK_ARTICLES} />
-      <FoodContainer
-        slotProps={{
-          list: {
-            horizontal: true,
-            ListHeaderComponent: (
-              <Text variant="title3" style={styles.title}>
-                All Food
-              </Text>
-            ),
-            ListFooterComponent: <FoodListSkeleton length={1} />,
-          },
-        }}
-        Fallback={
-          <View style={styles.fallback}>
-            <FoodListSkeleton title="All Food" />
-          </View>
+      <HomeFood
+        horizontal
+        ListHeaderComponent={
+          <Text variant="title3" style={styles.title}>
+            All Food
+          </Text>
         }
       />
     </View>
@@ -74,8 +64,5 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 22,
     marginLeft: 8,
-  },
-  fallback: {
-    marginTop: 15,
   },
 });

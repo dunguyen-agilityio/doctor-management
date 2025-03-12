@@ -7,7 +7,7 @@ import { COLOR } from '@/constants';
 import { useFavorite } from '@/hooks/useFavorite';
 
 const FavoriteScreen = () => {
-  const { isLoading, favorites, displayFavorites, searchByName } =
+  const { favorites, displayFavorites, isLoading, searchByName } =
     useFavorite();
 
   if (isLoading) {

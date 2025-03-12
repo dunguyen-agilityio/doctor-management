@@ -37,7 +37,12 @@ describe('Food API', () => {
       data: mockFoods,
       meta: { total: MOCK_FOOD_LIST.length },
     });
-    const result = await getFoodList({ page: 1, pageSize: 2, query: 'test' });
+    const result = await getFoodList({
+      page: 1,
+      pageSize: 2,
+      query: 'test',
+      filters: ['1'],
+    });
 
     expect(result.data).toEqual(mockFoods);
     expect(result.hasMore).toBe(true);
