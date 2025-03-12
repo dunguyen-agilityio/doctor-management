@@ -24,6 +24,7 @@ export const expo = {
       backgroundColor: '#FFFFFF',
     },
     package: 'com.anonymous.app',
+    googleServicesFile: './google-services.json',
   },
   web: {
     favicon: './assets/icons/favicon.png',
@@ -49,7 +50,19 @@ export const expo = {
         launchMode: 'most-recent',
       },
     ],
+    [
+      'expo-build-properties',
+      {
+        android: {
+          extraMavenRepos: [
+            '../../node_modules/@notifee/react-native/android/libs',
+          ],
+        },
+      },
+    ],
+    '@react-native-firebase/app',
   ],
   newArchEnabled: true,
   jsEngine: 'hermes',
+  scheme: 'healthy-food',
 };
