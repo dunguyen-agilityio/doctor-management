@@ -92,10 +92,10 @@ const SearchFood = (props: FoodListProps) => {
         categoriesValue={filters}
         onSelect={toggleFilter}
       />
-      {isRefetching && <Loading />}
+      {isRefetching && <Loading fullScreen />}
 
       {isLoading ? (
-        <Loading />
+        <Loading fullScreen />
       ) : (
         <FoodList
           style={styles.list}

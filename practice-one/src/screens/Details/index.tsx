@@ -30,7 +30,7 @@ const Details = () => {
   });
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading fullScreen />;
   }
 
   if (error || !food) {

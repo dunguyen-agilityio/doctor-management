@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { COLOR } from '@/constants';
@@ -31,7 +30,7 @@ const Nutritional = ({ nutritional }: { nutritional: TNutritional }) => {
   );
 };
 
-export default memo(Nutritional);
+export default Nutritional;
 
 const styles = StyleSheet.create({
   container: {
