@@ -25,7 +25,6 @@ const useNotify = () => {
           const token = await messaging().getToken();
 
           // Save the token
-          console.log('token', token);
           setToken(token);
         }
       } catch (error) {

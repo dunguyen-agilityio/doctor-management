@@ -2,14 +2,20 @@ import { Animated, Easing, StyleSheet, View } from 'react-native';
 
 import Logo from '../Logo';
 
-const Loading = ({ marginTop }: { marginTop?: number }) => {
+const Loading = ({
+  marginTop,
+  fullScreen,
+}: {
+  marginTop?: number;
+  fullScreen?: boolean;
+}) => {
   const rotation = new Animated.Value(0);
 
   Animated.loop(
     Animated.timing(rotation, {
       toValue: 1,
       duration: 1000,
-      useNativeDriver: false,
+      useNativeDriver: true,
       easing: Easing.linear,
     }),
   ).start();
@@ -20,7 +26,14 @@ const Loading = ({ marginTop }: { marginTop?: number }) => {
   });
 
   return (
-    <View style={[styles.container, { marginTop }]} testID="loading-indicator">
+    <View
+      style={[
+        styles.container,
+        { marginTop },
+        fullScreen && { height: '100%', justifyContent: 'center' },
+      ]}
+      testID="loading-indicator"
+    >
       <Animated.View style={{ transform: [{ rotate: spin }] }}>
         <Logo />
       </Animated.View>
@@ -33,10 +46,8 @@ export default Loading;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
     zIndex: 10,
-    height: '100%',
   },
 });

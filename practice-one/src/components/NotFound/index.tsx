@@ -28,7 +28,11 @@ const NotFound = ({
     <View testID="not-found" style={styles.container}>
       <View style={styles.header}>
         {image}
-        <Text variant="subtitle2" color={COLOR.TERTIARY}>
+        <Text
+          variant="title1"
+          color={COLOR.TERTIARY}
+          style={{ fontWeight: 500 }}
+        >
           {title}
         </Text>
       </View>

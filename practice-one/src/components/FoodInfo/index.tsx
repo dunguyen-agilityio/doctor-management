@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { CATEGORIES, COLOR } from '@/constants';
@@ -95,7 +94,7 @@ const FoodInfo = ({ food }: FoodInfoProps) => {
   );
 };
 
-export default memo(FoodInfo);
+export default FoodInfo;
 
 const styles = StyleSheet.create({
   container: { gap: 4 },

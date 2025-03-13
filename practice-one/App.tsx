@@ -3,19 +3,11 @@ import { DevSettings, StyleSheet } from 'react-native';
 
 import { LinkingOptions, NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { loadAsync } from 'expo-font';
 import * as Linking from 'expo-linking';
-import {
-  hideAsync,
-  preventAutoHideAsync,
-  setOptions,
-} from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { RootNavigator } from '@/navigation';
-
-import SplashScreen from '@/screens/Splash';
 
 import { Loading } from '@/components';
 
@@ -31,13 +23,6 @@ if (__DEV__) {
   StorybookUI = require('./.storybook').default;
 }
 
-preventAutoHideAsync();
-
-setOptions({
-  duration: 1000,
-  fade: true,
-});
-
 const prefix = Linking.createURL('/');
 const linking: LinkingOptions<ReactNavigation.RootParamList> = {
   prefixes: [prefix],
@@ -51,7 +36,6 @@ const linking: LinkingOptions<ReactNavigation.RootParamList> = {
 
 const AppRoot = () => {
   const [showStorybook, setShowStorybook] = useState(false);
-  const [appIsReady, setAppIsReady] = useState(false);
   useNotify();
 
   useEffect(() => {
@@ -60,24 +44,7 @@ const AppRoot = () => {
         setShowStorybook((prev) => !prev);
       });
     }
-
-    async function prepare() {
-      try {
-        await loadAsync({
-          Manrope: require('@assets/fonts/Manrope.ttf'),
-          Signika: require('@assets/fonts/Signika.ttf'),
-        });
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setAppIsReady(true);
-        await hideAsync();
-      }
-    }
-    prepare();
   }, []);
-
-  if (!appIsReady) return <SplashScreen />;
 
   return (
     <GestureHandlerRootView style={styles.container}>
@@ -101,6 +68,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLOR.WHITE,
-    paddingTop: 60,
   },
 });

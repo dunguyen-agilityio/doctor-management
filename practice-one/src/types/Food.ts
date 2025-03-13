@@ -37,12 +37,20 @@ export interface IArticle {
   backgroundColor: LinearGradient['props']['colors'];
 }
 
+export enum FOOD_COLOR {
+  'ORANGE' = 'ORANGE',
+  'GREEN' = 'GREEN',
+  'YELLOW' = 'YELLOW',
+  'RED' = 'RED',
+  'PURPLE' = 'PURPLE',
+}
+
 export interface IFood {
   id: string;
   name: string;
   category: string;
   weight: number;
-  color: 'ORANGE' | 'GREEN' | 'YELLOW' | 'RED' | 'PURPLE';
+  color: FOOD_COLOR;
   desc: string;
   imgUrl: string;
   favorite: boolean;

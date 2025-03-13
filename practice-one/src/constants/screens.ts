@@ -4,4 +4,5 @@ export enum ROUTES {
   DETAIL = 'Detail-Screen',
   FAVORITE = 'Favorite-Screen',
   ROOT = 'Root-Screen',
+  SPLASH = 'SPLASH-Screen',
 }

@@ -730,14 +730,16 @@ healthy Food?
         [
           {
             "alignItems": "center",
-            "height": "100%",
-            "justifyContent": "center",
             "position": "absolute",
             "width": "100%",
             "zIndex": 10,
           },
           {
             "marginTop": undefined,
+          },
+          {
+            "height": "100%",
+            "justifyContent": "center",
           },
         ]
       }
@@ -1523,14 +1525,16 @@ healthy Food?
         [
           {
             "alignItems": "center",
-            "height": "100%",
-            "justifyContent": "center",
             "position": "absolute",
             "width": "100%",
             "zIndex": 10,
           },
           {
             "marginTop": undefined,
+          },
+          {
+            "height": "100%",
+            "justifyContent": "center",
           },
         ]
       }
