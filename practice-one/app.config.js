@@ -33,7 +33,7 @@ export const expo = {
     apiEndpoint: process.env.EXPO_PUBLIC_API_ENDPOINT,
     storybook: false,
     eas: {
-      projectId: '76e99b1c-d747-4d86-8dd2-b546b1426373',
+      projectId: 'bcc019da-17de-405a-b14d-b4f9b9462087',
     },
   },
   plugins: [

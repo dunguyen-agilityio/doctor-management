@@ -1,9 +1,8 @@
-import { Image } from 'expo-image';
-
 import { StyleSheet, View } from 'react-native';
 
-import { COLOR } from '@/constants';
-import { APP_ICONS } from '@/constants';
+import { Image } from 'expo-image';
+
+import { APP_ICONS, COLOR } from '@/constants';
 
 import Text from '../Text';
 

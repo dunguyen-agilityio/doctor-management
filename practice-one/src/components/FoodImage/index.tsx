@@ -1,7 +1,7 @@
-import { Image } from 'expo-image';
-
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
+
+import { Image } from 'expo-image';
 
 import { COLOR } from '@/constants';
 

@@ -1,11 +1,10 @@
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { Image } from 'expo-image';
-
 import { forwardRef, memo, useImperativeHandle, useRef } from 'react';
 import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
 
-import { COLOR } from '@/constants';
-import { APP_ICONS } from '@/constants';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { Image } from 'expo-image';
+
+import { APP_ICONS, COLOR } from '@/constants';
 
 import { debounce } from '@/utils/debounce';
 
