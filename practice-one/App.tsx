@@ -1,18 +1,17 @@
-import * as Linking from 'expo-linking';
-import { StatusBar } from 'expo-status-bar';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
 import { useEffect, useState } from 'react';
 import { DevSettings, StyleSheet } from 'react-native';
 
 import { LinkingOptions, NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { loadAsync } from 'expo-font';
+import * as Linking from 'expo-linking';
 import {
   hideAsync,
   preventAutoHideAsync,
   setOptions,
 } from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { RootNavigator } from '@/navigation';
 

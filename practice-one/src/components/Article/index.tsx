@@ -1,8 +1,8 @@
-import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
-
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
+
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { APP_ICONS, COLOR, WINDOW_HEIGHT, WINDOW_WIDTH } from '@/constants';
 

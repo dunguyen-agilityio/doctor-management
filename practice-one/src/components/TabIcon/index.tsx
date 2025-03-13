@@ -1,7 +1,7 @@
-import { Image } from 'expo-image';
-
 import { memo } from 'react';
 import { StyleSheet } from 'react-native';
+
+import { Image } from 'expo-image';
 
 import { TabParamsList } from '@/navigation';
 
