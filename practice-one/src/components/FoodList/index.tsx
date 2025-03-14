@@ -1,11 +1,10 @@
-import { memo, useCallback, useMemo } from 'react';
 import { FlatList, FlatListProps, StyleSheet, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
 import { RootScreenNavigationProps } from '@/navigation';
 
-import { COLOR, ROUTES } from '@/constants';
+import { COLOR, PAGE_SIZE, ROUTES } from '@/constants';
 
 import { IFood } from '@/types';
 
@@ -25,41 +24,26 @@ const FoodList = ({
   const { navigate } =
     useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
 
-  const handlePressItem = useCallback(
-    (id: string) => {
-      navigate(ROUTES.DETAIL, { id });
-    },
-    [navigate],
+  const handlePressItem = (id: string) => {
+    navigate(ROUTES.DETAIL, { id });
+  };
+
+  const renderItem = ({ item, index }: { item: IFood; index: number }) => (
+    <FoodCard
+      calories={item.nutritional.calories}
+      color={item.color}
+      id={item.id}
+      imgUrl={item.imgUrl}
+      weight={item.weight}
+      name={item.name}
+      onPress={handlePressItem}
+      marginLeft={horizontal && index === 0 ? 16 : 0}
+    />
   );
 
-  const renderItem = useCallback(
-    ({ item, index }: { item: IFood; index: number }) => (
-      <FoodCard
-        calories={item.nutritional.calories}
-        color={item.color}
-        id={item.id}
-        imgUrl={item.imgUrl}
-        weight={item.weight}
-        name={item.name}
-        onPress={handlePressItem}
-        marginLeft={horizontal && index === 0 ? 16 : 0}
-      />
-    ),
-    [handlePressItem, horizontal],
-  );
-
-  const keyExtractor = useCallback((item: IFood) => item.id, []);
+  const keyExtractor = (item: IFood) => item.id;
 
   const isEmpty = !data?.length;
-
-  const contentContainerStyle = useMemo(
-    () => [
-      styles.listContainer,
-      horizontal ? styles.horizontalList : styles.verticalList,
-      isEmpty && styles.listEmpty,
-    ],
-    [horizontal, isEmpty],
-  );
 
   return (
     <View style={styles.container} testID="food-list-container">
@@ -73,13 +57,17 @@ const FoodList = ({
         horizontal={horizontal}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={contentContainerStyle}
+        contentContainerStyle={[
+          styles.listContainer,
+          horizontal ? styles.horizontalList : styles.verticalList,
+          isEmpty && styles.listEmpty,
+        ]}
         numColumns={horizontal ? undefined : 2}
         columnWrapperStyle={horizontal ? null : styles.columnWrapperStyle}
         scrollEnabled={true}
         onStartReachedThreshold={0.5}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
+        initialNumToRender={PAGE_SIZE}
+        maxToRenderPerBatch={PAGE_SIZE}
         ListHeaderComponent={horizontal ? null : ListHeaderComponent}
         removeClippedSubviews
       />
@@ -112,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(FoodList);
+export default FoodList;

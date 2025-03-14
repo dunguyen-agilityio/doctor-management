@@ -11,7 +11,7 @@ const FavoriteScreen = () => {
     useFavorite();
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading fullScreen />;
   }
 
   const isEmpty = favorites.length === 0;

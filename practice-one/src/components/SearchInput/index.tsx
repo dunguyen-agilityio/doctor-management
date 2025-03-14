@@ -1,4 +1,4 @@
-import { forwardRef, memo, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
 
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -69,7 +69,7 @@ const SearchInput = (
   );
 };
 
-export default memo(forwardRef(SearchInput));
+export default forwardRef(SearchInput);
 
 const styles = StyleSheet.create({
   container: {
