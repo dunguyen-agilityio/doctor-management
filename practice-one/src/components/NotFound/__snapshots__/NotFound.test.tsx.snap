@@ -40,7 +40,7 @@ exports[`NotFound Component renders correctly with default props 1`] = `
       source={
         [
           {
-            "testUri": "../../../assets/images/not-found.png",
+            "testUri": "../../../assets/images/not-found.webp",
           },
         ]
       }

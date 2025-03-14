@@ -44,7 +44,7 @@ const SplashScreen = () => {
 
   return (
     <Image
-      source={require('@assets/images/splash.png')}
+      source={require('@assets/images/splash.webp')}
       style={styles.container}
     />
   );

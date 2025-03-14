@@ -225,7 +225,7 @@ exports[`Article Component matches snapshot 1`] = `
         source={
           [
             {
-              "testUri": "../../../assets/icons/arrow-right-bold.png",
+              "testUri": "../../../assets/icons/arrow-right-bold.webp",
             },
           ]
         }

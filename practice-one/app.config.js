@@ -8,7 +8,6 @@ export const expo = {
   splash: {
     image: './assets/images/logo.png',
     resizeMode: 'contain',
-    imageWidth: 122,
   },
   updates: {
     fallbackToCacheTimeout: 0,
@@ -20,14 +19,14 @@ export const expo = {
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: './assets/icons/adaptive-icon.png',
+      foregroundImage: './assets/images/logo.png',
       backgroundColor: '#FFFFFF',
     },
     package: 'com.anonymous.app',
     googleServicesFile: './google-services.json',
   },
   web: {
-    favicon: './assets/icons/favicon.png',
+    favicon: './assets/icons/logo.png',
   },
   extra: {
     apiEndpoint: process.env.EXPO_PUBLIC_API_ENDPOINT,
