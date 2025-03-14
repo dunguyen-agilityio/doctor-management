@@ -117,7 +117,7 @@ healthy Food?
         source={
           [
             {
-              "testUri": "../../../assets/icons/question.png",
+              "testUri": "../../../assets/icons/question.webp",
             },
           ]
         }
@@ -135,8 +135,8 @@ healthy Food?
   <View
     style={
       {
+        "backgroundColor": "#fff",
         "flex": 1,
-        "paddingBottom": 16,
       }
     }
   >
@@ -174,7 +174,7 @@ healthy Food?
         source={
           [
             {
-              "testUri": "../../../assets/icons/icon-search.png",
+              "testUri": "../../../assets/icons/icon-search.webp",
             },
           ]
         }
@@ -776,7 +776,7 @@ healthy Food?
           source={
             [
               {
-                "testUri": "../../../assets/images/logo.png",
+                "testUri": "../../../assets/images/logo.webp",
               },
             ]
           }
@@ -912,7 +912,7 @@ healthy Food?
         source={
           [
             {
-              "testUri": "../../../assets/icons/question.png",
+              "testUri": "../../../assets/icons/question.webp",
             },
           ]
         }
@@ -930,8 +930,8 @@ healthy Food?
   <View
     style={
       {
+        "backgroundColor": "#fff",
         "flex": 1,
-        "paddingBottom": 16,
       }
     }
   >
@@ -969,7 +969,7 @@ healthy Food?
         source={
           [
             {
-              "testUri": "../../../assets/icons/icon-search.png",
+              "testUri": "../../../assets/icons/icon-search.webp",
             },
           ]
         }
@@ -1571,7 +1571,7 @@ healthy Food?
           source={
             [
               {
-                "testUri": "../../../assets/images/logo.png",
+                "testUri": "../../../assets/images/logo.webp",
               },
             ]
           }
