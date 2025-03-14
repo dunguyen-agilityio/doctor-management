@@ -110,3 +110,4 @@ node_modules.js
 .vscode
 
 .expo/
+google-services.json

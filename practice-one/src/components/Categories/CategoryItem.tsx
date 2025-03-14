@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { TouchableOpacityProps } from 'react-native-gesture-handler';
@@ -46,7 +45,7 @@ const CategoryItem = ({
   );
 };
 
-export default memo(CategoryItem);
+export default CategoryItem;
 
 const styles = StyleSheet.create({
   buttonActive: {

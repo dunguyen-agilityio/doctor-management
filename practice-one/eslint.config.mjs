@@ -6,6 +6,7 @@ import tsParser from '@typescript-eslint/parser';
 import sortImport from 'eslint-plugin-import';
 import prettier from 'eslint-plugin-prettier';
 import react from 'eslint-plugin-react';
+import reactCompiler from 'eslint-plugin-react-compiler';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import path from 'node:path';
@@ -42,6 +43,7 @@ export default [
       prettier,
       'react-hooks': fixupPluginRules(reactHooks),
       import: sortImport,
+      'eslint-plugin-react-compiler': reactCompiler,
     },
 
     languageOptions: {
@@ -81,6 +83,7 @@ export default [
       'no-unused-expressions': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
       'react/prop-types': 'off',
+      'react-compiler/react-compiler': 'error',
     },
   },
 ];

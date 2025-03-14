@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useSharedValue } from 'react-native-reanimated';
@@ -22,11 +21,8 @@ const modeConfig = {
 const ArticleSlider = ({ articles }: { articles: IArticle[] }) => {
   const progress = useSharedValue(0);
 
-  const renderItem: CarouselRenderItem<IArticle> = useCallback(
-    ({ item, index }) => (
-      <Article marginLeft={16} marginRight={index === 0 ? 16 : 0} {...item} />
-    ),
-    [],
+  const renderItem: CarouselRenderItem<IArticle> = ({ item, index }) => (
+    <Article marginLeft={16} marginRight={index === 0 ? 16 : 0} {...item} />
   );
 
   return (

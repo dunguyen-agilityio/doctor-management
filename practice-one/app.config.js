@@ -31,10 +31,10 @@ export const expo = {
   },
   extra: {
     apiEndpoint: process.env.EXPO_PUBLIC_API_ENDPOINT,
-    storybook: false,
     eas: {
       projectId: 'bcc019da-17de-405a-b14d-b4f9b9462087',
     },
+    storybook: process.env.STORYBOOK_ENABLED,
   },
   plugins: [
     'expo-dev-menu',
@@ -57,6 +57,8 @@ export const expo = {
           extraMavenRepos: [
             '../../node_modules/@notifee/react-native/android/libs',
           ],
+          enableProguardInReleaseBuilds: true,
+          enableShrinkResourcesInReleaseBuilds: true,
         },
       },
     ],
@@ -65,4 +67,7 @@ export const expo = {
   newArchEnabled: true,
   jsEngine: 'hermes',
   scheme: 'healthy-food',
+  experiments: {
+    reactCompiler: !process.env.STORYBOOK_ENABLED,
+  },
 };

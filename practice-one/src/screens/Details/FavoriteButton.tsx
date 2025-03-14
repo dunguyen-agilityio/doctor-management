@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { Button, Text } from '@/components';
@@ -14,10 +13,7 @@ const FavoriteButton = ({ food }: { food: IFood }) => {
 
   const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
 
-  const hasFavorite = useMemo(
-    () => favorites.some(({ id }) => foodId === id),
-    [favorites, foodId],
-  );
+  const hasFavorite = favorites.some(({ id }) => foodId === id);
 
   const toggleFavorite = () => {
     hasFavorite ? removeFromFavorite(foodId) : addToFavorite(food);
