@@ -8,12 +8,11 @@ import {
 
 import { useNavigation } from '@react-navigation/native';
 
-import { RootScreenNavigationProps } from '@/navigation';
+import { type RootScreenNavigationProps } from '@/navigation';
 
 import {
   ArticlesSlider,
   Categories,
-  FoodList,
   FoodListSkeleton,
   Header,
   SearchInput,
@@ -25,6 +24,8 @@ import { CATEGORIES, COLOR, QUERY_KEYS, ROUTES } from '@/constants';
 import { useFoodList } from '@/hooks/useFoodList';
 
 import { MOCK_ARTICLES } from '@/mocks/article';
+
+const FoodList = lazy(() => import('@/components/FoodList'));
 
 const HomeScreen = () => {
   const { navigate } =
@@ -47,6 +48,17 @@ const HomeScreen = () => {
     navigate(ROUTES.SEARCH, { autoFocus: true });
   };
 
+  const fallback = (
+    <View style={styles.fallback}>
+      <FoodListSkeleton title="All Food" />
+    </View>
+  );
+
+  const renderFooter = () => {
+    if (isFetchingNextPage) return null;
+    return <FoodListSkeleton length={1} />;
+  };
+
   return (
     <View style={styles.container}>
       <Header />
@@ -54,23 +66,21 @@ const HomeScreen = () => {
       <Categories onSelect={handleFilter} categories={CATEGORIES} />
       <ArticlesSlider articles={MOCK_ARTICLES} />
       {isLoading ? (
-        <View style={styles.fallback}>
-          <FoodListSkeleton title="All Food" />
-        </View>
+        fallback
       ) : (
-        <FoodList
-          data={data}
-          horizontal
-          onEndReached={handleEndReached}
-          ListFooterComponent={
-            isFetchingNextPage ? <FoodListSkeleton length={1} /> : null
-          }
-          ListHeaderComponent={
-            <Text variant="title3" style={styles.title}>
-              All Food
-            </Text>
-          }
-        />
+        <Suspense fallback={fallback}>
+          <FoodList
+            data={data}
+            horizontal
+            onEndReached={handleEndReached}
+            ListFooterComponent={renderFooter}
+            ListHeaderComponent={
+              <Text variant="title3" style={styles.title}>
+                All Food
+              </Text>
+            }
+          />
+        </Suspense>
       )}
     </View>
   );

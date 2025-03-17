@@ -2,7 +2,7 @@ import { FlatList, FlatListProps, StyleSheet, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { RootScreenNavigationProps } from '@/navigation';
+import { type RootScreenNavigationProps } from '@/navigation';
 
 import { COLOR, ROUTES } from '@/constants';
 

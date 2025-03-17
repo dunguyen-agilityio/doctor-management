@@ -1,20 +1,21 @@
 import {
-  BottomTabNavigationOptions,
+  type BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { RouteProp } from '@react-navigation/native';
+import type { RouteProp } from '@react-navigation/native';
 
-import FavoriteScreen from '@/screens/Favorite';
-import HomeScreen from '@/screens/Home';
-import SearchScreen from '@/screens/Search';
-
-import { TabIcon } from '@/components';
+import Loading from '@/components/Loading';
+import TabIcon from '@/components/TabIcon';
 
 import { COLOR, ROUTES } from '@/constants';
+
+const HomeScreen = lazy(() => import('@/screens/Home'));
+const SearchScreen = lazy(() => import('@/screens/Search'));
+const FavoriteScreen = lazy(() => import('@/screens/Favorite'));
 
 export type TabParamsList = {
   [ROUTES.FAVORITE]: undefined;
@@ -40,7 +41,12 @@ const screenOptions = ({
 const TabNavigator = () => {
   return (
     <View style={styles.container}>
-      <Tab.Navigator screenOptions={screenOptions}>
+      <Tab.Navigator
+        screenOptions={screenOptions}
+        screenLayout={({ children }) => (
+          <Suspense fallback={<Loading fullScreen />}>{children}</Suspense>
+        )}
+      >
         <Tab.Screen name={ROUTES.HOME} component={HomeScreen} />
         <Tab.Screen name={ROUTES.SEARCH} component={SearchScreen} />
         <Tab.Screen name={ROUTES.FAVORITE} component={FavoriteScreen} />

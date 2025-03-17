@@ -3,7 +3,7 @@ import notifee, {
   AuthorizationStatus,
 } from '@notifee/react-native';
 import messaging, {
-  FirebaseMessagingTypes,
+  type FirebaseMessagingTypes,
 } from '@react-native-firebase/messaging';
 
 import { useEffect, useState } from 'react';

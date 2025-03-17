@@ -10,9 +10,9 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { RootNavigator } from '@/navigation';
 
-import { Loading } from '@/components';
+import Loading from '@/components/Loading';
 
-import { COLOR } from '@/constants';
+import { COLOR } from '@/constants/';
 
 import useNotify from '@/hooks/useNotify';
 
