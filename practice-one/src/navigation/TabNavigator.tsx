@@ -1,14 +1,21 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {
+  type BottomTabNavigationOptions,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 
+import { Suspense, lazy } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import FavoriteScreen from '@/screens/Favorite';
-import HomeScreen from '@/screens/Home';
-import SearchScreen from '@/screens/Search';
+import type { RouteProp } from '@react-navigation/native';
 
-import { TabIcon } from '@/components';
+import Loading from '@/components/Loading';
+import TabIcon from '@/components/TabIcon';
 
 import { COLOR, ROUTES } from '@/constants';
+
+const HomeScreen = lazy(() => import('@/screens/Home'));
+const SearchScreen = lazy(() => import('@/screens/Search'));
+const FavoriteScreen = lazy(() => import('@/screens/Favorite'));
 
 export type TabParamsList = {
   [ROUTES.FAVORITE]: undefined;
@@ -18,19 +25,27 @@ export type TabParamsList = {
 
 const Tab = createBottomTabNavigator<TabParamsList>();
 
+const screenOptions = ({
+  route,
+}: {
+  route: RouteProp<TabParamsList, keyof TabParamsList>;
+}): BottomTabNavigationOptions => ({
+  headerShown: false,
+  tabBarLabel: '',
+  tabBarStyle: styles.tabBarStyle,
+  tabBarIconStyle: styles.tabBarIconStyle,
+  tabBarIcon: ({ focused }) => <TabIcon focused={focused} name={route.name} />,
+  lazy: true,
+});
+
 const TabNavigator = () => {
   return (
     <View style={styles.container}>
       <Tab.Navigator
-        screenOptions={({ route }) => ({
-          headerShown: false,
-          tabBarLabel: '',
-          tabBarStyle: styles.tabBarStyle,
-          tabBarIconStyle: styles.tabBarIconStyle,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} name={route.name} />
-          ),
-        })}
+        screenOptions={screenOptions}
+        screenLayout={({ children }) => (
+          <Suspense fallback={<Loading fullScreen />}>{children}</Suspense>
+        )}
       >
         <Tab.Screen name={ROUTES.HOME} component={HomeScreen} />
         <Tab.Screen name={ROUTES.SEARCH} component={SearchScreen} />

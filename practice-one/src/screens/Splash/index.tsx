@@ -10,9 +10,9 @@ import {
   setOptions,
 } from 'expo-splash-screen';
 
-import { RootScreenNavigationProps } from '@/navigation';
+import { type RootScreenNavigationProps } from '@/navigation';
 
-import { ROUTES } from '@/constants';
+import { ROUTES } from '@/constants/screens';
 
 preventAutoHideAsync();
 

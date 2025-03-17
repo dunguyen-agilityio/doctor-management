@@ -1,9 +1,9 @@
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
-import { CompositeNavigationProp } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { CompositeNavigationProp } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import RootNavigator, { RootStackParamsList } from './RootNavigator';
+import RootNavigator, { type RootStackParamsList } from './RootNavigator';
 import { TabParamsList } from './TabNavigator';
 
 export type RootScreenNavigationProps<T extends keyof RootStackParamsList> =

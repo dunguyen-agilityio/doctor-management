@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import {
   NativeSyntheticEvent,
   StyleSheet,
@@ -7,12 +8,11 @@ import {
 
 import { useNavigation } from '@react-navigation/native';
 
-import { RootScreenNavigationProps } from '@/navigation';
+import { type RootScreenNavigationProps } from '@/navigation';
 
 import {
   ArticlesSlider,
   Categories,
-  FoodList,
   FoodListSkeleton,
   Header,
   SearchInput,
@@ -25,12 +25,14 @@ import { useFoodList } from '@/hooks/useFoodList';
 
 import { MOCK_ARTICLES } from '@/mocks/article';
 
+const FoodList = lazy(() => import('@/components/FoodList'));
+
 const HomeScreen = () => {
   const { navigate } =
     useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
 
   const { isLoading, data, isFetchingNextPage, fetchNextPage } = useFoodList({
-    queryKey: QUERY_KEYS.HOME_FOOD,
+    queryKey: QUERY_KEYS.FOOD,
   });
 
   const handleEndReached = () => {
@@ -46,6 +48,17 @@ const HomeScreen = () => {
     navigate(ROUTES.SEARCH, { autoFocus: true });
   };
 
+  const fallback = (
+    <View style={styles.fallback}>
+      <FoodListSkeleton title="All Food" />
+    </View>
+  );
+
+  const renderFooter = () => {
+    if (isFetchingNextPage) return null;
+    return <FoodListSkeleton length={1} />;
+  };
+
   return (
     <View style={styles.container}>
       <Header />
@@ -53,23 +66,21 @@ const HomeScreen = () => {
       <Categories onSelect={handleFilter} categories={CATEGORIES} />
       <ArticlesSlider articles={MOCK_ARTICLES} />
       {isLoading ? (
-        <View style={styles.fallback}>
-          <FoodListSkeleton title="All Food" />
-        </View>
+        fallback
       ) : (
-        <FoodList
-          data={data}
-          horizontal
-          onEndReached={handleEndReached}
-          ListFooterComponent={
-            isFetchingNextPage ? <FoodListSkeleton length={1} /> : null
-          }
-          ListHeaderComponent={
-            <Text variant="title3" style={styles.title}>
-              All Food
-            </Text>
-          }
-        />
+        <Suspense fallback={fallback}>
+          <FoodList
+            data={data}
+            horizontal
+            onEndReached={handleEndReached}
+            ListFooterComponent={renderFooter}
+            ListHeaderComponent={
+              <Text variant="title3" style={styles.title}>
+                All Food
+              </Text>
+            }
+          />
+        </Suspense>
       )}
     </View>
   );
