@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { LinkingOptions, NavigationContainer } from '@react-navigation/native';
@@ -28,8 +29,16 @@ const linking: LinkingOptions<ReactNavigation.RootParamList> = {
   },
 };
 
+let appStartTime = Date.now();
+
 const App = () => {
   useNotify();
+
+  useEffect(() => {
+    const interactiveTime = Date.now();
+    const tti = interactiveTime - appStartTime;
+    console.log('Time to Interactive (TTI):', tti, 'ms');
+  }, []);
 
   return (
     <GestureHandlerRootView style={styles.container}>

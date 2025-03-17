@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import {
   NativeSyntheticEvent,
   StyleSheet,
@@ -30,7 +31,7 @@ const HomeScreen = () => {
     useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
 
   const { isLoading, data, isFetchingNextPage, fetchNextPage } = useFoodList({
-    queryKey: QUERY_KEYS.HOME_FOOD,
+    queryKey: QUERY_KEYS.FOOD,
   });
 
   const handleEndReached = () => {

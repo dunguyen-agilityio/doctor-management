@@ -77,12 +77,22 @@ const SearchScreen = ({ route }: Props) => {
     useFoodList({
       filters,
       query,
-      queryKey: QUERY_KEYS.SEARCH_FOOD,
+      queryKey: QUERY_KEYS.FOOD,
     });
 
   const handleEndReached = useCallback(() => {
     fetchNextPage();
   }, [fetchNextPage]);
+
+  const renderFooter = () => {
+    if (isFetchingNextPage) return null;
+
+    return (
+      <View style={{ paddingVertical: 20 }}>
+        <ActivityIndicator size="large" color={COLOR.GREEN} />
+      </View>
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -112,18 +122,10 @@ const SearchScreen = ({ route }: Props) => {
                 title="No Results Found"
               />
             }
-            ListFooterComponentStyle={{
-              alignSelf: 'center',
-              marginVertical: 16,
-            }}
+            ListFooterComponentStyle={styles.footer}
+            ListFooterComponent={renderFooter}
           />
         )}
-
-        {isFetchingNextPage ? (
-          <View style={{ paddingVertical: 20 }}>
-            <ActivityIndicator size="large" color={COLOR.GREEN} />
-          </View>
-        ) : null}
       </View>
     </View>
   );
@@ -143,4 +145,5 @@ const styles = StyleSheet.create({
   list: {
     marginTop: 15,
   },
+  footer: { alignSelf: 'center', marginVertical: 16 },
 });

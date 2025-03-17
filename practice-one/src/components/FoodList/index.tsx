@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { RootScreenNavigationProps } from '@/navigation';
 
-import { COLOR, PAGE_SIZE, ROUTES } from '@/constants';
+import { COLOR, ROUTES } from '@/constants';
 
 import { IFood } from '@/types';
 
@@ -64,10 +64,11 @@ const FoodList = ({
         ]}
         numColumns={horizontal ? undefined : 2}
         columnWrapperStyle={horizontal ? null : styles.columnWrapperStyle}
-        scrollEnabled={true}
+        scrollEnabled
         onStartReachedThreshold={0.5}
-        initialNumToRender={PAGE_SIZE}
-        maxToRenderPerBatch={PAGE_SIZE}
+        initialNumToRender={20}
+        maxToRenderPerBatch={10}
+        windowSize={5}
         ListHeaderComponent={horizontal ? null : ListHeaderComponent}
         removeClippedSubviews
       />

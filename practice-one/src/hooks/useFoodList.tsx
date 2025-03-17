@@ -10,6 +10,7 @@ export function useFoodList({
   const infiniteQuery = useInfiniteQuery({
     queryKey: [queryKey, query, ...filters],
     initialPageParam: 1,
+    staleTime: 5 * 1000 * 60,
     queryFn: ({ pageParam: page }) => getFoodList({ query, filters, page }),
     getNextPageParam: (lastPage) => lastPage.nextPage,
     getPreviousPageParam: (firstPage) => firstPage.prevPage,
