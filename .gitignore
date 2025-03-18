@@ -3,4 +3,3 @@ node_modules/
 *.d.ts
 .env
 ios/
-healthy-food/

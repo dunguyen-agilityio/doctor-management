@@ -1,0 +1,27 @@
+{
+  "semi": true,
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "endOfLine": "auto",
+  "arrowParens": "always",
+  "importOrder": [
+    "(^react$|^react-native$)",
+    "(<THIRD_PARTY_MODULES>|expo|@expo|^react-native-reanimated|@react-navigation/native|@tanstack/react-query|react-native-gesture-handler)",
+    "^@/navigation",
+    "^@/screens",
+    "^@/components",
+    "^@/constants",
+    "^@/types",
+    "^@/services",
+    "^@/utils",
+    "^@/hooks",
+    "^@/mocks",
+    "^@/contexts",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}
