@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound Component renders correctly with default props 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "gap": 8,
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+  testID="not-found"
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "gap": 24,
+      }
+    }
+  >
+    <ViewManagerAdapter_ExpoImage
+      containerViewRef={"[React.ref]"}
+      contentFit="cover"
+      contentPosition={
+        {
+          "left": "50%",
+          "top": "50%",
+        }
+      }
+      height={96}
+      nativeViewRef={"[React.ref]"}
+      onError={[Function]}
+      onLoad={[Function]}
+      onLoadStart={[Function]}
+      onProgress={[Function]}
+      placeholder={[]}
+      source={
+        [
+          {
+            "testUri": "../../../assets/images/not-found.webp",
+          },
+        ]
+      }
+      style={
+        {
+          "height": 96,
+          "width": 96,
+        }
+      }
+      testID="not-found-image"
+      transition={null}
+      width={96}
+    />
+    <Text
+      style={
+        {
+          "color": "#696969",
+          "fontFamily": "Manrope",
+          "fontSize": 22,
+          "fontWeight": 500,
+          "letterSpacing": 0,
+          "lineHeight": 30,
+          "textTransform": undefined,
+        }
+      }
+    >
+      No Food Found
+    </Text>
+  </View>
+  <Text
+    style={
+      {
+        "color": "#7e7e7e",
+        "fontFamily": "Manrope",
+        "fontSize": 13,
+        "fontWeight": "400",
+        "letterSpacing": -0.24,
+        "lineHeight": 22,
+        "textAlign": "center",
+        "textTransform": undefined,
+      }
+    }
+  >
+    You don't save any food. Go ahead, search
+and save your favorite food
+  </Text>
+</View>
+`;
