@@ -70,7 +70,7 @@ The application consists of four main screens following to this [design](<https:
 > ```
 
 > ```
-> cd practice-one
+> cd healthy-food
 > ```
 
 **Install package dependencies**:
@@ -102,7 +102,7 @@ The application consists of four main screens following to this [design](<https:
 ## 7. Project Structure
 
 > ```
-> /practice-one
+> /healthy-food
 > │── .husky/ # Git Hooks
 > │── assets/ # Images, Icons
 > |── .storybook/

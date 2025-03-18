@@ -21,7 +21,7 @@
     "clean": "cd android && ./gradlew clean",
     "esa-build-android": "eas build --profile development --platform android",
     "prebuild": "expo prebuild --clean --platform android",
-    "prepare": "cd .. && husky practice-one/.husky",
+    "prepare": "cd .. && husky healthy-food/.husky",
     "analyze:android": "source-map-explorer 'dist/_expo/static/js/android/*.js' 'dist/_expo/static/js/android/*.js.map'"
   },
   "jest": {
