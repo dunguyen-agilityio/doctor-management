@@ -25,9 +25,6 @@ export const expo = {
     package: 'com.anonymous.app',
     googleServicesFile: './google-services.json',
   },
-  web: {
-    favicon: './assets/icons/logo.png',
-  },
   extra: {
     apiEndpoint: process.env.EXPO_PUBLIC_API_ENDPOINT,
     eas: {
@@ -69,4 +66,5 @@ export const expo = {
   experiments: {
     reactCompiler: !process.env.STORYBOOK_ENABLED,
   },
+  platforms: ['android'],
 };
