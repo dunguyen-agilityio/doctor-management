@@ -24,7 +24,6 @@ const linking: LinkingOptions<ReactNavigation.RootParamList> = {
   config: {
     screens: {
       Home: 'home',
-      About: 'about',
     },
   },
 };
