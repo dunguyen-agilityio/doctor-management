@@ -62,7 +62,7 @@ export const expo = {
   ],
   newArchEnabled: true,
   jsEngine: 'hermes',
-  scheme: 'healthy-food',
+  scheme: 'healthyfood',
   experiments: {
     reactCompiler: !process.env.STORYBOOK_ENABLED,
   },
