@@ -14,7 +14,21 @@ const defaultConfig = getDefaultConfig(__dirname);
  *
  * @type {import('metro-config').MetroConfig}
  */
-const config = {};
+const config = {
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: true,
+        inlineRequires: true,
+      },
+    }),
+    minifierConfig: {
+      compress: {
+        drop_console: true,
+      },
+    },
+  },
+};
 // set your own config here 👆
 
 let finalConfig = mergeConfig(defaultConfig, config);
