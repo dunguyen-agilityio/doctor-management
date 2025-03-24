@@ -1,8 +1,8 @@
 export enum ROUTES {
-  HOME = 'Home-Screen',
-  SEARCH = 'Search-Screen',
-  DETAIL = 'Detail-Screen',
-  FAVORITE = 'Favorite-Screen',
-  ROOT = 'Root-Screen',
-  SPLASH = 'SPLASH-Screen',
+  HOME = 'home-screen',
+  SEARCH = 'search-screen',
+  DETAIL = 'detail-screen',
+  FAVORITE = 'favorite-screen',
+  ROOT = 'root-screen',
+  SPLASH = 'splash-screen',
 }

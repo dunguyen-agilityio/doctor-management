@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react';
 
+import { createNavigationContainerRef } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import SplashScreen from '@/screens/Splash';
@@ -20,9 +21,11 @@ export type RootStackParamsList = {
   };
 } & TabParamsList;
 
-const RootNavigator = () => {
-  const RootStack = createNativeStackNavigator<RootStackParamsList>();
+const RootStack = createNativeStackNavigator<RootStackParamsList>();
+export const navigationRef =
+  createNavigationContainerRef<RootStackParamsList>();
 
+const RootNavigator = () => {
   return (
     <RootStack.Navigator
       screenOptions={{ headerShown: false }}
