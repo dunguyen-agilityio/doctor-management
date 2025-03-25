@@ -3,8 +3,6 @@ import { Suspense, lazy } from 'react';
 import { createNavigationContainerRef } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import SplashScreen from '@/screens/Splash';
-
 import Loading from '@/components/Loading';
 
 import { APP_ICONS, ROUTES } from '@/constants';
@@ -15,7 +13,6 @@ const DetailsScreen = lazy(() => import('@/screens/Details'));
 
 export type RootStackParamsList = {
   [ROUTES.ROOT]: undefined;
-  [ROUTES.SPLASH]: undefined;
   [ROUTES.DETAIL]: {
     id: string;
   };
@@ -34,7 +31,6 @@ const RootNavigator = () => {
       )}
     >
       <RootStack.Group>
-        <RootStack.Screen name={ROUTES.SPLASH} component={SplashScreen} />
         <RootStack.Screen name={ROUTES.ROOT} component={TabNavigator} />
         <RootStack.Screen
           name={ROUTES.DETAIL}
