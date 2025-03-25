@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
 import FoodImage, { FoodImageSize } from '@/components/FoodImage';
@@ -12,7 +11,7 @@ import Text from '../Text';
 export interface FoodCardProps
   extends Pick<IFood, 'imgUrl' | 'name' | 'id' | 'weight' | 'color'>,
     Pick<TNutritional, 'calories'> {
-  onPress?: (id: string) => void;
+  onPress: () => void;
   marginRight?: number;
   marginLeft?: number;
 }
@@ -21,21 +20,16 @@ const FoodCard = ({
   calories,
   imgUrl,
   name,
-  id,
   color,
   weight,
   marginLeft,
   marginRight,
   onPress,
 }: FoodCardProps) => {
-  const handlePress = () => {
-    onPress?.(id);
-  };
-
   return (
     <Pressable
       style={[styles.container, { marginLeft, marginRight }]}
-      onPress={handlePress}
+      onPress={onPress}
     >
       <FoodImage color={color} imgUrl={imgUrl} type={FoodImageSize.medium} />
       <Text variant="title2" style={styles.name}>
@@ -49,7 +43,7 @@ const FoodCard = ({
   );
 };
 
-export default memo(FoodCard);
+export default FoodCard;
 
 const styles = StyleSheet.create({
   container: {

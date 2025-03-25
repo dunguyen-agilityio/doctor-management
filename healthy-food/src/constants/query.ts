@@ -4,4 +4,5 @@ export const QUERY_KEYS = {
   FOOD_BY_ID: (id: string) => `food-${id}`,
 };
 
-export const PAGE_SIZE = 20;
+export const HORIZONTAL_PAGE_SIZE = 5;
+export const VERTICAL_PAGE_SIZE = 20;

@@ -16,7 +16,14 @@ import {
   SearchInput,
 } from '@/components';
 
-import { APP_ICONS, CATEGORIES, COLOR, QUERY_KEYS, ROUTES } from '@/constants';
+import {
+  APP_ICONS,
+  CATEGORIES,
+  COLOR,
+  QUERY_KEYS,
+  ROUTES,
+  VERTICAL_PAGE_SIZE,
+} from '@/constants';
 
 import { useFoodList } from '@/hooks/useFoodList';
 
@@ -78,6 +85,7 @@ const SearchScreen = ({ route }: Props) => {
       filters,
       query,
       queryKey: QUERY_KEYS.FOOD,
+      pageSize: VERTICAL_PAGE_SIZE,
     });
 
   const handleEndReached = useCallback(() => {
@@ -87,11 +95,7 @@ const SearchScreen = ({ route }: Props) => {
   const renderFooter = () => {
     if (isFetchingNextPage) return null;
 
-    return (
-      <View style={{ paddingVertical: 20 }}>
-        <ActivityIndicator size="large" color={COLOR.GREEN} />
-      </View>
-    );
+    return <ActivityIndicator size="large" color={COLOR.GREEN} />;
   };
 
   return (
@@ -145,5 +149,5 @@ const styles = StyleSheet.create({
   list: {
     marginTop: 15,
   },
-  footer: { alignSelf: 'center', marginVertical: 16 },
+  footer: { alignSelf: 'center', paddingTop: 10, paddingBottom: 30 },
 });

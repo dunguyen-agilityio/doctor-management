@@ -19,7 +19,13 @@ import {
   Text,
 } from '@/components';
 
-import { CATEGORIES, COLOR, QUERY_KEYS, ROUTES } from '@/constants';
+import {
+  CATEGORIES,
+  COLOR,
+  HORIZONTAL_PAGE_SIZE,
+  QUERY_KEYS,
+  ROUTES,
+} from '@/constants';
 
 import { useFoodList } from '@/hooks/useFoodList';
 
@@ -33,6 +39,7 @@ const HomeScreen = () => {
 
   const { isLoading, data, isFetchingNextPage, fetchNextPage } = useFoodList({
     queryKey: QUERY_KEYS.FOOD,
+    pageSize: HORIZONTAL_PAGE_SIZE,
   });
 
   const handleEndReached = () => {
@@ -79,6 +86,8 @@ const HomeScreen = () => {
                 All Food
               </Text>
             }
+            initialNumToRender={HORIZONTAL_PAGE_SIZE * 2}
+            maxToRenderPerBatch={HORIZONTAL_PAGE_SIZE}
           />
         </Suspense>
       )}
