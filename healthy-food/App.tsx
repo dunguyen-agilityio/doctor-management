@@ -7,7 +7,13 @@ import {
 } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Constants from 'expo-constants';
+import { loadAsync } from 'expo-font';
 import { addEventListener, createURL, getInitialURL } from 'expo-linking';
+import {
+  hideAsync,
+  preventAutoHideAsync,
+  setOptions,
+} from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
@@ -33,6 +39,12 @@ const linking: LinkingOptions<ReactNavigation.RootParamList> = {
 };
 
 let appStartTime = Date.now();
+
+preventAutoHideAsync();
+setOptions({
+  duration: 1000,
+  fade: true,
+});
 
 const App = () => {
   useNotify();
@@ -77,6 +89,25 @@ const App = () => {
     const interactiveTime = Date.now();
     const tti = interactiveTime - appStartTime;
     console.log('Time to Interactive (TTI):', tti, 'ms');
+  }, []);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await loadAsync({
+          Manrope: require('@assets/fonts/Manrope.ttf'),
+          Signika: require('@assets/fonts/Signika.ttf'),
+        });
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        hideAsync();
+        if (navigationRef.isReady()) {
+          navigationRef.navigate(ROUTES.ROOT);
+        }
+      }
+    }
+    prepare();
   }, []);
 
   return (

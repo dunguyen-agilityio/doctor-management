@@ -59,6 +59,13 @@ export const expo = {
       },
     ],
     '@react-native-firebase/app',
+    [
+      'expo-splash-screen',
+      {
+        image: './assets/images/splash-icon.png', // This path is relative to the root of your repo.png',
+        imageWidth: 122,
+      },
+    ],
   ],
   newArchEnabled: true,
   jsEngine: 'hermes',
