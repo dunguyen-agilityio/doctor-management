@@ -1,4 +1,4 @@
-package com.anonymous.app
+package com.nutrigo.app
 
 import android.app.Application
 import android.content.res.Configuration
