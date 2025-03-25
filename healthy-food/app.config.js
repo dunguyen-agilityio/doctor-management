@@ -1,6 +1,6 @@
 export const expo = {
-  name: 'healthy-food',
-  slug: 'healthy-food',
+  name: 'NutriGo',
+  slug: 'nutrigo-app',
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/images/logo.png',
@@ -15,14 +15,14 @@ export const expo = {
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: true,
-    bundleIdentifier: 'com.anonymous.app',
+    bundleIdentifier: 'com.nutrigo.app',
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: './assets/images/logo.png',
+      foregroundImage: './assets/images/adaptive-icon.png',
       backgroundColor: '#FFFFFF',
     },
-    package: 'com.anonymous.app',
+    package: 'com.nutrigo.app',
     googleServicesFile: './google-services.json',
   },
   extra: {
@@ -62,7 +62,7 @@ export const expo = {
   ],
   newArchEnabled: true,
   jsEngine: 'hermes',
-  scheme: 'healthyfood',
+  scheme: 'nutrigo',
   experiments: {
     reactCompiler: !process.env.STORYBOOK_ENABLED,
   },
