@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { type RootScreenNavigationProps } from '@/navigation';
 
-import { COLOR, ROUTES } from '@/constants';
+import { COLOR, ROUTES, VERTICAL_PAGE_SIZE } from '@/constants';
 
 import { IFood } from '@/types';
 
@@ -24,22 +24,23 @@ const FoodList = ({
   const { navigate } =
     useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
 
-  const handlePressItem = (id: string) => {
-    navigate(ROUTES.DETAIL, { id });
+  const renderItem = ({ item, index }: { item: IFood; index: number }) => {
+    const { id, name, imgUrl, weight, color, nutritional } = item;
+    return (
+      <FoodCard
+        calories={nutritional.calories}
+        color={color}
+        id={id}
+        imgUrl={imgUrl}
+        weight={weight}
+        name={name}
+        onPress={() => {
+          navigate(ROUTES.DETAIL, { id });
+        }}
+        marginLeft={horizontal && index === 0 ? 16 : 0}
+      />
+    );
   };
-
-  const renderItem = ({ item, index }: { item: IFood; index: number }) => (
-    <FoodCard
-      calories={item.nutritional.calories}
-      color={item.color}
-      id={item.id}
-      imgUrl={item.imgUrl}
-      weight={item.weight}
-      name={item.name}
-      onPress={handlePressItem}
-      marginLeft={horizontal && index === 0 ? 16 : 0}
-    />
-  );
 
   const keyExtractor = (item: IFood) => item.id;
 
@@ -49,7 +50,6 @@ const FoodList = ({
     <View style={styles.container} testID="food-list-container">
       {horizontal ? (ListHeaderComponent as React.ReactNode) : null}
       <FlatList
-        {...otherProps}
         testID="food-list"
         data={data}
         keyExtractor={keyExtractor}
@@ -66,11 +66,12 @@ const FoodList = ({
         columnWrapperStyle={horizontal ? null : styles.columnWrapperStyle}
         scrollEnabled
         onStartReachedThreshold={0.5}
-        initialNumToRender={20}
-        maxToRenderPerBatch={10}
+        initialNumToRender={VERTICAL_PAGE_SIZE}
+        maxToRenderPerBatch={VERTICAL_PAGE_SIZE / 2}
         windowSize={5}
         ListHeaderComponent={horizontal ? null : ListHeaderComponent}
         removeClippedSubviews
+        {...otherProps}
       />
     </View>
   );

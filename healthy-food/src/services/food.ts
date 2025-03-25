@@ -1,4 +1,4 @@
-import { API_ENTITIES, PAGE_SIZE } from '@/constants';
+import { API_ENTITIES, HORIZONTAL_PAGE_SIZE } from '@/constants';
 
 import { IFood } from '@/types';
 
@@ -22,7 +22,7 @@ type TGetFoodListResponse = {
 export const getFoodList = async ({
   filters = [],
   page = 1,
-  pageSize = PAGE_SIZE,
+  pageSize = HORIZONTAL_PAGE_SIZE,
   query,
 }: FoodOptions): Promise<TGetFoodListResponse> => {
   const searchParams = new URLSearchParams();

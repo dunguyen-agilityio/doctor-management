@@ -23,11 +23,7 @@ const FavoriteScreen = () => {
       ) : (
         <>
           <SearchInput onSearch={searchByName} />
-          <FoodList
-            data={displayFavorites}
-            numColumns={2}
-            ListEmptyComponent={<NotFound />}
-          />
+          <FoodList data={displayFavorites} ListEmptyComponent={<NotFound />} />
         </>
       )}
     </View>
