@@ -4,14 +4,6 @@ export const expo = {
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/images/adaptive-icon.png',
-  userInterfaceStyle: 'light',
-  newArchEnabled: true,
-  jsEngine: 'hermes',
-  scheme: 'nutrigo',
-  platforms: ['android'],
-  experiments: {
-    reactCompiler: !process.env.STORYBOOK_ENABLED,
-  },
   splash: {
     image: './assets/images/splash-icon.png',
     resizeMode: 'contain',
@@ -74,4 +66,12 @@ export const expo = {
       },
     ],
   ],
+  userInterfaceStyle: 'light',
+  newArchEnabled: true,
+  jsEngine: 'hermes',
+  scheme: 'nutrigo',
+  platforms: ['android'],
+  experiments: {
+    reactCompiler: !process.env.STORYBOOK_ENABLED,
+  },
 };

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 import {
@@ -29,7 +29,7 @@ import Loading from '@/components/Loading';
 
 import { COLOR, ROUTES } from '@/constants';
 
-import useNotify from '@/hooks/useNotify';
+const Notification = lazy(() => import('@/components/Notification'));
 
 const queryClient = new QueryClient();
 
@@ -83,7 +83,7 @@ const handleDeepLink = (url: string) => {
 };
 
 const App = () => {
-  useNotify();
+  const [isAppReady, setIsAppReady] = useState(false);
 
   useEffect(() => {
     const handleLinkingListener = ({ url }: { url: string }) => {
@@ -124,8 +124,10 @@ const App = () => {
   }, []);
 
   const handleNavigationReady = () => {
+    setIsAppReady(true);
+
     const url = getLinkingURL();
-    console.log('url: 222', url);
+
     if (url) {
       handleDeepLink(url);
     }
@@ -143,6 +145,11 @@ const App = () => {
         >
           <RootNavigator />
         </NavigationContainer>
+        {isAppReady && (
+          <Suspense>
+            <Notification />
+          </Suspense>
+        )}
       </QueryClientProvider>
     </GestureHandlerRootView>
   );
