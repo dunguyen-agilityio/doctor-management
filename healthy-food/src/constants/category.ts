@@ -1,12 +1,12 @@
-import { ICategory } from '@/types';
+import { TOption } from '@/types';
 
-export const CATEGORIES: ICategory[] = [
-  { id: '1', name: 'Breakfast' },
-  { id: '2', name: 'Dinner' },
-  { id: '3', name: 'Dry fruits' },
-  { id: '4', name: 'Lunch' },
-  { id: '5', name: 'Vegetables' },
-  { id: '6', name: 'Greenish' },
-  { id: '7', name: 'Non-Veg' },
-  { id: '8', name: 'Fast Food' },
+export const CATEGORIES: TOption[] = [
+  { value: '1', name: 'Breakfast' },
+  { value: '2', name: 'Dinner' },
+  { value: '3', name: 'Dry fruits' },
+  { value: '4', name: 'Lunch' },
+  { value: '5', name: 'Vegetables' },
+  { value: '6', name: 'Greenish' },
+  { value: '7', name: 'Non-Veg' },
+  { value: '8', name: 'Fast Food' },
 ];

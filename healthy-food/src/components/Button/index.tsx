@@ -20,7 +20,7 @@ export interface ButtonProps extends PressableProps {
 
 const ICON_SIZE = 20;
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   children,
   isLoading = false,
   style,
@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({
   width,
   backgroundColor = COLOR.LIGHT_GREEN,
   ...props
-}) => {
+}: ButtonProps) => {
   const isIcon = variant === 'icon';
 
   return (

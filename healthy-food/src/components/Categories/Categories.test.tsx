@@ -6,7 +6,7 @@ import Categories from './index';
 
 describe('Categories Component', () => {
   it('renders all categories', () => {
-    const { getByText } = render(<Categories categories={CATEGORIES} />);
+    const { getByText } = render(<Categories options={CATEGORIES} />);
 
     CATEGORIES.forEach((category) => {
       expect(getByText(category.name)).toBeTruthy();
@@ -15,19 +15,19 @@ describe('Categories Component', () => {
 
   it('calls onSelect when a category is pressed', () => {
     const mockOnChange = jest.fn();
-    const { name, id } = CATEGORIES[0];
+    const { name, value } = CATEGORIES[0];
     const { getByText } = render(
-      <Categories categories={CATEGORIES} onSelect={mockOnChange} />,
+      <Categories options={CATEGORIES} onChange={mockOnChange} />,
     );
 
     fireEvent.press(getByText(name));
-    expect(mockOnChange).toHaveBeenCalledWith(id);
+    expect(mockOnChange).toHaveBeenCalledWith([value]);
   });
 
   it('applies active styles when a category is selected', () => {
-    const { name, id } = CATEGORIES[1];
+    const { name, value } = CATEGORIES[1];
     const { getByText } = render(
-      <Categories categories={CATEGORIES} categoriesValue={[id]} />,
+      <Categories options={CATEGORIES} values={[value]} />,
     );
 
     const activeCategory = getByText(name);

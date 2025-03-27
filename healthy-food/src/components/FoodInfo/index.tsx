@@ -18,7 +18,7 @@ const FoodInfo = ({ food }: FoodInfoProps) => {
     food;
 
   const categoryName =
-    CATEGORIES.find(({ id: catId }) => catId == category)?.name || 'Unknown';
+    CATEGORIES.find(({ value: catId }) => catId == category)?.name || 'Unknown';
 
   return (
     <View style={styles.container}>

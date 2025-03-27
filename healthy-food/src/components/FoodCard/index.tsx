@@ -11,7 +11,7 @@ import Text from '../Text';
 export interface FoodCardProps
   extends Pick<IFood, 'imgUrl' | 'name' | 'id' | 'weight' | 'color'>,
     Pick<TNutritional, 'calories'> {
-  onPress: () => void;
+  onPress?: () => void;
   marginRight?: number;
   marginLeft?: number;
 }
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     paddingBottom: 18,
     paddingHorizontal: 27,
     paddingVertical: 17,
-    borderColor: '#DBDBDB',
+    borderColor: COLOR.LIGHT_GREY,
     borderWidth: 1,
     height: 192,
     minWidth: 154,
