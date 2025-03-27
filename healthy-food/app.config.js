@@ -3,10 +3,17 @@ export const expo = {
   slug: 'nutrigo-app',
   version: '1.0.0',
   orientation: 'portrait',
-  icon: './assets/images/logo.png',
+  icon: './assets/images/adaptive-icon.png',
   userInterfaceStyle: 'light',
+  newArchEnabled: true,
+  jsEngine: 'hermes',
+  scheme: 'nutrigo',
+  platforms: ['android'],
+  experiments: {
+    reactCompiler: !process.env.STORYBOOK_ENABLED,
+  },
   splash: {
-    image: './assets/images/logo.png',
+    image: './assets/images/splash-icon.png',
     resizeMode: 'contain',
   },
   updates: {
@@ -20,7 +27,7 @@ export const expo = {
   android: {
     adaptiveIcon: {
       foregroundImage: './assets/images/adaptive-icon.png',
-      backgroundColor: '#FFFFFF',
+      backgroundColor: '#fff',
     },
     package: 'com.nutrigo.app',
     googleServicesFile: './google-services.json',
@@ -28,7 +35,7 @@ export const expo = {
   extra: {
     apiEndpoint: process.env.EXPO_PUBLIC_API_ENDPOINT,
     eas: {
-      projectId: 'bcc019da-17de-405a-b14d-b4f9b9462087',
+      projectId: '4033c430-a4c0-44fc-adc0-47d1073fad39',
     },
     storybook: process.env.STORYBOOK_ENABLED,
   },
@@ -67,11 +74,4 @@ export const expo = {
       },
     ],
   ],
-  newArchEnabled: true,
-  jsEngine: 'hermes',
-  scheme: 'nutrigo',
-  experiments: {
-    reactCompiler: !process.env.STORYBOOK_ENABLED,
-  },
-  platforms: ['android'],
 };
