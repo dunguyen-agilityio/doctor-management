@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { Image } from 'expo-image';
 
-import { APP_ICONS } from '@/constants';
+import { APP_ICONS, COLOR } from '@/constants';
 
 import Button from '../Button';
 import Text from '../Text';
@@ -27,13 +27,14 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    backgroundColor: COLOR.WHITE,
+    paddingTop: 32,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
     paddingHorizontal: 20,
   },
-  header: {
+  title: {
     fontSize: 23,
     fontWeight: '800',
   },

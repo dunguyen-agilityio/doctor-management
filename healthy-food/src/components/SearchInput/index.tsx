@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: COLOR.LIGHT_PURPLE,
     borderRadius: 15,
-    marginTop: 14,
     marginHorizontal: 16,
     height: 46,
   },

@@ -14,7 +14,7 @@ jest.mock('@/services/food', () => ({
 
 describe('FoodInfo Component', () => {
   const food = MOCK_FOOD_LIST[0];
-  const { id: categoryValue, name: categoryName } = CATEGORIES[0];
+  const { value: categoryValue, name: categoryName } = CATEGORIES[0];
   const mockFood = {
     ...food,
     ingredients: food.ingredients.slice(0, 2),

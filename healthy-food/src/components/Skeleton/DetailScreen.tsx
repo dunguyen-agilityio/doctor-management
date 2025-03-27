@@ -9,7 +9,12 @@ import Skeleton from './Skeleton';
 
 const DetailSkeleton = () => {
   return (
-    <Container alignItems="center" gap={12} paddingHorizontal={20}>
+    <Container
+      alignItems="center"
+      gap={12}
+      paddingHorizontal={20}
+      testID="detail-skeleton"
+    >
       <Skeleton width={160} height={160} shimmerStyle={{ borderRadius: 80 }} />
       <Skeleton width={120} height={52} />
       <Skeleton width={WINDOW_WIDTH} height={92} stopAutoRun />

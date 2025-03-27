@@ -1,10 +1,10 @@
-import { FlatList, FlatListProps, StyleSheet, View } from 'react-native';
+import { FlatList, FlatListProps, StyleSheet } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
 import { type RootScreenNavigationProps } from '@/navigation';
 
-import { COLOR, ROUTES, VERTICAL_PAGE_SIZE } from '@/constants';
+import { ROUTES, VERTICAL_PAGE_SIZE } from '@/constants';
 
 import { IFood } from '@/types';
 
@@ -47,43 +47,35 @@ const FoodList = ({
   const isEmpty = !data?.length;
 
   return (
-    <View style={styles.container} testID="food-list-container">
-      {horizontal ? (ListHeaderComponent as React.ReactNode) : null}
-      <FlatList
-        testID="food-list"
-        data={data}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-        horizontal={horizontal}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          styles.listContainer,
-          horizontal ? styles.horizontalList : styles.verticalList,
-          isEmpty && styles.listEmpty,
-        ]}
-        numColumns={horizontal ? undefined : 2}
-        columnWrapperStyle={horizontal ? null : styles.columnWrapperStyle}
-        scrollEnabled
-        onStartReachedThreshold={0.5}
-        initialNumToRender={VERTICAL_PAGE_SIZE}
-        maxToRenderPerBatch={VERTICAL_PAGE_SIZE / 2}
-        windowSize={5}
-        ListHeaderComponent={horizontal ? null : ListHeaderComponent}
-        removeClippedSubviews
-        {...otherProps}
-      />
-    </View>
+    <FlatList
+      testID="food-list"
+      data={data}
+      keyExtractor={keyExtractor}
+      renderItem={renderItem}
+      horizontal={horizontal}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={[
+        styles.container,
+        horizontal ? styles.horizontalList : styles.verticalList,
+        isEmpty && styles.listEmpty,
+      ]}
+      numColumns={horizontal ? undefined : 2}
+      columnWrapperStyle={horizontal ? null : styles.columnWrapperStyle}
+      scrollEnabled
+      onStartReachedThreshold={0.5}
+      initialNumToRender={VERTICAL_PAGE_SIZE}
+      maxToRenderPerBatch={VERTICAL_PAGE_SIZE / 2}
+      windowSize={5}
+      ListHeaderComponent={horizontal ? null : ListHeaderComponent}
+      removeClippedSubviews
+      {...otherProps}
+    />
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLOR.WHITE,
-    gap: 18,
-    flex: 1,
-  },
-  listContainer: {
     gap: 18,
   },
   verticalList: {

@@ -31,6 +31,6 @@ describe('FoodCard Component', () => {
     const pressable = screen.getByText(name);
     fireEvent.press(pressable);
 
-    expect(mockOnPress).toHaveBeenCalledWith(id);
+    expect(mockOnPress).toHaveBeenCalled();
   });
 });

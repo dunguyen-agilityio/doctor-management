@@ -9,14 +9,14 @@ import Text from '../Text';
 interface CategoryItemProps extends TouchableOpacityProps {
   isActive?: boolean;
   onPressItem?: (id: string) => void;
-  id: string;
+  value: string;
   marginRight?: number;
   marginLeft?: number;
 }
 
 const CategoryItem = ({
   isActive,
-  id,
+  value,
   children,
   marginLeft = 0,
   marginRight = 0,
@@ -24,7 +24,7 @@ const CategoryItem = ({
   ...props
 }: CategoryItemProps) => {
   const handlePress = () => {
-    onPressItem?.(id);
+    onPressItem?.(value);
   };
 
   return (

@@ -19,4 +19,5 @@ export const COLOR = {
   BLACK_BEAN: '#330600',
   GREY: '#e0e0e0',
   TERTIARY: '#696969',
+  LIGHT_GREY: '#dbdbdb',
 };

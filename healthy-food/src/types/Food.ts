@@ -11,10 +11,10 @@ export type Categories =
   | 'Non-Veg'
   | 'Greenish';
 
-export interface ICategory {
-  id: string;
-  name: Categories;
-}
+export type TOption<T = string> = {
+  value: T;
+  name: string;
+};
 
 export type TIngredient = {
   id: string;
