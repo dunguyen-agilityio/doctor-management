@@ -2,12 +2,14 @@ import { StyleSheet, View } from 'react-native';
 
 import { COLOR } from '@/constants';
 
+import Skeleton from './Skeleton';
+
 const FoodCardSkeleton = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.imageSkeleton} />
-      <View style={styles.textSkeleton} />
-      <View style={styles.textSkeleton} />
+      <Skeleton width={60} height={60} shimmerStyle={styles.imageSkeleton} />
+      <Skeleton width={100} height={14} shimmerStyle={styles.textSkeleton} />
+      <Skeleton height={14} width={100} style={styles.textSkeleton} />
     </View>
   );
 };
@@ -22,7 +24,7 @@ const styles = StyleSheet.create({
     paddingBottom: 18,
     paddingHorizontal: 27,
     paddingVertical: 17,
-    borderColor: '#DBDBDB',
+    borderColor: COLOR.LIGHT_GREY,
     borderWidth: 1,
     height: 192,
     minWidth: 154,
@@ -30,14 +32,10 @@ const styles = StyleSheet.create({
   imageSkeleton: {
     width: 60,
     height: 60,
-    borderRadius: 8,
-    backgroundColor: '#E0E0E0',
+    backgroundColor: COLOR.GREY,
   },
   textSkeleton: {
-    width: '80%',
-    height: 14,
-    marginTop: 10,
-    backgroundColor: '#E0E0E0',
+    backgroundColor: COLOR.GREY,
   },
 });
 
