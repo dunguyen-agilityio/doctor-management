@@ -1,8 +1,10 @@
-import { StyleSheet, View } from 'react-native';
-
-import { FoodList, Loading, NotFound, SearchInput } from '@/components';
-
-import { COLOR } from '@/constants';
+import {
+  Container,
+  FoodList,
+  Loading,
+  NotFound,
+  SearchInput,
+} from '@/components';
 
 import { useFavorite } from '@/hooks/useFavorite';
 
@@ -17,7 +19,7 @@ const FavoriteScreen = () => {
   const isEmpty = favorites.length === 0;
 
   return (
-    <View style={styles.container}>
+    <Container gap={16} flex={1} paddingTop={55}>
       {isEmpty ? (
         <NotFound />
       ) : (
@@ -26,16 +28,8 @@ const FavoriteScreen = () => {
           <FoodList data={displayFavorites} ListEmptyComponent={<NotFound />} />
         </>
       )}
-    </View>
+    </Container>
   );
 };
 
 export default FavoriteScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLOR.WHITE,
-    gap: 16,
-  },
-});

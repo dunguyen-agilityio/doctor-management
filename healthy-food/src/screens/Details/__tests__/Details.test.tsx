@@ -32,7 +32,7 @@ describe('Details Screen', () => {
     (useQuery as jest.Mock).mockReturnValue({ isLoading: true });
 
     const { getByTestId } = render(<Details />);
-    expect(getByTestId('loading-indicator')).toBeTruthy();
+    expect(getByTestId('detail-skeleton')).toBeTruthy();
   });
 
   it('displays an error message if fetching fails', async () => {

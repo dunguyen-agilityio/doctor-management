@@ -1,20 +1,21 @@
-import { useCallback, useRef, useState } from 'react';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, TextInput, View } from 'react-native';
 
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useFocusEffect } from '@react-navigation/native';
 import { Image } from 'expo-image';
 
-import { RootScreenNavigationProps, RootStackParamsList } from '@/navigation';
+import { TabParamsList } from '@/navigation';
 
 import {
   Categories,
+  Container,
   FoodList,
-  Header,
-  Loading,
   NotFound,
   SearchInput,
 } from '@/components';
+import VerticalFoodList from '@/components/Skeleton/VerticalFoodList';
 
 import {
   APP_ICONS,
@@ -25,96 +26,88 @@ import {
   VERTICAL_PAGE_SIZE,
 } from '@/constants';
 
+import { useFocus } from '@/hooks/useFocus';
 import { useFoodList } from '@/hooks/useFoodList';
 
-type SearchNavigation = RootScreenNavigationProps<typeof ROUTES.SEARCH>;
+export type SearchScreenProps = BottomTabScreenProps<
+  TabParamsList,
+  ROUTES.SEARCH
+>;
 
-type Props = NativeStackScreenProps<RootStackParamsList, ROUTES.SEARCH>;
-
-const SearchScreen = ({ route }: Props) => {
-  const { setParams } = useNavigation<SearchNavigation>();
-
-  const [query, setQuery] = useState('');
-  const [filters, setFilters] = useState<string[]>([]);
+const SearchScreen = ({ route: { params } }: SearchScreenProps) => {
   const searchInputRef = useRef<TextInput>(null);
+  const [autoFocus, setFocus] = useFocus();
 
-  const { autoFocus, category } = route.params ?? {};
+  const { categories = [], query: search = '' } = params ?? {};
 
-  useFocusEffect(
-    useCallback(() => {
-      setFilters((prev) => (category ? [category] : prev.length ? [] : prev));
-
-      return () => {
-        if (category) setParams({ category: undefined });
-      };
-    }, [category, setFilters, setParams]),
-  );
+  const [query, setQuery] = useState(search);
+  const [filters, setFilters] = useState(categories);
 
   useFocusEffect(
     useCallback(() => {
       if (autoFocus) {
-        setTimeout(() => {
-          searchInputRef.current?.focus();
-        });
+        setTimeout(() => searchInputRef?.current?.focus());
+        return () => setFocus(false);
       }
-
-      return () => {
-        searchInputRef.current?.clear();
-
-        if (autoFocus) {
-          setParams({
-            autoFocus: false,
-          });
-        }
-      };
-    }, [autoFocus, setParams]),
+    }, [autoFocus, setFocus]),
   );
 
-  const toggleFilter = (id: string) => {
-    setFilters((prev) => {
-      const newFilters = prev.includes(id)
-        ? prev.filter((category) => category !== id)
-        : [...prev, id];
+  useEffect(() => {
+    // Update filters when initialCategories provided
+    if (categories.length > 0) {
+      setFilters(categories);
+    }
 
-      return newFilters;
-    });
-  };
+    if (search) {
+      setQuery(search);
+    }
+  }, [categories, search]);
 
-  const { isLoading, data, isFetchingNextPage, isRefetching, fetchNextPage } =
-    useFoodList({
-      filters,
-      query,
-      queryKey: QUERY_KEYS.FOOD,
-      pageSize: VERTICAL_PAGE_SIZE,
-    });
+  useFocusEffect(
+    useCallback(() => {
+      // Clear SearchInput and Filters when unFocus page
+      return () => {
+        setFilters((prev) => (prev.length > 0 ? [] : prev));
+        setQuery('');
+      };
+    }, [setFilters, setQuery]),
+  );
+
+  const { isLoading, data, isFetchingNextPage, fetchNextPage } = useFoodList({
+    filters,
+    query,
+    queryKey: QUERY_KEYS.FOOD,
+    pageSize: VERTICAL_PAGE_SIZE,
+  });
 
   const handleEndReached = useCallback(() => {
     fetchNextPage();
   }, [fetchNextPage]);
 
-  const renderFooter = () => {
-    if (isFetchingNextPage) return null;
-
-    return <ActivityIndicator size="large" color={COLOR.GREEN} />;
-  };
+  const renderFooter = () =>
+    isFetchingNextPage ? null : (
+      <ActivityIndicator
+        size="large"
+        color={COLOR.GREEN}
+        style={styles.footer}
+      />
+    );
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <View style={styles.container}>
-        <SearchInput onSearch={setQuery} ref={searchInputRef} />
+    <Container>
+      <View style={styles.header}>
+        <SearchInput onSearch={setQuery} ref={searchInputRef} query={query} />
         <Categories
-          categories={CATEGORIES}
-          categoriesValue={filters}
-          onSelect={toggleFilter}
+          onChange={setFilters}
+          options={CATEGORIES}
+          values={filters}
         />
-        {isRefetching && <Loading fullScreen />}
-
+      </View>
+      <Container flex={1} paddingTop={25}>
         {isLoading ? (
-          <Loading fullScreen />
+          <VerticalFoodList />
         ) : (
           <FoodList
-            style={styles.list}
             data={data}
             onEndReached={handleEndReached}
             ListEmptyComponent={
@@ -130,24 +123,27 @@ const SearchScreen = ({ route }: Props) => {
             ListFooterComponent={renderFooter}
           />
         )}
-      </View>
-    </View>
+      </Container>
+    </Container>
   );
 };
 
 export default SearchScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLOR.WHITE,
-  },
   emptyImage: {
     width: 108,
     height: 96,
   },
-  list: {
-    marginTop: 15,
+  header: {
+    gap: 16,
+    paddingTop: 14,
+  },
+  listFallback: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 18,
   },
   footer: { alignSelf: 'center', paddingTop: 10, paddingBottom: 30 },
 });
