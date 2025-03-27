@@ -8,7 +8,12 @@ import {
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Constants from 'expo-constants';
 import { loadAsync } from 'expo-font';
-import { addEventListener, createURL, getInitialURL } from 'expo-linking';
+import {
+  getLinkingURL,
+  addEventListener as linkingAddEventListener,
+  createURL as linkingCreateURL,
+  parse as linkingParse,
+} from 'expo-linking';
 import {
   hideAsync,
   preventAutoHideAsync,
@@ -28,17 +33,13 @@ import useNotify from '@/hooks/useNotify';
 
 const queryClient = new QueryClient();
 
-const prefix = createURL('/');
+const prefix = linkingCreateURL('/');
+
 const linking: LinkingOptions<ReactNavigation.RootParamList> = {
   prefixes: [prefix],
-  config: {
-    screens: {
-      Home: 'home',
-    },
-  },
 };
 
-let appStartTime = Date.now();
+const appStartTime = Date.now();
 
 preventAutoHideAsync();
 setOptions({
@@ -46,39 +47,51 @@ setOptions({
   fade: true,
 });
 
+const handleDeepLink = (url: string) => {
+  const { hostname, path, queryParams } = linkingParse(url);
+  const params = queryParams ?? {};
+
+  switch (hostname) {
+    case ROUTES.DETAIL:
+      if (path) {
+        navigationRef.navigate(ROUTES.DETAIL, { id: path });
+      } else {
+        console.log('Error: unknown hostname ' + hostname);
+      }
+      break;
+
+    case ROUTES.FAVORITE:
+      navigationRef.navigate(ROUTES.FAVORITE);
+      break;
+
+    case ROUTES.SEARCH:
+      if (
+        params !== null &&
+        'categories' in params &&
+        params['categories'] &&
+        typeof params['categories'] === 'string'
+      ) {
+        params['categories'] = params['categories'].split(',');
+      }
+
+      navigationRef.navigate(ROUTES.SEARCH, params);
+      break;
+
+    default:
+      break;
+  }
+};
+
 const App = () => {
   useNotify();
 
   useEffect(() => {
-    const handleDeepLink = ({ url }: { url: string }) => {
-      if (navigationRef.isReady()) {
-        if (url) {
-          const route = url.replace(/.*?:\/\//g, ''); // Strip scheme (e.g., myapp://profile/123 -> profile/123)
-          const [screen, param] = route.split('/');
-
-          switch (screen) {
-            case ROUTES.DETAIL:
-              navigationRef.navigate(ROUTES.DETAIL, { id: param });
-              break;
-
-            case ROUTES.FAVORITE:
-              navigationRef.navigate(ROUTES.FAVORITE);
-              break;
-
-            default:
-              break;
-          }
-        }
-      }
+    const handleLinkingListener = ({ url }: { url: string }) => {
+      if (navigationRef.isReady()) handleDeepLink(url);
     };
 
     // Listen for deep links when app is opened
-    const subscribe = addEventListener('url', handleDeepLink);
-
-    // Handle initial URL (e.g., app opened via deep link)
-    getInitialURL().then((url) => {
-      if (url) handleDeepLink({ url });
-    });
+    const subscribe = linkingAddEventListener('url', handleLinkingListener);
 
     return () => {
       subscribe.remove();
@@ -110,6 +123,14 @@ const App = () => {
     prepare();
   }, []);
 
+  const handleNavigationReady = () => {
+    const url = getLinkingURL();
+    console.log('url: 222', url);
+    if (url) {
+      handleDeepLink(url);
+    }
+  };
+
   return (
     <GestureHandlerRootView style={styles.container}>
       <QueryClientProvider client={queryClient}>
@@ -118,6 +139,7 @@ const App = () => {
           linking={linking}
           fallback={<Loading fullScreen />}
           ref={navigationRef}
+          onReady={handleNavigationReady}
         >
           <RootNavigator />
         </NavigationContainer>

@@ -82,8 +82,6 @@ export default [
       ],
       'no-unused-expressions': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
-      'react/prop-types': 'off',
-      'react-compiler/react-compiler': 'error',
     },
   },
 ];
