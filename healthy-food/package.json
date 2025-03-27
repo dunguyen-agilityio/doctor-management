@@ -10,7 +10,7 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "eslint *.ts{,x}",
-    "lint:fix": "eslint --fix *.ts{,x}",
+    "lint:fix": "eslint --fix ./src/**/*.ts{,x}",
     "format": "prettier --write .",
     "testDebug": "jest -o --watch --coverage=false",
     "test": "jest",
@@ -70,6 +70,7 @@
     "react-native-reanimated-carousel": "^4.0.2",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.4.0",
+    "react-native-shimmer-placeholder": "^2.0.9",
     "zustand": "^5.0.3"
   },
   "devDependencies": {

@@ -1,13 +1,12 @@
-import { StyleSheet, View } from 'react-native';
-
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { type RouteProp, useRoute } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 
-import { RootStackParamsList } from '@/navigation';
+import { type RootStackParamsList } from '@/navigation';
 
-import { ErrorFallback, FoodInfo, Loading } from '@/components';
+import { Container, ErrorFallback, FoodInfo } from '@/components';
+import DetailSkeleton from '@/components/Skeleton/DetailScreen';
 
-import { COLOR, QUERY_KEYS, ROUTES } from '@/constants';
+import { QUERY_KEYS, ROUTES } from '@/constants';
 
 import { getFoodById } from '@/services/food';
 
@@ -30,41 +29,23 @@ const Details = () => {
   });
 
   if (isLoading) {
-    return <Loading fullScreen />;
-  }
-
-  if (error || !food) {
-    return (
-      <ErrorFallback
-        error={error || ({ message: 'Error fetching food details' } as Error)}
-      />
-    );
+    return <DetailSkeleton />;
   }
 
   return (
-    <View style={styles.container}>
-      <FoodInfo food={food} />
-      <FavoriteButton food={food} />
-    </View>
+    <Container flex={1} paddingHorizontal={20}>
+      {error || !food ? (
+        <ErrorFallback
+          error={error || ({ message: 'Error fetching food details' } as Error)}
+        />
+      ) : (
+        <>
+          <FoodInfo food={food} />
+          <FavoriteButton food={food} />
+        </>
+      )}
+    </Container>
   );
 };
 
 export default Details;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLOR.WHITE,
-    paddingHorizontal: 20,
-    paddingTop: 4,
-  },
-  button: {
-    marginTop: 27,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  icon: {
-    width: 20,
-    height: 12,
-  },
-});

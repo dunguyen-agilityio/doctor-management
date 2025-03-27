@@ -4,23 +4,40 @@ import {
 } from '@react-navigation/bottom-tabs';
 
 import { Suspense, lazy } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import type { RouteProp } from '@react-navigation/native';
+import { type RouteProp } from '@react-navigation/native';
 
-import Loading from '@/components/Loading';
-import TabIcon from '@/components/TabIcon';
+import {
+  FavoriteScreenSkeleton,
+  Header,
+  HomeScreenSkeleton,
+  Loading,
+  SearchScreenSkeleton,
+  TabIcon,
+} from '@/components';
 
-import { COLOR, ROUTES } from '@/constants';
+import { ROUTES } from '@/constants';
+
+import FocusProvider from '@/contexts/focus/provider';
 
 const HomeScreen = lazy(() => import('@/screens/Home'));
 const SearchScreen = lazy(() => import('@/screens/Search'));
 const FavoriteScreen = lazy(() => import('@/screens/Favorite'));
 
+export type SearchPageParams = {
+  query?: string;
+  categories?: string[];
+};
+
+type FavoritePageParams = {
+  query?: string;
+};
+
 export type TabParamsList = {
-  [ROUTES.FAVORITE]: undefined;
+  [ROUTES.FAVORITE]?: FavoritePageParams;
   [ROUTES.HOME]: undefined;
-  [ROUTES.SEARCH]: { autoFocus?: boolean; query?: string; category?: string };
+  [ROUTES.SEARCH]?: SearchPageParams;
 };
 
 const Tab = createBottomTabNavigator<TabParamsList>();
@@ -30,7 +47,7 @@ const screenOptions = ({
 }: {
   route: RouteProp<TabParamsList, keyof TabParamsList>;
 }): BottomTabNavigationOptions => ({
-  headerShown: false,
+  headerShown: true,
   tabBarLabel: '',
   tabBarStyle: styles.tabBarStyle,
   tabBarIconStyle: styles.tabBarIconStyle,
@@ -40,29 +57,49 @@ const screenOptions = ({
 
 const TabNavigator = () => {
   return (
-    <View style={styles.container}>
-      <Tab.Navigator
-        screenOptions={screenOptions}
-        screenLayout={({ children }) => (
-          <Suspense fallback={<Loading fullScreen />}>{children}</Suspense>
-        )}
-      >
-        <Tab.Screen name={ROUTES.HOME} component={HomeScreen} />
-        <Tab.Screen name={ROUTES.SEARCH} component={SearchScreen} />
-        <Tab.Screen name={ROUTES.FAVORITE} component={FavoriteScreen} />
+    <FocusProvider>
+      <Tab.Navigator screenOptions={screenOptions}>
+        <Tab.Group screenOptions={{ header: () => <Header /> }}>
+          <Tab.Screen
+            name={ROUTES.HOME}
+            component={HomeScreen}
+            layout={({ children }) => (
+              <Suspense fallback={<HomeScreenSkeleton />}>{children}</Suspense>
+            )}
+          />
+          <Tab.Screen
+            name={ROUTES.SEARCH}
+            component={SearchScreen}
+            layout={({ children }) => (
+              <Suspense fallback={<SearchScreenSkeleton />}>
+                {children}
+              </Suspense>
+            )}
+          />
+        </Tab.Group>
+        <Tab.Screen
+          name={ROUTES.FAVORITE}
+          component={FavoriteScreen}
+          options={{
+            headerShown: false,
+          }}
+          layout={({ children }) => (
+            <Suspense fallback={<FavoriteScreenSkeleton />}>
+              {children}
+            </Suspense>
+          )}
+        />
       </Tab.Navigator>
-    </View>
+    </FocusProvider>
   );
 };
 
 export default TabNavigator;
 
 const styles = StyleSheet.create({
-  tabBarStyle: { height: 80, alignItems: 'center' },
-  container: {
-    paddingTop: 60,
-    flex: 1,
-    backgroundColor: COLOR.WHITE,
+  tabBarStyle: {
+    height: 80,
+    alignItems: 'center',
   },
   tabBarIconStyle: { flex: 1 },
 });

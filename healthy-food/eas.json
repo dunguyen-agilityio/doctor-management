@@ -6,13 +6,23 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "GOOGLE_API_KEY": "@env:GOOGLE_API_KEY",
+        "GOOGLE_APP_ID": "@env:GOOGLE_APP_ID",
+        "GOOGLE_PROJECT_ID": "@env:GOOGLE_PROJECT_ID"
+      }
     },
     "preview": {
       "distribution": "internal"
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "GOOGLE_API_KEY": "@env:GOOGLE_API_KEY",
+        "GOOGLE_APP_ID": "@env:GOOGLE_APP_ID",
+        "GOOGLE_PROJECT_ID": "@env:GOOGLE_PROJECT_ID"
+      }
     }
   },
   "submit": {

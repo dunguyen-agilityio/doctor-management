@@ -1,27 +1,23 @@
-import { Suspense, lazy } from 'react';
-import {
-  NativeSyntheticEvent,
-  StyleSheet,
-  TextInputFocusEventData,
-  View,
-} from 'react-native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-import { useNavigation } from '@react-navigation/native';
+import { useContext } from 'react';
+import { StyleSheet, View } from 'react-native';
 
-import { type RootScreenNavigationProps } from '@/navigation';
+import { TabParamsList } from '@/navigation';
 
 import {
   ArticlesSlider,
   Categories,
-  FoodListSkeleton,
-  Header,
+  Container,
+  FoodCardSkeleton,
+  FoodList,
+  HorizontalFoodListSkeleton,
   SearchInput,
   Text,
 } from '@/components';
 
 import {
   CATEGORIES,
-  COLOR,
   HORIZONTAL_PAGE_SIZE,
   QUERY_KEYS,
   ROUTES,
@@ -31,82 +27,79 @@ import { useFoodList } from '@/hooks/useFoodList';
 
 import { MOCK_ARTICLES } from '@/mocks/article';
 
-const FoodList = lazy(() => import('@/components/FoodList'));
+import { FocusDispatchContext } from '@/contexts/focus';
 
-const HomeScreen = () => {
-  const { navigate } =
-    useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
+export type HomeScreenProps = BottomTabScreenProps<TabParamsList, ROUTES.HOME>;
 
+const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const { isLoading, data, isFetchingNextPage, fetchNextPage } = useFoodList({
     queryKey: QUERY_KEYS.FOOD,
     pageSize: HORIZONTAL_PAGE_SIZE,
   });
 
+  const focusDispatch = useContext(FocusDispatchContext);
+
   const handleEndReached = () => {
     fetchNextPage();
   };
 
-  const handleFilter = (id: string) => {
-    navigate(ROUTES.SEARCH, { category: id });
+  const renderFooter = () => (isFetchingNextPage ? null : <FoodCardSkeleton />);
+
+  const handleFocus = () => {
+    focusDispatch(true);
+    navigation.navigate(ROUTES.SEARCH);
   };
 
-  const handleSearch = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    e?.currentTarget.blur(); // Ensuring blur happens first
-    navigate(ROUTES.SEARCH, { autoFocus: true });
-  };
-
-  const fallback = (
-    <View style={styles.fallback}>
-      <FoodListSkeleton title="All Food" />
-    </View>
-  );
-
-  const renderFooter = () => {
-    if (isFetchingNextPage) return null;
-    return <FoodListSkeleton length={1} />;
+  const handleFilter = (categories: string[]) => {
+    navigation.navigate(ROUTES.SEARCH, { categories });
   };
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <SearchInput onFocus={handleSearch} />
-      <Categories onSelect={handleFilter} categories={CATEGORIES} />
-      <ArticlesSlider articles={MOCK_ARTICLES} />
-      {isLoading ? (
-        fallback
-      ) : (
-        <Suspense fallback={fallback}>
-          <FoodList
-            data={data}
-            horizontal
-            onEndReached={handleEndReached}
-            ListFooterComponent={renderFooter}
-            ListHeaderComponent={
-              <Text variant="title3" style={styles.title}>
-                All Food
-              </Text>
-            }
-            initialNumToRender={HORIZONTAL_PAGE_SIZE * 2}
-            maxToRenderPerBatch={HORIZONTAL_PAGE_SIZE}
-          />
-        </Suspense>
-      )}
-    </View>
+    <Container>
+      <View style={styles.header}>
+        <SearchInput onFocus={handleFocus} />
+        <Categories onChange={handleFilter} options={CATEGORIES} />
+      </View>
+      <Container>
+        <ArticlesSlider articles={MOCK_ARTICLES} />
+        <Container gap={15}>
+          <Text variant="title3" style={styles.title}>
+            All Food
+          </Text>
+          {isLoading ? (
+            <View testID="food-list-skeleton">
+              <HorizontalFoodListSkeleton />
+            </View>
+          ) : (
+            <FoodList
+              data={data}
+              horizontal
+              onEndReached={handleEndReached}
+              ListFooterComponent={renderFooter}
+              initialNumToRender={HORIZONTAL_PAGE_SIZE * 2}
+              maxToRenderPerBatch={HORIZONTAL_PAGE_SIZE}
+            />
+          )}
+        </Container>
+      </Container>
+    </Container>
   );
 };
 
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLOR.WHITE,
-  },
   title: {
     marginTop: 22,
-    marginLeft: 8,
+    marginLeft: 28,
+  },
+  header: {
+    gap: 16,
+    paddingTop: 14,
   },
   fallback: {
-    marginTop: 15,
+    flexDirection: 'row',
+    gap: 16,
+    marginLeft: 20,
   },
 });

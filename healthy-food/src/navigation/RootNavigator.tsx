@@ -3,9 +3,10 @@ import { Suspense, lazy } from 'react';
 import { createNavigationContainerRef } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Loading from '@/components/Loading';
+import { BackHeader, Loading } from '@/components';
+import DetailSkeleton from '@/components/Skeleton/DetailScreen';
 
-import { APP_ICONS, ROUTES } from '@/constants';
+import { ROUTES } from '@/constants';
 
 import TabNavigator, { type TabParamsList } from './TabNavigator';
 
@@ -39,8 +40,13 @@ const RootNavigator = () => {
             headerShown: true,
             title: '',
             headerShadowVisible: false,
-            headerBackImageSource: APP_ICONS.ARROW_LEFT,
+            header: ({ navigation }) => (
+              <BackHeader goBack={navigation.goBack} />
+            ),
           }}
+          layout={({ children }) => (
+            <Suspense fallback={<DetailSkeleton />}>{children}</Suspense>
+          )}
         />
       </RootStack.Group>
     </RootStack.Navigator>

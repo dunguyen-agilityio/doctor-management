@@ -1,43 +1,36 @@
-import { useNavigation } from '@react-navigation/native';
+import HomeScreen, { HomeScreenProps } from '@/screens/Home';
 
-import HomeScreen from '@/screens/Home';
+import { ROUTES } from '@/constants';
 
-import { CATEGORIES, ROUTES } from '@/constants';
+import { render } from '@/utils/test-utils';
 
-import { fireEvent, render } from '@/utils/test-utils';
+import { useFoodList } from '@/hooks/useFoodList';
+
+import { MOCK_FOOD_LIST } from '@/mocks/food';
+
+jest.mock('@/hooks/useFoodList');
+
+const mockScreenProps = {
+  route: { name: ROUTES.HOME, params: {}, key: 'home' },
+  navigation: { navigate: jest.fn(), setParams: jest.fn() },
+} as unknown as HomeScreenProps;
 
 describe('HomeScreen', () => {
-  const mockNavigate = jest.fn();
-  const [{ name: categoryName, id: categoryId }] = CATEGORIES;
-
-  beforeEach(() => {
-    (useNavigation as jest.Mock).mockReturnValue({ navigate: mockNavigate });
+  it('renders all main components', async () => {
+    (useFoodList as jest.Mock).mockReturnValue({ isLoading: true });
+    const { getByText, getByTestId } = render(
+      <HomeScreen {...mockScreenProps} />,
+    );
+    expect(getByText('All Food')).toBeTruthy();
+    expect(getByTestId('food-list-skeleton')).toBeTruthy();
   });
 
-  it('renders all main components', () => {
-    const { getByText, getByPlaceholderText } = render(<HomeScreen />);
-
-    expect(getByText('All Food')).toBeTruthy(); // Checks header title in FoodContainer
-    expect(getByPlaceholderText('Search for healthy food')).toBeTruthy(); // Search input
-  });
-
-  it('navigates to search screen when search input is focused', () => {
-    const { getByPlaceholderText } = render(<HomeScreen />);
-
-    fireEvent(getByPlaceholderText('Search for healthy food'), 'focus');
-
-    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.SEARCH, {
-      autoFocus: true,
+  it('renders all main components', async () => {
+    (useFoodList as jest.Mock).mockReturnValue({
+      isLoading: false,
+      data: MOCK_FOOD_LIST,
     });
-  });
-
-  it('navigates to search screen with category filter when a category is selected', () => {
-    const { getByText } = render(<HomeScreen />);
-
-    fireEvent.press(getByText(categoryName));
-
-    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.SEARCH, {
-      category: categoryId,
-    });
+    const { getByTestId } = render(<HomeScreen {...mockScreenProps} />);
+    expect(getByTestId('food-list')).toBeTruthy();
   });
 });
