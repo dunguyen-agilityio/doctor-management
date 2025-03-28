@@ -1,6 +1,4 @@
-import { StyleSheet } from 'react-native';
-
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, StyleSheet } from 'react-native';
 
 import type { TOption } from '@/types';
 

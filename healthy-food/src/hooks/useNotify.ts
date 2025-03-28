@@ -1,9 +1,16 @@
 import notifee, {
   AndroidStyle,
   AuthorizationStatus,
+  EventType,
 } from '@notifee/react-native';
-import messaging, {
-  FirebaseMessagingTypes,
+import {
+  type FirebaseMessagingTypes,
+  getMessaging,
+  getToken,
+  onMessage,
+  onNotificationOpenedApp,
+  registerDeviceForRemoteMessages,
+  setBackgroundMessageHandler,
 } from '@react-native-firebase/messaging';
 import Toast from 'react-native-toast-message';
 
@@ -18,6 +25,7 @@ const ANDROID_IMAGE =
 
 type FoodNotification = { type: 'NAVIGATE_TO_FOOD'; data: string };
 
+const messaging = getMessaging();
 const useNotify = () => {
   const [token, setToken] = useState('');
 
@@ -29,10 +37,10 @@ const useNotify = () => {
 
         if (settings.authorizationStatus === AuthorizationStatus.AUTHORIZED) {
           // Register the device with FCM
-          await messaging().registerDeviceForRemoteMessages();
+          registerDeviceForRemoteMessages(messaging);
 
           // Get the token
-          const token = await messaging().getToken();
+          const token = await getToken(messaging);
 
           // Save the token
           setToken(token);
@@ -43,6 +51,36 @@ const useNotify = () => {
     }
 
     onDisplayNotification();
+
+    const unsubscribe = notifee.onForegroundEvent(({ type, detail }) => {
+      switch (type) {
+        case EventType.DISMISSED:
+          console.log('User dismissed notification', detail.notification);
+          break;
+        case EventType.PRESS:
+          console.log('User pressed notification', detail.notification);
+          break;
+      }
+    });
+
+    notifee.onBackgroundEvent(async ({ type, detail }) => {
+      const { notification, pressAction } = detail;
+
+      // Check if the user pressed the "Mark as read" action
+      if (
+        type === EventType.ACTION_PRESS &&
+        pressAction?.id === 'mark-as-read'
+      ) {
+        // TODO: Update external API
+
+        if (notification?.id) {
+          // Remove the notification
+          await notifee.cancelNotification(notification.id);
+        }
+      }
+    });
+
+    return unsubscribe;
   }, []);
 
   useEffect(() => {
@@ -117,11 +155,11 @@ const useNotify = () => {
     if (token) {
       console.log('token', token);
       // Handle notification tap (background or terminated state)
-      messaging().onNotificationOpenedApp(handleTapNotification);
+      onNotificationOpenedApp(messaging, handleTapNotification);
       // Handle background notification
-      messaging().setBackgroundMessageHandler(handleBackground);
+      setBackgroundMessageHandler(messaging, handleBackground);
       // Handle listen Foreground notification
-      const unsubscribe = messaging().onMessage(handleForeground);
+      const unsubscribe = onMessage(messaging, handleForeground);
 
       return unsubscribe;
     }

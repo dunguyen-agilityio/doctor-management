@@ -17,13 +17,16 @@ const defaultConfig = getDefaultConfig(__dirname);
 const config = {
   transformer: {
     getTransformOptions: async () => ({
+      // This will lazily load modules when they're evaluated, leading to faster startup times
       transform: {
         experimentalImportSupport: true,
         inlineRequires: true,
       },
     }),
+    minifierPath: 'metro-minify-terser',
     minifierConfig: {
       compress: {
+        // The option below removes all console logs statements in production.
         drop_console: true,
       },
     },

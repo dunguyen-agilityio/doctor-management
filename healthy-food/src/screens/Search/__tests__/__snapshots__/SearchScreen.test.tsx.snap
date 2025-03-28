@@ -99,27 +99,15 @@ exports[`SearchScreen match snapshot 1`] = `
       />
     </View>
     <RCTScrollView
-      collapsable={false}
       contentContainerStyle={
         {
           "gap": 16,
         }
       }
-      handlerTag={1}
-      handlerType="NativeViewGestureHandler"
       horizontal={true}
-      onGestureHandlerEvent={[Function]}
-      onGestureHandlerStateChange={[Function]}
       pagingEnabled={true}
       showsHorizontalScrollIndicator={false}
       testID="categories"
-      waitFor={
-        [
-          {
-            "current": null,
-          },
-        ]
-      }
     >
       <View>
         <View

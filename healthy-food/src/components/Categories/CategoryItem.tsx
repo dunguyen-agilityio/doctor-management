@@ -1,6 +1,8 @@
-import { StyleSheet, TouchableOpacity } from 'react-native';
-
-import type { TouchableOpacityProps } from 'react-native-gesture-handler';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from 'react-native';
 
 import { COLOR } from '@/constants';
 

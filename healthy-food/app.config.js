@@ -22,7 +22,7 @@ export const expo = {
       backgroundColor: '#fff',
     },
     package: 'com.nutrigo.app',
-    googleServicesFile: './google-services.json',
+    googleServicesFile: './google-services.json', //process.env.IC_GOOGLE_SERVICES_JSON ?? './google-services.json',
   },
   extra: {
     apiEndpoint: process.env.EXPO_PUBLIC_API_ENDPOINT,
