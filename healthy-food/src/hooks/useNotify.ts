@@ -3,11 +3,20 @@ import notifee, {
   AuthorizationStatus,
 } from '@notifee/react-native';
 import messaging, {
-  type FirebaseMessagingTypes,
+  FirebaseMessagingTypes,
 } from '@react-native-firebase/messaging';
 import Toast from 'react-native-toast-message';
 
 import { useEffect, useState } from 'react';
+
+import { navigationRef } from '@/navigation/RootNavigator';
+
+import { ROUTES } from '@/constants';
+
+const ANDROID_IMAGE =
+  'https://res.cloudinary.com/dn5vw6fjp/image/upload/v1743126465/iphone-12-pro-max_mxvryp.png';
+
+type FoodNotification = { type: 'NAVIGATE_TO_FOOD'; data: string };
 
 const useNotify = () => {
   const [token, setToken] = useState('');
@@ -37,66 +46,82 @@ const useNotify = () => {
   }, []);
 
   useEffect(() => {
-    if (token) {
-      const unsubscribe = messaging().onMessage(async (remoteMessage) => {
-        if (!remoteMessage.notification) return;
-        const { title, body } = remoteMessage.notification;
+    const handleBackground = async (
+      remoteMessage: FirebaseMessagingTypes.RemoteMessage,
+    ) => {
+      if (!remoteMessage.notification) return;
 
-        // Display an alert when app is in foreground
-        Toast.show({
-          type: 'info',
-          text1: title,
-          text2: body,
-        });
+      const { title, body, android } = remoteMessage.notification;
+
+      const channelId = await notifee.createChannel({
+        id: 'default',
+        name: 'Default Channel',
       });
 
-      // Handle notification tap (background or terminated state)
-      messaging().onNotificationOpenedApp((remoteMessage) => {
-        if (remoteMessage) {
-          console.log('Handle notification tap: ', remoteMessage);
-        }
-      });
-
-      // Handle app opened from terminated state via notification
-      messaging()
-        .getInitialNotification()
-        .then((remoteMessage) => {
-          if (remoteMessage) {
-            console.log('remoteMessage', remoteMessage);
-          }
-        });
-
-      messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-        if (!remoteMessage.notification) return;
-
-        // You can't directly navigate here, but you can process data or trigger something
-        // For navigation, rely on onNotificationOpenedApp or getInitialNotification
-
-        const { title, body } = remoteMessage.notification;
-
-        const channelId = await notifee.createChannel({
-          id: 'default',
-          name: 'Default Channel',
-        });
-
-        await notifee.displayNotification({
-          title,
-          body,
-          android: {
-            channelId,
-            // largeIcon: android?.imageUrl,
-            // smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
-            // pressAction is needed if you want the notification to open the app when pressed
-            pressAction: {
-              id: 'default',
-            },
-            // style: {
-            //   type: AndroidStyle.BIGPICTURE,
-            //   picture: android?.imageUrl ?? '',
-            // },
+      await notifee.displayNotification({
+        id: Date.now().toString(),
+        title,
+        body,
+        android: {
+          channelId,
+          largeIcon: android?.imageUrl ?? ANDROID_IMAGE,
+          smallIcon: 'ic_launcher', // optional, defaults to 'ic_launcher'.
+          // pressAction is needed if you want the notification to open the app when pressed
+          pressAction: {
+            id: 'default',
           },
-        });
+          style: {
+            type: AndroidStyle.BIGPICTURE,
+            picture: android?.imageUrl ?? ANDROID_IMAGE,
+          },
+        },
       });
+    };
+    const handleTapNotification = (
+      remoteMessage: FirebaseMessagingTypes.RemoteMessage,
+    ) => {
+      if (!remoteMessage.data) {
+        return;
+      }
+
+      // Process the data received in the notification
+      const { type, data } = remoteMessage.data as FoodNotification;
+
+      switch (type) {
+        case 'NAVIGATE_TO_FOOD':
+          navigationRef.navigate(ROUTES.DETAIL, { id: data });
+          break;
+
+        default:
+          break;
+      }
+    };
+
+    const handleForeground = async (
+      remoteMessage: FirebaseMessagingTypes.RemoteMessage,
+    ) => {
+      if (!remoteMessage.notification) return;
+
+      const { title, body } = remoteMessage.notification;
+
+      // Display an alert when app is in foreground
+      Toast.show({
+        type: 'info',
+        text1: title,
+        text2: body,
+        swipeable: true,
+        onPress: () => handleTapNotification(remoteMessage),
+      });
+    };
+
+    if (token) {
+      console.log('token', token);
+      // Handle notification tap (background or terminated state)
+      messaging().onNotificationOpenedApp(handleTapNotification);
+      // Handle background notification
+      messaging().setBackgroundMessageHandler(handleBackground);
+      // Handle listen Foreground notification
+      const unsubscribe = messaging().onMessage(handleForeground);
 
       return unsubscribe;
     }
