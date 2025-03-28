@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Alert, BackHandler, StyleSheet, View } from 'react-native';
 
 import {
   type LinkingOptions,
@@ -82,6 +82,35 @@ const handleDeepLink = (url: string) => {
 
 const App = () => {
   const [isAppReady, setIsAppReady] = useState(false);
+
+  useEffect(() => {
+    const backAction = () => {
+      const isHomeScreen =
+        navigationRef.current?.getCurrentRoute()?.name === ROUTES.HOME;
+
+      if (isHomeScreen) {
+        Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+          {
+            text: 'Cancel',
+            onPress: () => null,
+            style: 'cancel',
+          },
+          { text: 'YES', onPress: () => BackHandler.exitApp() },
+        ]);
+
+        return true;
+      }
+
+      return false;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   useEffect(() => {
     const handleLinkingListener = ({ url }: { url: string }) => {
