@@ -4,13 +4,15 @@
 
 - The Healthy Food App is a React Native application that helps users browse and manage their favorite healthy meals. It includes features such as searching, filtering, and favoriting food items.
 
+![Healthy Food App](https://res.cloudinary.com/dn5vw6fjp/image/upload/v1743146355/Cover_jcgiay.png)
+
 ## 2. Tech stack
 
-- Framework: React Native 0.77
+- React
+- Framework: React Native
 - Expo: Expo SDK
-- State Management: Context API
+- State Management: Zustand
 - Navigation: React Navigation
-- Backend: Json-server
 - Testing: Jest, React Testing Library
 - Linting & Formatting: ESLint, Prettier, Husky
 - Storybook
@@ -23,14 +25,14 @@
 
 ## 4. Requirements
 
-The application consists of four main screens following to this [design](<https://www.figma.com/file/LLkkEV64nhoR8empRw79Kl/Healthy-Food-App-(Community)?node-id=201%3A144&t=iVpH44LU0tyuYvtG-0>):
+- **The application consists of four main screens following to this [design](<https://www.figma.com/file/LLkkEV64nhoR8empRw79Kl/Healthy-Food-App-(Community)?node-id=201%3A144&t=iVpH44LU0tyuYvtG-0>)**
 
-- **Features**
-  - Horizontal & vertical food listing
+- **Features scope:**
+
+  - Horizontal & vertical food listing infinite scrolling
   - Search & filtering by categories
-  - Favorite management (add/remove)
-  - Smooth navigation between screens
-  - Storybook UI testing
+  - Display Food Detail
+  - Favorite management with localstorage (add/remove)
 
 ## 5. Prerequisites
 
@@ -46,9 +48,6 @@ The application consists of four main screens following to this [design](<https:
     > npm install -g expo-cli
     > ```
 
-  - React (>= 18.x)
-  - React Native (0.76.7)
-  - expo (47.0.13)
   - Android Studio (for Android Emulator)
   - Expo Go (For Testing on Physical Devices)
 
@@ -157,6 +156,24 @@ The application consists of four main screens following to this [design](<https:
   > npx expo start --clear
   > ```
 
-## 11. Author
+## 11. React Native Performance Monitoring
 
-- Du Nguyen
+- **[Flashlight](https://docs.flashlight.dev/)**: Make sure your application is running
+
+![Flashlight](https://framerusercontent.com/images/dIJP6F8IoYtUUpMAGtPcetdQMw.png)
+
+- **[React Native devtools with expo](https://docs.expo.dev/debugging/tools/)**
+
+![React Native devtools with expo](https://docs.expo.dev/static/images/debugging/developer-menu.png)
+
+- **[Profile of Android studio](https://developer.android.com/studio/profile)**
+
+![Profile of Android Studio of Android Studio](https://developer.android.com/static/studio/images/profiler-home.png)
+
+- **[Analyzing Bundles](https://docs.expo.dev/guides/analyzing-bundles/)**
+
+![Analyzing Bundles](https://docs.expo.dev/static/images/atlas/atlas-overview.avif)
+
+## 12. Author
+
+- Du Nguyen (Slack: [du.nguyen](du.nguyen))
