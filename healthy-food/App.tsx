@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import {
   type LinkingOptions,
@@ -20,10 +20,8 @@ import {
   setOptions,
 } from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { RootNavigator } from '@/navigation';
-import { navigationRef } from '@/navigation/RootNavigator';
+import RootNavigator, { navigationRef } from '@/navigation/RootNavigator';
 
 import Loading from '@/components/Loading';
 
@@ -134,7 +132,7 @@ const App = () => {
   };
 
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <View style={styles.container}>
       <QueryClientProvider client={queryClient}>
         <StatusBar />
         <NavigationContainer
@@ -151,7 +149,7 @@ const App = () => {
           </Suspense>
         )}
       </QueryClientProvider>
-    </GestureHandlerRootView>
+    </View>
   );
 };
 
