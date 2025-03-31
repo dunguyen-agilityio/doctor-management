@@ -2,9 +2,9 @@ import { Pressable, StyleSheet } from 'react-native';
 
 import FoodImage, { FoodImageSize } from '@/components/FoodImage';
 
-import { COLOR } from '@/constants';
+import type { IFood, TNutritional } from '@/types';
 
-import { IFood, TNutritional } from '@/types';
+import { COLOR } from '@/theme';
 
 import Text from '../Text';
 

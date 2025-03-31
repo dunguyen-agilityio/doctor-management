@@ -5,7 +5,7 @@ export const FocusDispatchContext = createContext<
   React.Dispatch<React.SetStateAction<boolean>>
 >(() => {});
 
-const FocusProvider = ({ children }: React.PropsWithChildren) => {
+export const FocusProvider = ({ children }: React.PropsWithChildren) => {
   const [focus, setFocus] = useState(false);
 
   return (
@@ -14,5 +14,3 @@ const FocusProvider = ({ children }: React.PropsWithChildren) => {
     </FocusDispatchContext.Provider>
   );
 };
-
-export default FocusProvider;

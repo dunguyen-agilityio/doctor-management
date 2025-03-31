@@ -2,9 +2,11 @@ import { StyleSheet, View } from 'react-native';
 
 import { Image } from 'expo-image';
 
-import { APP_ICONS, COLOR } from '@/constants';
+import type { IFood } from '@/types';
 
-import { FOOD_COLOR, IFood } from '@/types';
+import { COLOR } from '@/theme';
+
+import { APP_ICON } from '@/icons';
 
 export enum FoodImageSize {
   'medium',
@@ -30,12 +32,12 @@ const TYPE_STYLES = {
   },
 };
 
-const COLOR_MAPPING: Record<FOOD_COLOR, string> = {
-  [FOOD_COLOR.GREEN]: COLOR.GREEN,
-  [FOOD_COLOR.ORANGE]: COLOR.ORANGE,
-  [FOOD_COLOR.PURPLE]: COLOR.PURPLE,
-  [FOOD_COLOR.YELLOW]: COLOR.YELLOW,
-  [FOOD_COLOR.RED]: COLOR.RED,
+const COLOR_MAPPING: Record<string, string> = {
+  GREEN: COLOR.GREEN,
+  ORANGE: COLOR.ORANGE,
+  PURPLE: COLOR.PURPLE,
+  YELLOW: COLOR.YELLOW,
+  RED: COLOR.RED,
 };
 
 const FoodImage = ({
@@ -69,7 +71,7 @@ const FoodImage = ({
         }}
       >
         <Image
-          source={imgUrl || APP_ICONS.LOGO}
+          source={imgUrl || APP_ICON.LOGO}
           style={[styles.image, image]}
           testID="image"
           transition={1000}

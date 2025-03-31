@@ -5,8 +5,11 @@
     "baseUrl": ".",
     "module": "esnext",
     "paths": {
+      "@/route": ["./src/configs/route"],
+      "@/icons": ["./src/configs/icon"],
+      "@/theme": ["./src/configs/theme"],
       "@/*": ["./src/*"],
-      "@assets/*": ["./assets/*"]
+      "@/assets/*": ["./assets/*"]
     }
   }
 }

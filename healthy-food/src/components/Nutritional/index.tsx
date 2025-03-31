@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native';
 
-import { COLOR } from '@/constants';
+import type { TNutritional } from '@/types';
 
-import { TNutritional } from '@/types';
+import { COLOR } from '@/theme';
 
 import Text from '../Text';
 

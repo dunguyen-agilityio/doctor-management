@@ -1,9 +1,5 @@
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-
 import { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
-
-import { TabParamsList } from '@/navigation';
 
 import {
   ArticlesSlider,
@@ -16,12 +12,9 @@ import {
   Text,
 } from '@/components';
 
-import {
-  CATEGORIES,
-  HORIZONTAL_PAGE_SIZE,
-  QUERY_KEYS,
-  ROUTES,
-} from '@/constants';
+import { CATEGORIES, HORIZONTAL_PAGE_SIZE, QUERY_KEYS } from '@/constants';
+
+import type { BottomTabProps } from '@/types';
 
 import { useFoodList } from '@/hooks/useFoodList';
 
@@ -29,9 +22,9 @@ import { MOCK_ARTICLES } from '@/mocks/article';
 
 import { FocusDispatchContext } from '@/contexts/focus';
 
-export type HomeScreenProps = BottomTabScreenProps<TabParamsList, ROUTES.HOME>;
+import { ROUTES } from '@/route';
 
-const HomeScreen = ({ navigation }: HomeScreenProps) => {
+const HomeScreen = ({ navigation }: BottomTabProps<ROUTES.HOME>) => {
   const { isLoading, data, isFetchingNextPage, fetchNextPage } = useFoodList({
     queryKey: QUERY_KEYS.FOOD,
     pageSize: HORIZONTAL_PAGE_SIZE,

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { COLOR } from '@/constants';
+import { COLOR } from '@/theme';
 
 import Button from './index';
 

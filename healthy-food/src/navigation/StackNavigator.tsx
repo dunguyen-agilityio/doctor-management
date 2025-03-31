@@ -1,27 +1,17 @@
 import { Suspense, lazy } from 'react';
 
-import { createNavigationContainerRef } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { BackHeader, Loading } from '@/components';
-import DetailSkeleton from '@/components/Skeleton/DetailScreen';
+import { BackHeader, DetailScreenSkeleton, Loading } from '@/components';
 
-import { ROUTES } from '@/constants';
+import type { StackParamsList, TabParamsList } from '@/types';
 
-import TabNavigator, { type TabParamsList } from './TabNavigator';
+import { ROUTES } from '@/route';
 
+const TabNavigator = lazy(() => import('./TabNavigator'));
 const DetailsScreen = lazy(() => import('@/screens/Details'));
 
-export type RootStackParamsList = {
-  [ROUTES.ROOT]: undefined;
-  [ROUTES.DETAIL]: {
-    id: string;
-  };
-} & TabParamsList;
-
-const RootStack = createNativeStackNavigator<RootStackParamsList>();
-export const navigationRef =
-  createNavigationContainerRef<RootStackParamsList>();
+const RootStack = createNativeStackNavigator<StackParamsList & TabParamsList>();
 
 const RootNavigator = () => {
   return (
@@ -30,6 +20,7 @@ const RootNavigator = () => {
       screenLayout={({ children }) => (
         <Suspense fallback={<Loading fullScreen />}>{children}</Suspense>
       )}
+      initialRouteName={ROUTES.ROOT}
     >
       <RootStack.Group>
         <RootStack.Screen name={ROUTES.ROOT} component={TabNavigator} />
@@ -45,7 +36,7 @@ const RootNavigator = () => {
             ),
           }}
           layout={({ children }) => (
-            <Suspense fallback={<DetailSkeleton />}>{children}</Suspense>
+            <Suspense fallback={<DetailScreenSkeleton />}>{children}</Suspense>
           )}
         />
       </RootStack.Group>

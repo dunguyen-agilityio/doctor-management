@@ -1,8 +1,10 @@
-import { APP_ICONS, COLOR } from '@/constants';
-
 import { render } from '@/utils/test-utils';
 
 import { MOCK_FOOD_LIST } from '@/mocks/food';
+
+import { COLOR } from '@/theme';
+
+import { APP_ICON } from '@/icons';
 
 import FoodImage, { FoodImageSize } from './index';
 
@@ -26,7 +28,7 @@ describe('FoodImage Component', () => {
     const { getByTestId } = render(<FoodImage imgUrl="" color="GREEN" />);
     const image = getByTestId('image');
 
-    expect(image.props.source).toEqual([APP_ICONS.LOGO]);
+    expect(image.props.source).toEqual([APP_ICON.LOGO]);
   });
 
   it('applies correct size styles based on type', () => {

@@ -1,6 +1,8 @@
-import HomeScreen, { HomeScreenProps } from '@/screens/Home';
+import { ROUTES } from '@/route';
 
-import { ROUTES } from '@/constants';
+import HomeScreen from '@/screens/Home';
+
+import type { BottomTabProps } from '@/types';
 
 import { render } from '@/utils/test-utils';
 
@@ -13,7 +15,7 @@ jest.mock('@/hooks/useFoodList');
 const mockScreenProps = {
   route: { name: ROUTES.HOME, params: {}, key: 'home' },
   navigation: { navigate: jest.fn(), setParams: jest.fn() },
-} as unknown as HomeScreenProps;
+} as unknown as BottomTabProps<ROUTES.HOME>;
 
 describe('HomeScreen', () => {
   it('renders all main components', async () => {

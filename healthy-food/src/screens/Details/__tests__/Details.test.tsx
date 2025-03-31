@@ -3,9 +3,17 @@ import { useQuery } from '@tanstack/react-query';
 
 import Details from '@/screens/Details';
 
+import { StackScreenProps } from '@/types';
+
 import { render, waitFor } from '@/utils/test-utils';
 
 import { MOCK_FOOD_LIST } from '@/mocks/food';
+
+import { ROUTES } from '@/route';
+
+jest.mock('expo-linking', () => ({
+  createURL: jest.fn((path) => `${path}`),
+}));
 
 jest.mock('@tanstack/react-query', () => ({
   ...jest.requireActual('@tanstack/react-query'),
@@ -15,6 +23,10 @@ jest.mock('@tanstack/react-query', () => ({
 jest.mock('@/services/food', () => ({
   getFoodById: jest.fn(),
 }));
+
+const mockDetailProps = {
+  route: { params: { id: '1' } },
+} as StackScreenProps<ROUTES.DETAIL>;
 
 describe('Details Screen', () => {
   const mockFood = MOCK_FOOD_LIST[0];
@@ -31,7 +43,7 @@ describe('Details Screen', () => {
   it('shows loading indicator while fetching data', () => {
     (useQuery as jest.Mock).mockReturnValue({ isLoading: true });
 
-    const { getByTestId } = render(<Details />);
+    const { getByTestId } = render(<Details {...mockDetailProps} />);
     expect(getByTestId('detail-skeleton')).toBeTruthy();
   });
 
@@ -42,7 +54,7 @@ describe('Details Screen', () => {
       data: null,
     });
 
-    const { getByText } = render(<Details />);
+    const { getByText } = render(<Details {...mockDetailProps} />);
     await waitFor(() => {
       expect(getByText('Fetch failed')).toBeTruthy();
     });
@@ -56,7 +68,7 @@ describe('Details Screen', () => {
 
     const { name } = mockFood;
 
-    const { getByText } = render(<Details />);
+    const { getByText } = render(<Details {...mockDetailProps} />);
     await waitFor(() => {
       expect(getByText(name)).toBeTruthy();
       expect(getByText('Add to Favorites')).toBeTruthy();

@@ -1,9 +1,9 @@
+import { StyleSheet } from 'react-native';
+
 import {
   ShimmerPlaceholderProps,
   createShimmerPlaceholder,
 } from 'react-native-shimmer-placeholder';
-
-import { StyleSheet } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
 

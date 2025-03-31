@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react-native';
 
-import { TabParamsList } from '@/navigation';
+import { TabParamsList } from '@/types';
 
-// Adjust path
-import { APP_ICONS, ROUTES } from '@/constants';
+import { ROUTES } from '@/route';
+
+import { APP_ICON } from '@/icons';
 
 import TabIcon from './index';
 
@@ -18,7 +19,7 @@ describe('TabIcon', () => {
     renderTabIcon({ focused: true, name: ROUTES.FAVORITE });
     const image = screen.getByTestId('tab-icon-image');
     expect(image.props.source).toEqual(
-      expect.arrayContaining([APP_ICONS.FAVORITE_FILL]),
+      expect.arrayContaining([APP_ICON.FAVORITE_FILL]),
     );
     expect(image.props.style).toMatchObject({ width: 32, height: 32 });
   });
@@ -27,7 +28,7 @@ describe('TabIcon', () => {
     renderTabIcon({ focused: false, name: ROUTES.FAVORITE });
     const image = screen.getByTestId('tab-icon-image');
     expect(image.props.source).toEqual(
-      expect.arrayContaining([APP_ICONS.FAVORITE]),
+      expect.arrayContaining([APP_ICON.FAVORITE]),
     );
   });
 
@@ -35,7 +36,7 @@ describe('TabIcon', () => {
     renderTabIcon({ focused: true, name: ROUTES.HOME });
     const image = screen.getByTestId('tab-icon-image');
     expect(image.props.source).toEqual(
-      expect.arrayContaining([APP_ICONS.HOME_FILL]),
+      expect.arrayContaining([APP_ICON.HOME_FILL]),
     );
   });
 
@@ -43,7 +44,7 @@ describe('TabIcon', () => {
     renderTabIcon({ focused: false, name: ROUTES.SEARCH });
     const image = screen.getByTestId('tab-icon-image');
     expect(image.props.source).toEqual(
-      expect.arrayContaining([APP_ICONS.SEARCH_MENU]),
+      expect.arrayContaining([APP_ICON.SEARCH_MENU]),
     );
   });
 
@@ -69,11 +70,11 @@ describe('TabIcon', () => {
       name: ROUTES.FAVORITE,
     });
     expect(screen.getByTestId('tab-icon-image').props.source).toEqual(
-      expect.arrayContaining([APP_ICONS.FAVORITE]),
+      expect.arrayContaining([APP_ICON.FAVORITE]),
     );
     rerender(<TabIcon focused={true} name={ROUTES.FAVORITE} />);
     expect(screen.getByTestId('tab-icon-image').props.source).toEqual(
-      expect.arrayContaining([APP_ICONS.FAVORITE_FILL]),
+      expect.arrayContaining([APP_ICON.FAVORITE_FILL]),
     );
   });
 });

@@ -12,33 +12,19 @@ import {
   FavoriteScreenSkeleton,
   Header,
   HomeScreenSkeleton,
-  Loading,
   SearchScreenSkeleton,
   TabIcon,
 } from '@/components';
 
-import { ROUTES } from '@/constants';
+import type { TabParamsList } from '@/types';
 
-import FocusProvider from '@/contexts/focus/provider';
+import { FocusProvider } from '@/contexts/focus';
+
+import { ROUTES } from '@/route';
 
 const HomeScreen = lazy(() => import('@/screens/Home'));
 const SearchScreen = lazy(() => import('@/screens/Search'));
 const FavoriteScreen = lazy(() => import('@/screens/Favorite'));
-
-export type SearchPageParams = {
-  query?: string;
-  categories?: string[];
-};
-
-type FavoritePageParams = {
-  query?: string;
-};
-
-export type TabParamsList = {
-  [ROUTES.FAVORITE]?: FavoritePageParams;
-  [ROUTES.HOME]: undefined;
-  [ROUTES.SEARCH]?: SearchPageParams;
-};
 
 const Tab = createBottomTabNavigator<TabParamsList>();
 

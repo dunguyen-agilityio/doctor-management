@@ -66,5 +66,9 @@ export const getFoodById = async (id: string): Promise<IFood> => {
     `${API_ENTITIES.FOOD_LIST}/${id}`,
   );
 
+  if (!food) {
+    throw new Error(`Food not found with id: ${id}`);
+  }
+
   return food;
 };

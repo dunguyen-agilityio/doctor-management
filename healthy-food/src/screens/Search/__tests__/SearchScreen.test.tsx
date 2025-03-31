@@ -1,15 +1,17 @@
+import { ROUTES } from '@/route';
+
 import { useRoute } from '@react-navigation/native';
 
-import SearchScreen, { SearchScreenProps } from '@/screens/Search';
+import SearchScreen from '@/screens/Search';
 
-import { ROUTES } from '@/constants';
+import { BottomTabProps } from '@/types';
 
 import { render } from '@/utils/test-utils';
 
 const mockScreenProps = {
   route: { name: ROUTES.HOME, params: {}, key: 'home' },
   navigation: { navigate: jest.fn(), setParams: jest.fn() },
-} as unknown as SearchScreenProps;
+} as unknown as BottomTabProps<ROUTES.SEARCH>;
 
 describe('SearchScreen', () => {
   it('match snapshot', () => {

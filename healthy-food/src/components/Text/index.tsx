@@ -5,9 +5,7 @@ import {
   TextStyle,
 } from 'react-native';
 
-import { COLOR } from '@/constants';
-
-import { TEXT_COLOR } from '@/types';
+import { COLOR, TEXT_COLOR } from '@/theme';
 
 const TEXT_COLOR_MAP: Record<TEXT_COLOR, string> = {
   [TEXT_COLOR.PRIMARY]: COLOR.PRIMARY,

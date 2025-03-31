@@ -23,7 +23,7 @@ describe('FoodInfo Component', () => {
   };
   const { name, ingredients } = mockFood;
 
-  const renderComponent = (food = mockFood) => render(<FoodInfo food={food} />);
+  const renderComponent = (food = mockFood) => render(<FoodInfo {...food} />);
 
   it('renders correctly with all props', async () => {
     const { getByText } = renderComponent();

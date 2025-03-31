@@ -4,6 +4,7 @@ import {
   Loading,
   NotFound,
   SearchInput,
+  VerticalFoodListSkeleton,
 } from '@/components';
 
 import { useFavorite } from '@/hooks/useFavorite';
@@ -25,7 +26,10 @@ const FavoriteScreen = () => {
       ) : (
         <>
           <SearchInput onSearch={searchByName} />
-          <FoodList data={displayFavorites} ListEmptyComponent={<NotFound />} />
+          <FoodList
+            data={displayFavorites}
+            ListEmptyComponent={<VerticalFoodListSkeleton />}
+          />
         </>
       )}
     </Container>
