@@ -29,6 +29,7 @@ export default [
       '**/.storybook/*',
       'android/*',
       'jest.setup.js',
+      '__mocks__/',
     ],
   },
   ...compat.extends(

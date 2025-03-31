@@ -3,9 +3,11 @@ import { StyleSheet } from 'react-native';
 
 import { Image } from 'expo-image';
 
-import { TabParamsList } from '@/navigation';
+import type { TabParamsList } from '@/types';
 
-import { APP_ICONS, ROUTES } from '@/constants';
+import { ROUTES } from '@/route';
+
+import { APP_ICON } from '@/icons';
 
 const TabIcon = ({
   focused,
@@ -14,12 +16,10 @@ const TabIcon = ({
   focused: boolean;
   name: keyof TabParamsList;
 }) => {
-  const ICON_BY_ROUTE: Record<keyof TabParamsList, APP_ICONS> = {
-    [ROUTES.FAVORITE]: focused ? APP_ICONS.FAVORITE_FILL : APP_ICONS.FAVORITE,
-    [ROUTES.HOME]: focused ? APP_ICONS.HOME_FILL : APP_ICONS.HOME,
-    [ROUTES.SEARCH]: focused
-      ? APP_ICONS.SEARCH_MENU_FILL
-      : APP_ICONS.SEARCH_MENU,
+  const ICON_BY_ROUTE: Record<keyof TabParamsList, APP_ICON> = {
+    [ROUTES.FAVORITE]: focused ? APP_ICON.FAVORITE_FILL : APP_ICON.FAVORITE,
+    [ROUTES.HOME]: focused ? APP_ICON.HOME_FILL : APP_ICON.HOME,
+    [ROUTES.SEARCH]: focused ? APP_ICON.SEARCH_MENU_FILL : APP_ICON.SEARCH_MENU,
   };
 
   const icon = ICON_BY_ROUTE[name];

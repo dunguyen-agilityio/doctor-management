@@ -1,4 +1,5 @@
 import { useFavoriteStore } from '@/stores/favorite';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { QUERY_KEYS } from '@/constants';

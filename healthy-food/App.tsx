@@ -1,194 +1,70 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
-import { Alert, BackHandler, StyleSheet, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { DevSettings, StyleSheet } from 'react-native';
 
-import {
-  type LinkingOptions,
-  NavigationContainer,
-} from '@react-navigation/native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Constants from 'expo-constants';
-import { loadAsync } from 'expo-font';
-import {
-  getLinkingURL,
-  addEventListener as linkingAddEventListener,
-  createURL as linkingCreateURL,
-  parse as linkingParse,
-} from 'expo-linking';
-import {
-  hideAsync,
-  preventAutoHideAsync,
-  setOptions,
-} from 'expo-splash-screen';
+import { useFonts } from 'expo-font';
+import { hideAsync } from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 
-import RootNavigator, { navigationRef } from '@/navigation/RootNavigator';
+import { RootNavigation } from '@/navigation';
 
-import Loading from '@/components/Loading';
+import { useMeasureTTI } from '@/hooks';
 
-import { COLOR, ROUTES } from '@/constants';
+import { COLOR } from '@/theme';
 
-const Notification = lazy(() => import('@/components/Notification'));
+let StorybookUI: (() => JSX.Element) | null = null;
+
+if (__DEV__) {
+  StorybookUI = require('./.storybook').default;
+}
 
 const queryClient = new QueryClient();
 
-const prefix = linkingCreateURL('/');
-
-const linking: LinkingOptions<ReactNavigation.RootParamList> = {
-  prefixes: [prefix],
-};
-
-const appStartTime = Date.now();
-
-preventAutoHideAsync();
-setOptions({
-  duration: 1000,
-  fade: true,
-});
-
-const handleDeepLink = (url: string) => {
-  const { hostname, path, queryParams } = linkingParse(url);
-  const params = queryParams ?? {};
-
-  switch (hostname) {
-    case ROUTES.DETAIL:
-      if (path) {
-        navigationRef.navigate(ROUTES.DETAIL, { id: path });
-      } else {
-        console.log('Error: unknown hostname ' + hostname);
-      }
-      break;
-
-    case ROUTES.FAVORITE:
-      navigationRef.navigate(ROUTES.FAVORITE);
-      break;
-
-    case ROUTES.SEARCH:
-      if (
-        params !== null &&
-        'categories' in params &&
-        params['categories'] &&
-        typeof params['categories'] === 'string'
-      ) {
-        params['categories'] = params['categories'].split(',');
-      }
-
-      navigationRef.navigate(ROUTES.SEARCH, params);
-      break;
-
-    default:
-      break;
-  }
-};
-
 const App = () => {
-  const [isAppReady, setIsAppReady] = useState(false);
+  const [isStorybookOpen, setIsStorybookOpen] = useState(false);
+
+  const [loaded, error] = useFonts({
+    Manrope: require('@/assets/fonts/Manrope.ttf'),
+    Signika: require('@/assets/fonts/Signika.ttf'),
+  });
+
+  useMeasureTTI();
 
   useEffect(() => {
-    const backAction = () => {
-      const isHomeScreen =
-        navigationRef.current?.getCurrentRoute()?.name === ROUTES.HOME;
-
-      if (isHomeScreen) {
-        Alert.alert('Hold on!', 'Are you sure you want to go back?', [
-          {
-            text: 'Cancel',
-            onPress: () => null,
-            style: 'cancel',
-          },
-          { text: 'YES', onPress: () => BackHandler.exitApp() },
-        ]);
-
-        return true;
-      }
-
-      return false;
-    };
-
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction,
-    );
-
-    return () => backHandler.remove();
-  }, []);
-
-  useEffect(() => {
-    const handleLinkingListener = ({ url }: { url: string }) => {
-      if (navigationRef.isReady()) handleDeepLink(url);
-    };
-
-    // Listen for deep links when app is opened
-    const subscribe = linkingAddEventListener('url', handleLinkingListener);
-
-    return () => {
-      subscribe.remove();
-    };
-  }, []);
-
-  useEffect(() => {
-    const interactiveTime = Date.now();
-    const tti = interactiveTime - appStartTime;
-    console.log('Time to Interactive (TTI):', tti, 'ms');
-  }, []);
-
-  useEffect(() => {
-    async function prepare() {
-      try {
-        await loadAsync({
-          Manrope: require('@assets/fonts/Manrope.ttf'),
-          Signika: require('@assets/fonts/Signika.ttf'),
-        });
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        hideAsync();
-        if (navigationRef.isReady()) {
-          navigationRef.navigate(ROUTES.ROOT);
-        }
-      }
+    if (__DEV__) {
+      DevSettings.addMenuItem('Show Storybook', () => {
+        setIsStorybookOpen(true);
+      });
     }
-    prepare();
   }, []);
 
-  const handleNavigationReady = () => {
-    setIsAppReady(true);
-
-    const url = getLinkingURL();
-
-    if (url) {
-      handleDeepLink(url);
+  useEffect(() => {
+    if (loaded || error) {
+      hideAsync();
     }
-  };
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
+
+  if (isStorybookOpen && StorybookUI) {
+    return <StorybookUI />;
+  }
 
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <QueryClientProvider client={queryClient}>
         <StatusBar />
-        <NavigationContainer
-          linking={linking}
-          fallback={<Loading fullScreen />}
-          ref={navigationRef}
-          onReady={handleNavigationReady}
-        >
-          <RootNavigator />
-        </NavigationContainer>
-        {isAppReady && (
-          <Suspense>
-            <Notification />
-          </Suspense>
-        )}
+        <RootNavigation />
       </QueryClientProvider>
-    </View>
+    </GestureHandlerRootView>
   );
 };
 
-let AppEntryPoint = App;
-
-if (__DEV__ && Constants.expoConfig?.extra?.storybook) {
-  AppEntryPoint = require('./.storybook').default;
-}
-
-export default AppEntryPoint;
+export default App;
 
 const styles = StyleSheet.create({
   container: {

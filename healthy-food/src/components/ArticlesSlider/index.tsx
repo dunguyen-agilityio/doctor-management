@@ -8,10 +8,11 @@ import Carousel, {
 
 import Article from '@/components/Article';
 
-import { COLOR } from '@/constants';
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from '@/constants/dimensions';
 
-import { IArticle } from '@/types';
+import type { IArticle } from '@/types';
+
+import { COLOR } from '@/theme';
 
 const modeConfig = {
   parallaxScrollingScale: 1,

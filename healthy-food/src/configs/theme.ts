@@ -21,3 +21,10 @@ export const COLOR = {
   TERTIARY: '#696969',
   LIGHT_GREY: '#dbdbdb',
 };
+
+export enum TEXT_COLOR {
+  PRIMARY = 'PRIMARY',
+  SECONDARY = 'SECONDARY',
+  TERTIARY = 'TERTIARY',
+  FOURTH = 'FOURTH',
+}

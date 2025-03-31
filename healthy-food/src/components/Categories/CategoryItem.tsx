@@ -4,7 +4,7 @@ import {
   TouchableOpacityProps,
 } from 'react-native';
 
-import { COLOR } from '@/constants';
+import { COLOR } from '@/theme';
 
 import Text from '../Text';
 

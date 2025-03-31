@@ -2,7 +2,9 @@ import { StyleSheet, View } from 'react-native';
 
 import { Image } from 'expo-image';
 
-import { APP_ICONS, COLOR } from '@/constants';
+import { COLOR } from '@/theme';
+
+import { APP_ICON } from '@/icons';
 
 import Button from '../Button';
 import Text from '../Text';
@@ -17,7 +19,7 @@ const Header = () => {
         width={35}
         backgroundColor="#00000021"
       >
-        <Image source={APP_ICONS.QUESTION} style={styles.icon} />
+        <Image source={APP_ICON.QUESTION} style={styles.icon} />
       </Button>
     </View>
   );

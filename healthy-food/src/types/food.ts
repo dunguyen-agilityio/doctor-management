@@ -1,4 +1,4 @@
-import { LinearGradient } from 'expo-linear-gradient';
+import { type LinearGradientProps } from 'expo-linear-gradient';
 
 export type Categories =
   | 'Fast Food'
@@ -34,15 +34,7 @@ export interface IArticle {
   image: string;
   title: string;
   color: 'primary' | 'secondary';
-  backgroundColor: LinearGradient['props']['colors'];
-}
-
-export enum FOOD_COLOR {
-  'ORANGE' = 'ORANGE',
-  'GREEN' = 'GREEN',
-  'YELLOW' = 'YELLOW',
-  'RED' = 'RED',
-  'PURPLE' = 'PURPLE',
+  backgroundColor: LinearGradientProps['colors'];
 }
 
 export interface IFood {
@@ -50,7 +42,7 @@ export interface IFood {
   name: string;
   category: string;
   weight: number;
-  color: FOOD_COLOR;
+  color: string;
   desc: string;
   imgUrl: string;
   favorite: boolean;

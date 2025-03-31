@@ -1,6 +1,8 @@
-import { CATEGORIES, COLOR } from '@/constants';
+import { CATEGORIES } from '@/constants';
 
 import { fireEvent, render } from '@/utils/test-utils';
+
+import { COLOR } from '@/theme';
 
 import Categories from './index';
 

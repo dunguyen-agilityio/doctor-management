@@ -4,9 +4,11 @@ import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Image } from 'expo-image';
 
-import { APP_ICONS, COLOR } from '@/constants';
-
 import { debounce } from '@/utils/debounce';
+
+import { COLOR } from '@/theme';
+
+import { APP_ICON } from '@/icons';
 
 import Button from '../Button';
 
@@ -43,7 +45,7 @@ const SearchInput = (
 
   return (
     <View style={styles.container} testID="search-input">
-      <Image source={APP_ICONS.SEARCH} style={styles.iconSearch} />
+      <Image source={APP_ICON.SEARCH} style={styles.iconSearch} />
       <TextInput
         {...otherProps}
         ref={inputRef}

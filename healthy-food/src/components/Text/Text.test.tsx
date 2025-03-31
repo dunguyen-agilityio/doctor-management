@@ -2,9 +2,7 @@ import { render } from '@testing-library/react-native';
 
 import Text from '@/components/Text';
 
-import { COLOR } from '@/constants';
-
-import { TEXT_COLOR } from '@/types';
+import { COLOR, TEXT_COLOR } from '@/theme';
 
 describe('Text Component', () => {
   it('renders correctly with default props', () => {

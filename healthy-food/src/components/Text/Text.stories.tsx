@@ -2,9 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { View } from 'react-native';
 
-import { COLOR } from '@/constants';
-
-import { TEXT_COLOR } from '@/types';
+import { COLOR, TEXT_COLOR } from '@/theme';
 
 import Text from './index';
 

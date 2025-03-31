@@ -1,6 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { create } from 'zustand/react';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { QUERY_KEYS } from '@/constants';
 

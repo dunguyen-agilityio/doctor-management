@@ -1,12 +1,13 @@
 import { FlatList, FlatListProps, StyleSheet } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { type RootScreenNavigationProps } from '@/navigation';
+import { VERTICAL_PAGE_SIZE } from '@/constants';
 
-import { ROUTES, VERTICAL_PAGE_SIZE } from '@/constants';
+import type { IFood, StackParamsList } from '@/types';
 
-import { IFood } from '@/types';
+import { ROUTES } from '@/route';
 
 import FoodCard from '../FoodCard';
 
@@ -22,7 +23,7 @@ const FoodList = ({
   ...otherProps
 }: FoodListProps) => {
   const { navigate } =
-    useNavigation<RootScreenNavigationProps<typeof ROUTES.HOME>>();
+    useNavigation<NativeStackNavigationProp<StackParamsList, ROUTES.ROOT>>();
 
   const renderItem = ({ item, index }: { item: IFood; index: number }) => {
     const { id, name, imgUrl, weight, color, nutritional } = item;

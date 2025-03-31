@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
-import { COLOR } from '@/constants';
+import { COLOR } from '@/theme';
 
 import SearchInputSkeleton from './SearchInput';
 import VerticalFoodListSkeleton from './VerticalFoodList';

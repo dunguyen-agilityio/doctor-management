@@ -65,7 +65,7 @@
 **Check out the branch**:
 
 > ```
-> git checkout practice-one
+> git checkout practice-two
 > ```
 
 > ```

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import type { TStateDispatchAction } from '@/types/context';
+import type { TStateDispatchAction } from '@/types';
 
 import { FocusContext, FocusDispatchContext } from '@/contexts/focus';
 

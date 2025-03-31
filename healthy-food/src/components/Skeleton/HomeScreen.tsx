@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native';
 
-import { COLOR } from '@/constants';
-
 import { range } from '@/utils/array';
+
+import { COLOR } from '@/theme';
 
 import FilterSkeleton from './Filter';
 import HorizontalFoodListSkeleton from './HorizontalFoodList';

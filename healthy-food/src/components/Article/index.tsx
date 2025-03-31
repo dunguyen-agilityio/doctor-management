@@ -4,9 +4,13 @@ import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { APP_ICONS, COLOR, WINDOW_HEIGHT, WINDOW_WIDTH } from '@/constants';
+import { WINDOW_HEIGHT, WINDOW_WIDTH } from '@/constants';
 
-import { IArticle, TEXT_COLOR } from '@/types';
+import type { IArticle } from '@/types';
+
+import { COLOR, TEXT_COLOR } from '@/theme';
+
+import { APP_ICON } from '@/icons';
 
 import Button from '../Button';
 import Text from '../Text';
@@ -59,7 +63,7 @@ const Article = ({
           <Text variant="subtitle6" color={COLOR.WHITE}>
             Read now
           </Text>
-          <Image source={APP_ICONS.ARROW_RIGHT_BOLD} style={styles.icon} />
+          <Image source={APP_ICON.ARROW_RIGHT_BOLD} style={styles.icon} />
         </Button>
       </View>
     </LinearGradient>

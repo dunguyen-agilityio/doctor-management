@@ -3,12 +3,13 @@ import {
   Pressable,
   PressableProps,
   StyleSheet,
-  Text,
   ViewStyle,
 } from 'react-native';
 import { StyleProp } from 'react-native';
 
-import { COLOR } from '@/constants';
+import { COLOR } from '@/theme';
+
+import Text from '../Text';
 
 export interface ButtonProps extends PressableProps {
   variant?: 'contained' | 'outlined' | 'icon';
@@ -57,7 +58,9 @@ const Button = ({
           color={COLOR.GREEN}
         />
       ) : typeof children === 'string' ? (
-        <Text style={styles.text}>{children}</Text>
+        <Text variant="subtitle1" color={COLOR.WHITE}>
+          {children}
+        </Text>
       ) : (
         children
       )}

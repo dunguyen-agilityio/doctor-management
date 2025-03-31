@@ -4,10 +4,6 @@ export const expo = {
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/images/adaptive-icon.png',
-  splash: {
-    image: './assets/images/splash-icon.png',
-    resizeMode: 'contain',
-  },
   updates: {
     fallbackToCacheTimeout: 0,
   },
@@ -22,7 +18,7 @@ export const expo = {
       backgroundColor: '#fff',
     },
     package: 'com.nutrigo.app',
-    googleServicesFile: './google-services.json', //process.env.IC_GOOGLE_SERVICES_JSON ?? './google-services.json',
+    googleServicesFile: './google-services.json',
   },
   extra: {
     apiEndpoint: process.env.EXPO_PUBLIC_API_ENDPOINT,
@@ -61,7 +57,7 @@ export const expo = {
     [
       'expo-splash-screen',
       {
-        image: './assets/images/splash-icon.png', // This path is relative to the root of your repo.png',
+        image: './assets/images/splash-icon.png',
         imageWidth: 122,
       },
     ],

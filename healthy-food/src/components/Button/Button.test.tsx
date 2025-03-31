@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react-native';
 
-import { COLOR } from '@/constants';
+import { COLOR } from '@/theme';
 
 import Button from './index';
 

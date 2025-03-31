@@ -1,22 +1,27 @@
-import { type RouteProp, useRoute } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+
 import { useQuery } from '@tanstack/react-query';
 
-import { type RootStackParamsList } from '@/navigation';
+import {
+  Button,
+  Container,
+  DetailScreenSkeleton,
+  ErrorFallback,
+  FoodInfo,
+} from '@/components';
 
-import { Container, ErrorFallback, FoodInfo } from '@/components';
-import DetailSkeleton from '@/components/Skeleton/DetailScreen';
+import { QUERY_KEYS } from '@/constants';
 
-import { QUERY_KEYS, ROUTES } from '@/constants';
+import type { StackScreenProps } from '@/types';
 
 import { getFoodById } from '@/services/food';
 
-import FavoriteButton from './FavoriteButton';
+import { useFavorite } from '@/hooks';
 
-type DetailRoute = RouteProp<RootStackParamsList, typeof ROUTES.DETAIL>;
+import { ROUTES } from '@/route';
 
-const Details = () => {
-  const route = useRoute<DetailRoute>();
-  const { id } = route.params;
+const Details = ({ route: { params } }: StackScreenProps<ROUTES.DETAIL>) => {
+  const { id } = params;
 
   const {
     isLoading,
@@ -28,24 +33,42 @@ const Details = () => {
     staleTime: 1000 * 60 * 5,
   });
 
+  const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
+
+  const hasFavorite = favorites.some(({ id: foodId }) => foodId === id);
+
+  const toggleFavorite = () => {
+    hasFavorite ? removeFromFavorite(id) : addToFavorite(food!);
+  };
+
   if (isLoading) {
-    return <DetailSkeleton />;
+    return <DetailScreenSkeleton />;
+  }
+
+  if (error) {
+    return <ErrorFallback error={error} />;
   }
 
   return (
     <Container flex={1} paddingHorizontal={20}>
-      {error || !food ? (
-        <ErrorFallback
-          error={error || ({ message: 'Error fetching food details' } as Error)}
-        />
-      ) : (
+      {food ? (
         <>
-          <FoodInfo food={food} />
-          <FavoriteButton food={food} />
+          <FoodInfo {...food} />
+          <Button onPress={toggleFavorite} style={styles.button}>
+            {hasFavorite ? 'Unfavorite' : 'Add to Favorites'}
+          </Button>
         </>
-      )}
+      ) : null}
     </Container>
   );
 };
 
 export default Details;
+
+const styles = StyleSheet.create({
+  button: {
+    marginTop: 27,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

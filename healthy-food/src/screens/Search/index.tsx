@@ -1,12 +1,15 @@
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  Suspense,
+  lazy,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { ActivityIndicator, StyleSheet, TextInput, View } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
 import { Image } from 'expo-image';
-
-import { TabParamsList } from '@/navigation';
 
 import {
   Categories,
@@ -14,27 +17,23 @@ import {
   FoodList,
   NotFound,
   SearchInput,
+  VerticalFoodListSkeleton,
 } from '@/components';
-import VerticalFoodList from '@/components/Skeleton/VerticalFoodList';
 
-import {
-  APP_ICONS,
-  CATEGORIES,
-  COLOR,
-  QUERY_KEYS,
-  ROUTES,
-  VERTICAL_PAGE_SIZE,
-} from '@/constants';
+import { CATEGORIES, QUERY_KEYS, VERTICAL_PAGE_SIZE } from '@/constants';
+
+import type { BottomTabProps } from '@/types';
 
 import { useFocus } from '@/hooks/useFocus';
 import { useFoodList } from '@/hooks/useFoodList';
 
-export type SearchScreenProps = BottomTabScreenProps<
-  TabParamsList,
-  ROUTES.SEARCH
->;
+import { COLOR } from '@/theme';
 
-const SearchScreen = ({ route: { params } }: SearchScreenProps) => {
+import { ROUTES } from '@/route';
+
+import { APP_ICON } from '@/icons';
+
+const SearchScreen = ({ route: { params } }: BottomTabProps<ROUTES.SEARCH>) => {
   const searchInputRef = useRef<TextInput>(null);
   const [autoFocus, setFocus] = useFocus();
 
@@ -105,7 +104,7 @@ const SearchScreen = ({ route: { params } }: SearchScreenProps) => {
       </View>
       <Container flex={1} paddingTop={25}>
         {isLoading ? (
-          <VerticalFoodList />
+          <VerticalFoodListSkeleton />
         ) : (
           <FoodList
             data={data}
@@ -113,7 +112,7 @@ const SearchScreen = ({ route: { params } }: SearchScreenProps) => {
             ListEmptyComponent={
               <NotFound
                 image={
-                  <Image source={APP_ICONS.EMPTY} style={styles.emptyImage} />
+                  <Image source={APP_ICON.EMPTY} style={styles.emptyImage} />
                 }
                 description="Try searching with a different keyword or tweak your search a little."
                 title="No Results Found"

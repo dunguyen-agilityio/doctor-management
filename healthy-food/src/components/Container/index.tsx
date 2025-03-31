@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { StyleSheet, View, type ViewStyle } from 'react-native';
 
-import { COLOR } from '@/constants';
+import { COLOR } from '@/theme';
 
 const Container = ({
   children,

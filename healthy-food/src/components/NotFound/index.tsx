@@ -2,7 +2,9 @@ import { StyleSheet, View } from 'react-native';
 
 import { Image } from 'expo-image';
 
-import { APP_ICONS, COLOR } from '@/constants';
+import { COLOR } from '@/theme';
+
+import { APP_ICON } from '@/icons';
 
 import Text from '../Text';
 
@@ -13,7 +15,7 @@ const NotFound = ({
   description = NO_FOOD_FOUND_DESCRIPTION,
   image = (
     <Image
-      source={APP_ICONS.NOT_FOUND}
+      source={APP_ICON.NOT_FOUND}
       testID="not-found-image"
       style={styles.image}
     />
