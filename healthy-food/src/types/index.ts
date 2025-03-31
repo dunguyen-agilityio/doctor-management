@@ -1,2 +1,2 @@
 export * from './text';
-export * from './Food';
+export * from './food';
