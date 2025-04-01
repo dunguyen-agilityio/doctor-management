@@ -1,5 +1,3 @@
-import { ROUTES } from '@/route';
-
 import { useRoute } from '@react-navigation/native';
 
 import SearchScreen from '@/screens/Search';
@@ -7,6 +5,8 @@ import SearchScreen from '@/screens/Search';
 import { BottomTabProps } from '@/types';
 
 import { render } from '@/utils/test-utils';
+
+import { ROUTES } from '@/routes';
 
 const mockScreenProps = {
   route: { name: ROUTES.HOME, params: {}, key: 'home' },

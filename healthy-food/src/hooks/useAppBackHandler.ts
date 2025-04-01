@@ -3,7 +3,7 @@ import { Alert, BackHandler } from 'react-native';
 
 import { navigationRef } from '@/navigation';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 export const useAppBackHandler = () => {
   useEffect(() => {

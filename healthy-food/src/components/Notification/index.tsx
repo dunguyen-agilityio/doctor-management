@@ -20,7 +20,7 @@ import notifee, {
 
 import { navigationRef } from '@/navigation';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 import { APP_ICON } from '@/icons';
 

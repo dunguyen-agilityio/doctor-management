@@ -20,7 +20,7 @@ import type { TabParamsList } from '@/types';
 
 import { FocusProvider } from '@/contexts/focus';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 const HomeScreen = lazy(() => import('@/screens/Home'));
 const SearchScreen = lazy(() => import('@/screens/Search'));

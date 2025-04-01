@@ -7,7 +7,7 @@ import {
 
 import { navigationRef } from '@/navigation';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 const handleDeepLink = (url: string): void => {
   const { hostname, path, queryParams } = linkingParse(url);

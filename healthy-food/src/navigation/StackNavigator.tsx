@@ -6,7 +6,7 @@ import { BackHeader, DetailScreenSkeleton, Loading } from '@/components';
 
 import type { StackParamsList, TabParamsList } from '@/types';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 const TabNavigator = lazy(() => import('./TabNavigator'));
 const DetailsScreen = lazy(() => import('@/screens/Details'));

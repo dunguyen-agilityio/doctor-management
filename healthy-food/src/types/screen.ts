@@ -9,7 +9,7 @@ import type {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 export type SearchPageParams = {
   query?: string;

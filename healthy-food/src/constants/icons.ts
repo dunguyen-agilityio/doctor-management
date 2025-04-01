@@ -14,4 +14,4 @@ export const APP_ICON = {
   SEARCH_MENU_FILL: require('@/assets/icons/search-fill.webp'),
   NOTIFICATION:
     'https://res.cloudinary.com/dn5vw6fjp/image/upload/v1743126465/iphone-12-pro-max_mxvryp.png',
-};
+} as const;

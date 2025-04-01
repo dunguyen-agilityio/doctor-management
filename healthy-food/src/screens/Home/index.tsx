@@ -22,7 +22,7 @@ import { MOCK_ARTICLES } from '@/mocks/article';
 
 import { FocusDispatchContext } from '@/contexts/focus';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 const HomeScreen = ({ navigation }: BottomTabProps<ROUTES.HOME>) => {
   const { isLoading, data, isFetchingNextPage, fetchNextPage } = useFoodList({

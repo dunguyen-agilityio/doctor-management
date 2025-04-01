@@ -1,5 +1,3 @@
-import { ROUTES } from '@/route';
-
 import HomeScreen from '@/screens/Home';
 
 import type { BottomTabProps } from '@/types';
@@ -9,6 +7,8 @@ import { render } from '@/utils/test-utils';
 import { useFoodList } from '@/hooks/useFoodList';
 
 import { MOCK_FOOD_LIST } from '@/mocks/food';
+
+import { ROUTES } from '@/routes';
 
 jest.mock('@/hooks/useFoodList');
 
