@@ -9,7 +9,7 @@ import { render, waitFor } from '@/utils/test-utils';
 
 import { MOCK_FOOD_LIST } from '@/mocks/food';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 jest.mock('expo-linking', () => ({
   createURL: jest.fn((path) => `${path}`),

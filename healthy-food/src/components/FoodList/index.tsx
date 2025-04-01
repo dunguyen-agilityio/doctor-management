@@ -7,7 +7,7 @@ import { VERTICAL_PAGE_SIZE } from '@/constants';
 
 import type { IFood, StackParamsList } from '@/types';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 import FoodCard from '../FoodCard';
 

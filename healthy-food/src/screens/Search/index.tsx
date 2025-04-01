@@ -27,9 +27,9 @@ import type { BottomTabProps } from '@/types';
 import { useFocus } from '@/hooks/useFocus';
 import { useFoodList } from '@/hooks/useFoodList';
 
-import { COLOR } from '@/theme';
+import { ROUTES } from '@/routes';
 
-import { ROUTES } from '@/route';
+import { COLOR } from '@/theme';
 
 import { APP_ICON } from '@/icons';
 

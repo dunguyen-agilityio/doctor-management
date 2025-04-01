@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react-native';
 
 import { TabParamsList } from '@/types';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 import { APP_ICON } from '@/icons';
 

@@ -5,7 +5,7 @@ import { Image } from 'expo-image';
 
 import type { TabParamsList } from '@/types';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 import { APP_ICON } from '@/icons';
 

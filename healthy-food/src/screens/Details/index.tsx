@@ -18,7 +18,7 @@ import { getFoodById } from '@/services/food';
 
 import { useFavorite } from '@/hooks';
 
-import { ROUTES } from '@/route';
+import { ROUTES } from '@/routes';
 
 const Details = ({ route: { params } }: StackScreenProps<ROUTES.DETAIL>) => {
   const { id } = params;

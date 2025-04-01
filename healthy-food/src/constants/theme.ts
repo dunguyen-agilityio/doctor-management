@@ -1,3 +1,10 @@
+export enum TEXT_COLOR {
+  PRIMARY = 'PRIMARY',
+  SECONDARY = 'SECONDARY',
+  TERTIARY = 'TERTIARY',
+  FOURTH = 'FOURTH',
+}
+
 export const COLOR = {
   PRIMARY: '#5c5c5c',
   WHITE: '#fff',
@@ -20,11 +27,4 @@ export const COLOR = {
   GREY: '#e0e0e0',
   TERTIARY: '#696969',
   LIGHT_GREY: '#dbdbdb',
-};
-
-export enum TEXT_COLOR {
-  PRIMARY = 'PRIMARY',
-  SECONDARY = 'SECONDARY',
-  TERTIARY = 'TERTIARY',
-  FOURTH = 'FOURTH',
-}
+} as const;

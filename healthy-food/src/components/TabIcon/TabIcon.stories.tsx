@@ -1,9 +1,10 @@
-import { ROUTES } from '@/route';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { View } from 'react-native';
 
 import { TabParamsList } from '@/types';
+
+import { ROUTES } from '@/routes';
 
 import TabIcon from './index';
 
