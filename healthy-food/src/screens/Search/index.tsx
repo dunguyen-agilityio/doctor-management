@@ -84,13 +84,13 @@ const SearchScreen = ({ route: { params } }: BottomTabProps<ROUTES.SEARCH>) => {
   }, [fetchNextPage]);
 
   const renderFooter = () =>
-    isFetchingNextPage ? null : (
+    isFetchingNextPage ? (
       <ActivityIndicator
         size="large"
         color={COLOR.GREEN}
         style={styles.footer}
       />
-    );
+    ) : null;
 
   return (
     <Container>
