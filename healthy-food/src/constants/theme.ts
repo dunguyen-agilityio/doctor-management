@@ -1,0 +1,30 @@
+export enum TEXT_COLOR {
+  PRIMARY = 'PRIMARY',
+  SECONDARY = 'SECONDARY',
+  TERTIARY = 'TERTIARY',
+  FOURTH = 'FOURTH',
+}
+
+export const COLOR = {
+  PRIMARY: '#5c5c5c',
+  WHITE: '#fff',
+  LIGHT_GREEN: '#91c788',
+  LIGHT_GRAY: '#ececec',
+  GRAY: '#7e7e7e',
+  RED: '#ea1502',
+  PURPLE: '#9059a7',
+  BLACK: '#000000',
+  LIGHT_BLACK: '#330600',
+  WARNING: '#da6317',
+  LIGHT_PURPLE: '#fff3f1',
+  GREEN: '#27ae60',
+  ORANGE: '#d89e4a',
+  YELLOW: '#f2c94c',
+  LIGHT_GREEN_10: 'rgba(28, 195, 121, 0.1)',
+  DARK_GREEN: '#1cc379',
+  SECONDARY: '#ff8473',
+  BLACK_BEAN: '#330600',
+  GREY: '#e0e0e0',
+  TERTIARY: '#696969',
+  LIGHT_GREY: '#dbdbdb',
+} as const;
