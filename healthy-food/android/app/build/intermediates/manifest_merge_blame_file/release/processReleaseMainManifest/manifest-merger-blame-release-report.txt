@@ -1,0 +1,859 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.nutrigo.app"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:2:3-64
+11-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:2:20-62
+12    <uses-permission
+12-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:3:3-77
+13        android:name="android.permission.READ_EXTERNAL_STORAGE"
+13-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:3:20-75
+14        android:maxSdkVersion="32" />
+14-->[:expo-image] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-image/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:17:9-35
+15    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+15-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:4:3-75
+15-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:4:20-73
+16    <uses-permission android:name="android.permission.VIBRATE" />
+16-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:5:3-63
+16-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:5:20-61
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:6:3-78
+17-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:6:20-76
+18
+19    <queries>
+19-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:7:3-13:13
+20        <intent>
+20-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:8:5-12:14
+21            <action android:name="android.intent.action.VIEW" />
+21-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:9:7-58
+21-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:9:15-56
+22
+23            <category android:name="android.intent.category.BROWSABLE" />
+23-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:10:7-67
+23-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:10:17-65
+24
+25            <data android:scheme="https" />
+25-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:11:7-37
+25-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:11:13-35
+26        </intent>
+27        <!-- Query open documents -->
+28        <intent>
+28-->[:expo-file-system] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-file-system/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:15:9-17:18
+29            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+29-->[:expo-file-system] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-file-system/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:16:13-79
+29-->[:expo-file-system] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-file-system/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:16:21-76
+30        </intent>
+31    </queries>
+32
+33    <uses-permission android:name="android.permission.WAKE_LOCK" />
+33-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:8:5-68
+33-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:8:22-65
+34    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+34-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:9:5-79
+34-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:9:22-76
+35    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+35-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:25:5-81
+35-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:25:22-78
+36    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+36-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:26:5-77
+36-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:26:22-74
+37    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+37-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:23:5-77
+37-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:23:22-74
+38    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+38-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:26:5-82
+38-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:26:22-79
+39
+40    <permission
+40-->[androidx.core:core:1.13.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/879be8a70b9f01fd422f0500f6021c0d/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+41        android:name="com.nutrigo.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+41-->[androidx.core:core:1.13.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/879be8a70b9f01fd422f0500f6021c0d/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+42        android:protectionLevel="signature" />
+42-->[androidx.core:core:1.13.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/879be8a70b9f01fd422f0500f6021c0d/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+43
+44    <uses-permission android:name="com.nutrigo.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+44-->[androidx.core:core:1.13.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/879be8a70b9f01fd422f0500f6021c0d/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+44-->[androidx.core:core:1.13.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/879be8a70b9f01fd422f0500f6021c0d/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+45    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+45-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:16:5-79
+45-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:16:22-76
+46    <uses-permission
+46-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:17:5-19:38
+47        android:name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS"
+47-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:18:9-73
+48        android:maxSdkVersion="30" /> <!-- For Xiaomi devices to enable heads-up notifications as default (https://github.com/invertase/notifee/issues/296) -->
+48-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:19:9-35
+49    <uses-permission
+49-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:21:5-23:38
+50        android:name="android.permission.ACCESS_NOTIFICATION_POLICY"
+50-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:22:9-69
+51        android:minSdkVersion="23" />
+51-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:23:9-35
+52
+53    <application
+53-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:14:3-33:17
+54        android:name="com.nutrigo.app.MainApplication"
+54-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:14:16-47
+55        android:allowBackup="true"
+55-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:14:162-188
+56        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+56-->[androidx.core:core:1.13.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/879be8a70b9f01fd422f0500f6021c0d/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+57        android:debuggable="true"
+58        android:extractNativeLibs="false"
+59        android:icon="@mipmap/ic_launcher"
+59-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:14:81-115
+60        android:label="@string/app_name"
+60-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:14:48-80
+61        android:roundIcon="@mipmap/ic_launcher_round"
+61-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:14:116-161
+62        android:supportsRtl="true"
+62-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:14:221-247
+63        android:theme="@style/AppTheme" >
+63-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:14:189-220
+64        <profileable android:shell="true" />
+64-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:15:5-41
+64-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:15:18-38
+65
+66        <meta-data
+66-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:16:5-83
+67            android:name="expo.modules.updates.ENABLED"
+67-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:16:16-59
+68            android:value="false" />
+68-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:16:60-81
+69        <meta-data
+69-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:17:5-105
+70            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
+70-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:17:16-80
+71            android:value="ALWAYS" />
+71-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:17:81-103
+72        <meta-data
+72-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:18:5-99
+73            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
+73-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:18:16-79
+74            android:value="0" />
+74-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:18:80-97
+75
+76        <activity
+76-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:19:5-32:16
+77            android:name="com.nutrigo.app.MainActivity"
+77-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:19:15-43
+78            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode"
+78-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:19:44-134
+79            android:exported="true"
+79-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:19:256-279
+80            android:launchMode="singleTask"
+80-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:19:135-166
+81            android:screenOrientation="portrait"
+81-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:19:280-316
+82            android:theme="@style/Theme.App.SplashScreen"
+82-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:19:210-255
+83            android:windowSoftInputMode="adjustResize" >
+83-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:19:167-209
+84            <intent-filter>
+84-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:20:7-23:23
+85                <action android:name="android.intent.action.MAIN" />
+85-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:21:9-60
+85-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:21:17-58
+86
+87                <category android:name="android.intent.category.LAUNCHER" />
+87-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:22:9-68
+87-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:22:19-66
+88            </intent-filter>
+89            <intent-filter>
+89-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:24:7-31:23
+90                <action android:name="android.intent.action.VIEW" />
+90-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:9:7-58
+90-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:9:15-56
+91
+92                <category android:name="android.intent.category.DEFAULT" />
+92-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:26:9-67
+92-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:26:19-65
+93                <category android:name="android.intent.category.BROWSABLE" />
+93-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:10:7-67
+93-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:10:17-65
+94
+95                <data android:scheme="nutrigo" />
+95-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:11:7-37
+95-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:11:13-35
+96                <data android:scheme="com.nutrigo.app" />
+96-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:11:7-37
+96-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:11:13-35
+97                <data android:scheme="exp+nutrigo-app" />
+97-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:11:7-37
+97-->/home/dunguyen/training/react-native-training/healthy-food/android/app/src/main/AndroidManifest.xml:11:13-35
+98            </intent-filter>
+99        </activity>
+100
+101        <provider
+101-->[:notifee_react-native] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:8:9-12:40
+102            android:name="io.invertase.notifee.NotifeeInitProvider"
+102-->[:notifee_react-native] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:9:13-68
+103            android:authorities="com.nutrigo.app.notifee-init-provider"
+103-->[:notifee_react-native] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:10:13-73
+104            android:exported="false"
+104-->[:notifee_react-native] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:11:13-37
+105            android:initOrder="-100" />
+105-->[:notifee_react-native] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:12:13-37
+106
+107        <service
+107-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:12:9-14:40
+108            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingHeadlessService"
+108-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:13:13-103
+109            android:exported="false" />
+109-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:14:13-37
+110        <service
+110-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:15:9-21:19
+111            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingService"
+111-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:16:13-95
+112            android:exported="false" >
+112-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:17:13-37
+113            <intent-filter>
+113-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:18:13-20:29
+114                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+114-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:19:17-78
+114-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:19:25-75
+115            </intent-filter>
+116        </service>
+117
+118        <receiver
+118-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:23:9-30:20
+119            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingReceiver"
+119-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:24:13-96
+120            android:exported="true"
+120-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:25:13-36
+121            android:permission="com.google.android.c2dm.permission.SEND" >
+121-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:26:13-73
+122            <intent-filter>
+122-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:27:13-29:29
+123                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+123-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:28:17-81
+123-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:28:25-78
+124            </intent-filter>
+125        </receiver>
+126
+127        <meta-data
+127-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:32:9-34:36
+128            android:name="firebase_messaging_auto_init_enabled"
+128-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:33:13-64
+129            android:value="true" />
+129-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:34:13-33
+130        <meta-data
+130-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:35:9-37:32
+131            android:name="com.google.firebase.messaging.default_notification_channel_id"
+131-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:36:13-89
+132            android:value="" />
+132-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:37:13-29
+133        <meta-data
+133-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:38:9-40:47
+134            android:name="com.google.firebase.messaging.default_notification_color"
+134-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:39:13-84
+135            android:resource="@color/white" />
+135-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:40:13-44
+136        <meta-data
+136-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:9:9-11:36
+137            android:name="app_data_collection_default_enabled"
+137-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:10:13-63
+138            android:value="true" />
+138-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:11:13-33
+139
+140        <service
+140-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:13:9-21:19
+141            android:name="com.google.firebase.components.ComponentDiscoveryService"
+141-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:14:13-84
+142            android:directBootAware="true"
+142-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:15:13-43
+143            android:exported="false" >
+143-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:16:13-37
+144            <meta-data
+144-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:18:13-20:85
+145                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
+145-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:19:17-120
+146                android:value="com.google.firebase.components.ComponentRegistrar" />
+146-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:20:17-82
+147            <meta-data
+147-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:57:13-59:85
+148                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
+148-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:58:17-122
+149                android:value="com.google.firebase.components.ComponentRegistrar" />
+149-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:59:17-82
+150            <meta-data
+150-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:60:13-62:85
+151                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+151-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:61:17-119
+152                android:value="com.google.firebase.components.ComponentRegistrar" />
+152-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:62:17-82
+153            <meta-data
+153-->[com.google.firebase:firebase-installations:18.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/e0c8c14970bb06cf549ce936cfb89260/transformed/firebase-installations-18.0.0/AndroidManifest.xml:15:13-17:85
+154                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
+154-->[com.google.firebase:firebase-installations:18.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/e0c8c14970bb06cf549ce936cfb89260/transformed/firebase-installations-18.0.0/AndroidManifest.xml:16:17-130
+155                android:value="com.google.firebase.components.ComponentRegistrar" />
+155-->[com.google.firebase:firebase-installations:18.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/e0c8c14970bb06cf549ce936cfb89260/transformed/firebase-installations-18.0.0/AndroidManifest.xml:17:17-82
+156            <meta-data
+156-->[com.google.firebase:firebase-installations:18.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/e0c8c14970bb06cf549ce936cfb89260/transformed/firebase-installations-18.0.0/AndroidManifest.xml:18:13-20:85
+157                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+157-->[com.google.firebase:firebase-installations:18.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/e0c8c14970bb06cf549ce936cfb89260/transformed/firebase-installations-18.0.0/AndroidManifest.xml:19:17-127
+158                android:value="com.google.firebase.components.ComponentRegistrar" />
+158-->[com.google.firebase:firebase-installations:18.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/e0c8c14970bb06cf549ce936cfb89260/transformed/firebase-installations-18.0.0/AndroidManifest.xml:20:17-82
+159            <meta-data
+159-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ca55c22b789ea0411a3a68d7d3f928/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:12:13-14:85
+160                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+160-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ca55c22b789ea0411a3a68d7d3f928/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:13:17-116
+161                android:value="com.google.firebase.components.ComponentRegistrar" />
+161-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ca55c22b789ea0411a3a68d7d3f928/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:14:17-82
+162            <meta-data
+162-->[com.google.firebase:firebase-common:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ecaa8eed622ddda34822fa35336a8b/transformed/firebase-common-21.0.0/AndroidManifest.xml:35:13-37:85
+163                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+163-->[com.google.firebase:firebase-common:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ecaa8eed622ddda34822fa35336a8b/transformed/firebase-common-21.0.0/AndroidManifest.xml:36:17-109
+164                android:value="com.google.firebase.components.ComponentRegistrar" />
+164-->[com.google.firebase:firebase-common:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ecaa8eed622ddda34822fa35336a8b/transformed/firebase-common-21.0.0/AndroidManifest.xml:37:17-82
+165            <meta-data
+165-->[com.google.firebase:firebase-datatransport:18.2.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/9d40b8c96b07483673196d48a1c58bec/transformed/firebase-datatransport-18.2.0/AndroidManifest.xml:25:13-27:85
+166                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+166-->[com.google.firebase:firebase-datatransport:18.2.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/9d40b8c96b07483673196d48a1c58bec/transformed/firebase-datatransport-18.2.0/AndroidManifest.xml:26:17-115
+167                android:value="com.google.firebase.components.ComponentRegistrar" />
+167-->[com.google.firebase:firebase-datatransport:18.2.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/9d40b8c96b07483673196d48a1c58bec/transformed/firebase-datatransport-18.2.0/AndroidManifest.xml:27:17-82
+168        </service>
+169
+170        <provider
+170-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:23:9-27:38
+171            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
+171-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:24:13-88
+172            android:authorities="com.nutrigo.app.reactnativefirebaseappinitprovider"
+172-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:25:13-86
+173            android:exported="false"
+173-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:26:13-37
+174            android:initOrder="99" />
+174-->[:react-native-firebase_app] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:27:13-35
+175        <provider
+175-->[:expo-file-system] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-file-system/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:21:9-30:20
+176            android:name="expo.modules.filesystem.FileSystemFileProvider"
+176-->[:expo-file-system] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-file-system/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:22:13-74
+177            android:authorities="com.nutrigo.app.FileSystemFileProvider"
+177-->[:expo-file-system] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-file-system/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:23:13-74
+178            android:exported="false"
+178-->[:expo-file-system] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-file-system/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:24:13-37
+179            android:grantUriPermissions="true" >
+179-->[:expo-file-system] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-file-system/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:25:13-47
+180            <meta-data
+180-->[:expo-file-system] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-file-system/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:27:13-29:70
+181                android:name="android.support.FILE_PROVIDER_PATHS"
+181-->[:expo-file-system] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-file-system/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:28:17-67
+182                android:resource="@xml/file_system_provider_paths" />
+182-->[:expo-file-system] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-file-system/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:29:17-67
+183        </provider>
+184
+185        <meta-data
+185-->[:expo-modules-core] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:9:9-11:89
+186            android:name="org.unimodules.core.AppLoader#react-native-headless"
+186-->[:expo-modules-core] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:10:13-79
+187            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
+187-->[:expo-modules-core] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:11:13-86
+188        <meta-data
+188-->[:expo-modules-core] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:12:9-15:45
+189            android:name="com.facebook.soloader.enabled"
+189-->[:expo-modules-core] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:13:13-57
+190            android:value="true" />
+190-->[:expo-modules-core] /home/dunguyen/training/react-native-training/healthy-food/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:14:13-33
+191
+192        <provider
+192-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:29:9-37:20
+193            android:name="androidx.startup.InitializationProvider"
+193-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:30:13-67
+194            android:authorities="com.nutrigo.app.androidx-startup"
+194-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:31:13-68
+195            android:exported="false" >
+195-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:32:13-37
+196            <meta-data
+196-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:34:13-36:52
+197                android:name="androidx.work.WorkManagerInitializer"
+197-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:35:17-68
+198                android:value="androidx.startup" />
+198-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:36:17-49
+199            <meta-data
+199-->[androidx.emoji2:emoji2:1.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/ef483ab108db28edf7743ee5d0859501/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+200                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+200-->[androidx.emoji2:emoji2:1.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/ef483ab108db28edf7743ee5d0859501/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+201                android:value="androidx.startup" />
+201-->[androidx.emoji2:emoji2:1.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/ef483ab108db28edf7743ee5d0859501/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+202            <meta-data
+202-->[androidx.lifecycle:lifecycle-process:2.8.3] /home/dunguyen/.gradle/caches/8.10.2/transforms/bbd8e03a7aa4e7ca0a041937ee46ea3a/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:29:13-31:52
+203                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+203-->[androidx.lifecycle:lifecycle-process:2.8.3] /home/dunguyen/.gradle/caches/8.10.2/transforms/bbd8e03a7aa4e7ca0a041937ee46ea3a/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:30:17-78
+204                android:value="androidx.startup" />
+204-->[androidx.lifecycle:lifecycle-process:2.8.3] /home/dunguyen/.gradle/caches/8.10.2/transforms/bbd8e03a7aa4e7ca0a041937ee46ea3a/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:31:17-49
+205            <meta-data
+205-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+206                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+206-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+207                android:value="androidx.startup" />
+207-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+208        </provider>
+209
+210        <service
+210-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:39:9-45:35
+211            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+211-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:40:13-88
+212            android:directBootAware="false"
+212-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:41:13-44
+213            android:enabled="@bool/enable_system_alarm_service_default"
+213-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:42:13-72
+214            android:exported="false" />
+214-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:43:13-37
+215        <service
+215-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:46:9-52:35
+216            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+216-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:47:13-84
+217            android:directBootAware="false"
+217-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:48:13-44
+218            android:enabled="@bool/enable_system_job_service_default"
+218-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:49:13-70
+219            android:exported="true"
+219-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:50:13-36
+220            android:permission="android.permission.BIND_JOB_SERVICE" />
+220-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:51:13-69
+221        <service
+221-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:53:9-59:35
+222            android:name="androidx.work.impl.foreground.SystemForegroundService"
+222-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:54:13-81
+223            android:directBootAware="false"
+223-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:55:13-44
+224            android:enabled="@bool/enable_system_foreground_service_default"
+224-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:56:13-77
+225            android:exported="false" />
+225-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:57:13-37
+226
+227        <receiver
+227-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:61:9-66:35
+228            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+228-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:62:13-88
+229            android:directBootAware="false"
+229-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:63:13-44
+230            android:enabled="true"
+230-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:64:13-35
+231            android:exported="false" />
+231-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:65:13-37
+232        <receiver
+232-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:67:9-77:20
+233            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+233-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:68:13-106
+234            android:directBootAware="false"
+234-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:69:13-44
+235            android:enabled="false"
+235-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:70:13-36
+236            android:exported="false" >
+236-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:71:13-37
+237            <intent-filter>
+237-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:73:13-76:29
+238                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+238-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:74:17-87
+238-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:74:25-84
+239                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+239-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:75:17-90
+239-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:75:25-87
+240            </intent-filter>
+241        </receiver>
+242        <receiver
+242-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:78:9-88:20
+243            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+243-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:79:13-104
+244            android:directBootAware="false"
+244-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:80:13-44
+245            android:enabled="false"
+245-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:81:13-36
+246            android:exported="false" >
+246-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:82:13-37
+247            <intent-filter>
+247-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:84:13-87:29
+248                <action android:name="android.intent.action.BATTERY_OKAY" />
+248-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:85:17-77
+248-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:85:25-74
+249                <action android:name="android.intent.action.BATTERY_LOW" />
+249-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:86:17-76
+249-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:86:25-73
+250            </intent-filter>
+251        </receiver>
+252        <receiver
+252-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:89:9-99:20
+253            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+253-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:90:13-104
+254            android:directBootAware="false"
+254-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:91:13-44
+255            android:enabled="false"
+255-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:92:13-36
+256            android:exported="false" >
+256-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:93:13-37
+257            <intent-filter>
+257-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:95:13-98:29
+258                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+258-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:96:17-83
+258-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:96:25-80
+259                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+259-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:97:17-82
+259-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:97:25-79
+260            </intent-filter>
+261        </receiver>
+262        <receiver
+262-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:100:9-109:20
+263            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+263-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:101:13-103
+264            android:directBootAware="false"
+264-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:102:13-44
+265            android:enabled="false"
+265-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:103:13-36
+266            android:exported="false" >
+266-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:104:13-37
+267            <intent-filter>
+267-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:106:13-108:29
+268                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+268-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:107:17-79
+268-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:107:25-76
+269            </intent-filter>
+270        </receiver>
+271        <receiver
+271-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:110:9-121:20
+272            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+272-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:111:13-88
+273            android:directBootAware="false"
+273-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:112:13-44
+274            android:enabled="false"
+274-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:113:13-36
+275            android:exported="false" >
+275-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:114:13-37
+276            <intent-filter>
+276-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:116:13-120:29
+277                <action android:name="android.intent.action.BOOT_COMPLETED" />
+277-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:117:17-79
+277-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:117:25-76
+278                <action android:name="android.intent.action.TIME_SET" />
+278-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:118:17-73
+278-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:118:25-70
+279                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+279-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:119:17-81
+279-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:119:25-78
+280            </intent-filter>
+281        </receiver>
+282        <receiver
+282-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:122:9-131:20
+283            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+283-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:123:13-99
+284            android:directBootAware="false"
+284-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:124:13-44
+285            android:enabled="@bool/enable_system_alarm_service_default"
+285-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:125:13-72
+286            android:exported="false" >
+286-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:126:13-37
+287            <intent-filter>
+287-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:128:13-130:29
+288                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+288-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:129:17-98
+288-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:129:25-95
+289            </intent-filter>
+290        </receiver>
+291        <receiver
+291-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:132:9-142:20
+292            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+292-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:133:13-78
+293            android:directBootAware="false"
+293-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:134:13-44
+294            android:enabled="true"
+294-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:135:13-35
+295            android:exported="true"
+295-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:136:13-36
+296            android:permission="android.permission.DUMP" >
+296-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:137:13-57
+297            <intent-filter>
+297-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:139:13-141:29
+298                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+298-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:140:17-88
+298-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:140:25-85
+299            </intent-filter>
+300        </receiver>
+301
+302        <activity
+302-->[com.google.android.gms:play-services-auth:21.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/65ecbbadca4bffeb0cc687e99f10e849/transformed/play-services-auth-21.3.0/AndroidManifest.xml:23:9-27:75
+303            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+303-->[com.google.android.gms:play-services-auth:21.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/65ecbbadca4bffeb0cc687e99f10e849/transformed/play-services-auth-21.3.0/AndroidManifest.xml:24:13-93
+304            android:excludeFromRecents="true"
+304-->[com.google.android.gms:play-services-auth:21.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/65ecbbadca4bffeb0cc687e99f10e849/transformed/play-services-auth-21.3.0/AndroidManifest.xml:25:13-46
+305            android:exported="false"
+305-->[com.google.android.gms:play-services-auth:21.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/65ecbbadca4bffeb0cc687e99f10e849/transformed/play-services-auth-21.3.0/AndroidManifest.xml:26:13-37
+306            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+306-->[com.google.android.gms:play-services-auth:21.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/65ecbbadca4bffeb0cc687e99f10e849/transformed/play-services-auth-21.3.0/AndroidManifest.xml:27:13-72
+307        <!--
+308            Service handling Google Sign-In user revocation. For apps that do not integrate with
+309            Google Sign-In, this service will never be started.
+310        -->
+311        <service
+311-->[com.google.android.gms:play-services-auth:21.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/65ecbbadca4bffeb0cc687e99f10e849/transformed/play-services-auth-21.3.0/AndroidManifest.xml:33:9-37:51
+312            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+312-->[com.google.android.gms:play-services-auth:21.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/65ecbbadca4bffeb0cc687e99f10e849/transformed/play-services-auth-21.3.0/AndroidManifest.xml:34:13-89
+313            android:exported="true"
+313-->[com.google.android.gms:play-services-auth:21.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/65ecbbadca4bffeb0cc687e99f10e849/transformed/play-services-auth-21.3.0/AndroidManifest.xml:35:13-36
+314            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+314-->[com.google.android.gms:play-services-auth:21.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/65ecbbadca4bffeb0cc687e99f10e849/transformed/play-services-auth-21.3.0/AndroidManifest.xml:36:13-107
+315            android:visibleToInstantApps="true" />
+315-->[com.google.android.gms:play-services-auth:21.3.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/65ecbbadca4bffeb0cc687e99f10e849/transformed/play-services-auth-21.3.0/AndroidManifest.xml:37:13-48
+316
+317        <receiver
+317-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:29:9-40:20
+318            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+318-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:30:13-78
+319            android:exported="true"
+319-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:31:13-36
+320            android:permission="com.google.android.c2dm.permission.SEND" >
+320-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:32:13-73
+321            <intent-filter>
+321-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:27:13-29:29
+322                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+322-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:28:17-81
+322-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:28:25-78
+323            </intent-filter>
+324
+325            <meta-data
+325-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:37:13-39:40
+326                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
+326-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:38:17-92
+327                android:value="true" />
+327-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:39:17-37
+328        </receiver>
+329        <!--
+330             FirebaseMessagingService performs security checks at runtime,
+331             but set to not exported to explicitly avoid allowing another app to call it.
+332        -->
+333        <service
+333-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:46:9-53:19
+334            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+334-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:47:13-82
+335            android:directBootAware="true"
+335-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:48:13-43
+336            android:exported="false" >
+336-->[com.google.firebase:firebase-messaging:24.1.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/274b9706e874a29b9779e9863e6a2ea8/transformed/firebase-messaging-24.1.0/AndroidManifest.xml:49:13-37
+337            <intent-filter android:priority="-500" >
+337-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:18:13-20:29
+338                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+338-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:19:17-78
+338-->[:react-native-firebase_messaging] /home/dunguyen/training/react-native-training/healthy-food/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:19:25-75
+339            </intent-filter>
+340        </service>
+341
+342        <activity
+342-->[com.google.android.gms:play-services-base:18.5.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/1f1ad80ec46b054b5a588aa8c7db831a/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:9-173
+343            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+343-->[com.google.android.gms:play-services-base:18.5.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/1f1ad80ec46b054b5a588aa8c7db831a/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:19-85
+344            android:exported="false"
+344-->[com.google.android.gms:play-services-base:18.5.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/1f1ad80ec46b054b5a588aa8c7db831a/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:146-170
+345            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+345-->[com.google.android.gms:play-services-base:18.5.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/1f1ad80ec46b054b5a588aa8c7db831a/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:86-145
+346
+347        <provider
+347-->[com.google.firebase:firebase-common:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ecaa8eed622ddda34822fa35336a8b/transformed/firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
+348            android:name="com.google.firebase.provider.FirebaseInitProvider"
+348-->[com.google.firebase:firebase-common:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ecaa8eed622ddda34822fa35336a8b/transformed/firebase-common-21.0.0/AndroidManifest.xml:24:13-77
+349            android:authorities="com.nutrigo.app.firebaseinitprovider"
+349-->[com.google.firebase:firebase-common:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ecaa8eed622ddda34822fa35336a8b/transformed/firebase-common-21.0.0/AndroidManifest.xml:25:13-72
+350            android:directBootAware="true"
+350-->[com.google.firebase:firebase-common:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ecaa8eed622ddda34822fa35336a8b/transformed/firebase-common-21.0.0/AndroidManifest.xml:26:13-43
+351            android:exported="false"
+351-->[com.google.firebase:firebase-common:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ecaa8eed622ddda34822fa35336a8b/transformed/firebase-common-21.0.0/AndroidManifest.xml:27:13-37
+352            android:initOrder="100" />
+352-->[com.google.firebase:firebase-common:21.0.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c2ecaa8eed622ddda34822fa35336a8b/transformed/firebase-common-21.0.0/AndroidManifest.xml:28:13-36
+353
+354        <meta-data
+354-->[com.github.bumptech.glide:okhttp3-integration:4.11.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/b47ae1ccbf20f7967aa0768fc1682f9e/transformed/okhttp3-integration-4.11.0/AndroidManifest.xml:11:9-13:43
+355            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
+355-->[com.github.bumptech.glide:okhttp3-integration:4.11.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/b47ae1ccbf20f7967aa0768fc1682f9e/transformed/okhttp3-integration-4.11.0/AndroidManifest.xml:12:13-84
+356            android:value="GlideModule" />
+356-->[com.github.bumptech.glide:okhttp3-integration:4.11.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/b47ae1ccbf20f7967aa0768fc1682f9e/transformed/okhttp3-integration-4.11.0/AndroidManifest.xml:13:13-40
+357        <meta-data
+357-->[com.google.android.gms:play-services-basement:18.4.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/899e35ca7b4117693d3662612b53d328/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:9-122
+358            android:name="com.google.android.gms.version"
+358-->[com.google.android.gms:play-services-basement:18.4.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/899e35ca7b4117693d3662612b53d328/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:20-65
+359            android:value="@integer/google_play_services_version" />
+359-->[com.google.android.gms:play-services-basement:18.4.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/899e35ca7b4117693d3662612b53d328/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:66-119
+360
+361        <service
+361-->[androidx.room:room-runtime:2.5.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c7359db18398a25919efa593fe18efae/transformed/room-runtime-2.5.0/AndroidManifest.xml:24:9-28:63
+362            android:name="androidx.room.MultiInstanceInvalidationService"
+362-->[androidx.room:room-runtime:2.5.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c7359db18398a25919efa593fe18efae/transformed/room-runtime-2.5.0/AndroidManifest.xml:25:13-74
+363            android:directBootAware="true"
+363-->[androidx.room:room-runtime:2.5.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c7359db18398a25919efa593fe18efae/transformed/room-runtime-2.5.0/AndroidManifest.xml:26:13-43
+364            android:exported="false" />
+364-->[androidx.room:room-runtime:2.5.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/c7359db18398a25919efa593fe18efae/transformed/room-runtime-2.5.0/AndroidManifest.xml:27:13-37
+365
+366        <receiver
+366-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+367            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+367-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+368            android:directBootAware="false"
+368-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+369            android:enabled="true"
+369-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+370            android:exported="true"
+370-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+371            android:permission="android.permission.DUMP" >
+371-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+372            <intent-filter>
+372-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+373                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+373-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+373-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+374            </intent-filter>
+375            <intent-filter>
+375-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+376                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+376-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+376-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+377            </intent-filter>
+378            <intent-filter>
+378-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+379                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+379-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+379-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+380            </intent-filter>
+381            <intent-filter>
+381-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+382                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+382-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+382-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/dunguyen/.gradle/caches/8.10.2/transforms/ee76a5afeb8f5fbd6ce921f89978194c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+383            </intent-filter>
+384        </receiver>
+385
+386        <service
+386-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/5cc390e8a0c12d1577b178162ca30b78/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:28:9-34:19
+387            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+387-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/5cc390e8a0c12d1577b178162ca30b78/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:29:13-103
+388            android:exported="false" >
+388-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/5cc390e8a0c12d1577b178162ca30b78/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:30:13-37
+389            <meta-data
+389-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/5cc390e8a0c12d1577b178162ca30b78/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:31:13-33:39
+390                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+390-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/5cc390e8a0c12d1577b178162ca30b78/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:32:17-94
+391                android:value="cct" />
+391-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/5cc390e8a0c12d1577b178162ca30b78/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:33:17-36
+392        </service>
+393        <service
+393-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/628b0e09c2aee0948f10deef04b50a6d/transformed/transport-runtime-3.1.9/AndroidManifest.xml:26:9-30:19
+394            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+394-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/628b0e09c2aee0948f10deef04b50a6d/transformed/transport-runtime-3.1.9/AndroidManifest.xml:27:13-117
+395            android:exported="false"
+395-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/628b0e09c2aee0948f10deef04b50a6d/transformed/transport-runtime-3.1.9/AndroidManifest.xml:28:13-37
+396            android:permission="android.permission.BIND_JOB_SERVICE" >
+396-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/628b0e09c2aee0948f10deef04b50a6d/transformed/transport-runtime-3.1.9/AndroidManifest.xml:29:13-69
+397        </service>
+398
+399        <receiver
+399-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/628b0e09c2aee0948f10deef04b50a6d/transformed/transport-runtime-3.1.9/AndroidManifest.xml:32:9-34:40
+400            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+400-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/628b0e09c2aee0948f10deef04b50a6d/transformed/transport-runtime-3.1.9/AndroidManifest.xml:33:13-132
+401            android:exported="false" /> <!-- Receiver Service -->
+401-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/dunguyen/.gradle/caches/8.10.2/transforms/628b0e09c2aee0948f10deef04b50a6d/transformed/transport-runtime-3.1.9/AndroidManifest.xml:34:13-37
+402        <service
+402-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:28:9-30:40
+403            android:name="app.notifee.core.ReceiverService"
+403-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:29:13-60
+404            android:exported="false" />
+404-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:30:13-37
+405
+406        <activity
+406-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:32:9-38:75
+407            android:name="app.notifee.core.NotificationReceiverActivity"
+407-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:33:13-73
+408            android:excludeFromRecents="true"
+408-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:34:13-46
+409            android:exported="true"
+409-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:35:13-36
+410            android:noHistory="true"
+410-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:36:13-37
+411            android:taskAffinity=""
+411-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:37:13-36
+412            android:theme="@android:style/Theme.Translucent.NoTitleBar" /> <!-- Foreground Service -->
+412-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:38:13-72
+413        <service
+413-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:41:9-44:60
+414            android:name="app.notifee.core.ForegroundService"
+414-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:42:13-62
+415            android:exported="false"
+415-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:43:13-37
+416            android:foregroundServiceType="shortService" />
+416-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:44:13-57
+417
+418        <receiver
+418-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:46:9-54:20
+419            android:name="app.notifee.core.RebootBroadcastReceiver"
+419-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:47:13-68
+420            android:exported="false" >
+420-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:48:13-37
+421            <intent-filter>
+421-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:49:13-53:29
+422                <action android:name="android.intent.action.BOOT_COMPLETED" />
+422-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:117:17-79
+422-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:117:25-76
+423                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+423-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:51:17-82
+423-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:51:25-79
+424                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+424-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:52:17-82
+424-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:52:25-79
+425            </intent-filter>
+426        </receiver>
+427        <receiver
+427-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:55:9-61:20
+428            android:name="app.notifee.core.AlarmPermissionBroadcastReceiver"
+428-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:56:13-77
+429            android:exported="true" >
+429-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:57:13-36
+430            <intent-filter>
+430-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:58:13-60:29
+431                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
+431-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:59:17-107
+431-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:59:25-104
+432            </intent-filter>
+433        </receiver>
+434        <receiver
+434-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:62:9-70:20
+435            android:name="app.notifee.core.NotificationAlarmReceiver"
+435-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:63:13-70
+436            android:exported="false" >
+436-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:64:13-37
+437            <intent-filter>
+437-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:49:13-53:29
+438                <action android:name="android.intent.action.BOOT_COMPLETED" />
+438-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:117:17-79
+438-->[androidx.work:work-runtime:2.8.0] /home/dunguyen/.gradle/caches/8.10.2/transforms/22613c09862f8e8bd75dddbb0337d948/transformed/work-runtime-2.8.0/AndroidManifest.xml:117:25-76
+439                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+439-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:51:17-82
+439-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:51:25-79
+440                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+440-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:52:17-82
+440-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:52:25-79
+441            </intent-filter>
+442        </receiver> <!-- Broadcast Receiver -->
+443        <receiver
+443-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:73:9-81:20
+444            android:name="app.notifee.core.BlockStateBroadcastReceiver"
+444-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:74:13-72
+445            android:exported="false" >
+445-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:75:13-37
+446            <intent-filter>
+446-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:76:13-80:29
+447                <action android:name="android.app.action.APP_BLOCK_STATE_CHANGED" />
+447-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:77:17-85
+447-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:77:25-82
+448                <action android:name="android.app.action.NOTIFICATION_CHANNEL_BLOCK_STATE_CHANGED" />
+448-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:78:17-102
+448-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:78:25-99
+449                <action android:name="android.app.action.NOTIFICATION_CHANNEL_GROUP_BLOCK_STATE_CHANGED" />
+449-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:79:17-108
+449-->[app.notifee:core:202108261754] /home/dunguyen/.gradle/caches/8.10.2/transforms/95e24d064d0551d84827a772295ca2a9/transformed/core-202108261754/AndroidManifest.xml:79:25-105
+450            </intent-filter>
+451        </receiver>
+452    </application>
+453
+454</manifest>

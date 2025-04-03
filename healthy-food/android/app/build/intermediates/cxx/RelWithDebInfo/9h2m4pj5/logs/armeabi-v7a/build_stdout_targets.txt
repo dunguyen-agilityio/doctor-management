@@ -1,0 +1,3 @@
+ninja: Entering directory `/home/dunguyen/training/react-native-training/healthy-food/android/app/.cxx/RelWithDebInfo/9h2m4pj5/armeabi-v7a'
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
