@@ -3,3 +3,5 @@ node_modules/
 .env
 google-services.json
 *.d.ts
+android/
+ios/
