@@ -1,0 +1,2400 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchScreen match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#fff",
+        "flex": 1,
+      },
+      {},
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "gap": 16,
+        "paddingTop": 14,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "#fff3f1",
+          "borderRadius": 15,
+          "height": 46,
+          "marginHorizontal": 16,
+          "position": "relative",
+        }
+      }
+      testID="search-input"
+    >
+      <ViewManagerAdapter_ExpoImage
+        containerViewRef={"[React.ref]"}
+        contentFit="cover"
+        contentPosition={
+          {
+            "left": "50%",
+            "top": "50%",
+          }
+        }
+        height={24}
+        left={21}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        position="absolute"
+        source={
+          [
+            {
+              "testUri": "../../../assets/icons/icon-search.webp",
+            },
+          ]
+        }
+        style={
+          {
+            "height": 24,
+            "left": 21,
+            "position": "absolute",
+            "top": "50%",
+            "transform": [
+              {
+                "translateY": -10,
+              },
+            ],
+            "width": 24,
+          }
+        }
+        top="50%"
+        transform={
+          [
+            {
+              "translateY": -10,
+            },
+          ]
+        }
+        transition={null}
+        width={24}
+      />
+      <TextInput
+        defaultValue=""
+        onChangeText={[Function]}
+        placeholder="Search for healthy food"
+        placeholderTextColor="#ff8473"
+        style={
+          {
+            "color": "#000000",
+            "fontSize": 13,
+            "fontWeight": "400",
+            "paddingHorizontal": 60,
+            "paddingVertical": 14,
+          }
+        }
+      />
+    </View>
+    <RCTScrollView
+      contentContainerStyle={
+        {
+          "gap": 16,
+        }
+      }
+      horizontal={true}
+      pagingEnabled={true}
+      showsHorizontalScrollIndicator={false}
+      testID="categories"
+    >
+      <View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#ececec",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "marginLeft": 16,
+              "marginRight": 0,
+              "opacity": 1,
+              "paddingHorizontal": 10,
+              "paddingVertical": 4,
+            }
+          }
+          testID="category-item"
+        >
+          <Text
+            style={
+              {
+                "color": "#5c5c5c",
+                "fontFamily": "Manrope",
+                "fontSize": 13,
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 18,
+                "textTransform": undefined,
+              }
+            }
+          >
+            Breakfast
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#ececec",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "marginLeft": 0,
+              "marginRight": 0,
+              "opacity": 1,
+              "paddingHorizontal": 10,
+              "paddingVertical": 4,
+            }
+          }
+          testID="category-item"
+        >
+          <Text
+            style={
+              {
+                "color": "#5c5c5c",
+                "fontFamily": "Manrope",
+                "fontSize": 13,
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 18,
+                "textTransform": undefined,
+              }
+            }
+          >
+            Dinner
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#ececec",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "marginLeft": 0,
+              "marginRight": 0,
+              "opacity": 1,
+              "paddingHorizontal": 10,
+              "paddingVertical": 4,
+            }
+          }
+          testID="category-item"
+        >
+          <Text
+            style={
+              {
+                "color": "#5c5c5c",
+                "fontFamily": "Manrope",
+                "fontSize": 13,
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 18,
+                "textTransform": undefined,
+              }
+            }
+          >
+            Dry fruits
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#ececec",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "marginLeft": 0,
+              "marginRight": 0,
+              "opacity": 1,
+              "paddingHorizontal": 10,
+              "paddingVertical": 4,
+            }
+          }
+          testID="category-item"
+        >
+          <Text
+            style={
+              {
+                "color": "#5c5c5c",
+                "fontFamily": "Manrope",
+                "fontSize": 13,
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 18,
+                "textTransform": undefined,
+              }
+            }
+          >
+            Lunch
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#ececec",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "marginLeft": 0,
+              "marginRight": 0,
+              "opacity": 1,
+              "paddingHorizontal": 10,
+              "paddingVertical": 4,
+            }
+          }
+          testID="category-item"
+        >
+          <Text
+            style={
+              {
+                "color": "#5c5c5c",
+                "fontFamily": "Manrope",
+                "fontSize": 13,
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 18,
+                "textTransform": undefined,
+              }
+            }
+          >
+            Vegetables
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#ececec",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "marginLeft": 0,
+              "marginRight": 0,
+              "opacity": 1,
+              "paddingHorizontal": 10,
+              "paddingVertical": 4,
+            }
+          }
+          testID="category-item"
+        >
+          <Text
+            style={
+              {
+                "color": "#5c5c5c",
+                "fontFamily": "Manrope",
+                "fontSize": 13,
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 18,
+                "textTransform": undefined,
+              }
+            }
+          >
+            Greenish
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#ececec",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "marginLeft": 0,
+              "marginRight": 0,
+              "opacity": 1,
+              "paddingHorizontal": 10,
+              "paddingVertical": 4,
+            }
+          }
+          testID="category-item"
+        >
+          <Text
+            style={
+              {
+                "color": "#5c5c5c",
+                "fontFamily": "Manrope",
+                "fontSize": 13,
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 18,
+                "textTransform": undefined,
+              }
+            }
+          >
+            Non-Veg
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#ececec",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "marginLeft": 0,
+              "marginRight": 16,
+              "opacity": 1,
+              "paddingHorizontal": 10,
+              "paddingVertical": 4,
+            }
+          }
+          testID="category-item"
+        >
+          <Text
+            style={
+              {
+                "color": "#5c5c5c",
+                "fontFamily": "Manrope",
+                "fontSize": 13,
+                "fontWeight": "400",
+                "letterSpacing": 0,
+                "lineHeight": 18,
+                "textTransform": undefined,
+              }
+            }
+          >
+            Fast Food
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "#fff",
+          "flex": 1,
+        },
+        {
+          "flex": 1,
+          "paddingTop": 25,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "gap": 18,
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+    >
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#dbdbdb",
+            "borderRadius": 20,
+            "borderWidth": 1,
+            "height": 192,
+            "justifyContent": "space-around",
+            "minWidth": 154,
+            "paddingBottom": 18,
+            "paddingHorizontal": 27,
+            "paddingTop": 17,
+            "paddingVertical": 17,
+          }
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "height": 60,
+                "width": 60,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                  "height": 60,
+                  "width": 60,
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -60,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 60,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                undefined,
+              ],
+              {
+                "backgroundColor": "#e0e0e0",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#dbdbdb",
+            "borderRadius": 20,
+            "borderWidth": 1,
+            "height": 192,
+            "justifyContent": "space-around",
+            "minWidth": 154,
+            "paddingBottom": 18,
+            "paddingHorizontal": 27,
+            "paddingTop": 17,
+            "paddingVertical": 17,
+          }
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "height": 60,
+                "width": 60,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                  "height": 60,
+                  "width": 60,
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -60,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 60,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                undefined,
+              ],
+              {
+                "backgroundColor": "#e0e0e0",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#dbdbdb",
+            "borderRadius": 20,
+            "borderWidth": 1,
+            "height": 192,
+            "justifyContent": "space-around",
+            "minWidth": 154,
+            "paddingBottom": 18,
+            "paddingHorizontal": 27,
+            "paddingTop": 17,
+            "paddingVertical": 17,
+          }
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "height": 60,
+                "width": 60,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                  "height": 60,
+                  "width": 60,
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -60,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 60,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                undefined,
+              ],
+              {
+                "backgroundColor": "#e0e0e0",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#dbdbdb",
+            "borderRadius": 20,
+            "borderWidth": 1,
+            "height": 192,
+            "justifyContent": "space-around",
+            "minWidth": 154,
+            "paddingBottom": 18,
+            "paddingHorizontal": 27,
+            "paddingTop": 17,
+            "paddingVertical": 17,
+          }
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "height": 60,
+                "width": 60,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                  "height": 60,
+                  "width": 60,
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -60,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 60,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                undefined,
+              ],
+              {
+                "backgroundColor": "#e0e0e0",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#dbdbdb",
+            "borderRadius": 20,
+            "borderWidth": 1,
+            "height": 192,
+            "justifyContent": "space-around",
+            "minWidth": 154,
+            "paddingBottom": 18,
+            "paddingHorizontal": 27,
+            "paddingTop": 17,
+            "paddingVertical": 17,
+          }
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "height": 60,
+                "width": 60,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                  "height": 60,
+                  "width": 60,
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -60,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 60,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                undefined,
+              ],
+              {
+                "backgroundColor": "#e0e0e0",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#dbdbdb",
+            "borderRadius": 20,
+            "borderWidth": 1,
+            "height": 192,
+            "justifyContent": "space-around",
+            "minWidth": 154,
+            "paddingBottom": 18,
+            "paddingHorizontal": 27,
+            "paddingTop": 17,
+            "paddingVertical": 17,
+          }
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "height": 60,
+                "width": 60,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                  "height": 60,
+                  "width": 60,
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -60,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 60,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "backgroundColor": "#e0e0e0",
+                },
+              ],
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "height": 14,
+                "width": 100,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                undefined,
+              ],
+              {
+                "backgroundColor": "#e0e0e0",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "height": 0,
+                  "opacity": 0,
+                  "width": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "#F4F4F4",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "flex": 1,
+                  "transform": [
+                    {
+                      "translateX": -100,
+                    },
+                  ],
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4294243572,
+                    4292927712,
+                    4294243572,
+                  ]
+                }
+                endPoint={
+                  [
+                    2,
+                    0.5,
+                  ]
+                }
+                locations={
+                  [
+                    0.3,
+                    0.5,
+                    0.7,
+                  ]
+                }
+                startPoint={
+                  [
+                    -1,
+                    0.5,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "width": 100,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

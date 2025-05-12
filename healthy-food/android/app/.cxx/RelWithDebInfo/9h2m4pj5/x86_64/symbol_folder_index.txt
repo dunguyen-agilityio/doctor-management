@@ -1,0 +1,1 @@
+/home/dunguyen/training/react-native-training/healthy-food/android/app/build/intermediates/cxx/RelWithDebInfo/9h2m4pj5/obj/x86_64

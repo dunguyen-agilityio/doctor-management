@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">933989208887-fd3ap44odkf3c0ub07s67t3bcccplofk.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">933989208887</string>
+    <string name="google_api_key" translatable="false">AIzaSyBQN_xCFmWtGB65ryvcfQmgJ6BumnPj5OI</string>
+    <string name="google_app_id" translatable="false">1:933989208887:android:354d0e222c419e0f4100b2</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBQN_xCFmWtGB65ryvcfQmgJ6BumnPj5OI</string>
+    <string name="google_storage_bucket" translatable="false">firebareauth.firebasestorage.app</string>
+    <string name="project_id" translatable="false">firebareauth</string>
+</resources>

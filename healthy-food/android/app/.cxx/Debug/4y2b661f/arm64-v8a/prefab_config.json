@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "prefabPath": "/home/dunguyen/.gradle/caches/modules-2/files-2.1/com.google.prefab/cli/2.1.0/aa32fec809c44fa531f01dcfb739b5b3304d3050/cli-2.1.0-all.jar",
+  "packages": [
+    "/home/dunguyen/.gradle/caches/8.10.2/transforms/f26f48d88f0190f6354326d852f3bf17/transformed/react-android-0.76.8-debug/prefab",
+    "/home/dunguyen/training/react-native-training/healthy-food/node_modules/react-native-reanimated/android/build/intermediates/prefab_package/debug/prefab",
+    "/home/dunguyen/.gradle/caches/8.10.2/transforms/2760e07ae94cff56cf99f85e93cf934a/transformed/hermes-android-0.76.8-debug/prefab",
+    "/home/dunguyen/.gradle/caches/8.10.2/transforms/db5249f9d20141a00c0392572de1e92d/transformed/fbjni-0.6.0/prefab"
+  ]
+}

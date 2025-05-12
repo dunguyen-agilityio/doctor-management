@@ -1,0 +1,22 @@
+/usr/lib/jvm/java-17-openjdk-amd64/bin/java \
+  --class-path \
+  /home/dunguyen/.gradle/caches/modules-2/files-2.1/com.google.prefab/cli/2.1.0/aa32fec809c44fa531f01dcfb739b5b3304d3050/cli-2.1.0-all.jar \
+  com.google.prefab.cli.AppKt \
+  --build-system \
+  cmake \
+  --platform \
+  android \
+  --abi \
+  armeabi-v7a \
+  --os-version \
+  24 \
+  --stl \
+  c++_shared \
+  --ndk-version \
+  26 \
+  --output \
+  /tmp/agp-prefab-staging126814198743849833/staged-cli-output \
+  /home/dunguyen/.gradle/caches/8.10.2/transforms/f1b4908ed793da14333a1774ab011ea3/transformed/react-android-0.76.8-release/prefab \
+  /home/dunguyen/training/react-native-training/healthy-food/android/app/build/intermediates/cxx/refs/react-native-reanimated/6h5au1pk \
+  /home/dunguyen/.gradle/caches/8.10.2/transforms/2801946c0c1cb8512afdb6610c0b7f4a/transformed/hermes-android-0.76.8-release/prefab \
+  /home/dunguyen/.gradle/caches/8.10.2/transforms/db5249f9d20141a00c0392572de1e92d/transformed/fbjni-0.6.0/prefab
