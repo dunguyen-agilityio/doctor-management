@@ -11,6 +11,8 @@ import {
 import * as SplashScreen from 'expo-splash-screen'
 import { DevSettings } from 'react-native'
 
+import Providers from '@app/providers'
+
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync()
 
@@ -46,14 +48,18 @@ export default function RootLayout() {
     }
   }, [loaded])
 
+  if (!loaded) {
+    return null
+  }
+
   if (storybookEnabled) {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     AppEntryPoint = require('@/.storybook').default
   }
 
-  if (!loaded) {
-    return null
-  }
-
-  return <AppEntryPoint />
+  return (
+    <Providers>
+      <AppEntryPoint />
+    </Providers>
+  )
 }

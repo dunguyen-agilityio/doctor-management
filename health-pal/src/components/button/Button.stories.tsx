@@ -1,15 +1,15 @@
 import { View } from 'react-native'
 import type { Meta, StoryObj } from '@storybook/react'
-import { MyButton } from '.'
+import { Button } from '@app/theme'
 
 const meta = {
   title: 'components/button',
-  component: MyButton,
+  component: Button,
   argTypes: {
     onPress: { action: 'pressed the button' },
   },
   args: {
-    text: 'Hello world',
+    children: 'Hello world',
   },
   decorators: [
     (Story) => (
@@ -18,7 +18,7 @@ const meta = {
       </View>
     ),
   ],
-} satisfies Meta<typeof MyButton>
+} satisfies Meta<typeof Button>
 
 export default meta
 
@@ -28,6 +28,6 @@ export const Basic: Story = {}
 
 export const AnotherExample: Story = {
   args: {
-    text: 'Another example',
+    children: 'Another example',
   },
 }
