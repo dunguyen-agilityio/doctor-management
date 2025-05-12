@@ -20,7 +20,12 @@
       "package": "com.dunguyenhuu.healthpal"
     },
     "plugins": [
-      "expo-router",
+      [
+        "expo-router",
+        {
+          "root": "./src/app"
+        }
+      ],
       [
         "expo-splash-screen",
         {

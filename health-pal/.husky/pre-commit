@@ -1,0 +1,4 @@
+npx lint-staged
+cd health-pal
+pnpm test
+
