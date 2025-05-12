@@ -1,5 +1,13 @@
 node_modules/
+
+# Expo
 .expo/
+
+# Environment
 .env
+
+# Android
 google-services.json
-*.d.ts
+
+# Unit test
+coverage/
