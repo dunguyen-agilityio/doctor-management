@@ -25,7 +25,7 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="healthpal"/>
-        <data android:scheme="exp+health-pal"/>
+        <data android:scheme="exp+healthpal"/>
       </intent-filter>
     </activity>
   </application>
