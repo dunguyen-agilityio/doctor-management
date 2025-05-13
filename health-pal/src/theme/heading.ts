@@ -4,6 +4,7 @@ import { styled, Text as TamaguiText } from 'tamagui'
 export const Heading = styled(TamaguiText, {
   fontFamily: '$heading',
   fontWeight: '700',
+  color: '$primary',
   variants: {
     size: {
       small: {
@@ -17,19 +18,12 @@ export const Heading = styled(TamaguiText, {
       large: {
         fontSize: '$lg',
         lineHeight: '$lg',
-        fontWeight: '600',
       },
       extraLarge: {
         fontSize: '$xl',
         lineHeight: '$xl',
-        fontWeight: '400',
       },
     },
-    color: {
-      primary: { color: '$primary' },
-      secondary: { color: '$white' },
-      muted: { color: '$blue' },
-    },
   } as const,
-  defaultVariants: { size: 'medium', color: 'primary' },
+  defaultVariants: { size: 'medium' },
 })

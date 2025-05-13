@@ -1,4 +1,5 @@
 import { createFont, createTamagui, createTokens } from 'tamagui'
+import { defaultConfig } from '@tamagui/config/v4'
 
 const systemFont = createFont({
   family: 'System',
@@ -33,9 +34,9 @@ const systemFont = createFont({
   },
 })
 
-const tokens = createTokens({
+export const tokens = createTokens({
   size: { 1: 12, 2: 14, 3: 16, true: 16, 4: 18, 5: 20 },
-  space: { '-sm': 8, true: 8 },
+  space: { sm: 8, true: 8 },
   zIndex: { 0: 0, 1: 100, 2: 200 },
   radius: {
     0: 0,
@@ -91,6 +92,7 @@ export const tamaguiConfig = createTamagui({
     m: 'margin',
     w: 'width',
   } as const,
+  animations: defaultConfig.animations,
 })
 
 export default tamaguiConfig
