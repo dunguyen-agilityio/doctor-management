@@ -1,0 +1,40 @@
+import { View } from 'react-native'
+import type { Meta, StoryObj } from '@storybook/react'
+import { Airplay } from '@tamagui/lucide-icons'
+import Input from '.'
+import { LockIcon } from '@app/icons'
+
+const meta = {
+  title: 'components/input',
+  component: Input,
+  argTypes: {
+    onPress: { action: 'pressed the button' },
+  },
+  args: {
+    placeholder: 'Typing name...',
+  },
+  decorators: [
+    (Story) => (
+      <View style={{ padding: 16, alignItems: 'flex-start', height: 100 }}>
+        <Story />
+      </View>
+    ),
+  ],
+} satisfies Meta<typeof Input>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {}
+
+export const WithIcon: Story = { args: { leftIcon: Airplay } }
+
+export const Password: Story = {
+  args: {
+    leftIcon: LockIcon,
+    textContentType: 'password',
+    secureTextEntry: true,
+    placeholder: 'Password',
+  },
+}
