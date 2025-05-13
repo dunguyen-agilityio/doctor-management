@@ -27415,7 +27415,29 @@
     },
     "onlyAllowShorthands": false,
     "fontLanguages": [],
-    "animations": {},
+    "animations": {
+      "animations": {
+        "75ms": "ease-in 75ms",
+        "100ms": "ease-in 100ms",
+        "200ms": "ease-in 200ms",
+        "bouncy": "ease-in 200ms",
+        "superBouncy": "ease-in 500ms",
+        "lazy": "ease-in 1000ms",
+        "medium": "ease-in 300ms",
+        "slow": "ease-in 500ms",
+        "quick": "cubic-bezier(0.215, 0.610, 0.355, 1.000) 400ms",
+        "quicker": "cubic-bezier(0.215, 0.610, 0.355, 1.000) 300ms",
+        "quickest": "cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms",
+        "tooltip": "ease-in 400ms"
+      },
+      "usePresence": "Function",
+      "ResetPresence": "Function",
+      "supportsCSSVars": true,
+      "useAnimatedNumber": "Function",
+      "useAnimatedNumberReaction": "Function",
+      "useAnimatedNumberStyle": "Function",
+      "useAnimations": "Function"
+    },
     "media": {},
     "tokens": {
       "size": {
@@ -27463,10 +27485,10 @@
         }
       },
       "space": {
-        "-sm": {
+        "sm": {
           "isVar": true,
-          "key": "$-sm",
-          "name": "t-space--sm",
+          "key": "$sm",
+          "name": "t-space-sm",
           "val": 8,
           "variable": ""
         },
@@ -27806,10 +27828,10 @@
         "val": 16,
         "variable": ""
       },
-      "$space.-sm": {
+      "$space.sm": {
         "isVar": true,
-        "key": "$-sm",
-        "name": "t-space--sm",
+        "key": "$sm",
+        "name": "t-space-sm",
         "val": 8,
         "variable": ""
       },
