@@ -25,7 +25,9 @@ SplashScreen.setOptions({
 let AppEntryPoint = Stack
 
 export default function RootLayout() {
-  const [storybookEnabled, setStorybookEnabled] = useState(false)
+  const [storybookEnabled, setStorybookEnabled] = useState(
+    !!process.env.EXPO_PUBLIC_STORYBOOK_ENABLED,
+  )
 
   const [loaded] = useFonts({
     Inter_400Regular,
@@ -35,7 +37,7 @@ export default function RootLayout() {
   })
 
   useEffect(() => {
-    if (__DEV__ && process.env.EXPO_PUBLIC_STORYBOOK_ENABLED) {
+    if (__DEV__) {
       DevSettings.addMenuItem('Toggle Storybook', () => {
         setStorybookEnabled((prev) => !prev)
       })
