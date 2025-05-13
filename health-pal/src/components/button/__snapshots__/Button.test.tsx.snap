@@ -38,8 +38,8 @@ exports[`MyButton Text renders correctly on MyButton 1`] = `
       "height": 48,
       "justifyContent": "center",
       "paddingBottom": 12,
-      "paddingLeft": 8,
-      "paddingRight": 8,
+      "paddingLeft": 20,
+      "paddingRight": 20,
       "paddingTop": 12,
     }
   }
