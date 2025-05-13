@@ -12,6 +12,7 @@ export const Button = styled(TamaguiButton, {
         borderRadius: '$6',
         height: 48,
         paddingVertical: 12,
+        paddingHorizontal: 20,
       },
       outlined: {
         color: '$primary',
