@@ -1,5 +1,5 @@
-import { createFont, createTamagui, createTokens } from 'tamagui'
 import { defaultConfig } from '@tamagui/config/v4'
+import { createFont, createTamagui, createTokens } from 'tamagui'
 
 const systemFont = createFont({
   family: 'System',
@@ -74,6 +74,7 @@ export const tokens = createTokens({
     purple: '#352261',
     orange: '#f5ad7e',
     black: '#000',
+    gray: '#292d32',
   },
 })
 
@@ -82,6 +83,7 @@ export const tamaguiConfig = createTamagui({
   tokens,
   themes: {
     light: {
+      ...defaultConfig.themes.light,
       bg: tokens.color.white,
       color: tokens.color.primary,
     },
@@ -91,6 +93,7 @@ export const tamaguiConfig = createTamagui({
     f: 'flex',
     m: 'margin',
     w: 'width',
+    h: 'height',
   } as const,
   animations: defaultConfig.animations,
 })
