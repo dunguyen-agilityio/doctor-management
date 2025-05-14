@@ -1,5 +1,7 @@
 import DateTimePicker, { DateType, useDefaultStyles } from 'react-native-ui-datepicker'
-import { ArrowLeft, ArrowRight } from '@app/icons'
+
+import { ArrowLeft, ArrowRight } from '@icons'
+
 import { tokens } from '@/tamagui.config'
 
 type DateTimePickerProps = Parameters<typeof DateTimePicker>[0]

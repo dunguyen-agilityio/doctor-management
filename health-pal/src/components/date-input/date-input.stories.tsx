@@ -1,10 +1,11 @@
 import { View } from 'react-native'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
 import DateInput from '.'
 
 const meta = {
-  title: 'components/DateInput',
+  title: 'components/dateInput',
   component: DateInput,
   argTypes: {
     // onPress: { action: 'pressed the button' },

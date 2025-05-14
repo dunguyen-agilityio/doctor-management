@@ -1,8 +1,11 @@
-import { IconProps } from '@tamagui/helpers-icon'
-import { XStack, InputProps } from 'tamagui'
-import { Input as TamaguiInput } from '@app/theme'
-import { SvgProps } from 'react-native-svg'
 import { TextInput } from 'react-native'
+
+import { SvgProps } from 'react-native-svg'
+
+import { IconProps } from '@tamagui/helpers-icon'
+import { InputProps, XStack } from 'tamagui'
+
+import { Input as TamaguiInput } from '@theme'
 
 type IconComponent =
   | ((propsIn: IconProps) => React.ReactElement)
