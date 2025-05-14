@@ -1,6 +1,6 @@
 import Svg, { Path, SvgProps } from 'react-native-svg'
 
-const Profile = (props: SvgProps) => {
+const Avatar = (props: SvgProps) => {
   return (
     <Svg width="202" height="202" viewBox="0 0 202 202" fill="none" {...props}>
       <Path
@@ -20,4 +20,4 @@ const Profile = (props: SvgProps) => {
   )
 }
 
-export default Profile
+export default Avatar

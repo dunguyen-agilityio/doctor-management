@@ -30,7 +30,7 @@ const Input = ({ leftIcon: LeftIcon = null, ref, ...props }: CustomInputProps) =
   const hasIcon = LeftIcon !== null
 
   return (
-    <XStack alignItems="center" gap={8} flex={1}>
+    <XStack alignItems="center" gap={8}>
       {hasIcon ? <LeftIcon position="absolute" zIndex={200} left={16} size={16} /> : null}
       <TamaguiInput ref={ref} flex={1} {...styleByIcon[hasIcon ? 'true' : 'false']} {...props} />
     </XStack>

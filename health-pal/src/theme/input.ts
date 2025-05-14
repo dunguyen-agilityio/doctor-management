@@ -1,4 +1,4 @@
-import { styled, Input as TamaguiInput } from 'tamagui'
+import { Input as TamaguiInput, styled } from 'tamagui'
 
 export const Input = styled(TamaguiInput, {
   fontFamily: '$body',

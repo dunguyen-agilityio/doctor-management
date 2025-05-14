@@ -13,7 +13,7 @@ import { WINDOW_SIZE } from '@app/constants'
 
 import { Button, Text } from '@theme'
 
-import { BackIcon, EditIcon, ProfileIcon } from '@icons'
+import { AvatarIcon, BackIcon, EditIcon } from '@icons'
 
 import { tokens } from '@/tamagui.config'
 
@@ -177,7 +177,7 @@ const Upload = ({ preview, ...other }: UploadProps) => {
       {(image ?? preview) ? (
         <Image source={image ?? preview} style={styles.image} {...other} />
       ) : (
-        <ProfileIcon />
+        <AvatarIcon />
       )}
     </Stack>
   )

@@ -36,7 +36,7 @@ const systemFont = createFont({
 
 export const tokens = createTokens({
   size: { 1: 12, 2: 14, 3: 16, true: 16, 4: 18, 5: 20 },
-  space: { sm: 8, true: 8 },
+  space: { sm: 8, true: 8, md: 24 },
   zIndex: { 0: 0, 1: 100, 2: 200 },
   radius: {
     0: 0,
