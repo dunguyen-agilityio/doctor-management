@@ -1,17 +1,19 @@
-import { Stack } from 'expo-router'
+import { SessionProvider } from '@app/contexts/auth-context'
+import Providers from '@app/providers'
+
 import { useEffect, useState } from 'react'
+import { DevSettings } from 'react-native'
+
 import {
-  useFonts,
   Inter_400Regular,
   Inter_500Medium,
   Inter_600SemiBold,
   Inter_700Bold,
+  useFonts,
 } from '@expo-google-fonts/inter'
-
+import { Slot } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
-import { DevSettings } from 'react-native'
-
-import Providers from '@app/providers'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync()
@@ -21,8 +23,6 @@ SplashScreen.setOptions({
   duration: 1000,
   fade: true,
 })
-
-let AppEntryPoint = Stack
 
 export default function RootLayout() {
   const [storybookEnabled, setStorybookEnabled] = useState(
@@ -54,14 +54,21 @@ export default function RootLayout() {
     return null
   }
 
-  if (storybookEnabled) {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    AppEntryPoint = require('@/.storybook').default
+  const render = () => {
+    if (storybookEnabled) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const AppEntryPoint = require('@/.storybook').default
+      return <AppEntryPoint />
+    }
+
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <SessionProvider>
+          <Slot />
+        </SessionProvider>
+      </SafeAreaView>
+    )
   }
 
-  return (
-    <Providers>
-      <AppEntryPoint />
-    </Providers>
-  )
+  return <Providers>{render()}</Providers>
 }
