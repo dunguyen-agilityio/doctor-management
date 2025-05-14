@@ -53,8 +53,8 @@ exports[`MyButton Text renders correctly on MyButton 1`] = `
         "flexGrow": 0,
         "flexShrink": 1,
         "fontFamily": "Inter_500Medium",
-        "fontSize": 16,
-        "lineHeight": 24,
+        "fontSize": 14,
+        "lineHeight": 21,
         "userSelect": "none",
       }
     }

@@ -27498,6 +27498,13 @@
           "name": "t-space-true",
           "val": 8,
           "variable": ""
+        },
+        "md": {
+          "isVar": true,
+          "key": "$md",
+          "name": "t-space-md",
+          "val": 24,
+          "variable": ""
         }
       },
       "zIndex": {
@@ -27978,6 +27985,13 @@
         "key": "$true",
         "name": "t-space-true",
         "val": 8,
+        "variable": ""
+      },
+      "$space.md": {
+        "isVar": true,
+        "key": "$md",
+        "name": "t-space-md",
+        "val": 24,
         "variable": ""
       },
       "$zIndex.0": {

@@ -1,9 +1,9 @@
-import { styled, Button as TamaguiButton } from 'tamagui'
+import { Button as TamaguiButton, styled } from 'tamagui'
 
 export const Button = styled(TamaguiButton, {
   fontFamily: '$body',
   fontWeight: '500',
-  fontSize: '$md',
+  fontSize: '$s',
   variants: {
     variant: {
       primary: {
@@ -23,6 +23,7 @@ export const Button = styled(TamaguiButton, {
         borderRadius: '$1',
         height: 40,
       },
+      link: {},
     },
     full: {
       true: { minWidth: '100%' },

@@ -1,4 +1,4 @@
-import { styled, Text as TamaguiText } from 'tamagui'
+import { Text as TamaguiText, styled } from 'tamagui'
 
 // Text Component with Variants
 export const Heading = styled(TamaguiText, {
