@@ -1,13 +1,15 @@
 import { useRef, useState } from 'react'
-import Input from '../input'
-import Calendar from '@app/icons/calendar'
-import { Adapt, InputProps, Popover, XStack, YStack } from 'tamagui'
 import { TextInput } from 'react-native'
+
+import dayjs from 'dayjs'
 import { DateType } from 'react-native-ui-datepicker'
 
+import { Adapt, InputProps, Popover, XStack } from 'tamagui'
+
+import { CalendarIcon } from '@icons'
+
 import DatePicker from '../date-picker'
-import { Button } from '@theme/button'
-import dayjs from 'dayjs'
+import Input from '../input'
 
 interface DateInputProps extends Omit<InputProps, 'value'> {
   value?: DateType
@@ -42,7 +44,7 @@ const DateInput = ({ ...props }: DateInputProps) => {
           <Input
             {...props}
             ref={inputRef}
-            leftIcon={Calendar}
+            leftIcon={CalendarIcon}
             textContentType="dateTime"
             editable={false}
             value={dayjs(value).toDate().toDateString()}
