@@ -6,6 +6,8 @@
       "@theme/*": ["./src/theme/*"],
       "@theme": ["./src/theme"],
       "@utils-test": ["./src/utils-test"],
+      "@icons/*": ["./src/icons/*"],
+      "@icons": ["./src/icons"],
       "@app/*": ["./src/*"],
       "@/*": ["./*"]
     }
