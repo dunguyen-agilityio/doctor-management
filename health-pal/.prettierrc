@@ -3,5 +3,18 @@
   "tabWidth": 2,
   "singleQuote": true,
   "bracketSameLine": true,
-  "semi": false
+  "semi": false,
+  "importOrder": [
+    "(^react$|^react-native$)",
+    "(<THIRD_PARTY_MODULES>|^@react-native|^react-native|^expo|expo|@expo|dayjs|@notifee/react-native|^react-native-reanimated|@react-navigation/native|@tanstack/react-query|react-native-gesture-handler|@storybook/react)",
+    "^tamagui|^@tamagui",
+    "^@app/constants",
+    "^@theme",
+    "^@icons",
+    "@/tamagui.config",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }
