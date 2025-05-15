@@ -1,22 +1,23 @@
 import { SignupFormData } from '@app/types'
 import SignupForm from '@app/ui/auth/signup-form'
 
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 
-import { XStack, YStack } from 'tamagui'
-
-import { Button } from '@theme/button'
-import { Heading } from '@theme/heading'
-import { Text } from '@theme/text'
+import { Button, Heading, Text, XStack, YStack } from '@theme'
 
 import Facebook from '@icons/facebook'
 import Google from '@icons/google'
+import Logo from '@icons/logo'
 
 const SignUp = () => {
-  const handleSignUp = async (data: SignupFormData) => {}
+  const handleSignUp = async (data: SignupFormData) => {
+    router.navigate('/profile-form')
+    router.setParams(data)
+  }
 
   return (
-    <YStack flex={1} gap={23} paddingHorizontal={24} paddingTop={32}>
+    <YStack flex={1} gap={23} paddingHorizontal={24} paddingTop={32} scrollbarWidth="auto">
+      <Logo />
       <YStack alignItems="center" gap="$sm">
         <Heading size="extraLarge">Create Account</Heading>
         <Text size="small" color="$grey500">
