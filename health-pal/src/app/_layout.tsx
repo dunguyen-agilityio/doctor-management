@@ -1,6 +1,6 @@
 import { SessionProvider } from '@app/contexts/auth-context'
+import AppLoadingProvider from '@app/contexts/loading'
 import Providers from '@app/providers'
-import AppLoadingProvider from '@app/ui/loading'
 
 import { useEffect, useState } from 'react'
 import { DevSettings } from 'react-native'
@@ -56,6 +56,7 @@ export default function RootLayout() {
   if (!loaded) {
     return null
   }
+  const integrate = 1
 
   const render = () => {
     if (storybookEnabled) {
