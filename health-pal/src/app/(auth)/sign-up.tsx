@@ -11,7 +11,7 @@ import Logo from '@icons/logo'
 
 const SignUp = () => {
   const handleSignUp = async (data: SignupFormData) => {
-    router.navigate('/profile-form')
+    router.navigate('/profile-info')
     router.setParams(data)
   }
 

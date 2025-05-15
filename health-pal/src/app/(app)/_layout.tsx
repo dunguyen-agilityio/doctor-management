@@ -21,5 +21,11 @@ export default function AppLayout() {
   }
 
   // This layout can be deferred because it's not the root layout.
-  return <Stack />
+  return (
+    <Stack>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="favorite" />
+      <Stack.Screen name="notification" />
+    </Stack>
+  )
 }
