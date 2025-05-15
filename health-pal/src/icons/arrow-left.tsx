@@ -1,5 +1,6 @@
-import { tokens } from '@/tamagui.config'
 import Svg, { Path, SvgProps } from 'react-native-svg'
+
+import { tokens } from '@/tamagui.config'
 
 const ArrowLeft = ({ fill = tokens.color.grey400.val, ...props }: SvgProps) => {
   return (

@@ -1,7 +1,7 @@
+import Providers from '@app/providers'
 import { RenderOptions, render, renderHook } from '@testing-library/react-native'
 
 import { NavigationContainer } from '@react-navigation/native'
-import Providers from '@app/providers'
 
 const AllTheProviders = ({ children }: React.PropsWithChildren) => {
   return (

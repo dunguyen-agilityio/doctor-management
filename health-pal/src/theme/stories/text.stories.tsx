@@ -1,5 +1,7 @@
 import { View } from 'react-native'
+
 import type { Meta, StoryObj } from '@storybook/react'
+
 import { Text } from '../text'
 
 const meta = {

@@ -1,4 +1,4 @@
-import Svg, { Path, G, SvgProps } from 'react-native-svg'
+import Svg, { G, Path, SvgProps } from 'react-native-svg'
 
 const ShieldTick = (props: SvgProps) => {
   return (

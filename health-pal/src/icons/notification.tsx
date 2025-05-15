@@ -1,4 +1,4 @@
-import Svg, { Path, Rect, Circle, SvgProps } from 'react-native-svg'
+import Svg, { Circle, Path, Rect, SvgProps } from 'react-native-svg'
 
 const Notification = (props: SvgProps) => {
   return (
