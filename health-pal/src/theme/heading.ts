@@ -1,6 +1,5 @@
 import { Text as TamaguiText, styled } from 'tamagui'
 
-// Text Component with Variants
 export const Heading = styled(TamaguiText, {
   fontFamily: '$heading',
   fontWeight: '700',

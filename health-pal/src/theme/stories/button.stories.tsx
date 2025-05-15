@@ -1,6 +1,9 @@
-import { View } from 'react-native'
-import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from '@app/theme'
+
+import { View } from 'react-native'
+
+import type { Meta, StoryObj } from '@storybook/react'
+
 import { Airplay } from '@tamagui/lucide-icons'
 
 const meta = {

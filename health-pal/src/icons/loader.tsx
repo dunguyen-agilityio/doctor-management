@@ -1,4 +1,4 @@
-import Svg, { Path, G, SvgProps } from 'react-native-svg'
+import Svg, { G, Path, SvgProps } from 'react-native-svg'
 
 const Loader = (props: SvgProps) => {
   return (

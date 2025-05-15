@@ -4,7 +4,7 @@ import { TextInput } from 'react-native'
 import dayjs from 'dayjs'
 import { DateType } from 'react-native-ui-datepicker'
 
-import { Adapt, InputProps, Popover, XStack } from 'tamagui'
+import { Adapt, InputProps, Popover, YStack } from 'tamagui'
 
 import { CalendarIcon } from '@icons'
 
@@ -12,10 +12,13 @@ import DatePicker from '../date-picker'
 import Input from '../input'
 
 interface DateInputProps extends Omit<InputProps, 'value'> {
-  value?: DateType
+  value?: Date | null
+  ref?: React.Ref<TextInput | null>
+  onChangeValue?: (value: Date) => void
+  errorMessage?: string
 }
 
-const DateInput = ({ ...props }: DateInputProps) => {
+const DateInput = ({ errorMessage, onChangeValue, ...props }: DateInputProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [value, setValue] = useState<DateType>()
   const inputRef = useRef<TextInput>(null)
@@ -27,10 +30,14 @@ const DateInput = ({ ...props }: DateInputProps) => {
   const handleChange = (date: DateType) => {
     setValue(date)
     setIsOpen(false)
+    onChangeValue?.(dayjs(date).toDate())
+    inputRef.current?.blur()
   }
 
+  const textValue = value ? dayjs(value).toDate().toDateString() : undefined
+
   return (
-    <XStack onPress={handleOpenDatePicker}>
+    <YStack>
       <Popover
         open={isOpen}
         onOpenChange={setIsOpen}
@@ -38,30 +45,34 @@ const DateInput = ({ ...props }: DateInputProps) => {
         allowFlip
         stayInFrame
         offset={15}
-        resize
-        {...props}>
+        placement="bottom"
+        resize>
         <Popover.Trigger asChild>
           <Input
             {...props}
             ref={inputRef}
             leftIcon={CalendarIcon}
             textContentType="dateTime"
-            editable={false}
-            value={dayjs(value).toDate().toDateString()}
+            // editable={false}
+            value={textValue}
+            errorMessage={errorMessage}
+            onPressIn={handleOpenDatePicker}
           />
         </Popover.Trigger>
 
-        <Popover.Sheet modal dismissOnSnapToBottom>
-          <Popover.Sheet.Frame padding="$4">
-            <Adapt.Contents />
-          </Popover.Sheet.Frame>
-          <Popover.Sheet.Overlay
-            backgroundColor="$shadowColor"
-            animation="lazy"
-            enterStyle={{ opacity: 0 }}
-            exitStyle={{ opacity: 0 }}
-          />
-        </Popover.Sheet>
+        <Adapt when="maxMd" platform="touch">
+          <Popover.Sheet animation="medium" modal dismissOnSnapToBottom>
+            <Popover.Sheet.Frame padding="$4">
+              <Adapt.Contents />
+            </Popover.Sheet.Frame>
+            <Popover.Sheet.Overlay
+              backgroundColor="transparent"
+              animation="slow"
+              enterStyle={{ opacity: 0 }}
+              exitStyle={{ opacity: 0 }}
+            />
+          </Popover.Sheet>
+        </Adapt>
 
         <Popover.Content
           width={360}
@@ -70,8 +81,9 @@ const DateInput = ({ ...props }: DateInputProps) => {
           exitStyle={{ y: -10, opacity: 0 }}
           borderWidth={0}
           backgroundColor="transparent"
+          padding={0}
           animation={[
-            'quick',
+            'fast',
             {
               opacity: {
                 overshootClamping: true,
@@ -81,7 +93,7 @@ const DateInput = ({ ...props }: DateInputProps) => {
           <DatePicker onChange={handleChange} date={value} />
         </Popover.Content>
       </Popover>
-    </XStack>
+    </YStack>
   )
 }
 

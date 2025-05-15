@@ -4,6 +4,7 @@ export const Button = styled(TamaguiButton, {
   fontFamily: '$body',
   fontWeight: '500',
   fontSize: '$s',
+  disabledStyle: { opacity: 0.75, backgroundColor: '$grey900' },
   variants: {
     variant: {
       primary: {
@@ -13,6 +14,8 @@ export const Button = styled(TamaguiButton, {
         height: 48,
         paddingVertical: 12,
         paddingHorizontal: 20,
+        pressStyle: { backgroundColor: '$primary', animateOnly: ['transform', 'backgroundColor'] },
+        hoverStyle: { opacity: 0.85 },
       },
       outlined: {
         color: '$primary',
@@ -23,7 +26,6 @@ export const Button = styled(TamaguiButton, {
         borderRadius: '$1',
         height: 40,
       },
-      link: {},
     },
     full: {
       true: { minWidth: '100%' },
