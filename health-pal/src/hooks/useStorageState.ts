@@ -1,5 +1,6 @@
+import { AuthUser } from '@app/models/user'
+
 import { useCallback, useEffect, useReducer } from 'react'
-import { Platform } from 'react-native'
 
 import * as SecureStore from 'expo-secure-store'
 
@@ -13,53 +14,31 @@ function useAsyncState<T>(initialValue: [boolean, T | null] = [true, null]): Use
 }
 
 export async function setStorageItemAsync(key: string, value: string | null) {
-  if (Platform.OS === 'web') {
-    try {
-      if (value === null) {
-        localStorage.removeItem(key)
-      } else {
-        localStorage.setItem(key, value)
-      }
-    } catch (e) {
-      console.error('Local storage is unavailable:', e)
-    }
+  if (value == null) {
+    await SecureStore.deleteItemAsync(key)
   } else {
-    if (value == null) {
-      await SecureStore.deleteItemAsync(key)
-    } else {
-      await SecureStore.setItemAsync(key, value)
-    }
+    await SecureStore.setItemAsync(key, value)
   }
 }
 
-export function useStorageState(key: string): UseStateHook<string> {
+export function useStorageState(key: string): UseStateHook<AuthUser> {
   // Public
-  const [state, setState] = useAsyncState<string>()
+  const [state, setState] = useAsyncState<AuthUser>()
 
   // Get
   useEffect(() => {
-    if (Platform.OS === 'web') {
-      try {
-        if (typeof localStorage !== 'undefined') {
-          setState(localStorage.getItem(key))
-        }
-      } catch (e) {
-        console.error('Local storage is unavailable:', e)
-      }
-    } else {
-      SecureStore.getItemAsync(key).then((value) => {
-        setState(value)
-      })
-    }
-  }, [key])
+    SecureStore.getItemAsync(key).then((value) => {
+      setState(value ? JSON.parse(value) : null)
+    })
+  }, [key, setState])
 
   // Set
   const setValue = useCallback(
-    (value: string | null) => {
+    (value: AuthUser | null) => {
       setState(value)
-      setStorageItemAsync(key, value)
+      setStorageItemAsync(key, JSON.stringify(value))
     },
-    [key],
+    [key, setState],
   )
 
   return [state, setValue]
