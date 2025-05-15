@@ -1,5 +1,6 @@
 import { SessionProvider } from '@app/contexts/auth-context'
 import Providers from '@app/providers'
+import AppLoadingProvider from '@app/ui/loading'
 
 import { useEffect, useState } from 'react'
 import { DevSettings } from 'react-native'
@@ -14,6 +15,8 @@ import {
 import { Slot } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { SafeAreaView } from 'react-native-safe-area-context'
+
+import { tokens } from '@/tamagui.config'
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync()
@@ -62,9 +65,11 @@ export default function RootLayout() {
     }
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: tokens.color.white.val }}>
         <SessionProvider>
-          <Slot />
+          <AppLoadingProvider>
+            <Slot />
+          </AppLoadingProvider>
         </SessionProvider>
       </SafeAreaView>
     )
