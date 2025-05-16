@@ -71,7 +71,7 @@ const Select = ({
             </Sheet.Frame>
             <Sheet.Overlay
               backgroundColor="$shadowColor"
-              animation="slow"
+              animation="lazy"
               enterStyle={{ opacity: 0 }}
               exitStyle={{ opacity: 0 }}
             />
@@ -98,7 +98,7 @@ const Select = ({
           </TamaguiSelect.ScrollUpButton>
 
           <TamaguiSelect.Viewport
-            animation="fast"
+            animation="quicker"
             animateOnly={['transform', 'opacity']}
             enterStyle={{ x: 0, y: -10 }}
             exitStyle={{ x: 0, y: 10 }}
