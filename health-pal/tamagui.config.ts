@@ -90,6 +90,7 @@ export const tamaguiConfig = createTamagui({
   },
   shorthands: {
     px: 'paddingHorizontal',
+    py: 'paddingVertical',
     f: 'flex',
     m: 'margin',
     w: 'width',
