@@ -90,7 +90,7 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
             key="overlay"
             animateOnly={['transform', 'opacity']}
             animation={[
-              'fast',
+              'quick',
               {
                 opacity: {
                   overshootClamping: true,
@@ -106,7 +106,7 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
             animateOnly={['transform', 'opacity']}
             justifyContent="space-between"
             animation={[
-              'fast',
+              'quick',
               {
                 opacity: {
                   overshootClamping: true,

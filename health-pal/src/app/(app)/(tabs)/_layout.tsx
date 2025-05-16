@@ -2,8 +2,9 @@ import useAppLoading from '@app/hooks/useAppLoading'
 
 import { useEffect } from 'react'
 
-import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { Tabs } from 'expo-router'
+
+import { Calendar, Home, User } from '@tamagui/lucide-icons'
 
 export default function TabLayout() {
   const setAppLoading = useAppLoading()
@@ -18,14 +19,14 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+          tabBarIcon: ({ color }) => <Home size={28} color={color} />,
         }}
       />
       <Tabs.Screen
         name="booking"
         options={{
           title: 'Booking',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+          tabBarIcon: ({ color }) => <Calendar size={28} color={color} />,
         }}
       />
 
@@ -33,7 +34,7 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
+          tabBarIcon: ({ color }) => <User size={28} color={color} />,
         }}
       />
     </Tabs>

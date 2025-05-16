@@ -1,10 +1,14 @@
-export type LoginFormData = {
+export type AuthCredentials = {
   email: string
   password: string
 }
 
-export type SignupFormData = {
-  email: string
-  password: string
+export type SignupData = AuthCredentials & {
   name: string
+}
+
+export type UserProfileData = SignupData & {
+  nickname: string
+  dateOfBirth: Date | null
+  gender: 'male' | 'female' | null
 }

@@ -1,9 +1,9 @@
 import { Input } from '@app/components'
-import { LoginFormData } from '@app/types'
+import { AuthCredentials } from '@app/types'
 import { Controller, useForm } from 'react-hook-form'
 
 import { useRef } from 'react'
-import { TextInput } from 'react-native'
+import { Keyboard, TextInput } from 'react-native'
 
 import { YStack } from 'tamagui'
 
@@ -15,17 +15,22 @@ import { Button } from '@theme/button'
 import { LockIcon, SmsIcon } from '@icons'
 
 interface LoginFormProps {
-  onSubmit: (data: LoginFormData) => Promise<void>
+  onSubmit: (data: AuthCredentials) => Promise<void>
 }
 
 const LoginForm = ({ onSubmit }: LoginFormProps) => {
   const passwordRef = useRef<TextInput>(null)
 
-  const { control, handleSubmit, formState } = useForm<LoginFormData>({
+  const { control, handleSubmit, formState } = useForm<AuthCredentials>({
     defaultValues: { email: '', password: '' },
-    mode: 'onSubmit',
+    mode: 'onBlur',
     reValidateMode: 'onChange',
   })
+
+  const handleLogin = async (data: AuthCredentials) => {
+    if (Keyboard.isVisible()) Keyboard.dismiss()
+    await onSubmit(data)
+  }
 
   const disabled =
     !!Object.keys(formState.errors).length ||
@@ -79,7 +84,7 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
           )}
         />
       </YStack>
-      <Button onPress={handleSubmit(onSubmit)} disabled={disabled} marginTop={24}>
+      <Button onPress={handleSubmit(handleLogin)} disabled={disabled} marginTop={24}>
         Sign in
       </Button>
     </YStack>

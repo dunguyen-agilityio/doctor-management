@@ -56,7 +56,6 @@ export default function RootLayout() {
   if (!loaded) {
     return null
   }
-  const integrate = 1
 
   const render = () => {
     if (storybookEnabled) {

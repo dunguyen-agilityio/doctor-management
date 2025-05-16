@@ -1,9 +1,9 @@
 import { Input } from '@app/components'
-import { SignupFormData } from '@app/types'
+import { SignupData } from '@app/types'
 import { Controller, useForm } from 'react-hook-form'
 
 import { useRef } from 'react'
-import { TextInput } from 'react-native'
+import { Keyboard, TextInput } from 'react-native'
 
 import { YStack } from 'tamagui'
 
@@ -16,18 +16,23 @@ import { LockIcon, SmsIcon } from '@icons/index'
 import User from '@icons/user'
 
 interface SignupFormProps {
-  onSubmit: (data: SignupFormData) => Promise<void>
+  onSubmit: (data: SignupData) => Promise<void>
 }
 
 const SignupForm = ({ onSubmit }: SignupFormProps) => {
   const emailRef = useRef<TextInput>(null)
   const passwordRef = useRef<TextInput>(null)
 
-  const { control, handleSubmit } = useForm<SignupFormData>({
+  const { control, handleSubmit } = useForm<SignupData>({
     defaultValues: { email: '', name: '', password: '' },
     mode: 'onBlur',
-    reValidateMode: 'onSubmit',
+    reValidateMode: 'onChange',
   })
+
+  const handleSignup = async (data: SignupData) => {
+    if (Keyboard.isVisible()) Keyboard.dismiss()
+    await onSubmit(data)
+  }
 
   const handleEndEditName = (isChanged: boolean) => {
     isChanged && emailRef?.current?.focus()
@@ -58,6 +63,7 @@ const SignupForm = ({ onSubmit }: SignupFormProps) => {
               onChangeText={onChange}
               errorMessage={error?.message}
               onEndEdit={handleEndEditName}
+              returnKeyType="next"
             />
           )}
         />
@@ -80,6 +86,7 @@ const SignupForm = ({ onSubmit }: SignupFormProps) => {
               errorMessage={error?.message}
               ref={emailRef}
               onEndEdit={handleEndEditEmail}
+              returnKeyType="next"
             />
           )}
         />
@@ -103,11 +110,12 @@ const SignupForm = ({ onSubmit }: SignupFormProps) => {
               onChangeText={onChange}
               errorMessage={error?.message}
               ref={passwordRef}
+              returnKeyType="done"
             />
           )}
         />
       </YStack>
-      <Button onPress={handleSubmit(onSubmit)}>Create Account</Button>
+      <Button onPress={handleSubmit(handleSignup)}>Create Account</Button>
     </YStack>
   )
 }
