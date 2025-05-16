@@ -2,7 +2,7 @@ import FormKeyboardAvoidingView from '@app/components/form-keyboard-avoiding-vie
 import { useSession } from '@app/contexts/auth-context'
 import useAppLoading from '@app/hooks/useAppLoading'
 import { login } from '@app/services/auth'
-import { LoginFormData } from '@app/types'
+import { AuthCredentials } from '@app/types'
 import LoginForm from '@app/ui/auth/login-form'
 
 import { Link, router } from 'expo-router'
@@ -17,14 +17,14 @@ const SignIn = () => {
   const { signIn } = useSession()
   const setAppLoading = useAppLoading()
 
-  const handleSignIn = async (formData: LoginFormData) => {
+  const handleSignIn = async (formData: AuthCredentials) => {
     setAppLoading(true)
 
     const { data, error } = await login(formData)
 
     if (data) {
       signIn(data)
-      router.replace('/(app)/favorite')
+      router.replace('/(app)/(tabs)')
       return
     }
 
@@ -72,7 +72,6 @@ const SignIn = () => {
                 Sign up
               </Text>
             </Link>
-            <Link href="/profile">Profile</Link>
           </XStack>
         </YStack>
       </YStack>

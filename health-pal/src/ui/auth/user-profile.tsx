@@ -3,10 +3,11 @@ import DateInput from '@app/components/date-input'
 import FormKeyboardAvoidingView from '@app/components/form-keyboard-avoiding-view'
 import Select from '@app/components/select'
 import Upload from '@app/components/upload'
+import { UserProfileData } from '@app/types'
 import { Controller, useForm } from 'react-hook-form'
 
 import { useRef } from 'react'
-import { TextInput } from 'react-native'
+import { Keyboard, TextInput } from 'react-native'
 
 import { VALIDATIONS_MESSAGE } from '@app/constants/message'
 import { EMAIL_REGEX } from '@app/constants/regex'
@@ -14,17 +15,9 @@ import { EMAIL_REGEX } from '@app/constants/regex'
 import { Button } from '@theme/button'
 import { XStack, YStack } from '@theme/stack'
 
-type UserProfileFormData = {
-  name: string
-  nickname: string
-  email: string
-  dateOfBirth: Date | null
-  gender: boolean | null
-}
-
 interface UserProfileFormProps {
-  defaultData?: Partial<UserProfileFormData>
-  onSubmit: (data: UserProfileFormData) => Promise<void>
+  defaultData?: Partial<UserProfileData>
+  onSubmit: (data: UserProfileData) => Promise<void>
 }
 
 const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
@@ -32,7 +25,7 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
   const nicknameRef = useRef<TextInput>(null)
   const emailRef = useRef<TextInput>(null)
 
-  const { control, handleSubmit } = useForm<UserProfileFormData>({
+  const { control, handleSubmit, setError } = useForm<UserProfileData>({
     defaultValues: {
       name: '',
       nickname: '',
@@ -42,8 +35,13 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
       ...defaultData,
     },
     mode: 'onBlur',
-    reValidateMode: 'onSubmit',
+    reValidateMode: 'onChange',
   })
+
+  const handleSubmitProfile = async (data: UserProfileData) => {
+    if (Keyboard.isVisible()) Keyboard.dismiss()
+    await onSubmit(data)
+  }
 
   return (
     <FormKeyboardAvoidingView>
@@ -69,7 +67,7 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
             render={({ field: { onChange, ...field }, fieldState: { error } }) => (
               <Input
                 {...field}
-                placeholder="Michael Jordan"
+                placeholder="Name"
                 ref={nameRef}
                 onEndEdit={(isChanged) => {
                   if (isChanged) nicknameRef?.current?.focus()
@@ -77,6 +75,7 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
                 onChangeText={onChange}
                 errorMessage={error?.message}
                 textContentType="name"
+                editable={false}
               />
             )}
           />
@@ -95,8 +94,8 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
                 {...field}
                 placeholder="Nickname"
                 ref={nicknameRef}
-                onEndEditing={({ nativeEvent }) => {
-                  if (nativeEvent.text) emailRef?.current?.focus()
+                onEndEdit={(isChanged) => {
+                  if (isChanged) emailRef?.current?.focus()
                 }}
                 onChangeText={onChange}
                 errorMessage={error?.message}
@@ -116,10 +115,11 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
             render={({ field: { onChange, ...field }, fieldState: { error } }) => (
               <Input
                 {...field}
-                placeholder="name@example.com"
+                placeholder="Email"
                 ref={emailRef}
                 onChangeText={onChange}
                 errorMessage={error?.message}
+                editable={false}
               />
             )}
           />
@@ -133,7 +133,11 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
               <DateInput
                 {...field}
                 placeholder="Date of birth"
-                onChangeValue={onChange}
+                onChangeValue={(value) => {
+                  onChange(value)
+                  setError('dateOfBirth', {})
+                }}
+                datePickerProps={{ maxDate: new Date() }}
                 errorMessage={error?.message}
               />
             )}
@@ -152,21 +156,16 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
                 items={[{ name: 'Male' }, { name: 'Female' }]}
                 native
                 onValueChange={onChange}
-                value={formatGender(value)}
+                value={value?.toLocaleUpperCase()}
                 errorMessage={error?.message}
               />
             )}
           />
         </YStack>
-        <Button onPress={handleSubmit(onSubmit)}>Save</Button>
+        <Button onPress={handleSubmit(handleSubmitProfile)}>Save</Button>
       </YStack>
     </FormKeyboardAvoidingView>
   )
 }
 
 export default UserProfile
-
-const formatGender = (value: boolean | null) => {
-  if (value === null) return
-  return value ? 'Male' : 'Female'
-}

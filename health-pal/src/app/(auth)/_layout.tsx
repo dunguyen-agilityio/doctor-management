@@ -14,7 +14,7 @@ const AuthLayout = ({ children, ...s }: React.PropsWithChildren) => {
       <Stack.Screen name="sign-up" />
       <Stack.Screen
         initialParams={{ name: '' }}
-        name="profile-form"
+        name="profile-info"
         options={{
           headerShown: true,
           headerShadowVisible: false,

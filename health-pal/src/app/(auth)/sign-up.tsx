@@ -1,4 +1,4 @@
-import { SignupFormData } from '@app/types'
+import { SignupData } from '@app/types'
 import SignupForm from '@app/ui/auth/signup-form'
 
 import { Link, router } from 'expo-router'
@@ -10,7 +10,7 @@ import Google from '@icons/google'
 import Logo from '@icons/logo'
 
 const SignUp = () => {
-  const handleSignUp = async (data: SignupFormData) => {
+  const handleSignUp = async (data: SignupData) => {
     router.navigate('/profile-info')
     router.setParams(data)
   }

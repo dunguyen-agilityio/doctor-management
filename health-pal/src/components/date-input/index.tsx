@@ -8,7 +8,7 @@ import { Adapt, InputProps, Popover, YStack } from 'tamagui'
 
 import { CalendarIcon } from '@icons'
 
-import DatePicker from '../date-picker'
+import DatePicker, { DatePickerProps } from '../date-picker'
 import Input from '../input'
 
 interface DateInputProps extends Omit<InputProps, 'value'> {
@@ -16,9 +16,10 @@ interface DateInputProps extends Omit<InputProps, 'value'> {
   ref?: React.Ref<TextInput | null>
   onChangeValue?: (value: Date) => void
   errorMessage?: string
+  datePickerProps?: DatePickerProps
 }
 
-const DateInput = ({ errorMessage, onChangeValue, ...props }: DateInputProps) => {
+const DateInput = ({ errorMessage, onChangeValue, datePickerProps, ...props }: DateInputProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [value, setValue] = useState<DateType>()
   const inputRef = useRef<TextInput>(null)
@@ -53,7 +54,6 @@ const DateInput = ({ errorMessage, onChangeValue, ...props }: DateInputProps) =>
             ref={inputRef}
             leftIcon={CalendarIcon}
             textContentType="dateTime"
-            // editable={false}
             value={textValue}
             errorMessage={errorMessage}
             onPressIn={handleOpenDatePicker}
@@ -67,7 +67,7 @@ const DateInput = ({ errorMessage, onChangeValue, ...props }: DateInputProps) =>
             </Popover.Sheet.Frame>
             <Popover.Sheet.Overlay
               backgroundColor="transparent"
-              animation="slow"
+              animation="lazy"
               enterStyle={{ opacity: 0 }}
               exitStyle={{ opacity: 0 }}
             />
@@ -83,14 +83,14 @@ const DateInput = ({ errorMessage, onChangeValue, ...props }: DateInputProps) =>
           backgroundColor="transparent"
           padding={0}
           animation={[
-            'fast',
+            'quick',
             {
               opacity: {
                 overshootClamping: true,
               },
             },
           ]}>
-          <DatePicker onChange={handleChange} date={value} />
+          <DatePicker onChange={handleChange} date={value} {...datePickerProps} />
         </Popover.Content>
       </Popover>
     </YStack>

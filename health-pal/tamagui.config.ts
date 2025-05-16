@@ -1,4 +1,3 @@
-import { createAnimations } from '@tamagui/animations-moti'
 import { defaultConfig } from '@tamagui/config/v4'
 import { createFont, createTamagui, createTokens } from 'tamagui'
 
@@ -32,26 +31,6 @@ const systemFont = createFont({
     500: { normal: 'Inter_500Medium' },
     600: { normal: 'Inter_600SemiBold' },
     700: { normal: 'Inter_700Bold' },
-  },
-})
-
-const animations = createAnimations({
-  fast: {
-    type: 'spring',
-    damping: 20,
-    mass: 1.2,
-    stiffness: 250,
-  },
-  medium: {
-    type: 'spring',
-    damping: 10,
-    mass: 0.9,
-    stiffness: 100,
-  },
-  slow: {
-    type: 'spring',
-    damping: 20,
-    stiffness: 60,
   },
 })
 
@@ -116,7 +95,8 @@ export const tamaguiConfig = createTamagui({
     w: 'width',
     h: 'height',
   } as const,
-  animations: animations,
+  //   animations: animations,
+  animations: defaultConfig.animations,
   media: defaultConfig.media,
 })
 

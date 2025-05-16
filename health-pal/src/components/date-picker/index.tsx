@@ -6,7 +6,7 @@ import { tokens } from '@/tamagui.config'
 
 type DateTimePickerProps = Parameters<typeof DateTimePicker>[0]
 
-type DatePickerProps = Omit<DateTimePickerProps, 'mode' | 'onChange'> & {
+export type DatePickerProps = Omit<DateTimePickerProps, 'mode' | 'onChange'> & {
   onChange?: (date: DateType) => void
 }
 
