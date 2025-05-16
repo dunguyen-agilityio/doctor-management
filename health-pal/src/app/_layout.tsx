@@ -14,6 +14,7 @@ import {
 } from '@expo-google-fonts/inter'
 import { Slot } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
+import { StatusBar } from 'expo-status-bar'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { tokens } from '@/tamagui.config'
@@ -68,6 +69,7 @@ export default function RootLayout() {
       <SafeAreaView style={{ flex: 1, backgroundColor: tokens.color.white.val }}>
         <SessionProvider>
           <AppLoadingProvider>
+            <StatusBar />
             <Slot />
           </AppLoadingProvider>
         </SessionProvider>

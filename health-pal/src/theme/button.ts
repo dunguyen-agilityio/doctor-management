@@ -14,7 +14,7 @@ export const Button = styled(TamaguiButton, {
         height: 48,
         paddingVertical: 12,
         paddingHorizontal: 20,
-        pressStyle: { backgroundColor: '$primary', animateOnly: ['transform', 'backgroundColor'] },
+        pressStyle: { backgroundColor: '$primary' },
         hoverStyle: { opacity: 0.85 },
       },
       outlined: {
