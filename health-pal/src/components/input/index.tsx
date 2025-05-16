@@ -21,7 +21,7 @@ interface CustomInputProps extends InputProps {
 
 const styleByIcon: Record<'true' | 'false', InputProps> = {
   true: {
-    paddingLeft: 42,
+    paddingLeft: 54,
     position: 'relative',
   },
   false: {
@@ -43,7 +43,7 @@ const Input = ({
 
   return (
     <YStack gap="$sm" width="100%">
-      <XStack alignItems="center" gap={8}>
+      <XStack alignItems="center">
         {hasIcon ? <LeftIcon position="absolute" zIndex={200} left={16} size={16} /> : null}
         <TamaguiInput
           ref={ref}

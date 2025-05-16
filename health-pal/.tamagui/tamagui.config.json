@@ -27954,6 +27954,7 @@
     },
     "shorthands": {
       "px": "paddingHorizontal",
+      "py": "paddingVertical",
       "f": "flex",
       "m": "margin",
       "w": "width",
@@ -27965,6 +27966,7 @@
     },
     "inverseShorthands": {
       "paddingHorizontal": "px",
+      "paddingVertical": "py",
       "flex": "f",
       "margin": "m",
       "width": "w",
