@@ -1,12 +1,15 @@
 import useAppLoading from '@app/hooks/useAppLoading'
+import { BottomTabBarButtonProps, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs'
 
 import { useEffect } from 'react'
-import { Pressable } from 'react-native'
+import { Pressable, StyleSheet } from 'react-native'
 
-import { Tabs } from 'expo-router'
+import { NavigationState } from '@react-navigation/native'
+import { Href, Link, ScreenProps, Tabs } from 'expo-router'
 import { SvgProps } from 'react-native-svg'
 
-import { Button } from '@theme/button'
+import { Stack } from 'tamagui'
+
 import { XStack } from '@theme/stack'
 
 import {
@@ -16,9 +19,60 @@ import {
   HeartOutline,
   HomeFill,
   HomeOutline,
+  NotificationIcon,
   ProfileFill,
   ProfileOutline,
 } from '@icons'
+
+enum TABS {
+  HOME = 'index',
+  FAVORITE = 'favorite',
+  BOOKING = 'booking',
+  PROFILE = 'profile',
+}
+
+const renderHomeHeader = () => (
+  <XStack height={46} justifyContent="space-between" alignItems="center" paddingHorizontal="$md">
+    <Stack />
+    <Link href={'/(app)/notification'}></Link>
+    <NotificationIcon />
+  </XStack>
+)
+
+const renderBabBarButton = ({ children, onPress }: BottomTabBarButtonProps) => (
+  <Pressable onPress={onPress}>{children}</Pressable>
+)
+
+type TabsProps = BottomTabNavigationOptions & {
+  href?: Href | null
+}
+
+const TAB_OPTIONS: Record<TABS, TabsProps> = {
+  [TABS.HOME]: {
+    header: renderHomeHeader,
+    headerShadowVisible: false,
+    tabBarIcon: (props) => renderIcon(TABS.HOME, props),
+  },
+  [TABS.FAVORITE]: { tabBarIcon: (props) => renderIcon(TABS.FAVORITE, props) },
+  [TABS.BOOKING]: { tabBarIcon: (props) => renderIcon(TABS.BOOKING, props) },
+  [TABS.PROFILE]: { tabBarIcon: (props) => renderIcon(TABS.PROFILE, props) },
+}
+
+const styles = StyleSheet.create({
+  tabBarStyle: { height: 76, paddingBottom: 0 },
+  tabBarItemStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+})
+
+const screenOptions: BottomTabNavigationOptions = {
+  tabBarShowLabel: false,
+  tabBarStyle: styles.tabBarStyle,
+  tabBarItemStyle: styles.tabBarItemStyle,
+  tabBarButton: renderBabBarButton,
+}
 
 export default function TabLayout() {
   const setAppLoading = useAppLoading()
@@ -28,47 +82,13 @@ export default function TabLayout() {
   }, [setAppLoading])
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarStyle: { height: 76, paddingBottom: 0 },
-        tabBarItemStyle: {
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'row',
-        },
-        tabBarButton: ({ children, onPress }) => (
-          <Pressable onPress={onPress}>{children}</Pressable>
-        ),
-      }}>
-      <Tabs.Screen
-        name={TABS.HOME}
-        options={{
-          title: '',
-          tabBarIcon: (props) => renderIcon(TABS.HOME, props),
-        }}
-      />
-      <Tabs.Screen
-        name={TABS.FAVORITE}
-        options={{ title: '', tabBarIcon: (props) => renderIcon(TABS.FAVORITE, props) }}
-      />
-      <Tabs.Screen
-        name={TABS.BOOKING}
-        options={{ title: '', tabBarIcon: (props) => renderIcon(TABS.BOOKING, props) }}
-      />
-
-      <Tabs.Screen
-        name={TABS.PROFILE}
-        options={{ title: '', tabBarIcon: (props) => renderIcon(TABS.PROFILE, props) }}
-      />
+    <Tabs screenOptions={screenOptions}>
+      <Tabs.Screen name={TABS.HOME} options={TAB_OPTIONS[TABS.HOME]} />
+      <Tabs.Screen name={TABS.FAVORITE} options={TAB_OPTIONS[TABS.FAVORITE]} />
+      <Tabs.Screen name={TABS.BOOKING} options={TAB_OPTIONS[TABS.BOOKING]} />
+      <Tabs.Screen name={TABS.PROFILE} options={TAB_OPTIONS[TABS.PROFILE]} />
     </Tabs>
   )
-}
-
-enum TABS {
-  HOME = 'index',
-  FAVORITE = 'favorite',
-  BOOKING = 'booking',
-  PROFILE = 'profile',
 }
 
 type Getters = {
