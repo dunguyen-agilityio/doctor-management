@@ -37,6 +37,7 @@ exports[`MyButton Text renders correctly on MyButton 1`] = `
       "fontWeight": "500",
       "height": 48,
       "justifyContent": "center",
+      "opacity": 1,
       "paddingBottom": 12,
       "paddingLeft": 20,
       "paddingRight": 20,
