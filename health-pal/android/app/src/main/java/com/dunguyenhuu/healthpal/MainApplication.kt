@@ -43,7 +43,7 @@ class MainApplication : Application(), ReactApplication {
 
   override fun onCreate() {
     super.onCreate()
-    // @generated begin xml-fonts-init - expo prebuild (DO NOT MODIFY) sync-1a170bdd85e8274995d7d19b6a6a314dd005d596
+    // @generated begin xml-fonts-init - expo prebuild (DO NOT MODIFY) sync-5fb7002bc0d9663040bf5162bde4571f0b8644c2
     ReactFontManager.getInstance().addCustomFont(this, "Inter_400Regular", R.font.xml_inter_400regular)
     ReactFontManager.getInstance().addCustomFont(this, "Inter_500Medium", R.font.xml_inter_500medium)
     ReactFontManager.getInstance().addCustomFont(this, "Inter_600SemiBold", R.font.xml_inter_600semi_bold)
