@@ -1,6 +1,6 @@
 import Svg, { Path, SvgProps } from 'react-native-svg'
 
-const location = (props: SvgProps) => {
+const Location = (props: SvgProps) => {
   return (
     <Svg width="18" height="21" viewBox="0 0 18 21" fill="none" {...props}>
       <Path
@@ -11,4 +11,4 @@ const location = (props: SvgProps) => {
   )
 }
 
-export default location
+export default Location

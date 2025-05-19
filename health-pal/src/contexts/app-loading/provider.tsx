@@ -1,9 +1,12 @@
-import Modal from '@app/components/modal'
-import { AppLoadingDispatchContext } from '@app/contexts/app-loading'
-
-import { memo, useState } from 'react'
+import { createContext, memo, useState } from 'react'
 
 import { Spinner } from 'tamagui'
+
+import Modal from '@app/components/modal'
+
+export const AppLoadingDispatchContext = createContext<
+  React.Dispatch<React.SetStateAction<boolean>>
+>(() => null)
 
 const AppLoadingProvider = ({ children }: React.PropsWithChildren) => {
   const [loading, setLoading] = useState(false)

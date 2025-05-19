@@ -1,7 +1,3 @@
-import { SessionProvider } from '@app/contexts/auth-context'
-import AppLoadingProvider from '@app/contexts/loading'
-import Providers from '@app/providers'
-
 import { useEffect, useState } from 'react'
 import { DevSettings } from 'react-native'
 
@@ -17,6 +13,9 @@ import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
+
+import { AppLoadingProvider, SessionProvider } from '@app/contexts'
+import Providers from '@app/providers'
 
 import { tokens } from '@/tamagui.config'
 

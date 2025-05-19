@@ -1,9 +1,3 @@
-import { Input } from '@app/components'
-import DateInput from '@app/components/date-input'
-import FormKeyboardAvoidingView from '@app/components/form-keyboard-avoiding-view'
-import Select from '@app/components/select'
-import Upload from '@app/components/upload'
-import { UserProfileData } from '@app/types'
 import { Controller, useForm } from 'react-hook-form'
 
 import { useRef } from 'react'
@@ -14,6 +8,13 @@ import { EMAIL_REGEX } from '@app/constants/regex'
 
 import { Button } from '@theme/button'
 import { XStack, YStack } from '@theme/stack'
+
+import { Input } from '@app/components'
+import DateInput from '@app/components/date-input'
+import FormKeyboardAvoidingView from '@app/components/form-keyboard-avoiding-view'
+import Select from '@app/components/select'
+import Upload from '@app/components/upload'
+import { UserProfileData } from '@app/types'
 
 interface UserProfileFormProps {
   defaultData?: Partial<UserProfileData>

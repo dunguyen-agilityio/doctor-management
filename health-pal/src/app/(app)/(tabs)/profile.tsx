@@ -1,7 +1,7 @@
-import { useSession } from '@app/contexts'
-
 import { YStack } from '@theme/stack'
 import { Text } from '@theme/text'
+
+import { useSession } from '@app/contexts'
 
 const Profile = () => {
   const { signOut } = useSession()

@@ -1,14 +1,14 @@
+import { useRef } from 'react'
+
+import { router, useLocalSearchParams } from 'expo-router'
+
 import { useSession } from '@app/contexts'
-import useAppLoading from '@app/hooks/useAppLoading'
+import { useAppLoading } from '@app/hooks'
 import { register } from '@app/services/auth'
 import { SignupData, UserProfileData } from '@app/types'
 import { ModalRef } from '@app/types/modal'
 import { CreateAccountSuccessModal } from '@app/ui/auth/create-account-success-modal'
 import UserProfile from '@app/ui/auth/user-profile'
-
-import { useRef } from 'react'
-
-import { router, useLocalSearchParams } from 'expo-router'
 
 const Profile = () => {
   const params = useLocalSearchParams<SignupData>()

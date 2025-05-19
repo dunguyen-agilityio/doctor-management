@@ -1,5 +1,6 @@
-import { Button } from '@app/theme'
 import { render } from '@utils-test'
+
+import { Button } from '@app/theme'
 
 describe('MyButton', () => {
   test('Text renders correctly on MyButton', () => {
