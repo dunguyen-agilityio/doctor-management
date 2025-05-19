@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import { Text, View } from 'react-native'
 
 import { useSharedValue } from 'react-native-reanimated'
 import Carousel, { ICarouselInstance, Pagination } from 'react-native-reanimated-carousel'
@@ -8,9 +7,11 @@ import { XStack, YStack } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
 
-import Item from './item'
+import useMediaQuery from '@app/hooks/use-media-query'
+import { DOCTOR_BANNER } from '@app/mocks/doctor'
+import { TDoctorBanner } from '@app/types/doctor'
 
-const data = [...new Array(6).keys()]
+import DoctorBannerCard from './doctor-banner-card'
 
 const DoctorBanner = () => {
   const ref = useRef<ICarouselInstance>(null)
@@ -18,33 +19,33 @@ const DoctorBanner = () => {
 
   const onPressPagination = (index: number) => {
     ref.current?.scrollTo({
-      /**
-       * Calculate the difference between the current index and the target index
-       * to ensure that the carousel scrolls to the nearest index
-       */
       count: index - progress.value,
       animated: true,
     })
   }
 
-  const width = WINDOW_SIZE.width < 342 ? WINDOW_SIZE.width : 342
+  const { height, width } = useMediaQuery({ h: 163, full: true })
+
+  const renderItem = ({ item, index }: { item: TDoctorBanner; index: number }) => (
+    <DoctorBannerCard {...item} key={index} width={width} height={height} />
+  )
 
   return (
     <XStack position="relative" justifyContent="center" alignItems="flex-end" h={163}>
-      <YStack position="absolute" justifyContent="center" width={width}>
+      <YStack position="absolute" justifyContent="center">
         <Carousel
           ref={ref}
-          width={width}
-          height={163}
-          data={data}
+          width={WINDOW_SIZE.width}
+          height={height}
+          data={DOCTOR_BANNER}
           onProgressChange={progress}
-          renderItem={({ item }) => <Item key={item} />}
+          renderItem={renderItem}
         />
       </YStack>
       <XStack paddingBottom={6}>
         <Pagination.Custom
           progress={progress}
-          data={data}
+          data={DOCTOR_BANNER}
           dotStyle={{
             backgroundColor: '#fff',
             width: 6,
