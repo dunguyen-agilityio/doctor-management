@@ -1,0 +1,22 @@
+import { Doctor } from '@app/models/doctor'
+import { User } from '@app/models/user'
+import { StrapiPagination, StrapiParams } from '@app/types/strapi'
+import { buildStrapiQuery } from '@app/utils/strapi'
+
+import { apiClient } from './http-client'
+
+export type DoctorData = Doctor & { users_permissions_user: User }
+
+export const getDoctors = async ({ filters = [], ...params }: StrapiParams) => {
+  const searchParams = buildStrapiQuery({
+    ...params,
+    filters: [
+      { key: 'populate[users_permissions_user][populate]', query: '*' },
+      { key: 'populate[clinic][populate]', query: '*' },
+      { key: 'populate[specialty][populate]', query: '*' },
+      ...filters,
+    ],
+  })
+  const response = await apiClient.get<StrapiPagination<DoctorData>>(`doctors?${searchParams}`)
+  return response
+}
