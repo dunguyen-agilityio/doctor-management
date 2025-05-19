@@ -1,4 +1,4 @@
-import { API_ENDPOINT } from '@app/constants/environment'
+import { API_ENDPOINT, APP_TOKEN } from '@app/constants/environment'
 
 type RequestOption = Omit<RequestInit, 'body'> & {
   body?: object
@@ -13,6 +13,8 @@ type RequestOption = Omit<RequestInit, 'body'> & {
 type SuccessResponse<T> = { data: T; error: null }
 type FailedResponse = { data: null; error: { message: string } }
 
+export type APIResponse<T> = SuccessResponse<T> | FailedResponse
+
 class APIClient {
   private static _apiClient: APIClient
   private constructor() {}
@@ -25,11 +27,8 @@ class APIClient {
     return this._apiClient
   }
 
-  private readonly apiRequest = async <T>(
-    url: string,
-    init?: RequestOption,
-  ): Promise<SuccessResponse<T> | FailedResponse> => {
-    const { method = 'GET', body, headers, next, jwt = '', ...rest } = init ?? {}
+  private readonly apiRequest = async <T>(url: string, init?: RequestOption): Promise<T> => {
+    const { method = 'GET', body, headers, next, jwt = APP_TOKEN, ...rest } = init ?? {}
 
     const hasBody = method === 'POST' || method === 'PUT'
 
@@ -51,22 +50,12 @@ class APIClient {
       ...(next && { next }),
     }
 
-    try {
-      const res = await fetch(`${API_ENDPOINT}/${url}`, options)
+    const res = await fetch(`${API_ENDPOINT}/${url}`, options)
 
-      if (!res.ok) return (await res.json()) as FailedResponse
-
-      return {
-        data: (await res.json()) as T,
-        error: null,
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        return { error: { message: `Error : ${error.message}` }, data: null }
-      }
-
-      return { error: { message: 'Error to fetch API' }, data: null }
+    if (!res.ok) {
+      throw new Error(await res.json())
     }
+    return (await res.json()) as T
   }
 
   async get<T>(url: string, init?: Omit<RequestOption, 'method'>) {

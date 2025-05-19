@@ -1,4 +1,5 @@
 import { TDoctorCard } from '@app/models/doctor'
+import { TDoctorBanner } from '@app/types/doctor'
 
 export const MOCK_DOCTORS: TDoctorCard[] = [
   {
@@ -144,3 +145,8 @@ export const MOCK_DOCTORS: TDoctorCard[] = [
     nickname: 'doctor_010',
   },
 ]
+
+export const DOCTOR_BANNER: TDoctorBanner[] = [...new Array(6).keys()].map(() => ({
+  title: `Looking for\nSpecialist Doctors?`,
+  description: `Schedule an appointment with\nour top doctors.`,
+}))
