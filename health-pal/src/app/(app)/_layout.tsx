@@ -1,8 +1,12 @@
-import { useSession } from '@app/contexts/auth-context'
-
 import { Text } from 'react-native'
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Redirect, Stack } from 'expo-router'
+
+import { useSession } from '@app/contexts/auth-context'
+
+// Create a client
+const queryClient = new QueryClient()
 
 export default function AppLayout() {
   const { session, isLoading } = useSession()
@@ -22,10 +26,28 @@ export default function AppLayout() {
 
   // This layout can be deferred because it's not the root layout.
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="favorite" />
-      <Stack.Screen name="notification" />
-    </Stack>
+    <QueryClientProvider client={queryClient}>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="favorite" />
+        <Stack.Screen name="notification" />
+        <Stack.Screen
+          name="doctors/details/[id]"
+          options={{
+            headerTitle: 'Doctors Details',
+            headerShadowVisible: false,
+            headerTitleAlign: 'center',
+          }}
+        />
+        <Stack.Screen
+          name="doctors/[specialty]"
+          options={{
+            headerTitle: 'All Doctors',
+            headerShadowVisible: false,
+            headerTitleAlign: 'center',
+          }}
+        />
+      </Stack>
+    </QueryClientProvider>
   )
 }
