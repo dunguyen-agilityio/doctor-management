@@ -1,5 +1,3 @@
-import { Input } from '@app/components'
-import { AuthCredentials } from '@app/types'
 import { Controller, useForm } from 'react-hook-form'
 
 import { useRef } from 'react'
@@ -13,6 +11,9 @@ import { VALIDATIONS_MESSAGE } from '@app/constants/message'
 import { Button } from '@theme/button'
 
 import { LockIcon, SmsIcon } from '@icons'
+
+import { Input } from '@app/components'
+import { AuthCredentials } from '@app/types'
 
 interface LoginFormProps {
   onSubmit: (data: AuthCredentials) => Promise<void>

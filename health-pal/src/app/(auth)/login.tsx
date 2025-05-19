@@ -1,17 +1,15 @@
-import FormKeyboardAvoidingView from '@app/components/form-keyboard-avoiding-view'
-import { useSession } from '@app/contexts/auth-context'
-import useAppLoading from '@app/hooks/useAppLoading'
-import { login } from '@app/services/auth'
-import { AuthCredentials } from '@app/types'
-import LoginForm from '@app/ui/auth/login-form'
-
 import { Link, router } from 'expo-router'
 
 import { Button, Heading, Text, XStack, YStack } from '@theme'
 
-import Facebook from '@icons/facebook'
-import Google from '@icons/google'
-import Logo from '@icons/logo'
+import { Facebook, Google, Logo } from '@icons'
+
+import { FormKeyboardAvoidingView } from '@app/components'
+import { useSession } from '@app/contexts'
+import { useAppLoading } from '@app/hooks'
+import { login } from '@app/services/auth'
+import { AuthCredentials } from '@app/types'
+import LoginForm from '@app/ui/auth/login-form'
 
 const SignIn = () => {
   const { signIn } = useSession()

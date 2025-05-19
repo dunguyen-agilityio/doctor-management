@@ -1,11 +1,9 @@
-import useAppLoading from '@app/hooks/useAppLoading'
 import { BottomTabBarButtonProps, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs'
 
 import { useEffect } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 
-import { NavigationState } from '@react-navigation/native'
-import { Href, Link, ScreenProps, Tabs } from 'expo-router'
+import { Href, Link, Tabs } from 'expo-router'
 import { SvgProps } from 'react-native-svg'
 
 import { Stack } from 'tamagui'
@@ -23,6 +21,8 @@ import {
   ProfileFill,
   ProfileOutline,
 } from '@icons'
+
+import { useAppLoading } from '@app/hooks'
 
 enum TABS {
   HOME = 'index',

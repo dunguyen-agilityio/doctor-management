@@ -1,12 +1,14 @@
-import { AuthUser } from '@app/models/user'
-
 import { useCallback, useEffect, useReducer } from 'react'
 
 import * as SecureStore from 'expo-secure-store'
 
+import { AuthUser } from '@app/models/user'
+
 type UseStateHook<T> = [[boolean, T | null], (value: T | null) => void]
 
-function useAsyncState<T>(initialValue: [boolean, T | null] = [true, null]): UseStateHook<T> {
+export const useAsyncState = <T>(
+  initialValue: [boolean, T | null] = [true, null],
+): UseStateHook<T> => {
   return useReducer(
     (state: [boolean, T | null], action: T | null = null): [boolean, T | null] => [false, action],
     initialValue,
@@ -21,7 +23,7 @@ export async function setStorageItemAsync(key: string, value: string | null) {
   }
 }
 
-export function useStorageState(key: string): UseStateHook<AuthUser> {
+export const useStorageState = (key: string): UseStateHook<AuthUser> => {
   // Public
   const [state, setState] = useAsyncState<AuthUser>()
 

@@ -1,6 +1,3 @@
-import { SignupData } from '@app/types'
-import SignupForm from '@app/ui/auth/signup-form'
-
 import { Link, router } from 'expo-router'
 
 import { Button, Heading, Text, XStack, YStack } from '@theme'
@@ -8,6 +5,9 @@ import { Button, Heading, Text, XStack, YStack } from '@theme'
 import Facebook from '@icons/facebook'
 import Google from '@icons/google'
 import Logo from '@icons/logo'
+
+import { SignupData } from '@app/types'
+import SignupForm from '@app/ui/auth/signup-form'
 
 const SignUp = () => {
   const handleSignUp = async (data: SignupData) => {

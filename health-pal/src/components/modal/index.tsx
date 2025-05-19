@@ -1,11 +1,11 @@
-import { ModalRef } from '@app/types/modal'
-
 import { useImperativeHandle, useState } from 'react'
 
 import { X } from '@tamagui/lucide-icons'
 import { Button, Dialog, DialogContentProps, DialogProps, Unspaced } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
+
+import { ModalRef } from '@app/types/modal'
 
 interface ModalProps extends DialogProps {
   closeButtonShown?: boolean

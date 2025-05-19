@@ -1,13 +1,13 @@
-import LoadingIndicator from '@app/components/loading-indicator'
-import Modal from '@app/components/modal'
-import { ModalRef } from '@app/types/modal'
-
 import { YStack } from 'tamagui'
 
 import { Heading } from '@theme/heading'
 import { Text } from '@theme/text'
 
 import { ShieldTick } from '@icons'
+
+import LoadingIndicator from '@app/components/loading-indicator'
+import Modal from '@app/components/modal'
+import { ModalRef } from '@app/types/modal'
 
 type Props = {
   ref?: React.Ref<ModalRef>

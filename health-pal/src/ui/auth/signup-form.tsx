@@ -1,5 +1,3 @@
-import { Input } from '@app/components'
-import { SignupData } from '@app/types'
 import { Controller, useForm } from 'react-hook-form'
 
 import { useRef } from 'react'
@@ -14,6 +12,9 @@ import { Button } from '@theme/button'
 
 import { LockIcon, SmsIcon } from '@icons/index'
 import User from '@icons/user'
+
+import { Input } from '@app/components'
+import { SignupData } from '@app/types'
 
 interface SignupFormProps {
   onSubmit: (data: SignupData) => Promise<void>

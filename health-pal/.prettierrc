@@ -11,6 +11,7 @@
     "^@app/constants",
     "^@theme",
     "^@icons",
+    "^@app",
     "@/tamagui.config",
     "^[./]"
   ],

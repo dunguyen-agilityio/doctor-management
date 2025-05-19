@@ -1,10 +1,10 @@
-import { LockIcon } from '@app/icons'
-
 import { View } from 'react-native'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Airplay } from '@tamagui/lucide-icons'
+
+import { LockIcon } from '@app/icons'
 
 import Input from '.'
 
