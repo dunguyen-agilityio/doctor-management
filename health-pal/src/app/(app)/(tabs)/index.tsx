@@ -1,20 +1,22 @@
-import SearchInput from '@app/components/search-input'
-import Categories from '@app/ui/home/categories'
-import DoctorBanner from '@app/ui/home/doctor-banner'
-import NearbyMedicalCenters from '@app/ui/home/nearby-edical-enters'
-
 import { ScrollView } from 'tamagui'
 
-import { YStack } from '@theme/stack'
+import { XStack, YStack } from '@theme/stack'
+
+import { SearchInput } from '@app/components'
+import { DoctorBanner, NearbyMedicalCenters, Specialties } from '@app/ui/home'
 
 const Home = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-      <YStack flex={1} px="$md" gap="$md" overflow="visible">
-        <SearchInput placeholder="Search doctor..." />
+      <YStack gap="$md" overflow="visible">
+        <XStack px="$md">
+          <SearchInput placeholder="Search doctor..." />
+        </XStack>
         <DoctorBanner />
-        <Categories />
-        <NearbyMedicalCenters />
+        <YStack px="$md" gap="$md">
+          <Specialties />
+          <NearbyMedicalCenters />
+        </YStack>
       </YStack>
     </ScrollView>
   )
