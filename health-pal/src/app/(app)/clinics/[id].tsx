@@ -36,8 +36,6 @@ enum BOOKING_TABS {
 const Booking = () => {
   const [tab, setTab] = useState<string>(BOOKING_TABS.UPCOMING)
 
-  console.log('[booking + tab]', ['booking' + tab])
-
   const { isLoading, data, error } = useQuery({
     queryKey: ['booking' + tab],
     queryFn: () =>

@@ -1,1 +1,1 @@
-export type ModalRef = { open: () => void; close: () => void }
+export type ModalRef<T = null> = { open: (params?: T) => void; close: () => void }

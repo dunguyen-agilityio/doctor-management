@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 
 import * as SecureStore from 'expo-secure-store'
 
@@ -35,13 +35,10 @@ export const useStorageState = (key: string): UseStateHook<AuthUser> => {
   }, [key, setState])
 
   // Set
-  const setValue = useCallback(
-    (value: AuthUser | null) => {
-      setState(value)
-      setStorageItemAsync(key, JSON.stringify(value))
-    },
-    [key, setState],
-  )
+  const setValue = (value: AuthUser | null) => {
+    setState(value)
+    setStorageItemAsync(key, JSON.stringify(value))
+  }
 
   return [state, setValue]
 }

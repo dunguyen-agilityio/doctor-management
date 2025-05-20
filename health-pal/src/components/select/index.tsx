@@ -1,5 +1,3 @@
-import { useMemo } from 'react'
-
 import { Check, ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import {
   Adapt,
@@ -35,21 +33,6 @@ const Select = ({
     onValueChange?.(val)
     onBlur?.()
   }
-
-  const listItems = useMemo(
-    () =>
-      items.map((item, i) => {
-        return (
-          <TamaguiSelect.Item index={i} key={item.name} value={item.name.toLowerCase()}>
-            <TamaguiSelect.ItemText>{item.name}</TamaguiSelect.ItemText>
-            <TamaguiSelect.ItemIndicator marginLeft="auto">
-              <Check size={16} />
-            </TamaguiSelect.ItemIndicator>
-          </TamaguiSelect.Item>
-        )
-      }),
-    [items],
-  )
 
   return (
     <YStack gap="$sm">
@@ -105,7 +88,16 @@ const Select = ({
             minWidth={200}>
             <TamaguiSelect.Group>
               {label && <TamaguiSelect.Label>{label}</TamaguiSelect.Label>}
-              {listItems}
+              {items.map((item, i) => {
+                return (
+                  <TamaguiSelect.Item index={i} key={item.name} value={item.name.toLowerCase()}>
+                    <TamaguiSelect.ItemText>{item.name}</TamaguiSelect.ItemText>
+                    <TamaguiSelect.ItemIndicator marginLeft="auto">
+                      <Check size={16} />
+                    </TamaguiSelect.ItemIndicator>
+                  </TamaguiSelect.Item>
+                )
+              })}
             </TamaguiSelect.Group>
             {/* Native gets an extra icon */}
             {props.native && (
