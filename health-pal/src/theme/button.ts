@@ -14,7 +14,17 @@ export const Button = styled(TamaguiButton, {
         height: 48,
         paddingVertical: 12,
         paddingHorizontal: 20,
-        pressStyle: { backgroundColor: '$primary' },
+        pressStyle: { backgroundColor: '$primary', opacity: 0.85 },
+        hoverStyle: { opacity: 0.85 },
+      },
+      secondary: {
+        backgroundColor: '$grey200',
+        color: '$primary',
+        borderRadius: '$6',
+        height: 48,
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        pressStyle: { backgroundColor: '$grey200' },
         hoverStyle: { opacity: 0.85 },
       },
       outlined: {
@@ -25,6 +35,11 @@ export const Button = styled(TamaguiButton, {
         borderColor: '$grey200',
         borderRadius: '$1',
         height: 40,
+      },
+      icon: {
+        width: 24,
+        height: 24,
+        borderRadius: 24,
       },
     },
     full: {

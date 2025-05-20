@@ -4,15 +4,20 @@ export const formatDoctor = ({
   clinic,
   specialty,
   users_permissions_user,
-  ...rest
+  favoriteId,
+  rating,
 }: DoctorData): TDoctorCard => {
-  const { avatar, ...user } = users_permissions_user
+  const { avatar, name, documentId, id } = users_permissions_user
 
   return {
-    ...user,
-    ...rest,
+    name,
     address: clinic.address,
     avatar: avatar?.url ?? '',
     specialty: specialty.name,
+    documentId,
+    id,
+    reviewCounter: 0,
+    favoriteId,
+    rating,
   }
 }
