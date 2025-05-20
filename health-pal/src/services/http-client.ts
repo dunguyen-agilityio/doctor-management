@@ -1,4 +1,4 @@
-import { API_ENDPOINT, APP_TOKEN } from '@app/constants/environment'
+import { API_ENDPOINT } from '@app/constants/environment'
 
 type RequestOption = Omit<RequestInit, 'body'> & {
   body?: object
@@ -28,7 +28,7 @@ class APIClient {
   }
 
   private readonly apiRequest = async <T>(url: string, init?: RequestOption): Promise<T> => {
-    const { method = 'GET', body, headers, next, jwt = APP_TOKEN, ...rest } = init ?? {}
+    const { method = 'GET', body, headers, next, jwt, ...rest } = init ?? {}
 
     const hasBody = method === 'POST' || method === 'PUT'
 

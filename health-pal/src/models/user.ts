@@ -18,4 +18,4 @@ export class User extends Strapi {
   }
 }
 
-export type AuthUser = User & { jwt: string }
+export type AuthUser = { jwt: string; user: User }

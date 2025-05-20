@@ -1,3 +1,5 @@
+import { APP_TOKEN } from '@app/constants'
+
 import { Doctor } from '@app/models/doctor'
 import { User } from '@app/models/user'
 import { StrapiPagination, StrapiParams } from '@app/types/strapi'
@@ -17,6 +19,9 @@ export const getDoctors = async ({ filters = [], ...params }: StrapiParams) => {
       ...filters,
     ],
   })
-  const response = await apiClient.get<StrapiPagination<DoctorData>>(`doctors?${searchParams}`)
+
+  const response = await apiClient.get<StrapiPagination<DoctorData>>(`doctors?${searchParams}`, {
+    jwt: APP_TOKEN,
+  })
   return response
 }
