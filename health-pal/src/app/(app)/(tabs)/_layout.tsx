@@ -22,20 +22,29 @@ import {
   ProfileOutline,
 } from '@icons'
 
+import Header from '@app/components/header'
 import { useAppLoading } from '@app/hooks'
 
-enum TABS {
+enum TAB_ROUTES {
   HOME = 'index',
   FAVORITE = 'favorite',
   BOOKING = 'booking',
   PROFILE = 'profile',
 }
 
+const TITLES: Record<TAB_ROUTES, string> = {
+  [TAB_ROUTES.FAVORITE]: 'Favorites',
+  [TAB_ROUTES.BOOKING]: 'My Bookings',
+  [TAB_ROUTES.PROFILE]: 'Profiles',
+  [TAB_ROUTES.HOME]: '',
+}
+
 const renderHomeHeader = () => (
   <XStack height={46} justifyContent="space-between" alignItems="center" paddingHorizontal="$md">
     <Stack />
-    <Link href={'/(app)/notification'}></Link>
-    <NotificationIcon />
+    <Link href={'/(app)/notification'}>
+      <NotificationIcon />
+    </Link>
   </XStack>
 )
 
@@ -47,15 +56,17 @@ type TabsProps = BottomTabNavigationOptions & {
   href?: Href | null
 }
 
-const TAB_OPTIONS: Record<TABS, TabsProps> = {
-  [TABS.HOME]: {
+const TAB_OPTIONS: Record<TAB_ROUTES, TabsProps> = {
+  [TAB_ROUTES.HOME]: {
     header: renderHomeHeader,
     headerShadowVisible: false,
-    tabBarIcon: (props) => renderIcon(TABS.HOME, props),
+    tabBarIcon: (props) => renderIcon(TAB_ROUTES.HOME, props),
   },
-  [TABS.FAVORITE]: { tabBarIcon: (props) => renderIcon(TABS.FAVORITE, props) },
-  [TABS.BOOKING]: { tabBarIcon: (props) => renderIcon(TABS.BOOKING, props) },
-  [TABS.PROFILE]: { tabBarIcon: (props) => renderIcon(TABS.PROFILE, props) },
+  [TAB_ROUTES.FAVORITE]: { tabBarIcon: (props) => renderIcon(TAB_ROUTES.FAVORITE, props) },
+  [TAB_ROUTES.BOOKING]: {
+    tabBarIcon: (props) => renderIcon(TAB_ROUTES.BOOKING, props),
+  },
+  [TAB_ROUTES.PROFILE]: { tabBarIcon: (props) => renderIcon(TAB_ROUTES.PROFILE, props) },
 }
 
 const styles = StyleSheet.create({
@@ -72,6 +83,10 @@ const screenOptions: BottomTabNavigationOptions = {
   tabBarStyle: styles.tabBarStyle,
   tabBarItemStyle: styles.tabBarItemStyle,
   tabBarButton: renderBabBarButton,
+  header: ({ navigation, route: { name } }) => {
+    const title = TITLES[name as TAB_ROUTES]
+    return title ? <Header title={title} onBack={navigation.goBack} /> : null
+  },
 }
 
 export default function TabLayout() {
@@ -83,20 +98,20 @@ export default function TabLayout() {
 
   return (
     <Tabs screenOptions={screenOptions}>
-      <Tabs.Screen name={TABS.HOME} options={TAB_OPTIONS[TABS.HOME]} />
-      <Tabs.Screen name={TABS.FAVORITE} options={TAB_OPTIONS[TABS.FAVORITE]} />
-      <Tabs.Screen name={TABS.BOOKING} options={TAB_OPTIONS[TABS.BOOKING]} />
-      <Tabs.Screen name={TABS.PROFILE} options={TAB_OPTIONS[TABS.PROFILE]} />
+      <Tabs.Screen name={TAB_ROUTES.HOME} options={TAB_OPTIONS[TAB_ROUTES.HOME]} />
+      <Tabs.Screen name={TAB_ROUTES.FAVORITE} options={TAB_OPTIONS[TAB_ROUTES.FAVORITE]} />
+      <Tabs.Screen name={TAB_ROUTES.BOOKING} options={TAB_OPTIONS[TAB_ROUTES.BOOKING]} />
+      <Tabs.Screen name={TAB_ROUTES.PROFILE} options={TAB_OPTIONS[TAB_ROUTES.PROFILE]} />
     </Tabs>
   )
 }
 
 type Getters = {
-  [Property in TABS as `${Lowercase<string & Property>}_true`]: (
+  [Property in TAB_ROUTES as `${Lowercase<string & Property>}_true`]: (
     props: SvgProps,
   ) => React.JSX.Element
 } & {
-  [Property in TABS as `${Lowercase<string & Property>}_false`]: (
+  [Property in TAB_ROUTES as `${Lowercase<string & Property>}_false`]: (
     props: SvgProps,
   ) => React.JSX.Element
 }
@@ -112,7 +127,7 @@ const TAB_ICON: Getters = {
   favorite_false: HeartOutline,
 }
 
-const renderIcon = (name: TABS, { focused }: { focused: boolean }) => {
+const renderIcon = (name: TAB_ROUTES, { focused }: { focused: boolean }) => {
   const Icon = TAB_ICON[`${name}_${focused}`]
   if (focused) {
     return (
