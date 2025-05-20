@@ -1,11 +1,12 @@
 import { Doctor } from './doctor'
 import { Patient } from './patient'
 import { Strapi } from './strapi'
+import { User } from './user'
 
 export class Booking extends Strapi {
   date!: Date
   time!: string
-  status!: 'upcoming' | 'completed' | 'cancelled'
+  type!: 'upcoming' | 'completed' | 'cancelled'
   patient!: Patient
   doctor!: Doctor
 
@@ -13,4 +14,8 @@ export class Booking extends Strapi {
     super(booking)
     Object.assign(this, booking)
   }
+}
+
+export type BookingData = Omit<Booking, 'doctor'> & {
+  doctor: Doctor & { users_permissions_user: User }
 }
