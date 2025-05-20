@@ -1,4 +1,4 @@
-import { createContext, memo, useState } from 'react'
+import { createContext, useState } from 'react'
 
 import { Spinner } from 'tamagui'
 
@@ -8,7 +8,7 @@ export const AppLoadingDispatchContext = createContext<
   React.Dispatch<React.SetStateAction<boolean>>
 >(() => null)
 
-const AppLoadingProvider = ({ children }: React.PropsWithChildren) => {
+export const AppLoadingProvider = ({ children }: React.PropsWithChildren) => {
   const [loading, setLoading] = useState(false)
 
   return (
@@ -29,5 +29,3 @@ const AppLoadingProvider = ({ children }: React.PropsWithChildren) => {
     </AppLoadingDispatchContext>
   )
 }
-
-export default memo(AppLoadingProvider)

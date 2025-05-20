@@ -1,6 +1,8 @@
 import { Image } from 'expo-image'
 
-import { Button, Text, XStack, YStack } from '@theme'
+import { Separator } from 'tamagui'
+
+import { Button, Heading, Text, XStack, YStack } from '@theme'
 
 type TBookingCard = {
   date: Date
@@ -33,9 +35,10 @@ const BookingCard = ({
       padding={10}
       marginBottom={10}>
       {/* Date and Time */}
-      <Text fontSize={14} color="#6B7280" marginBottom={5}>
+      <Heading fontSize={14}>
         {date} - {time}
-      </Text>
+      </Heading>
+      <Separator marginVertical={12} />
 
       {/* Doctor Info */}
       <XStack alignItems="center" gap={10}>
@@ -55,14 +58,7 @@ const BookingCard = ({
 
       {/* Buttons */}
       <XStack marginTop={10} gap={10}>
-        <Button
-          borderRadius={8}
-          backgroundColor="$grey200"
-          color="$primary"
-          borderWidth={0}
-          disabled
-          paddingHorizontal={10}
-          flex={1}>
+        <Button variant="secondary" flex={1}>
           Cancel
         </Button>
         <Button flex={1}>Reschedule</Button>

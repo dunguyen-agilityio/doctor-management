@@ -1,4 +1,6 @@
-import { BookingData } from '@app/models/booking'
+import { APP_TOKEN } from '@app/constants'
+
+import { Booking, BookingData } from '@app/models/booking'
 import { StrapiPagination, StrapiParams } from '@app/types/strapi'
 import { buildStrapiQuery } from '@app/utils/strapi'
 
@@ -21,6 +23,20 @@ export const getBookings = async ({ filters = [], ...params }: StrapiParams) => 
       ...filters,
     ],
   })
-  const response = await apiClient.get<StrapiPagination<BookingData>>(`bookings?${searchParams}`)
+
+  const response = await apiClient.get<StrapiPagination<BookingData>>(`bookings?${searchParams}`, {
+    jwt: APP_TOKEN,
+  })
+  return response
+}
+
+export const updateBooking = async (
+  { documentId, ...rest }: Partial<Omit<Booking, 'documentId'> & { documentId: string }>,
+  jwt: string,
+) => {
+  const response = await apiClient.put<{ data: Booking }>(`bookings/${documentId}`, {
+    body: { data: rest },
+    jwt,
+  })
   return response
 }

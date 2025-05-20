@@ -5,6 +5,7 @@ import { ScrollView } from 'tamagui'
 import { SPECIALTY_LIST } from '@app/constants/specialty'
 
 import Chip from '@app/components/chip'
+import { TSpecialty } from '@app/types/specialty'
 
 const MultipleSelectSpecialty = () => {
   const params = useLocalSearchParams<{ specialty: string[] }>()
@@ -30,6 +31,21 @@ const MultipleSelectSpecialty = () => {
     router.setParams(params)
   }
 
+  const items: (TSpecialty & { active: boolean })[] = []
+
+  SPECIALTY_LIST.forEach((item) => {
+    const { value } = item
+    const active = params.specialty.includes(value)
+
+    const acticeItem = { ...item, active }
+
+    if (active) {
+      items.unshift(acticeItem)
+    } else {
+      items.push(acticeItem)
+    }
+  })
+
   return (
     <ScrollView horizontal style={{ flexGrow: 0 }} showsHorizontalScrollIndicator={false}>
       <Chip
@@ -39,7 +55,7 @@ const MultipleSelectSpecialty = () => {
         active={params.specialty.includes('all')}>
         All
       </Chip>
-      {SPECIALTY_LIST.map(({ name, value }, index) => (
+      {items.map(({ name, value }, index) => (
         <Chip
           key={value}
           onSelect={handleSelect}

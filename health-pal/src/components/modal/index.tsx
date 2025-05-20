@@ -51,6 +51,7 @@ const Modal = ({
           w={WINDOW_SIZE.width - 48}
           h={WINDOW_SIZE.height / 2}
           borderRadius="$2"
+          overflow="hidden"
           shadowColor="#fff"
           shadowOffset={{ height: 0, width: 0 }}
           key="content"
