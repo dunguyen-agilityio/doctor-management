@@ -1,10 +1,11 @@
-import { Link, router } from 'expo-router'
+import { Link, Redirect, router } from 'expo-router'
 
-import { Button, Heading, Text, XStack, YStack } from '@theme'
+import { Heading, Text, XStack, YStack } from '@theme'
 
 import { Facebook, Google, Logo } from '@icons'
 
 import { FormKeyboardAvoidingView } from '@app/components'
+import { ButtonWithUpcoming } from '@app/components/button-with-upcoming'
 import { useSession } from '@app/contexts'
 import { useAppLoading } from '@app/hooks'
 import { login } from '@app/services/auth'
@@ -12,7 +13,7 @@ import { AuthCredentials } from '@app/types'
 import LoginForm from '@app/ui/auth/login-form'
 
 const SignIn = () => {
-  const { signIn } = useSession()
+  const { signIn, session } = useSession()
   const setAppLoading = useAppLoading()
 
   const handleSignIn = async (formData: AuthCredentials) => {
@@ -28,6 +29,10 @@ const SignIn = () => {
 
     setAppLoading(false)
     console.log('Show Error', error)
+  }
+
+  if (session && !session?.jwt) {
+    return <Redirect href="/profile-info" />
   }
 
   return (
@@ -49,19 +54,21 @@ const SignIn = () => {
         </XStack>
 
         <YStack gap={16}>
-          <Button variant="outlined">
+          <ButtonWithUpcoming variant="outlined">
             <Google />
-            Sign in with Google
-          </Button>
-          <Button variant="outlined">
+            Continue with Google
+          </ButtonWithUpcoming>
+          <ButtonWithUpcoming variant="outlined">
             <Facebook />
-            Sign in with Facebook
-          </Button>
+            Continue with Facebook
+          </ButtonWithUpcoming>
         </YStack>
         <YStack alignItems="center" gap={23}>
-          <Text color="blue" size="small">
-            Forgot password?
-          </Text>
+          <ButtonWithUpcoming variant="outlined" borderWidth={0}>
+            <Text color="blue" size="small">
+              Forgot password?
+            </Text>
+          </ButtonWithUpcoming>
 
           <XStack gap={2}>
             <Text size="small">Don&apos;t have an account yet?</Text>

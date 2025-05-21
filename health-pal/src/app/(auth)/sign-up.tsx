@@ -1,18 +1,21 @@
 import { Link, router } from 'expo-router'
 
-import { Button, Heading, Text, XStack, YStack } from '@theme'
+import { Heading, Text, XStack, YStack } from '@theme'
 
-import Facebook from '@icons/facebook'
-import Google from '@icons/google'
+import { Facebook, Google } from '@icons'
 import Logo from '@icons/logo'
 
+import { ButtonWithUpcoming } from '@app/components/button-with-upcoming'
+import { useSession } from '@app/contexts'
+import { User } from '@app/models/user'
 import { SignupData } from '@app/types'
 import SignupForm from '@app/ui/auth/signup-form'
 
 const SignUp = () => {
+  const { setUser, session } = useSession()
   const handleSignUp = async (data: SignupData) => {
+    setUser(data as unknown as User)
     router.navigate('/profile-info')
-    router.setParams(data)
   }
 
   return (
@@ -24,7 +27,7 @@ const SignUp = () => {
           We are here to help you!
         </Text>
       </YStack>
-      <SignupForm onSubmit={handleSignUp} />
+      <SignupForm onSubmit={handleSignUp} defaultValues={session?.user} />
       <XStack alignItems="center" gap="$md">
         <XStack borderColor="$grey200" borderWidth={1} h={1} flex={1} />
         <Text>or</Text>
@@ -32,14 +35,14 @@ const SignUp = () => {
       </XStack>
 
       <YStack gap={16}>
-        <Button variant="outlined">
+        <ButtonWithUpcoming variant="outlined">
           <Google />
           Continue with Google
-        </Button>
-        <Button variant="outlined">
+        </ButtonWithUpcoming>
+        <ButtonWithUpcoming variant="outlined">
           <Facebook />
           Continue with Facebook
-        </Button>
+        </ButtonWithUpcoming>
       </YStack>
       <XStack gap={2} justifyContent="center">
         <Text size="small">Do you have an account?</Text>
