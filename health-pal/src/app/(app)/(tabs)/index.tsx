@@ -7,7 +7,10 @@ import { DoctorBanner, NearbyMedicalCenters, Specialties } from '@app/ui/home'
 
 const Home = () => {
   return (
-    <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+    <ScrollView
+      backgroundColor="$white"
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}>
       <YStack gap="$md" overflow="visible">
         <XStack px="$md">
           <SearchInput placeholder="Search doctor..." />
