@@ -1,8 +1,6 @@
-import { memo } from 'react'
-
 import { router, useLocalSearchParams } from 'expo-router'
 
-import { InputProps } from 'tamagui'
+import { InputProps } from '@theme'
 
 import Search from '@icons/search'
 
@@ -17,6 +15,7 @@ const SearchInput = ({ ...props }: InputProps) => {
 
   return (
     <Input
+      variant="outlined"
       leftIcon={Search}
       enterKeyHint="search"
       keyboardType="web-search"
@@ -28,4 +27,4 @@ const SearchInput = ({ ...props }: InputProps) => {
   )
 }
 
-export default memo(SearchInput)
+export default SearchInput

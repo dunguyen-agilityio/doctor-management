@@ -7,7 +7,7 @@ import MultipleSelectSpecialty from '@app/ui/doctor/multiple-select-specialty'
 
 const DoctorListScreen = () => {
   return (
-    <YStack gap="$md">
+    <YStack gap="$md" flex={1}>
       <YStack paddingHorizontal={24} maxHeight={40}>
         <SearchInput placeholder="Search doctor..." />
       </YStack>
