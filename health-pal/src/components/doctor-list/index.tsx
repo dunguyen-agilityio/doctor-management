@@ -28,7 +28,6 @@ const DoctorList = () => {
       renderItem={renderItem}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ backgroundColor: '$white' }}
     />
   )
 }

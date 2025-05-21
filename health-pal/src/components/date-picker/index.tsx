@@ -1,5 +1,7 @@
 import DateTimePicker, { DateType, useDefaultStyles } from 'react-native-ui-datepicker'
 
+import { WINDOW_SIZE } from '@app/constants'
+
 import { ArrowLeft, ArrowRight } from '@icons'
 
 import { tokens } from '@/tamagui.config'
@@ -66,6 +68,8 @@ const DatePicker = ({ onChange, ...props }: DatePickerProps) => {
       }}
       weekdaysFormat="short"
       style={{
+        width: WINDOW_SIZE.width - 24 * 2,
+        alignSelf: 'center',
         backgroundColor: tokens.color.grey50.val,
         borderRadius: 12,
         padding: 16,

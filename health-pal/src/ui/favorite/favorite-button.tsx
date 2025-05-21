@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { ButtonProps } from 'tamagui'
-
-import { Button } from '@theme'
+import { Button, ButtonProps } from '@theme'
 
 import HeartFill from '@icons/heart-fill'
 import HeartOutline from '@icons/heart-outline'
@@ -27,12 +25,13 @@ const VARIANT_STYLE = {
   },
 } satisfies Record<string, ButtonProps>
 
-interface FavoriteButtonProps {
+interface FavoriteButtonProps extends ButtonProps {
   variant?: keyof typeof VARIANT_STYLE
   color?: string
   favoriteId?: string
   type: FAVORITE_TYPES
   data: string
+  size?: number
 }
 
 const FavoriteButton = ({
@@ -41,12 +40,14 @@ const FavoriteButton = ({
   color = tokens.color.primary.val,
   type,
   data,
+  size = 15,
+  ...props
 }: FavoriteButtonProps) => {
   const { session } = useSession()
   const renderIcon = () => {
-    if (favoriteId) return <HeartFill fill={color} width={15} height={15} />
+    if (favoriteId) return <HeartFill fill={color} width={size} height={size} />
 
-    return <HeartOutline stroke={color} width={15} height={15} />
+    return <HeartOutline stroke={color} width={size} height={size} />
   }
 
   const { jwt, user } = session ?? {}
@@ -82,13 +83,10 @@ const FavoriteButton = ({
     <Button
       {...VARIANT_STYLE[variant]}
       onPress={favoriteId ? handleRemove : handleAdd}
-      position="absolute"
-      right={6}
-      top={6}
-      zIndex={1000}
-      width={15}
-      height={15}
-      variant="icon">
+      width={size}
+      height={size}
+      variant="icon"
+      {...props}>
       {renderIcon()}
     </Button>
   )
