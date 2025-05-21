@@ -40,8 +40,6 @@ class APIClient {
       ...(jwt && { Authorization: `Bearer ${jwt}` }),
     }
 
-    console.log('url', url)
-
     const options = {
       method,
       headers: customHeader,

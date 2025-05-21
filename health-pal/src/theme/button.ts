@@ -48,3 +48,5 @@ export const Button = styled(TamaguiButton, {
   } as const,
   defaultVariants: { variant: 'primary' },
 })
+
+export type ButtonProps = Parameters<typeof Button>['0']

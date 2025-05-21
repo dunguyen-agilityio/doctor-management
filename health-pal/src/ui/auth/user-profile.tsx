@@ -19,9 +19,10 @@ import { UserProfileData } from '@app/types'
 interface UserProfileFormProps {
   defaultData?: Partial<UserProfileData>
   onSubmit: (data: UserProfileData) => Promise<void>
+  editable?: boolean
 }
 
-const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
+const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) => {
   const nameRef = useRef<TextInput>(null)
   const nicknameRef = useRef<TextInput>(null)
   const emailRef = useRef<TextInput>(null)
@@ -53,6 +54,7 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
               onUpload={() => {
                 nameRef.current?.focus()
               }}
+              preview={defaultData?.avatar}
             />
           </XStack>
           <Controller
@@ -76,7 +78,7 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
                 onChangeText={onChange}
                 errorMessage={error?.message}
                 textContentType="name"
-                editable={false}
+                editable={editable}
               />
             )}
           />
@@ -120,7 +122,7 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
                 ref={emailRef}
                 onChangeText={onChange}
                 errorMessage={error?.message}
-                editable={false}
+                editable={editable}
               />
             )}
           />
@@ -157,7 +159,7 @@ const UserProfile = ({ defaultData, onSubmit }: UserProfileFormProps) => {
                 items={[{ name: 'Male' }, { name: 'Female' }]}
                 native
                 onValueChange={onChange}
-                value={value?.toLocaleUpperCase()}
+                value={value ?? ''}
                 errorMessage={error?.message}
               />
             )}

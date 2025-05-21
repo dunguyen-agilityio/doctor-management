@@ -1,16 +1,18 @@
 import { type PropsWithChildren, createContext, use } from 'react'
 
 import { useStorageState } from '@app/hooks/use-storage-state'
-import { AuthUser } from '@app/models/user'
+import { Session, User } from '@app/models/user'
 
 const AuthContext = createContext<{
-  signIn: (user: AuthUser) => void
+  signIn: (user: Session) => void
   signOut: () => void
-  session?: AuthUser | null
+  session?: Session | null
   isLoading: boolean
+  setUser: (user: User) => void
 }>({
   signIn: () => null,
   signOut: () => null,
+  setUser: () => null,
   session: null,
   isLoading: false,
 })
@@ -32,11 +34,13 @@ export function SessionProvider({ children }: Readonly<PropsWithChildren>) {
     <AuthContext
       value={{
         signIn: (user) => {
-          // Perform sign-in logic here
           setSession(user)
         },
         signOut: () => {
           setSession(null)
+        },
+        setUser: (user) => {
+          setSession({ jwt: session?.jwt, user } as Session)
         },
         session,
         isLoading,

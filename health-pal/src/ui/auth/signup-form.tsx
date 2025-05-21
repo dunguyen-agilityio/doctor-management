@@ -18,14 +18,18 @@ import { SignupData } from '@app/types'
 
 interface SignupFormProps {
   onSubmit: (data: SignupData) => Promise<void>
+  defaultValues?: Partial<SignupData>
 }
 
-const SignupForm = ({ onSubmit }: SignupFormProps) => {
+const SignupForm = ({
+  onSubmit,
+  defaultValues = { email: '', name: '', password: '' },
+}: SignupFormProps) => {
   const emailRef = useRef<TextInput>(null)
   const passwordRef = useRef<TextInput>(null)
 
   const { control, handleSubmit } = useForm<SignupData>({
-    defaultValues: { email: '', name: '', password: '' },
+    defaultValues,
     mode: 'onBlur',
     reValidateMode: 'onChange',
   })

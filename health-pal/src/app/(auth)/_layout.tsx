@@ -1,11 +1,6 @@
-import { Pressable } from 'react-native'
+import { RelativePathString, Stack, router } from 'expo-router'
 
-import { Stack, router } from 'expo-router'
-
-import { Heading } from '@theme/heading'
-import { XStack } from '@theme/stack'
-
-import Back from '@icons/back'
+import Header from '@app/components/header'
 
 const AuthLayout = ({ children, ...s }: React.PropsWithChildren) => {
   return (
@@ -13,22 +8,23 @@ const AuthLayout = ({ children, ...s }: React.PropsWithChildren) => {
       <Stack.Screen name="login" />
       <Stack.Screen name="sign-up" />
       <Stack.Screen
-        initialParams={{ name: '' }}
         name="profile-info"
         options={{
           headerShown: true,
           headerShadowVisible: false,
-          header: () => {
-            return (
-              <XStack alignItems="center" gap="14" paddingHorizontal={24} paddingTop={32}>
-                <Pressable onPress={router.back}>
-                  <Back />
-                </Pressable>
-                <Heading size="extraLarge" fontWeight="600">
-                  Fill Your Profile
-                </Heading>
-              </XStack>
-            )
+          header: ({ route, navigation: { canGoBack, goBack } }) => {
+            const handleBack = () => {
+              if (route.params && 'from' in route.params) {
+                router.navigate(route.params.from as RelativePathString)
+                return
+              }
+
+              if (canGoBack()) goBack()
+
+              router.push('/sign-up')
+            }
+
+            return <Header title="Fill Your Profile" onBack={handleBack} />
           },
         }}
       />

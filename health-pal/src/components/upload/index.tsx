@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 
 import { CameraView, useCameraPermissions } from 'expo-camera'
@@ -11,11 +11,13 @@ import { Dialog, Stack, View, XStack } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
 
-import { Button, Text } from '@theme'
+import { Button } from '@theme'
 
 import { AvatarIcon, BackIcon, EditIcon } from '@icons'
 
 import { tokens } from '@/tamagui.config'
+
+import { AlertDialog } from '../alert-dialog'
 
 interface UploadProps extends ImageProps {
   preview?: string
@@ -28,6 +30,10 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
   const ref = useRef<CameraView>(null)
   const [facing, setFacing] = useState<CameraType>(CameraType.back)
   const [image, setImage] = useState<ImagePickerAsset | null>()
+
+  useEffect(() => {
+    requestPermission()
+  }, [requestPermission])
 
   const pickImage = async () => {
     const result = await launchImageLibraryAsync({
@@ -51,6 +57,7 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
     if (ref.current) {
       const photo = await ref.current.takePictureAsync()
       setImage(photo)
+      setOpen(false)
     }
   }
 
@@ -68,18 +75,15 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
     return <View />
   }
 
-  if (!permission.granted) {
-    // Camera permissions are not granted yet.
-    return (
-      <View style={styles.container}>
-        <Text style={styles.message}>We need your permission to show the camera</Text>
-        <Button onPress={requestPermission}>grant permission</Button>
-      </View>
-    )
-  }
-
   return (
     <Stack position="relative" height={202} width={202} alignItems="center" justifyContent="center">
+      {!permission.granted && (
+        <AlertDialog
+          cancelable
+          onConfirm={requestPermission}
+          title="We need your permission to show the camera"
+        />
+      )}
       <Dialog modal open={open} onOpenChange={setOpen}>
         <Dialog.Trigger asChild position="absolute" zIndex={1} right={24} bottom={27}>
           <EditIcon />
