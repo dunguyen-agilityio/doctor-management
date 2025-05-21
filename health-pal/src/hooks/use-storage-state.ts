@@ -2,7 +2,7 @@ import { useEffect, useReducer } from 'react'
 
 import * as SecureStore from 'expo-secure-store'
 
-import { AuthUser } from '@app/models/user'
+import { Session } from '@app/models/user'
 
 type UseStateHook<T> = [[boolean, T | null], (value: T | null) => void]
 
@@ -23,9 +23,9 @@ export async function setStorageItemAsync(key: string, value: string | null) {
   }
 }
 
-export const useStorageState = (key: string): UseStateHook<AuthUser> => {
+export const useStorageState = (key: string): UseStateHook<Session> => {
   // Public
-  const [state, setState] = useAsyncState<AuthUser>()
+  const [state, setState] = useAsyncState<Session>()
 
   // Get
   useEffect(() => {
@@ -35,7 +35,7 @@ export const useStorageState = (key: string): UseStateHook<AuthUser> => {
   }, [key, setState])
 
   // Set
-  const setValue = (value: AuthUser | null) => {
+  const setValue = (value: Session | null) => {
     setState(value)
     setStorageItemAsync(key, JSON.stringify(value))
   }

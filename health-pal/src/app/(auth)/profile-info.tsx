@@ -1,24 +1,42 @@
 import { useRef } from 'react'
 
-import { router, useLocalSearchParams } from 'expo-router'
+import { router } from 'expo-router'
 
 import { useSession } from '@app/contexts'
 import { useAppLoading } from '@app/hooks'
-import { register } from '@app/services/auth'
-import { SignupData, UserProfileData } from '@app/types'
+import { register, updateProfile } from '@app/services/auth'
+import { UserProfileData } from '@app/types'
 import { ModalRef } from '@app/types/modal'
 import { CreateAccountSuccessModal } from '@app/ui/auth/create-account-success-modal'
 import UserProfile from '@app/ui/auth/user-profile'
 
 const Profile = () => {
-  const params = useLocalSearchParams<SignupData>()
+  const { session } = useSession()
+
   const setAppLoading = useAppLoading()
-  const { signIn } = useSession()
+  const { signIn, setUser } = useSession()
   const createSuccessModalRef = useRef<ModalRef>(null)
 
-  const handleSubmit = async (formData: UserProfileData) => {
+  const { jwt, user } = session ?? {}
+
+  const {
+    gender,
+    nickname,
+    dateOfBirth,
+    username,
+    name,
+    email,
+    avatar,
+    id: userId,
+    password,
+  } = user ?? {}
+
+  const isSignup = session && !session?.jwt
+
+  const handleSignup = async (formData: UserProfileData) => {
     createSuccessModalRef.current?.open()
-    const { data, error } = await register(formData)
+
+    const { data, error } = await register({ ...formData, password: password! })
 
     if (data) {
       setAppLoading(true)
@@ -30,13 +48,41 @@ const Profile = () => {
 
     setAppLoading(false)
     // TODO: Show toast message
-    console.log('error :>> ', error)
+    console.log('error', error)
+    createSuccessModalRef.current?.close()
+  }
+
+  const handleEditProfile = async (formData: UserProfileData) => {
+    if (!userId || !jwt) return
+
+    setAppLoading(true)
+    const { data, error } = await updateProfile({ ...formData, id: userId }, jwt)
+
+    if (data) {
+      setUser(data)
+    } else {
+      console.log(error)
+    }
+
+    setAppLoading(false)
+    router.back()
   }
 
   return (
     <>
-      <CreateAccountSuccessModal ref={createSuccessModalRef} />
-      <UserProfile onSubmit={handleSubmit} defaultData={params} />
+      {isSignup && <CreateAccountSuccessModal ref={createSuccessModalRef} />}
+      <UserProfile
+        onSubmit={isSignup ? handleSignup : handleEditProfile}
+        defaultData={{
+          dateOfBirth,
+          name: name ?? username,
+          email,
+          gender: gender ? 'Male' : 'Female',
+          avatar: avatar?.url,
+          nickname,
+        }}
+        editable={!isSignup}
+      />
     </>
   )
 }

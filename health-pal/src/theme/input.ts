@@ -25,7 +25,19 @@ export const Input = styled(TamaguiInput, {
         borderRadius: '$1',
         height: 40,
       },
+      outlined: {
+        backgroundColor: '$grey100',
+        color: '$grey600',
+        height: 45,
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        placeholderTextColor: '$grey400',
+        borderRadius: 8,
+        borderWidth: 0,
+      },
     },
   } as const,
   defaultVariants: { variant: 'flat' },
 })
+
+export type InputProps = Parameters<typeof Input>['0']

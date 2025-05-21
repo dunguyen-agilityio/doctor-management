@@ -2,7 +2,6 @@ import { XStack as TamaguiXStack, YStack as TamaguiYStack, styled } from 'tamagu
 
 export const YStack = styled(TamaguiYStack, {
   backgroundColor: 'white',
-  flex: 1,
 })
 
 export const XStack = styled(TamaguiXStack, {

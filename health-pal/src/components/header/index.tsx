@@ -10,11 +10,23 @@ interface HeaderProps extends XStackProps {
   onBack?: () => void
 }
 
-const Header = ({ title, titleStyle, onBack, ...props }: HeaderProps) => {
+const Header = ({
+  title,
+  titleStyle,
+  onBack,
+  children,
+  ...props
+}: React.PropsWithChildren<HeaderProps>) => {
   return (
-    <XStack height={62} paddingBottom={24} paddingHorizontal={24} paddingTop={8} {...props}>
+    <XStack
+      height={62}
+      paddingBottom={24}
+      paddingHorizontal={24}
+      paddingTop={8}
+      alignItems="center"
+      {...props}>
       {onBack && (
-        <Button onPress={onBack} width={24} top="50%" transform={[{ translateY: '-50%' }]}>
+        <Button onPress={onBack} width={24}>
           <BackIcon />
         </Button>
       )}
@@ -25,6 +37,7 @@ const Header = ({ title, titleStyle, onBack, ...props }: HeaderProps) => {
           </Heading>
         )}
       </XStack>
+      {children}
     </XStack>
   )
 }

@@ -4,9 +4,9 @@ import { TextInput } from 'react-native'
 import { SvgProps } from 'react-native-svg'
 
 import { IconProps } from '@tamagui/helpers-icon'
-import { InputProps, XStack, YStack } from 'tamagui'
+import { XStack, YStack } from 'tamagui'
 
-import { Input as TamaguiInput, Text } from '@theme'
+import { InputProps, Input as TamaguiInput, Text } from '@theme'
 
 type IconComponent =
   | ((propsIn: IconProps) => React.ReactElement)
@@ -48,7 +48,6 @@ const Input = ({
         <TamaguiInput
           ref={ref}
           flex={1}
-          {...styleByIcon[hasIcon ? 'true' : 'false']}
           {...(errorMessage && { borderColor: 'red', focusStyle: { borderColor: 'red' } })}
           {...props}
           onFocus={(e) => {
@@ -59,6 +58,7 @@ const Input = ({
             onEndEdit?.(e.nativeEvent.text !== valueRef.current)
             onEndEditing?.(e)
           }}
+          {...styleByIcon[hasIcon ? 'true' : 'false']}
         />
       </XStack>
       {errorMessage && (

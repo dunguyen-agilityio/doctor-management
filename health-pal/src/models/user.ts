@@ -4,9 +4,10 @@ import { Strapi } from './strapi'
 
 export class User extends Strapi {
   name!: string
+  username!: string
   email!: string
   nickname!: string
-  dayOfBirth!: Date
+  dateOfBirth!: Date
   gender!: boolean
   bio?: string
   avatar?: TImage
@@ -18,4 +19,4 @@ export class User extends Strapi {
   }
 }
 
-export type AuthUser = { jwt: string; user: User }
+export type Session = { jwt: string; user: User & { password?: string } }
