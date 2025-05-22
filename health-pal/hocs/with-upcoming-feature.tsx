@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { AlertDialog } from '@app/components/alert-dialog'
+import AlertDialog from '@app/components/alert-dialog'
 
 export const withUpcomingFeature = <P,>(WrappedComponent: React.ComponentType<P>) => {
   const WithUpcomingFeature = (props: P) => {
@@ -8,7 +8,6 @@ export const withUpcomingFeature = <P,>(WrappedComponent: React.ComponentType<P>
 
     const handleShowNotice = () => {
       setOpen(true)
-      console.log('222323', 222323)
     }
 
     return (

@@ -11,12 +11,13 @@ import LocationOutline from '@icons/location-outline'
 
 import useMediaQuery from '@app/hooks/use-media-query'
 import { TDoctorCard } from '@app/models/doctor'
-import { FAVORITE_TYPES, TFavorite } from '@app/types/favorite'
+import { FAVORITE_TYPES } from '@app/types/favorite'
 import FavoriteButton from '@app/ui/favorite/favorite-button'
 
 import Stars from '../stars'
 
-interface DoctorCardProps extends TDoctorCard, TFavorite {
+interface DoctorCardProps extends TDoctorCard {
+  favoriteId?: string
   actionable?: boolean
 }
 
@@ -30,6 +31,7 @@ const DoctorCard = ({
   documentId,
   favoriteId,
   actionable = true,
+  id,
 }: DoctorCardProps) => {
   const { width, height } = useMediaQuery({ h: 133, full: true })
 
@@ -78,17 +80,16 @@ const DoctorCard = ({
   if (!actionable) return renderContent()
 
   return (
-    <Stack position="relative">
+    <Stack position="relative" width={width} height={height}>
       <FavoriteButton
         variant="secondary"
-        data={documentId}
+        doctorId={id}
         {...(actionable && { position: 'absolute', zIndex: 100, top: 6, right: 6 })}
         type={FAVORITE_TYPES.DOCTOR}
         favoriteId={favoriteId}
+        doctorName={name}
       />
-      <Link
-        style={{ width, height }}
-        href={{ pathname: '/doctors/details/[id]', params: { id: documentId } }}>
+      <Link href={{ pathname: '/doctors/details/[id]', params: { id: documentId } }}>
         {renderContent()}
       </Link>
     </Stack>

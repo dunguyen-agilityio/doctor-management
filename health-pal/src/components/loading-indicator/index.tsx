@@ -4,6 +4,8 @@ import { Stack, StackProps } from 'tamagui'
 
 import { LoaderIcon } from '@icons'
 
+import Modal from '../modal'
+
 interface LoadingIndicatorProps extends StackProps {
   fullScreen?: boolean
 }
@@ -26,16 +28,18 @@ const LoadingIndicator = ({ fullScreen, ...props }: LoadingIndicatorProps) => {
   })
 
   return (
-    <Stack
-      {...(fullScreen && { height: '100%', justifyContent: 'center', position: 'absolute' })}
-      alignItems="center"
-      width="100%"
-      testID="loading-indicator"
-      {...props}>
-      <Animated.View style={{ transform: [{ rotate: spin }] }}>
-        <LoaderIcon />
-      </Animated.View>
-    </Stack>
+    <Modal open contentProps={{ elevation: 0, backgroundColor: 'transparent' }}>
+      <Stack
+        {...(fullScreen && { height: '100%', justifyContent: 'center', position: 'absolute' })}
+        alignItems="center"
+        width="100%"
+        testID="loading-indicator"
+        {...props}>
+        <Animated.View style={{ transform: [{ rotate: spin }] }}>
+          <LoaderIcon />
+        </Animated.View>
+      </Stack>
+    </Modal>
   )
 }
 
