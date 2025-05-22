@@ -14,6 +14,9 @@ import { StatusBar } from 'expo-status-bar'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { ToastProvider } from '@tamagui/toast'
+
+import Toast from '@app/components/toast'
 import { AppLoadingProvider, SessionProvider } from '@app/contexts'
 import Providers from '@app/providers'
 
@@ -69,10 +72,13 @@ export default function RootLayout() {
       <SafeAreaView style={{ flex: 1, backgroundColor: tokens.color.white.val }}>
         <GestureHandlerRootView>
           <SessionProvider>
-            <AppLoadingProvider>
-              <StatusBar />
-              <Slot />
-            </AppLoadingProvider>
+            <ToastProvider>
+              <AppLoadingProvider>
+                <StatusBar />
+                <Slot />
+                <Toast />
+              </AppLoadingProvider>
+            </ToastProvider>
           </SessionProvider>
         </GestureHandlerRootView>
       </SafeAreaView>
