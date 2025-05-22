@@ -1,22 +1,18 @@
-import React, { use } from 'react'
+import React from 'react'
 import { FlatListProps } from 'react-native'
 
 import { FlatList } from 'react-native-gesture-handler'
 
-import { ClinicsContext } from '@app/contexts/clinic'
 import { Clinic } from '@app/models/clinic'
 
-interface HospitalProps extends Omit<FlatListProps<Clinic>, 'data'> {}
+interface HospitalProps extends FlatListProps<Clinic> {}
 
 const keyExtractor = (item: Clinic) => item.documentId
 
 const HospitalList = ({ ...otherProps }: HospitalProps) => {
-  const clinicContext = use(ClinicsContext)
-
   return (
     <FlatList
       {...otherProps}
-      data={clinicContext}
       keyExtractor={keyExtractor}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}

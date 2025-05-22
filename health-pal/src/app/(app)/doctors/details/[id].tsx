@@ -7,12 +7,15 @@ import Messages from '@icons/messages'
 import Star from '@icons/star'
 import TwoUser from '@icons/two-user'
 
-import { LoadingIndicator, SessionHeader } from '@app/components'
-import { ButtonWithUpcoming } from '@app/components/button-with-upcoming'
-import DoctorCard from '@app/components/doctor-card'
-import ReviewCard from '@app/components/review-card'
+import {
+  ButtonWithUpcoming,
+  DoctorCard,
+  LoadingIndicator,
+  ReviewCard,
+  SessionHeader,
+  Stat,
+} from '@app/components'
 import useDoctor from '@app/hooks/use-doctor'
-import DoctorStat from '@app/ui/doctor/stat'
 import { formatDoctor } from '@app/utils/doctor'
 import { formatReview } from '@app/utils/review'
 
@@ -44,14 +47,14 @@ const Details = () => {
       <YStack gap={16} flex={1} paddingHorizontal={24}>
         <DoctorCard {...formatDoctor(data.data)} actionable={false} />
         <XStack justifyContent="space-between">
-          <DoctorStat
+          <Stat
             title="patients"
             value={`${summary?.patients.toLocaleString()}+`}
             icon={<TwoUser />}
           />
-          <DoctorStat title="experience" value={`${summary?.experience}+`} icon={<Medal />} />
-          <DoctorStat title="rating" value={summary?.rating} icon={<Star />} />
-          <DoctorStat
+          <Stat title="experience" value={`${summary?.experience}+`} icon={<Medal />} />
+          <Stat title="rating" value={summary?.rating} icon={<Star />} />
+          <Stat
             title="reviews"
             value={`${summary?.reviews.toLocaleString()}+`}
             icon={<Messages />}

@@ -2,10 +2,9 @@ import { Link } from 'expo-router'
 
 import { Stack } from 'tamagui'
 
-import { YStack } from '@theme'
+import { Text, YStack } from '@theme'
 
 import { ClinicCard, LoadingIndicator, SessionHeader } from '@app/components'
-import { ClinicsContext } from '@app/contexts/clinic'
 import useHospitals from '@app/hooks/use-hospitals'
 import { Clinic } from '@app/models/clinic'
 import HospitalList from '@app/ui/hospital/hospital-list'
@@ -14,26 +13,29 @@ const renderItem = ({ item }: { item: Clinic }) => <ClinicCard w={232} h={252} p
 
 const ItemSeparatorComponent = () => <Stack width={16} />
 
+const seeAllWrapper = ({ children }: React.PropsWithChildren) => (
+  <Link href={'/clinics'}>{children}</Link>
+)
+
 const NearbyMedicalCenters = () => {
-  const { data, isLoading } = useHospitals()
+  const { data, isLoading, error } = useHospitals()
+
+  if (isLoading) return <LoadingIndicator />
+
+  if (error || !data) {
+    return <Text>Error</Text>
+  }
 
   return (
     <YStack gap={10}>
-      <SessionHeader
-        title="Nearby Medical Centers"
-        seeAllWrapper={({ children }) => <Link href={'/clinics'}>{children}</Link>}
+      <SessionHeader title="Nearby Medical Centers" seeAllWrapper={seeAllWrapper} />
+
+      <HospitalList
+        renderItem={renderItem}
+        ItemSeparatorComponent={ItemSeparatorComponent}
+        horizontal
+        data={data.data}
       />
-      <ClinicsContext value={data?.data ?? []}>
-        {isLoading ? (
-          <LoadingIndicator />
-        ) : (
-          <HospitalList
-            renderItem={renderItem}
-            ItemSeparatorComponent={ItemSeparatorComponent}
-            horizontal
-          />
-        )}
-      </ClinicsContext>
     </YStack>
   )
 }
