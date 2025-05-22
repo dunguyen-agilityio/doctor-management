@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
 import { useQuery } from '@tanstack/react-query'
 import { FlatList } from 'react-native-gesture-handler'
@@ -11,11 +11,8 @@ import BookingCard from '@app/components/booking-card'
 import { BookingData, BookingKey } from '@app/models/booking'
 import { getBookings } from '@app/services/booking'
 import { BOOKING_TABS } from '@app/types/booking'
-import { ModalRef } from '@app/types/modal'
 import { StrapiPagination } from '@app/types/strapi'
 import { formatBooking } from '@app/utils/booking'
-
-import CancelBookingModal, { CancelBookingParams } from '../cancel-booking-modal'
 
 const bookingPromises: Record<BOOKING_TABS, () => Promise<StrapiPagination<BookingData>>> = {
   [BOOKING_TABS.CANCELED]: () =>
@@ -37,17 +34,7 @@ const BookingList = ({ type }: { type: BOOKING_TABS }) => {
     staleTime: Infinity,
   })
 
-  const cancelBookingModalRef = useRef<ModalRef<CancelBookingParams>>(null)
-
-  const isUpcomingTab = type === BOOKING_TABS.UPCOMING
-
-  const handleCancel = (params: CancelBookingParams) => {
-    cancelBookingModalRef.current?.open(params)
-  }
-
-  const renderItem = ({ item }: { item: BookingData }) => (
-    <BookingCard onCancel={isUpcomingTab ? handleCancel : undefined} {...formatBooking(item)} />
-  )
+  const renderItem = ({ item }: { item: BookingData }) => <BookingCard {...formatBooking(item)} />
 
   if (isLoading) {
     return <LoadingIndicator />
@@ -58,18 +45,14 @@ const BookingList = ({ type }: { type: BOOKING_TABS }) => {
   }
 
   return (
-    <>
-      <FlatList
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        data={data.data}
-        ItemSeparatorComponent={ItemSeparatorComponent}
-        style={{ paddingHorizontal: 24 }}
-        contentContainerStyle={{ backgroundColor: '#fff' }}
-      />
-
-      {isUpcomingTab && <CancelBookingModal ref={cancelBookingModalRef} />}
-    </>
+    <FlatList
+      renderItem={renderItem}
+      keyExtractor={keyExtractor}
+      data={data.data}
+      ItemSeparatorComponent={ItemSeparatorComponent}
+      style={{ paddingHorizontal: 24 }}
+      contentContainerStyle={{ backgroundColor: '#fff' }}
+    />
   )
 }
 

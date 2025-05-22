@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { useToastController } from '@tamagui/toast'
+
 import { Button, ButtonProps } from '@theme'
 
 import HeartFill from '@icons/heart-fill'
@@ -7,7 +9,12 @@ import HeartOutline from '@icons/heart-outline'
 
 import { useSession } from '@app/contexts'
 import { QUERY_KEY, queryClient } from '@app/react-query.config'
-import { addFavorite, deleteFavorite } from '@app/services/favorite'
+import {
+  addClinicFavorite,
+  addDoctorFavorite,
+  deleteClinicFavorite,
+  deleteDoctorFavorite,
+} from '@app/services/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
 import { tokens } from '@/tamagui.config'
@@ -25,25 +32,40 @@ const VARIANT_STYLE = {
   },
 } satisfies Record<string, ButtonProps>
 
-interface FavoriteButtonProps extends ButtonProps {
-  variant?: keyof typeof VARIANT_STYLE
-  color?: string
-  favoriteId?: string
-  type: FAVORITE_TYPES
-  data: string
-  size?: number
+type DoctorFavoriteButton = {
+  type: FAVORITE_TYPES.DOCTOR
+  doctorId: number
+  doctorName: string
 }
+
+type ClinicFavoriteButton = {
+  type: FAVORITE_TYPES.HOSPITAL
+  clinicId: number
+  clinicName: string
+}
+
+type TFavoriteButton = DoctorFavoriteButton | ClinicFavoriteButton
+
+type FavoriteButtonProps = ButtonProps &
+  TFavoriteButton & {
+    variant?: keyof typeof VARIANT_STYLE
+    color?: string
+    favoriteId?: string
+    size?: number
+  }
+
+const { CLINIC_FAVORITE, DOCTOR_FAVORITE } = QUERY_KEY
 
 const FavoriteButton = ({
   favoriteId,
   variant = 'primary',
   color = tokens.color.primary.val,
-  type,
-  data,
   size = 15,
   ...props
 }: FavoriteButtonProps) => {
   const { session } = useSession()
+  const toast = useToastController()
+
   const renderIcon = () => {
     if (favoriteId) return <HeartFill fill={color} width={size} height={size} />
 
@@ -53,18 +75,37 @@ const FavoriteButton = ({
   const { jwt, user } = session ?? {}
   const userId = user?.id
 
-  const { CLINIC_FAVORITE, DOCTOR_FAVORITE } = QUERY_KEY
-  const queryKey = type === FAVORITE_TYPES.DOCTOR ? DOCTOR_FAVORITE : CLINIC_FAVORITE
+  const isDoctor = props.type === FAVORITE_TYPES.DOCTOR
+  const dataId = isDoctor ? props.doctorId : props.clinicId
+  const dataName = isDoctor ? props.doctorName : props.clinicName
+  const queryKey = isDoctor ? DOCTOR_FAVORITE : CLINIC_FAVORITE
 
   const handleRemove = async () => {
     if (!favoriteId || !jwt) return
 
     try {
+      const deleteFavorite = isDoctor ? deleteDoctorFavorite : deleteClinicFavorite
+
       await deleteFavorite(favoriteId, jwt)
+      toast.show('Removed from Favorites', {
+        message: `${dataName} has been removed from your favorites.`,
+        backgroundColor: '$yellow3',
+        color: '$yellow10',
+        duration: 3000,
+        native: true,
+      })
 
       await queryClient.invalidateQueries({ queryKey })
     } catch (error) {
       console.log('error', error)
+
+      toast.show('Action Failed', {
+        message: 'Failed to remove favorite. Please try again.',
+        native: true,
+        demo: true,
+        color: '$red10',
+        backgroundColor: '$red3',
+      })
     }
   }
 
@@ -72,10 +113,26 @@ const FavoriteButton = ({
     if (!jwt || !userId) return
 
     try {
-      await addFavorite(type, data, jwt, userId)
+      const addFavorite = isDoctor ? addDoctorFavorite : addClinicFavorite
+
+      await addFavorite(dataId, userId, jwt)
       await queryClient.invalidateQueries({ queryKey })
+      toast.show('Added to Favorites', {
+        message: `${dataName} has been added to your favorites.`,
+        backgroundColor: '$green3',
+        color: '$green10',
+        duration: 3000,
+        native: true,
+      })
     } catch (error) {
       console.log('error', error)
+      toast.show('Action Failed', {
+        message: 'Failed to remove favorite. Please try again.',
+        native: true,
+        demo: true,
+        color: '$red10',
+        backgroundColor: '$red3',
+      })
     }
   }
 

@@ -1,12 +1,13 @@
+import { withUpcomingFeature } from '@/hocs/with-upcoming-feature'
 import { BottomTabBarButtonProps, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs'
 
 import { useEffect } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 
-import { Href, Link, Tabs } from 'expo-router'
+import { Href, Tabs } from 'expo-router'
 import { SvgProps } from 'react-native-svg'
 
-import { Stack } from 'tamagui'
+import { Button, Stack } from 'tamagui'
 
 import { XStack } from '@theme/stack'
 
@@ -39,12 +40,12 @@ const TITLES: Record<TABS, string> = {
   [TABS.HOME]: '',
 }
 
+const NotifictionUpcoming = withUpcomingFeature(NotificationIcon)
+
 const renderHomeHeader = () => (
   <XStack height={46} justifyContent="space-between" alignItems="center" paddingHorizontal="$md">
     <Stack />
-    <Link href={'/(app)/notification'}>
-      <NotificationIcon />
-    </Link>
+    <NotifictionUpcoming />
   </XStack>
 )
 
@@ -131,7 +132,7 @@ const renderIcon = (name: TABS, { focused }: { focused: boolean }) => {
 
   if (focused) {
     return (
-      <XStack
+      <Button
         backgroundColor="$grey100"
         height={48}
         width={48}
@@ -139,7 +140,7 @@ const renderIcon = (name: TABS, { focused }: { focused: boolean }) => {
         alignItems="center"
         justifyContent="center">
         <Icon />
-      </XStack>
+      </Button>
     )
   }
 

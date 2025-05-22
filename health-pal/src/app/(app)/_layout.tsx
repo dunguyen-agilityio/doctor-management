@@ -7,6 +7,8 @@ import { Redirect, Stack } from 'expo-router'
 import Header from '@app/components/header'
 import { useSession } from '@app/contexts/auth-context'
 import { queryClient } from '@app/react-query.config'
+import { FAVORITE_TYPES } from '@app/types/favorite'
+import { FavoriteButton } from '@app/ui/favorite'
 
 enum APP_ROUTES {
   TAB = '(tabs)',
@@ -44,7 +46,7 @@ export default function AppLayout() {
     return <Text>Loading...</Text>
   }
 
-  if (!session) {
+  if (!session?.jwt) {
     return <Redirect href="/login" />
   }
 
@@ -52,6 +54,22 @@ export default function AppLayout() {
     <QueryClientProvider client={queryClient}>
       <Stack screenOptions={screenOptions}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name={APP_ROUTES.DOCTOR_DETAILS}
+          options={{
+            header: ({ navigation, route }) => (
+              <Header title={TITLES[APP_ROUTES.DOCTOR_DETAILS]} onBack={navigation.goBack}>
+                <FavoriteButton
+                  doctorId={0}
+                  doctorName="User" //route.params.id
+                  type={FAVORITE_TYPES.DOCTOR}
+                  variant="secondary"
+                  size={20}
+                />
+              </Header>
+            ),
+          }}
+        />
       </Stack>
     </QueryClientProvider>
   )

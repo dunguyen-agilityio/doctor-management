@@ -1,9 +1,7 @@
 import { YStack } from '@theme'
 
 import { SearchInput } from '@app/components'
-import DoctorList from '@app/components/doctor-list'
-import DoctorLayout from '@app/ui/doctor/layout'
-import MultipleSelectSpecialty from '@app/ui/doctor/multiple-select-specialty'
+import { DoctorContainer, MultipleSelectSpecialty } from '@app/ui/doctor'
 
 const DoctorListScreen = () => {
   return (
@@ -11,10 +9,11 @@ const DoctorListScreen = () => {
       <YStack paddingHorizontal={24} maxHeight={40}>
         <SearchInput placeholder="Search doctor..." />
       </YStack>
-      <MultipleSelectSpecialty />
-      <DoctorLayout>
-        <DoctorList />
-      </DoctorLayout>
+      <YStack>
+        <MultipleSelectSpecialty />
+      </YStack>
+
+      <DoctorContainer />
     </YStack>
   )
 }
