@@ -5,11 +5,11 @@ import { Heading, Text, XStack, YStack } from '@theme'
 import { Facebook, Google } from '@icons'
 import Logo from '@icons/logo'
 
-import { ButtonWithUpcoming } from '@app/components/button-with-upcoming'
+import { ButtonWithUpcoming } from '@app/components'
 import { useSession } from '@app/contexts'
 import { User } from '@app/models/user'
 import { SignupData } from '@app/types'
-import SignupForm from '@app/ui/auth/signup-form'
+import { SignupForm } from '@app/ui/auth'
 
 const SignUp = () => {
   const { setUser, session } = useSession()

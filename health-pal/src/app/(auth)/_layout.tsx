@@ -2,7 +2,7 @@ import { RelativePathString, Stack, router } from 'expo-router'
 
 import Header from '@app/components/header'
 
-const AuthLayout = ({ children, ...s }: React.PropsWithChildren) => {
+const AuthLayout = () => {
   return (
     <Stack initialRouteName="login" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="login" />

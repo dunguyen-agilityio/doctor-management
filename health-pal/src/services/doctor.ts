@@ -40,8 +40,6 @@ export const getDoctor = async (id: string) => {
     jwt: APP_TOKEN,
   })
 
-  console.log('id', response.data.id)
-
   return {
     data: {
       ...response.data,

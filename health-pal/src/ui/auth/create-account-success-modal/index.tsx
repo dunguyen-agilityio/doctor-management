@@ -13,7 +13,7 @@ type Props = {
   ref?: React.Ref<ModalRef>
 }
 
-export function CreateAccountSuccessModal({ ref }: Readonly<Props>) {
+const CreateAccountSuccessModal = ({ ref }: Readonly<Props>) => {
   return (
     <Modal ref={ref}>
       <YStack alignItems="center" paddingHorizontal={42} gap={32} paddingVertical={32}>
@@ -39,3 +39,5 @@ export function CreateAccountSuccessModal({ ref }: Readonly<Props>) {
     </Modal>
   )
 }
+
+export default CreateAccountSuccessModal
