@@ -11,3 +11,5 @@ export class Review extends Strapi {
     Object.assign(this, review)
   }
 }
+
+export type ReviewData = Review & { name: string; image: string; patient?: Patient }
