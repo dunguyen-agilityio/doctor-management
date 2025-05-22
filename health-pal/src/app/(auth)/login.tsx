@@ -4,13 +4,12 @@ import { Heading, Text, XStack, YStack } from '@theme'
 
 import { Facebook, Google, Logo } from '@icons'
 
-import { FormKeyboardAvoidingView } from '@app/components'
-import { ButtonWithUpcoming } from '@app/components/button-with-upcoming'
+import { ButtonWithUpcoming, FormKeyboardAvoidingView } from '@app/components'
 import { useSession } from '@app/contexts'
 import { useAppLoading } from '@app/hooks'
 import { login } from '@app/services/auth'
 import { AuthCredentials } from '@app/types'
-import LoginForm from '@app/ui/auth/login-form'
+import { LoginForm } from '@app/ui/auth'
 
 const SignIn = () => {
   const { signIn, session } = useSession()

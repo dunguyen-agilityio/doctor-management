@@ -7,7 +7,7 @@ import { useAppLoading } from '@app/hooks'
 import { register, updateProfile } from '@app/services/auth'
 import { UserProfileData } from '@app/types'
 import { ModalRef } from '@app/types/modal'
-import { CreateAccountSuccessModal } from '@app/ui/auth/create-account-success-modal'
+import { CreateAccountSuccessModal } from '@app/ui/auth'
 import UserProfile from '@app/ui/auth/user-profile'
 
 const Profile = () => {
