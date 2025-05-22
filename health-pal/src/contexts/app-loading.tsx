@@ -1,8 +1,6 @@
 import { createContext, useState } from 'react'
 
-import { Spinner } from 'tamagui'
-
-import Modal from '@app/components/modal'
+import LoadingIndicator from '@app/components/loading-indicator'
 
 export const AppLoadingDispatchContext = createContext<
   React.Dispatch<React.SetStateAction<boolean>>
@@ -13,18 +11,7 @@ export const AppLoadingProvider = ({ children }: React.PropsWithChildren) => {
 
   return (
     <AppLoadingDispatchContext value={setLoading}>
-      {loading && (
-        <Modal open contentProps={{ elevation: 0, backgroundColor: 'transparent' }}>
-          <Spinner
-            size="large"
-            position="absolute"
-            zIndex={10000}
-            top="50%"
-            left="50%"
-            transform={[{ translateX: '-50%' }]}
-          />
-        </Modal>
-      )}
+      {loading && <LoadingIndicator />}
       {children}
     </AppLoadingDispatchContext>
   )

@@ -1,5 +1,7 @@
 import { router, useLocalSearchParams } from 'expo-router'
 
+import { debounce } from 'tamagui'
+
 import { InputProps } from '@theme'
 
 import Search from '@icons/search'
@@ -21,7 +23,7 @@ const SearchInput = ({ ...props }: InputProps) => {
       keyboardType="web-search"
       returnKeyType="search"
       clearButtonMode="always"
-      onChangeText={handleSearch}
+      onChangeText={debounce(handleSearch, 500)}
       {...props}
     />
   )

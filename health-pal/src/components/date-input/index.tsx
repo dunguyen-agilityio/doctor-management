@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { TextInput } from 'react-native'
 
 import dayjs from 'dayjs'
@@ -19,10 +19,22 @@ interface DateInputProps extends Omit<InputProps, 'value'> {
   datePickerProps?: DatePickerProps
 }
 
-const DateInput = ({ errorMessage, onChangeValue, datePickerProps, ...props }: DateInputProps) => {
+const DateInput = ({
+  errorMessage,
+  onChangeValue,
+  datePickerProps,
+  value: initialValue,
+  ...props
+}: DateInputProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [value, setValue] = useState<DateType>()
   const inputRef = useRef<TextInput>(null)
+
+  useEffect(() => {
+    if (initialValue) {
+      setValue(initialValue)
+    }
+  }, [initialValue])
 
   const handleOpenDatePicker = () => {
     setIsOpen(true)
@@ -34,8 +46,6 @@ const DateInput = ({ errorMessage, onChangeValue, datePickerProps, ...props }: D
     onChangeValue?.(dayjs(date).toDate())
     inputRef.current?.blur()
   }
-
-  const textValue = value ? dayjs(value).toDate().toDateString() : undefined
 
   return (
     <YStack>
@@ -54,7 +64,7 @@ const DateInput = ({ errorMessage, onChangeValue, datePickerProps, ...props }: D
             ref={inputRef}
             leftIcon={CalendarIcon}
             textContentType="dateTime"
-            value={textValue}
+            value={value ? dayjs(value).format('DD/MM/YYYY') : ''}
             errorMessage={errorMessage}
             onPressIn={handleOpenDatePicker}
           />

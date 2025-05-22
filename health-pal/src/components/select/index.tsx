@@ -90,7 +90,7 @@ const Select = ({
               {label && <TamaguiSelect.Label>{label}</TamaguiSelect.Label>}
               {items.map((item, i) => {
                 return (
-                  <TamaguiSelect.Item index={i} key={item.name} value={item.name.toLowerCase()}>
+                  <TamaguiSelect.Item index={i} key={item.name} value={item.name}>
                     <TamaguiSelect.ItemText>{item.name}</TamaguiSelect.ItemText>
                     <TamaguiSelect.ItemIndicator marginLeft="auto">
                       <Check size={16} />

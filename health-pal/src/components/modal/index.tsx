@@ -48,8 +48,8 @@ const Modal = ({
 
         <Dialog.Content
           padding={0}
-          w={WINDOW_SIZE.width - 48}
-          h={WINDOW_SIZE.height / 2}
+          width={WINDOW_SIZE.width - 48}
+          minHeight={WINDOW_SIZE.height / 2}
           borderRadius="$2"
           overflow="hidden"
           shadowColor="#fff"

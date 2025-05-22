@@ -41,6 +41,12 @@ export const Button = styled(TamaguiButton, {
         height: 24,
         borderRadius: 24,
       },
+      text: {
+        color: '$primary',
+        backgroundColor: 'transparent',
+        py: 10,
+        height: 40,
+      },
     },
     full: {
       true: { minWidth: '100%' },
