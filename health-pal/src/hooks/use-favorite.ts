@@ -1,35 +1,45 @@
+import { use } from 'react'
+
 import { useQuery } from '@tanstack/react-query'
 
-import { QUERY_KEY } from '@app/react-query.config'
-import { getClinicFavorite, getDoctorFavorite, getFavorite } from '@app/services/favorite'
+import { FavoriteDispatchContext } from '@app/contexts/favorite'
+import { fetchFavoritesByType } from '@app/services/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
-const useFavorite = <T>(jwt: string, type: FAVORITE_TYPES) => {
-  const queryResponse = useQuery({
-    queryKey: [`favorite-${type}`],
-    queryFn: () => getFavorite<T>(type, jwt),
-    placeholderData: (prevData) => prevData,
-  })
+export const useFavoriteDoctors = (userId: number, jwt: string) => {
+  const setFavorite = use(FavoriteDispatchContext)
 
-  return queryResponse
+  return useQuery({
+    queryKey: ['favorites', FAVORITE_TYPES.DOCTOR, userId],
+    queryFn: () => fetchFavoritesByType(userId, jwt, FAVORITE_TYPES.DOCTOR),
+    select: (data) => {
+      const byId = data.reduce(
+        (prev, current) => ({ ...prev, [current.doctor.id]: current.documentId }),
+        {},
+      )
+
+      setFavorite(byId)
+
+      return data.map((fav) => ({ ...fav.doctor, favoriteId: fav.documentId }))
+    },
+  })
 }
 
-export const useDoctorFavorite = (jwt: string) => {
-  const queryResponse = useQuery({
-    queryKey: QUERY_KEY.DOCTOR_FAVORITE,
-    queryFn: () => getDoctorFavorite(jwt),
+export const useFavoriteHospitals = (userId: number, jwt: string) => {
+  const setFavorite = use(FavoriteDispatchContext)
+
+  return useQuery({
+    queryKey: ['favorites', FAVORITE_TYPES.HOSPITAL, userId],
+    queryFn: () => fetchFavoritesByType(userId, jwt, FAVORITE_TYPES.HOSPITAL),
+    select: (data) => {
+      const byId = data.reduce(
+        (prev, current) => ({ ...prev, [current.hospital.id]: current.documentId }),
+        {},
+      )
+
+      setFavorite(byId)
+
+      return data.map((fav) => ({ ...fav.hospital, favoriteId: fav.documentId }))
+    },
   })
-
-  return queryResponse
 }
-
-export const useHospitalFavorite = (jwt: string) => {
-  const queryResponse = useQuery({
-    queryKey: QUERY_KEY.CLINIC_FAVORITE,
-    queryFn: () => getClinicFavorite(jwt),
-  })
-
-  return queryResponse
-}
-
-export default useFavorite

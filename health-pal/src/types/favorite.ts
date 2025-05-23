@@ -3,8 +3,9 @@ export enum FAVORITE_TYPES {
   HOSPITAL = 'hospital',
 }
 
-export type TFavorite<T> = {
+export type TFavorite<T, K> = {
   id: number
   documentId: string
   doctor: T
+  type: K
 }

@@ -11,7 +11,7 @@ export const AppLoadingProvider = ({ children }: React.PropsWithChildren) => {
 
   return (
     <AppLoadingDispatchContext value={setLoading}>
-      {loading && <LoadingIndicator />}
+      {loading && <LoadingIndicator fullScreen />}
       {children}
     </AppLoadingDispatchContext>
   )

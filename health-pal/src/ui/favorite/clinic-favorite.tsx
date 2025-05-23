@@ -1,34 +1,59 @@
 import { Stack } from 'tamagui'
 
-import { Text } from '@theme'
+import { FAVORITE_EMPTY } from '@app/constants'
 
 import { ClinicCard, LoadingIndicator } from '@app/components'
+import Empty from '@app/components/empty'
+import ErrorState from '@app/components/error'
 import { useSession } from '@app/contexts'
-import useFavorite from '@app/hooks/use-favorite'
-import { Clinic } from '@app/models/clinic'
+import { useFavoriteHospitals } from '@app/hooks/use-favorite'
+import { TClinicFavorite } from '@app/models/clinic'
 import { FAVORITE_TYPES } from '@app/types/favorite'
+import FavoriteContainer from '@app/ui/favorite/favorite-container'
 
 import HospitalList from '../hospital/hospital-list'
 
 const ItemSeparatorComponent = () => <Stack height={12} />
 
-const renderItem = ({ item }: { item: Clinic }) => <ClinicCard px={24} h={256} full {...item} />
-
 const ClinicFavorite = () => {
   const { session } = useSession()
-  const { data, isLoading, error } = useFavorite<Clinic>(session?.jwt!, FAVORITE_TYPES.HOSPITAL)
+  const { jwt, user } = session ?? {}
+  const { data: hospitals, isLoading, error, refetch } = useFavoriteHospitals(user!.id, jwt!)
 
   if (isLoading) return <LoadingIndicator />
 
-  if (!data || error) return <Text>Error</Text>
+  if (!hospitals || error)
+    return (
+      <ErrorState
+        title="Error Loading Favorites"
+        message="We couldn't load your favorite Hospital. Please try again."
+        onRetry={refetch}
+      />
+    )
 
-  const { data: hospitals } = data
+  const renderItem = ({ item }: { item: TClinicFavorite }) => {
+    const { documentId, name, favoriteId, id } = item
+
+    return (
+      <FavoriteContainer
+        itemId={id}
+        itemDocId={documentId}
+        itemName={name}
+        type={FAVORITE_TYPES.HOSPITAL}
+        favoriteId={favoriteId}>
+        <ClinicCard px={24} h={256} full {...item} />
+      </FavoriteContainer>
+    )
+  }
+
+  const ListEmptyComponent = <Empty {...FAVORITE_EMPTY[FAVORITE_TYPES.HOSPITAL]} />
 
   return (
     <HospitalList
       data={hospitals}
       ItemSeparatorComponent={ItemSeparatorComponent}
       renderItem={renderItem}
+      ListEmptyComponent={ListEmptyComponent}
     />
   )
 }
