@@ -12,7 +12,6 @@ const DoctorListScreen = () => {
       <YStack>
         <MultipleSelectSpecialty />
       </YStack>
-
       <DoctorContainer />
     </YStack>
   )

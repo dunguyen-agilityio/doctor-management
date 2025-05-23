@@ -15,21 +15,28 @@ import {
   SessionHeader,
   Stat,
 } from '@app/components'
+import ErrorState from '@app/components/error'
 import useDoctor from '@app/hooks/use-doctor'
 import { formatDoctor } from '@app/utils/doctor'
 import { formatReview } from '@app/utils/review'
 
 const Details = () => {
   const params = useLocalSearchParams<{ id: string }>()
-  const { data, isLoading, error } = useDoctor(params.id)
+  const { data, isLoading, error, refetch } = useDoctor(params.id)
 
   if (isLoading) return <LoadingIndicator />
 
   if (!data || error) {
-    return <Text>Error</Text>
+    return (
+      <ErrorState
+        title="Doctor Not Available"
+        message="The doctor you're looking for no longer exists or is unavailable."
+        onRetry={refetch}
+      />
+    )
   }
 
-  const { bio, documentId, summary, reviews } = data.data
+  const { bio, documentId, summary, reviews } = data
 
   const navigateBooking = () => {
     router.navigate({
@@ -45,7 +52,7 @@ const Details = () => {
   return (
     <YStack flex={1} gap={16} paddingTop={16}>
       <YStack gap={16} flex={1} paddingHorizontal={24}>
-        <DoctorCard {...formatDoctor(data.data)} actionable={false} />
+        <DoctorCard {...formatDoctor(data)} actionable={false} />
         <XStack justifyContent="space-between">
           <Stat
             title="patients"

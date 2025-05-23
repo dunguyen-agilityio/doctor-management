@@ -2,6 +2,8 @@ import { useRef } from 'react'
 
 import { router } from 'expo-router'
 
+import { useToastController } from '@tamagui/toast'
+
 import { useSession } from '@app/contexts'
 import { useAppLoading } from '@app/hooks'
 import { register, updateProfile } from '@app/services/auth'
@@ -16,6 +18,7 @@ const Profile = () => {
   const setAppLoading = useAppLoading()
   const { signIn, setUser } = useSession()
   const createSuccessModalRef = useRef<ModalRef>(null)
+  const toast = useToastController()
 
   const { jwt, user } = session ?? {}
 
@@ -39,16 +42,24 @@ const Profile = () => {
     const { data, error } = await register({ ...formData, password: password! })
 
     if (data) {
+      toast.show('Signup Successful', {
+        message: 'Account created!',
+        type: 'success',
+        native: true,
+      })
       setAppLoading(true)
       router.replace('/(app)/(tabs)')
       signIn(data)
-      createSuccessModalRef.current?.open()
-      return
+    } else {
+      toast.show('Signup Failed', {
+        message: error.message,
+        type: 'error',
+        duration: 3000,
+        native: true,
+      })
     }
 
     setAppLoading(false)
-    // TODO: Show toast message
-    console.log('error', error)
     createSuccessModalRef.current?.close()
   }
 
@@ -60,8 +71,18 @@ const Profile = () => {
 
     if (data) {
       setUser(data)
+      toast.show('Profile Updated', {
+        message: 'Profile updated successfully!',
+        type: 'success',
+        native: true,
+      })
     } else {
-      console.log(error)
+      toast.show('Profile Update Failed', {
+        message: error.message,
+        type: 'error',
+        duration: 3000,
+        native: true,
+      })
     }
 
     setAppLoading(false)

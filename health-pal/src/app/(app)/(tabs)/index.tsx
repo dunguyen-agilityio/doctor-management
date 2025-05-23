@@ -3,6 +3,7 @@ import { ScrollView } from 'tamagui'
 import { XStack, YStack } from '@theme/stack'
 
 import { SearchInput } from '@app/components'
+import { FavoriteProvider } from '@app/contexts/favorite'
 import { DoctorBanner, NearbyMedicalCenters, Specialties } from '@app/ui/home'
 
 const Home = () => {
@@ -18,7 +19,9 @@ const Home = () => {
         <DoctorBanner />
         <YStack px="$md" gap="$md">
           <Specialties />
-          <NearbyMedicalCenters />
+          <FavoriteProvider>
+            <NearbyMedicalCenters />
+          </FavoriteProvider>
         </YStack>
       </YStack>
     </ScrollView>

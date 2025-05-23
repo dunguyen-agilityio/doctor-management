@@ -32,7 +32,7 @@ const Profile = () => {
   const { name, username, email, avatar } = session?.user ?? {}
 
   return (
-    <YStack gap={16} flex={1}>
+    <YStack gap={16} flex={1} paddingHorizontal={24}>
       <YStack alignItems="center">
         <Upload preview={avatar?.url} />
         <Text marginTop={12} size="medium" fontWeight="700">

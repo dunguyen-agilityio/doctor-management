@@ -1,5 +1,7 @@
 import { Link, Redirect, router } from 'expo-router'
 
+import { useToastController } from '@tamagui/toast'
+
 import { Heading, Text, XStack, YStack } from '@theme'
 
 import { Facebook, Google, Logo } from '@icons'
@@ -14,6 +16,7 @@ import { LoginForm } from '@app/ui/auth'
 const SignIn = () => {
   const { signIn, session } = useSession()
   const setAppLoading = useAppLoading()
+  const toast = useToastController()
 
   const handleSignIn = async (formData: AuthCredentials) => {
     setAppLoading(true)
@@ -21,13 +24,23 @@ const SignIn = () => {
     const { data, error } = await login(formData)
 
     if (data) {
+      toast.show('Login Successful', {
+        message: 'You are now logged in!',
+        type: 'success',
+        native: true,
+      })
       signIn(data)
       router.replace('/(app)/(tabs)')
-      return
+    } else {
+      toast.show('Login Failed', {
+        message: error.message,
+        type: 'error',
+        duration: 3000,
+        native: true,
+      })
     }
 
     setAppLoading(false)
-    console.log('Show Error', error)
   }
 
   if (session && !session?.jwt) {
