@@ -6,7 +6,7 @@ import { Strapi } from './strapi'
 import { User } from './user'
 
 export class Booking extends Strapi {
-  date!: Date
+  date!: string
   time!: string
   type!: BOOKING_TABS
   patient!: Patient
@@ -23,7 +23,7 @@ export type BookingData = Omit<Booking, 'doctor'> & {
 }
 
 export type TBookingCard = {
-  date: Date
+  date: string
   documentId: string
   id: number
   time: string

@@ -8,7 +8,7 @@ import Chip from '@app/components/chip'
 import { TSpecialty } from '@app/types/specialty'
 
 const MultipleSelectSpecialty = () => {
-  const params = useLocalSearchParams<{ specialty: string[] }>()
+  const params = useLocalSearchParams<{ specialty: string[]; page: string }>()
 
   if (typeof params.specialty === 'string') {
     params.specialty = [params.specialty]
@@ -27,6 +27,8 @@ const MultipleSelectSpecialty = () => {
     if (params.specialty.length === 0) {
       params.specialty = ['all']
     }
+
+    params.page = '1'
 
     router.setParams(params)
   }
