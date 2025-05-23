@@ -6,4 +6,10 @@ export enum BOOKING_TABS {
   CANCELED = 'canceled',
 }
 
-export type BookingForm = { date: DateType; time: string; doctor: number }
+export type BookingForm = {
+  date?: DateType
+  type?: BOOKING_TABS
+  time?: string
+  doctor?: number
+  documentId?: string
+}

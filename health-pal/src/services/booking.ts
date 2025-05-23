@@ -33,14 +33,24 @@ export const getBookings = async ({ filters = [], ...params }: StrapiParams) => 
 }
 
 export const updateBooking = async (
-  { documentId, ...rest }: Partial<Omit<Booking, 'documentId'> & { documentId: string }>,
+  { documentId, ...rest }: BookingForm,
   jwt: string,
-) => {
-  const response = await apiClient.put<{ data: Booking }>(`bookings/${documentId}`, {
-    body: { data: rest },
-    jwt,
-  })
-  return response
+): Promise<APIResponse<Booking>> => {
+  try {
+    const response = await apiClient.put<{ data: Booking }>(`bookings/${documentId}`, {
+      body: { data: rest },
+      jwt,
+    })
+    return response
+  } catch (error) {
+    let message = 'Failed to add Booking'
+
+    if (error instanceof Error) {
+      message = error.message
+    }
+
+    return { error: { message } }
+  }
 }
 
 export const addBooking = async (
@@ -81,5 +91,6 @@ export const getBookingAvailable = async (docId: string, date: string) => {
       jwt: APP_TOKEN,
     },
   )
+
   return response
 }

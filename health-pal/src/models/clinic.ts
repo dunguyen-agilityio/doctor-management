@@ -24,3 +24,5 @@ export class Clinic extends Strapi {
     this.reivewCouter = reivewCouter ?? 0
   }
 }
+
+export type TClinicFavorite = Clinic & { favoriteId?: string }
