@@ -15,12 +15,6 @@ import { Clinic } from '@app/models/clinic'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import FavoriteButton from '@app/ui/favorite/favorite-button'
 
-import { tokens } from '@/tamagui.config'
-
-interface ClinicCardProps extends Clinic, MediaQuery {
-  favoriteId?: string
-}
-
 const ClinicCard = ({
   image = require('@/assets/images/banner01.webp'),
   address,
@@ -31,26 +25,14 @@ const ClinicCard = ({
   type,
   px,
   full,
-  h,
-  favoriteId,
+  h = 252,
   id,
-  documentId,
-}: ClinicCardProps) => {
+}: Clinic & MediaQuery) => {
   const { width, height } = useMediaQuery({ w, px, h, full })
 
   return (
     <Stack position="relative">
-      <FavoriteButton
-        color={tokens.color.white.val}
-        type={FAVORITE_TYPES.HOSPITAL}
-        clinicId={id}
-        clinicName={name}
-        favoriteId={favoriteId}
-        position="absolute"
-        zIndex={100}
-        top={6}
-        right={6}
-      />
+      <FavoriteButton itemId={id} itemName={name} type={FAVORITE_TYPES.HOSPITAL} />
       <Card
         elevate
         bordered

@@ -12,7 +12,7 @@ const SearchInput = ({ ...props }: InputProps) => {
   const params = useLocalSearchParams()
 
   const handleSearch = (value: string) => {
-    router.setParams({ ...params, query: value })
+    router.setParams({ ...params, query: value, page: '1' })
   }
 
   return (

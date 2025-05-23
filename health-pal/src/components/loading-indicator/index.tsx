@@ -27,18 +27,32 @@ const LoadingIndicator = ({ fullScreen, ...props }: LoadingIndicatorProps) => {
     outputRange: ['0deg', '360deg'],
   })
 
+  const spinner = (
+    <Stack
+      alignItems="center"
+      justifyContent="center"
+      width="100%"
+      testID="loading-indicator"
+      flex={1}
+      {...props}>
+      <Animated.View style={{ transform: [{ rotate: spin }] }}>
+        <LoaderIcon />
+      </Animated.View>
+    </Stack>
+  )
+
+  if (!fullScreen) return spinner
+
   return (
-    <Modal open contentProps={{ elevation: 0, backgroundColor: 'transparent' }}>
-      <Stack
-        {...(fullScreen && { height: '100%', justifyContent: 'center', position: 'absolute' })}
-        alignItems="center"
-        width="100%"
-        testID="loading-indicator"
-        {...props}>
-        <Animated.View style={{ transform: [{ rotate: spin }] }}>
-          <LoaderIcon />
-        </Animated.View>
-      </Stack>
+    <Modal
+      open
+      contentProps={{
+        elevation: 0,
+        backgroundColor: 'transparent',
+        alignContent: 'center',
+        justifyContent: 'center',
+      }}>
+      {spinner}
     </Modal>
   )
 }

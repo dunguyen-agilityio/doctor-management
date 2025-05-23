@@ -17,7 +17,7 @@ export const TabsTab = ({ title, active }: { title: string; active: boolean }) =
         size="medium"
         height={24}
         textTransform="capitalize"
-        fontWeight="600"
+        fontWeight={active ? '700' : '600'}
         textAlign="center">
         {title}
       </Heading>

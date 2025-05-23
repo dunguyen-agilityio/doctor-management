@@ -3,16 +3,17 @@ import { useRef } from 'react'
 import { Image } from 'expo-image'
 import { router } from 'expo-router'
 
-import { Separator } from 'tamagui'
+import { Card, Separator } from 'tamagui'
 
 import { Button, Heading, Text, XStack, YStack } from '@theme'
 
+import useMediaQuery from '@app/hooks/use-media-query'
 import { BOOKING_TABS } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 import CancelBookingModal from '@app/ui/booking/cancel-booking-modal'
 
 type TBookingCard = {
-  date: Date
+  date: string
   time: string
   doctorName: string
   doctorAvatar?: string
@@ -39,6 +40,7 @@ const BookingCard = ({
 }: BookingCardProps) => {
   const cancelBookRef = useRef<ModalRef>(null)
   const { type = BOOKING_TABS.UPCOMING } = props
+  const { width } = useMediaQuery({ full: true })
 
   const renderAction = () => {
     const ACTIONS: Record<BOOKING_TABS, { title: string; action: () => void }[]> = {
@@ -63,7 +65,11 @@ const BookingCard = ({
         },
         {
           title: 'Reschedule',
-          action: () => router.navigate({ pathname: '/(app)/booking', params: { doctorId } }),
+          action: () =>
+            router.navigate({
+              pathname: '/(app)/booking',
+              params: { doctorId, bookingId: documentId, date, time },
+            }),
         },
       ],
     }
@@ -87,12 +93,13 @@ const BookingCard = ({
   }
   return (
     <>
-      <YStack
+      <Card
+        width={width}
         borderRadius={12}
         borderWidth={0.5}
-        borderColor="#F3F4F6"
-        backgroundColor="#FFF"
-        shadowColor="#000"
+        borderColor="$grey100"
+        backgroundColor="$white"
+        shadowColor="$black"
         shadowOffset={{ width: 0, height: 4 }}
         shadowOpacity={0.1}
         shadowRadius={6}
@@ -100,33 +107,39 @@ const BookingCard = ({
         padding={10}
         marginBottom={10}>
         {/* Date and Time */}
-        <Heading fontSize={14}>
-          {date} - {time}
-        </Heading>
-        <Separator marginVertical={12} />
+        <Card.Header>
+          <Heading fontSize={14}>
+            {date} - {time}
+          </Heading>
+          <Separator marginVertical={12} />
+        </Card.Header>
 
-        {/* Doctor Info */}
-        <XStack alignItems="center" gap={10}>
-          <Image
-            source={{ uri: doctorAvatar }}
-            style={{ width: 60, height: 60, borderRadius: 8 }}
-          />
-          <YStack>
-            <Text fontSize={16} fontWeight="bold">
-              {doctorName}
-            </Text>
-            <Text fontSize={14} color="#6B7280">
-              {specialty}
-            </Text>
-            <Text fontSize={12} color="#9CA3AF">
-              {address}
-            </Text>
+        <Card.Footer>
+          {/* Doctor Info */}
+          <YStack flex={1}>
+            <XStack alignItems="center" gap={10}>
+              <Image
+                source={{ uri: doctorAvatar }}
+                style={{ width: 60, height: 60, borderRadius: 8 }}
+              />
+              <YStack>
+                <Text fontSize={16} fontWeight="bold">
+                  {doctorName}
+                </Text>
+                <Text fontSize={14} color="#6B7280">
+                  {specialty}
+                </Text>
+                <Text fontSize={12} color="#9CA3AF" numberOfLines={1} maxWidth={250}>
+                  {address}
+                </Text>
+              </YStack>
+            </XStack>
+
+            {/* Buttons */}
+            {renderAction()}
           </YStack>
-        </XStack>
-
-        {/* Buttons */}
-        {renderAction()}
-      </YStack>
+        </Card.Footer>
+      </Card>
       {props.type === BOOKING_TABS.UPCOMING && (
         <CancelBookingModal
           ref={cancelBookRef}
