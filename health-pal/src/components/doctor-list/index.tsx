@@ -1,17 +1,19 @@
-import { FlatListProps } from 'react-native'
+import { FlatListProps, StyleSheet } from 'react-native'
 
 import { FlatList } from 'react-native-gesture-handler'
 
-import { XStack } from '@theme'
+import { XStack } from 'tamagui'
+
+import { TDoctorData } from '@app/models/doctor'
 
 const ItemSeparatorComponent = () => <XStack height={8} />
 
-const DoctorList = <T extends { documentId: string }>(props: FlatListProps<T>) => {
-  const keyExtractor = (item: T) => item.documentId
+const DoctorList = (props: FlatListProps<TDoctorData>) => {
+  const keyExtractor = (item: TDoctorData) => item.documentId
 
   return (
     <FlatList
-      contentContainerStyle={{ paddingHorizontal: 24 }}
+      contentContainerStyle={styles.contentContainerStyle}
       keyExtractor={keyExtractor}
       ItemSeparatorComponent={ItemSeparatorComponent}
       showsHorizontalScrollIndicator={false}
@@ -25,3 +27,7 @@ const DoctorList = <T extends { documentId: string }>(props: FlatListProps<T>) =
 }
 
 export default DoctorList
+
+const styles = StyleSheet.create({
+  contentContainerStyle: { paddingHorizontal: 24, paddingBottom: 8 },
+})

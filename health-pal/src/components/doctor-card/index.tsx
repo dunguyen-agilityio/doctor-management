@@ -3,9 +3,9 @@ import { memo } from 'react'
 import { Image } from 'expo-image'
 import { Link } from 'expo-router'
 
-import { Separator, Stack } from 'tamagui'
+import { Card, Separator, Stack, YStack } from 'tamagui'
 
-import { Heading, Text, XStack, YStack } from '@theme'
+import { Heading, Text, XStack } from '@theme'
 
 import LocationOutline from '@icons/location-outline'
 
@@ -17,7 +17,6 @@ import FavoriteButton from '@app/ui/favorite/favorite-button'
 import Stars from '../stars'
 
 interface DoctorCardProps extends TDoctorCard {
-  favoriteId?: string
   actionable?: boolean
 }
 
@@ -29,14 +28,18 @@ const DoctorCard = ({
   reviewCounter = 0,
   rating = 0,
   documentId,
-  favoriteId,
   actionable = true,
   id,
 }: DoctorCardProps) => {
   const { width, height } = useMediaQuery({ h: 133, full: true })
 
   const renderContent = () => (
-    <XStack
+    <Card
+      elevate
+      bordered
+      width={width}
+      height={height}
+      flexDirection="row"
       padding={12}
       paddingRight={0}
       borderWidth={0.5}
@@ -49,50 +52,49 @@ const DoctorCard = ({
       shadowRadius={12}
       elevation={3}
       pointerEvents="none">
-      <Image source={avatar} style={{ width: 110, height: 110, borderRadius: 12 }} />
-      <YStack paddingRight={12} flex={1}>
-        <XStack justifyContent="space-between" alignItems="center">
-          <Heading>{name}</Heading>
-        </XStack>
-        <Separator marginVertical={8} />
-        <YStack gap={actionable ? 0 : 8}>
-          <Text size="small" fontWeight="600">
-            {specialty}
-          </Text>
-          <XStack alignItems="center" gap="$sm" overflow="hidden">
-            <LocationOutline />
-            <Text size="small" width={200} numberOfLines={1}>
-              {address}
+      <Card.Header>
+        <Image source={avatar} style={{ width: 110, height: 110, borderRadius: 12 }} />
+      </Card.Header>
+      <Card.Footer flex={1}>
+        <YStack paddingRight={12} flex={1}>
+          <XStack justifyContent="space-between" alignItems="center">
+            <Heading>{name}</Heading>
+          </XStack>
+          <Separator marginVertical={8} />
+          <YStack gap={actionable ? 0 : 8}>
+            <Text size="small" fontWeight="600">
+              {specialty}
             </Text>
-          </XStack>
+            <XStack alignItems="center" gap="$sm" overflow="hidden">
+              <LocationOutline />
+              <Text size="small" width={200} numberOfLines={1}>
+                {address}
+              </Text>
+            </XStack>
+          </YStack>
+          {actionable && (
+            <XStack alignItems="center">
+              <Stars color="#feb052" stars={rating} max={1} flexDirection="row-reverse" size={15} />
+              <Separator vertical marginHorizontal={8} height={13} />
+              <Text size="extraSmall">{`${reviewCounter} Reviews`}</Text>
+            </XStack>
+          )}
         </YStack>
-        {actionable && (
-          <XStack alignItems="center">
-            <Stars color="#feb052" stars={rating} max={1} flexDirection="row-reverse" size={15} />
-            <Separator vertical marginHorizontal={8} height={13} />
-            <Text size="extraSmall">{`${reviewCounter} Reviews`}</Text>
-          </XStack>
-        )}
-      </YStack>
-    </XStack>
+      </Card.Footer>
+    </Card>
   )
 
   if (!actionable) return renderContent()
 
   return (
-    <Stack position="relative" width={width} height={height}>
-      <FavoriteButton
-        variant="secondary"
-        doctorId={id}
-        {...(actionable && { position: 'absolute', zIndex: 100, top: 6, right: 6 })}
-        type={FAVORITE_TYPES.DOCTOR}
-        favoriteId={favoriteId}
-        doctorName={name}
-      />
-      <Link href={{ pathname: '/doctors/details/[id]', params: { id: documentId } }}>
+    <Link
+      style={{ position: 'relative' }}
+      href={{ pathname: '/doctors/details/[id]', params: { id: documentId } }}>
+      <Stack>
+        <FavoriteButton type={FAVORITE_TYPES.DOCTOR} itemId={id} itemName={name} />
         {renderContent()}
-      </Link>
-    </Stack>
+      </Stack>
+    </Link>
   )
 }
 
