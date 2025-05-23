@@ -29,9 +29,13 @@ const Booking = () => {
         borderBottomColor="$grey200"
         justifyContent="space-between"
         paddingHorizontal={28}
-        borderBottomWidth={1}>
+        borderBottomWidth={0.5}>
         {Object.values(BOOKING_TABS).map((value) => (
-          <Tabs.Tab {...TAB_DEFAULT_PROPS} key={value} value={value}>
+          <Tabs.Tab
+            {...TAB_DEFAULT_PROPS}
+            pressStyle={{ backgroundColor: '$white' }}
+            key={value}
+            value={value}>
             <TabsTab title={value} active={type === value} />
           </Tabs.Tab>
         ))}
