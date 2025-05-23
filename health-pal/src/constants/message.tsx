@@ -1,0 +1,49 @@
+import { Ban, CalendarX, Heart, Hospital } from '@tamagui/lucide-icons'
+
+import { BOOKING_TABS } from '@app/types/booking'
+import { FAVORITE_TYPES } from '@app/types/favorite'
+
+export const VALIDATIONS_MESSAGE = {
+  INVALID_EMAIL: 'Invalid email format',
+  REQUIRED_EMAIL: 'Email is required',
+  REQUIRED_PASSWORD: 'Password is required',
+  REQUIRED_NAME: 'Name is required',
+  REQUIRED_FIELD: (field: string) => `${field} is required`,
+  MIN: (field: string, length = 6) => `${field} must be at least ${length} characters`,
+}
+
+export const FAVORITE_EMPTY = {
+  [FAVORITE_TYPES.DOCTOR]: {
+    title: 'No Favorite Doctors',
+    description: 'Add your favorite doctors to find them easily later.',
+    icon: <Heart size="$6" color="$gray10" />,
+    action: 'Browse Doctors',
+  },
+  [FAVORITE_TYPES.HOSPITAL]: {
+    title: 'No Favorite Hospitals',
+    description: 'Mark hospitals as favorite for quick access.',
+    icon: <Hospital size="$6" color="$gray10" />,
+    action: 'Browse Hospitals',
+  },
+}
+
+export const BOOKING_EMPTY = {
+  [BOOKING_TABS.UPCOMING]: {
+    title: 'No Upcoming Appointments',
+    description: 'Book an appointment to see it here.',
+    icon: <CalendarX size="$6" color="$gray10" />,
+    action: 'Book Now',
+  },
+  [BOOKING_TABS.COMPLETED]: {
+    title: 'No Past Appointments',
+    description: 'Your completed appointments will show up here.',
+    icon: <CalendarX size="$6" color="$gray10" />,
+    action: '',
+  },
+  [BOOKING_TABS.CANCELED]: {
+    title: 'No Canceled Appointments',
+    description: 'Your canceled bookings will appear here for reference.',
+    icon: <Ban size="$6" color="$gray10" />,
+    action: '',
+  },
+}

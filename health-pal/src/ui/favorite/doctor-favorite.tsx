@@ -1,32 +1,62 @@
-import { Text } from '@theme'
+import { FAVORITE_EMPTY } from '@app/constants'
 
 import DoctorCard from '@app/components/doctor-card'
 import DoctorList from '@app/components/doctor-list'
+import Empty from '@app/components/empty'
+import ErrorState from '@app/components/error'
+import LoadingIndicator from '@app/components/loading-indicator'
 import { useSession } from '@app/contexts'
-import { useDoctorFavorite } from '@app/hooks/use-favorite'
-import { DoctorData } from '@app/models/doctor'
-import { TFavorite } from '@app/types/favorite'
+import { useFavoriteDoctors } from '@app/hooks/use-favorite'
+import { TDoctorData } from '@app/models/doctor'
+import { FAVORITE_TYPES } from '@app/types/favorite'
+import FavoriteContainer from '@app/ui/favorite/favorite-container'
 import { formatDoctor } from '@app/utils/doctor'
 
 const DoctorFavorite = () => {
   const { session } = useSession()
-  const { data, isLoading, error } = useDoctorFavorite(session?.jwt!)
 
-  const renderItem = ({ item }: { item: TFavorite<DoctorData> }) => {
-    const { doctor, documentId } = item
+  const { jwt, user } = session ?? {}
+  const {
+    data: doctors,
+    error: favoriteError,
+    isLoading: favoriteLoading,
+    refetch,
+  } = useFavoriteDoctors(user!.id, jwt!)
 
-    console.log('doctor', Object.keys(doctor))
-
-    return <DoctorCard {...formatDoctor(doctor)} favoriteId={documentId} />
+  if (favoriteLoading) {
+    return <LoadingIndicator />
   }
 
-  if (isLoading) return null
-
-  if (error || !data) {
-    return <Text>Error</Text>
+  if (!doctors || favoriteError) {
+    return (
+      <ErrorState
+        title="Error Loading Favorites"
+        message={`We couldn't load your favorite Doctor. Please try again.`}
+        onRetry={refetch}
+      />
+    )
   }
 
-  return <DoctorList renderItem={renderItem} data={data.data.slice(0, 1)} />
+  const renderItem = ({ item }: { item: TDoctorData }) => {
+    const { documentId, favoriteId, name, id } = item
+
+    return (
+      <FavoriteContainer
+        itemId={id}
+        itemDocId={documentId}
+        itemName={name}
+        type={FAVORITE_TYPES.DOCTOR}
+        favoriteId={favoriteId}>
+        <DoctorCard {...formatDoctor(item)} />
+      </FavoriteContainer>
+    )
+  }
+
+  const ListEmptyComponent = <Empty {...FAVORITE_EMPTY[FAVORITE_TYPES.DOCTOR]} />
+
+  return (
+    <DoctorList data={doctors} renderItem={renderItem} ListEmptyComponent={ListEmptyComponent} />
+  )
 }
 
 export default DoctorFavorite

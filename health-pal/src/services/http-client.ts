@@ -10,6 +10,13 @@ type RequestOption = Omit<RequestInit, 'body'> & {
   jwt?: string
 }
 
+export type StrapiError = {
+  details: { errors: string[] }
+  message: string
+  name: string
+  status: number
+}
+
 type SuccessResponse<T> = { data: T; error?: null }
 type FailedResponse = { data?: null; error: { message: string; code?: number } }
 
@@ -52,10 +59,23 @@ class APIClient {
 
     const res = await fetch(`${API_ENDPOINT}/${url}`, options)
 
-    if (!res.ok) {
-      throw new Error(await res.json())
+    let json = null
+
+    if (method !== 'DELETE') {
+      json = await res.json()
     }
-    return (await res.json()) as T
+    if (method === 'POST') {
+      console.log('json', json)
+    }
+
+    if (!res.ok) {
+      const error = json?.error as StrapiError
+      const message = error.message ?? 'Error'
+
+      throw new Error(message)
+    }
+
+    return json as T
   }
 
   async get<T>(url: string, init?: Omit<RequestOption, 'method'>) {

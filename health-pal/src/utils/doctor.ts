@@ -1,14 +1,14 @@
-import { DoctorData, TDoctorCard } from '@app/models/doctor'
+import { TDoctorCard, TDoctorData } from '@app/models/doctor'
 
 export const formatDoctor = ({
   clinic,
   specialty,
   users_permissions_user,
-  favoriteId,
   rating,
   documentId,
-}: DoctorData): TDoctorCard => {
-  const { avatar, name, id } = users_permissions_user
+  id,
+}: TDoctorData): TDoctorCard => {
+  const { avatar, name } = users_permissions_user
 
   return {
     name,
@@ -18,7 +18,6 @@ export const formatDoctor = ({
     documentId,
     id,
     reviewCounter: 0,
-    favoriteId,
     rating,
   }
 }

@@ -1,14 +1,11 @@
 import { APP_TOKEN } from '@app/constants'
 
 import { MOCK_REVIEWS } from '@app/mocks/reivew'
-import { Doctor } from '@app/models/doctor'
-import { User } from '@app/models/user'
+import { TDoctorData } from '@app/models/doctor'
 import { StrapiPagination, StrapiParams } from '@app/types/strapi'
 import { buildStrapiQuery } from '@app/utils/strapi'
 
 import { apiClient } from './http-client'
-
-export type DoctorData = Doctor & { users_permissions_user: User }
 
 export const getDoctors = async ({ filters = [], ...params }: StrapiParams) => {
   const searchParams = buildStrapiQuery({
@@ -21,7 +18,7 @@ export const getDoctors = async ({ filters = [], ...params }: StrapiParams) => {
     ],
   })
 
-  const response = await apiClient.get<StrapiPagination<DoctorData>>(`doctors?${searchParams}`, {
+  const response = await apiClient.get<StrapiPagination<TDoctorData>>(`doctors?${searchParams}`, {
     jwt: APP_TOKEN,
   })
   return response
@@ -36,15 +33,13 @@ export const getDoctor = async (id: string) => {
     ],
   })
 
-  const response = await apiClient.get<{ data: DoctorData }>(`doctors/${id}?${searchParams}`, {
+  const response = await apiClient.get<{ data: TDoctorData }>(`doctors/${id}?${searchParams}`, {
     jwt: APP_TOKEN,
   })
 
   return {
-    data: {
-      ...response.data,
-      summary: { experience: 2, patients: 20000, rating: 4.3, reviews: 1200 },
-      reviews: MOCK_REVIEWS,
-    },
+    ...response.data,
+    summary: { experience: 2, patients: 20000, rating: 4.3, reviews: 1200 },
+    reviews: MOCK_REVIEWS,
   }
 }
