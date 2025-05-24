@@ -11,6 +11,7 @@ import LocationOutline from '@icons/location-outline'
 
 import useMediaQuery from '@app/hooks/use-media-query'
 import { TDoctorCard } from '@app/models/doctor'
+import { useFavoritesStore } from '@app/stores/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import FavoriteButton from '@app/ui/favorite/favorite-button'
 
@@ -32,6 +33,8 @@ const DoctorCard = ({
   id,
 }: DoctorCardProps) => {
   const { width, height } = useMediaQuery({ h: 133, full: true })
+
+  const favoriteId = useFavoritesStore((state) => state.favoriteDoctors[id])
 
   const renderContent = () => (
     <Card
@@ -91,7 +94,15 @@ const DoctorCard = ({
       style={{ position: 'relative' }}
       href={{ pathname: '/doctors/details/[id]', params: { id: documentId } }}>
       <Stack>
-        <FavoriteButton type={FAVORITE_TYPES.DOCTOR} itemId={id} itemName={name} />
+        <FavoriteButton
+          favoriteId={favoriteId}
+          type={FAVORITE_TYPES.DOCTOR}
+          itemId={id}
+          itemName={name}
+          top={6}
+          right={6}
+          position="absolute"
+        />
         {renderContent()}
       </Stack>
     </Link>

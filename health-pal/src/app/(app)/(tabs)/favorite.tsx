@@ -3,7 +3,6 @@ import { router, useLocalSearchParams } from 'expo-router'
 import { Separator, Tabs } from 'tamagui'
 
 import { TAB_DEFAULT_PROPS, TabsContent, TabsTab } from '@app/components'
-import { FavoriteProvider } from '@app/contexts/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import { ClinicFavorite, DoctorFavorite } from '@app/ui/favorite'
 
@@ -40,14 +39,10 @@ const Favorite = () => {
       <Separator />
 
       <TabsContent value={FAVORITE_TYPES.DOCTOR}>
-        <FavoriteProvider>
-          <DoctorFavorite />
-        </FavoriteProvider>
+        <DoctorFavorite />
       </TabsContent>
       <TabsContent paddingHorizontal="$md" value={FAVORITE_TYPES.HOSPITAL}>
-        <FavoriteProvider>
-          <ClinicFavorite />
-        </FavoriteProvider>
+        <ClinicFavorite />
       </TabsContent>
     </Tabs>
   )

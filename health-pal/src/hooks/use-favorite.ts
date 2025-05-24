@@ -1,17 +1,16 @@
-import { use } from 'react'
-
 import { useQuery } from '@tanstack/react-query'
 
-import { FavoriteDispatchContext } from '@app/contexts/favorite'
 import { fetchFavoritesByType } from '@app/services/favorite'
+import { useFavoritesStore } from '@app/stores/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
 export const useFavoriteDoctors = (userId: number, jwt: string) => {
-  const setFavorite = use(FavoriteDispatchContext)
+  const setFavorite = useFavoritesStore((state) => state.setFavoriteDoctors)
 
   return useQuery({
     queryKey: ['favorites', FAVORITE_TYPES.DOCTOR, userId],
     queryFn: () => fetchFavoritesByType(userId, jwt, FAVORITE_TYPES.DOCTOR),
+    staleTime: Infinity,
     select: (data) => {
       const byId = data.reduce(
         (prev, current) => ({ ...prev, [current.doctor.id]: current.documentId }),
@@ -26,10 +25,11 @@ export const useFavoriteDoctors = (userId: number, jwt: string) => {
 }
 
 export const useFavoriteHospitals = (userId: number, jwt: string) => {
-  const setFavorite = use(FavoriteDispatchContext)
+  const setFavorite = useFavoritesStore((state) => state.setFavoriteHospitals)
 
   return useQuery({
     queryKey: ['favorites', FAVORITE_TYPES.HOSPITAL, userId],
+    staleTime: Infinity,
     queryFn: () => fetchFavoritesByType(userId, jwt, FAVORITE_TYPES.HOSPITAL),
     select: (data) => {
       const byId = data.reduce(

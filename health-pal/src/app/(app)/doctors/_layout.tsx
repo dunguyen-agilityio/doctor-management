@@ -8,7 +8,6 @@ import { Stack } from 'expo-router'
 import { APP_TITLES } from '@app/constants/route'
 
 import Header from '@app/components/header'
-import { FavoriteProvider } from '@app/contexts/favorite'
 import { APP_ROUTES, AppParamList } from '@app/types/route'
 import { DoctorDetailHeader } from '@app/ui/doctor'
 
@@ -28,17 +27,15 @@ const screenOptions: NativeStackNavigationOptions = {
 
 const DoctorLayout = () => {
   return (
-    <FavoriteProvider>
-      <Stack screenOptions={screenOptions}>
-        <Stack.Screen
-          name={APP_ROUTES.DOCTOR_DETAILS}
-          options={{
-            header: renderDoctorHeader,
-          }}
-        />
-        <Stack.Screen name={APP_ROUTES.DOCTOR_LIST} />
-      </Stack>
-    </FavoriteProvider>
+    <Stack screenOptions={screenOptions}>
+      <Stack.Screen
+        name={APP_ROUTES.DOCTOR_DETAILS}
+        options={{
+          header: renderDoctorHeader,
+        }}
+      />
+      <Stack.Screen name={APP_ROUTES.DOCTOR_LIST} />
+    </Stack>
   )
 }
 

@@ -12,6 +12,7 @@ import LocationOutline from '@icons/location-outline'
 import Stars from '@app/components/stars'
 import useMediaQuery, { MediaQuery } from '@app/hooks/use-media-query'
 import { Clinic } from '@app/models/clinic'
+import { useFavoritesStore } from '@app/stores/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import FavoriteButton from '@app/ui/favorite/favorite-button'
 
@@ -29,10 +30,19 @@ const ClinicCard = ({
   id,
 }: Clinic & MediaQuery) => {
   const { width, height } = useMediaQuery({ w, px, h, full })
+  const favoriteId = useFavoritesStore((state) => state.favoriteHospitals[id])
 
   return (
     <Stack position="relative">
-      <FavoriteButton itemId={id} itemName={name} type={FAVORITE_TYPES.HOSPITAL} />
+      <FavoriteButton
+        favoriteId={favoriteId}
+        itemId={id}
+        itemName={name}
+        type={FAVORITE_TYPES.HOSPITAL}
+        top={6}
+        right={6}
+        position="absolute"
+      />
       <Card
         elevate
         bordered

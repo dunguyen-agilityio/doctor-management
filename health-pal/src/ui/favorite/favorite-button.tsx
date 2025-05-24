@@ -1,11 +1,8 @@
-import { use } from 'react'
-
 import { Button, ButtonProps } from '@theme'
 
 import HeartFill from '@icons/heart-fill'
 import HeartOutline from '@icons/heart-outline'
 
-import { FavoriteStateContext } from '@app/contexts/favorite'
 import { useAddFavorite } from '@app/hooks/use-add-favorite'
 import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
@@ -36,6 +33,7 @@ type FavoriteButtonProps = {
   type?: FAVORITE_TYPES
   itemId: number
   itemName: string
+  favoriteId?: string
 } & ButtonProps
 
 const FavoriteButton = ({
@@ -44,11 +42,9 @@ const FavoriteButton = ({
   size = 15,
   itemId,
   itemName,
+  favoriteId,
   ...props
 }: FavoriteButtonProps) => {
-  const favoriteById = use(FavoriteStateContext)
-  const favoriteId = favoriteById[itemId]
-
   const { mutate: removeFavorite, isPending: removeFavPending } = useRemoveFavorite(type, itemName)
 
   const { mutate: addFavorite, isPending: addFavPending } = useAddFavorite(type, itemName)
@@ -76,9 +72,6 @@ const FavoriteButton = ({
       width={size}
       height={size}
       variant="icon"
-      position="absolute"
-      top={6}
-      right={6}
       zIndex={100}
       disabled={disabled}
       disabledStyle={{ backgroundColor: '$grey100' }}

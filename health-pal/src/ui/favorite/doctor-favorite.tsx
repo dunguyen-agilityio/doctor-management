@@ -9,7 +9,6 @@ import { useSession } from '@app/contexts'
 import { useFavoriteDoctors } from '@app/hooks/use-favorite'
 import { TDoctorData } from '@app/models/doctor'
 import { FAVORITE_TYPES } from '@app/types/favorite'
-import FavoriteContainer from '@app/ui/favorite/favorite-container'
 import { formatDoctor } from '@app/utils/doctor'
 
 const DoctorFavorite = () => {
@@ -38,18 +37,7 @@ const DoctorFavorite = () => {
   }
 
   const renderItem = ({ item }: { item: TDoctorData }) => {
-    const { documentId, favoriteId, name, id } = item
-
-    return (
-      <FavoriteContainer
-        itemId={id}
-        itemDocId={documentId}
-        itemName={name}
-        type={FAVORITE_TYPES.DOCTOR}
-        favoriteId={favoriteId}>
-        <DoctorCard {...formatDoctor(item)} />
-      </FavoriteContainer>
-    )
+    return <DoctorCard {...formatDoctor(item)} />
   }
 
   const ListEmptyComponent = <Empty {...FAVORITE_EMPTY[FAVORITE_TYPES.DOCTOR]} />
