@@ -45,7 +45,7 @@ const Profile = () => {
       toast.show('Signup Successful', {
         message: 'Account created!',
         type: 'success',
-        native: true,
+        duration: 3000,
       })
       setAppLoading(true)
       router.replace('/(app)/(tabs)')
@@ -55,7 +55,6 @@ const Profile = () => {
         message: error.message,
         type: 'error',
         duration: 3000,
-        native: true,
       })
     }
 
@@ -74,14 +73,13 @@ const Profile = () => {
       toast.show('Profile Updated', {
         message: 'Profile updated successfully!',
         type: 'success',
-        native: true,
+        duration: 3000,
       })
     } else {
       toast.show('Profile Update Failed', {
         message: error.message,
         type: 'error',
         duration: 3000,
-        native: true,
       })
     }
 

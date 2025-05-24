@@ -79,11 +79,13 @@ export const tokens = createTokens({
 })
 
 export const tamaguiConfig = createTamagui({
+  //   ...defaultConfig,
   fonts: { heading: systemFont, body: systemFont },
   tokens,
   themes: {
     light: {
       ...defaultConfig.themes.light,
+      ...tokens.color,
       bg: tokens.color.white,
       color: tokens.color.primary,
     },

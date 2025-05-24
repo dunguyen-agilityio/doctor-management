@@ -6,18 +6,17 @@ import {
   Inter_500Medium,
   Inter_600SemiBold,
   Inter_700Bold,
-  useFonts,
 } from '@expo-google-fonts/inter'
+import { useFonts } from 'expo-font'
 import { Slot } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { ToastProvider } from '@tamagui/toast'
+import { ToastViewport } from '@tamagui/toast'
 
 import Toast from '@app/components/toast'
-import { AppLoadingProvider, SessionProvider } from '@app/contexts'
 import Providers from '@app/providers'
 
 import { tokens } from '@/tamagui.config'
@@ -71,15 +70,10 @@ export default function RootLayout() {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: tokens.color.white.val }}>
         <GestureHandlerRootView>
-          <SessionProvider>
-            <ToastProvider>
-              <AppLoadingProvider>
-                <StatusBar />
-                <Slot />
-                <Toast />
-              </AppLoadingProvider>
-            </ToastProvider>
-          </SessionProvider>
+          <StatusBar />
+          <Slot />
+          <Toast />
+          <ToastViewport />
         </GestureHandlerRootView>
       </SafeAreaView>
     )
