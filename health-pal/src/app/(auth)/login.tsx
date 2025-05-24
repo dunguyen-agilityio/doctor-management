@@ -27,7 +27,7 @@ const SignIn = () => {
       toast.show('Login Successful', {
         message: 'You are now logged in!',
         type: 'success',
-        native: true,
+        duration: 3000,
       })
       signIn(data)
       router.replace('/(app)/(tabs)')
@@ -36,7 +36,6 @@ const SignIn = () => {
         message: error.message,
         type: 'error',
         duration: 3000,
-        native: true,
       })
     }
 

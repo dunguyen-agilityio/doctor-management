@@ -19,19 +19,15 @@ export const useRemoveFavorite = (type: FAVORITE_TYPES, itemName: string) => {
       queryClient.invalidateQueries({ queryKey: ['favorites', type, user!.id] })
       toast.show('Removed from Favorites', {
         message: `${itemName} has been removed from your favorites.`,
-        backgroundColor: '$yellow3',
-        color: '$yellow10',
         duration: 3000,
-        native: true,
+        type: 'success',
       })
     },
     onError: () => {
       toast.show('Action Failed', {
         message: 'Failed to remove favorite. Please try again.',
-        native: true,
-        demo: true,
-        color: '$red10',
-        backgroundColor: '$red3',
+        type: 'error',
+        duration: 3000,
       })
     },
   })

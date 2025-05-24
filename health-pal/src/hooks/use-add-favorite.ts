@@ -19,19 +19,15 @@ export const useAddFavorite = (type: FAVORITE_TYPES, itemName: string) => {
       queryClient.invalidateQueries({ queryKey: ['favorites', type, user!.id] })
       toast.show('Added to Favorites', {
         message: `${itemName} has been added to your favorites.`,
-        backgroundColor: '$green3',
-        color: '$green10',
         duration: 3000,
-        native: true,
+        type: 'success',
       })
     },
     onError: () => {
       toast.show('Action Failed', {
         message: 'Failed to remove favorite. Please try again.',
-        native: true,
-        demo: true,
-        color: '$red10',
-        backgroundColor: '$red3',
+        type: 'error',
+        duration: 3000,
       })
     },
   })

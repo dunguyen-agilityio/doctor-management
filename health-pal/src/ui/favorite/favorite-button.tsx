@@ -81,6 +81,7 @@ const FavoriteButton = ({
       right={6}
       zIndex={100}
       disabled={disabled}
+      disabledStyle={{ backgroundColor: '$grey100' }}
       onPress={handleFavorite}
       {...props}>
       {renderIcon()}
