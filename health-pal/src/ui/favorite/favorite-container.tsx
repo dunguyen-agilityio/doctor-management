@@ -23,9 +23,10 @@ const COLORS = {
 
 const FavoriteContainer = ({
   children,
+  favoriteId,
   ...props
 }: React.PropsWithChildren<FavoriteContainerProps>) => {
-  const { favoriteId, type, itemId, itemName } = props
+  const { type, itemId, itemName } = props
 
   const { mutate: removeFavorite, isPending: removeFavPending } = useRemoveFavorite(type, itemName)
 
@@ -53,6 +54,7 @@ const FavoriteContainer = ({
         zIndex={disabled ? 1000 : 0}
       />
       <FavoriteButton
+        favoriteId={favoriteId}
         color={COLORS[type]}
         position="absolute"
         top={6}

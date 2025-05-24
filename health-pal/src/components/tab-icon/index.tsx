@@ -17,6 +17,8 @@ import {
 
 import { TAB_ROUTES } from '@app/types/route'
 
+import { tokens } from '@/tamagui.config'
+
 const TAB_ICON = {
   [`${TAB_ROUTES.HOME}_true`]: HomeFill,
   [`${TAB_ROUTES.HOME}_false`]: HomeOutline,
@@ -50,7 +52,7 @@ const TabIcon = ({ focused, name }: { focused: boolean; name: TAB_ROUTES }) => {
         borderRadius={36}
         alignItems="center"
         justifyContent="center">
-        <Icon />
+        <Icon stroke={tokens.color.grey400.val} fill={tokens.color.grey600.val} />
       </Button>
     )
   }

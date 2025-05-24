@@ -7,13 +7,14 @@ import Empty from '@app/components/empty'
 import ErrorState from '@app/components/error'
 import { useSession } from '@app/contexts'
 import { useFavoriteHospitals } from '@app/hooks/use-favorite'
-import { TClinicFavorite } from '@app/models/clinic'
+import { Clinic, TClinicFavorite } from '@app/models/clinic'
 import { FAVORITE_TYPES } from '@app/types/favorite'
-import FavoriteContainer from '@app/ui/favorite/favorite-container'
 
 import HospitalList from '../hospital/hospital-list'
 
 const ItemSeparatorComponent = () => <Stack height={12} />
+
+const keyExtractor = (item: Clinic) => item.documentId
 
 const ClinicFavorite = () => {
   const { session } = useSession()
@@ -32,18 +33,7 @@ const ClinicFavorite = () => {
     )
 
   const renderItem = ({ item }: { item: TClinicFavorite }) => {
-    const { documentId, name, favoriteId, id } = item
-
-    return (
-      <FavoriteContainer
-        itemId={id}
-        itemDocId={documentId}
-        itemName={name}
-        type={FAVORITE_TYPES.HOSPITAL}
-        favoriteId={favoriteId}>
-        <ClinicCard px={24} h={256} full {...item} />
-      </FavoriteContainer>
-    )
+    return <ClinicCard px={24} h={256} full {...item} />
   }
 
   const ListEmptyComponent = <Empty {...FAVORITE_EMPTY[FAVORITE_TYPES.HOSPITAL]} />
@@ -52,6 +42,7 @@ const ClinicFavorite = () => {
     <HospitalList
       data={hospitals}
       ItemSeparatorComponent={ItemSeparatorComponent}
+      keyExtractor={keyExtractor}
       renderItem={renderItem}
       ListEmptyComponent={ListEmptyComponent}
     />
