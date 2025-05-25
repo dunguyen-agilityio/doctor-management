@@ -3,6 +3,7 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
+      '@babel/plugin-transform-class-static-block',
       [
         '@tamagui/babel-plugin',
         {
@@ -12,7 +13,6 @@ module.exports = function (api) {
           disableExtraction: process.env.NODE_ENV === 'development',
         },
       ],
-
       'react-native-reanimated/plugin',
     ],
   }

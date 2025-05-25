@@ -3,25 +3,29 @@ import { Pressable, StyleSheet } from 'react-native'
 
 import { CameraView, useCameraPermissions } from 'expo-camera'
 import { Image, ImageProps } from 'expo-image'
-import { CameraType, ImagePickerAsset, launchImageLibraryAsync } from 'expo-image-picker'
+import { CameraType, launchImageLibraryAsync } from 'expo-image-picker'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { ImageMinus, RotateCcw } from '@tamagui/lucide-icons'
+import { useToastController } from '@tamagui/toast'
 import { Dialog, Stack, View, XStack } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
 
-import { Button } from '@theme'
-
 import { AvatarIcon, BackIcon, EditIcon } from '@icons'
+
+import { useSession } from '@app/contexts'
+import { useAppLoading } from '@app/hooks'
+import { uploadToStrapi } from '@app/services/upload-image'
+import { TImage } from '@app/types/image'
 
 import { tokens } from '@/tamagui.config'
 
-import { AlertDialog } from '../alert-dialog'
+import AlertDialog from '../alert-dialog'
 
 interface UploadProps extends ImageProps {
   preview?: string
-  onUpload?: (file: File) => void
+  onUpload?: (image: TImage) => Promise<void>
 }
 
 const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
@@ -29,11 +33,33 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
   const [open, setOpen] = useState(false)
   const ref = useRef<CameraView>(null)
   const [facing, setFacing] = useState<CameraType>(CameraType.back)
-  const [image, setImage] = useState<ImagePickerAsset | null>()
+  const [image, setImage] = useState<string | null>(null)
+
+  const setAppLoading = useAppLoading()
+  const { session } = useSession()
+  const toast = useToastController()
+
+  const jwt = session?.jwt!
 
   useEffect(() => {
     requestPermission()
   }, [requestPermission])
+
+  const handleUpload = async (imageUri: string) => {
+    setOpen(false)
+    setAppLoading(true)
+    const { error, data } = await uploadToStrapi(imageUri, jwt!)
+
+    if (error) {
+      toast.show('Upload Failed', { message: error.message, duration: 3000, type: 'error' })
+    } else {
+      const { id, url } = data
+      setImage(url)
+      onUpload?.(data)
+    }
+
+    setAppLoading(false)
+  }
 
   const pickImage = async () => {
     const result = await launchImageLibraryAsync({
@@ -44,7 +70,9 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
     })
 
     if (!result.canceled) {
-      setImage(result.assets[0])
+      const asset = result.assets[0]
+      setImage(asset.uri)
+      await handleUpload(asset.uri)
       setOpen(false)
     }
   }
@@ -56,14 +84,10 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
   const takePicture = async () => {
     if (ref.current) {
       const photo = await ref.current.takePictureAsync()
-      setImage(photo)
+      await handleUpload(photo.uri)
+      setImage(photo.uri)
       setOpen(false)
     }
-  }
-
-  // TODO: will handler later
-  const handleUpload = async () => {
-    setOpen(false)
   }
 
   const handleBack = () => {
@@ -137,9 +161,6 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
                     <BackIcon />
                   </Pressable>
                 </Dialog.Close>
-                <Button variant="outlined" borderWidth={0} onPress={handleUpload}>
-                  Next
-                </Button>
               </XStack>
 
               <CameraView style={styles.camera} facing={facing} ref={ref} />

@@ -14,7 +14,9 @@ import DateInput from '@app/components/date-input'
 import FormKeyboardAvoidingView from '@app/components/form-keyboard-avoiding-view'
 import Select from '@app/components/select'
 import Upload from '@app/components/upload'
+import { useSession } from '@app/contexts'
 import { UserProfileData } from '@app/types'
+import { TImage } from '@app/types/image'
 
 interface UserProfileFormProps {
   defaultData?: Partial<UserProfileData>
@@ -27,7 +29,11 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
   const nicknameRef = useRef<TextInput>(null)
   const emailRef = useRef<TextInput>(null)
 
-  const { control, handleSubmit, setError } = useForm<UserProfileData>({
+  const { session } = useSession()
+
+  const jwt = session?.jwt!
+
+  const { control, handleSubmit, setError, setValue } = useForm<UserProfileData>({
     defaultValues: {
       name: '',
       nickname: '',
@@ -51,10 +57,12 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
         <YStack gap={20}>
           <XStack justifyContent="center">
             <Upload
-              onUpload={() => {
+              onUpload={async (image: TImage) => {
+                setValue('avatar', image.id)
+                setValue('avatarUrl', image.url)
                 nameRef.current?.focus()
               }}
-              preview={defaultData?.avatar}
+              preview={defaultData?.avatarUrl}
             />
           </XStack>
           <Controller

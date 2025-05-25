@@ -97,7 +97,7 @@ const Profile = () => {
           name: name ?? username,
           email,
           gender: gender ? 'Male' : 'Female',
-          avatar: avatar?.url,
+          avatarUrl: avatar?.url,
           nickname,
         }}
         editable={!isSignup}
