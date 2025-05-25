@@ -84,9 +84,7 @@ const Details = () => {
           <SessionHeader
             title="Reviews"
             seeAllWrapper={({ children }) => (
-              <ButtonWithUpcoming variant="outlined" borderWidth={0}>
-                {children}
-              </ButtonWithUpcoming>
+              <ButtonWithUpcoming variant="text">{children}</ButtonWithUpcoming>
             )}
           />
 

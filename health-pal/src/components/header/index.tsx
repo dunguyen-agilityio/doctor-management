@@ -1,6 +1,6 @@
-import { Button, TextProps, XStackProps } from 'tamagui'
+import { TextProps, XStackProps } from 'tamagui'
 
-import { Heading, XStack } from '@theme'
+import { Button, Heading, XStack } from '@theme'
 
 import { BackIcon } from '@icons/index'
 
@@ -26,7 +26,7 @@ const Header = ({
       alignItems="center"
       {...props}>
       {onBack && (
-        <Button onPress={onBack} width={24}>
+        <Button variant="icon" onPress={onBack} width={24}>
           <BackIcon />
         </Button>
       )}

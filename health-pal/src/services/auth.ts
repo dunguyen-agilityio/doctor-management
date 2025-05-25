@@ -48,7 +48,6 @@ export const register = async ({
   dateOfBirth,
   gender,
   nickname,
-  avatar = '3',
   ...data
 }: UserProfileData): Promise<APIResponse<Session>> => {
   try {
@@ -58,7 +57,6 @@ export const register = async ({
         dateOfBirth: dayjs(dateOfBirth).format('YYYY-MM-DD'),
         gender: gender === 'Male',
         username: nickname,
-        //   ...(avatar && { avatar }),
       },
     })
 
@@ -75,11 +73,11 @@ export const register = async ({
 }
 
 export const updateProfile = async (
-  formData: UserProfileData,
+  formData: Partial<UserProfileData>,
   jwt: string,
 ): Promise<APIResponse<User>> => {
   try {
-    const { dateOfBirth, gender, avatar, id, ...data } = formData
+    const { dateOfBirth, gender, id, avatarUrl: _, ...data } = formData
 
     const payload = {
       ...data,

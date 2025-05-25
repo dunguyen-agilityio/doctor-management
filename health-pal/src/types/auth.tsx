@@ -11,6 +11,7 @@ export type UserProfileData = SignupData & {
   nickname: string
   dateOfBirth: Date | null
   gender: 'Male' | 'Female' | null
-  avatar: string
+  avatar: number
   id: number
+  avatarUrl?: string
 }
