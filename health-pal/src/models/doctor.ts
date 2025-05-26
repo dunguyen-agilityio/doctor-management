@@ -25,6 +25,7 @@ export type TDoctorCard = Pick<TDoctorData, 'name' | 'documentId' | 'rating' | '
   specialty: string
   address: string
   reviewCounter: number
+  clinic: Hospital
 }
 
 export type TDoctorData = Doctor & {

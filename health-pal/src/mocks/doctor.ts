@@ -1,46 +1,30 @@
-import { TDoctorCard } from '@app/models/doctor'
+import { TDoctorData } from '@app/models/doctor'
 import { TDoctorBanner } from '@app/types/doctor'
 
-export const MOCK_DOCTORS: TDoctorCard[] = [
+import { MOCK_HOSPITALS } from './hospital'
+import { MOCK_REVIEWS } from './reivew'
+import { MOCK_SPECIALTY } from './specialty'
+import { MOCK_USER } from './user'
+
+export const MOCK_DOCTORS: TDoctorData[] = [
   {
+    ...MOCK_USER,
     documentId: 'doc_001',
     id: 1,
     name: 'Dr. John Smith',
-    avatar: 'https://picsum.photos/id/91/3504/2336',
-    specialty: 'Dentistry',
-    address: '123 Smile St, Dental City, DC 12345',
     reviewCounter: 5,
     rating: 4.8,
-  },
-  {
-    documentId: 'doc_002',
-    id: 2,
-    name: 'Dr. Emily Carter',
-    avatar: 'https://picsum.photos/id/91/3504/2336',
-    specialty: 'Cardiology',
-    address: '456 Heart Ave, Cardio Town, CT 67890',
-    reviewCounter: 3,
-    rating: 4.3,
-  },
-  {
-    documentId: 'doc_003',
-    id: 3,
-    name: 'Dr. Michael Brown',
-    avatar: 'https://picsum.photos/id/91/3504/2336',
-    specialty: 'Pulmonology',
-    address: '789 Lung Rd, Breath City, BC 23456',
-    reviewCounter: 2,
-    rating: 4.0,
-  },
-  {
-    documentId: 'doc_004',
-    id: 4,
-    name: 'Dr. Sarah Davis',
-    avatar: 'https://picsum.photos/id/91/3504/2336',
-    specialty: 'General',
-    address: '101 Health St, Wellness City, WC 34567',
-    reviewCounter: 4,
-    rating: 4.5,
+    clinic: MOCK_HOSPITALS[0],
+    dateOfBirth: new Date('1980-01-01'),
+    email: 'john.smith@example.com',
+    specialty: MOCK_SPECIALTY,
+    avatar: {
+      id: 1,
+      url: 'https://picsum.photos/id/91/3504/2336',
+    },
+    reviews: MOCK_REVIEWS,
+    favoriteId: 'fav_001',
+    users_permissions_user: MOCK_USER,
   },
 ]
 

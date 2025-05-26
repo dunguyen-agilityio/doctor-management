@@ -13,8 +13,16 @@ export const useAddFavorite = (type: FAVORITE_TYPES, itemName: string) => {
 
   const { jwt, user } = session ?? {}
 
+  const handleMutation = (itemId: number) => {
+    if (!jwt || !user) {
+      throw new Error('User session is not available')
+    }
+
+    return addFavorite({ itemId, type }, user.id, jwt)
+  }
+
   return useMutation({
-    mutationFn: (itemId: number) => addFavorite({ itemId, type }, user!.id, jwt!),
+    mutationFn: handleMutation,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['favorites', type, user!.id] })
       toast.show('Added to Favorites', {
