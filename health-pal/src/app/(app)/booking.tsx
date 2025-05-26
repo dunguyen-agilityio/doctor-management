@@ -46,16 +46,17 @@ const Booking = () => {
 
   const {
     doctorId: doctId,
-    bookingId,
+    bookingId: bookingIdParam,
     date: defaultDate = getTomorrow(),
     time: timeParam = '',
   } = params
 
   const { control, watch, setValue, handleSubmit } = useForm<BookingForm>({
-    defaultValues: { time: timeParam, date: defaultDate },
+    defaultValues: { time: timeParam, date: defaultDate, documentId: bookingIdParam },
   })
 
   const date = dayjs(watch('date'))
+  const bookingId = watch('documentId')
   const time = watch('time')
 
   const formattedValue = dayjs(date).format('MMM DD, YYYY')
@@ -93,6 +94,9 @@ const Booking = () => {
       const { data } = await action(payload, jwt)
 
       if (data) {
+        if (!bookingId) {
+          setValue('documentId', data.documentId)
+        }
         cancelConfirmRef.current?.open()
         queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.UPCOMING] })
       } else {

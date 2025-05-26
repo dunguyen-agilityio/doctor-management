@@ -14,7 +14,6 @@ import DateInput from '@app/components/date-input'
 import FormKeyboardAvoidingView from '@app/components/form-keyboard-avoiding-view'
 import Select from '@app/components/select'
 import Upload from '@app/components/upload'
-import { useSession } from '@app/contexts'
 import { UserProfileData } from '@app/types'
 import { TImage } from '@app/types/image'
 
@@ -28,10 +27,6 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
   const nameRef = useRef<TextInput>(null)
   const nicknameRef = useRef<TextInput>(null)
   const emailRef = useRef<TextInput>(null)
-
-  const { session } = useSession()
-
-  const jwt = session?.jwt!
 
   const { control, handleSubmit, setError, setValue } = useForm<UserProfileData>({
     defaultValues: {
@@ -56,13 +51,19 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
       <YStack gap={24} paddingHorizontal={24} flex={1}>
         <YStack gap={20}>
           <XStack justifyContent="center">
-            <Upload
-              onUpload={async (image: TImage) => {
-                setValue('avatar', image.id)
-                setValue('avatarUrl', image.url)
-                nameRef.current?.focus()
-              }}
-              preview={defaultData?.avatarUrl}
+            <Controller
+              control={control}
+              name="avatar"
+              render={({ field: { onChange } }) => (
+                <Upload
+                  onUpload={async (image: TImage) => {
+                    onChange(image.id)
+                    setValue('avatarUrl', image.url)
+                    nameRef.current?.focus()
+                  }}
+                  preview={defaultData?.avatarUrl}
+                />
+              )}
             />
           </XStack>
           <Controller
@@ -165,7 +166,6 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                 label="Gender"
                 placeholder="Gender"
                 items={[{ name: 'Male' }, { name: 'Female' }]}
-                native
                 onValueChange={onChange}
                 value={value ?? ''}
                 errorMessage={error?.message}

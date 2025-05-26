@@ -1,13 +1,13 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
 import { useToastController } from '@tamagui/toast'
 
 import { useSession } from '@app/contexts'
+import { queryClient } from '@app/react-query.config'
 import { addFavorite } from '@app/services/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
 export const useAddFavorite = (type: FAVORITE_TYPES, itemName: string) => {
-  const queryClient = useQueryClient()
   const { session } = useSession()
   const toast = useToastController()
 

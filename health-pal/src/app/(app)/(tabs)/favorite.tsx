@@ -31,7 +31,12 @@ const Favorite = () => {
         paddingHorizontal={28}
         borderBottomWidth={1}>
         {Object.values(FAVORITE_TYPES).map((value) => (
-          <Tabs.Tab {...TAB_DEFAULT_PROPS} maxWidth={150} key={value} value={value}>
+          <Tabs.Tab
+            pressStyle={{ backgroundColor: 'transparent' }}
+            {...TAB_DEFAULT_PROPS}
+            maxWidth={150}
+            key={value}
+            value={value}>
             <TabsTab title={value} active={type === value} />
           </Tabs.Tab>
         ))}

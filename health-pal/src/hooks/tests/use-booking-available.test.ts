@@ -8,6 +8,7 @@ import useBookingAvailable from '../use-booking-available'
 
 // Mock dependencies
 jest.mock('@tanstack/react-query', () => ({
+  ...jest.requireActual('@tanstack/react-query'),
   useQuery: jest.fn(),
 }))
 

@@ -8,6 +8,7 @@ import useHospitals from '../use-hospitals'
 
 // Mock dependencies
 jest.mock('@tanstack/react-query', () => ({
+  ...jest.requireActual('@tanstack/react-query'),
   useQuery: jest.fn(),
 }))
 

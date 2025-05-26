@@ -1,7 +1,5 @@
 import { act, renderHook, waitFor } from '@utils-test'
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
 import { addFavorite } from '@app/services/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
@@ -13,6 +11,7 @@ jest.mock('@app/services/favorite', () => ({
 }))
 
 jest.mock('@app/contexts', () => ({
+  ...jest.requireActual('@app/contexts'),
   useSession: () => ({
     session: {
       jwt: 'test-token',
@@ -24,28 +23,17 @@ jest.mock('@app/contexts', () => ({
 const mockShow = jest.fn()
 
 jest.mock('@tamagui/toast', () => ({
+  ...jest.requireActual('@tamagui/toast'),
   useToastController: () => ({
     show: mockShow,
   }),
 }))
 
 describe('useAddFavorite', () => {
-  const queryClient = new QueryClient()
-
-  const wrapper = ({ children }: any) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  )
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-
   it('calls addFavorite and shows success toast', async () => {
     ;(addFavorite as jest.Mock).mockResolvedValueOnce({})
 
-    const { result } = renderHook(() => useAddFavorite(FAVORITE_TYPES.DOCTOR, 'Doctor'), {
-      wrapper,
-    })
+    const { result } = renderHook(() => useAddFavorite(FAVORITE_TYPES.DOCTOR, 'Doctor'))
 
     act(() => {
       result.current.mutate(42)
@@ -68,9 +56,7 @@ describe('useAddFavorite', () => {
   it('shows error toast when mutation fails', async () => {
     ;(addFavorite as jest.Mock).mockRejectedValueOnce(new Error('Failed'))
 
-    const { result } = renderHook(() => useAddFavorite(FAVORITE_TYPES.HOSPITAL, 'Hospital'), {
-      wrapper,
-    })
+    const { result } = renderHook(() => useAddFavorite(FAVORITE_TYPES.HOSPITAL, 'Hospital'))
 
     act(() => {
       result.current.mutate(99)

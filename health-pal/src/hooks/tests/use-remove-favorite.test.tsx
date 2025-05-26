@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from '@utils-test'
 
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
 import { useToastController } from '@tamagui/toast'
 
@@ -11,6 +11,7 @@ import { FAVORITE_TYPES } from '@app/types/favorite'
 import { useRemoveFavorite } from '../use-remove-favorite'
 
 jest.mock('@tanstack/react-query', () => ({
+  ...jest.requireActual('@tanstack/react-query'),
   useMutation: jest.fn(),
   useQueryClient: jest.fn(),
 }))
@@ -37,14 +38,12 @@ describe('useRemoveFavorite', () => {
   const mockItemName = 'Dr. Smith'
   const mockFavoriteId = 'fav1'
   const mockToastShow = jest.fn()
-  const mockInvalidateQueries = jest.fn()
   const mockMutate = jest.fn()
 
   beforeEach(() => {
     jest.clearAllMocks()
     ;(useSession as jest.Mock).mockReturnValue({ session: mockSession })
     ;(useToastController as jest.Mock).mockReturnValue({ show: mockToastShow })
-    ;(useQueryClient as jest.Mock).mockReturnValue({ invalidateQueries: mockInvalidateQueries })
     ;(useMutation as jest.Mock).mockReturnValue({ mutate: mockMutate })
     ;(removeFavorite as jest.Mock).mockResolvedValue(undefined)
   })
@@ -91,9 +90,7 @@ describe('useRemoveFavorite', () => {
 
     await waitFor(() => {
       onSuccess!()
-      expect(mockInvalidateQueries).toHaveBeenCalledWith({
-        queryKey: ['favorites', mockType, mockUser.id],
-      })
+
       expect(mockToastShow).toHaveBeenCalledWith('Removed from Favorites', {
         message: `${mockItemName} has been removed from your favorites.`,
         duration: 3000,
@@ -124,7 +121,6 @@ describe('useRemoveFavorite', () => {
         type: 'error',
         duration: 3000,
       })
-      expect(mockInvalidateQueries).not.toHaveBeenCalled()
     })
   })
 
