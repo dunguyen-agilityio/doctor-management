@@ -7,6 +7,6 @@ export const APP_TITLES: Record<APP_ROUTES, string> = {
   [APP_ROUTES.NOTIFICATION]: 'Notification',
   [APP_ROUTES.TAB]: '',
   [APP_ROUTES.BOOKING]: 'Booking Appointment',
-  [APP_ROUTES.CLINICS]: 'All Clinics',
-  [APP_ROUTES.CLINIC_DETAILS]: 'Clinic Details',
+  [APP_ROUTES.HOSPITALS]: 'All Hospitals',
+  [APP_ROUTES.HOSPITAL_DETAILS]: 'Hospital Details',
 }

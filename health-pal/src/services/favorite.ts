@@ -1,5 +1,7 @@
-import { Clinic } from '@app/models/clinic'
+import { FavoriteQueryKey } from '@app/constants/favorite'
+
 import { TDoctorData } from '@app/models/doctor'
+import { Hospital } from '@app/models/hospital'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import { buildStrapiQuery } from '@app/utils/strapi'
 
@@ -7,7 +9,7 @@ import { apiClient } from './http-client'
 
 export type TFavorite<T extends FAVORITE_TYPES> = {
   type: T
-  hospital: T extends FAVORITE_TYPES.DOCTOR ? null : Clinic
+  hospital: T extends FAVORITE_TYPES.DOCTOR ? null : Hospital
   doctor: T extends FAVORITE_TYPES.DOCTOR ? TDoctorData : null
   id: number
   documentId: string
@@ -53,15 +55,15 @@ export const fetchFavoritesByType = async <T extends FAVORITE_TYPES>(
         query: userId.toString(),
       },
       ...(type === FAVORITE_TYPES.HOSPITAL
-        ? [{ key: 'populate[hospital][populate][image][fields]', query: 'url' }]
+        ? [{ key: FavoriteQueryKey.hospital, query: 'url' }]
         : [
-            { key: 'populate[doctor][populate][specialty][fields]', query: '*' },
+            { key: FavoriteQueryKey.specialty, query: '*' },
             {
-              key: 'populate[doctor][populate][users_permissions_user][populate][avatar][fields]',
+              key: FavoriteQueryKey.doctor,
               query: 'url',
             },
             {
-              key: 'populate[doctor][populate][clinic][fields]',
+              key: FavoriteQueryKey.address,
               query: 'address',
             },
           ]),

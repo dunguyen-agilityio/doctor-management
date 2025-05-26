@@ -33,7 +33,7 @@ const ItemSeparatorComponent = () => <XStack height={10} />
 
 const BookingList = ({ type }: { type: BOOKING_TABS }) => {
   const { isLoading, data, error } = useQuery({
-    queryKey: [`bookings-${type}`],
+    queryKey: ['bookings', type],
     queryFn: bookingPromises[type],
   })
 

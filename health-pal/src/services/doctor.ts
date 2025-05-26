@@ -1,4 +1,5 @@
 import { APP_TOKEN } from '@app/constants'
+import { DoctorQueryKey } from '@app/constants/doctor'
 
 import { MOCK_REVIEWS } from '@app/mocks/reivew'
 import { TDoctorData } from '@app/models/doctor'
@@ -11,9 +12,9 @@ export const getDoctors = async ({ filters = [], ...params }: StrapiParams) => {
   const searchParams = buildStrapiQuery({
     ...params,
     filters: [
-      { key: 'populate[users_permissions_user][populate]', query: '*' },
-      { key: 'populate[clinic][populate]', query: '*' },
-      { key: 'populate[specialty][populate]', query: '*' },
+      { key: DoctorQueryKey.doctor, query: '*' },
+      { key: DoctorQueryKey.hospital, query: '*' },
+      { key: DoctorQueryKey.specialty, query: '*' },
       ...filters,
     ],
   })
@@ -27,9 +28,9 @@ export const getDoctors = async ({ filters = [], ...params }: StrapiParams) => {
 export const getDoctor = async (id: string) => {
   const searchParams = buildStrapiQuery({
     filters: [
-      { key: 'populate[users_permissions_user][populate]', query: '*' },
-      { key: 'populate[clinic][populate]', query: '*' },
-      { key: 'populate[specialty][populate]', query: '*' },
+      { key: DoctorQueryKey.doctor, query: '*' },
+      { key: DoctorQueryKey.hospital, query: '*' },
+      { key: DoctorQueryKey.specialty, query: '*' },
     ],
   })
 

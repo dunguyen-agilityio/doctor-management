@@ -64,9 +64,6 @@ class APIClient {
     if (method !== 'DELETE') {
       json = await res.json()
     }
-    if (method === 'POST') {
-      console.log('json', json)
-    }
 
     if (!res.ok) {
       const error = json?.error as StrapiError
