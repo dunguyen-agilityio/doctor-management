@@ -6,17 +6,17 @@ import { Heading } from '@theme/heading'
 import { XStack, YStack } from '@theme/stack'
 import { Text } from '@theme/text'
 
-import { Hospital, Routing } from '@icons'
+import { Hospital as HospitalIcon, Routing } from '@icons'
 import LocationOutline from '@icons/location-outline'
 
 import Stars from '@app/components/stars'
 import useMediaQuery, { MediaQuery } from '@app/hooks/use-media-query'
-import { Clinic } from '@app/models/clinic'
+import { Hospital } from '@app/models/hospital'
 import { useFavoritesStore } from '@app/stores/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import FavoriteButton from '@app/ui/favorite/favorite-button'
 
-const ClinicCard = ({
+const HospitalCard = ({
   image = require('@/assets/images/banner01.webp'),
   address,
   name,
@@ -28,7 +28,7 @@ const ClinicCard = ({
   full,
   h = 252,
   id,
-}: Clinic & MediaQuery) => {
+}: Hospital & MediaQuery) => {
   const { width, height } = useMediaQuery({ w, px, h, full })
   const favoriteId = useFavoritesStore((state) => state.favoriteHospitals[id])
 
@@ -82,7 +82,7 @@ const ClinicCard = ({
               </XStack>
 
               <XStack alignItems="center" gap="$sm">
-                <Hospital />
+                <HospitalIcon />
                 <Text size="extraSmall">{type}</Text>
               </XStack>
             </XStack>
@@ -93,4 +93,4 @@ const ClinicCard = ({
   )
 }
 
-export default ClinicCard
+export default HospitalCard

@@ -4,10 +4,16 @@ import { Button, Heading, Text, XStack, YStack } from '@theme'
 
 import { SheetModal } from '@app/components/sheet-modal'
 import { useSession } from '@app/contexts'
+import { queryClient } from '@app/react-query.config'
 import { ModalRef } from '@app/types/modal'
 
 const LogoutModalContext = ({ ref }: { ref: React.RefObject<ModalRef | null> }) => {
   const { signOut } = useSession()
+
+  const handleLogout = () => {
+    signOut()
+    queryClient.clear()
+  }
 
   return (
     <SheetModal ref={ref}>
@@ -30,7 +36,7 @@ const LogoutModalContext = ({ ref }: { ref: React.RefObject<ModalRef | null> }) 
           }}>
           Cancel
         </Button>
-        <Button fontWeight="700" flex={1} onPress={signOut}>
+        <Button fontWeight="700" flex={1} onPress={handleLogout}>
           Yes, Logout
         </Button>
       </XStack>

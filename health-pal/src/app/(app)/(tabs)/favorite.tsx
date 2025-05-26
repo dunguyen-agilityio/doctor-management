@@ -4,7 +4,7 @@ import { Separator, Tabs } from 'tamagui'
 
 import { TAB_DEFAULT_PROPS, TabsContent, TabsTab } from '@app/components'
 import { FAVORITE_TYPES } from '@app/types/favorite'
-import { ClinicFavorite, DoctorFavorite } from '@app/ui/favorite'
+import { DoctorFavorite, HospitalFavorite } from '@app/ui/favorite'
 
 const Favorite = () => {
   const { type = FAVORITE_TYPES.DOCTOR } = useLocalSearchParams<{ type: FAVORITE_TYPES }>()
@@ -42,7 +42,7 @@ const Favorite = () => {
         <DoctorFavorite />
       </TabsContent>
       <TabsContent paddingHorizontal="$md" value={FAVORITE_TYPES.HOSPITAL}>
-        <ClinicFavorite />
+        <HospitalFavorite />
       </TabsContent>
     </Tabs>
   )

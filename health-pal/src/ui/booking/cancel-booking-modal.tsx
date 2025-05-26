@@ -39,8 +39,8 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, time }: Props) 
       const response = await updateBooking({ documentId, type: BOOKING_TABS.CANCELED }, jwt)
 
       if (response.data) {
-        await queryClient.invalidateQueries({ queryKey: [`bookings-${BOOKING_TABS.CANCELED}`] })
-        await queryClient.invalidateQueries({ queryKey: [`bookings-${BOOKING_TABS.UPCOMING}`] })
+        await queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.CANCELED] })
+        await queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.UPCOMING] })
         router.navigate({
           pathname: '/(app)/(tabs)/bookings',
           params: { type: BOOKING_TABS.CANCELED },

@@ -4,7 +4,7 @@ import { Doctor } from './doctor'
 import { Review } from './review'
 import { Strapi } from './strapi'
 
-export class Clinic extends Strapi {
+export class Hospital extends Strapi {
   description!: string
   name!: string
   address!: string
@@ -15,7 +15,7 @@ export class Clinic extends Strapi {
   reivewCouter!: number
   type!: 'Hospital' | 'Clinic'
 
-  constructor({ doctors, reviews, rating, reivewCouter, ...clinic }: Clinic) {
+  constructor({ doctors, reviews, rating, reivewCouter, ...clinic }: Hospital) {
     super(clinic)
     Object.assign(this, clinic)
     this.doctors = doctors ?? []
@@ -25,4 +25,4 @@ export class Clinic extends Strapi {
   }
 }
 
-export type TClinicFavorite = Clinic & { favoriteId?: string }
+export type THospitalFavorite = Hospital & { favoriteId?: string }

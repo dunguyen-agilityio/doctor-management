@@ -2,21 +2,21 @@ import { Stack } from 'tamagui'
 
 import { FAVORITE_EMPTY } from '@app/constants'
 
-import { ClinicCard, LoadingIndicator } from '@app/components'
+import { HospitalCard, LoadingIndicator } from '@app/components'
 import Empty from '@app/components/empty'
 import ErrorState from '@app/components/error'
 import { useSession } from '@app/contexts'
 import { useFavoriteHospitals } from '@app/hooks/use-favorite'
-import { Clinic, TClinicFavorite } from '@app/models/clinic'
+import { Hospital, THospitalFavorite } from '@app/models/hospital'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
 import HospitalList from '../hospital/hospital-list'
 
 const ItemSeparatorComponent = () => <Stack height={12} />
 
-const keyExtractor = (item: Clinic) => item.documentId
+const keyExtractor = (item: Hospital) => item.documentId
 
-const ClinicFavorite = () => {
+const HospitalFavorite = () => {
   const { session } = useSession()
   const { jwt, user } = session ?? {}
   const { data: hospitals, isLoading, error, refetch } = useFavoriteHospitals(user!.id, jwt!)
@@ -32,8 +32,8 @@ const ClinicFavorite = () => {
       />
     )
 
-  const renderItem = ({ item }: { item: TClinicFavorite }) => {
-    return <ClinicCard px={24} h={256} full {...item} />
+  const renderItem = ({ item }: { item: THospitalFavorite }) => {
+    return <HospitalCard px={24} h={256} full {...item} />
   }
 
   const ListEmptyComponent = <Empty {...FAVORITE_EMPTY[FAVORITE_TYPES.HOSPITAL]} />
@@ -49,4 +49,4 @@ const ClinicFavorite = () => {
   )
 }
 
-export default ClinicFavorite
+export default HospitalFavorite

@@ -3,11 +3,11 @@ import { FlatListProps } from 'react-native'
 
 import { FlatList } from 'react-native-gesture-handler'
 
-import { Clinic } from '@app/models/clinic'
+import { Hospital } from '@app/models/hospital'
 
-interface HospitalProps extends FlatListProps<Clinic> {}
+interface HospitalProps extends FlatListProps<Hospital> {}
 
-const keyExtractor = (item: Clinic) => item.documentId
+const keyExtractor = (item: Hospital) => item.documentId
 
 const HospitalList = ({ ...otherProps }: HospitalProps) => {
   return (

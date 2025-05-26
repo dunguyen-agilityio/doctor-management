@@ -1,10 +1,10 @@
 import { create } from 'zustand'
 
-type FavoriteType = 'doctor' | 'hospital'
+import { FAVORITE_TYPES } from '@app/types/favorite'
 
 export type FavoriteItem = {
   itemId: number // ID of the doctor or hospital
-  type: FavoriteType // Type of favorite (doctor or hospital)
+  type: FAVORITE_TYPES // Type of favorite (doctor or hospital)
   documentId: string
 }
 
@@ -26,20 +26,14 @@ export const useFavoritesStore = create<FavoritesState>((set, get) => ({
     const { favoriteDoctors, favoriteHospitals } = get()
     const { itemId, type, documentId } = item
 
-    if (type === 'doctor') {
-      set({
-        favoriteDoctors: {
-          ...favoriteDoctors,
-          [itemId]: documentId,
-        },
-      })
-    } else if (type === 'hospital') {
-      set({
-        favoriteHospitals: {
-          ...favoriteHospitals,
-          [itemId]: documentId,
-        },
-      })
+    const updated = { ...(type === FAVORITE_TYPES.DOCTOR ? favoriteDoctors : favoriteHospitals) }
+
+    if (itemId in updated) {
+      delete updated[itemId]
+    } else {
+      updated[itemId] = documentId
     }
+
+    set({ [type === FAVORITE_TYPES.DOCTOR ? 'favoriteDoctors' : 'favoriteHospitals']: updated })
   },
 }))

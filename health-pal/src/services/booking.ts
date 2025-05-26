@@ -1,4 +1,5 @@
 import { APP_TOKEN } from '@app/constants'
+import { BookingMessages, BookingQueryKey } from '@app/constants/booking'
 
 import { Booking, BookingData } from '@app/models/booking'
 import { BookingForm } from '@app/types/booking'
@@ -11,16 +12,16 @@ export const getBookings = async ({ filters = [], ...params }: StrapiParams) => 
   const searchParams = buildStrapiQuery({
     ...params,
     filters: [
-      { key: 'populate[doctor][populate][clinic][fields]', query: 'address' },
+      { key: BookingQueryKey.hospital, query: 'address' },
       {
-        key: 'populate[patient][populate][users_permissions_user][populate][avatar][fields]',
+        key: BookingQueryKey.patient,
         query: 'url',
       },
       {
-        key: 'populate[doctor][populate][users_permissions_user][populate][avatar][fields]',
+        key: BookingQueryKey.doctor,
         query: 'url',
       },
-      { key: 'populate[doctor][populate][specialty][fields]', query: 'name' },
+      { key: BookingQueryKey.specialty, query: 'name' },
       { key: 'sort', query: 'updatedAt:desc' },
       ...filters,
     ],
@@ -29,6 +30,7 @@ export const getBookings = async ({ filters = [], ...params }: StrapiParams) => 
   const response = await apiClient.get<StrapiPagination<BookingData>>(`bookings?${searchParams}`, {
     jwt: APP_TOKEN,
   })
+
   return response
 }
 
@@ -43,7 +45,7 @@ export const updateBooking = async (
     })
     return response
   } catch (error) {
-    let message = 'Failed to add Booking'
+    let message = BookingMessages.BOOKING_UPDATE_ERROR
 
     if (error instanceof Error) {
       message = error.message
@@ -64,7 +66,7 @@ export const addBooking = async (
     })
     return response
   } catch (error) {
-    let message = 'Failed to add Booking'
+    let message = BookingMessages.BOOKING_ERROR
 
     if (error instanceof Error) {
       message = error.message

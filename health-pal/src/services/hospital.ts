@@ -1,6 +1,6 @@
 import { APP_TOKEN } from '@app/constants'
 
-import { Clinic } from '@app/models/clinic'
+import { Hospital } from '@app/models/hospital'
 import { StrapiPagination, StrapiParams } from '@app/types/strapi'
 import { buildStrapiQuery } from '@app/utils/strapi'
 
@@ -13,7 +13,7 @@ export const getHospitals = async (params?: StrapiParams) => {
     ...rest,
     filters: [...filters, { key: 'populate[image][fields][1]', query: 'url' }],
   })
-  const response = await apiClient.get<StrapiPagination<Clinic>>(`hospitals?${searchParams}`, {
+  const response = await apiClient.get<StrapiPagination<Hospital>>(`hospitals?${searchParams}`, {
     jwt: APP_TOKEN,
   })
   return response

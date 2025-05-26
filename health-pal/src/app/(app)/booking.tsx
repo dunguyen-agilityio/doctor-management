@@ -12,8 +12,9 @@ import { DatePicker } from '@app/components'
 import TimeButton from '@app/components/time-button'
 import { useSession } from '@app/contexts'
 import { useAppLoading } from '@app/hooks'
+import { queryClient } from '@app/react-query.config'
 import { addBooking, getBookingAvailable, updateBooking } from '@app/services/booking'
-import { BookingForm } from '@app/types/booking'
+import { BOOKING_TABS, BookingForm } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 import { CreateBookingSuccessModal } from '@app/ui/booking/create-booking-success-modal'
 import ReloadTimeSlotConfirmModal from '@app/ui/booking/reload-time-slot'
@@ -93,6 +94,7 @@ const Booking = () => {
 
       if (data) {
         cancelConfirmRef.current?.open()
+        queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.UPCOMING] })
       } else {
         reloadTimeSlotConfirmRef.current?.open()
         getAvailable()
@@ -149,7 +151,7 @@ const Booking = () => {
                         value={time}
                         key={time}
                         onSelect={onChange}
-                        disabled={!available[time] && !bookingId}
+                        disabled={!available[time] && timeParam !== time}
                         color={value === time ? '$white' : '$primary'}
                         backgroundColor={value === time ? '$primary' : '$grey50'}
                         disabledStyle={{ opacity: 0.5, backgroundColor: '$grey300' }}
