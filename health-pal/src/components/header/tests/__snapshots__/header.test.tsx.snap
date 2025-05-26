@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header matches snapshot with default props 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flexDirection": "row",
+        "height": 62,
+        "paddingBottom": 24,
+        "paddingLeft": 24,
+        "paddingRight": 24,
+        "paddingTop": 8,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#1c2a3a",
+            "fontFamily": "Inter_600SemiBold",
+            "fontSize": 20,
+            "height": 30,
+            "lineHeight": 30,
+          }
+        }
+        suppressHighlighting={true}
+      >
+        Home
+      </Text>
+    </View>
+  </View>,
+]
+`;

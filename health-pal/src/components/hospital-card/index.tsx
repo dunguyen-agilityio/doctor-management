@@ -42,6 +42,7 @@ const HospitalCard = ({
         top={6}
         right={6}
         position="absolute"
+        testID="favorite-button"
       />
       <Card
         elevate
@@ -62,7 +63,7 @@ const HospitalCard = ({
             </Heading>
 
             <XStack alignItems="center" gap="$sm">
-              <LocationOutline />
+              <LocationOutline testID="location-icon" />
               <Text size="extraSmall" numberOfLines={1}>
                 {address}
               </Text>
@@ -77,12 +78,12 @@ const HospitalCard = ({
 
             <XStack justifyContent="space-between">
               <XStack alignItems="center" gap="$sm">
-                <Routing />
+                <Routing testID="routing-icon" />
                 <Text size="extraSmall">2.5 km/40min</Text>
               </XStack>
 
               <XStack alignItems="center" gap="$sm">
-                <HospitalIcon />
+                <HospitalIcon testID="hospital-icon" />
                 <Text size="extraSmall">{type}</Text>
               </XStack>
             </XStack>

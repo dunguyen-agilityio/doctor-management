@@ -34,6 +34,7 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
   const ref = useRef<CameraView>(null)
   const [facing, setFacing] = useState<CameraType>(CameraType.back)
   const [image, setImage] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const setAppLoading = useAppLoading()
   const { session } = useSession()
@@ -47,21 +48,33 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
 
   const handleUpload = async (imageUri: string) => {
     setOpen(false)
+    setLoading(true)
     setAppLoading(true)
-    const { error, data } = await uploadToStrapi(imageUri, jwt!)
 
-    if (error) {
-      toast.show('Upload Failed', { message: error.message, duration: 3000, type: 'error' })
-    } else {
-      const { id, url } = data
-      setImage(url)
-      onUpload?.(data)
+    try {
+      const { error, data } = await uploadToStrapi(imageUri, jwt)
+
+      if (error) {
+        toast.show('Upload Failed', {
+          message: error.message,
+          duration: 3000,
+          type: 'error',
+        })
+      } else {
+        setImage(data.url)
+        if (onUpload) {
+          await onUpload(data)
+        }
+      }
+    } finally {
+      setLoading(false)
+      setAppLoading(false)
     }
-
-    setAppLoading(false)
   }
 
   const pickImage = async () => {
+    if (loading) return
+
     const result = await launchImageLibraryAsync({
       mediaTypes: ['images'],
       allowsEditing: true,
@@ -82,12 +95,12 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
   }
 
   const takePicture = async () => {
-    if (ref.current) {
-      const photo = await ref.current.takePictureAsync()
-      await handleUpload(photo.uri)
-      setImage(photo.uri)
-      setOpen(false)
-    }
+    if (loading || !ref.current) return
+
+    const photo = await ref.current.takePictureAsync()
+    await handleUpload(photo.uri)
+    setImage(photo.uri)
+    setOpen(false)
   }
 
   const handleBack = () => {
@@ -95,7 +108,6 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
   }
 
   if (!permission) {
-    // Camera permissions are still loading.
     return <View />
   }
 
@@ -104,13 +116,17 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
       {!permission.granted && (
         <AlertDialog
           cancelable
+          open
           onConfirm={requestPermission}
           title="We need your permission to show the camera"
         />
       )}
+
       <Dialog modal open={open} onOpenChange={setOpen}>
         <Dialog.Trigger asChild position="absolute" zIndex={1} right={24} bottom={27}>
-          <EditIcon />
+          <Pressable aria-label="Edit Image">
+            <EditIcon />
+          </Pressable>
         </Dialog.Trigger>
 
         <Dialog.Portal>
@@ -157,7 +173,7 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
                 justifyContent="space-between"
                 paddingHorizontal={20}>
                 <Dialog.Close asChild>
-                  <Pressable onPressIn={handleBack}>
+                  <Pressable aria-label="Back" onPressIn={handleBack} testID="back-button">
                     <BackIcon />
                   </Pressable>
                 </Dialog.Close>
@@ -170,11 +186,14 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
                 backgroundColor="$white"
                 justifyContent="space-around"
                 paddingVertical={10}>
-                <Pressable onPress={pickImage}>
+                <Pressable
+                  aria-label="Pick Image from Gallery"
+                  onPress={pickImage}
+                  disabled={loading}>
                   <ImageMinus size={32} color={tokens.color.primary.val} />
                 </Pressable>
 
-                <Pressable onPress={takePicture}>
+                <Pressable aria-label="Take Picture" onPress={takePicture} disabled={loading}>
                   {({ pressed }) => (
                     <Stack
                       w={65}
@@ -191,7 +210,10 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
                   )}
                 </Pressable>
 
-                <Pressable onPress={toggleFacing}>
+                <Pressable
+                  aria-label="Toggle Camera Facing"
+                  onPress={toggleFacing}
+                  disabled={loading}>
                   <RotateCcw size={32} color={tokens.color.primary.val} />
                 </Pressable>
               </XStack>
@@ -201,9 +223,9 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
       </Dialog>
 
       {(image ?? preview) ? (
-        <Image source={image ?? preview} style={styles.image} {...other} />
+        <Image testID="expo-image" source={image ?? preview} style={styles.image} {...other} />
       ) : (
-        <AvatarIcon />
+        <AvatarIcon testID="avatar-icon" />
       )}
     </Stack>
   )
@@ -212,48 +234,9 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
 export default Upload
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  message: {
-    textAlign: 'center',
-    paddingBottom: 10,
-  },
   camera: {
     flex: 1,
     maxHeight: 400,
-  },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: 'transparent',
-    margin: 64,
-  },
-  button: {
-    flex: 1,
-    alignSelf: 'flex-end',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  shutterBtn: {
-    backgroundColor: 'transparent',
-    borderWidth: 5,
-    borderColor: 'white',
-    width: 85,
-    height: 85,
-    borderRadius: 45,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  shutterBtnInner: {
-    width: 70,
-    height: 70,
-    borderRadius: 50,
   },
   image: {
     width: 170,

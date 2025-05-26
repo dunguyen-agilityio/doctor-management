@@ -13,13 +13,13 @@ interface StarsProps extends StackProps {
 
 const Stars = ({ stars, max = stars, color = '#ffd700', size = 10, ...otherProps }: StarsProps) => {
   return (
-    <XStack alignItems="center" gap="$sm" {...otherProps}>
-      <Text fontWeight="600" size="extraSmall">
+    <XStack alignItems="center" testID="stars" gap="$sm" {...otherProps}>
+      <Text testID="stars-text" fontWeight="600" size="extraSmall">
         {stars.toFixed(1)}
       </Text>
       <XStack>
         {[...new Array(Math.floor(max)).keys()].map((value) => (
-          <Star size={size} color={color} fill={color} key={value} />
+          <Star testID={`star-${value}`} size={size} color={color} fill={color} key={value} />
         ))}
       </XStack>
     </XStack>

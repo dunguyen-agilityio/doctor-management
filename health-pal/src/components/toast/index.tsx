@@ -17,6 +17,8 @@ const VARIANTS: Record<ToastVariant, Pick<TextProps, 'backgroundColor' | 'color'
 const Toast = () => {
   const currentToast = useToastState()
 
+  console.log('currentToast', currentToast)
+
   if (!currentToast || currentToast.isHandledNatively) return null
 
   const { duration, id, message, title, viewportName, type = 'info' } = currentToast
@@ -26,6 +28,7 @@ const Toast = () => {
   return (
     <TamaguiToast
       animation="200ms"
+      testID="toast"
       key={id}
       duration={duration}
       enterStyle={{ opacity: 0, transform: [{ translateY: 100 }] }}
@@ -36,6 +39,7 @@ const Toast = () => {
       paddingRight={12}
       backgroundColor="transparent"
       width={WINDOW_SIZE.width}
+      open
       viewportName={viewportName}>
       <YStack
         backgroundColor={backgroundColor}

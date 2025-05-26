@@ -18,8 +18,13 @@ const CustomAlertDialog = ({
   actionTitle = 'OK',
   ...props
 }: CustomAlertDialogProps) => {
+  if (!title) {
+    console.warn('CustomAlertDialog: title prop is required')
+    return null
+  }
+
   return (
-    <AlertDialog native {...props}>
+    <AlertDialog {...props}>
       <AlertDialog.Trigger asChild />
       <AlertDialog.Portal>
         <AlertDialog.Overlay
@@ -28,9 +33,10 @@ const CustomAlertDialog = ({
           opacity={0.5}
           enterStyle={{ opacity: 0 }}
           exitStyle={{ opacity: 0 }}
+          aria-hidden
         />
         <AlertDialog.Content
-          bordered
+          role="alertdialog"
           elevate
           key="content"
           animation={[
@@ -47,18 +53,28 @@ const CustomAlertDialog = ({
           scale={1}
           opacity={1}
           y={0}>
-          <YStack gap="$4">
+          <YStack
+            gap="$4"
+            aria-labelledby="alert-dialog-title"
+            aria-describedby={description ? 'alert-dialog-description' : undefined}>
             <AlertDialog.Title>{title}</AlertDialog.Title>
             {description && <AlertDialog.Description>{description}</AlertDialog.Description>}
 
             <XStack gap="$3" justifyContent="flex-end">
               {cancelable && (
                 <AlertDialog.Cancel asChild>
-                  <Button variant="secondary">Cancel</Button>
+                  <Button variant="secondary" aria-label="Cancel dialog" testID="cancel-button">
+                    Cancel
+                  </Button>
                 </AlertDialog.Cancel>
               )}
               <AlertDialog.Action asChild>
-                <Button onPress={onConfirm}>{actionTitle}</Button>
+                <Button
+                  onPress={onConfirm}
+                  aria-label={`${actionTitle} action`}
+                  testID="confirm-button">
+                  {actionTitle}
+                </Button>
               </AlertDialog.Action>
             </XStack>
           </YStack>
