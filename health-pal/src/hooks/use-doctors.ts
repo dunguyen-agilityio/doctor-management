@@ -24,7 +24,7 @@ const useDoctors = () => {
     if (currentPage === pageParam) {
       setAppLoading(true)
     }
-    console.log('getDoctorsPromise')
+
     try {
       const specialties = typeof specialty === 'string' ? [specialty] : specialty
 

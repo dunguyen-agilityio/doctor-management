@@ -1,4 +1,6 @@
-export const MOCK_CLINICS: Clinic[] = [
+import { Hospital } from '@app/models/hospital'
+
+export const MOCK_HOSPITALS: Hospital[] = [
   {
     id: 1,
     documentId: '123e4567-e89b-12d3-a456-426614174000',

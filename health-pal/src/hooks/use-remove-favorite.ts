@@ -13,8 +13,15 @@ export const useRemoveFavorite = (type: FAVORITE_TYPES, itemName: string) => {
 
   const { jwt, user } = session ?? {}
 
+  const handleMutation = (favoriteId: string) => {
+    if (!jwt || !user) {
+      throw new Error('User session is not available')
+    }
+    return removeFavorite(favoriteId, jwt)
+  }
+
   return useMutation({
-    mutationFn: (favoriteId: string) => removeFavorite(favoriteId, jwt!),
+    mutationFn: handleMutation,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['favorites', type, user!.id] })
       toast.show('Removed from Favorites', {
