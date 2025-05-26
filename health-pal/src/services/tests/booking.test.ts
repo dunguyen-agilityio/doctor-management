@@ -1,0 +1,88 @@
+import { BOOKING_TABS } from '@app/types/booking'
+
+import { addBooking, getBookingAvailable, getBookings, updateBooking } from '../booking'
+import { apiClient } from '../http-client'
+
+jest.mock('@app/services/http-client', () => ({
+  apiClient: {
+    get: jest.fn(),
+    post: jest.fn(),
+    put: jest.fn(),
+    delete: jest.fn(),
+  },
+}))
+
+describe('booking service', () => {
+  const jwt = 'test-token'
+  const formData = {
+    date: '2025-06-01',
+    time: '09:00',
+    type: BOOKING_TABS.UPCOMING,
+    doctor: 1,
+    patient: 2,
+  }
+
+  describe('addBooking', () => {
+    it('should return success response', async () => {
+      const mockResponse = { data: { id: 1 } }
+      ;(apiClient.post as jest.Mock).mockResolvedValueOnce(mockResponse)
+
+      const result = await addBooking(formData, jwt)
+      expect(apiClient.post).toHaveBeenCalledWith('bookings', {
+        body: { data: formData },
+        jwt,
+      })
+      expect(result).toEqual(mockResponse)
+    })
+
+    it('should return error response on failure', async () => {
+      ;(apiClient.post as jest.Mock).mockRejectedValueOnce(new Error('Failed'))
+      const result = await addBooking(formData, jwt)
+      expect(result).toEqual({ error: { message: 'Failed' } })
+    })
+  })
+
+  describe('updateBooking', () => {
+    it('should return success response', async () => {
+      const mockResponse = { data: { id: 1 } }
+      ;(apiClient.put as jest.Mock).mockResolvedValueOnce(mockResponse)
+
+      const result = await updateBooking({ documentId: '123', ...formData }, jwt)
+      expect(apiClient.put).toHaveBeenCalledWith('bookings/123', {
+        body: { data: formData },
+        jwt,
+      })
+      expect(result).toEqual(mockResponse)
+    })
+
+    it('should return error response on failure', async () => {
+      ;(apiClient.put as jest.Mock).mockRejectedValueOnce(new Error('Update Failed'))
+      const result = await updateBooking({ documentId: '123', ...formData }, jwt)
+      expect(result).toEqual({ error: { message: 'Update Failed' } })
+    })
+  })
+
+  describe('getBookings', () => {
+    it('should call get with built query params and return response', async () => {
+      const mockResponse = { data: [] }
+      ;(apiClient.get as jest.Mock).mockResolvedValueOnce(mockResponse)
+
+      const result = await getBookings({ filters: [] })
+      expect(apiClient.get).toHaveBeenCalled()
+      expect(result).toEqual(mockResponse)
+    })
+  })
+
+  describe('getBookingAvailable', () => {
+    it('should return available time slots', async () => {
+      const docId = 'doc123'
+      const date = '2025-06-01'
+      const mockResponse = { available: { '09:00': true }, doctorId: 1 }
+      ;(apiClient.get as jest.Mock).mockResolvedValueOnce(mockResponse)
+
+      const result = await getBookingAvailable(docId, date)
+      expect(apiClient.get).toHaveBeenCalled()
+      expect(result).toEqual(mockResponse)
+    })
+  })
+})

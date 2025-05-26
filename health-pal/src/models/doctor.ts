@@ -1,11 +1,11 @@
-import { Clinic } from './clinic'
+import { Hospital } from './hospital'
 import { Review } from './review'
 import { Specialty } from './specialty'
 import { User } from './user'
 
 export class Doctor extends User {
   specialty: Specialty
-  clinic!: Clinic
+  clinic!: Hospital
   reviews?: Review[]
   rating: number
   reviewCounter: number
