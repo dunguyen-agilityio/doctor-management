@@ -2,7 +2,7 @@ import { memo } from 'react'
 
 import { SvgProps } from 'react-native-svg'
 
-import { Button } from 'tamagui'
+import { Stack } from 'tamagui'
 
 import {
   CalendarFill,
@@ -45,19 +45,24 @@ const TabIcon = ({ focused, name }: { focused: boolean; name: TAB_ROUTES }) => {
 
   if (focused) {
     return (
-      <Button
+      <Stack
+        testID={`${name}-wrapper`}
         backgroundColor="$grey100"
         height={48}
         width={48}
         borderRadius={36}
         alignItems="center"
         justifyContent="center">
-        <Icon stroke={tokens.color.grey400.val} fill={tokens.color.grey600.val} />
-      </Button>
+        <Icon
+          stroke={tokens.color.grey400.val}
+          testID={`${name}-fill`}
+          fill={tokens.color.grey600.val}
+        />
+      </Stack>
     )
   }
 
-  return <Icon />
+  return <Icon testID={`${name}-outline`} />
 }
 
 export default memo(TabIcon)

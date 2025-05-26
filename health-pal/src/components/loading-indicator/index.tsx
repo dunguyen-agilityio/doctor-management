@@ -36,7 +36,7 @@ const LoadingIndicator = ({ fullScreen, ...props }: LoadingIndicatorProps) => {
       flex={1}
       {...props}>
       <Animated.View style={{ transform: [{ rotate: spin }] }}>
-        <LoaderIcon />
+        <LoaderIcon testID="loader-icon" />
       </Animated.View>
     </Stack>
   )

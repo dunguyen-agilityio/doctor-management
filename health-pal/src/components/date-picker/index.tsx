@@ -1,4 +1,4 @@
-import DateTimePicker, { DateType, useDefaultStyles } from 'react-native-ui-datepicker'
+import DateTimePicker, { DateType } from 'react-native-ui-datepicker'
 
 import { WINDOW_SIZE } from '@app/constants'
 
@@ -13,8 +13,6 @@ export type DatePickerProps = Omit<DateTimePickerProps, 'mode' | 'onChange'> & {
 }
 
 const DatePicker = ({ onChange, ...props }: DatePickerProps) => {
-  const defaultStyles = useDefaultStyles()
-
   const handleChange = ({ date }: { date: DateType }) => {
     onChange?.(date)
   }
@@ -30,7 +28,6 @@ const DatePicker = ({ onChange, ...props }: DatePickerProps) => {
         IconPrev: <ArrowLeft />,
       }}
       styles={{
-        ...defaultStyles,
         month_selector_label: {
           color: tokens.color.grey900.val,
           fontWeight: '700',
@@ -45,11 +42,12 @@ const DatePicker = ({ onChange, ...props }: DatePickerProps) => {
         },
         day_cell: {
           width: 36,
-          height: 30,
-          paddingHorizontal: 2,
-          paddingVertical: 6,
         },
-        weekday_label: { textTransform: 'capitalize', fontFamily: 'Inter', fontSize: 12 },
+        weekday_label: {
+          textTransform: 'capitalize',
+          fontFamily: 'Inter',
+          fontSize: 12,
+        },
         month_label: { color: tokens.color.grey600.val, fontFamily: 'Inter' },
         day_label: {
           fontSize: 12,
@@ -75,6 +73,7 @@ const DatePicker = ({ onChange, ...props }: DatePickerProps) => {
         padding: 16,
         boxShadow: '0px 10px 15px -3px rgba(0, 0, 0, 0.10), 0px 4px 6px 0px rgba(0, 0, 0, 0.05)',
       }}
+      containerHeight={270}
     />
   )
 }

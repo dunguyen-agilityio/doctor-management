@@ -55,8 +55,12 @@ const DoctorCard = ({
       shadowRadius={12}
       elevation={3}
       pointerEvents="none">
-      <Card.Header>
-        <Image source={avatar} style={{ width: 110, height: 110, borderRadius: 12 }} />
+      <Card.Header padding={0}>
+        <Image
+          source={avatar}
+          style={{ width: 110, height: 110, borderRadius: 12 }}
+          testID="avatar-img"
+        />
       </Card.Header>
       <Card.Footer flex={1}>
         <YStack paddingRight={12} flex={1}>
@@ -70,7 +74,7 @@ const DoctorCard = ({
             </Text>
             <XStack alignItems="center" gap="$sm" overflow="hidden">
               <LocationOutline />
-              <Text size="small" width={200} numberOfLines={1}>
+              <Text size="small" width={200} numberOfLines={1} testID="address-text">
                 {address}
               </Text>
             </XStack>
@@ -91,6 +95,7 @@ const DoctorCard = ({
 
   return (
     <Link
+      testID="doctor-link"
       style={{ position: 'relative' }}
       href={{ pathname: '/doctors/details/[id]', params: { id: documentId } }}>
       <Stack>

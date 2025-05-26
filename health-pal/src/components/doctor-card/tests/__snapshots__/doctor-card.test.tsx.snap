@@ -1,0 +1,1951 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DoctorCard matches snapshot with actionable=false 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <View
+    pointerEvents="none"
+    style={
+      {
+        "backgroundColor": "hsla(0, 0%, 100%, 1)",
+        "borderBottomColor": "#f3f4f6",
+        "borderBottomLeftRadius": 12,
+        "borderBottomRightRadius": 12,
+        "borderBottomWidth": 0.5,
+        "borderLeftColor": "#f3f4f6",
+        "borderLeftWidth": 0.5,
+        "borderRightColor": "#f3f4f6",
+        "borderRightWidth": 0.5,
+        "borderStyle": "solid",
+        "borderTopColor": "#f3f4f6",
+        "borderTopLeftRadius": 12,
+        "borderTopRightRadius": 12,
+        "borderTopWidth": 0.5,
+        "flexDirection": "row",
+        "gap": 12,
+        "height": 273,
+        "paddingBottom": 12,
+        "paddingLeft": 12,
+        "paddingRight": 0,
+        "paddingTop": 12,
+        "position": "relative",
+        "shadowColor": "rgb(0,0,0)",
+        "shadowOffset": {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.0392156862745098,
+        "shadowRadius": 4,
+        "width": 702,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "transparent",
+          "flexDirection": "column",
+          "marginBottom": "auto",
+          "paddingBottom": 0,
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "zIndex": 10,
+        }
+      }
+    >
+      <ViewManagerAdapter_ExpoImage
+        borderRadius={12}
+        containerViewRef={"[React.ref]"}
+        contentFit="cover"
+        contentPosition={
+          {
+            "left": "50%",
+            "top": "50%",
+          }
+        }
+        height={110}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        source={
+          [
+            {
+              "uri": "https://example.com/avatar.jpg",
+            },
+          ]
+        }
+        style={
+          {
+            "borderRadius": 12,
+            "height": 110,
+            "width": 110,
+          }
+        }
+        testID="avatar-img"
+        transition={null}
+        width={110}
+      />
+    </View>
+    <View
+      style={
+        {
+          "backgroundColor": "transparent",
+          "flex": 1,
+          "flexDirection": "row",
+          "marginBottom": 0,
+          "marginTop": "auto",
+          "zIndex": 5,
+        }
+      }
+    >
+      <View
+        style={[]}
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#1c2a3a",
+                "fontFamily": "Inter_700Bold",
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+            suppressHighlighting={true}
+          >
+            Dr. John Smith
+          </Text>
+        </View>
+        <View
+          style={[]}
+        />
+        <View
+          style={{}}
+        >
+          <Text
+            style={
+              {
+                "color": "#1c2a3a",
+                "fontFamily": "Inter_600SemiBold",
+                "fontSize": 14,
+                "lineHeight": 21,
+              }
+            }
+            suppressHighlighting={true}
+          >
+            Cardiology
+          </Text>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flexDirection": "row",
+                "gap": 8,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight="14"
+              bbWidth="14"
+              fill="none"
+              focusable={false}
+              height="14"
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  {
+                    "flex": 0,
+                    "height": 14,
+                    "width": 14,
+                  },
+                ]
+              }
+              vbHeight={14}
+              vbWidth={14}
+              width="14"
+            >
+              <RNSVGGroup
+                fill={null}
+                propList={
+                  [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGPath
+                  d="M7.00018 7.83421C8.00533 7.83421 8.82018 7.01937 8.82018 6.01421C8.82018 5.00906 8.00533 4.19421 7.00018 4.19421C5.99502 4.19421 5.18018 5.00906 5.18018 6.01421C5.18018 7.01937 5.99502 7.83421 7.00018 7.83421Z"
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                  propList={
+                    [
+                      "stroke",
+                    ]
+                  }
+                  stroke={
+                    {
+                      "payload": 4285231744,
+                      "type": 0,
+                    }
+                  }
+                />
+                <RNSVGPath
+                  d="M2.11182 4.95246C3.26099 -0.099206 10.7452 -0.0933725 11.8885 4.95829C12.5593 7.92163 10.716 10.43 9.10016 11.9816C7.92766 13.1133 6.07266 13.1133 4.89432 11.9816C3.28432 10.43 1.44099 7.91579 2.11182 4.95246Z"
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                  propList={
+                    [
+                      "stroke",
+                    ]
+                  }
+                  stroke={
+                    {
+                      "payload": 4285231744,
+                      "type": 0,
+                    }
+                  }
+                />
+              </RNSVGGroup>
+            </RNSVGSvgView>
+            <Text
+              numberOfLines={1}
+              style={
+                {
+                  "color": "#1c2a3a",
+                  "fontFamily": "Inter_400Regular",
+                  "fontSize": 14,
+                  "lineHeight": 21,
+                  "width": 200,
+                }
+              }
+              suppressHighlighting={true}
+              testID="address-text"
+            >
+              123 Heart St, Health City
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>,
+]
+`;
+
+exports[`DoctorCard matches snapshot with default props 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <Text
+    href="/doctors/details/doc-1"
+    onPress={[Function]}
+    role="link"
+    style={
+      {
+        "position": "relative",
+      }
+    }
+    testID="doctor-link"
+  >
+    <View
+      style={[]}
+    >
+      <View
+        focusVisibleStyle={{}}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        role="button"
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "transparent",
+            "borderBottomColor": "transparent",
+            "borderBottomLeftRadius": 24,
+            "borderBottomRightRadius": 24,
+            "borderBottomWidth": 1,
+            "borderLeftColor": "transparent",
+            "borderLeftWidth": 1,
+            "borderRightColor": "transparent",
+            "borderRightWidth": 1,
+            "borderStyle": "solid",
+            "borderTopColor": "transparent",
+            "borderTopLeftRadius": 24,
+            "borderTopRightRadius": 24,
+            "borderTopWidth": 1,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "fontWeight": "500",
+            "height": 24,
+            "justifyContent": "center",
+            "opacity": 1,
+            "paddingLeft": 8,
+            "paddingRight": 8,
+            "position": "absolute",
+            "right": 6,
+            "top": 6,
+            "width": 24,
+            "zIndex": 100,
+          }
+        }
+        testID="favorite-button"
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={15}
+          bbWidth={15}
+          fill="none"
+          focusable={false}
+          height={15}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            [
+              {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              {
+                "flex": 0,
+                "height": 15,
+                "width": 15,
+              },
+            ]
+          }
+          vbHeight={18}
+          vbWidth={20}
+          width={15}
+        >
+          <RNSVGGroup
+            fill={null}
+            propList={
+              [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGPath
+              d="M14.4404 0.599998C17.2317 0.600231 19.4999 2.87386 19.5 5.68984C19.5 6.68349 19.3616 7.6104 19.1162 8.47793L19.0039 8.84609L19.0029 8.84902C18.2487 11.2357 16.7033 13.1595 15.0352 14.5932C13.5737 15.8492 12.0403 16.7106 10.915 17.1664L10.459 17.3363L10.4531 17.3383C10.3532 17.3735 10.189 17.3998 10 17.3998C9.85804 17.3998 9.73007 17.385 9.63281 17.3627L9.54688 17.3383L9.54102 17.3363L9.08496 17.1664C7.9597 16.7106 6.42634 15.8492 4.96484 14.5932C3.40096 13.2491 1.94481 11.4746 1.14746 9.2914L0.99707 8.84902L0.996094 8.84609L0.883789 8.47793C0.63838 7.6104 0.5 6.68349 0.5 5.68984C0.500084 2.87386 2.76829 0.600232 5.55957 0.599998C7.20459 0.599998 8.67953 1.39959 9.59961 2.6293L10 3.16445L10.4004 2.6293C11.3205 1.39959 12.7954 0.599998 14.4404 0.599998Z"
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              propList={
+                [
+                  "stroke",
+                ]
+              }
+              stroke={
+                {
+                  "payload": 4280035898,
+                  "type": 0,
+                }
+              }
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+      <View
+        pointerEvents="none"
+        style={
+          {
+            "backgroundColor": "hsla(0, 0%, 100%, 1)",
+            "borderBottomColor": "#f3f4f6",
+            "borderBottomLeftRadius": 12,
+            "borderBottomRightRadius": 12,
+            "borderBottomWidth": 0.5,
+            "borderLeftColor": "#f3f4f6",
+            "borderLeftWidth": 0.5,
+            "borderRightColor": "#f3f4f6",
+            "borderRightWidth": 0.5,
+            "borderStyle": "solid",
+            "borderTopColor": "#f3f4f6",
+            "borderTopLeftRadius": 12,
+            "borderTopRightRadius": 12,
+            "borderTopWidth": 0.5,
+            "flexDirection": "row",
+            "gap": 12,
+            "height": 273,
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 0,
+            "paddingTop": 12,
+            "position": "relative",
+            "shadowColor": "rgb(0,0,0)",
+            "shadowOffset": {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.0392156862745098,
+            "shadowRadius": 4,
+            "width": 702,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "transparent",
+              "flexDirection": "column",
+              "marginBottom": "auto",
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "zIndex": 10,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            borderRadius={12}
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={110}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "https://example.com/avatar.jpg",
+                },
+              ]
+            }
+            style={
+              {
+                "borderRadius": 12,
+                "height": 110,
+                "width": 110,
+              }
+            }
+            testID="avatar-img"
+            transition={null}
+            width={110}
+          />
+        </View>
+        <View
+          style={
+            {
+              "backgroundColor": "transparent",
+              "flex": 1,
+              "flexDirection": "row",
+              "marginBottom": 0,
+              "marginTop": "auto",
+              "zIndex": 5,
+            }
+          }
+        >
+          <View
+            style={[]}
+          >
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#1c2a3a",
+                    "fontFamily": "Inter_700Bold",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  }
+                }
+                suppressHighlighting={true}
+              >
+                Dr. John Smith
+              </Text>
+            </View>
+            <View
+              style={[]}
+            />
+            <View
+              style={{}}
+            >
+              <Text
+                style={
+                  {
+                    "color": "#1c2a3a",
+                    "fontFamily": "Inter_600SemiBold",
+                    "fontSize": 14,
+                    "lineHeight": 21,
+                  }
+                }
+                suppressHighlighting={true}
+              >
+                Cardiology
+              </Text>
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flexDirection": "row",
+                    "gap": 8,
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight="14"
+                  bbWidth="14"
+                  fill="none"
+                  focusable={false}
+                  height="14"
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      {
+                        "flex": 0,
+                        "height": 14,
+                        "width": 14,
+                      },
+                    ]
+                  }
+                  vbHeight={14}
+                  vbWidth={14}
+                  width="14"
+                >
+                  <RNSVGGroup
+                    fill={null}
+                    propList={
+                      [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGPath
+                      d="M7.00018 7.83421C8.00533 7.83421 8.82018 7.01937 8.82018 6.01421C8.82018 5.00906 8.00533 4.19421 7.00018 4.19421C5.99502 4.19421 5.18018 5.00906 5.18018 6.01421C5.18018 7.01937 5.99502 7.83421 7.00018 7.83421Z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                      propList={
+                        [
+                          "stroke",
+                        ]
+                      }
+                      stroke={
+                        {
+                          "payload": 4285231744,
+                          "type": 0,
+                        }
+                      }
+                    />
+                    <RNSVGPath
+                      d="M2.11182 4.95246C3.26099 -0.099206 10.7452 -0.0933725 11.8885 4.95829C12.5593 7.92163 10.716 10.43 9.10016 11.9816C7.92766 13.1133 6.07266 13.1133 4.89432 11.9816C3.28432 10.43 1.44099 7.91579 2.11182 4.95246Z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                      propList={
+                        [
+                          "stroke",
+                        ]
+                      }
+                      stroke={
+                        {
+                          "payload": 4285231744,
+                          "type": 0,
+                        }
+                      }
+                    />
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+                <Text
+                  numberOfLines={1}
+                  style={
+                    {
+                      "color": "#1c2a3a",
+                      "fontFamily": "Inter_400Regular",
+                      "fontSize": 14,
+                      "lineHeight": 21,
+                      "width": 200,
+                    }
+                  }
+                  suppressHighlighting={true}
+                  testID="address-text"
+                >
+                  123 Heart St, Health City
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flexDirection": "row-reverse",
+                    "gap": 8,
+                  }
+                }
+                testID="stars"
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#1c2a3a",
+                      "fontFamily": "Inter_600SemiBold",
+                      "fontSize": 12,
+                      "lineHeight": 18,
+                    }
+                  }
+                  suppressHighlighting={true}
+                  testID="stars-text"
+                >
+                  4.8
+                </Text>
+                <View
+                  style={
+                    {
+                      "backgroundColor": "white",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={15}
+                    bbWidth={15}
+                    fill="#feb052"
+                    focusable={false}
+                    height={15}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    stroke="#feb052"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "color": "#feb052",
+                        },
+                        {
+                          "flex": 0,
+                          "height": 15,
+                          "width": 15,
+                        },
+                      ]
+                    }
+                    testID="star-0"
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={15}
+                  >
+                    <RNSVGGroup
+                      color="#feb052"
+                      fill={
+                        {
+                          "payload": 4294881362,
+                          "type": 0,
+                        }
+                      }
+                      propList={
+                        [
+                          "fill",
+                          "stroke",
+                          "strokeWidth",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={
+                        {
+                          "payload": 4294881362,
+                          "type": 0,
+                        }
+                      }
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                      strokeWidth="2"
+                    >
+                      <RNSVGPath
+                        d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                        propList={
+                          [
+                            "stroke",
+                          ]
+                        }
+                        stroke={
+                          {
+                            "payload": 4294881362,
+                            "type": 0,
+                          }
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
+              </View>
+              <View
+                style={[]}
+              />
+              <Text
+                style={
+                  {
+                    "color": "#1c2a3a",
+                    "fontFamily": "Inter_400Regular",
+                    "fontSize": 12,
+                    "lineHeight": 18,
+                  }
+                }
+                suppressHighlighting={true}
+              >
+                5 Reviews
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </Text>,
+]
+`;
+
+exports[`DoctorCard matches snapshot with full data and actionable=true 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <Text
+    href="/doctors/details/doc-1"
+    onPress={[Function]}
+    role="link"
+    style={
+      {
+        "position": "relative",
+      }
+    }
+    testID="doctor-link"
+  >
+    <View
+      style={[]}
+    >
+      <View
+        focusVisibleStyle={{}}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        role="button"
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "transparent",
+            "borderBottomColor": "transparent",
+            "borderBottomLeftRadius": 24,
+            "borderBottomRightRadius": 24,
+            "borderBottomWidth": 1,
+            "borderLeftColor": "transparent",
+            "borderLeftWidth": 1,
+            "borderRightColor": "transparent",
+            "borderRightWidth": 1,
+            "borderStyle": "solid",
+            "borderTopColor": "transparent",
+            "borderTopLeftRadius": 24,
+            "borderTopRightRadius": 24,
+            "borderTopWidth": 1,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "fontWeight": "500",
+            "height": 24,
+            "justifyContent": "center",
+            "opacity": 1,
+            "paddingLeft": 8,
+            "paddingRight": 8,
+            "position": "absolute",
+            "right": 6,
+            "top": 6,
+            "width": 24,
+            "zIndex": 100,
+          }
+        }
+        testID="favorite-button"
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={15}
+          bbWidth={15}
+          fill="none"
+          focusable={false}
+          height={15}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            [
+              {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              {
+                "flex": 0,
+                "height": 15,
+                "width": 15,
+              },
+            ]
+          }
+          vbHeight={18}
+          vbWidth={20}
+          width={15}
+        >
+          <RNSVGGroup
+            fill={null}
+            propList={
+              [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGPath
+              d="M14.4404 0.599998C17.2317 0.600231 19.4999 2.87386 19.5 5.68984C19.5 6.68349 19.3616 7.6104 19.1162 8.47793L19.0039 8.84609L19.0029 8.84902C18.2487 11.2357 16.7033 13.1595 15.0352 14.5932C13.5737 15.8492 12.0403 16.7106 10.915 17.1664L10.459 17.3363L10.4531 17.3383C10.3532 17.3735 10.189 17.3998 10 17.3998C9.85804 17.3998 9.73007 17.385 9.63281 17.3627L9.54688 17.3383L9.54102 17.3363L9.08496 17.1664C7.9597 16.7106 6.42634 15.8492 4.96484 14.5932C3.40096 13.2491 1.94481 11.4746 1.14746 9.2914L0.99707 8.84902L0.996094 8.84609L0.883789 8.47793C0.63838 7.6104 0.5 6.68349 0.5 5.68984C0.500084 2.87386 2.76829 0.600232 5.55957 0.599998C7.20459 0.599998 8.67953 1.39959 9.59961 2.6293L10 3.16445L10.4004 2.6293C11.3205 1.39959 12.7954 0.599998 14.4404 0.599998Z"
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              propList={
+                [
+                  "stroke",
+                ]
+              }
+              stroke={
+                {
+                  "payload": 4280035898,
+                  "type": 0,
+                }
+              }
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+      <View
+        pointerEvents="none"
+        style={
+          {
+            "backgroundColor": "hsla(0, 0%, 100%, 1)",
+            "borderBottomColor": "#f3f4f6",
+            "borderBottomLeftRadius": 12,
+            "borderBottomRightRadius": 12,
+            "borderBottomWidth": 0.5,
+            "borderLeftColor": "#f3f4f6",
+            "borderLeftWidth": 0.5,
+            "borderRightColor": "#f3f4f6",
+            "borderRightWidth": 0.5,
+            "borderStyle": "solid",
+            "borderTopColor": "#f3f4f6",
+            "borderTopLeftRadius": 12,
+            "borderTopRightRadius": 12,
+            "borderTopWidth": 0.5,
+            "flexDirection": "row",
+            "gap": 12,
+            "height": 273,
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 0,
+            "paddingTop": 12,
+            "position": "relative",
+            "shadowColor": "rgb(0,0,0)",
+            "shadowOffset": {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.0392156862745098,
+            "shadowRadius": 4,
+            "width": 702,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "transparent",
+              "flexDirection": "column",
+              "marginBottom": "auto",
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "zIndex": 10,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            borderRadius={12}
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={110}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "https://example.com/avatar.jpg",
+                },
+              ]
+            }
+            style={
+              {
+                "borderRadius": 12,
+                "height": 110,
+                "width": 110,
+              }
+            }
+            testID="avatar-img"
+            transition={null}
+            width={110}
+          />
+        </View>
+        <View
+          style={
+            {
+              "backgroundColor": "transparent",
+              "flex": 1,
+              "flexDirection": "row",
+              "marginBottom": 0,
+              "marginTop": "auto",
+              "zIndex": 5,
+            }
+          }
+        >
+          <View
+            style={[]}
+          >
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#1c2a3a",
+                    "fontFamily": "Inter_700Bold",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  }
+                }
+                suppressHighlighting={true}
+              >
+                Dr. John Smith
+              </Text>
+            </View>
+            <View
+              style={[]}
+            />
+            <View
+              style={{}}
+            >
+              <Text
+                style={
+                  {
+                    "color": "#1c2a3a",
+                    "fontFamily": "Inter_600SemiBold",
+                    "fontSize": 14,
+                    "lineHeight": 21,
+                  }
+                }
+                suppressHighlighting={true}
+              >
+                Cardiology
+              </Text>
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flexDirection": "row",
+                    "gap": 8,
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight="14"
+                  bbWidth="14"
+                  fill="none"
+                  focusable={false}
+                  height="14"
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      {
+                        "flex": 0,
+                        "height": 14,
+                        "width": 14,
+                      },
+                    ]
+                  }
+                  vbHeight={14}
+                  vbWidth={14}
+                  width="14"
+                >
+                  <RNSVGGroup
+                    fill={null}
+                    propList={
+                      [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGPath
+                      d="M7.00018 7.83421C8.00533 7.83421 8.82018 7.01937 8.82018 6.01421C8.82018 5.00906 8.00533 4.19421 7.00018 4.19421C5.99502 4.19421 5.18018 5.00906 5.18018 6.01421C5.18018 7.01937 5.99502 7.83421 7.00018 7.83421Z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                      propList={
+                        [
+                          "stroke",
+                        ]
+                      }
+                      stroke={
+                        {
+                          "payload": 4285231744,
+                          "type": 0,
+                        }
+                      }
+                    />
+                    <RNSVGPath
+                      d="M2.11182 4.95246C3.26099 -0.099206 10.7452 -0.0933725 11.8885 4.95829C12.5593 7.92163 10.716 10.43 9.10016 11.9816C7.92766 13.1133 6.07266 13.1133 4.89432 11.9816C3.28432 10.43 1.44099 7.91579 2.11182 4.95246Z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                      propList={
+                        [
+                          "stroke",
+                        ]
+                      }
+                      stroke={
+                        {
+                          "payload": 4285231744,
+                          "type": 0,
+                        }
+                      }
+                    />
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+                <Text
+                  numberOfLines={1}
+                  style={
+                    {
+                      "color": "#1c2a3a",
+                      "fontFamily": "Inter_400Regular",
+                      "fontSize": 14,
+                      "lineHeight": 21,
+                      "width": 200,
+                    }
+                  }
+                  suppressHighlighting={true}
+                  testID="address-text"
+                >
+                  123 Heart St, Health City
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flexDirection": "row-reverse",
+                    "gap": 8,
+                  }
+                }
+                testID="stars"
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#1c2a3a",
+                      "fontFamily": "Inter_600SemiBold",
+                      "fontSize": 12,
+                      "lineHeight": 18,
+                    }
+                  }
+                  suppressHighlighting={true}
+                  testID="stars-text"
+                >
+                  4.8
+                </Text>
+                <View
+                  style={
+                    {
+                      "backgroundColor": "white",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={15}
+                    bbWidth={15}
+                    fill="#feb052"
+                    focusable={false}
+                    height={15}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    stroke="#feb052"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "color": "#feb052",
+                        },
+                        {
+                          "flex": 0,
+                          "height": 15,
+                          "width": 15,
+                        },
+                      ]
+                    }
+                    testID="star-0"
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={15}
+                  >
+                    <RNSVGGroup
+                      color="#feb052"
+                      fill={
+                        {
+                          "payload": 4294881362,
+                          "type": 0,
+                        }
+                      }
+                      propList={
+                        [
+                          "fill",
+                          "stroke",
+                          "strokeWidth",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={
+                        {
+                          "payload": 4294881362,
+                          "type": 0,
+                        }
+                      }
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                      strokeWidth="2"
+                    >
+                      <RNSVGPath
+                        d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                        propList={
+                          [
+                            "stroke",
+                          ]
+                        }
+                        stroke={
+                          {
+                            "payload": 4294881362,
+                            "type": 0,
+                          }
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
+              </View>
+              <View
+                style={[]}
+              />
+              <Text
+                style={
+                  {
+                    "color": "#1c2a3a",
+                    "fontFamily": "Inter_400Regular",
+                    "fontSize": 12,
+                    "lineHeight": 18,
+                  }
+                }
+                suppressHighlighting={true}
+              >
+                5 Reviews
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </Text>,
+]
+`;
+
+exports[`DoctorCard matches snapshot with missing optional fields 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <Text
+    href="/doctors/details/doc-2"
+    onPress={[Function]}
+    role="link"
+    style={
+      {
+        "position": "relative",
+      }
+    }
+    testID="doctor-link"
+  >
+    <View
+      style={[]}
+    >
+      <View
+        focusVisibleStyle={{}}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        role="button"
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "transparent",
+            "borderBottomColor": "transparent",
+            "borderBottomLeftRadius": 24,
+            "borderBottomRightRadius": 24,
+            "borderBottomWidth": 1,
+            "borderLeftColor": "transparent",
+            "borderLeftWidth": 1,
+            "borderRightColor": "transparent",
+            "borderRightWidth": 1,
+            "borderStyle": "solid",
+            "borderTopColor": "transparent",
+            "borderTopLeftRadius": 24,
+            "borderTopRightRadius": 24,
+            "borderTopWidth": 1,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "fontWeight": "500",
+            "height": 24,
+            "justifyContent": "center",
+            "opacity": 1,
+            "paddingLeft": 8,
+            "paddingRight": 8,
+            "position": "absolute",
+            "right": 6,
+            "top": 6,
+            "width": 24,
+            "zIndex": 100,
+          }
+        }
+        testID="favorite-button"
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={15}
+          bbWidth={15}
+          fill="none"
+          focusable={false}
+          height={15}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            [
+              {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              {
+                "flex": 0,
+                "height": 15,
+                "width": 15,
+              },
+            ]
+          }
+          vbHeight={18}
+          vbWidth={20}
+          width={15}
+        >
+          <RNSVGGroup
+            fill={null}
+            propList={
+              [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGPath
+              d="M14.4404 0.599998C17.2317 0.600231 19.4999 2.87386 19.5 5.68984C19.5 6.68349 19.3616 7.6104 19.1162 8.47793L19.0039 8.84609L19.0029 8.84902C18.2487 11.2357 16.7033 13.1595 15.0352 14.5932C13.5737 15.8492 12.0403 16.7106 10.915 17.1664L10.459 17.3363L10.4531 17.3383C10.3532 17.3735 10.189 17.3998 10 17.3998C9.85804 17.3998 9.73007 17.385 9.63281 17.3627L9.54688 17.3383L9.54102 17.3363L9.08496 17.1664C7.9597 16.7106 6.42634 15.8492 4.96484 14.5932C3.40096 13.2491 1.94481 11.4746 1.14746 9.2914L0.99707 8.84902L0.996094 8.84609L0.883789 8.47793C0.63838 7.6104 0.5 6.68349 0.5 5.68984C0.500084 2.87386 2.76829 0.600232 5.55957 0.599998C7.20459 0.599998 8.67953 1.39959 9.59961 2.6293L10 3.16445L10.4004 2.6293C11.3205 1.39959 12.7954 0.599998 14.4404 0.599998Z"
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              propList={
+                [
+                  "stroke",
+                ]
+              }
+              stroke={
+                {
+                  "payload": 4280035898,
+                  "type": 0,
+                }
+              }
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+      <View
+        pointerEvents="none"
+        style={
+          {
+            "backgroundColor": "hsla(0, 0%, 100%, 1)",
+            "borderBottomColor": "#f3f4f6",
+            "borderBottomLeftRadius": 12,
+            "borderBottomRightRadius": 12,
+            "borderBottomWidth": 0.5,
+            "borderLeftColor": "#f3f4f6",
+            "borderLeftWidth": 0.5,
+            "borderRightColor": "#f3f4f6",
+            "borderRightWidth": 0.5,
+            "borderStyle": "solid",
+            "borderTopColor": "#f3f4f6",
+            "borderTopLeftRadius": 12,
+            "borderTopRightRadius": 12,
+            "borderTopWidth": 0.5,
+            "flexDirection": "row",
+            "gap": 12,
+            "height": 273,
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 0,
+            "paddingTop": 12,
+            "position": "relative",
+            "shadowColor": "rgb(0,0,0)",
+            "shadowOffset": {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.0392156862745098,
+            "shadowRadius": 4,
+            "width": 702,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "transparent",
+              "flexDirection": "column",
+              "marginBottom": "auto",
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "zIndex": 10,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            borderRadius={12}
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={110}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "",
+                },
+              ]
+            }
+            style={
+              {
+                "borderRadius": 12,
+                "height": 110,
+                "width": 110,
+              }
+            }
+            testID="avatar-img"
+            transition={null}
+            width={110}
+          />
+        </View>
+        <View
+          style={
+            {
+              "backgroundColor": "transparent",
+              "flex": 1,
+              "flexDirection": "row",
+              "marginBottom": 0,
+              "marginTop": "auto",
+              "zIndex": 5,
+            }
+          }
+        >
+          <View
+            style={[]}
+          >
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#1c2a3a",
+                    "fontFamily": "Inter_700Bold",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  }
+                }
+                suppressHighlighting={true}
+              >
+                Dr. Jane Doe
+              </Text>
+            </View>
+            <View
+              style={[]}
+            />
+            <View
+              style={{}}
+            >
+              <Text
+                style={
+                  {
+                    "color": "#1c2a3a",
+                    "fontFamily": "Inter_600SemiBold",
+                    "fontSize": 14,
+                    "lineHeight": 21,
+                  }
+                }
+                suppressHighlighting={true}
+              />
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flexDirection": "row",
+                    "gap": 8,
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight="14"
+                  bbWidth="14"
+                  fill="none"
+                  focusable={false}
+                  height="14"
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      {
+                        "flex": 0,
+                        "height": 14,
+                        "width": 14,
+                      },
+                    ]
+                  }
+                  vbHeight={14}
+                  vbWidth={14}
+                  width="14"
+                >
+                  <RNSVGGroup
+                    fill={null}
+                    propList={
+                      [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGPath
+                      d="M7.00018 7.83421C8.00533 7.83421 8.82018 7.01937 8.82018 6.01421C8.82018 5.00906 8.00533 4.19421 7.00018 4.19421C5.99502 4.19421 5.18018 5.00906 5.18018 6.01421C5.18018 7.01937 5.99502 7.83421 7.00018 7.83421Z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                      propList={
+                        [
+                          "stroke",
+                        ]
+                      }
+                      stroke={
+                        {
+                          "payload": 4285231744,
+                          "type": 0,
+                        }
+                      }
+                    />
+                    <RNSVGPath
+                      d="M2.11182 4.95246C3.26099 -0.099206 10.7452 -0.0933725 11.8885 4.95829C12.5593 7.92163 10.716 10.43 9.10016 11.9816C7.92766 13.1133 6.07266 13.1133 4.89432 11.9816C3.28432 10.43 1.44099 7.91579 2.11182 4.95246Z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                      propList={
+                        [
+                          "stroke",
+                        ]
+                      }
+                      stroke={
+                        {
+                          "payload": 4285231744,
+                          "type": 0,
+                        }
+                      }
+                    />
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+                <Text
+                  numberOfLines={1}
+                  style={
+                    {
+                      "color": "#1c2a3a",
+                      "fontFamily": "Inter_400Regular",
+                      "fontSize": 14,
+                      "lineHeight": 21,
+                      "width": 200,
+                    }
+                  }
+                  suppressHighlighting={true}
+                  testID="address-text"
+                />
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flexDirection": "row-reverse",
+                    "gap": 8,
+                  }
+                }
+                testID="stars"
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#1c2a3a",
+                      "fontFamily": "Inter_600SemiBold",
+                      "fontSize": 12,
+                      "lineHeight": 18,
+                    }
+                  }
+                  suppressHighlighting={true}
+                  testID="stars-text"
+                >
+                  0.0
+                </Text>
+                <View
+                  style={
+                    {
+                      "backgroundColor": "white",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={15}
+                    bbWidth={15}
+                    fill="#feb052"
+                    focusable={false}
+                    height={15}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    stroke="#feb052"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "color": "#feb052",
+                        },
+                        {
+                          "flex": 0,
+                          "height": 15,
+                          "width": 15,
+                        },
+                      ]
+                    }
+                    testID="star-0"
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={15}
+                  >
+                    <RNSVGGroup
+                      color="#feb052"
+                      fill={
+                        {
+                          "payload": 4294881362,
+                          "type": 0,
+                        }
+                      }
+                      propList={
+                        [
+                          "fill",
+                          "stroke",
+                          "strokeWidth",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={
+                        {
+                          "payload": 4294881362,
+                          "type": 0,
+                        }
+                      }
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                      strokeWidth="2"
+                    >
+                      <RNSVGPath
+                        d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                        propList={
+                          [
+                            "stroke",
+                          ]
+                        }
+                        stroke={
+                          {
+                            "payload": 4294881362,
+                            "type": 0,
+                          }
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
+              </View>
+              <View
+                style={[]}
+              />
+              <Text
+                style={
+                  {
+                    "color": "#1c2a3a",
+                    "fontFamily": "Inter_400Regular",
+                    "fontSize": 12,
+                    "lineHeight": 18,
+                  }
+                }
+                suppressHighlighting={true}
+              >
+                0 Reviews
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </Text>,
+]
+`;

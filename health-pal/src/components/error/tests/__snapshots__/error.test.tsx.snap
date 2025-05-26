@@ -1,0 +1,836 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorState matches snapshot with custom title and message 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+        "gap": 12,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={24}
+      bbWidth={24}
+      fill="none"
+      focusable={false}
+      height={24}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      stroke="hsl(358, 69.4%, 55.2%)"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "color": "hsl(358, 69.4%, 55.2%)",
+          },
+          {
+            "flex": 0,
+            "height": 24,
+            "width": 24,
+          },
+        ]
+      }
+      vbHeight={24}
+      vbWidth={24}
+      width={24}
+    >
+      <RNSVGGroup
+        color="hsl(358, 69.4%, 55.2%)"
+        fill={null}
+        propList={
+          [
+            "fill",
+            "stroke",
+            "strokeWidth",
+            "strokeLinecap",
+            "strokeLinejoin",
+          ]
+        }
+        stroke={
+          {
+            "payload": 4292623683,
+            "type": 0,
+          }
+        }
+        strokeLinecap={1}
+        strokeLinejoin={1}
+        strokeWidth="2"
+      >
+        <RNSVGPath
+          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+        <RNSVGPath
+          d="M12 9v4"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+        <RNSVGPath
+          d="M12 17h.01"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <Text
+      style={
+        {
+          "color": "#1c2a3a",
+          "fontFamily": "Inter_600SemiBold",
+          "fontSize": 20,
+          "lineHeight": 30,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Network Error
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#111928",
+          "fontFamily": "Inter_400Regular",
+          "fontSize": 16,
+          "lineHeight": 24,
+          "textAlign": "center",
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Failed to connect to the server.
+    </Text>
+  </View>,
+]
+`;
+
+exports[`ErrorState matches snapshot with default props 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+        "gap": 12,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={24}
+      bbWidth={24}
+      fill="none"
+      focusable={false}
+      height={24}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      stroke="hsl(358, 69.4%, 55.2%)"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "color": "hsl(358, 69.4%, 55.2%)",
+          },
+          {
+            "flex": 0,
+            "height": 24,
+            "width": 24,
+          },
+        ]
+      }
+      vbHeight={24}
+      vbWidth={24}
+      width={24}
+    >
+      <RNSVGGroup
+        color="hsl(358, 69.4%, 55.2%)"
+        fill={null}
+        propList={
+          [
+            "fill",
+            "stroke",
+            "strokeWidth",
+            "strokeLinecap",
+            "strokeLinejoin",
+          ]
+        }
+        stroke={
+          {
+            "payload": 4292623683,
+            "type": 0,
+          }
+        }
+        strokeLinecap={1}
+        strokeLinejoin={1}
+        strokeWidth="2"
+      >
+        <RNSVGPath
+          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+        <RNSVGPath
+          d="M12 9v4"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+        <RNSVGPath
+          d="M12 17h.01"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <Text
+      style={
+        {
+          "color": "#1c2a3a",
+          "fontFamily": "Inter_600SemiBold",
+          "fontSize": 20,
+          "lineHeight": 30,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Oops!
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#111928",
+          "fontFamily": "Inter_400Regular",
+          "fontSize": 16,
+          "lineHeight": 24,
+          "textAlign": "center",
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Something went wrong.
+    </Text>
+  </View>,
+]
+`;
+
+exports[`ErrorState matches snapshot with onRetry button 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+        "gap": 12,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={24}
+      bbWidth={24}
+      fill="none"
+      focusable={false}
+      height={24}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      stroke="hsl(358, 69.4%, 55.2%)"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "color": "hsl(358, 69.4%, 55.2%)",
+          },
+          {
+            "flex": 0,
+            "height": 24,
+            "width": 24,
+          },
+        ]
+      }
+      vbHeight={24}
+      vbWidth={24}
+      width={24}
+    >
+      <RNSVGGroup
+        color="hsl(358, 69.4%, 55.2%)"
+        fill={null}
+        propList={
+          [
+            "fill",
+            "stroke",
+            "strokeWidth",
+            "strokeLinecap",
+            "strokeLinejoin",
+          ]
+        }
+        stroke={
+          {
+            "payload": 4292623683,
+            "type": 0,
+          }
+        }
+        strokeLinecap={1}
+        strokeLinejoin={1}
+        strokeWidth="2"
+      >
+        <RNSVGPath
+          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+        <RNSVGPath
+          d="M12 9v4"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+        <RNSVGPath
+          d="M12 17h.01"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <Text
+      style={
+        {
+          "color": "#1c2a3a",
+          "fontFamily": "Inter_600SemiBold",
+          "fontSize": 20,
+          "lineHeight": 30,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Oops!
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#111928",
+          "fontFamily": "Inter_400Regular",
+          "fontSize": 16,
+          "lineHeight": 24,
+          "textAlign": "center",
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Something went wrong.
+    </Text>
+    <View
+      focusVisibleStyle={{}}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      role="button"
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#1c2a3a",
+          "borderBottomColor": "transparent",
+          "borderBottomLeftRadius": 60,
+          "borderBottomRightRadius": 60,
+          "borderBottomWidth": 1,
+          "borderLeftColor": "transparent",
+          "borderLeftWidth": 1,
+          "borderRightColor": "transparent",
+          "borderRightWidth": 1,
+          "borderStyle": "solid",
+          "borderTopColor": "transparent",
+          "borderTopLeftRadius": 60,
+          "borderTopRightRadius": 60,
+          "borderTopWidth": 1,
+          "color": "#ffffff",
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "fontWeight": "500",
+          "height": 48,
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingBottom": 12,
+          "paddingLeft": 20,
+          "paddingRight": 20,
+          "paddingTop": 12,
+        }
+      }
+    >
+      <Text
+        lineBreakMode="clip"
+        numberOfLines={1}
+        style={
+          {
+            "color": "#ffffff",
+            "flexGrow": 0,
+            "flexShrink": 1,
+            "fontFamily": "Inter_500Medium",
+            "fontSize": 14,
+            "lineHeight": 21,
+            "userSelect": "none",
+          }
+        }
+        suppressHighlighting={true}
+      >
+        Retry
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`ErrorState matches snapshot without onRetry button 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+        "gap": 12,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={24}
+      bbWidth={24}
+      fill="none"
+      focusable={false}
+      height={24}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      stroke="hsl(358, 69.4%, 55.2%)"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "color": "hsl(358, 69.4%, 55.2%)",
+          },
+          {
+            "flex": 0,
+            "height": 24,
+            "width": 24,
+          },
+        ]
+      }
+      vbHeight={24}
+      vbWidth={24}
+      width={24}
+    >
+      <RNSVGGroup
+        color="hsl(358, 69.4%, 55.2%)"
+        fill={null}
+        propList={
+          [
+            "fill",
+            "stroke",
+            "strokeWidth",
+            "strokeLinecap",
+            "strokeLinejoin",
+          ]
+        }
+        stroke={
+          {
+            "payload": 4292623683,
+            "type": 0,
+          }
+        }
+        strokeLinecap={1}
+        strokeLinejoin={1}
+        strokeWidth="2"
+      >
+        <RNSVGPath
+          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+        <RNSVGPath
+          d="M12 9v4"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+        <RNSVGPath
+          d="M12 17h.01"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4292623683,
+              "type": 0,
+            }
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <Text
+      style={
+        {
+          "color": "#1c2a3a",
+          "fontFamily": "Inter_600SemiBold",
+          "fontSize": 20,
+          "lineHeight": 30,
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Custom Error
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#111928",
+          "fontFamily": "Inter_400Regular",
+          "fontSize": 16,
+          "lineHeight": 24,
+          "textAlign": "center",
+        }
+      }
+      suppressHighlighting={true}
+    >
+      Please try again later.
+    </Text>
+  </View>,
+]
+`;

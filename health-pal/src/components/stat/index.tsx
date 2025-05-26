@@ -1,14 +1,12 @@
 import { Text, XStack, YStack } from '@theme'
 
-const DoctorStat = ({
-  title,
-  value,
-  icon,
-}: {
+interface DoctorStatProps {
   title: string
   value: string | number
   icon: React.ReactNode
-}) => {
+}
+
+const DoctorStat = ({ title, value, icon }: DoctorStatProps) => {
   return (
     <YStack alignItems="center" gap={2}>
       <XStack
@@ -20,10 +18,10 @@ const DoctorStat = ({
         backgroundColor="$grey100">
         {icon}
       </XStack>
-      <Text size="medium" fontWeight="600" color="$grey600">
+      <Text testID="value-text" size="medium" fontWeight="600" color="$grey600">
         {value}
       </Text>
-      <Text size="small" color="$grey500">
+      <Text size="small" color="$grey500" testID="title-text">
         {title}
       </Text>
     </YStack>

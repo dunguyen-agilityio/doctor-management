@@ -24,12 +24,12 @@ export const SheetModal = ({ ref, children }: React.PropsWithChildren<SheetModal
       zIndex={100_000}
       animation="medium">
       <Sheet.Overlay
+        testID="sheet-overlay"
         animation="lazy"
         backgroundColor="$shadow6"
         enterStyle={{ opacity: 0 }}
         exitStyle={{ opacity: 0 }}
       />
-
       <Sheet.Frame
         padding={24}
         alignItems="center"

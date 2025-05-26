@@ -12,7 +12,7 @@ interface SessionHeaderProps {
 const SessionHeader = ({ title, seeAllWrapper: Wrapper = Fragment }: SessionHeaderProps) => {
   return (
     <XStack justifyContent="space-between">
-      <Heading>{title}</Heading>
+      <Heading testID="heading">{title}</Heading>
       <Wrapper>
         <Text>See all</Text>
       </Wrapper>

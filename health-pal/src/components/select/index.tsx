@@ -2,7 +2,7 @@ import { Check, ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import {
   Adapt,
   FontSizeTokens,
-  Sheet,
+  Popover,
   Select as TamaguiSelect,
   SelectProps as TamaguiSelectProps,
   YStack,
@@ -35,9 +35,10 @@ const Select = ({
   }
 
   return (
-    <YStack gap="$sm">
+    <YStack gap="$sm" flex={1}>
       <TamaguiSelect onValueChange={handleChange} disablePreventBodyScroll size="$1" {...props}>
         <TamaguiSelect.Trigger
+          testID="trigger"
           iconAfter={ChevronDown}
           height={48}
           borderColor={errorMessage && 'red'}
@@ -46,19 +47,20 @@ const Select = ({
         </TamaguiSelect.Trigger>
 
         <Adapt when="maxMd" platform="touch">
-          <Sheet native={!!props.native} modal dismissOnSnapToBottom animation="medium">
-            <Sheet.Frame>
-              <Sheet.ScrollView>
+          <Popover.Sheet native={!!props.native} snapPointsMode="constant" animation="quick">
+            <Popover.Sheet.Frame backgroundColor="transparent">
+              <Popover.Sheet.ScrollView maxHeight={200}>
                 <Adapt.Contents />
-              </Sheet.ScrollView>
-            </Sheet.Frame>
-            <Sheet.Overlay
+              </Popover.Sheet.ScrollView>
+            </Popover.Sheet.Frame>
+            <Popover.Sheet.Overlay
               backgroundColor="$shadowColor"
-              animation="lazy"
+              animation="200ms"
               enterStyle={{ opacity: 0 }}
               exitStyle={{ opacity: 0 }}
+              testID="sheet-overlay"
             />
-          </Sheet>
+          </Popover.Sheet>
         </Adapt>
 
         <TamaguiSelect.Content zIndex={200000}>
@@ -69,7 +71,7 @@ const Select = ({
             width="100%"
             height="$3">
             <YStack zIndex={10}>
-              <ChevronUp size={20} />
+              <ChevronUp size={20} testID="chevron-up" />
             </YStack>
             <LinearGradient
               start={[0, 0]}
@@ -80,20 +82,27 @@ const Select = ({
             />
           </TamaguiSelect.ScrollUpButton>
 
-          <TamaguiSelect.Viewport
-            animation="quicker"
-            animateOnly={['transform', 'opacity']}
-            enterStyle={{ x: 0, y: -10 }}
-            exitStyle={{ x: 0, y: 10 }}
-            minWidth={200}>
-            <TamaguiSelect.Group>
-              {label && <TamaguiSelect.Label>{label}</TamaguiSelect.Label>}
+          <TamaguiSelect.Viewport animation="quicker" animateOnly={['transform', 'opacity']}>
+            <TamaguiSelect.Group
+              maxHeight={200}
+              backgroundColor="$grey50"
+              padding={8}
+              marginTop={48}
+              borderRadius={12}
+              boxShadow="0px 10px 15px -3px rgba(0, 0, 0, 0.10), 0px 4px 6px 0px rgba(0, 0, 0, 0.05)">
+              {label && (
+                <TamaguiSelect.Label backgroundColor={'transparent'}>{label}</TamaguiSelect.Label>
+              )}
               {items.map((item, i) => {
                 return (
-                  <TamaguiSelect.Item index={i} key={item.name} value={item.name}>
+                  <TamaguiSelect.Item
+                    backgroundColor={'transparent'}
+                    index={i}
+                    key={item.name}
+                    value={item.name}>
                     <TamaguiSelect.ItemText>{item.name}</TamaguiSelect.ItemText>
                     <TamaguiSelect.ItemIndicator marginLeft="auto">
-                      <Check size={16} />
+                      <Check size={16} testID="check" />
                     </TamaguiSelect.ItemIndicator>
                   </TamaguiSelect.Item>
                 )
@@ -110,7 +119,10 @@ const Select = ({
                 justifyContent="center"
                 width={'$4'}
                 pointerEvents="none">
-                <ChevronDown size={getFontSize((props.size as FontSizeTokens) ?? '$true')} />
+                <ChevronDown
+                  testID="chevron-down"
+                  size={getFontSize((props.size as FontSizeTokens) ?? '$true')}
+                />
               </YStack>
             )}
           </TamaguiSelect.Viewport>
@@ -121,8 +133,8 @@ const Select = ({
             position="relative"
             width="100%"
             height="$3">
-            <YStack zIndex={10}>
-              <ChevronDown size={20} />
+            <YStack zIndex={10} backgroundColor={'red'}>
+              <ChevronDown size={20} testID="chevron-down" />
             </YStack>
             <LinearGradient
               start={[0, 0]}

@@ -4,7 +4,7 @@ import { Heading, YStack } from '@theme'
 
 export const TabsContent = (props: TabsContentProps) => {
   return (
-    <Tabs.Content flex={1} paddingTop={18} {...props}>
+    <Tabs.Content testID="tabs-content" flex={1} paddingTop={18} {...props}>
       {props.children}
     </Tabs.Content>
   )
@@ -15,6 +15,7 @@ export const TabsTab = ({ title, active }: { title: string; active: boolean }) =
     <YStack height={40} justifyContent="space-between">
       <Heading
         size="medium"
+        testID="heading"
         height={24}
         textTransform="capitalize"
         fontWeight={active ? '700' : '600'}
@@ -23,6 +24,7 @@ export const TabsTab = ({ title, active }: { title: string; active: boolean }) =
       </Heading>
       {active && (
         <Separator
+          testID="separator"
           borderTopWidth={3}
           borderTopColor="$primary"
           borderTopLeftRadius={50}

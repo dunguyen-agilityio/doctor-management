@@ -31,7 +31,7 @@ const Modal = ({
     <Dialog modal open={open} onOpenChange={setOpen} {...props}>
       <Dialog.Portal>
         <Dialog.Overlay
-          key="overlay"
+          testID="overlay"
           backgroundColor="$shadow3"
           animateOnly={['transform', 'opacity']}
           animation={[
@@ -47,6 +47,7 @@ const Modal = ({
         />
 
         <Dialog.Content
+          testID="content"
           padding={0}
           width={WINDOW_SIZE.width - 48}
           minHeight={WINDOW_SIZE.height / 2}

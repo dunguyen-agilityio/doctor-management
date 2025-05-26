@@ -17,6 +17,7 @@ const SearchInput = ({ ...props }: InputProps) => {
 
   return (
     <Input
+      testID="input"
       variant="outlined"
       leftIcon={Search}
       enterKeyHint="search"

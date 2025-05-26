@@ -44,7 +44,9 @@ const Input = ({
   return (
     <YStack gap="$sm" width="100%">
       <XStack alignItems="center">
-        {hasIcon ? <LeftIcon position="absolute" zIndex={200} left={16} size={16} /> : null}
+        {hasIcon ? (
+          <LeftIcon testID="left-icon" position="absolute" zIndex={200} left={16} size={16} />
+        ) : null}
         <TamaguiInput
           ref={ref}
           flex={1}

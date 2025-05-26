@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeButton matches snapshot 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <View
+    focusVisibleStyle={{}}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    role="button"
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#f9fafb",
+        "borderBottomColor": "transparent",
+        "borderBottomLeftRadius": 8,
+        "borderBottomRightRadius": 8,
+        "borderBottomWidth": 1,
+        "borderLeftColor": "transparent",
+        "borderLeftWidth": 1,
+        "borderRightColor": "transparent",
+        "borderRightWidth": 1,
+        "borderStyle": "solid",
+        "borderTopColor": "transparent",
+        "borderTopLeftRadius": 8,
+        "borderTopRightRadius": 8,
+        "borderTopWidth": 1,
+        "color": "#1c2a3a",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "fontWeight": "500",
+        "height": 48,
+        "justifyContent": "center",
+        "opacity": 1,
+        "paddingBottom": 12,
+        "paddingLeft": 20,
+        "paddingRight": 20,
+        "paddingTop": 12,
+        "width": 110,
+      }
+    }
+  >
+    <Text
+      lineBreakMode="clip"
+      numberOfLines={1}
+      style={
+        {
+          "color": "#1c2a3a",
+          "flexGrow": 0,
+          "flexShrink": 1,
+          "fontFamily": "Inter_500Medium",
+          "fontSize": 14,
+          "lineHeight": 21,
+          "userSelect": "none",
+        }
+      }
+      suppressHighlighting={true}
+    >
+      14.30 PM
+    </Text>
+  </View>,
+]
+`;
