@@ -68,13 +68,14 @@ const FavoriteButton = ({
 
   return (
     <Button
+      testID="favorite-button"
       {...VARIANT_STYLE[type]}
       width={size}
       height={size}
       variant="icon"
       zIndex={100}
       disabled={disabled}
-      disabledStyle={{ backgroundColor: '$grey100' }}
+      disabledStyle={{ opacity: 0.8, backgroundColor: '$colorHover' }}
       onPress={handleFavorite}
       {...props}>
       {renderIcon()}
