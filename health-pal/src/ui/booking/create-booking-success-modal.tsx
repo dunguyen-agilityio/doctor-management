@@ -9,8 +9,6 @@ import { Text } from '@theme/text'
 import { ShieldTick } from '@icons'
 
 import Modal from '@app/components/modal'
-import { queryClient } from '@app/react-query.config'
-import { BOOKING_TABS } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 
 type Props = {
@@ -21,9 +19,6 @@ type Props = {
 
 export function CreateBookingSuccessModal({ ref, date, time }: Readonly<Props>) {
   const handleDone = async () => {
-    await queryClient.invalidateQueries({
-      queryKey: [`bookings-${BOOKING_TABS.UPCOMING}`],
-    })
     router.replace('/(app)/(tabs)/bookings')
     ref?.current?.close()
   }
