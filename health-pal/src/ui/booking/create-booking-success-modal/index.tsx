@@ -1,3 +1,6 @@
+import { useFormContext } from 'react-hook-form'
+
+import dayjs from 'dayjs'
 import { router } from 'expo-router'
 
 import { YStack } from 'tamagui'
@@ -9,15 +12,20 @@ import { Text } from '@theme/text'
 import { ShieldTick } from '@icons'
 
 import Modal from '@app/components/modal'
+import { BookingForm } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 
 type Props = {
   ref?: React.RefObject<ModalRef | null>
-  date: string
-  time: string
 }
 
-export function CreateBookingSuccessModal({ ref, date, time }: Readonly<Props>) {
+export function CreateBookingSuccessModal({ ref }: Readonly<Props>) {
+  const { watch } = useFormContext<BookingForm>()
+  const time = watch('time')
+
+  const date = dayjs(watch('date'))
+  const formattedDate = date.format('YYYY-MM-DD')
+
   const handleDone = async () => {
     router.replace('/(app)/(tabs)/bookings')
     ref?.current?.close()
@@ -45,7 +53,7 @@ export function CreateBookingSuccessModal({ ref, date, time }: Readonly<Props>) 
         </Heading>
 
         <Text size="small" color="$gray10" textAlign="center" maxWidth={252}>
-          {`Your appointment with Dr. David Patel is confirmed for ${date}, at ${time}.`}
+          {`Your appointment with Dr. David Patel is confirmed for ${formattedDate}, at ${time}.`}
         </Text>
         <YStack width={'100%'} gap={18}>
           <Button onPress={handleDone}>Done</Button>
