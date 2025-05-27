@@ -16,6 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { ToastViewport } from '@tamagui/toast'
 
+import PreventBackHandler from '@app/components/prevent-back-handler'
 import Toast from '@app/components/toast'
 import Providers from '@app/providers'
 
@@ -71,7 +72,9 @@ export default function RootLayout() {
       <SafeAreaView style={{ flex: 1, backgroundColor: tokens.color.white.val }}>
         <GestureHandlerRootView>
           <StatusBar />
-          <Slot />
+          <PreventBackHandler>
+            <Slot />
+          </PreventBackHandler>
           <ToastViewport />
           <Toast />
         </GestureHandlerRootView>
