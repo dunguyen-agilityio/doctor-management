@@ -6,7 +6,7 @@ import { FAVORITE_TYPES } from '@app/types/favorite'
 
 import { tokens } from '@/tamagui.config'
 
-import FavoriteButton from './favorite-button'
+import FavoriteButton from '../favorite-button'
 
 interface FavoriteContainerProps {
   favoriteId?: string
