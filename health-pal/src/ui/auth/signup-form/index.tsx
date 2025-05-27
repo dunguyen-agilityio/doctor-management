@@ -10,7 +10,7 @@ import { EMAIL_REGEX } from '@app/constants/regex'
 
 import { Button } from '@theme/button'
 
-import { LockIcon, SmsIcon } from '@icons/index'
+import { LockIcon, SmsIcon } from '@icons'
 import User from '@icons/user'
 
 import { Input } from '@app/components'

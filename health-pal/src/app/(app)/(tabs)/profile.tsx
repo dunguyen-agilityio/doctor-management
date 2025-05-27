@@ -1,5 +1,3 @@
-import { withUpcomingFeature } from '@/hocs/with-upcoming-feature'
-
 import { useRef } from 'react'
 
 import { router } from 'expo-router'
@@ -20,6 +18,7 @@ import {
 
 import { Upload } from '@app/components'
 import { useSession } from '@app/contexts'
+import { withUpcomingFeature } from '@app/hocs/with-upcoming-feature'
 import { updateProfile } from '@app/services/auth'
 import { TImage } from '@app/types/image'
 import { ModalRef } from '@app/types/modal'

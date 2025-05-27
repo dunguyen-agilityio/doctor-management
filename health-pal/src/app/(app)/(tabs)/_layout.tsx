@@ -1,4 +1,3 @@
-import { withUpcomingFeature } from '@/hocs/with-upcoming-feature'
 import { BottomTabBarButtonProps, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs'
 
 import { Pressable, StyleSheet } from 'react-native'
@@ -13,6 +12,7 @@ import { NotificationIcon } from '@icons'
 
 import Header from '@app/components/header'
 import TabIcon from '@app/components/tab-icon'
+import { withUpcomingFeature } from '@app/hocs/with-upcoming-feature'
 import { TAB_ROUTES } from '@app/types/route'
 
 const TITLES: Record<TAB_ROUTES, string> = {

@@ -101,6 +101,7 @@
   "jest": {
     "preset": "jest-expo",
     "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.ts",
       "@testing-library/jest-native/extend-expect"
     ],
     "setupFiles": [
