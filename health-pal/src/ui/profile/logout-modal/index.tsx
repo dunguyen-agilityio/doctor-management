@@ -7,7 +7,7 @@ import { useSession } from '@app/contexts'
 import { queryClient } from '@app/react-query.config'
 import { ModalRef } from '@app/types/modal'
 
-const LogoutModalContext = ({ ref }: { ref: React.RefObject<ModalRef | null> }) => {
+const LogoutModal = ({ ref }: { ref: React.RefObject<ModalRef | null> }) => {
   const { signOut } = useSession()
 
   const handleLogout = () => {
@@ -44,4 +44,4 @@ const LogoutModalContext = ({ ref }: { ref: React.RefObject<ModalRef | null> }) 
   )
 }
 
-export default LogoutModalContext
+export default LogoutModal

@@ -22,7 +22,7 @@ import { withUpcomingFeature } from '@app/hocs/with-upcoming-feature'
 import { updateProfile } from '@app/services/auth'
 import { TImage } from '@app/types/image'
 import { ModalRef } from '@app/types/modal'
-import LogoutModalContext from '@app/ui/profile/logout-modal-context'
+import LogoutModal from '@app/ui/profile/logout-modal'
 
 const ListItemUpcoming = withUpcomingFeature(ListItem)
 
@@ -57,7 +57,7 @@ const Profile = () => {
       <YStack flex={1}>
         <ListItem
           onPress={() => {
-            router.navigate('/(auth)/profile-info?from=/(app)/(tabs)/profile')
+            router.navigate('/(auth)/profile-info')
           }}
           icon={UserEditIcon}
           title="Edit Profile"
@@ -76,7 +76,7 @@ const Profile = () => {
         <Separator marginVertical={12} />
         <ListItem icon={LogoutIcon} title="Log Out" onPress={handleLogout} pressTheme />
       </YStack>
-      <LogoutModalContext ref={logoutRef} />
+      <LogoutModal ref={logoutRef} />
     </YStack>
   )
 }
