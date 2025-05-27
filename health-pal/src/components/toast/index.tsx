@@ -17,8 +17,6 @@ const VARIANTS: Record<ToastVariant, Pick<TextProps, 'backgroundColor' | 'color'
 const Toast = () => {
   const currentToast = useToastState()
 
-  console.log('currentToast', currentToast)
-
   if (!currentToast || currentToast.isHandledNatively) return null
 
   const { duration, id, message, title, viewportName, type = 'info' } = currentToast

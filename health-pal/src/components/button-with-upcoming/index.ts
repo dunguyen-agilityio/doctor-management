@@ -1,6 +1,6 @@
-import { withUpcomingFeature } from '@/hocs/with-upcoming-feature'
-
 import { Button } from '@theme'
+
+import { withUpcomingFeature } from '@app/hocs/with-upcoming-feature'
 
 const ButtonWithUpcoming = withUpcomingFeature(Button)
 

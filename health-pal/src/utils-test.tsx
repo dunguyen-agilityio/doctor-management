@@ -2,12 +2,17 @@ import { RenderOptions, render, renderHook } from '@testing-library/react-native
 
 import { NavigationContainer } from '@react-navigation/native'
 
+import { ToastViewport } from '@tamagui/toast'
+
 import Providers from '@app/providers'
 
 const AllTheProviders = ({ children }: React.PropsWithChildren) => {
   return (
     <NavigationContainer>
-      <Providers>{children}</Providers>
+      <Providers>
+        <ToastViewport />
+        {children}
+      </Providers>
     </NavigationContainer>
   )
 }

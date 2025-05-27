@@ -14,6 +14,8 @@ import { StatusBar } from 'expo-status-bar'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { ToastViewport } from '@tamagui/toast'
+
 import Toast from '@app/components/toast'
 import Providers from '@app/providers'
 
@@ -70,6 +72,7 @@ export default function RootLayout() {
         <GestureHandlerRootView>
           <StatusBar />
           <Slot />
+          <ToastViewport />
           <Toast />
         </GestureHandlerRootView>
       </SafeAreaView>

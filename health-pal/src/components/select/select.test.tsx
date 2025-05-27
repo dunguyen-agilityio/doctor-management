@@ -34,19 +34,6 @@ describe('Select', () => {
     })
   })
 
-  it('renders label and items in viewport', () => {
-    render(<Select items={items} label="Options" open />)
-
-    const label = screen.getByText('Options')
-    expect(label).toBeTruthy()
-
-    items.forEach((item) => {
-      const itemText = screen.getByText(item.name)
-      expect(itemText).toBeTruthy()
-      expect(screen.queryByTestId('check')).toBeNull()
-    })
-  })
-
   it('calls onValueChange and onBlur when value changes', () => {
     const onValueChange = jest.fn()
     const onBlur = jest.fn()

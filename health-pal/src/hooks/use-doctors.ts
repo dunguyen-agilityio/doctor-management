@@ -2,7 +2,6 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { useLocalSearchParams } from 'expo-router'
 
 import { TDoctorData } from '@app/models/doctor'
-import { QUERY_KEY } from '@app/react-query.config'
 import { getDoctors } from '@app/services/doctor'
 import { StrapiPagination } from '@app/types/strapi'
 
@@ -61,7 +60,7 @@ const useDoctors = () => {
     string[],
     number
   >({
-    queryKey: [...QUERY_KEY.DOCTORS, ...specialty, query],
+    queryKey: ['doctors', ...specialty, query],
     getNextPageParam: (lastPage) => {
       const { page, pageCount } = lastPage.meta.pagination
       return page < pageCount ? page + 1 : undefined
