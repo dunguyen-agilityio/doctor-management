@@ -1,15 +1,24 @@
+import { useFormContext } from 'react-hook-form'
+
+import dayjs from 'dayjs'
+
 import { Button, Heading, Text, XStack, YStack } from '@theme'
 
 import { Modal } from '@app/components'
-import { TBookingCard } from '@app/models/booking'
+import { BookingForm } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 
-interface Props extends Pick<TBookingCard, 'date' | 'time'> {
+interface Props {
   ref: React.RefObject<ModalRef | null>
   onReload: () => void
 }
 
-const ReloadTimeSlotConfirmModal = ({ ref, date, onReload, time }: Props) => {
+const ReloadTimeSlotConfirmModal = ({ ref, onReload }: Props) => {
+  const { watch } = useFormContext<BookingForm>()
+
+  const date = dayjs(watch('date'))
+  const formattedDate = date.format('YYYY-MM-DD')
+  const time = watch('time')
   const handleClose = () => {
     ref.current?.close()
   }
@@ -19,8 +28,8 @@ const ReloadTimeSlotConfirmModal = ({ ref, date, onReload, time }: Props) => {
       <YStack padding={16} gap={16} alignItems="center" flex={1}>
         <Heading size="extraLarge">Time Slot Unavailable</Heading>
         <Text size="small">
-          The selected time slot ({date} - {time}) is no longer available. Would you like to reload
-          the time slots?
+          The selected time slot ({formattedDate} - {time}) is no longer available. Would you like
+          to reload the time slots?
         </Text>
         <XStack width="100%" flex={1} alignItems="flex-end" justifyContent="space-around">
           <Button onPress={handleClose} variant="secondary">

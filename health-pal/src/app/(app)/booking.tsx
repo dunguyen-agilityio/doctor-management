@@ -1,15 +1,15 @@
-import { Controller, useForm } from 'react-hook-form'
+import { Controller, FormProvider, useForm } from 'react-hook-form'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import dayjs from 'dayjs'
 import { useLocalSearchParams } from 'expo-router'
 import { ScrollView } from 'react-native-gesture-handler'
 
-import { Button, Heading, Text, XStack, YStack } from '@theme'
+import { Button, Heading, XStack, YStack } from '@theme'
 
 import { DatePicker } from '@app/components'
-import TimeButton from '@app/components/time-button'
+import BookingTime from '@app/components/booking-time'
 import { useSession } from '@app/contexts'
 import { useAppLoading } from '@app/hooks'
 import { queryClient } from '@app/react-query.config'
@@ -18,7 +18,6 @@ import { BOOKING_TABS, BookingForm } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 import { CreateBookingSuccessModal } from '@app/ui/booking/create-booking-success-modal'
 import ReloadTimeSlotConfirmModal from '@app/ui/booking/reload-time-slot'
-import { formatTime } from '@app/utils/date'
 
 const getTomorrow = () => {
   const now = dayjs(new Date())
@@ -51,33 +50,31 @@ const Booking = () => {
     time: timeParam = '',
   } = params
 
-  const { control, watch, setValue, handleSubmit } = useForm<BookingForm>({
+  const methods = useForm<BookingForm>({
     defaultValues: { time: timeParam, date: defaultDate, documentId: bookingIdParam },
   })
+  const { control, setValue, handleSubmit } = methods
 
-  const date = dayjs(watch('date'))
-  const bookingId = watch('documentId')
-  const time = watch('time')
+  const getAvailable = useCallback(
+    async (date = getTomorrow()) => {
+      const formattedDate = date.format('YYYY-MM-DD')
 
-  const formattedValue = dayjs(date).format('MMM DD, YYYY')
-
-  const formattedDate = date.format('YYYY-MM-DD')
-
-  const getAvailable = useCallback(async () => {
-    if (formattedDate) {
-      setAppLoading(true)
-      const { available, doctorId } = await getBookingAvailable(doctId, formattedDate)
-      setAvailable(available)
-      setValue('doctor', doctorId)
-      setAppLoading(false)
-    }
-  }, [doctId, formattedDate, setAppLoading, setValue])
+      if (formattedDate) {
+        setAppLoading(true)
+        const { available, doctorId } = await getBookingAvailable(doctId, formattedDate)
+        setAvailable(available)
+        setValue('doctor', doctorId)
+        setAppLoading(false)
+      }
+    },
+    [doctId, setAppLoading, setValue],
+  )
 
   useEffect(() => {
     getAvailable()
   }, [getAvailable])
 
-  const onSubmit = async ({ date, doctor, time }: BookingForm) => {
+  const onSubmit = async ({ date, doctor, time, documentId }: BookingForm) => {
     if (jwt) {
       setAppLoading(true)
       const formattedDate = dayjs(date).format('YYYY-MM-DD')
@@ -86,15 +83,15 @@ const Booking = () => {
         doctor,
         time,
         date: formattedDate,
-        ...(bookingId && { documentId: bookingId }),
+        ...(documentId && { documentId }),
       }
 
-      const action = bookingId ? updateBooking : addBooking
+      const action = documentId ? updateBooking : addBooking
 
       const { data } = await action(payload, jwt)
 
       if (data) {
-        if (!bookingId) {
+        if (!documentId) {
           setValue('documentId', data.documentId)
         }
         cancelConfirmRef.current?.open()
@@ -108,21 +105,14 @@ const Booking = () => {
     }
   }
 
+  const minDate = useMemo(() => getTomorrow(), [])
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      {date && time && (
-        <ReloadTimeSlotConfirmModal
-          ref={reloadTimeSlotConfirmRef}
-          date={formattedValue}
-          time={time}
-          onReload={getAvailable}
-        />
-      )}
-      <CreateBookingSuccessModal
-        date={formattedValue}
-        time={formatTime(time ?? '', ':')}
-        ref={cancelConfirmRef}
-      />
+      <FormProvider {...methods}>
+        <ReloadTimeSlotConfirmModal ref={reloadTimeSlotConfirmRef} onReload={getAvailable} />
+        <CreateBookingSuccessModal ref={cancelConfirmRef} />
+      </FormProvider>
       <YStack paddingHorizontal={24} flex={1}>
         <YStack flex={1} gap={32}>
           <YStack gap={8}>
@@ -131,7 +121,7 @@ const Booking = () => {
               control={control}
               name="date"
               render={({ field: { onChange, value } }) => (
-                <DatePicker date={value} minDate={getTomorrow()} onChange={onChange} />
+                <DatePicker date={value} minDate={minDate} onChange={onChange} />
               )}
             />
           </YStack>
@@ -140,31 +130,14 @@ const Booking = () => {
             control={control}
             name="time"
             rules={{ required: 'Field is required!' }}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <YStack gap={8}>
-                  <XStack justifyContent="space-between" alignItems="center">
-                    <Heading>Select Hour</Heading>
-                    <Text size="extraSmall" color="red">
-                      {error?.message}
-                    </Text>
-                  </XStack>
-                  <XStack justifyContent="space-between" gap={14} flexWrap="wrap">
-                    {TIMES.map((time) => (
-                      <TimeButton
-                        value={time}
-                        key={time}
-                        onSelect={onChange}
-                        disabled={!available[time] && timeParam !== time}
-                        color={value === time ? '$white' : '$primary'}
-                        backgroundColor={value === time ? '$primary' : '$grey50'}
-                        disabledStyle={{ opacity: 0.5, backgroundColor: '$grey300' }}
-                      />
-                    ))}
-                  </XStack>
-                </YStack>
-              )
-            }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <BookingTime
+                available={available}
+                onChange={onChange}
+                value={value ?? timeParam}
+                errorMessage={error?.message}
+              />
+            )}
           />
         </YStack>
         <XStack
@@ -183,18 +156,3 @@ const Booking = () => {
 }
 
 export default Booking
-
-const TIMES = [
-  '09:00:00',
-  '09:30:00',
-  '10:00:00',
-  '10:30:00',
-  '11:00:00',
-  '11:30:00',
-  '15:00:00',
-  '15:30:00',
-  '16:00:00',
-  '16:30:00',
-  '17:00:00',
-  '17:30:00',
-]
