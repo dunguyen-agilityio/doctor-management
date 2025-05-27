@@ -5,7 +5,7 @@ import { APP_TITLES } from '@app/constants/route'
 
 import { LoadingIndicator } from '@app/components'
 import Header from '@app/components/header'
-import { useSession } from '@app/contexts/auth-context'
+import { useSession } from '@app/contexts/auth'
 import { APP_ROUTES } from '@app/types/route'
 
 const screenOptions: NativeStackNavigationOptions = {

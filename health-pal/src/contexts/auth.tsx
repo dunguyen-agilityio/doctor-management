@@ -33,12 +33,8 @@ export function SessionProvider({ children }: Readonly<PropsWithChildren>) {
   return (
     <AuthContext
       value={{
-        signIn: (user) => {
-          setSession(user)
-        },
-        signOut: () => {
-          setSession(null)
-        },
+        signIn: setSession,
+        signOut: () => setSession(null),
         setUser: (user) => {
           setSession({ jwt: session?.jwt, user } as Session)
         },

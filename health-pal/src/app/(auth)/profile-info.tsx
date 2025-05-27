@@ -75,6 +75,7 @@ const Profile = () => {
         type: 'success',
         duration: 3000,
       })
+      router.navigate('/(app)/(tabs)/profile')
     } else {
       toast.show('Profile Update Failed', {
         message: error.message,
@@ -84,7 +85,6 @@ const Profile = () => {
     }
 
     setAppLoading(false)
-    router.back()
   }
 
   return (
