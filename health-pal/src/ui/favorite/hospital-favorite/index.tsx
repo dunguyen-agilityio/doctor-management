@@ -9,8 +9,7 @@ import { useSession } from '@app/contexts'
 import { useFavoriteHospitals } from '@app/hooks/use-favorite'
 import { Hospital, THospitalFavorite } from '@app/models/hospital'
 import { FAVORITE_TYPES } from '@app/types/favorite'
-
-import HospitalList from '../hospital/hospital-list'
+import HospitalList from '@app/ui/hospital/hospital-list'
 
 const ItemSeparatorComponent = () => <Stack height={12} />
 
