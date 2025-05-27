@@ -1,50 +1,152 @@
-# Welcome to your Expo app 👋
+# Practice - Doctor appointment application using React Native with expo
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 1. Overview
 
-## Get started
+- The Doctor Appointment App is a mobile application built using React Native with Expo. It provides users with a convenient way to book, manage, and track their medical appointments. The app allows users to browse available doctors, view their specialties and availability, and schedule appointments based on their needs.
 
-1. Install dependencies
+<img src="https://res.cloudinary.com/dn5vw6fjp/image/upload/v1748312919/Cover_y6uug0.png" alt="Doctor Appointment" width="800" />
 
-   ```bash
-   npm install
-   ```
+## 2. Tech stack
 
-2. Start the app
+- React
+- Framework: React Native
+- Expo: Expo SDK
+- State Management: Zustand
+- Navigation: React Navigation
+- Testing: Jest, React Testing Library
+- Linting & Formatting: ESLint, Prettier, Husky
 
-   ```bash
-   npx expo start
-   ```
+## 3. Target
 
-In the output, you'll find options to open the app in a
+- Handle platform differences between Android
+- Unit test coverage should be greater than 80%
+- Configure the app icon and splash screen to match the Expo app.
+- Must have a Login screen
+- Must have a Home screen with a list greater than 100 items
+- Must have a profile screen, the user can change the avatar using the Camera and Image Picker
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 4. Requirements
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **The application consists of four main screens following to this [design](https://www.figma.com/design/gvET8CMW66RccB7petorrb/Doctor-Appointment-App?node-id=2-3&m=dev)**
 
-## Get a fresh project
+- **Features scope:**
 
-When you're ready, run:
+  - Authentication
+    - Sign In: email and password
+    - Sign Up
+    - Log Out
+  - User Profile
+    - Profile setup
+    - Edit personal information
+  - Home Dashboard
+  - Doctor Search & Listing
+    - Search by doctor name
+    - Filters:
+      - Specialization
+  - Doctor Profile
+  - Appointment Booking
+  - My Bookings
+    - Upcoming Bookings
+    - View appointment details
+    - Cancel or reschedule
+    - Completed bookings
+    - Canceled bookings
 
-```bash
-npm run reset-project
-```
+## 5. Prerequisites
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+**_Before you begin, ensure you have the following installed:_**
 
-## Learn more
+- **System Requirements:**
 
-To learn more about developing your project with Expo, look at the following resources:
+  - Node.js (>= 20.x)
+  - Expo CLI (>= 7.x) → Install globally with:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+    > ```
+    > npm install -g expo-cli
+    > ```
 
-## Join the community
+  - Android Studio (for Android Emulator)
+  - Expo Go (For Testing on Physical Devices)
 
-Join our community of developers creating universal apps.
+- **Install Expo Go on your phone:**
+  - Android (Play Store)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 6. Installation
+
+**Clone repository**:
+
+> ```
+> git clone git@gitlab.asoft-python.com:du.nguyen/react-native-training.git
+> ```
+
+**Check out the branch**:
+
+> ```
+> git checkout feat/doctor-appointment
+> ```
+
+> ```
+> cd healthy-pal
+> ```
+
+**Install package dependencies**:
+
+> ```
+> yarn install
+> ```
+
+**Setup Environment Variables**
+
+- Create a .env file and add the following keys:
+
+> ```
+> EXPO_PUBLIC_APP_TOKEN=token
+> EXPO_PUBLIC_API_ENDPOINT=http://localhost:3000
+> ```
+
+**Run application (Expo CLI)**
+
+> ```
+> npx expo start
+> ```
+
+**_or_**
+
+> ```
+> yarn android
+> ```
+
+## 7. Project Structure
+
+> ```
+> /healthy-food
+> │── .husky/ # Git Hooks
+> │── assets/ # Images, Icons
+> |── .storybook/
+> |── android/
+> │── src/
+> │ │── components/ # Reusable UI Components
+> │ │── hooks/ # Custom Hooks
+> │ │── services/ # API Calls
+> │ │── store/ # Zustand
+> │ │── utils/ # Helper Functions
+> │ │── types/ # TypeScript Types
+> │── .gitignore
+> │── .prettierrc
+> │── .eslint.json
+> │── app.config.js # Expo Config
+> │── package.json
+> │── README.md
+> ```
+
+## 8. Running Tests
+
+**To run tests, use**
+
+> ```
+> yarn test
+> ```
+
+## 9. Author
+
+- Du Nguyen (Slack: [du.nguyen](du.nguyen))
