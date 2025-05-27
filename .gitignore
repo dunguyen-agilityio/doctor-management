@@ -5,3 +5,4 @@ google-services.json
 *.d.ts
 android/
 ios/
+coverage/
