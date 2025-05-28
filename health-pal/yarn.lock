@@ -8415,7 +8415,7 @@ metro-file-map@0.82.4:
     nullthrows "^1.1.1"
     walker "^1.0.7"
 
-metro-minify-terser@0.82.4:
+metro-minify-terser@0.82.4, metro-minify-terser@^0.82.4:
   version "0.82.4"
   resolved "https://registry.yarnpkg.com/metro-minify-terser/-/metro-minify-terser-0.82.4.tgz#3750c14e7a25eba591f6c75eed995f6751030618"
   integrity sha512-W79Mi6BUwWVaM8Mc5XepcqkG+TSsCyyo//dmTsgYfJcsmReQorRFodil3bbJInETvjzdnS1mCsUo9pllNjT1Hg==

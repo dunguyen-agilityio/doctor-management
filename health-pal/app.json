@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "HealthPal",
-    "slug": "health-pal",
+    "slug": "healthpal",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -106,8 +106,7 @@
             }
           ]
         }
-      ],
-      "expo-secure-store"
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
@@ -116,7 +115,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "71fc5c39-f465-4b04-bb6b-2cb3da19264e",
+        "projectId": "b109a290-d4a1-4303-9e7d-a2c665d095f6",
         "owner": "expo_training"
       }
     }
