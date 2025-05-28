@@ -23,6 +23,6 @@ const config = getDefaultConfig(__dirname, {
 config.resolver.sourceExts.push('mjs')
 
 module.exports = withStorybook(config, {
-  enabled: __DEV__ && process.env.EXPO_PUBLIC_STORYBOOK_ENABLED,
+  enabled: process.env.NODE_ENV !== 'production' && process.env.EXPO_PUBLIC_STORYBOOK_ENABLED,
   configPath: path.resolve(__dirname, './.storybook'),
 })
