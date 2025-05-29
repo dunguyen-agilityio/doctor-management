@@ -1,10 +1,9 @@
-import { useImperativeHandle, useState } from 'react'
-
 import { X } from '@tamagui/lucide-icons'
 import { Button, Dialog, DialogContentProps, DialogProps, Unspaced } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
 
+import { useModal } from '@app/hooks/use-modal'
 import { ModalRef } from '@app/types/modal'
 
 interface ModalProps extends DialogProps {
@@ -20,12 +19,7 @@ const Modal = ({
   ref,
   ...props
 }: React.PropsWithChildren<ModalProps>) => {
-  const [open, setOpen] = useState(false)
-
-  useImperativeHandle(ref, () => ({
-    open: () => setOpen(true),
-    close: () => setOpen(false),
-  }))
+  const [open, setOpen] = useModal(ref)
 
   return (
     <Dialog modal open={open} onOpenChange={setOpen} {...props}>

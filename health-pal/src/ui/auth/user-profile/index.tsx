@@ -3,6 +3,8 @@ import { Controller, useForm } from 'react-hook-form'
 import { useRef } from 'react'
 import { Keyboard, TextInput } from 'react-native'
 
+import { useToastController } from '@tamagui/toast'
+
 import { VALIDATIONS_MESSAGE } from '@app/constants/message'
 import { EMAIL_REGEX } from '@app/constants/regex'
 
@@ -14,8 +16,9 @@ import DateInput from '@app/components/date-input'
 import FormKeyboardAvoidingView from '@app/components/form-keyboard-avoiding-view'
 import Select from '@app/components/select'
 import Upload from '@app/components/upload'
+import { useSession } from '@app/contexts'
+import { uploadToStrapi } from '@app/services/upload-image'
 import { UserProfileData } from '@app/types'
-import { TImage } from '@app/types/image'
 
 interface UserProfileFormProps {
   defaultData?: Partial<UserProfileData>
@@ -27,6 +30,10 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
   const nameRef = useRef<TextInput>(null)
   const nicknameRef = useRef<TextInput>(null)
   const emailRef = useRef<TextInput>(null)
+  const toast = useToastController()
+
+  const { session } = useSession()
+  const jwt = session?.jwt
 
   const { control, handleSubmit, setError, setValue } = useForm<UserProfileData>({
     defaultValues: {
@@ -56,9 +63,22 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
               name="avatar"
               render={({ field: { onChange } }) => (
                 <Upload
-                  onUpload={async (image: TImage) => {
-                    onChange(image.id)
-                    setValue('avatarUrl', image.url)
+                  onUpload={async (image: string) => {
+                    const { error, data } = await uploadToStrapi(image, jwt!)
+
+                    if (error) {
+                      toast.show('Upload Failed', {
+                        message: error.message,
+                        duration: 3000,
+                        type: 'error',
+                      })
+                      return
+                    }
+
+                    const { url, id } = data
+
+                    onChange(id)
+                    setValue('avatarUrl', url)
                     nameRef.current?.focus()
                   }}
                   preview={defaultData?.avatarUrl}
@@ -163,12 +183,12 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
             render={({ field: { value, onChange, onBlur, ...field }, fieldState: { error } }) => (
               <Select
                 {...field}
-                label="Gender"
                 placeholder="Gender"
-                items={[{ name: 'Male' }, { name: 'Female' }]}
+                items={GENDERS}
                 onValueChange={onChange}
                 value={value ?? ''}
                 errorMessage={error?.message}
+                native
               />
             )}
           />
@@ -180,3 +200,5 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
 }
 
 export default UserProfile
+
+const GENDERS = [{ name: 'Male' }, { name: 'Female' }]

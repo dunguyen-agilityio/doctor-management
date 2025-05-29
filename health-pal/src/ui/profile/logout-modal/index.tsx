@@ -21,8 +21,14 @@ const LogoutModal = ({ ref }: { ref: React.RefObject<ModalRef | null> }) => {
         <Heading textAlign="center" size="extraLarge">
           Logout
         </Heading>
-        <Separator marginVertical={16} borderColor="$grey200" borderWidth={1} flex={1} />
-        <Text textAlign="center" size="medium" fontWeight="600">
+        <Separator
+          marginVertical={16}
+          borderColor="$grey200"
+          borderWidth={0}
+          borderTopWidth={1}
+          flex={1}
+        />
+        <Text textAlign="center" size="medium" color="$grey500" fontWeight="600">
           Are you sure you want to log out?
         </Text>
       </YStack>
