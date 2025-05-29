@@ -121,7 +121,12 @@ const Booking = () => {
               control={control}
               name="date"
               render={({ field: { onChange, value } }) => (
-                <DatePicker date={value} minDate={minDate} onChange={onChange} />
+                <DatePicker
+                  date={value}
+                  minDate={minDate}
+                  onChange={onChange}
+                  disabledDates={(date) => [0, 6].includes(dayjs(date).day())}
+                />
               )}
             />
           </YStack>

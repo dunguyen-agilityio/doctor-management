@@ -42,6 +42,7 @@ const DatePicker = ({ onChange, ...props }: DatePickerProps) => {
         },
         day_cell: {
           width: 36,
+          height: 34,
         },
         weekday_label: {
           textTransform: 'capitalize',
@@ -54,15 +55,22 @@ const DatePicker = ({ onChange, ...props }: DatePickerProps) => {
           fontWeight: '700',
           color: tokens.color.grey500.val,
           fontFamily: 'Inter',
+          textAlign: 'center',
+          textAlignVertical: 'center',
         },
         today: { backgroundColor: 'transparent' },
-        selected: {
+        selected_label: {
           backgroundColor: tokens.color.primary.val,
           color: tokens.color.white.val,
           fontWeight: '700',
           borderRadius: 8,
+          width: 36,
+          height: 30,
         },
-        selected_label: { color: 'white' },
+        disabled_label: {
+          color: tokens.color.grey500.val,
+          opacity: 0.5,
+        },
       }}
       weekdaysFormat="short"
       style={{
