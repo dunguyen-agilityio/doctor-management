@@ -37,7 +37,7 @@ const Favorite = () => {
             maxWidth={150}
             key={value}
             value={value}>
-            <TabsTab title={value} active={type === value} />
+            <TabsTab title={`${value}s`} active={type === value} />
           </Tabs.Tab>
         ))}
       </Tabs.List>
