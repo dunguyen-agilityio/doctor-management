@@ -1,13 +1,22 @@
-import { AlertDialog, AlertDialogProps } from 'tamagui'
+import { AlertDialog, AlertDialogContentProps, AlertDialogProps, TamaguiElement } from 'tamagui'
 
-import { Button, XStack, YStack } from '@theme'
+import { WINDOW_SIZE } from '@app/constants'
+
+import { Button, Heading, Text, XStack } from '@theme'
+
+import { useModal } from '@app/hooks/use-modal'
+import { ModalRef } from '@app/types/modal'
 
 interface CustomAlertDialogProps extends AlertDialogProps {
-  title: string
+  title?: string
   description?: string
   cancelable?: boolean
-  onConfirm: () => void
+  onConfirm?: () => void
   actionTitle?: string
+  ref?: React.Ref<ModalRef | null>
+  trigger?: React.ReactNode
+  container?: ({ children }: React.PropsWithChildren) => React.ReactNode
+  contentProps?: AlertDialogContentProps & React.RefAttributes<TamaguiElement>
 }
 
 const CustomAlertDialog = ({
@@ -16,16 +25,18 @@ const CustomAlertDialog = ({
   onConfirm,
   cancelable,
   actionTitle = 'OK',
+  children,
+  ref,
+  container: Container = ({ children }) => <>{children}</>,
+  trigger = <AlertDialog.Trigger asChild />,
+  contentProps,
   ...props
-}: CustomAlertDialogProps) => {
-  if (!title) {
-    console.warn('CustomAlertDialog: title prop is required')
-    return null
-  }
+}: React.PropsWithChildren<CustomAlertDialogProps>) => {
+  const [open, setOpen] = useModal(ref)
 
   return (
-    <AlertDialog {...props}>
-      <AlertDialog.Trigger asChild />
+    <AlertDialog open={open} onOpenChange={setOpen} {...props}>
+      {trigger}
       <AlertDialog.Portal>
         <AlertDialog.Overlay
           key="overlay"
@@ -35,6 +46,7 @@ const CustomAlertDialog = ({
           exitStyle={{ opacity: 0 }}
           aria-hidden
         />
+
         <AlertDialog.Content
           role="alertdialog"
           elevate
@@ -52,22 +64,34 @@ const CustomAlertDialog = ({
           x={0}
           scale={1}
           opacity={1}
-          y={0}>
-          <YStack
-            gap="$4"
-            aria-labelledby="alert-dialog-title"
-            aria-describedby={description ? 'alert-dialog-description' : undefined}>
-            <AlertDialog.Title>{title}</AlertDialog.Title>
-            {description && <AlertDialog.Description>{description}</AlertDialog.Description>}
-
-            <XStack gap="$3" justifyContent="flex-end">
-              {cancelable && (
-                <AlertDialog.Cancel asChild>
-                  <Button variant="secondary" aria-label="Cancel dialog" testID="cancel-button">
-                    Cancel
-                  </Button>
-                </AlertDialog.Cancel>
-              )}
+          width={WINDOW_SIZE.width - 48}
+          borderRadius={8}
+          paddingHorizontal={20}
+          paddingVertical={12}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby={description ? 'alert-dialog-description' : undefined}
+          gap={12}
+          {...contentProps}>
+          {title && (
+            <AlertDialog.Title>
+              <Heading>{title}</Heading>
+            </AlertDialog.Title>
+          )}
+          {description && (
+            <AlertDialog.Description>
+              <Text size="small">{description}</Text>
+            </AlertDialog.Description>
+          )}
+          {children}
+          <XStack gap={12} justifyContent="flex-end">
+            {cancelable && (
+              <AlertDialog.Cancel asChild>
+                <Button variant="secondary" aria-label="Cancel dialog" testID="cancel-button">
+                  Cancel
+                </Button>
+              </AlertDialog.Cancel>
+            )}
+            {onConfirm && (
               <AlertDialog.Action asChild>
                 <Button
                   onPress={onConfirm}
@@ -76,8 +100,8 @@ const CustomAlertDialog = ({
                   {actionTitle}
                 </Button>
               </AlertDialog.Action>
-            </XStack>
-          </YStack>
+            )}
+          </XStack>
         </AlertDialog.Content>
       </AlertDialog.Portal>
     </AlertDialog>
@@ -85,5 +109,17 @@ const CustomAlertDialog = ({
 }
 
 export const AlertDialogDescription = AlertDialog.Description
+
+export const AlertDialogTrigger = AlertDialog.Trigger
+
+export const AlertDialogTitle = AlertDialog.Title
+
+export const AlertDialogAction = AlertDialog.Action
+
+export const AlertDialogCancel = AlertDialog.Cancel
+export const AlertDialogOverlay = AlertDialog.Overlay
+export const AlertDialogContent = AlertDialog.Content
+export const AlertDialogPortal = AlertDialog.Portal
+export const AlertDialogClose = AlertDialog.Cancel
 
 export default CustomAlertDialog

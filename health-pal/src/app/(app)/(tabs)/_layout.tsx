@@ -70,9 +70,7 @@ const screenOptions: BottomTabNavigationOptions = {
   tabBarStyle: styles.tabBarStyle,
   tabBarItemStyle: styles.tabBarItemStyle,
   tabBarButton: renderBabBarButton,
-  header: ({ navigation, route }) => (
-    <Header title={TITLES[route.name as TAB_ROUTES]} onBack={navigation.goBack} />
-  ),
+  header: ({ navigation, route }) => <Header title={TITLES[route.name as TAB_ROUTES]} />,
 }
 
 export default function TabLayout() {

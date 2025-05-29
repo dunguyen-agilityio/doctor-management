@@ -32,11 +32,9 @@ export const SheetModal = ({
         enterStyle={{ opacity: 0 }}
         exitStyle={{ opacity: 0 }}
       />
-
       <Sheet.Frame
         height={height}
         padding={24}
-        // alignItems="center"
         gap="$md"
         borderTopLeftRadius={34}
         borderTopRightRadius={34}>
