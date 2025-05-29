@@ -36,10 +36,12 @@ const Input = ({
   onEndEdit,
   ref,
   onEndEditing,
+  value,
+  defaultValue,
   ...props
 }: CustomInputProps) => {
   const hasIcon = LeftIcon !== null
-  const valueRef = useRef(props.value)
+  const valueRef = useRef(defaultValue ?? value)
 
   return (
     <YStack gap="$sm" width="100%">
@@ -52,10 +54,12 @@ const Input = ({
           flex={1}
           {...(errorMessage && { borderColor: 'red', focusStyle: { borderColor: 'red' } })}
           {...props}
+          value={value}
           onFocus={(e) => {
-            valueRef.current = props.value
+            valueRef.current = defaultValue
             onFocus?.(e)
           }}
+          defaultValue={defaultValue}
           onEndEditing={(e) => {
             onEndEdit?.(e.nativeEvent.text !== valueRef.current)
             onEndEditing?.(e)

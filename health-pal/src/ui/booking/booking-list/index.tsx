@@ -17,6 +17,7 @@ import { getBookings } from '@app/services/booking'
 import { BOOKING_TABS } from '@app/types/booking'
 import { StrapiPagination } from '@app/types/strapi'
 import { formatBooking } from '@app/utils/booking'
+import { keyExtractor } from '@app/utils/list'
 
 const bookingPromises: Record<BOOKING_TABS, () => Promise<StrapiPagination<BookingData>>> = {
   [BOOKING_TABS.CANCELED]: () =>
@@ -26,8 +27,6 @@ const bookingPromises: Record<BOOKING_TABS, () => Promise<StrapiPagination<Booki
   [BOOKING_TABS.UPCOMING]: () =>
     getBookings({ filters: [{ key: BookingKey.type, query: BOOKING_TABS.UPCOMING }] }),
 }
-
-const keyExtractor = (item: BookingData) => item.documentId
 
 const ItemSeparatorComponent = () => <XStack height={10} />
 

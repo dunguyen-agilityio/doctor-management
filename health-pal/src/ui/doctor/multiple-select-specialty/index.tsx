@@ -1,52 +1,34 @@
-import { router, useLocalSearchParams } from 'expo-router'
-
 import { ScrollView } from 'tamagui'
 
 import { SPECIALTY_LIST } from '@app/constants/specialty'
 
 import Chip from '@app/components/chip'
-import { TSpecialty } from '@app/types/specialty'
 
-const MultipleSelectSpecialty = () => {
-  const params = useLocalSearchParams<{ specialty: string[]; page: string }>()
-
-  if (typeof params.specialty === 'string') {
-    params.specialty = [params.specialty]
-  }
-
+const MultipleSelectSpecialty = ({
+  onChange,
+  values: defaultValues,
+}: {
+  onChange: (value: string[]) => void
+  values: string[]
+}) => {
   const handleSelect = (value: string) => {
+    let values = [...defaultValues]
+
     if (value === 'all') {
-      params.specialty = ['all']
-    } else if (!params.specialty.includes(value)) {
-      params.specialty = params.specialty.filter((item) => item !== 'all')
-      params.specialty.push(value)
+      values = ['all']
+    } else if (!values.includes(value)) {
+      values = values.filter((item) => item !== 'all')
+      values.push(value)
     } else {
-      params.specialty = params.specialty.filter((item) => item !== value)
+      values = values.filter((item) => item !== value)
     }
 
-    if (params.specialty.length === 0) {
-      params.specialty = ['all']
+    if (values.length === 0) {
+      values = ['all']
     }
 
-    params.page = '1'
-
-    router.setParams(params)
+    onChange(values)
   }
-
-  const items: (TSpecialty & { active: boolean })[] = []
-
-  SPECIALTY_LIST.forEach((item) => {
-    const { value } = item
-    const active = params.specialty.includes(value)
-
-    const acticeItem = { ...item, active }
-
-    if (active) {
-      items.unshift(acticeItem)
-    } else {
-      items.push(acticeItem)
-    }
-  })
 
   return (
     <ScrollView horizontal style={{ flexGrow: 0 }} showsHorizontalScrollIndicator={false}>
@@ -54,15 +36,15 @@ const MultipleSelectSpecialty = () => {
         marginLeft={24}
         onSelect={handleSelect}
         value="all"
-        active={params.specialty.includes('all')}>
+        active={defaultValues.includes('all')}>
         All
       </Chip>
-      {items.map(({ name, value }, index) => (
+      {SPECIALTY_LIST.map(({ name, value }, index) => (
         <Chip
           key={value}
           onSelect={handleSelect}
           value={value}
-          active={params.specialty.includes(value)}
+          active={defaultValues.includes(value)}
           marginLeft={8}
           marginRight={index === SPECIALTY_LIST.length - 1 ? 24 : 0}>
           {name}

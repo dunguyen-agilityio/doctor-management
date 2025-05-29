@@ -2,17 +2,21 @@ import { Spinner, YStack } from 'tamagui'
 
 import { Text, XStack } from '@theme'
 
-import DoctorCard from '@app/components/doctor-card'
-import DoctorList from '@app/components/doctor-list'
+import DoctorList, { FlatListRef } from '@app/components/doctor-list'
 import Empty from '@app/components/empty'
 import ErrorState from '@app/components/error'
 import { useSession } from '@app/contexts'
 import useDoctors from '@app/hooks/use-doctors'
 import { useFavoriteDoctors } from '@app/hooks/use-favorite'
-import { TDoctorData } from '@app/models/doctor'
-import { formatDoctor } from '@app/utils/doctor'
 
-const DoctorContainer = () => {
+interface DoctorContainerProps {
+  query: string
+  specialty: string[]
+  page?: number
+  ref?: React.Ref<FlatListRef>
+}
+
+const DoctorContainer = ({ ref, query, specialty, page = 1 }: DoctorContainerProps) => {
   const {
     data,
     isLoading: doctorLoading,
@@ -20,7 +24,8 @@ const DoctorContainer = () => {
     fetchNextPage,
     refetch,
     hasNextPage,
-  } = useDoctors()
+  } = useDoctors(query, specialty, page)
+
   const { session } = useSession()
 
   const { jwt, user } = session ?? {}
@@ -50,10 +55,6 @@ const DoctorContainer = () => {
     </YStack>
   ) : null
 
-  const renderItem = ({ item }: { item: TDoctorData }) => {
-    return <DoctorCard {...formatDoctor(item)} />
-  }
-
   const ListEmptyComponent = (
     <Empty
       title="No Doctors Found"
@@ -71,8 +72,8 @@ const DoctorContainer = () => {
         <Text size="medium" fontWeight="700">{`${meta.pagination.total} founds`}</Text>
       </XStack>
       <DoctorList
+        ref={ref}
         data={doctors}
-        renderItem={renderItem}
         onEndReached={onEndReached}
         ListFooterComponent={ListFooterComponent}
         ListEmptyComponent={ListEmptyComponent}

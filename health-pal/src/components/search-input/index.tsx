@@ -1,5 +1,3 @@
-import { router, useLocalSearchParams } from 'expo-router'
-
 import { debounce } from 'tamagui'
 
 import { InputProps } from '@theme'
@@ -8,11 +6,9 @@ import Search from '@icons/search'
 
 import Input from '../input'
 
-const SearchInput = ({ ...props }: InputProps) => {
-  const params = useLocalSearchParams()
-
+const SearchInput = ({ onChangeText, value, ...props }: InputProps) => {
   const handleSearch = (value: string) => {
-    router.setParams({ ...params, query: value, page: '1' })
+    onChangeText?.(value)
   }
 
   return (
@@ -21,6 +17,7 @@ const SearchInput = ({ ...props }: InputProps) => {
       variant="outlined"
       leftIcon={Search}
       enterKeyHint="search"
+      defaultValue={value}
       keyboardType="web-search"
       returnKeyType="search"
       clearButtonMode="always"

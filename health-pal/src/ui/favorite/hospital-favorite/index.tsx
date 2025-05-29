@@ -7,13 +7,12 @@ import Empty from '@app/components/empty'
 import ErrorState from '@app/components/error'
 import { useSession } from '@app/contexts'
 import { useFavoriteHospitals } from '@app/hooks/use-favorite'
-import { Hospital, THospitalFavorite } from '@app/models/hospital'
+import { THospitalFavorite } from '@app/models/hospital'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import HospitalList from '@app/ui/hospital/hospital-list'
+import { keyExtractor } from '@app/utils/list'
 
 const ItemSeparatorComponent = () => <Stack height={12} />
-
-const keyExtractor = (item: Hospital) => item.documentId
 
 const HospitalFavorite = () => {
   const { session } = useSession()
