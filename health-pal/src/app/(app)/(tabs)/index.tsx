@@ -1,3 +1,5 @@
+import { Link } from 'expo-router'
+
 import { ScrollView } from 'tamagui'
 
 import { XStack, YStack } from '@theme/stack'
@@ -13,7 +15,17 @@ const Home = () => {
       showsHorizontalScrollIndicator={false}>
       <YStack gap="$md" overflow="visible">
         <XStack px="$md">
-          <SearchInput placeholder="Search doctor..." />
+          <Link
+            href={{
+              pathname: '/(app)/doctors/[specialty]',
+              params: {
+                specialty: 'all',
+                searching: 'true',
+              },
+            }}
+            style={{ flex: 1 }}>
+            <SearchInput placeholder="Search doctor..." editable={false} />
+          </Link>
         </XStack>
         <DoctorBanner />
         <YStack px="$md" gap="$md">

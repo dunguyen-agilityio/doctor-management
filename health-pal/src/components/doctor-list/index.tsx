@@ -1,3 +1,4 @@
+import { useImperativeHandle, useRef } from 'react'
 import { FlatListProps, StyleSheet } from 'react-native'
 
 import { FlatList } from 'react-native-gesture-handler'
@@ -5,14 +6,37 @@ import { FlatList } from 'react-native-gesture-handler'
 import { XStack } from 'tamagui'
 
 import { TDoctorData } from '@app/models/doctor'
+import { formatDoctor } from '@app/utils/doctor'
+import { keyExtractor } from '@app/utils/list'
+
+import DoctorCard from '../doctor-card'
 
 const ItemSeparatorComponent = () => <XStack height={8} />
 
-const DoctorList = (props: FlatListProps<TDoctorData>) => {
-  const keyExtractor = (item: TDoctorData) => item.documentId
+export type FlatListRef = { scrollTop: () => void }
+
+interface DoctorListProps extends Omit<FlatListProps<TDoctorData>, 'renderItem'> {
+  ref?: React.Ref<FlatListRef>
+}
+
+const DoctorList = ({ ref, ...props }: DoctorListProps) => {
+  const flatListRef = useRef<FlatList>(null)
+
+  useImperativeHandle(ref, () => ({
+    scrollTop: () => {
+      if (ref) {
+        flatListRef.current?.scrollToOffset({ offset: 0, animated: true })
+      }
+    },
+  }))
+
+  const renderItem = ({ item }: { item: TDoctorData }) => {
+    return <DoctorCard {...formatDoctor(item)} />
+  }
 
   return (
     <FlatList
+      renderItem={renderItem}
       contentContainerStyle={styles.contentContainerStyle}
       keyExtractor={keyExtractor}
       ItemSeparatorComponent={ItemSeparatorComponent}
@@ -21,6 +45,7 @@ const DoctorList = (props: FlatListProps<TDoctorData>) => {
       windowSize={5}
       initialNumToRender={20}
       maxToRenderPerBatch={10}
+      ref={flatListRef}
       {...props}
     />
   )

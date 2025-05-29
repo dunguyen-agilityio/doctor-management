@@ -1,15 +1,12 @@
 import { FAVORITE_EMPTY } from '@app/constants'
 
-import DoctorCard from '@app/components/doctor-card'
 import DoctorList from '@app/components/doctor-list'
 import Empty from '@app/components/empty'
 import ErrorState from '@app/components/error'
 import LoadingIndicator from '@app/components/loading-indicator'
 import { useSession } from '@app/contexts'
 import { useFavoriteDoctors } from '@app/hooks/use-favorite'
-import { TDoctorData } from '@app/models/doctor'
 import { FAVORITE_TYPES } from '@app/types/favorite'
-import { formatDoctor } from '@app/utils/doctor'
 
 const DoctorFavorite = () => {
   const { session } = useSession()
@@ -36,15 +33,9 @@ const DoctorFavorite = () => {
     )
   }
 
-  const renderItem = ({ item }: { item: TDoctorData }) => {
-    return <DoctorCard {...formatDoctor(item)} />
-  }
-
   const ListEmptyComponent = <Empty {...FAVORITE_EMPTY[FAVORITE_TYPES.DOCTOR]} />
 
-  return (
-    <DoctorList data={doctors} renderItem={renderItem} ListEmptyComponent={ListEmptyComponent} />
-  )
+  return <DoctorList data={doctors} ListEmptyComponent={ListEmptyComponent} />
 }
 
 export default DoctorFavorite

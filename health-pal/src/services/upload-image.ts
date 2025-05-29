@@ -8,10 +8,10 @@ export const uploadToStrapi = async (imageUri: string, jwt: string) => {
   const adjustedUri = Platform.OS === 'ios' ? imageUri.replace('file://', '') : imageUri
   const response = await FileSystem.uploadAsync(`${API_ENDPOINT}/upload`, adjustedUri, {
     headers: {
-      Authorization: `Bearer ${jwt}`, // Include JWT if authentication is required
+      Authorization: `Bearer ${jwt}`,
     },
     uploadType: FileSystem.FileSystemUploadType.MULTIPART,
-    fieldName: 'files', // Strapi expects the file under the 'files' key
+    fieldName: 'files',
   })
 
   const data = response.body ? (JSON.parse(response.body) as StrapiImageResponse[]) : null

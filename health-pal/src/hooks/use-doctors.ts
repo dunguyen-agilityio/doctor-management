@@ -1,5 +1,4 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { useLocalSearchParams } from 'expo-router'
 
 import { TDoctorData } from '@app/models/doctor'
 import { getDoctors } from '@app/services/doctor'
@@ -7,20 +6,11 @@ import { StrapiPagination } from '@app/types/strapi'
 
 import { useAppLoading } from './use-app-loading'
 
-const useDoctors = () => {
-  const params = useLocalSearchParams<{
-    specialty: string | string[]
-    query: string
-    page: string
-  }>()
-
+const useDoctors = (query: string, specialty: string[], page: number) => {
   const setAppLoading = useAppLoading()
 
-  const { specialty, query, page } = params
-  const currentPage = parseInt(page ?? '1')
-
   const getDoctorsPromise = async ({ pageParam = 1 }: { pageParam: number }) => {
-    if (currentPage === pageParam) {
+    if (pageParam === 1) {
       setAppLoading(true)
     }
 
@@ -39,7 +29,7 @@ const useDoctors = () => {
       }
 
       const response = await getDoctors({
-        pagination: { page: pageParam },
+        pagination: { page: pageParam, pageSize: 10 },
         filters,
       })
 
@@ -47,7 +37,7 @@ const useDoctors = () => {
     } catch (error) {
       throw error
     } finally {
-      if (currentPage === pageParam) {
+      if (pageParam === 1) {
         setAppLoading(false)
       }
     }
@@ -65,7 +55,7 @@ const useDoctors = () => {
       const { page, pageCount } = lastPage.meta.pagination
       return page < pageCount ? page + 1 : undefined
     },
-    initialPageParam: currentPage,
+    initialPageParam: page,
     getPreviousPageParam: (params) => {
       const { page } = params.meta.pagination
       return page > 1 ? page - 1 : undefined
