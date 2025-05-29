@@ -1,17 +1,19 @@
-import { useImperativeHandle, useState } from 'react'
+import { Sheet, SheetProps } from '@tamagui/sheet'
 
-import { Sheet } from '@tamagui/sheet'
-
+import { useModal } from '@app/hooks/use-modal'
 import { ModalRef } from '@app/types/modal'
 
-interface SheetModalProps {
+interface SheetModalProps extends SheetProps {
   ref?: React.RefObject<ModalRef | null>
+  height?: number
 }
 
-export const SheetModal = ({ ref, children }: React.PropsWithChildren<SheetModalProps>) => {
-  const [open, setOpen] = useState(false)
-
-  useImperativeHandle(ref, () => ({ close: () => setOpen(false), open: () => setOpen(true) }))
+export const SheetModal = ({
+  ref,
+  height = 200,
+  children,
+}: React.PropsWithChildren<SheetModalProps>) => {
+  const [open, setOpen] = useModal(ref)
 
   return (
     <Sheet
@@ -30,13 +32,15 @@ export const SheetModal = ({ ref, children }: React.PropsWithChildren<SheetModal
         enterStyle={{ opacity: 0 }}
         exitStyle={{ opacity: 0 }}
       />
+
       <Sheet.Frame
+        height={height}
         padding={24}
-        alignItems="center"
+        // alignItems="center"
         gap="$md"
         borderTopLeftRadius={34}
         borderTopRightRadius={34}>
-        {children}
+        <Sheet.ScrollView>{children}</Sheet.ScrollView>
       </Sheet.Frame>
     </Sheet>
   )
