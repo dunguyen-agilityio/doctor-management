@@ -33,7 +33,7 @@ export const useAddFavorite = (type: FAVORITE_TYPES, itemName: string) => {
     },
     onError: () => {
       toast.show('Action Failed', {
-        message: 'Failed to remove favorite. Please try again.',
+        message: 'Failed to add favorite. Please try again.',
         type: 'error',
         duration: 3000,
       })

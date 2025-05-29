@@ -12,16 +12,16 @@ export class Hospital extends Strapi {
   doctors!: Doctor[]
   rating!: number
   reviews!: Review[]
-  reivewCouter!: number
+  reviewCounter!: number
   type!: 'Hospital' | 'Clinic'
 
-  constructor({ doctors, reviews, rating, reivewCouter, ...clinic }: Hospital) {
+  constructor({ doctors, reviews, rating, reviewCounter, ...clinic }: Hospital) {
     super(clinic)
     Object.assign(this, clinic)
     this.doctors = doctors ?? []
     this.reviews = reviews ?? []
     this.rating = rating ?? 0
-    this.reivewCouter = reivewCouter ?? 0
+    this.reviewCounter = reviewCounter ?? 0
   }
 }
 

@@ -3,7 +3,7 @@ import { Image } from 'expo-image'
 import { Card, Separator, Stack } from 'tamagui'
 
 import { Heading } from '@theme/heading'
-import { XStack, YStack } from '@theme/stack'
+import { XStack } from '@theme/stack'
 import { Text } from '@theme/text'
 
 import { Hospital as HospitalIcon, Routing } from '@icons'
@@ -20,10 +20,10 @@ const HospitalCard = ({
   image = require('@/assets/images/banner01.webp'),
   address,
   name,
-  rating = 0,
-  reivewCouter = 0,
+  rating = 4.2,
+  reviewCounter = 23,
   w = 342,
-  type,
+  type = 'Hospital',
   px,
   full,
   h = 252,
@@ -51,43 +51,43 @@ const HospitalCard = ({
         height={height}
         borderRadius="$2"
         overflow="hidden"
-        shadowColor="$white">
+        elevation={3}
+        shadowColor="$black"
+        shadowOffset={{ width: 4, height: 4 }}>
         <Card.Header padding={0}>
           <Image source={image?.url} style={{ height: 120, objectFit: 'contain' }} />
         </Card.Header>
 
-        <Card.Footer padding={12} paddingTop={8}>
-          <YStack gap="$sm">
-            <Heading size="small" numberOfLines={1}>
-              {name}
-            </Heading>
+        <Card.Footer padding={12} paddingTop={8} gap="$sm" flexDirection="column">
+          <Heading size="small" numberOfLines={1}>
+            {name}
+          </Heading>
+
+          <XStack alignItems="center" gap="$sm">
+            <LocationOutline testID="location-icon" />
+            <Text size="extraSmall" numberOfLines={1}>
+              {address}
+            </Text>
+          </XStack>
+
+          <XStack alignItems="center" gap="$sm">
+            <Stars stars={rating} max={1} />
+            <Text size="extraSmall">{`(${reviewCounter} Reviews)`}</Text>
+          </XStack>
+
+          <Separator backgroundColor="$grey200" />
+
+          <XStack justifyContent="space-between">
+            <XStack alignItems="center" gap="$sm">
+              <Routing testID="routing-icon" />
+              <Text size="extraSmall">2.5 km/40min</Text>
+            </XStack>
 
             <XStack alignItems="center" gap="$sm">
-              <LocationOutline testID="location-icon" />
-              <Text size="extraSmall" numberOfLines={1}>
-                {address}
-              </Text>
+              <HospitalIcon testID="hospital-icon" />
+              <Text size="extraSmall">{type}</Text>
             </XStack>
-
-            <XStack alignItems="center" gap="$sm">
-              <Stars stars={rating} max={1} />
-              <Text size="extraSmall">{`(${reivewCouter} Reviews)`}</Text>
-            </XStack>
-
-            <Separator backgroundColor="$grey200" />
-
-            <XStack justifyContent="space-between">
-              <XStack alignItems="center" gap="$sm">
-                <Routing testID="routing-icon" />
-                <Text size="extraSmall">2.5 km/40min</Text>
-              </XStack>
-
-              <XStack alignItems="center" gap="$sm">
-                <HospitalIcon testID="hospital-icon" />
-                <Text size="extraSmall">{type}</Text>
-              </XStack>
-            </XStack>
-          </YStack>
+          </XStack>
         </Card.Footer>
       </Card>
     </Stack>
