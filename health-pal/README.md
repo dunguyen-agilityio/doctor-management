@@ -61,7 +61,7 @@
   - Node.js (>= 20.x)
   - Expo CLI (>= 7.x) → Install globally with:
 
-    > ```
+    > ```bash
     > npm install -g expo-cli
     > ```
 
@@ -75,50 +75,58 @@
 
 **Clone repository**:
 
-> ```
+> ```bash
 > git clone git@gitlab.asoft-python.com:du.nguyen/react-native-training.git
 > ```
 
 **Check out the branch**:
 
-> ```
+> ```bash
 > git checkout feat/doctor-appointment
 > ```
 
-> ```
-> cd healthy-pal
+> ```bash
+> cd health-pal
 > ```
 
 **Install package dependencies**:
 
-> ```
+> ```bash
 > yarn install
 > ```
 
-**Setup Environment Variables**
+### Setup Environment Variables
 
 - Create a .env file and add the following keys:
 
-> ```
+> ```bash
 > EXPO_PUBLIC_APP_TOKEN=token
 > EXPO_PUBLIC_API_ENDPOINT=http://localhost:3000
 > ```
 
-**Run application (Expo CLI)**
+### Run application with Expo Go
 
-> ```
+> ```bash
 > npx expo start
 > ```
 
-**_or_**
+### Run application with Development build
 
+- Prebuild
+
+> ```bash
+> yarn prebuild:a
 > ```
+
+- Run
+
+> ```bash
 > yarn android
 > ```
 
 ## 7. Project Structure
 
-> ```
+> ```text
 > /healthy-food
 > │── .husky/ # Git Hooks
 > │── assets/ # Images, Icons
@@ -141,9 +149,9 @@
 
 ## 8. Running Tests
 
-**To run tests, use**
+### To run tests, use
 
-> ```
+> ```bash
 > yarn test
 > ```
 
