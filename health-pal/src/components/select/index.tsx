@@ -1,77 +1,52 @@
+import { useMemo } from 'react'
+
 import { Check, ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
-import {
-  Adapt,
-  FontSizeTokens,
-  Popover,
-  Select as TamaguiSelect,
-  SelectProps as TamaguiSelectProps,
-  YStack,
-  getFontSize,
-} from 'tamagui'
+import { Adapt, Select, SelectProps, YStack } from 'tamagui'
 import { LinearGradient } from 'tamagui/linear-gradient'
 
 import { Text } from '@theme/text'
 
-interface SelectProps extends TamaguiSelectProps {
+import { SheetModal } from '../sheet-modal'
+
+interface CustomSelectProps extends SelectProps {
   items: { name: string }[]
   placeholder?: string
   errorMessage?: string
-  onBlur?: () => void
-  label?: string
 }
 
-const Select = ({
-  items,
-  errorMessage,
-  onBlur,
-  onValueChange,
-  placeholder,
-  label,
-  ...props
-}: SelectProps) => {
-  const handleChange = (val: string) => {
-    onValueChange?.(val)
-    onBlur?.()
-  }
-
+const CustomSelect = ({ items, errorMessage, placeholder, ...props }: CustomSelectProps) => {
   return (
     <YStack gap="$sm" flex={1}>
-      <TamaguiSelect onValueChange={handleChange} disablePreventBodyScroll size="$1" {...props}>
-        <TamaguiSelect.Trigger
+      <Select disablePreventBodyScroll {...props}>
+        <Select.Trigger
           testID="trigger"
           iconAfter={ChevronDown}
           height={48}
           borderColor={errorMessage && 'red'}
           borderWidth={1}>
-          <TamaguiSelect.Value placeholder={placeholder} color="$grey600" fontSize="$s" />
-        </TamaguiSelect.Trigger>
-
+          <Select.Value
+            opacity={1}
+            placeholder={placeholder}
+            width="100%"
+            color="$grey600"
+            fontSize="$s"
+          />
+        </Select.Trigger>
         <Adapt when="maxMd" platform="touch">
-          <Popover.Sheet native={!!props.native} snapPointsMode="constant" animation="quick">
-            <Popover.Sheet.Frame backgroundColor="transparent">
-              <Popover.Sheet.ScrollView maxHeight={200}>
-                <Adapt.Contents />
-              </Popover.Sheet.ScrollView>
-            </Popover.Sheet.Frame>
-            <Popover.Sheet.Overlay
-              backgroundColor="$shadowColor"
-              animation="200ms"
-              enterStyle={{ opacity: 0 }}
-              exitStyle={{ opacity: 0 }}
-              testID="sheet-overlay"
-            />
-          </Popover.Sheet>
+          <SheetModal>
+            <Adapt.Contents />
+          </SheetModal>
         </Adapt>
 
-        <TamaguiSelect.Content zIndex={200000}>
-          <TamaguiSelect.ScrollUpButton
+        <Select.Content zIndex={200000}>
+          <Select.ScrollUpButton
             alignItems="center"
             justifyContent="center"
             position="relative"
             width="100%"
             height="$3">
             <YStack zIndex={10}>
-              <ChevronUp size={20} testID="chevron-up" />
+              <ChevronUp size={20} />
             </YStack>
             <LinearGradient
               start={[0, 0]}
@@ -80,61 +55,41 @@ const Select = ({
               colors={['$background', 'transparent']}
               borderRadius="$4"
             />
-          </TamaguiSelect.ScrollUpButton>
+          </Select.ScrollUpButton>
 
-          <TamaguiSelect.Viewport animation="quicker" animateOnly={['transform', 'opacity']}>
-            <TamaguiSelect.Group
-              maxHeight={200}
-              backgroundColor="$grey50"
-              padding={8}
-              marginTop={48}
-              borderRadius={12}
-              boxShadow="0px 10px 15px -3px rgba(0, 0, 0, 0.10), 0px 4px 6px 0px rgba(0, 0, 0, 0.05)">
-              {label && (
-                <TamaguiSelect.Label backgroundColor={'transparent'}>{label}</TamaguiSelect.Label>
+          <Select.Viewport
+            animation="quick"
+            animateOnly={['transform', 'opacity']}
+            enterStyle={{ x: 0, y: -10 }}
+            exitStyle={{ x: 0, y: 10 }}
+            minWidth={200}>
+            <Select.Group>
+              <Select.Label>{placeholder}</Select.Label>
+              {useMemo(
+                () =>
+                  items.map((item, i) => {
+                    return (
+                      <Select.Item index={i} key={item.name} value={item.name}>
+                        <Select.ItemText>{item.name}</Select.ItemText>
+                        <Select.ItemIndicator marginLeft="auto">
+                          <Check size={16} />
+                        </Select.ItemIndicator>
+                      </Select.Item>
+                    )
+                  }),
+                [items],
               )}
-              {items.map((item, i) => {
-                return (
-                  <TamaguiSelect.Item
-                    backgroundColor={'transparent'}
-                    index={i}
-                    key={item.name}
-                    value={item.name}>
-                    <TamaguiSelect.ItemText>{item.name}</TamaguiSelect.ItemText>
-                    <TamaguiSelect.ItemIndicator marginLeft="auto">
-                      <Check size={16} testID="check" />
-                    </TamaguiSelect.ItemIndicator>
-                  </TamaguiSelect.Item>
-                )
-              })}
-            </TamaguiSelect.Group>
-            {/* Native gets an extra icon */}
-            {props.native && (
-              <YStack
-                position="absolute"
-                right={0}
-                top={0}
-                bottom={0}
-                alignItems="center"
-                justifyContent="center"
-                width={'$4'}
-                pointerEvents="none">
-                <ChevronDown
-                  testID="chevron-down"
-                  size={getFontSize((props.size as FontSizeTokens) ?? '$true')}
-                />
-              </YStack>
-            )}
-          </TamaguiSelect.Viewport>
+            </Select.Group>
+          </Select.Viewport>
 
-          <TamaguiSelect.ScrollDownButton
+          <Select.ScrollDownButton
             alignItems="center"
             justifyContent="center"
             position="relative"
             width="100%"
             height="$3">
-            <YStack zIndex={10} backgroundColor={'red'}>
-              <ChevronDown size={20} testID="chevron-down" />
+            <YStack zIndex={10}>
+              <ChevronDown size={20} />
             </YStack>
             <LinearGradient
               start={[0, 0]}
@@ -143,9 +98,9 @@ const Select = ({
               colors={['transparent', '$background']}
               borderRadius="$4"
             />
-          </TamaguiSelect.ScrollDownButton>
-        </TamaguiSelect.Content>
-      </TamaguiSelect>
+          </Select.ScrollDownButton>
+        </Select.Content>
+      </Select>
       {errorMessage && (
         <Text color="red" size="extraSmall">
           {errorMessage}
@@ -155,4 +110,4 @@ const Select = ({
   )
 }
 
-export default Select
+export default CustomSelect
