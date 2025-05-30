@@ -74,7 +74,7 @@ const CustomAlertDialog = ({
           {...contentProps}>
           {title && (
             <AlertDialog.Title>
-              <Heading>{title}</Heading>
+              <Heading size="large">{title}</Heading>
             </AlertDialog.Title>
           )}
           {description && (

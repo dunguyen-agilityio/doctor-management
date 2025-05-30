@@ -101,7 +101,8 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                 {...field}
                 placeholder="Name"
                 ref={nameRef}
-                onEndEdit={(isChanged) => {
+                returnKeyType="next"
+                onEdited={(isChanged) => {
                   if (isChanged) nicknameRef?.current?.focus()
                 }}
                 onChangeText={onChange}
@@ -125,8 +126,10 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
               <Input
                 {...field}
                 placeholder="Nickname"
+                returnKeyType="next"
                 ref={nicknameRef}
-                onEndEdit={(isChanged) => {
+                onEdited={(isChanged) => {
+                  console.log('isChanged', isChanged)
                   if (isChanged) emailRef?.current?.focus()
                 }}
                 onChangeText={onChange}

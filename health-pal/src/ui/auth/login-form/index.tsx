@@ -10,9 +10,10 @@ import { VALIDATIONS_MESSAGE } from '@app/constants/message'
 
 import { Button } from '@theme/button'
 
-import { LockIcon, SmsIcon } from '@icons'
+import { SmsIcon } from '@icons'
 
 import { Input } from '@app/components'
+import PasswordInput from '@app/components/password-input'
 import { AuthCredentials } from '@app/types'
 
 interface LoginFormProps {
@@ -56,8 +57,9 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
                 placeholder="Your Email"
                 errorMessage={error?.message}
                 textContentType="emailAddress"
+                autoCapitalize="none"
                 returnKeyType="next"
-                onEndEdit={(isChanged) => {
+                onEdited={(isChanged) => {
                   if (isChanged) {
                     passwordRef.current?.focus()
                   }
@@ -71,14 +73,10 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
           control={control}
           rules={{ required: VALIDATIONS_MESSAGE.REQUIRED_PASSWORD }}
           render={({ field: { onChange, ...field }, fieldState: { error } }) => (
-            <Input
+            <PasswordInput
               {...field}
               onChangeText={onChange}
               ref={passwordRef}
-              leftIcon={LockIcon}
-              placeholder="Password"
-              textContentType="password"
-              secureTextEntry
               errorMessage={error?.message}
               returnKeyType="done"
             />
