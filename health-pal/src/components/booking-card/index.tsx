@@ -24,7 +24,6 @@ type TBookingCard = {
 
 interface BookingCardProps extends TBookingCard {
   type?: BOOKING_TABS
-  width: number
 }
 
 const BookingCard = ({
@@ -36,7 +35,6 @@ const BookingCard = ({
   address,
   documentId,
   doctorId,
-  width,
   ...props
 }: BookingCardProps) => {
   const cancelBookRef = useRef<ModalRef>(null)
@@ -82,10 +80,10 @@ const BookingCard = ({
 
     return (
       <XStack marginTop={10} gap={10}>
-        <Button variant="secondary" flex={1} onPress={action1.action}>
+        <Button variant="secondary" sizeButton="sm" flex={1} onPress={action1.action}>
           {action1.title}
         </Button>
-        <Button flex={1} onPress={action2.action}>
+        <Button flex={1} sizeButton="sm" onPress={action2.action}>
           {action2.title}
         </Button>
       </XStack>
@@ -94,7 +92,6 @@ const BookingCard = ({
   return (
     <>
       <Card
-        width={width}
         borderRadius={12}
         borderWidth={0.5}
         borderColor="$grey100"
@@ -117,12 +114,12 @@ const BookingCard = ({
         <Card.Footer>
           {/* Doctor Info */}
           <YStack flex={1}>
-            <XStack alignItems="center" gap={10}>
+            <XStack gap={10}>
               <Image
                 source={{ uri: doctorAvatar }}
-                style={{ width: 60, height: 60, borderRadius: 8 }}
+                style={{ width: 109, height: 109, borderRadius: 8 }}
               />
-              <YStack>
+              <YStack paddingVertical={14}>
                 <Text fontSize={16} fontWeight="bold">
                   {doctorName}
                 </Text>

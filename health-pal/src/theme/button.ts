@@ -6,14 +6,16 @@ export const Button = styled(TamaguiButton, {
   fontSize: '$s',
   disabledStyle: { opacity: 0.75, backgroundColor: '$grey900' },
   variants: {
+    sizeButton: {
+      sm: { height: 37 },
+      md: { height: 40, paddingVertical: 10 },
+      lg: { height: 48, paddingVertical: 12, paddingHorizontal: 20 },
+    },
     variant: {
       primary: {
         backgroundColor: '$primary',
         color: '$white',
         borderRadius: '$6',
-        height: 48,
-        paddingVertical: 12,
-        paddingHorizontal: 20,
         pressStyle: { backgroundColor: '$primary', opacity: 0.85 },
         hoverStyle: { opacity: 0.85 },
       },
@@ -21,20 +23,15 @@ export const Button = styled(TamaguiButton, {
         backgroundColor: '$grey200',
         color: '$primary',
         borderRadius: '$6',
-        height: 48,
-        paddingVertical: 12,
-        paddingHorizontal: 20,
         pressStyle: { backgroundColor: '$grey200' },
         hoverStyle: { opacity: 0.85 },
       },
       outlined: {
         color: '$primary',
         backgroundColor: 'transparent',
-        py: 10,
         borderWidth: 1,
         borderColor: '$grey200',
         borderRadius: '$1',
-        height: 40,
       },
       icon: {
         width: 24,
@@ -45,14 +42,13 @@ export const Button = styled(TamaguiButton, {
         color: '$primary',
         backgroundColor: 'transparent',
         py: 10,
-        height: 40,
       },
     },
     full: {
       true: { minWidth: '100%' },
     },
   } as const,
-  defaultVariants: { variant: 'primary' },
+  defaultVariants: { variant: 'primary', sizeButton: 'lg' },
 })
 
 export type ButtonProps = Parameters<typeof Button>['0']

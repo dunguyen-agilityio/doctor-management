@@ -4,9 +4,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import dayjs from 'dayjs'
 import { useLocalSearchParams } from 'expo-router'
-import { ScrollView } from 'react-native-gesture-handler'
 
-import { Button, Heading, XStack, YStack } from '@theme'
+import { Button, Heading, YStack } from '@theme'
 
 import { DatePicker } from '@app/components'
 import BookingTime from '@app/components/booking-time'
@@ -18,12 +17,7 @@ import { BOOKING_TABS, BookingForm } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 import { CreateBookingSuccessModal } from '@app/ui/booking/create-booking-success-modal'
 import ReloadTimeSlotConfirmModal from '@app/ui/booking/reload-time-slot'
-
-const getTomorrow = () => {
-  const now = dayjs(new Date())
-  const tomorrow = now.set('date', now.get('date') + 1)
-  return tomorrow
-}
+import { getDefaultDate } from '@app/utils/date'
 
 type BookingScreenParams = {
   doctorId: string
@@ -46,7 +40,7 @@ const Booking = () => {
   const {
     doctorId: doctId,
     bookingId: bookingIdParam,
-    date: defaultDate = getTomorrow(),
+    date: defaultDate = getDefaultDate(),
     time: timeParam = '',
   } = params
 
@@ -56,7 +50,7 @@ const Booking = () => {
   const { control, setValue, handleSubmit } = methods
 
   const getAvailable = useCallback(
-    async (date = getTomorrow()) => {
+    async (date = getDefaultDate()) => {
       const formattedDate = date.format('YYYY-MM-DD')
 
       if (formattedDate) {
@@ -105,16 +99,16 @@ const Booking = () => {
     }
   }
 
-  const minDate = useMemo(() => getTomorrow(), [])
+  const minDate = useMemo(() => getDefaultDate(), [])
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <YStack backgroundColor="$white" flex={1}>
       <FormProvider {...methods}>
         <ReloadTimeSlotConfirmModal ref={reloadTimeSlotConfirmRef} onReload={getAvailable} />
         <CreateBookingSuccessModal ref={cancelConfirmRef} />
       </FormProvider>
-      <YStack paddingHorizontal={24} flex={1}>
-        <YStack flex={1} gap={32}>
+      <YStack justifyContent="space-between" flex={1}>
+        <YStack flex={1} gap={32} paddingHorizontal={24}>
           <YStack gap={8}>
             <Heading>Select Date</Heading>
             <Controller
@@ -145,18 +139,19 @@ const Booking = () => {
             )}
           />
         </YStack>
-        <XStack
+        <YStack
           height={96}
           padding={24}
+          gap={24}
           width="100%"
           borderTopColor="$grey200"
           borderTopWidth={0.5}>
           <Button flex={1} onPress={handleSubmit(onSubmit)}>
             Confirm
           </Button>
-        </XStack>
+        </YStack>
       </YStack>
-    </ScrollView>
+    </YStack>
   )
 }
 
