@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { Fragment, useRef } from 'react'
 import { TextInput } from 'react-native'
 
 import { SvgProps } from 'react-native-svg'
@@ -6,18 +6,22 @@ import { SvgProps } from 'react-native-svg'
 import { IconProps } from '@tamagui/helpers-icon'
 import { XStack, YStack } from 'tamagui'
 
-import { InputProps, Input as TamaguiInput, Text } from '@theme'
+import { ButtonProps, InputProps, Input as TamaguiInput, Text } from '@theme'
 
 type IconComponent =
   | ((propsIn: IconProps) => React.ReactElement)
   | ((propsIn: SvgProps) => React.ReactElement)
 
-interface CustomInputProps extends InputProps {
+interface CustomInputProps extends Omit<InputProps, 'onBlur'> {
   leftIcon?: IconComponent | null
+  rightIcon?: IconComponent | null
   ref?: React.Ref<TextInput>
   errorMessage?: string
-  onEndEdit?: (isChanged: boolean) => void
+  onEdited?: (isChanged: boolean) => void
+  rightButton?: ({ children }: ButtonProps) => React.ReactNode
 }
+
+export type { CustomInputProps as InputProps }
 
 const styleByIcon: Record<'true' | 'false', InputProps> = {
   true: {
@@ -31,22 +35,25 @@ const styleByIcon: Record<'true' | 'false', InputProps> = {
 
 const Input = ({
   leftIcon: LeftIcon = null,
+  rightIcon: RightIcon = null,
   errorMessage,
   onFocus,
-  onEndEdit,
+  onEdited,
   ref,
   onEndEditing,
-  value,
   defaultValue,
+  value = defaultValue,
+  rightButton: RightButton = Fragment,
   ...props
 }: CustomInputProps) => {
-  const hasIcon = LeftIcon !== null
-  const valueRef = useRef(defaultValue ?? value)
+  const hasLeftIcon = LeftIcon !== null
+  const hasRightIcon = RightIcon !== null
+  const valueRef = useRef(value)
 
   return (
     <YStack gap="$sm" width="100%">
       <XStack alignItems="center">
-        {hasIcon ? (
+        {hasLeftIcon ? (
           <LeftIcon testID="left-icon" position="absolute" zIndex={200} left={16} size={16} />
         ) : null}
         <TamaguiInput
@@ -56,16 +63,27 @@ const Input = ({
           {...props}
           value={value}
           onFocus={(e) => {
-            valueRef.current = defaultValue
+            valueRef.current = value
             onFocus?.(e)
           }}
           defaultValue={defaultValue}
           onEndEditing={(e) => {
-            onEndEdit?.(e.nativeEvent.text !== valueRef.current)
+            onEdited?.(e.nativeEvent.text !== valueRef.current)
             onEndEditing?.(e)
           }}
-          {...styleByIcon[hasIcon ? 'true' : 'false']}
+          {...styleByIcon[hasLeftIcon ? 'true' : 'false']}
         />
+        {hasRightIcon ? (
+          <RightButton
+            padding={0}
+            height={16}
+            testID="right-icon"
+            position="absolute"
+            zIndex={200}
+            right={16}>
+            <RightIcon size={16} />
+          </RightButton>
+        ) : null}
       </XStack>
       {errorMessage && (
         <Text color="red" size="extraSmall">

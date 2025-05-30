@@ -32,7 +32,7 @@ const LogoutModal = ({ ref }: { ref: React.RefObject<ModalRef | null> }) => {
           Are you sure you want to log out?
         </Text>
       </YStack>
-      <XStack gap={16}>
+      <XStack gap={16} paddingTop={16}>
         <Button
           fontWeight="700"
           variant="secondary"
