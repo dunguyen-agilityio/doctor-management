@@ -22,6 +22,7 @@
   "dependencies": {
     "@babel/plugin-transform-class-static-block": "^7.27.1",
     "@expo-google-fonts/inter": "^0.3.0",
+    "@shopify/flash-list": "1.7.6",
     "@tamagui/babel-plugin": "^1.126.12",
     "@tamagui/config": "^1.126.12",
     "@tamagui/lucide-icons": "^1.126.12",

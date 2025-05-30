@@ -6,7 +6,6 @@ import { TextInput } from 'react-native-gesture-handler'
 import { YStack } from '@theme'
 
 import { SearchInput } from '@app/components'
-import { FlatListRef } from '@app/components/doctor-list'
 import { DoctorContainer, MultipleSelectSpecialty } from '@app/ui/doctor'
 
 const DoctorListScreen = () => {
@@ -20,7 +19,6 @@ const DoctorListScreen = () => {
     searching?: string
   }>()
 
-  const flatListRef = useRef<FlatListRef>(null)
   const searchRef = useRef<TextInput>(null)
 
   useEffect(() => {
@@ -30,13 +28,11 @@ const DoctorListScreen = () => {
   }, [searching])
 
   const handleChangeSpecialty = (values: string[]) => {
-    router.setParams({ specialty: values, page: 1 })
-    flatListRef.current?.scrollTop()
+    router.setParams({ specialty: values })
   }
 
   const handleChangeQuery = (value: string) => {
-    router.setParams({ query: value, page: 1 })
-    flatListRef.current?.scrollTop()
+    router.setParams({ query: value })
   }
 
   return (
@@ -52,7 +48,7 @@ const DoctorListScreen = () => {
       <YStack>
         <MultipleSelectSpecialty values={specialty} onChange={handleChangeSpecialty} />
       </YStack>
-      <DoctorContainer ref={flatListRef} query={query} specialty={specialty} />
+      <DoctorContainer query={query} specialty={specialty} />
     </YStack>
   )
 }

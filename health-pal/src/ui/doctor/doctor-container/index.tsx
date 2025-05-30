@@ -2,40 +2,40 @@ import { Spinner, YStack } from 'tamagui'
 
 import { Text, XStack } from '@theme'
 
-import DoctorList, { FlatListRef } from '@app/components/doctor-list'
+import { LoadingIndicator } from '@app/components'
 import Empty from '@app/components/empty'
 import ErrorState from '@app/components/error'
-import { useSession } from '@app/contexts'
 import useDoctors from '@app/hooks/use-doctors'
 import { useFavoriteDoctors } from '@app/hooks/use-favorite'
+
+import DoctorList from '../doctor-list'
 
 interface DoctorContainerProps {
   query: string
   specialty: string[]
-  page?: number
-  ref?: React.Ref<FlatListRef>
 }
 
-const DoctorContainer = ({ ref, query, specialty, page = 1 }: DoctorContainerProps) => {
+const DoctorContainer = ({ query, specialty }: DoctorContainerProps) => {
   const {
     data,
-    isLoading: doctorLoading,
+    isFetching,
+    isLoading: docLoading,
     error,
     fetchNextPage,
     refetch,
     hasNextPage,
-  } = useDoctors(query, specialty, page)
+    isFetchingNextPage,
+  } = useDoctors(query, specialty)
 
-  const { session } = useSession()
-
-  const { jwt, user } = session ?? {}
-  const { isLoading: favLoading } = useFavoriteDoctors(user!.id, jwt!)
-
-  const isLoading = doctorLoading || favLoading
+  const { isLoading: favLoading } = useFavoriteDoctors()
 
   const hasError = error || !data
 
-  if (!isLoading && hasError) {
+  if (favLoading || docLoading) {
+    return <LoadingIndicator fullScreen />
+  }
+
+  if (!data && hasError) {
     return (
       <ErrorState
         title="Failed to Load"
@@ -45,9 +45,9 @@ const DoctorContainer = ({ ref, query, specialty, page = 1 }: DoctorContainerPro
     )
   }
 
-  if (!data) return null
-
   const { data: doctors, meta } = data
+
+  const currentPage = meta.pagination.page ?? 1
 
   const ListFooterComponent = hasNextPage ? (
     <YStack paddingVertical={8}>
@@ -67,12 +67,13 @@ const DoctorContainer = ({ ref, query, specialty, page = 1 }: DoctorContainerPro
   const onEndReached = () => fetchNextPage()
 
   return (
-    <YStack flex={1} gap={8}>
+    <YStack flex={1} gap={8} position="relative">
+      {isFetching && !isFetchingNextPage && <LoadingIndicator fullScreen />}
       <XStack justifyContent="space-between" paddingHorizontal={24}>
-        <Text size="medium" fontWeight="700">{`${meta.pagination.total} founds`}</Text>
+        <Text size="medium" fontWeight="700">{`${data?.meta.pagination.total ?? 0} founds`}</Text>
       </XStack>
       <DoctorList
-        ref={ref}
+        page={currentPage}
         data={doctors}
         onEndReached={onEndReached}
         ListFooterComponent={ListFooterComponent}

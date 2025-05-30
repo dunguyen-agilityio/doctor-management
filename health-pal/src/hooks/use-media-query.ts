@@ -1,19 +1,19 @@
 import { WINDOW_SIZE } from '@app/constants'
 
 export type MediaQuery = {
-  w?: number
+  width?: number
+  height?: number
   px?: number
-  h?: number
   full?: boolean
 }
 
-const useMediaQuery = ({ w = 342, px = 24, h = 0, full }: MediaQuery) => {
+const useMediaQuery = ({ width = 342, px = 24, height = 0, full }: MediaQuery) => {
   const maxW = WINDOW_SIZE.width - px * 2
-  const width = full ? maxW : w
 
-  const height = full ? (width * h) / w : h
-
-  return { width, height }
+  return {
+    width: Math.round(full ? maxW : width),
+    height: Math.round(full ? (width * height) / width : height),
+  }
 }
 
 export default useMediaQuery

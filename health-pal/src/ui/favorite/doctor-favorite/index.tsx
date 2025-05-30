@@ -1,23 +1,19 @@
 import { FAVORITE_EMPTY } from '@app/constants'
 
-import DoctorList from '@app/components/doctor-list'
 import Empty from '@app/components/empty'
 import ErrorState from '@app/components/error'
 import LoadingIndicator from '@app/components/loading-indicator'
-import { useSession } from '@app/contexts'
 import { useFavoriteDoctors } from '@app/hooks/use-favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
+import DoctorList from '@app/ui/doctor/doctor-list'
 
 const DoctorFavorite = () => {
-  const { session } = useSession()
-
-  const { jwt, user } = session ?? {}
   const {
     data: doctors,
     error: favoriteError,
     isLoading: favoriteLoading,
     refetch,
-  } = useFavoriteDoctors(user!.id, jwt!)
+  } = useFavoriteDoctors()
 
   if (favoriteLoading) {
     return <LoadingIndicator />

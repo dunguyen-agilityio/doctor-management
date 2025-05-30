@@ -46,7 +46,7 @@ const Favorite = () => {
       <TabsContent value={FAVORITE_TYPES.DOCTOR}>
         <DoctorFavorite />
       </TabsContent>
-      <TabsContent paddingHorizontal="$md" value={FAVORITE_TYPES.HOSPITAL}>
+      <TabsContent value={FAVORITE_TYPES.HOSPITAL}>
         <HospitalFavorite />
       </TabsContent>
     </Tabs>

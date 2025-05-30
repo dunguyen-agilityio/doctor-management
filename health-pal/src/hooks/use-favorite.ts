@@ -1,10 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
 
+import { useSession } from '@app/contexts'
 import { fetchFavoritesByType } from '@app/services/favorite'
 import { useFavoritesStore } from '@app/stores/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
-export const useFavoriteDoctors = (userId: number, jwt: string) => {
+export const useFavoriteDoctors = () => {
+  const { session } = useSession()
+  const userId = session?.user.id!
+  const jwt = session?.jwt!
   const setFavorite = useFavoritesStore((state) => state.setFavoriteDoctors)
 
   return useQuery({
@@ -24,7 +28,10 @@ export const useFavoriteDoctors = (userId: number, jwt: string) => {
   })
 }
 
-export const useFavoriteHospitals = (userId: number, jwt: string) => {
+export const useFavoriteHospitals = () => {
+  const { session } = useSession()
+  const userId = session?.user.id!
+  const jwt = session?.jwt!
   const setFavorite = useFavoritesStore((state) => state.setFavoriteHospitals)
 
   return useQuery({
