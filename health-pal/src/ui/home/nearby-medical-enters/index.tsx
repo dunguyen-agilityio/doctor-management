@@ -4,12 +4,10 @@ import { Stack } from 'tamagui'
 
 import { YStack } from '@theme'
 
-import { HospitalCard, LoadingIndicator, SessionHeader } from '@app/components'
+import { LoadingIndicator, SessionHeader } from '@app/components'
 import ErrorState from '@app/components/error'
-import { useSession } from '@app/contexts'
 import { useFavoriteHospitals } from '@app/hooks/use-favorite'
 import useHospitals from '@app/hooks/use-hospitals'
-import { Hospital } from '@app/models/hospital'
 import HospitalList from '@app/ui/hospital/hospital-list'
 
 const ItemSeparatorComponent = () => <Stack width={16} />
@@ -20,9 +18,8 @@ const seeAllWrapper = ({ children }: React.PropsWithChildren) => (
 
 const NearbyMedicalCenters = () => {
   const { data, isLoading, error, refetch } = useHospitals()
-  const { session } = useSession()
-  const { jwt, user } = session ?? {}
-  const { isLoading: isFavLoading } = useFavoriteHospitals(user!.id, jwt!)
+
+  const { isLoading: isFavLoading } = useFavoriteHospitals()
 
   const renderHospitalList = () => {
     if (isLoading || isFavLoading) {
@@ -39,16 +36,12 @@ const NearbyMedicalCenters = () => {
       )
     }
 
-    const renderItem = ({ item }: { item: Hospital }) => {
-      return <HospitalCard w={232} px={0} {...item} />
-    }
-
     return (
       <HospitalList
-        renderItem={renderItem}
         ItemSeparatorComponent={ItemSeparatorComponent}
         horizontal
         data={data.data}
+        estimatedItemSize={232}
       />
     )
   }

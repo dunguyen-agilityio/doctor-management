@@ -7,7 +7,6 @@ import { Card, Separator } from 'tamagui'
 
 import { Button, Heading, Text, XStack, YStack } from '@theme'
 
-import useMediaQuery from '@app/hooks/use-media-query'
 import { BOOKING_TABS } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 import CancelBookingModal from '@app/ui/booking/cancel-booking-modal'
@@ -25,6 +24,7 @@ type TBookingCard = {
 
 interface BookingCardProps extends TBookingCard {
   type?: BOOKING_TABS
+  width: number
 }
 
 const BookingCard = ({
@@ -36,11 +36,11 @@ const BookingCard = ({
   address,
   documentId,
   doctorId,
+  width,
   ...props
 }: BookingCardProps) => {
   const cancelBookRef = useRef<ModalRef>(null)
   const { type = BOOKING_TABS.UPCOMING } = props
-  const { width } = useMediaQuery({ full: true })
 
   const renderAction = () => {
     const ACTIONS: Record<BOOKING_TABS, { title: string; action: () => void }[]> = {

@@ -25,7 +25,7 @@ describe('DoctorCard', () => {
   })
 
   it('matches snapshot with actionable=false', () => {
-    const { toJSON } = render(<DoctorCard {...mockDoctorCard} actionable={false} />)
+    const { toJSON } = render(<DoctorCard {...mockDoctorCard} />)
     expect(toJSON()).toMatchSnapshot()
   })
 
@@ -45,7 +45,7 @@ describe('DoctorCard', () => {
   })
 
   it('matches snapshot with full data and actionable=true', () => {
-    const { toJSON } = render(<DoctorCard {...mockDoctorCard} actionable />)
+    const { toJSON } = render(<DoctorCard {...mockDoctorCard} />)
     expect(toJSON()).toMatchSnapshot()
   })
 })

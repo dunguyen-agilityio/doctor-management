@@ -9,7 +9,6 @@ import TwoUser from '@icons/two-user'
 
 import {
   ButtonWithUpcoming,
-  DoctorCard,
   LoadingIndicator,
   ReviewCard,
   SessionHeader,
@@ -17,6 +16,7 @@ import {
 } from '@app/components'
 import ErrorState from '@app/components/error'
 import useDoctor from '@app/hooks/use-doctor'
+import DoctorCard from '@app/ui/doctor/doctor-card'
 import { formatDoctor } from '@app/utils/doctor'
 import { formatReview } from '@app/utils/review'
 
@@ -52,7 +52,7 @@ const Details = () => {
   return (
     <YStack flex={1} gap={16} paddingTop={16}>
       <YStack gap={16} flex={1} paddingHorizontal={24}>
-        <DoctorCard {...formatDoctor(data)} actionable={false} />
+        <DoctorCard {...formatDoctor(data)} showReview={false} />
         <XStack justifyContent="space-between">
           <Stat
             title="patients"

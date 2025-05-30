@@ -2,7 +2,7 @@ import { render, screen } from '@utils-test'
 
 import { MOCK_HOSPITALS } from '@app/mocks/hospital'
 
-import HospitalCard from '../'
+import HospitalCard from '..'
 
 describe('HospitalCard', () => {
   const mockProps = {

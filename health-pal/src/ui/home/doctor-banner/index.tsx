@@ -24,7 +24,7 @@ const DoctorBanner = () => {
     })
   }
 
-  const { height, width } = useMediaQuery({ h: 163, full: true })
+  const { height, width } = useMediaQuery({ height: 163, full: true })
 
   const renderItem = ({ item, index }: { item: TDoctorBanner; index: number }) => (
     <DoctorBannerCard {...item} key={index} width={width} height={height} />
