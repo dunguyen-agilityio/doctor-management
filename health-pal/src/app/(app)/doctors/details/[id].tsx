@@ -50,7 +50,7 @@ const Details = () => {
   const review = reviews[0]
 
   return (
-    <YStack flex={1} gap={16} paddingTop={16}>
+    <YStack flex={1} gap={16}>
       <YStack gap={16} flex={1} paddingHorizontal={24}>
         <DoctorCard {...formatDoctor(data)} showReview={false} />
         <XStack justifyContent="space-between">

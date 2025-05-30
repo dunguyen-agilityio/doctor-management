@@ -1,6 +1,6 @@
-import { Button } from 'tamagui'
-
 import { APP_TITLES } from '@app/constants/route'
+
+import { Button } from '@theme/button'
 
 import Header from '@app/components/header'
 import useDoctor from '@app/hooks/use-doctor'
@@ -32,7 +32,9 @@ const DoctorDetailHeader = ({ id, goBack }: { id: string; goBack: () => void }) 
 
   return (
     <Header title={APP_TITLES[APP_ROUTES.DOCTOR_DETAILS]} onBack={goBack}>
-      <Button position="relative">{renderIcon()}</Button>
+      <Button position="absolute" variant="icon" right={24} paddingHorizontal={0}>
+        {renderIcon()}
+      </Button>
     </Header>
   )
 }

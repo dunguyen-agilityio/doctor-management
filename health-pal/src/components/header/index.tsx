@@ -18,25 +18,26 @@ const Header = ({
   ...props
 }: React.PropsWithChildren<HeaderProps>) => {
   return (
-    <XStack
-      height={62}
-      paddingBottom={24}
-      paddingHorizontal={24}
-      paddingTop={8}
-      alignItems="center"
-      {...props}>
+    <XStack height={62} position="relative" alignItems="center" justifyContent="center" {...props}>
       {onBack && (
-        <Button variant="icon" onPress={onBack} width={24}>
+        <Button
+          left={24}
+          top={31}
+          transform={[{ translateY: '-50%' }]}
+          zIndex={1000}
+          position="absolute"
+          variant="icon"
+          paddingHorizontal={0}
+          onPress={onBack}
+          width={24}>
           <BackIcon />
         </Button>
       )}
-      <XStack flex={1} justifyContent="center">
-        {title && (
-          <Heading size="extraLarge" height={30} fontWeight="600" {...titleStyle}>
-            {title}
-          </Heading>
-        )}
-      </XStack>
+      {title && (
+        <Heading size="extraLarge" height={30} fontWeight="600" {...titleStyle}>
+          {title}
+        </Heading>
+      )}
       {children}
     </XStack>
   )
