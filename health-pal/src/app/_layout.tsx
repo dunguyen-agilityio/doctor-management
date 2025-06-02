@@ -62,7 +62,7 @@ export default function RootLayout() {
   }
 
   const render = () => {
-    if (storybookEnabled) {
+    if (__DEV__ && storybookEnabled) {
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       const AppEntryPoint = require('@/.storybook').default
       return <AppEntryPoint />

@@ -1,16 +1,15 @@
 const path = require('path')
 const { getDefaultConfig } = require('expo/metro-config')
-const withStorybook = require('@storybook/react-native/metro/withStorybook')
 
 /** @type {import('expo/metro-config').MetroConfig} */
 const config = getDefaultConfig(__dirname, {
   transformer: {
-    // getTransformOptions: async () => ({
-    //   transform: {
-    //     experimentalImportSupport: true,
-    //     inlineRequires: true,
-    //   },
-    // }),
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: true,
+      },
+    }),
     minifierPath: 'metro-minify-terser',
     minifierConfig: {
       compress: {
@@ -22,7 +21,15 @@ const config = getDefaultConfig(__dirname, {
 
 config.resolver.sourceExts.push('mjs')
 
-module.exports = withStorybook(config, {
-  enabled: process.env.NODE_ENV !== 'production' && process.env.EXPO_PUBLIC_STORYBOOK_ENABLED,
-  configPath: path.resolve(__dirname, './.storybook'),
-})
+let finalConfig = config
+
+if (process.env.NODE_ENV !== 'production' && process.env.EXPO_PUBLIC_STORYBOOK_ENABLED) {
+  const withStorybook = require('@storybook/react-native/metro/withStorybook')
+
+  finalConfig = withStorybook(config, {
+    enabled: true,
+    configPath: path.resolve(__dirname, './.storybook'),
+  })
+}
+
+module.exports = finalConfig
