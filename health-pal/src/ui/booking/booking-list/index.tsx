@@ -9,10 +9,10 @@ import { BOOKING_EMPTY } from '@app/constants'
 
 import { XStack } from '@theme'
 
-import { LoadingIndicator } from '@app/components'
 import BookingCard from '@app/components/booking-card'
 import Empty from '@app/components/empty'
 import ErrorState from '@app/components/error'
+import BookingListSkeleton from '@app/components/skeleton/booking-list-skeleton'
 import useMediaQuery from '@app/hooks/use-media-query'
 import { BookingData, BookingKey } from '@app/models/booking'
 import { getBookings } from '@app/services/booking'
@@ -43,7 +43,7 @@ const BookingList = ({ type }: { type: BOOKING_TABS }) => {
   const renderItem = ({ item }: { item: BookingData }) => <BookingCard {...formatBooking(item)} />
 
   if (isLoading || isFetching) {
-    return <LoadingIndicator />
+    return <BookingListSkeleton type={type} />
   }
 
   if (error || !data) {

@@ -4,9 +4,9 @@ import { Stack } from 'tamagui'
 
 import { FAVORITE_EMPTY } from '@app/constants'
 
-import { LoadingIndicator } from '@app/components'
 import Empty from '@app/components/empty'
 import ErrorState from '@app/components/error'
+import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
 import { useFavoriteHospitals } from '@app/hooks/use-favorite'
 import useMediaQuery from '@app/hooks/use-media-query'
 import { FAVORITE_TYPES } from '@app/types/favorite'
@@ -33,7 +33,7 @@ const HospitalFavorite = () => {
 
   return (
     <>
-      {isLoading && <LoadingIndicator />}
+      {isLoading && <HospitalListSkeleton paddingHorizontal={24} count={3} />}
       <HospitalList
         data={hospitals}
         ItemSeparatorComponent={ItemSeparatorComponent}

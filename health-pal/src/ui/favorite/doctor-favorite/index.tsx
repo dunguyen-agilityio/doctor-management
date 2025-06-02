@@ -2,7 +2,7 @@ import { FAVORITE_EMPTY } from '@app/constants'
 
 import Empty from '@app/components/empty'
 import ErrorState from '@app/components/error'
-import LoadingIndicator from '@app/components/loading-indicator'
+import DoctorListSkeleton from '@app/components/skeleton/doctor-list-skeleton'
 import { useFavoriteDoctors } from '@app/hooks/use-favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import DoctorList from '@app/ui/doctor/doctor-list'
@@ -16,7 +16,7 @@ const DoctorFavorite = () => {
   } = useFavoriteDoctors()
 
   if (favoriteLoading) {
-    return <LoadingIndicator />
+    return <DoctorListSkeleton />
   }
 
   if (!doctors || favoriteError) {
