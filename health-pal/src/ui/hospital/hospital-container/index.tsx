@@ -6,9 +6,9 @@ import { FAVORITE_EMPTY } from '@app/constants'
 
 import { YStack } from '@theme/stack'
 
-import { LoadingIndicator } from '@app/components'
 import Empty from '@app/components/empty'
 import ErrorState from '@app/components/error'
+import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
 import useHospitals from '@app/hooks/use-hospitals'
 import useMediaQuery from '@app/hooks/use-media-query'
 import { FAVORITE_TYPES } from '@app/types/favorite'
@@ -42,7 +42,9 @@ const HospitalContainer = ({ query }: { query: string }) => {
 
   return (
     <View flex={1} position="relative">
-      {isFetching && !isFetchingNextPage && <LoadingIndicator fullScreen />}
+      {isFetching && !isFetchingNextPage && (
+        <HospitalListSkeleton count={3} paddingHorizontal={24} />
+      )}
       <HospitalList
         data={data?.data ?? []}
         ItemSeparatorComponent={ItemSeparatorComponent}

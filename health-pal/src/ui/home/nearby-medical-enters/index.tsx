@@ -4,8 +4,9 @@ import { Stack } from 'tamagui'
 
 import { YStack } from '@theme'
 
-import { LoadingIndicator, SessionHeader } from '@app/components'
+import { SessionHeader } from '@app/components'
 import ErrorState from '@app/components/error'
+import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
 import { useFavoriteHospitals } from '@app/hooks/use-favorite'
 import useHospitals from '@app/hooks/use-hospitals'
 import HospitalList from '@app/ui/hospital/hospital-list'
@@ -23,7 +24,7 @@ const NearbyMedicalCenters = () => {
 
   const renderHospitalList = () => {
     if (isLoading || isFavLoading) {
-      return <LoadingIndicator />
+      return <HospitalListSkeleton horizontal count={2} />
     }
 
     if (error || !data) {
