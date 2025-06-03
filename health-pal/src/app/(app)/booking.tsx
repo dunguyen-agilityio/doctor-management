@@ -47,7 +47,7 @@ const Booking = () => {
   const methods = useForm<BookingForm>({
     defaultValues: { time: timeParam, date: defaultDate, documentId: bookingIdParam },
   })
-  const { control, setValue, handleSubmit } = methods
+  const { control, formState, getValues, setValue, handleSubmit } = methods
 
   const getAvailable = useCallback(
     async (date = getDefaultDate()) => {
@@ -101,6 +101,11 @@ const Booking = () => {
 
   const minDate = useMemo(() => getDefaultDate(), [])
 
+  const disabled =
+    !formState.isDirty ||
+    Object.keys(formState.errors).length > 1 ||
+    (getValues('time') === timeParam && dayjs(params.date).isSame(getValues('date')))
+
   return (
     <YStack backgroundColor="$white" flex={1}>
       <FormProvider {...methods}>
@@ -133,8 +138,8 @@ const Booking = () => {
               <BookingTime
                 available={available}
                 onChange={onChange}
-                value={value ?? timeParam}
-                errorMessage={error?.message}
+                value={value}
+                current={timeParam}
               />
             )}
           />
@@ -146,7 +151,7 @@ const Booking = () => {
           width="100%"
           borderTopColor="$grey200"
           borderTopWidth={0.5}>
-          <Button flex={1} onPress={handleSubmit(onSubmit)}>
+          <Button flex={1} onPress={handleSubmit(onSubmit)} disabled={disabled}>
             Confirm
           </Button>
         </YStack>
