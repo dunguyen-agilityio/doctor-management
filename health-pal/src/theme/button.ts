@@ -37,6 +37,7 @@ export const Button = styled(TamaguiButton, {
         width: 24,
         height: 24,
         borderRadius: 24,
+        pressStyle: { backgroundColor: 'transparent', borderWidth: 0 },
       },
       text: {
         color: '$primary',

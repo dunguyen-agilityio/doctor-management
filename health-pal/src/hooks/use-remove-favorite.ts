@@ -2,28 +2,25 @@ import { useMutation } from '@tanstack/react-query'
 
 import { useToastController } from '@tamagui/toast'
 
-import { useSession } from '@app/contexts'
+import { useRequireAuth } from '@app/contexts'
 import { queryClient } from '@app/react-query.config'
 import { removeFavorite } from '@app/services/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
 export const useRemoveFavorite = (type: FAVORITE_TYPES, itemName: string) => {
-  const { session } = useSession()
+  const { session } = useRequireAuth()
+  const { jwt, user } = session
+  const { id: userId } = user
   const toast = useToastController()
 
-  const { jwt, user } = session ?? {}
-
   const handleMutation = (favoriteId: string) => {
-    if (!jwt || !user) {
-      throw new Error('User session is not available')
-    }
     return removeFavorite(favoriteId, jwt)
   }
 
   return useMutation({
     mutationFn: handleMutation,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['favorites', type, user!.id] })
+      queryClient.invalidateQueries({ queryKey: ['favorites', type, userId] })
       toast.show('Removed from Favorites', {
         message: `${itemName} has been removed from your favorites.`,
         duration: 3000,

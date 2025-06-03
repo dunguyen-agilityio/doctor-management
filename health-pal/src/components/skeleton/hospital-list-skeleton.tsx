@@ -13,8 +13,12 @@ const HospitalListSkeleton = ({
 } & StackProps) => {
   return (
     <Stack flexDirection={horizontal ? 'row' : 'column'} gap={gap} {...props}>
-      {[...Array(count).keys()].map((v) => (
-        <HospitalCardSkeleton key={v} width={horizontal ? 232 : 'auto'} />
+      {[...Array(count).keys()].map((v, idx) => (
+        <HospitalCardSkeleton
+          marginLeft={idx === 0 ? 24 : 0}
+          key={v}
+          width={horizontal ? 232 : 'auto'}
+        />
       ))}
     </Stack>
   )

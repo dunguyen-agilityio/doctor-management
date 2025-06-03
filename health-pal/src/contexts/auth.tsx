@@ -1,15 +1,19 @@
-import { type PropsWithChildren, createContext, use } from 'react'
+import { type PropsWithChildren, createContext, use, useEffect } from 'react'
+
+import { router } from 'expo-router'
 
 import { useStorageState } from '@app/hooks/use-storage-state'
 import { Session, User } from '@app/models/user'
 
-const AuthContext = createContext<{
+type AuthState = {
   signIn: (user: Session) => void
   signOut: () => void
   session?: Session | null
   isLoading: boolean
   setUser: (user: User) => void
-}>({
+}
+
+const AuthContext = createContext<AuthState>({
   signIn: () => null,
   signOut: () => null,
   setUser: () => null,
@@ -25,6 +29,20 @@ export function useSession() {
   }
 
   return value
+}
+
+type RequireAuthState = Omit<AuthState, 'session'> & { session: Session }
+
+export function useRequireAuth(redirectTo: string = '/login') {
+  const { session, isLoading } = useSession() as RequireAuthState
+
+  useEffect(() => {
+    if (!isLoading && !session?.jwt) {
+      router.replace('/(auth)/login')
+    }
+  }, [session, isLoading, redirectTo])
+
+  return { session, isLoading }
 }
 
 export function SessionProvider({ children }: Readonly<PropsWithChildren>) {

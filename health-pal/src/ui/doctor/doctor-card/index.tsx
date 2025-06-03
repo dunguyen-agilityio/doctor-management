@@ -1,18 +1,23 @@
-import { Fragment, memo } from 'react'
+import { Fragment, memo, useRef } from 'react'
+import { GestureResponderEvent } from 'react-native'
 
 import { Image } from 'expo-image'
 
-import { Card, Separator, YStack } from 'tamagui'
+import { Card, Separator, XStack, YStack } from 'tamagui'
 
-import { Heading, Text, XStack } from '@theme'
+import { Heading, Text } from '@theme'
 
 import LocationOutline from '@icons/location-outline'
 
 import Stars from '@app/components/stars'
+import { useAddFavorite } from '@app/hooks/use-add-favorite'
+import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
 import { TDoctorCard } from '@app/models/doctor'
 import { useFavoritesStore } from '@app/stores/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
+import { ModalRef } from '@app/types/modal'
 import FavoriteButton from '@app/ui/favorite/favorite-button'
+import RemoveFavoriteModal from '@app/ui/favorite/remove-favorite-confirm-modal'
 
 interface DoctorCardProps extends TDoctorCard {
   showReview?: boolean
@@ -31,9 +36,37 @@ const DoctorCard = ({
   id,
   wrapper,
 }: DoctorCardProps) => {
+  const { mutate: removeFavorite, isPending: removeFavPending } = useRemoveFavorite(
+    FAVORITE_TYPES.DOCTOR,
+    name,
+  )
+
+  const { mutate: addFavorite, isPending: addFavPending } = useAddFavorite(
+    FAVORITE_TYPES.DOCTOR,
+    name,
+  )
+
   const favoriteId = useFavoritesStore((state) => state.favoriteDoctors[id])
 
-  const content = (
+  const confirmRef = useRef<ModalRef>(null)
+
+  const handleFavorite = (e: GestureResponderEvent) => {
+    e.preventDefault()
+
+    if (favoriteId) {
+      confirmRef.current?.open()
+      return
+    }
+
+    addFavorite(id)
+  }
+
+  const handleRemove = () => {
+    confirmRef.current?.close()
+    removeFavorite(favoriteId)
+  }
+
+  const card = (
     <Card
       elevate
       bordered
@@ -47,10 +80,11 @@ const DoctorCard = ({
       shadowColor="$black"
       shadowOffset={{ width: 4, height: 4 }}
       shadowOpacity={0.1}
+      disabled={removeFavPending || addFavPending}
+      disabledStyle={{ opacity: 0.8 }}
       gap={12}
       shadowRadius={12}
-      elevation={3}
-      pointerEvents="none">
+      elevation={3}>
       <Card.Header padding={0}>
         <Image
           source={avatar}
@@ -69,6 +103,7 @@ const DoctorCard = ({
             right={6}
             position="absolute"
             zIndex={1000}
+            onPress={handleFavorite}
           />
         )}
         <YStack paddingRight={12} flex={1}>
@@ -100,6 +135,15 @@ const DoctorCard = ({
   )
 
   const Container = wrapper ?? Fragment
+
+  const content = (
+    <>
+      {card}
+      <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
+        {card}
+      </RemoveFavoriteModal>
+    </>
+  )
 
   if (wrapper) {
     return <Container id={documentId}>{content}</Container>

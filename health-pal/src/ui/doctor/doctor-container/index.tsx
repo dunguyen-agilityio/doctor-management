@@ -31,7 +31,9 @@ const DoctorContainer = ({ query, specialty }: DoctorContainerProps) => {
 
   const hasError = error || !data
 
-  if (favLoading || docLoading) {
+  const isLoading = favLoading || docLoading
+
+  if (isLoading) {
     return <DoctorListSkeleton />
   }
 

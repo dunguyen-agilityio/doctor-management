@@ -5,7 +5,7 @@ import { CheckCircle } from '@tamagui/lucide-icons'
 import { Button, Heading, Text, YStack } from '@theme'
 
 import { Modal } from '@app/components'
-import { useSession } from '@app/contexts'
+import { useRequireAuth } from '@app/contexts'
 import { useAppLoading } from '@app/hooks'
 import { TBookingCard } from '@app/models/booking'
 import { queryClient } from '@app/react-query.config'
@@ -20,8 +20,7 @@ interface Props extends CancelBookingParams {
 }
 
 const CancelBookingModal = ({ ref, date, doctorName, documentId, time }: Props) => {
-  const { session } = useSession()
-  const jwt = session?.jwt
+  const { jwt } = useRequireAuth().session
   const setAppLoading = useAppLoading()
 
   const handleClose = () => {

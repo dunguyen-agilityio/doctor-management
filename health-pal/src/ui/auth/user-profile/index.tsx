@@ -16,7 +16,7 @@ import DateInput from '@app/components/date-input'
 import FormKeyboardAvoidingView from '@app/components/form-keyboard-avoiding-view'
 import Select from '@app/components/select'
 import Upload from '@app/components/upload'
-import { useSession } from '@app/contexts'
+import { useRequireAuth } from '@app/contexts'
 import { uploadToStrapi } from '@app/services/upload-image'
 import { UserProfileData } from '@app/types'
 
@@ -32,8 +32,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
   const emailRef = useRef<TextInput>(null)
   const toast = useToastController()
 
-  const { session } = useSession()
-  const jwt = session?.jwt
+  const { session } = useRequireAuth()
 
   const { control, handleSubmit, setError, setValue } = useForm<UserProfileData>({
     defaultValues: {
@@ -64,7 +63,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
               render={({ field: { onChange } }) => (
                 <Upload
                   onUpload={async (image: string) => {
-                    const { error, data } = await uploadToStrapi(image, jwt!)
+                    const { error, data } = await uploadToStrapi(image, session.jwt)
 
                     if (error) {
                       toast.show('Upload Failed', {

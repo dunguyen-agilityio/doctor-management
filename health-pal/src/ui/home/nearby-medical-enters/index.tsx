@@ -1,10 +1,6 @@
-import { Link } from 'expo-router'
-
 import { Stack } from 'tamagui'
 
-import { YStack } from '@theme'
-
-import { SessionHeader } from '@app/components'
+import { HospitalCard } from '@app/components'
 import ErrorState from '@app/components/error'
 import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
 import { useFavoriteHospitals } from '@app/hooks/use-favorite'
@@ -13,45 +9,43 @@ import HospitalList from '@app/ui/hospital/hospital-list'
 
 const ItemSeparatorComponent = () => <Stack width={16} />
 
-const seeAllWrapper = ({ children }: React.PropsWithChildren) => (
-  <Link href={'/hospitals'}>{children}</Link>
-)
-
 const NearbyMedicalCenters = () => {
   const { data, isLoading, error, refetch } = useHospitals()
 
   const { isLoading: isFavLoading } = useFavoriteHospitals()
 
-  const renderHospitalList = () => {
-    if (isLoading || isFavLoading) {
-      return <HospitalListSkeleton horizontal count={2} />
-    }
+  if (isLoading || isFavLoading) {
+    return <HospitalListSkeleton horizontal count={2} />
+  }
 
-    if (error || !data) {
-      return (
-        <ErrorState
-          title="Error Loading Favorites"
-          message={`We couldn't load your favorite Hospital. Please try again.`}
-          onRetry={refetch}
-        />
-      )
-    }
-
+  if (error || !data) {
     return (
-      <HospitalList
-        ItemSeparatorComponent={ItemSeparatorComponent}
-        horizontal
-        data={data.data}
-        estimatedItemSize={232}
+      <ErrorState
+        title="Error Loading Favorites"
+        message={`We couldn't load your favorite Hospital. Please try again.`}
+        onRetry={refetch}
       />
     )
   }
 
+  const { data: hospitals } = data
+
   return (
-    <YStack gap={10}>
-      <SessionHeader title="Nearby Medical Centers" seeAllWrapper={seeAllWrapper} />
-      {renderHospitalList()}
-    </YStack>
+    <HospitalList
+      ItemSeparatorComponent={ItemSeparatorComponent}
+      horizontal
+      data={hospitals}
+      estimatedItemSize={232}
+      estimatedFirstItemOffset={24}
+      renderItem={({ item, index }) => (
+        <HospitalCard
+          marginLeft={index === 0 ? 24 : 0}
+          width={232}
+          marginRight={index === hospitals.length - 1 ? 24 : 0}
+          {...item}
+        />
+      )}
+    />
   )
 }
 

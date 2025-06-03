@@ -3,8 +3,6 @@ import { Button, ButtonProps } from '@theme'
 import HeartFill from '@icons/heart-fill'
 import HeartOutline from '@icons/heart-outline'
 
-import { useAddFavorite } from '@app/hooks/use-add-favorite'
-import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
 import { tokens } from '@/tamagui.config'
@@ -45,21 +43,6 @@ const FavoriteButton = ({
   favoriteId,
   ...props
 }: FavoriteButtonProps) => {
-  const { mutate: removeFavorite, isPending: removeFavPending } = useRemoveFavorite(type, itemName)
-
-  const { mutate: addFavorite, isPending: addFavPending } = useAddFavorite(type, itemName)
-
-  const handleFavorite = () => {
-    if (favoriteId) {
-      removeFavorite(favoriteId)
-      return
-    }
-
-    addFavorite(itemId)
-  }
-
-  const disabled = !!removeFavPending || !!addFavPending
-
   const renderIcon = () => {
     if (favoriteId) return <HeartFill fill={color} width={size} height={size} />
 
@@ -74,9 +57,7 @@ const FavoriteButton = ({
       height={size}
       variant="icon"
       zIndex={100}
-      disabled={disabled}
-      disabledStyle={{ opacity: 0.8, backgroundColor: '$colorHover' }}
-      onPress={handleFavorite}
+      padding={0}
       {...props}>
       {renderIcon()}
     </Button>
