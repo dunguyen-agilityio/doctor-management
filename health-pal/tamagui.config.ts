@@ -97,7 +97,6 @@ export const tamaguiConfig = createTamagui({
     w: 'width',
     h: 'height',
   } as const,
-  //   animations: animations,
   animations: defaultConfig.animations,
   media: defaultConfig.media,
 })
