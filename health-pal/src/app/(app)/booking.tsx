@@ -9,7 +9,7 @@ import { Button, Heading, YStack } from '@theme'
 
 import { DatePicker } from '@app/components'
 import BookingTime from '@app/components/booking-time'
-import { useSession } from '@app/contexts'
+import { useRequireAuth } from '@app/contexts'
 import { useAppLoading } from '@app/hooks'
 import { queryClient } from '@app/react-query.config'
 import { addBooking, getBookingAvailable, updateBooking } from '@app/services/booking'
@@ -28,14 +28,14 @@ type BookingScreenParams = {
 
 const Booking = () => {
   const setAppLoading = useAppLoading()
-  const { session } = useSession()
+  const { session } = useRequireAuth()
   const [available, setAvailable] = useState<Record<string, boolean>>({})
   const params = useLocalSearchParams<BookingScreenParams>()
 
   const cancelConfirmRef = useRef<ModalRef>(null)
   const reloadTimeSlotConfirmRef = useRef<ModalRef>(null)
 
-  const jwt = session?.jwt
+  const { jwt } = session
 
   const {
     doctorId: doctId,

@@ -5,20 +5,20 @@ import { keyExtractor } from '@app/utils/list'
 
 import HospitalCard from '../hospital-card'
 
-interface HospitalProps extends Omit<FlashListProps<Hospital>, 'renderItem'> {}
+interface HospitalProps extends Omit<FlashListProps<Hospital>, 'renderItem'> {
+  renderItem?: FlashListProps<Hospital>['renderItem']
+}
 
 const HospitalList = ({ ...otherProps }: HospitalProps) => {
-  const renderItem = ({ item }: { item: Hospital }) => {
-    return <HospitalCard {...item} />
-  }
+  const renderItem = ({ item }: { item: Hospital }) => <HospitalCard {...item} />
 
   return (
     <FlashList
-      {...otherProps}
+      renderItem={renderItem}
       keyExtractor={keyExtractor}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      renderItem={renderItem}
+      {...otherProps}
     />
   )
 }

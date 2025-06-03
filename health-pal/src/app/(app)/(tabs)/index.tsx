@@ -4,7 +4,7 @@ import { ScrollView } from 'tamagui'
 
 import { XStack, YStack } from '@theme/stack'
 
-import { SearchInput } from '@app/components'
+import { SearchInput, SessionHeader } from '@app/components'
 import { DoctorBanner, NearbyMedicalCenters, Specialties } from '@app/ui/home'
 
 const Home = () => {
@@ -22,15 +22,30 @@ const Home = () => {
                 specialty: 'all',
                 searching: 'true',
               },
-            }}
-            style={{ flex: 1 }}>
+            }}>
             <SearchInput placeholder="Search doctor..." editable={false} />
           </Link>
         </XStack>
         <DoctorBanner />
-        <YStack px="$md" gap="$md">
-          <Specialties />
-          <NearbyMedicalCenters />
+        <YStack gap={10}>
+          <SessionHeader
+            title="Categories"
+            seeAllWrapper={({ children }) => (
+              <Link href={{ pathname: '/doctors/[specialty]', params: { specialty: 'all' } }}>
+                {children}
+              </Link>
+            )}
+          />
+          <YStack paddingHorizontal="$md">
+            <Specialties />
+          </YStack>
+          <YStack gap={10} marginTop={16}>
+            <SessionHeader
+              title="Nearby Medical Centers"
+              seeAllWrapper={({ children }) => <Link href={'/hospitals'}>{children}</Link>}
+            />
+            <NearbyMedicalCenters />
+          </YStack>
         </YStack>
       </YStack>
     </ScrollView>

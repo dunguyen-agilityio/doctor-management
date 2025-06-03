@@ -1,21 +1,32 @@
+import { useRef } from 'react'
+import { GestureResponderEvent } from 'react-native'
+
 import { Image } from 'expo-image'
 
-import { Card, Separator } from 'tamagui'
+import { Card, Separator, ViewProps, XStack } from 'tamagui'
 
 import { Heading } from '@theme/heading'
-import { XStack } from '@theme/stack'
 import { Text } from '@theme/text'
 
 import { Hospital as HospitalIcon, Routing } from '@icons'
 import LocationOutline from '@icons/location-outline'
 
 import Stars from '@app/components/stars'
+import { useAddFavorite } from '@app/hooks/use-add-favorite'
+import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
 import { Hospital } from '@app/models/hospital'
 import { useFavoritesStore } from '@app/stores/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
+import { ModalRef } from '@app/types/modal'
 import FavoriteButton from '@app/ui/favorite/favorite-button'
+import RemoveFavoriteModal from '@app/ui/favorite/remove-favorite-confirm-modal'
 
-interface HospitalCardProps extends Hospital {}
+interface HospitalCardProps extends Hospital {
+  marginLeft?: number
+  marginRight?: number
+  marginBottom?: number
+  width?: ViewProps['width']
+}
 
 const HospitalCard = ({
   image = require('@/assets/images/banner01.webp'),
@@ -25,10 +36,41 @@ const HospitalCard = ({
   reviewCounter = 23,
   type = 'Hospital',
   id,
+  marginLeft = 0,
+  marginRight = 0,
+  width = 'auto',
 }: HospitalCardProps) => {
   const favoriteId = useFavoritesStore((state) => state.favoriteHospitals[id])
 
-  return (
+  const { mutate: removeFavorite, isPending: removeFavPending } = useRemoveFavorite(
+    FAVORITE_TYPES.HOSPITAL,
+    name,
+  )
+
+  const { mutate: addFavorite, isPending: addFavPending } = useAddFavorite(
+    FAVORITE_TYPES.HOSPITAL,
+    name,
+  )
+
+  const confirmRef = useRef<ModalRef>(null)
+
+  const handleFavorite = (e: GestureResponderEvent) => {
+    e.preventDefault()
+
+    if (favoriteId) {
+      confirmRef.current?.open()
+      return
+    }
+
+    addFavorite(id)
+  }
+
+  const handleRemove = () => {
+    confirmRef.current?.close()
+    removeFavorite(favoriteId)
+  }
+
+  const card = (
     <Card
       elevate
       bordered
@@ -36,6 +78,12 @@ const HospitalCard = ({
       overflow="hidden"
       elevation={3}
       shadowColor="$black"
+      marginBottom={16}
+      marginLeft={marginLeft}
+      marginRight={marginRight}
+      disabled={!addFavPending || removeFavPending}
+      disabledStyle={{ opacity: 0.8 }}
+      width={width}
       shadowOffset={{ width: 4, height: 4 }}>
       <Card.Header padding={0}>
         <Image source={image?.url} style={{ height: 120, objectFit: 'contain' }} />
@@ -48,6 +96,7 @@ const HospitalCard = ({
           right={6}
           position="absolute"
           testID="favorite-button"
+          onPress={handleFavorite}
         />
       </Card.Header>
 
@@ -84,6 +133,17 @@ const HospitalCard = ({
       </Card.Footer>
     </Card>
   )
+
+  const content = (
+    <>
+      {card}
+      <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
+        {card}
+      </RemoveFavoriteModal>
+    </>
+  )
+
+  return content
 }
 
 export default HospitalCard
