@@ -22,11 +22,13 @@ const BookingTime = ({
   onChange,
   value,
   available,
+  current,
 }: {
   errorMessage?: string
   onChange: (value: string) => void
   available: Record<string, boolean>
-  value: string
+  value?: string
+  current?: string
 }) => {
   return (
     <YStack gap={8}>
@@ -44,7 +46,7 @@ const BookingTime = ({
             value={time}
             key={time}
             onSelect={onChange}
-            disabled={!available[time] && value !== time}
+            disabled={!available[time] && current !== time}
             color={value === time ? '$white' : '$primary'}
             backgroundColor={value === time ? '$primary' : '$grey50'}
             disabledStyle={{ opacity: 0.5, backgroundColor: '$grey300' }}

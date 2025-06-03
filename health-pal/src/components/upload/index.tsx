@@ -131,6 +131,7 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
               variant="icon"
               position="absolute"
               right={34}
+              padding={0}
               bottom={27}
               aria-label="Edit Image"
               onPress={handleOpenCamera}>
