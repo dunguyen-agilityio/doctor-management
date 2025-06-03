@@ -11,6 +11,7 @@ module.exports = function (api) {
           config: './tamagui.config.ts',
           logTimings: true,
           disableExtraction: process.env.NODE_ENV === 'development',
+          target: 'native',
         },
       ],
       'react-native-reanimated/plugin',
