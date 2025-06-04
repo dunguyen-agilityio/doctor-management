@@ -4,13 +4,12 @@ import { Spinner, Stack, View } from 'tamagui'
 
 import { FAVORITE_EMPTY } from '@app/constants'
 
-import { YStack } from '@theme/stack'
-
-import Empty from '@app/components/empty'
-import ErrorState from '@app/components/error'
-import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
 import useHospitals from '@app/hooks/use-hospitals'
 import useMediaQuery from '@app/hooks/use-media-query'
+
+import { Empty, ErrorState, YStack } from '@app/components'
+import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
+
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
 import HospitalList from '../hospital-list'

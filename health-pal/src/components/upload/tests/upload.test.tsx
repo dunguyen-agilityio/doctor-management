@@ -7,8 +7,9 @@ import * as imagePicker from 'expo-image-picker'
 
 import { useToastController } from '@tamagui/toast'
 
-import { useSession } from '@app/contexts'
 import { useAppLoading } from '@app/hooks'
+import { useSession } from '@app/hooks/use-session'
+
 import { uploadToStrapi } from '@app/services/upload-image'
 
 import Upload from '..'

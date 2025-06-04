@@ -3,22 +3,21 @@ import { GestureResponderEvent } from 'react-native'
 
 import { Card, Separator, XStack, YStack } from 'tamagui'
 
-import { PLACEHOLDER_IMAGE } from '@app/constants/image'
+import { useAddFavorite } from '@app/hooks/use-add-favorite'
+import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
 
-import { Heading, Text } from '@theme'
+import { CloudinaryImage, Heading, Stars, Text } from '@app/components'
+
+import FavoriteButton from '@app/ui/favorite/favorite-button'
+import RemoveFavoriteModal from '@app/ui/favorite/remove-favorite-confirm-modal'
 
 import LocationOutline from '@icons/location-outline'
 
-import CloudinaryImage from '@app/components/cloudinary-image'
-import Stars from '@app/components/stars'
-import { useAddFavorite } from '@app/hooks/use-add-favorite'
-import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
-import { TDoctorCard } from '@app/models/doctor'
-import { useFavoritesStore } from '@app/stores/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import { ModalRef } from '@app/types/modal'
-import FavoriteButton from '@app/ui/favorite/favorite-button'
-import RemoveFavoriteModal from '@app/ui/favorite/remove-favorite-confirm-modal'
+
+import { TDoctorCard } from '@app/models/doctor'
+import { useFavoritesStore } from '@app/stores/favorite'
 
 interface DoctorCardProps extends TDoctorCard {
   showReview?: boolean
@@ -90,7 +89,6 @@ const DoctorCard = ({
         <CloudinaryImage
           source={{ uri: avatar }}
           style={{ width: 110, height: 110, borderRadius: 12 }}
-          placeholder={PLACEHOLDER_IMAGE}
         />
       </Card.Header>
       <Card.Footer flex={1} paddingVertical={0} marginVertical={0}>

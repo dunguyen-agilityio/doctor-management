@@ -5,13 +5,11 @@ import { router } from 'expo-router'
 
 import { YStack } from 'tamagui'
 
-import { Button } from '@theme/button'
-import { Heading } from '@theme/heading'
-import { Text } from '@theme/text'
+import { Button, Heading, Text } from '@app/components/common'
+import Modal from '@app/components/common/modal'
 
 import { ShieldTick } from '@icons'
 
-import Modal from '@app/components/modal'
 import { BookingForm } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 
@@ -19,7 +17,7 @@ type Props = {
   ref?: React.RefObject<ModalRef | null>
 }
 
-export function CreateBookingSuccessModal({ ref }: Readonly<Props>) {
+export const CreateBookingSuccessModal = ({ ref }: Readonly<Props>) => {
   const { watch } = useFormContext<BookingForm>()
   const time = watch('time')
 

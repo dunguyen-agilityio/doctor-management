@@ -1,7 +1,8 @@
 // __tests__/doctor.test.ts
-import { MOCK_REVIEWS } from '@app/mocks/reivew'
 import { getDoctor, getDoctors } from '@app/services/doctor'
 import { apiClient } from '@app/services/http-client'
+
+import { MOCK_REVIEWS } from '@app/mocks/reivew'
 
 jest.mock('@app/services/http-client', () => ({
   apiClient: {

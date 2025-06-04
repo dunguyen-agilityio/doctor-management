@@ -1,1 +1,1 @@
-export const PLACEHOLDER_IMAGE = require('@/assets/images/placeholder.webp')
+export const PLACEHOLDER_IMAGE = 'LDPzx.00[93GrBXnp0McR5X9NHn#'

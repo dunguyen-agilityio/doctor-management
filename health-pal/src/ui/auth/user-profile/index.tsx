@@ -5,19 +5,23 @@ import { Keyboard, TextInput } from 'react-native'
 
 import { useToastController } from '@tamagui/toast'
 
+import { APP_TOKEN } from '@app/constants'
 import { VALIDATIONS_MESSAGE } from '@app/constants/message'
 import { EMAIL_REGEX } from '@app/constants/regex'
 
-import { Button } from '@theme/button'
-import { XStack, YStack } from '@theme/stack'
+import {
+  Button,
+  DateInput,
+  FormKeyboardAvoidingView,
+  Input,
+  Select,
+  Upload,
+  XStack,
+  YStack,
+} from '@app/components'
 
-import { Input } from '@app/components'
-import DateInput from '@app/components/date-input'
-import FormKeyboardAvoidingView from '@app/components/form-keyboard-avoiding-view'
-import Select from '@app/components/select'
-import Upload from '@app/components/upload'
-import { useRequireAuth } from '@app/contexts'
 import { uploadToStrapi } from '@app/services/upload-image'
+
 import { UserProfileData } from '@app/types'
 
 interface UserProfileFormProps {
@@ -31,8 +35,6 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
   const nicknameRef = useRef<TextInput>(null)
   const emailRef = useRef<TextInput>(null)
   const toast = useToastController()
-
-  const { session } = useRequireAuth()
 
   const { control, handleSubmit, setError, setValue } = useForm<UserProfileData>({
     defaultValues: {
@@ -63,7 +65,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
               render={({ field: { onChange } }) => (
                 <Upload
                   onUpload={async (image: string) => {
-                    const { error, data } = await uploadToStrapi(image, session.jwt)
+                    const { error, data } = await uploadToStrapi(image, APP_TOKEN)
 
                     if (error) {
                       toast.show('Upload Failed', {

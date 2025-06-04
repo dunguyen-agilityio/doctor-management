@@ -5,7 +5,14 @@ import { router } from 'expo-router'
 import { useToastController } from '@tamagui/toast'
 import { Separator } from 'tamagui'
 
-import { ListItem, Text, YStack } from '@theme'
+import { useSession } from '@app/hooks/use-session'
+
+import { ListItem, Text, Upload, YStack } from '@app/components'
+
+import LogoutModal from '@app/ui/profile/logout-modal'
+
+import { updateProfile } from '@app/services/auth'
+import { uploadToStrapi } from '@app/services/upload-image'
 
 import {
   HeartOutline,
@@ -17,13 +24,9 @@ import {
   UserEditIcon,
 } from '@icons'
 
-import { Upload } from '@app/components'
-import { useSession } from '@app/contexts'
 import { withUpcomingFeature } from '@app/hocs/with-upcoming-feature'
-import { updateProfile } from '@app/services/auth'
-import { uploadToStrapi } from '@app/services/upload-image'
+
 import { ModalRef } from '@app/types/modal'
-import LogoutModal from '@app/ui/profile/logout-modal'
 
 const ListItemUpcoming = withUpcomingFeature(ListItem)
 

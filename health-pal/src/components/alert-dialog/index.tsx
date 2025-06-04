@@ -2,9 +2,10 @@ import { AlertDialog, AlertDialogContentProps, AlertDialogProps, TamaguiElement 
 
 import { WINDOW_SIZE } from '@app/constants'
 
-import { Button, Heading, Text, XStack } from '@theme'
-
 import { useModal } from '@app/hooks/use-modal'
+
+import { Button, Heading, Text, XStack } from '@app/components/common'
+
 import { ModalRef } from '@app/types/modal'
 
 interface CustomAlertDialogProps extends AlertDialogProps {

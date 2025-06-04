@@ -4,6 +4,7 @@ import { Button, Dialog, DialogContentProps, DialogProps, Unspaced } from 'tamag
 import { WINDOW_SIZE } from '@app/constants'
 
 import { useModal } from '@app/hooks/use-modal'
+
 import { ModalRef } from '@app/types/modal'
 
 interface ModalProps extends DialogProps {

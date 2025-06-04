@@ -4,9 +4,12 @@ import { StyleSheet } from 'react-native'
 
 import { Link } from 'expo-router'
 
-import { XStack } from 'tamagui'
+import { View, XStack } from 'tamagui'
+
+import { WINDOW_SIZE } from '@app/constants'
 
 import useMediaQuery from '@app/hooks/use-media-query'
+
 import { TDoctorData } from '@app/models/doctor'
 import { formatDoctor } from '@app/utils/doctor'
 import { keyExtractor } from '@app/utils/list'
@@ -38,17 +41,18 @@ const DoctorList = ({ page = 1, ...props }: DoctorListProps) => {
   }
 
   return (
-    <FlashList
-      renderItem={renderItem}
-      initialScrollIndex={page}
-      contentContainerStyle={styles.contentContainerStyle}
-      keyExtractor={keyExtractor}
-      ItemSeparatorComponent={ItemSeparatorComponent}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      estimatedItemSize={height}
-      {...props}
-    />
+    <View minWidth={WINDOW_SIZE.width - 24 * 2} flex={1}>
+      <FlashList
+        renderItem={renderItem}
+        contentContainerStyle={styles.contentContainerStyle}
+        keyExtractor={keyExtractor}
+        ItemSeparatorComponent={ItemSeparatorComponent}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        estimatedItemSize={height}
+        {...props}
+      />
+    </View>
   )
 }
 

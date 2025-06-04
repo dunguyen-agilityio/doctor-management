@@ -1,12 +1,11 @@
 import { YStack } from 'tamagui'
 
-import { Heading } from '@theme/heading'
-import { Text } from '@theme/text'
+import { Heading, Text } from '@app/components/common'
+import Modal from '@app/components/common/modal'
+import LoadingIndicator from '@app/components/loading-indicator'
 
 import { ShieldTick } from '@icons'
 
-import LoadingIndicator from '@app/components/loading-indicator'
-import Modal from '@app/components/modal'
 import { ModalRef } from '@app/types/modal'
 
 type Props = {

@@ -6,10 +6,11 @@ import { DateType } from 'react-native-ui-datepicker'
 
 import { Button, InputProps, Popover } from 'tamagui'
 
+import { Input } from '@app/components/common'
+
 import { CalendarIcon } from '@icons'
 
 import DatePicker, { DatePickerProps } from '../date-picker'
-import Input from '../input'
 
 interface DateInputProps extends Omit<InputProps, 'value'> {
   value?: Date | null

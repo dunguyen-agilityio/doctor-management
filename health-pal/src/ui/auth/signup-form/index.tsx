@@ -8,12 +8,11 @@ import { YStack } from 'tamagui'
 import { VALIDATIONS_MESSAGE } from '@app/constants/message'
 import { EMAIL_REGEX } from '@app/constants/regex'
 
-import { Button } from '@theme/button'
+import { Button, Input } from '@app/components/common'
 
 import { LockIcon, SmsIcon } from '@icons'
 import User from '@icons/user'
 
-import { Input } from '@app/components'
 import { SignupData } from '@app/types'
 
 interface SignupFormProps {
@@ -23,7 +22,7 @@ interface SignupFormProps {
 
 const SignupForm = ({
   onSubmit,
-  defaultValues = { email: '', name: '', password: '' },
+  defaultValues = { email: 'test+demo@asnet.com', name: 'test+demo', password: '12345@Abc' },
 }: SignupFormProps) => {
   const emailRef = useRef<TextInput>(null)
   const passwordRef = useRef<TextInput>(null)
@@ -67,7 +66,7 @@ const SignupForm = ({
               placeholder="Your Name"
               onChangeText={onChange}
               errorMessage={error?.message}
-              onEndEdit={handleEndEditName}
+              onEdited={handleEndEditName}
               returnKeyType="next"
             />
           )}
@@ -90,7 +89,7 @@ const SignupForm = ({
               onChangeText={onChange}
               errorMessage={error?.message}
               ref={emailRef}
-              onEndEdit={handleEndEditEmail}
+              onEdited={handleEndEditEmail}
               returnKeyType="next"
             />
           )}

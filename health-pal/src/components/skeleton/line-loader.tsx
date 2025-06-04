@@ -9,7 +9,6 @@ export const LineLoader = ({ width = 100, height = 14, borderRadius = 4 }: LineL
     speed={2}
     width={width}
     height={height}
-    viewBox={`0 0 ${width} ${height}`}
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb">
     <Rect x="0" y="0" rx={borderRadius} ry={borderRadius} width={width} height={height} />

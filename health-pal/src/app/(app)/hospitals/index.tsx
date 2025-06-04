@@ -3,9 +3,8 @@ import { TextInput } from 'react-native'
 
 import { router, useLocalSearchParams } from 'expo-router'
 
-import { YStack } from '@theme'
+import { SearchInput, YStack } from '@app/components'
 
-import { SearchInput } from '@app/components'
 import HospitalContainer from '@app/ui/hospital/hospital-container'
 
 const HospitalScreen = () => {

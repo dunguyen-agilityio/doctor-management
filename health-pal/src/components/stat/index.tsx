@@ -1,4 +1,4 @@
-import { Text, XStack, YStack } from '@theme'
+import { Text, XStack, YStack } from '@app/components/common'
 
 interface DoctorStatProps {
   title: string

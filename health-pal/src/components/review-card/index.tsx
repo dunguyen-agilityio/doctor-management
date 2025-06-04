@@ -1,8 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-import { PLACEHOLDER_IMAGE } from '@app/constants/image'
-
-import { Text, XStack, YStack } from '@theme'
+import { Text, XStack, YStack } from '@app/components/common'
 
 import { ReviewData } from '@app/models/review'
 
@@ -10,15 +8,13 @@ import CloudinaryImage from '../cloudinary-image'
 import Stars from '../stars'
 
 const ReviewCard = ({ name, rating, comment, image }: ReviewData) => {
+  const avatar = image ? { uri: image } : require('@/assets/images/user01.png')
+
   return (
     <YStack>
       <YStack gap={12}>
         <XStack gap={10} alignItems="center">
-          <CloudinaryImage
-            source={{ uri: image }}
-            placeholder={PLACEHOLDER_IMAGE}
-            style={styles.avatar}
-          />
+          <CloudinaryImage source={avatar} style={styles.avatar} />
           <YStack gap="$sm">
             <Text size="large" fontWeight="700">
               {name}

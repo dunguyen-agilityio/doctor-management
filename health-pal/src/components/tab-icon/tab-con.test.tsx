@@ -1,11 +1,9 @@
 import { render, screen } from '@utils-test'
 
-// Adjust path to your TabIcon component
 import { TAB_ROUTES } from '@app/types/route'
 
 import { tokens } from '@/tamagui.config'
 
-// Adjust path to your tamagui.config.ts
 import TabIcon from '.'
 
 describe('TabIcon', () => {

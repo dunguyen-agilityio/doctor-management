@@ -2,16 +2,25 @@ import { Link, Redirect, router } from 'expo-router'
 
 import { useToastController } from '@tamagui/toast'
 
-import { Heading, Text, XStack, YStack } from '@theme'
+import { useAppLoading } from '@app/hooks'
+import { useSession } from '@app/hooks/use-session'
+
+import {
+  ButtonWithUpcoming,
+  FormKeyboardAvoidingView,
+  Heading,
+  Text,
+  XStack,
+  YStack,
+} from '@app/components'
+
+import { LoginForm } from '@app/ui/auth'
+
+import { login } from '@app/services/auth'
 
 import { Facebook, Google, Logo } from '@icons'
 
-import { ButtonWithUpcoming, FormKeyboardAvoidingView } from '@app/components'
-import { useSession } from '@app/contexts'
-import { useAppLoading } from '@app/hooks'
-import { login } from '@app/services/auth'
 import { AuthCredentials } from '@app/types'
-import { LoginForm } from '@app/ui/auth'
 
 const SignIn = () => {
   const { signIn, session } = useSession()

@@ -2,6 +2,7 @@ import { Sheet, SheetProps } from '@tamagui/sheet'
 import { YStackProps } from 'tamagui'
 
 import { useModal } from '@app/hooks/use-modal'
+
 import { ModalRef } from '@app/types/modal'
 
 interface SheetModalProps extends SheetProps {
@@ -9,7 +10,7 @@ interface SheetModalProps extends SheetProps {
   frameProps?: YStackProps
 }
 
-export const SheetModal = ({
+const SheetModal = ({
   ref,
   children,
   frameProps = {},
@@ -45,3 +46,5 @@ export const SheetModal = ({
     </Sheet>
   )
 }
+
+export default SheetModal

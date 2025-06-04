@@ -4,7 +4,7 @@ import { ButtonIcon, TextProps, XStack } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
 
-import { Text, YStack } from '@theme'
+import { Text, YStack } from '@app/components/common'
 
 type ToastVariant = 'error' | 'success' | 'info'
 

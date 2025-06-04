@@ -1,9 +1,10 @@
 import { APP_TOKEN } from '@app/constants'
 import { BookingMessages, BookingQueryKey } from '@app/constants/booking'
 
-import { Booking, BookingData } from '@app/models/booking'
 import { BookingForm } from '@app/types/booking'
 import { StrapiPagination, StrapiParams } from '@app/types/strapi'
+
+import { Booking, BookingData } from '@app/models/booking'
 import { buildStrapiQuery } from '@app/utils/strapi'
 
 import { APIResponse, apiClient } from './http-client'

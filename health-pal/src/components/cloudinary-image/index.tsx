@@ -4,12 +4,14 @@ import { Image as ExpoImage } from 'expo-image'
 
 import { Spinner, View } from 'tamagui'
 
+import { PLACEHOLDER_IMAGE } from '@app/constants/image'
+
 import { getOptimizedUrl } from '@app/utils/image'
 
 interface CloudinaryImageProps {
   source: { uri?: string } | number
   style: React.ComponentProps<typeof View>['style']
-  placeholder: { uri?: string } | number
+  placeholder?: { uri?: string } | number
   contentFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'
   width?: number
   quality?: number
@@ -19,7 +21,7 @@ interface CloudinaryImageProps {
 const CloudinaryImage: React.FC<CloudinaryImageProps> = ({
   source,
   style,
-  placeholder,
+  placeholder = { blurhash: PLACEHOLDER_IMAGE },
   contentFit = 'cover',
   width,
   quality = 80,
@@ -56,7 +58,7 @@ const CloudinaryImage: React.FC<CloudinaryImageProps> = ({
           top="50%"
           left="50%"
           transform={[{ translateX: -12 }, { translateY: -12 }]}
-          size="large"
+          size="small"
           color="$blue"
         />
       )}

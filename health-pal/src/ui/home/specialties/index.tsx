@@ -1,6 +1,6 @@
 import { SPECIALTY_LIST } from '@app/constants/specialty'
 
-import { XStack, YStack } from '@theme/stack'
+import { XStack, YStack } from '@app/components'
 
 import Specialty from './specialty'
 

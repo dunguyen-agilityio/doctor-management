@@ -2,16 +2,18 @@ import { router } from 'expo-router'
 
 import { CheckCircle } from '@tamagui/lucide-icons'
 
-import { Button, Heading, Text, YStack } from '@theme'
-
-import { Modal } from '@app/components'
-import { useRequireAuth } from '@app/contexts'
 import { useAppLoading } from '@app/hooks'
-import { TBookingCard } from '@app/models/booking'
-import { queryClient } from '@app/react-query.config'
+import { useRequireAuth } from '@app/hooks/use-require-auth'
+
+import { Button, Heading, Modal, Text, YStack } from '@app/components'
+
 import { updateBooking } from '@app/services/booking'
+
 import { BOOKING_TABS } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
+
+import { TBookingCard } from '@app/models/booking'
+import { queryClient } from '@app/react-query.config'
 
 export type CancelBookingParams = Pick<TBookingCard, 'date' | 'documentId' | 'time' | 'doctorName'>
 

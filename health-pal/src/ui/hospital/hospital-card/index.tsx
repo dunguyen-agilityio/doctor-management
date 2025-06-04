@@ -3,24 +3,22 @@ import { GestureResponderEvent } from 'react-native'
 
 import { Card, Separator, ViewProps, XStack } from 'tamagui'
 
-import { PLACEHOLDER_IMAGE } from '@app/constants/image'
+import { useAddFavorite } from '@app/hooks/use-add-favorite'
+import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
 
-import { Heading } from '@theme/heading'
-import { Text } from '@theme/text'
+import { CloudinaryImage, Heading, Stars, Text } from '@app/components'
+
+import FavoriteButton from '@app/ui/favorite/favorite-button'
+import RemoveFavoriteModal from '@app/ui/favorite/remove-favorite-confirm-modal'
 
 import { Hospital as HospitalIcon, Routing } from '@icons'
 import LocationOutline from '@icons/location-outline'
 
-import CloudinaryImage from '@app/components/cloudinary-image'
-import Stars from '@app/components/stars'
-import { useAddFavorite } from '@app/hooks/use-add-favorite'
-import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
-import { Hospital } from '@app/models/hospital'
-import { useFavoritesStore } from '@app/stores/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import { ModalRef } from '@app/types/modal'
-import FavoriteButton from '@app/ui/favorite/favorite-button'
-import RemoveFavoriteModal from '@app/ui/favorite/remove-favorite-confirm-modal'
+
+import { Hospital } from '@app/models/hospital'
+import { useFavoritesStore } from '@app/stores/favorite'
 
 interface HospitalCardProps extends Hospital {
   marginLeft?: number
@@ -87,11 +85,7 @@ const HospitalCard = ({
       width={width}
       shadowOffset={{ width: 4, height: 4 }}>
       <Card.Header padding={0}>
-        <CloudinaryImage
-          source={{ uri: image?.url }}
-          style={{ height: 120 }}
-          placeholder={PLACEHOLDER_IMAGE}
-        />
+        <CloudinaryImage source={{ uri: image?.url }} style={{ height: 120 }} />
         <FavoriteButton
           favoriteId={favoriteId}
           itemId={id}

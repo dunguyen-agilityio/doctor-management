@@ -2,9 +2,8 @@ import { Link } from 'expo-router'
 
 import { ScrollView } from 'tamagui'
 
-import { XStack, YStack } from '@theme/stack'
+import { SearchInput, SessionHeader, XStack, YStack } from '@app/components'
 
-import { SearchInput, SessionHeader } from '@app/components'
 import { DoctorBanner, NearbyMedicalCenters, Specialties } from '@app/ui/home'
 
 const Home = () => {
@@ -23,7 +22,7 @@ const Home = () => {
                 searching: 'true',
               },
             }}>
-            <SearchInput placeholder="Search doctor..." editable={false} />
+            <SearchInput width="100%" placeholder="Search doctor..." editable={false} />
           </Link>
         </XStack>
         <DoctorBanner />

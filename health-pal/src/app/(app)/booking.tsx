@@ -5,18 +5,20 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import dayjs from 'dayjs'
 import { useLocalSearchParams } from 'expo-router'
 
-import { Button, Heading, YStack } from '@theme'
-
-import { DatePicker } from '@app/components'
-import BookingTime from '@app/components/booking-time'
-import { useRequireAuth } from '@app/contexts'
 import { useAppLoading } from '@app/hooks'
-import { queryClient } from '@app/react-query.config'
-import { addBooking, getBookingAvailable, updateBooking } from '@app/services/booking'
-import { BOOKING_TABS, BookingForm } from '@app/types/booking'
-import { ModalRef } from '@app/types/modal'
+import { useRequireAuth } from '@app/hooks/use-require-auth'
+
+import { Button, DatePicker, Heading, YStack } from '@app/components'
+import BookingTime from '@app/components/booking-time'
+
 import { CreateBookingSuccessModal } from '@app/ui/booking/create-booking-success-modal'
 import ReloadTimeSlotConfirmModal from '@app/ui/booking/reload-time-slot'
+
+import { addBooking, getBookingAvailable, updateBooking } from '@app/services/booking'
+
+import { BOOKING_TABS, BookingForm, ModalRef } from '@app/types'
+
+import { queryClient } from '@app/react-query.config'
 import { getDefaultDate } from '@app/utils/date'
 
 type BookingScreenParams = {

@@ -1,6 +1,6 @@
 import { Separator, Tabs, TabsContentProps, TabsTabProps } from 'tamagui'
 
-import { Heading, YStack } from '@theme'
+import { Heading, YStack } from '@app/components/common'
 
 export const TabsContent = (props: TabsContentProps) => {
   return (

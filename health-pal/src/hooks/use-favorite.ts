@@ -1,9 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { useRequireAuth } from '@app/contexts'
 import { fetchFavoritesByType } from '@app/services/favorite'
-import { useFavoritesStore } from '@app/stores/favorite'
+
 import { FAVORITE_TYPES } from '@app/types/favorite'
+
+import { useFavoritesStore } from '@app/stores/favorite'
+
+import { useRequireAuth } from './use-require-auth'
 
 export const useFavoriteDoctors = () => {
   const { jwt, user } = useRequireAuth().session

@@ -43,6 +43,10 @@ export const Button = styled(TamaguiButton, {
         color: '$primary',
         backgroundColor: 'transparent',
         py: 10,
+        pressStyle: {
+          backgroundColor: 'transparent',
+          borderWidth: 0,
+        },
       },
     },
     full: {

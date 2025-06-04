@@ -1,11 +1,13 @@
 import { FAVORITE_EMPTY } from '@app/constants'
 
-import Empty from '@app/components/empty'
-import ErrorState from '@app/components/error'
-import DoctorListSkeleton from '@app/components/skeleton/doctor-list-skeleton'
 import { useFavoriteDoctors } from '@app/hooks/use-favorite'
-import { FAVORITE_TYPES } from '@app/types/favorite'
+
+import { Empty, ErrorState } from '@app/components'
+import DoctorListSkeleton from '@app/components/skeleton/doctor-list-skeleton'
+
 import DoctorList from '@app/ui/doctor/doctor-list'
+
+import { FAVORITE_TYPES } from '@app/types/favorite'
 
 const DoctorFavorite = () => {
   const {

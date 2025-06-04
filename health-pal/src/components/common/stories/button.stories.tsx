@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { Airplay } from '@tamagui/lucide-icons'
 
-import { Button } from '@app/theme'
+import { Button } from '../button'
 
 const meta = {
   title: 'components/button',

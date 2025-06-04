@@ -1,6 +1,5 @@
 import { act, fireEvent, render, screen, waitFor } from '@utils-test'
 
-import React from 'react'
 import { Keyboard } from 'react-native'
 
 import { VALIDATIONS_MESSAGE } from '@app/constants'

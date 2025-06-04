@@ -4,11 +4,13 @@ import { renderHook, waitFor } from '@utils-test'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useLocalSearchParams } from 'expo-router'
 
+import { getDoctors } from '@app/services/doctor'
+
+import { StrapiPagination } from '@app/types/strapi'
+
 import { MOCK_DOCTORS } from '@app/mocks/doctor'
 // Adjust path
 import { TDoctorData } from '@app/models/doctor'
-import { getDoctors } from '@app/services/doctor'
-import { StrapiPagination } from '@app/types/strapi'
 
 import { useAppLoading } from '../use-app-loading'
 import useDoctors from '../use-doctors'

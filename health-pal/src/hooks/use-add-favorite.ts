@@ -2,10 +2,13 @@ import { useMutation } from '@tanstack/react-query'
 
 import { useToastController } from '@tamagui/toast'
 
-import { useRequireAuth } from '@app/contexts'
-import { queryClient } from '@app/react-query.config'
 import { addFavorite } from '@app/services/favorite'
+
 import { FAVORITE_TYPES } from '@app/types/favorite'
+
+import { queryClient } from '@app/react-query.config'
+
+import { useRequireAuth } from './use-require-auth'
 
 export const useAddFavorite = (type: FAVORITE_TYPES, itemName: string) => {
   const { jwt, user } = useRequireAuth().session

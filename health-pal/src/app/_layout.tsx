@@ -16,9 +16,10 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { ToastViewport } from '@tamagui/toast'
 
-import PreventBackHandler from '@app/components/prevent-back-handler'
-import Toast from '@app/components/toast'
+import { PreventBackHandler, Toast } from '@app/components'
+
 import Providers from '@app/providers'
+import { useAuthStore } from '@app/stores/auth'
 
 import { tokens } from '@/tamagui.config'
 
@@ -36,6 +37,8 @@ export default function RootLayout() {
     !!process.env.EXPO_PUBLIC_STORYBOOK_ENABLED,
   )
 
+  const { hydrate } = useAuthStore()
+
   const [loaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -44,12 +47,13 @@ export default function RootLayout() {
   })
 
   useEffect(() => {
+    hydrate()
     if (__DEV__) {
       DevSettings.addMenuItem('Toggle Storybook', () => {
         setStorybookEnabled((prev) => !prev)
       })
     }
-  }, [])
+  }, [hydrate])
 
   useEffect(() => {
     if (loaded) {

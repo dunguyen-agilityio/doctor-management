@@ -12,4 +12,4 @@ export class Review extends Strapi {
   }
 }
 
-export type ReviewData = Review & { name: string; image: string; patient?: Patient }
+export type ReviewData = Review & { name: string; image?: string; patient?: Patient }

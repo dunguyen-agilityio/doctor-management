@@ -1,11 +1,12 @@
 import { Separator } from 'tamagui'
 
-import { Button, Heading, Text, XStack, YStack } from '@theme'
+import { useSession } from '@app/hooks/use-session'
 
-import { SheetModal } from '@app/components/sheet-modal'
-import { useSession } from '@app/contexts'
-import { queryClient } from '@app/react-query.config'
+import { Button, Heading, SheetModal, Text, XStack, YStack } from '@app/components'
+
 import { ModalRef } from '@app/types/modal'
+
+import { queryClient } from '@app/react-query.config'
 
 const LogoutModal = ({ ref }: { ref: React.RefObject<ModalRef | null> }) => {
   const { signOut } = useSession()

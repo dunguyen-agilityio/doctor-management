@@ -4,9 +4,9 @@ import { Check, ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import { Adapt, Select, SelectProps, YStack } from 'tamagui'
 import { LinearGradient } from 'tamagui/linear-gradient'
 
-import { Text } from '@theme/text'
+import { Text } from '@app/components/common'
 
-import { SheetModal } from '../sheet-modal'
+import SheetModal from '../sheet-modal'
 
 interface CustomSelectProps extends SelectProps {
   items: { name: string }[]

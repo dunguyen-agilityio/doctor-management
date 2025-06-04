@@ -1,8 +1,9 @@
 import { FavoriteQueryKey } from '@app/constants/favorite'
 
+import { FAVORITE_TYPES } from '@app/types/favorite'
+
 import { TDoctorData } from '@app/models/doctor'
 import { Hospital } from '@app/models/hospital'
-import { FAVORITE_TYPES } from '@app/types/favorite'
 import { buildStrapiQuery } from '@app/utils/strapi'
 
 import { apiClient } from './http-client'
