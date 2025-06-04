@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@utils-test'
 
-import { X } from '@tamagui/lucide-icons'
+import { X } from '@icons'
 
-import Input from '..'
+import { Input } from '..'
 
 const MockIcon = () => <X testID="mock-icon" />
 

@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 
-import { Eye, EyeOff } from '@tamagui/lucide-icons'
-
 import { Button } from '@app/components/common/button'
 
-import { LockIcon } from '@icons/index'
+import { Eye, EyeOff, LockIcon } from '@icons'
 
 import { Input, InputProps } from '../common'
 

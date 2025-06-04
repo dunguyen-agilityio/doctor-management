@@ -2,11 +2,9 @@ import { View } from 'react-native'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Airplay } from '@tamagui/lucide-icons'
+import { Check, LockIcon } from '@app/icons'
 
-import { LockIcon } from '@app/icons'
-
-import Input from '.'
+import { Input } from '.'
 
 const meta = {
   title: 'components/input',
@@ -32,7 +30,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
 
-export const WithIcon: Story = { args: { leftIcon: Airplay } }
+export const WithIcon: Story = { args: { leftIcon: Check } }
 
 export const Password: Story = {
   args: {

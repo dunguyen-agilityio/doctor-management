@@ -1,8 +1,8 @@
 import { BackHandler } from 'react-native'
 
-import { CheckCircle } from '@tamagui/lucide-icons'
-
 import { Button, Heading, Modal, Text, YStack } from '@app/components/common'
+
+import { CheckCircle } from '@icons'
 
 import { ModalRef } from '@app/types/modal'
 

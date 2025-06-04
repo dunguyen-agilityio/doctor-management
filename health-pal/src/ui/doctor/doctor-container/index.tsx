@@ -3,7 +3,7 @@ import { Spinner, YStack } from 'tamagui'
 import useDoctors from '@app/hooks/use-doctors'
 import { useFavoriteDoctors } from '@app/hooks/use-favorite'
 
-import { Empty, ErrorState, Text, XStack } from '@app/components'
+import { Empty, ErrorState, LoadingIndicator, Text, XStack } from '@app/components'
 import DoctorListSkeleton from '@app/components/skeleton/doctor-list-skeleton'
 
 import DoctorList from '../doctor-list'
@@ -68,7 +68,7 @@ const DoctorContainer = ({ query, specialty }: DoctorContainerProps) => {
 
   return (
     <YStack flex={1} gap={8} position="relative">
-      {isFetching && !isFetchingNextPage && <DoctorListSkeleton />}
+      {isFetching && !isFetchingNextPage && <LoadingIndicator fullScreen />}
       <XStack justifyContent="space-between" paddingHorizontal={24}>
         <Text size="medium" fontWeight="700">{`${data?.meta.pagination.total ?? 0} founds`}</Text>
       </XStack>

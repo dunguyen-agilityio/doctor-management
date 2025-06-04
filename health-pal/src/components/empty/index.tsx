@@ -1,6 +1,6 @@
-import { UserX } from '@tamagui/lucide-icons'
-
 import { Button, Heading, Text, YStack } from '@app/components/common'
+
+import { Ban } from '@icons'
 
 type EmptyStateProps = {
   title?: string
@@ -19,7 +19,7 @@ const Empty = ({
 }: EmptyStateProps) => {
   return (
     <YStack gap={8} alignItems="center" justifyContent="center" height={400}>
-      {icon || <UserX size="$6" color="$gray10" />}
+      {icon || <Ban color="$gray10" />}
       <Heading size="extraLarge" fontWeight="600">
         {title}
       </Heading>

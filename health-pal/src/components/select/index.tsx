@@ -1,10 +1,11 @@
 import { useMemo } from 'react'
 
-import { Check, ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import { Adapt, Select, SelectProps, YStack } from 'tamagui'
 import { LinearGradient } from 'tamagui/linear-gradient'
 
 import { Text } from '@app/components/common'
+
+import { Check, ChevronDown, ChevronUp } from '@icons'
 
 import SheetModal from '../sheet-modal'
 

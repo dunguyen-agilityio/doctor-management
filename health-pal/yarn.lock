@@ -3030,13 +3030,6 @@
     "@tamagui/stacks" "1.126.13"
     "@tamagui/use-controllable-state" "1.126.13"
 
-"@tamagui/helpers-icon@1.126.13":
-  version "1.126.13"
-  resolved "https://registry.yarnpkg.com/@tamagui/helpers-icon/-/helpers-icon-1.126.13.tgz#573ebbac7e02cd67e54610a1efa69a9b824821ed"
-  integrity sha512-BCjlnA1YpGQzfP+3LrPMjiOFIpDVqcFrj9gCRsRsTc3gcqLmY5Lq+C2hDdYNW35ZnLayskr2siUoXkdNKp6l+Q==
-  dependencies:
-    "@tamagui/core" "1.126.13"
-
 "@tamagui/helpers-node@1.126.13":
   version "1.126.13"
   resolved "https://registry.yarnpkg.com/@tamagui/helpers-node/-/helpers-node-1.126.13.tgz#aa99da2328eed68b5c0d498baabf0afa4a47d953"
@@ -3103,14 +3096,6 @@
     "@tamagui/stacks" "1.126.13"
     "@tamagui/text" "1.126.13"
     "@tamagui/web" "1.126.13"
-
-"@tamagui/lucide-icons@^1.126.12":
-  version "1.126.13"
-  resolved "https://registry.yarnpkg.com/@tamagui/lucide-icons/-/lucide-icons-1.126.13.tgz#be47d1aaef36483b8b8afd08310c1bd7225f0b66"
-  integrity sha512-qdm0aaNzqt/By+pehvE0k+Ujs259FDpoiINZVEdUCTr2SiOlOJDFZA20WnQExciqQlVv9+jF9RGqq0KnL9ZyaA==
-  dependencies:
-    "@tamagui/core" "1.126.13"
-    "@tamagui/helpers-icon" "1.126.13"
 
 "@tamagui/metro-plugin@^1.126.13":
   version "1.126.13"

@@ -6,14 +6,13 @@ import { ImageProps } from 'expo-image'
 import { CameraType, launchImageLibraryAsync } from 'expo-image-picker'
 import * as Linking from 'expo-linking'
 
-import { ImageMinus, RotateCcw } from '@tamagui/lucide-icons'
 import { Stack, View, YStack } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
 
 import { Button, XStack } from '@app/components/common'
 
-import { AvatarIcon, BackIcon, EditIcon } from '@icons'
+import { AvatarIcon, BackIcon, EditIcon, ImageMinus, RotateCcw } from '@icons'
 
 import { ModalRef } from '@app/types/modal'
 

@@ -1,9 +1,10 @@
-import { X } from '@tamagui/lucide-icons'
 import { Button, Dialog, DialogContentProps, DialogProps, Unspaced } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
 
 import { useModal } from '@app/hooks/use-modal'
+
+import { X } from '@icons'
 
 import { ModalRef } from '@app/types/modal'
 

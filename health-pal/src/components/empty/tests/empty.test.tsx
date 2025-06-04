@@ -1,6 +1,6 @@
 import { render } from '@utils-test'
 
-import { X } from '@tamagui/lucide-icons'
+import { X } from '@icons'
 
 // Adjust path
 

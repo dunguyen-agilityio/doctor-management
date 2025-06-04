@@ -2,7 +2,7 @@ import { View } from 'react-native'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Airplay } from '@tamagui/lucide-icons'
+import Check from '@icons/check'
 
 import { Button } from '../button'
 
@@ -43,6 +43,6 @@ export const OutlinedWithIcon: Story = {
     children: 'Another example',
     variant: 'outlined',
     fontSize: 14,
-    icon: Airplay,
+    icon: Check,
   },
 }
