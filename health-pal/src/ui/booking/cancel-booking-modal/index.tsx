@@ -1,13 +1,13 @@
 import { router } from 'expo-router'
 
-import { CheckCircle } from '@tamagui/lucide-icons'
-
 import { useAppLoading } from '@app/hooks'
 import { useRequireAuth } from '@app/hooks/use-require-auth'
 
 import { Button, Heading, Modal, Text, YStack } from '@app/components'
 
 import { updateBooking } from '@app/services/booking'
+
+import { CheckCircle } from '@icons'
 
 import { BOOKING_TABS } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'

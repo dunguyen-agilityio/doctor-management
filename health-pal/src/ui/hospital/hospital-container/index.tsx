@@ -7,7 +7,7 @@ import { FAVORITE_EMPTY } from '@app/constants'
 import useHospitals from '@app/hooks/use-hospitals'
 import useMediaQuery from '@app/hooks/use-media-query'
 
-import { Empty, ErrorState, YStack } from '@app/components'
+import { Empty, ErrorState, LoadingIndicator, YStack } from '@app/components'
 import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
 
 import { FAVORITE_TYPES } from '@app/types/favorite'
@@ -17,10 +17,22 @@ import HospitalList from '../hospital-list'
 const ItemSeparatorComponent = () => <Stack height={12} />
 
 const HospitalContainer = ({ query }: { query: string }) => {
-  const { data, isFetching, isFetchingNextPage, error, refetch, fetchNextPage, hasNextPage } =
-    useHospitals(query)
+  const {
+    data,
+    isLoading,
+    isFetching,
+    isFetchingNextPage,
+    error,
+    refetch,
+    fetchNextPage,
+    hasNextPage,
+  } = useHospitals(query)
 
   const { height } = useMediaQuery({ px: 24, height: 256, full: true })
+
+  if (isLoading) {
+    return <HospitalListSkeleton />
+  }
 
   if ((!data && !isFetching) || error)
     return (
@@ -41,9 +53,7 @@ const HospitalContainer = ({ query }: { query: string }) => {
 
   return (
     <View flex={1} position="relative">
-      {isFetching && !isFetchingNextPage && (
-        <HospitalListSkeleton count={3} paddingHorizontal={24} />
-      )}
+      {isFetching && !isFetchingNextPage && <LoadingIndicator fullScreen />}
       <HospitalList
         data={data?.data ?? []}
         ItemSeparatorComponent={ItemSeparatorComponent}

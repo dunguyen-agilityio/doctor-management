@@ -6,8 +6,6 @@ import { Text } from 'tamagui'
 
 import { ModalRef } from '@app/types/modal'
 
-// Adjust path
-
 import Modal from '.'
 
 describe('Modal', () => {

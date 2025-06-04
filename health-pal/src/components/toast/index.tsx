@@ -1,10 +1,11 @@
-import { X } from '@tamagui/lucide-icons'
 import { Toast as TamaguiToast, useToastState } from '@tamagui/toast'
 import { ButtonIcon, TextProps, XStack } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
 
 import { Text, YStack } from '@app/components/common'
+
+import { X } from '@icons'
 
 type ToastVariant = 'error' | 'success' | 'info'
 

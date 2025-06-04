@@ -1,6 +1,6 @@
-import { AlertTriangle } from '@tamagui/lucide-icons'
-
 import { Button, Heading, Text, YStack } from '@app/components/common'
+
+import { XCircle } from '@icons'
 
 type ErrorStateProps = {
   title?: string
@@ -15,7 +15,7 @@ const ErrorState = ({
 }: ErrorStateProps) => {
   return (
     <YStack gap={12} alignItems="center" justifyContent="center" flex={1}>
-      <AlertTriangle size="$6" color="$red10" />
+      <XCircle color="$red10" />
       <Heading size="extraLarge" fontWeight="600" color="$red">
         {title}
       </Heading>

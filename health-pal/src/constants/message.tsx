@@ -1,4 +1,4 @@
-import { Ban, CalendarX, Heart, Hospital } from '@tamagui/lucide-icons'
+import { Ban, CalendarX } from '@icons'
 
 import { BOOKING_TABS } from '@app/types/booking'
 import { FAVORITE_TYPES } from '@app/types/favorite'
@@ -16,13 +16,13 @@ export const FAVORITE_EMPTY = {
   [FAVORITE_TYPES.DOCTOR]: {
     title: 'No Favorite Doctors',
     description: 'Add your favorite doctors to find them easily later.',
-    icon: <Heart size="$6" color="$gray10" />,
+    icon: <Ban color="$gray10" />,
     action: 'Browse Doctors',
   },
   [FAVORITE_TYPES.HOSPITAL]: {
     title: 'No Favorite Hospitals',
     description: 'Mark hospitals as favorite for quick access.',
-    icon: <Hospital size="$6" color="$gray10" />,
+    icon: <Ban color="$gray10" />,
     action: 'Browse Hospitals',
   },
 }
@@ -31,19 +31,19 @@ export const BOOKING_EMPTY = {
   [BOOKING_TABS.UPCOMING]: {
     title: 'No Upcoming Appointments',
     description: 'Book an appointment to see it here.',
-    icon: <CalendarX size="$6" color="$gray10" />,
+    icon: <CalendarX color="$gray10" />,
     action: 'Book Now',
   },
   [BOOKING_TABS.COMPLETED]: {
     title: 'No Past Appointments',
     description: 'Your completed appointments will show up here.',
-    icon: <CalendarX size="$6" color="$gray10" />,
+    icon: <CalendarX color="$gray10" />,
     action: '',
   },
   [BOOKING_TABS.CANCELED]: {
     title: 'No Canceled Appointments',
     description: 'Your canceled bookings will appear here for reference.',
-    icon: <Ban size="$6" color="$gray10" />,
+    icon: <Ban color="$gray10" />,
     action: '',
   },
 }
