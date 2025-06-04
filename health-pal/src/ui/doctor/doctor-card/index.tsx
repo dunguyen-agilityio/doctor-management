@@ -1,14 +1,15 @@
 import { Fragment, memo, useRef } from 'react'
 import { GestureResponderEvent } from 'react-native'
 
-import { Image } from 'expo-image'
-
 import { Card, Separator, XStack, YStack } from 'tamagui'
+
+import { PLACEHOLDER_IMAGE } from '@app/constants/image'
 
 import { Heading, Text } from '@theme'
 
 import LocationOutline from '@icons/location-outline'
 
+import CloudinaryImage from '@app/components/cloudinary-image'
 import Stars from '@app/components/stars'
 import { useAddFavorite } from '@app/hooks/use-add-favorite'
 import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
@@ -86,10 +87,10 @@ const DoctorCard = ({
       shadowRadius={12}
       elevation={3}>
       <Card.Header padding={0}>
-        <Image
-          source={avatar}
+        <CloudinaryImage
+          source={{ uri: avatar }}
           style={{ width: 110, height: 110, borderRadius: 12 }}
-          testID="avatar-img"
+          placeholder={PLACEHOLDER_IMAGE}
         />
       </Card.Header>
       <Card.Footer flex={1} paddingVertical={0} marginVertical={0}>

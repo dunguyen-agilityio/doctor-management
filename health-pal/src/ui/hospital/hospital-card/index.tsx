@@ -1,9 +1,9 @@
 import { useRef } from 'react'
 import { GestureResponderEvent } from 'react-native'
 
-import { Image } from 'expo-image'
-
 import { Card, Separator, ViewProps, XStack } from 'tamagui'
+
+import { PLACEHOLDER_IMAGE } from '@app/constants/image'
 
 import { Heading } from '@theme/heading'
 import { Text } from '@theme/text'
@@ -11,6 +11,7 @@ import { Text } from '@theme/text'
 import { Hospital as HospitalIcon, Routing } from '@icons'
 import LocationOutline from '@icons/location-outline'
 
+import CloudinaryImage from '@app/components/cloudinary-image'
 import Stars from '@app/components/stars'
 import { useAddFavorite } from '@app/hooks/use-add-favorite'
 import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
@@ -86,7 +87,11 @@ const HospitalCard = ({
       width={width}
       shadowOffset={{ width: 4, height: 4 }}>
       <Card.Header padding={0}>
-        <Image source={image?.url} style={{ height: 120, objectFit: 'contain' }} />
+        <CloudinaryImage
+          source={{ uri: image?.url }}
+          style={{ height: 120 }}
+          placeholder={PLACEHOLDER_IMAGE}
+        />
         <FavoriteButton
           favoriteId={favoriteId}
           itemId={id}
