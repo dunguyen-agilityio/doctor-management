@@ -1,8 +1,9 @@
-import { Placeholder, PlaceholderLine, PlaceholderMedia, ShineOverlay } from 'rn-placeholder'
-
 import { Card, Separator, XStack, YStack } from 'tamagui'
 
 import useMediaQuery from '@app/hooks/use-media-query'
+
+import { LineLoader } from './line-loader'
+import { MediaLoader } from './media-loader'
 
 interface DoctorCardSkeletonProps {
   showReview?: boolean
@@ -30,42 +31,31 @@ const DoctorCardSkeleton = ({ showReview = true }: DoctorCardSkeletonProps) => {
       shadowRadius={12}
       elevation={3}>
       <Card.Header padding={0} width={110}>
-        <PlaceholderMedia size={110} style={{ borderRadius: 12 }} />
+        <MediaLoader width={110} height={110} borderRadius={12} />
       </Card.Header>
       <Card.Footer flex={1} paddingVertical={0} marginVertical={0}>
-        <YStack paddingRight={12} flex={1}>
-          <XStack justifyContent="space-between" alignItems="center">
-            <Placeholder Animation={ShineOverlay} style={{ width: 320, height: 20 }}>
-              <PlaceholderLine height={20} width={50} />
-            </Placeholder>
-          </XStack>
+        <YStack paddingRight={12} flex={1} gap={8}>
+          <LineLoader width={140} height={20} />
           <Separator marginVertical={8} />
-          <YStack gap={showReview ? 0 : 8}>
-            <Placeholder Animation={ShineOverlay}>
-              <PlaceholderLine height={14} width={60} />
-              <PlaceholderLine height={14} width={70} />
-            </Placeholder>
+          <YStack gap={4}>
+            <LineLoader width={120} height={14} />
+            <LineLoader width={100} height={14} />
           </YStack>
           {showReview && (
-            <XStack alignItems="center">
-              <Placeholder Animation={ShineOverlay} style={{ width: 120 }}>
-                <PlaceholderLine height={12} width={120} />
-              </Placeholder>
+            <XStack alignItems="center" gap={8}>
+              <LineLoader width={80} height={12} />
+              <Separator vertical height={8} />
+              <LineLoader width={80} height={12} />
             </XStack>
           )}
         </YStack>
         {showReview && (
-          <Placeholder Animation={ShineOverlay}>
-            <PlaceholderMedia
-              size={24}
-              style={{
-                borderRadius: 12,
-                position: 'absolute',
-                top: 0,
-                right: 6,
-              }}
-            />
-          </Placeholder>
+          <MediaLoader
+            width={24}
+            height={24}
+            borderRadius={12}
+            style={{ position: 'absolute', top: 0, right: 6 }}
+          />
         )}
       </Card.Footer>
     </Card>

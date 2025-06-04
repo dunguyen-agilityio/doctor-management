@@ -1,15 +1,18 @@
 import { useRef } from 'react'
 
-import { Image } from 'expo-image'
 import { router } from 'expo-router'
 
 import { Card, Separator } from 'tamagui'
+
+import { PLACEHOLDER_IMAGE } from '@app/constants/image'
 
 import { Button, Heading, Text, XStack, YStack } from '@theme'
 
 import { BOOKING_TABS } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 import CancelBookingModal from '@app/ui/booking/cancel-booking-modal'
+
+import CloudinaryImage from '../cloudinary-image'
 
 type TBookingCard = {
   date: string
@@ -115,9 +118,10 @@ const BookingCard = ({
           {/* Doctor Info */}
           <YStack flex={1}>
             <XStack gap={10}>
-              <Image
+              <CloudinaryImage
                 source={{ uri: doctorAvatar }}
-                style={{ width: 109, height: 109, borderRadius: 8 }}
+                style={{ height: 109, width: 109, borderRadius: 8 }}
+                placeholder={PLACEHOLDER_IMAGE}
               />
               <YStack paddingVertical={14}>
                 <Text fontSize={16} fontWeight="bold">

@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 
 import { CameraView, useCameraPermissions } from 'expo-camera'
-import { Image, ImageProps } from 'expo-image'
+import { ImageProps } from 'expo-image'
 import { CameraType, launchImageLibraryAsync } from 'expo-image-picker'
 import * as Linking from 'expo-linking'
 
@@ -10,6 +10,7 @@ import { ImageMinus, RotateCcw } from '@tamagui/lucide-icons'
 import { Stack, View, YStack } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
+import { PLACEHOLDER_IMAGE } from '@app/constants/image'
 
 import { Button } from '@theme/button'
 import { XStack } from '@theme/stack'
@@ -21,6 +22,7 @@ import { ModalRef } from '@app/types/modal'
 import { tokens } from '@/tamagui.config'
 
 import AlertDialog from '../alert-dialog'
+import CloudinaryImage from '../cloudinary-image'
 
 interface UploadProps extends ImageProps {
   preview?: string
@@ -117,11 +119,11 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
             zIndex={1}>
             <Stack w={170} h={170} borderRadius={300}>
               {(image ?? preview) ? (
-                <Image
-                  testID="expo-image"
-                  source={image ?? preview}
-                  style={styles.image}
+                <CloudinaryImage
                   {...other}
+                  source={{ uri: image ?? preview }}
+                  placeholder={PLACEHOLDER_IMAGE}
+                  style={styles.image}
                 />
               ) : (
                 <AvatarIcon testID="avatar-icon" />
