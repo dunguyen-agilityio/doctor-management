@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from '@theme'
+import { Button, ButtonProps } from '@app/components/common'
 
 import { formatTime } from '@app/utils/date'
 

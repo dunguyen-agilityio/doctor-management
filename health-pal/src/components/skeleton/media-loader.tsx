@@ -13,7 +13,6 @@ export const MediaLoader = ({
     speed={1.5}
     width={width}
     height={height}
-    viewBox={`0 0 ${width} ${height}`}
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
     {...props}>

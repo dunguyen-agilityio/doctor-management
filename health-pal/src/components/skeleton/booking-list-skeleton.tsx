@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Stack, StackProps } from 'tamagui'
 
 import { BOOKING_TABS } from '@app/types/booking'

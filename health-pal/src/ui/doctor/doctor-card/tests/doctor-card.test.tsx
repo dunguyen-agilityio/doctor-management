@@ -1,7 +1,5 @@
 import { render } from '@utils-test'
 
-// Adjust path
-
 import { TDoctorCard } from '@app/models/doctor'
 
 import DoctorCard from '../'

@@ -6,14 +6,15 @@ import { Href, Tabs } from 'expo-router'
 
 import { Stack } from 'tamagui'
 
-import { XStack } from '@theme/stack'
+import { XStack } from '@app/components/common'
+import Header from '@app/components/header'
+import TabIcon from '@app/components/tab-icon'
 
 import { NotificationIcon } from '@icons'
 
-import Header from '@app/components/header'
-import TabIcon from '@app/components/tab-icon'
 import { withUpcomingFeature } from '@app/hocs/with-upcoming-feature'
-import { TAB_ROUTES } from '@app/types/route'
+
+import { TAB_ROUTES } from '@app/types'
 
 const TITLES: Record<TAB_ROUTES, string> = {
   [TAB_ROUTES.FAVORITE]: 'Favorites',

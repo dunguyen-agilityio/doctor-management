@@ -4,7 +4,7 @@ import { Stack, StackProps } from 'tamagui'
 
 import { LoaderIcon } from '@icons'
 
-import Modal from '../modal'
+import Modal from '../common/modal'
 
 interface LoadingIndicatorProps extends StackProps {
   fullScreen?: boolean

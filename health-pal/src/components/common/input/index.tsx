@@ -4,15 +4,56 @@ import { TextInput } from 'react-native'
 import { SvgProps } from 'react-native-svg'
 
 import { IconProps } from '@tamagui/helpers-icon'
-import { XStack, YStack } from 'tamagui'
+import { InputProps, Input as TamaguiInput, XStack, YStack, styled } from 'tamagui'
 
-import { ButtonProps, InputProps, Input as TamaguiInput, Text } from '@theme'
+import { ButtonProps } from '../button'
+import { Text } from '../text'
+
+export const CustomTamaguiInput = styled(TamaguiInput, {
+  fontFamily: '$body',
+  fontWeight: '400',
+  fontSize: '$s',
+  variants: {
+    variant: {
+      flat: {
+        backgroundColor: '$grey50',
+        color: '$grey600',
+        borderRadius: '$1',
+        height: 45,
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        borderColor: '$grey300',
+        placeholderTextColor: '$grey400',
+      },
+      bordered: {
+        color: '$primary',
+        backgroundColor: 'transparent',
+        py: 10,
+        borderWidth: 1,
+        borderColor: '$grey200',
+        borderRadius: '$1',
+        height: 40,
+      },
+      outlined: {
+        backgroundColor: '$grey100',
+        color: '$grey600',
+        height: 45,
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        placeholderTextColor: '$grey400',
+        borderRadius: 8,
+        borderWidth: 0,
+      },
+    },
+  } as const,
+  defaultVariants: { variant: 'flat' },
+})
 
 type IconComponent =
   | ((propsIn: IconProps) => React.ReactElement)
   | ((propsIn: SvgProps) => React.ReactElement)
 
-interface CustomInputProps extends Omit<InputProps, 'onBlur'> {
+interface CustomInputProps extends Omit<Parameters<typeof CustomTamaguiInput>[0], 'onBlur'> {
   leftIcon?: IconComponent | null
   rightIcon?: IconComponent | null
   ref?: React.Ref<TextInput>
@@ -33,7 +74,7 @@ const styleByIcon: Record<'true' | 'false', InputProps> = {
   },
 }
 
-const Input = ({
+export const Input = ({
   leftIcon: LeftIcon = null,
   rightIcon: RightIcon = null,
   errorMessage,
@@ -56,7 +97,7 @@ const Input = ({
         {hasLeftIcon ? (
           <LeftIcon testID="left-icon" position="absolute" zIndex={200} left={16} size={16} />
         ) : null}
-        <TamaguiInput
+        <CustomTamaguiInput
           ref={ref}
           flex={1}
           {...(errorMessage && { borderColor: 'red', focusStyle: { borderColor: 'red' } })}

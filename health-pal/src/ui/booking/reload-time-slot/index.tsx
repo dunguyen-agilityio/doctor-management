@@ -2,9 +2,8 @@ import { useFormContext } from 'react-hook-form'
 
 import dayjs from 'dayjs'
 
-import { Button, Heading, Text, XStack, YStack } from '@theme'
+import { Button, Heading, Modal, Text, XStack, YStack } from '@app/components'
 
-import { Modal } from '@app/components'
 import { BookingForm } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 

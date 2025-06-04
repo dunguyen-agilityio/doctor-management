@@ -5,7 +5,7 @@ import { usePathname } from 'expo-router'
 
 import { ModalRef } from '@app/types/modal'
 
-import QuitAppConfirmModal from './confirm-quit-modal'
+import QuitAppConfirmModal from '../confirm-quit-modal'
 
 const PreventBackHandler = ({ children }: React.PropsWithChildren) => {
   const pathname = usePathname()

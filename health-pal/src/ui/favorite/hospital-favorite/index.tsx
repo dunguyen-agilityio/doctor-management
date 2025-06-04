@@ -4,13 +4,16 @@ import { Stack } from 'tamagui'
 
 import { FAVORITE_EMPTY } from '@app/constants'
 
-import Empty from '@app/components/empty'
-import ErrorState from '@app/components/error'
-import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
 import { useFavoriteHospitals } from '@app/hooks/use-favorite'
 import useMediaQuery from '@app/hooks/use-media-query'
-import { FAVORITE_TYPES } from '@app/types/favorite'
+
+import { Empty, ErrorState } from '@app/components'
+import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
+
 import HospitalList from '@app/ui/hospital/hospital-list'
+
+import { FAVORITE_TYPES } from '@app/types/favorite'
+
 import { keyExtractor } from '@app/utils/list'
 
 const ItemSeparatorComponent = () => <Stack height={12} />

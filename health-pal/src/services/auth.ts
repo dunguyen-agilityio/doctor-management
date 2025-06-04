@@ -1,7 +1,8 @@
 import dayjs from 'dayjs'
 
-import { Session, User } from '@app/models/user'
 import { AuthCredentials, UserProfileData } from '@app/types'
+
+import { Session, User } from '@app/models/user'
 
 import { APIResponse, apiClient } from './http-client'
 

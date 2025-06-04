@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from '@theme'
+import { Button, ButtonProps } from '@app/components'
 
 import HeartFill from '@icons/heart-fill'
 import HeartOutline from '@icons/heart-outline'

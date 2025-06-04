@@ -4,15 +4,13 @@ import { router } from 'expo-router'
 
 import { Card, Separator } from 'tamagui'
 
-import { PLACEHOLDER_IMAGE } from '@app/constants/image'
+import { Button, Heading, Text, XStack, YStack } from '@app/components'
+import CloudinaryImage from '@app/components/cloudinary-image'
 
-import { Button, Heading, Text, XStack, YStack } from '@theme'
+import CancelBookingModal from '@app/ui/booking/cancel-booking-modal'
 
 import { BOOKING_TABS } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
-import CancelBookingModal from '@app/ui/booking/cancel-booking-modal'
-
-import CloudinaryImage from '../cloudinary-image'
 
 type TBookingCard = {
   date: string
@@ -106,7 +104,6 @@ const BookingCard = ({
         elevation={3}
         padding={10}
         marginBottom={10}>
-        {/* Date and Time */}
         <Card.Header>
           <Heading fontSize={14}>
             {date} - {time}
@@ -115,13 +112,11 @@ const BookingCard = ({
         </Card.Header>
 
         <Card.Footer>
-          {/* Doctor Info */}
           <YStack flex={1}>
             <XStack gap={10}>
               <CloudinaryImage
                 source={{ uri: doctorAvatar }}
                 style={{ height: 109, width: 109, borderRadius: 8 }}
-                placeholder={PLACEHOLDER_IMAGE}
               />
               <YStack paddingVertical={14}>
                 <Text fontSize={16} fontWeight="bold">
@@ -135,8 +130,6 @@ const BookingCard = ({
                 </Text>
               </YStack>
             </XStack>
-
-            {/* Buttons */}
             {renderAction()}
           </YStack>
         </Card.Footer>

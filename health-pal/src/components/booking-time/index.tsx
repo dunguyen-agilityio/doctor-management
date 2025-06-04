@@ -1,4 +1,4 @@
-import { Heading, Text, XStack, YStack } from '@theme'
+import { Heading, Text, XStack, YStack } from '@app/components/common'
 
 import TimeButton from '../time-button'
 

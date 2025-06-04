@@ -1,5 +1,6 @@
+import { BOOKING_TABS } from '@app/types'
+
 import { MOCK_BOOKING } from '@app/mocks/booking'
-import { BOOKING_TABS } from '@app/types/booking'
 
 import { formatBooking } from '../booking'
 

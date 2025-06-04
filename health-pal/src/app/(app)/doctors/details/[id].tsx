@@ -5,32 +5,38 @@ import { Stack, router, useLocalSearchParams } from 'expo-router'
 
 import { APP_TITLES } from '@app/constants/route'
 
-import { Button, Heading, Text, XStack, YStack } from '@theme'
+import { useAddFavorite } from '@app/hooks/use-add-favorite'
+import useDoctor from '@app/hooks/use-doctor'
+import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
+
+import {
+  Button,
+  ButtonWithUpcoming,
+  Heading,
+  LoadingIndicator,
+  ReviewCard,
+  Stat,
+  Text,
+  XStack,
+  YStack,
+} from '@app/components'
+import ErrorState from '@app/components/error'
+import Header from '@app/components/header'
+
+import DoctorCard from '@app/ui/doctor/doctor-card'
+import { FavoriteButton } from '@app/ui/favorite'
+import RemoveFavoriteModal from '@app/ui/favorite/remove-favorite-confirm-modal'
 
 import Medal from '@icons/medal'
 import Messages from '@icons/messages'
 import Star from '@icons/star'
 import TwoUser from '@icons/two-user'
 
-import {
-  ButtonWithUpcoming,
-  LoadingIndicator,
-  ReviewCard,
-  SessionHeader,
-  Stat,
-} from '@app/components'
-import ErrorState from '@app/components/error'
-import Header from '@app/components/header'
-import { useAddFavorite } from '@app/hooks/use-add-favorite'
-import useDoctor from '@app/hooks/use-doctor'
-import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
-import { useFavoritesStore } from '@app/stores/favorite'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import { ModalRef } from '@app/types/modal'
 import { APP_ROUTES } from '@app/types/route'
-import DoctorCard from '@app/ui/doctor/doctor-card'
-import { FavoriteButton } from '@app/ui/favorite'
-import RemoveFavoriteModal from '@app/ui/favorite/remove-favorite-confirm-modal'
+
+import { useFavoritesStore } from '@app/stores/favorite'
 import { formatDoctor } from '@app/utils/doctor'
 import { formatReview } from '@app/utils/review'
 
@@ -157,13 +163,12 @@ const Details = () => {
             <Text size="small">Monday-Friday, 08.00 AM-18.00 PM</Text>
           </YStack>
           <YStack flex={1} gap="$sm">
-            <SessionHeader
-              title="Reviews"
-              seeAllWrapper={({ children }) => (
-                <ButtonWithUpcoming variant="text">{children}</ButtonWithUpcoming>
-              )}
-            />
-
+            <XStack alignItems="center" justifyContent="space-between">
+              <Heading size="extraLarge" fontWeight="600">
+                Reviews
+              </Heading>
+              <ButtonWithUpcoming variant="text">See All</ButtonWithUpcoming>
+            </XStack>
             <ReviewCard {...formatReview(review)} />
           </YStack>
         </YStack>

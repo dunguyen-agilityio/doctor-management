@@ -6,7 +6,7 @@ import { PortalProvider, TamaguiProvider } from 'tamagui'
 
 import { tamaguiConfig } from '@/tamagui.config'
 
-import { AppLoadingProvider, SessionProvider } from './contexts'
+import { AppLoadingProvider } from './contexts'
 import { queryClient } from './react-query.config'
 
 const Providers = ({ children }: React.PropsWithChildren) => {
@@ -16,9 +16,7 @@ const Providers = ({ children }: React.PropsWithChildren) => {
         <PortalProvider>
           <ToastProvider>
             <ThemeProvider value={DefaultTheme}>
-              <AppLoadingProvider>
-                <SessionProvider>{children}</SessionProvider>
-              </AppLoadingProvider>
+              <AppLoadingProvider>{children}</AppLoadingProvider>
             </ThemeProvider>
           </ToastProvider>
         </PortalProvider>

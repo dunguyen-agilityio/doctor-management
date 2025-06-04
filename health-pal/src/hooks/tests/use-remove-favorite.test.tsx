@@ -4,11 +4,12 @@ import { useMutation } from '@tanstack/react-query'
 
 import { useToastController } from '@tamagui/toast'
 
-import { useSession } from '@app/contexts'
 import { removeFavorite } from '@app/services/favorite'
+
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
 import { useRemoveFavorite } from '../use-remove-favorite'
+import { useSession } from '../use-session'
 
 jest.mock('@tanstack/react-query', () => ({
   ...jest.requireActual('@tanstack/react-query'),

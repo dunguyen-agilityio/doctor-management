@@ -2,9 +2,8 @@ import { BackHandler } from 'react-native'
 
 import { CheckCircle } from '@tamagui/lucide-icons'
 
-import { Button, Heading, Text, YStack } from '@theme'
+import { Button, Heading, Modal, Text, YStack } from '@app/components/common'
 
-import { Modal } from '@app/components'
 import { ModalRef } from '@app/types/modal'
 
 const QuitAppConfirmModal = ({ ref }: { ref?: React.RefObject<ModalRef | null> }) => {

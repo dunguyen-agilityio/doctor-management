@@ -3,9 +3,8 @@ import { useEffect, useRef } from 'react'
 import { router, useLocalSearchParams } from 'expo-router'
 import { TextInput } from 'react-native-gesture-handler'
 
-import { YStack } from '@theme'
+import { SearchInput, YStack } from '@app/components'
 
-import { SearchInput } from '@app/components'
 import { DoctorContainer, MultipleSelectSpecialty } from '@app/ui/doctor'
 
 const DoctorListScreen = () => {

@@ -3,8 +3,10 @@ import { router, useLocalSearchParams } from 'expo-router'
 import { Separator, Tabs } from 'tamagui'
 
 import { TAB_DEFAULT_PROPS, TabsContent, TabsTab } from '@app/components'
-import { FAVORITE_TYPES } from '@app/types/favorite'
+
 import { DoctorFavorite, HospitalFavorite } from '@app/ui/favorite'
+
+import { FAVORITE_TYPES } from '@app/types/favorite'
 
 const Favorite = () => {
   const { type = FAVORITE_TYPES.DOCTOR } = useLocalSearchParams<{ type: FAVORITE_TYPES }>()

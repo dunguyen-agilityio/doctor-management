@@ -1,5 +1,4 @@
-// Adjust path
-import { StrapiParams } from '@app/types/strapi'
+import { StrapiParams } from '@app/types'
 
 import { buildStrapiQuery } from '../strapi'
 

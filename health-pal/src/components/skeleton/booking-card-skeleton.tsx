@@ -17,8 +17,8 @@ const BookingCardSkeleton = ({ type = BOOKING_TABS.UPCOMING }: BookingCardSkelet
       <>
         <Separator marginVertical={12} />
         <XStack justifyContent="space-between">
-          <LineLoader width={100} height={36} borderRadius={24} />
-          <LineLoader width={100} height={36} borderRadius={24} />
+          <LineLoader width={150} height={36} borderRadius={24} />
+          <LineLoader width={150} height={36} borderRadius={24} />
         </XStack>
       </>
     )
@@ -38,7 +38,7 @@ const BookingCardSkeleton = ({ type = BOOKING_TABS.UPCOMING }: BookingCardSkelet
       shadowRadius={6}
       elevation={3}>
       <Card.Header>
-        <LineLoader width={60} height={14} />
+        <LineLoader width={120} height={14} />
         <Separator marginVertical={12} />
       </Card.Header>
       <Card.Footer>
@@ -46,9 +46,9 @@ const BookingCardSkeleton = ({ type = BOOKING_TABS.UPCOMING }: BookingCardSkelet
           <XStack gap={10}>
             <MediaLoader width={109} height={109} borderRadius={8} />
             <YStack paddingVertical={14} gap={8} flex={1}>
-              <LineLoader width={80} height={16} />
-              <LineLoader width={60} height={14} />
-              <LineLoader width={70} height={12} />
+              <LineLoader width={180} height={16} />
+              <LineLoader width={100} height={14} />
+              <LineLoader width={140} height={12} />
             </YStack>
           </XStack>
           {renderActionSkeleton()}

@@ -3,10 +3,12 @@ import { Redirect, Stack } from 'expo-router'
 
 import { APP_TITLES } from '@app/constants/route'
 
+import { useSession } from '@app/hooks/use-session'
+
 import { LoadingIndicator } from '@app/components'
 import Header from '@app/components/header'
-import { useSession } from '@app/contexts/auth'
-import { APP_ROUTES } from '@app/types/route'
+
+import { APP_ROUTES } from '@app/types'
 
 const screenOptions: NativeStackNavigationOptions = {
   header: ({ navigation, route }) => {

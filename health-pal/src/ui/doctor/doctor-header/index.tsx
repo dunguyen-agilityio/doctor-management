@@ -1,13 +1,15 @@
 import { APP_TITLES } from '@app/constants/route'
 
-import { Button } from '@theme/button'
-
-import Header from '@app/components/header'
 import useDoctor from '@app/hooks/use-doctor'
-import { useFavoritesStore } from '@app/stores/favorite'
+
+import { Button, Header } from '@app/components'
+
+import { FavoriteButton } from '@app/ui/favorite'
+
 import { FAVORITE_TYPES } from '@app/types/favorite'
 import { APP_ROUTES } from '@app/types/route'
-import { FavoriteButton } from '@app/ui/favorite'
+
+import { useFavoritesStore } from '@app/stores/favorite'
 
 const DoctorDetailHeader = ({ id, goBack }: { id: string; goBack: () => void }) => {
   const { data, error, isLoading } = useDoctor(id)

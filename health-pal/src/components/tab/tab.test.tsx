@@ -2,8 +2,7 @@ import { render, screen } from '@utils-test'
 
 import { Tabs } from 'tamagui'
 
-import { Heading } from '@theme/heading'
-import { Text } from '@theme/text'
+import { Heading, Text } from '@app/components/common'
 
 import { tokens } from '@/tamagui.config'
 

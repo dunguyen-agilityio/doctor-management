@@ -1,6 +1,6 @@
 import { TextProps, XStackProps } from 'tamagui'
 
-import { Button, Heading, XStack } from '@theme'
+import { Button, Heading, XStack } from '@app/components/common'
 
 import { BackIcon } from '@icons/index'
 

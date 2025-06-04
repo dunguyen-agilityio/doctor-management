@@ -10,10 +10,8 @@ import { ImageMinus, RotateCcw } from '@tamagui/lucide-icons'
 import { Stack, View, YStack } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
-import { PLACEHOLDER_IMAGE } from '@app/constants/image'
 
-import { Button } from '@theme/button'
-import { XStack } from '@theme/stack'
+import { Button, XStack } from '@app/components/common'
 
 import { AvatarIcon, BackIcon, EditIcon } from '@icons'
 
@@ -29,7 +27,7 @@ interface UploadProps extends ImageProps {
   onUpload?: (image: string) => Promise<void>
 }
 
-const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
+const Upload = ({ preview, onUpload }: UploadProps) => {
   const [permission, requestPermission] = useCameraPermissions()
   const ref = useRef<CameraView>(null)
   const [facing, setFacing] = useState<CameraType>(CameraType.back)
@@ -119,12 +117,7 @@ const Upload = ({ preview, onUpload, ...other }: UploadProps) => {
             zIndex={1}>
             <Stack w={170} h={170} borderRadius={300}>
               {(image ?? preview) ? (
-                <CloudinaryImage
-                  {...other}
-                  source={{ uri: image ?? preview }}
-                  placeholder={PLACEHOLDER_IMAGE}
-                  style={styles.image}
-                />
+                <CloudinaryImage source={{ uri: image ?? preview }} style={styles.image} />
               ) : (
                 <AvatarIcon testID="avatar-icon" />
               )}

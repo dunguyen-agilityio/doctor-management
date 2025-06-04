@@ -1,6 +1,6 @@
 import { AlertTriangle } from '@tamagui/lucide-icons'
 
-import { Button, Heading, Text, YStack } from '@theme'
+import { Button, Heading, Text, YStack } from '@app/components/common'
 
 type ErrorStateProps = {
   title?: string

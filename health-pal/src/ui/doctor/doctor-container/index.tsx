@@ -1,12 +1,10 @@
 import { Spinner, YStack } from 'tamagui'
 
-import { Text, XStack } from '@theme'
-
-import Empty from '@app/components/empty'
-import ErrorState from '@app/components/error'
-import DoctorListSkeleton from '@app/components/skeleton/doctor-list-skeleton'
 import useDoctors from '@app/hooks/use-doctors'
 import { useFavoriteDoctors } from '@app/hooks/use-favorite'
+
+import { Empty, ErrorState, Text, XStack } from '@app/components'
+import DoctorListSkeleton from '@app/components/skeleton/doctor-list-skeleton'
 
 import DoctorList from '../doctor-list'
 

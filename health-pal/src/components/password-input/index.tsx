@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 
 import { Eye, EyeOff } from '@tamagui/lucide-icons'
 
-import { Button } from '@theme'
+import { Button } from '@app/components/common/button'
 
 import { LockIcon } from '@icons/index'
 
-import Input, { InputProps } from '../input'
+import { Input, InputProps } from '../common'
 
 const PasswordInput = ({ ...props }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false)

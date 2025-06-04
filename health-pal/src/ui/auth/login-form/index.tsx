@@ -8,12 +8,10 @@ import { YStack } from 'tamagui'
 import { EMAIL_REGEX } from '@app/constants'
 import { VALIDATIONS_MESSAGE } from '@app/constants/message'
 
-import { Button } from '@theme/button'
+import { Button, Input, PasswordInput } from '@app/components'
 
 import { SmsIcon } from '@icons'
 
-import { Input } from '@app/components'
-import PasswordInput from '@app/components/password-input'
 import { AuthCredentials } from '@app/types'
 
 interface LoginFormProps {

@@ -8,8 +8,10 @@ import { XStack, YStack } from 'tamagui'
 import { WINDOW_SIZE } from '@app/constants'
 
 import useMediaQuery from '@app/hooks/use-media-query'
-import { DOCTOR_BANNER } from '@app/mocks/doctor'
+
 import { TDoctorBanner } from '@app/types/doctor'
+
+import { DOCTOR_BANNER } from '@app/mocks/doctor'
 
 import DoctorBannerCard from './doctor-banner-card'
 

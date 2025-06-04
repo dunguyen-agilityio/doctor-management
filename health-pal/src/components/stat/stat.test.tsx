@@ -1,13 +1,11 @@
 import { render, screen } from '@utils-test'
 
-// Adjust path
-import { Text } from '@theme/text'
+import { Text } from '@app/components/common'
 
 import { tokens } from '@/tamagui.config'
 
 import DoctorStat from '.'
 
-// Mock the icon prop
 const mockIcon = <Text testID="mock-icon">mock-icon</Text>
 
 describe('DoctorStat', () => {

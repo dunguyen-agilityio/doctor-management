@@ -1,6 +1,7 @@
 import { act, renderHook, waitFor } from '@utils-test'
 
 import { addFavorite } from '@app/services/favorite'
+
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
 import { useAddFavorite } from '../use-add-favorite'
@@ -8,16 +9,6 @@ import { useAddFavorite } from '../use-add-favorite'
 // Mocks
 jest.mock('@app/services/favorite', () => ({
   addFavorite: jest.fn(),
-}))
-
-jest.mock('@app/contexts', () => ({
-  ...jest.requireActual('@app/contexts'),
-  useSession: () => ({
-    session: {
-      jwt: 'test-token',
-      user: { id: 123 },
-    },
-  }),
 }))
 
 const mockShow = jest.fn()

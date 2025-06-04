@@ -1,8 +1,7 @@
 import { Star } from '@tamagui/lucide-icons'
 import { StackProps } from 'tamagui'
 
-import { XStack } from '@theme/stack'
-import { Text } from '@theme/text'
+import { Text, XStack } from '@app/components/common'
 
 interface StarsProps extends StackProps {
   stars: number

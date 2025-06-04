@@ -2,7 +2,7 @@ import { Image } from 'expo-image'
 
 import { StackProps } from 'tamagui'
 
-import { Heading, Text, YStack } from '@theme'
+import { Heading, Text, YStack } from '@app/components'
 
 import { TDoctorBanner } from '@app/types/doctor'
 

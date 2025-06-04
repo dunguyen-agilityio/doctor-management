@@ -2,7 +2,7 @@ import { GestureResponderEvent } from 'react-native'
 
 import { Stack, StackProps, TextProps } from 'tamagui'
 
-import { Text } from '@theme'
+import { Text } from '@app/components/common'
 
 type Size = 'md'
 

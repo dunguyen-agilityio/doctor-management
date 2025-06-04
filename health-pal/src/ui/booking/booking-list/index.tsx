@@ -1,25 +1,26 @@
 import { FlashList } from '@shopify/flash-list'
 
-import React from 'react'
 import { StyleSheet } from 'react-native'
 
 import { useQuery } from '@tanstack/react-query'
 
 import { BOOKING_EMPTY } from '@app/constants'
 
-import { XStack } from '@theme'
-
-import BookingCard from '@app/components/booking-card'
-import Empty from '@app/components/empty'
-import ErrorState from '@app/components/error'
-import BookingListSkeleton from '@app/components/skeleton/booking-list-skeleton'
 import useMediaQuery from '@app/hooks/use-media-query'
-import { BookingData, BookingKey } from '@app/models/booking'
+
+import { Empty, ErrorState, XStack } from '@app/components'
+import BookingListSkeleton from '@app/components/skeleton/booking-list-skeleton'
+
 import { getBookings } from '@app/services/booking'
+
 import { BOOKING_TABS } from '@app/types/booking'
 import { StrapiPagination } from '@app/types/strapi'
+
+import { BookingData, BookingKey } from '@app/models/booking'
 import { formatBooking } from '@app/utils/booking'
 import { keyExtractor } from '@app/utils/list'
+
+import BookingCard from '../booking-card'
 
 const bookingPromises: Record<BOOKING_TABS, () => Promise<StrapiPagination<BookingData>>> = {
   [BOOKING_TABS.CANCELED]: () =>

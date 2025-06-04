@@ -1,9 +1,10 @@
 import { APP_TOKEN } from '@app/constants'
 import { DoctorQueryKey } from '@app/constants/doctor'
 
+import { StrapiPagination, StrapiParams } from '@app/types/strapi'
+
 import { MOCK_REVIEWS } from '@app/mocks/reivew'
 import { TDoctorData } from '@app/models/doctor'
-import { StrapiPagination, StrapiParams } from '@app/types/strapi'
 import { buildStrapiQuery } from '@app/utils/strapi'
 
 import { apiClient } from './http-client'
