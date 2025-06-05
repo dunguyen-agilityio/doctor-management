@@ -58,8 +58,17 @@ const DateInput = ({
       offset={8}
       placement="bottom"
       resize>
-      <Popover.Trigger asChild height={48}>
-        <Button onPress={handleOpenDatePicker} padding={0}>
+      <Popover.Trigger
+        asChild
+        height={48}
+        aria-label="Date picker"
+        accessibilityHint="Select a date from the calendar"
+        role="dialog">
+        <Button
+          onPress={handleOpenDatePicker}
+          padding={0}
+          aria-label="Select date"
+          accessibilityHint="Opens a date picker to choose a date">
           <Input
             {...props}
             ref={inputRef}

@@ -1,9 +1,10 @@
 export const DoctorQueryKey = {
   hospital: 'populate[clinic][populate]',
-  doctor: 'populate[users_permissions_user][populate]',
-  specialty: 'populate[specialty][populate]',
+  avatar: 'populate[users_permissions_user][populate][avatar][populate]',
+  specialty: 'populate[specialty][fields]',
   query: 'filters[users_permissions_user][name][$containsi]',
   filterSpecialty: 'filters[specialty][name][$eqi]',
+  address: 'populate[clinic][fields]',
 }
 
 export const DoctorMessages = {

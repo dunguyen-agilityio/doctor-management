@@ -17,12 +17,7 @@ const RemoveFavoriteModal = ({
   }
 
   return (
-    <SheetModal
-      frameProps={{
-        height: 'auto',
-        paddingHorizontal: 0,
-      }}
-      ref={ref}>
+    <SheetModal height="auto" paddingHorizontal={0} ref={ref}>
       <YStack marginHorizontal={24}>
         <YStack>
           <Heading textAlign="center" size="extraLarge">

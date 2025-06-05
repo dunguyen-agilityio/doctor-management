@@ -2,11 +2,10 @@ import { useRef, useState } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 
 import { CameraView, useCameraPermissions } from 'expo-camera'
-import { ImageProps } from 'expo-image'
 import { CameraType, launchImageLibraryAsync } from 'expo-image-picker'
 import * as Linking from 'expo-linking'
 
-import { Stack, View, YStack } from 'tamagui'
+import { Stack, StackProps, View, YStack } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
 
@@ -21,12 +20,12 @@ import { tokens } from '@/tamagui.config'
 import AlertDialog from '../alert-dialog'
 import CloudinaryImage from '../cloudinary-image'
 
-interface UploadProps extends ImageProps {
+interface UploadProps extends StackProps {
   preview?: string
   onUpload?: (image: string) => Promise<void>
 }
 
-const Upload = ({ preview, onUpload }: UploadProps) => {
+const Upload = ({ preview, onUpload, ...props }: UploadProps) => {
   const [permission, requestPermission] = useCameraPermissions()
   const ref = useRef<CameraView>(null)
   const [facing, setFacing] = useState<CameraType>(CameraType.back)
@@ -113,7 +112,8 @@ const Upload = ({ preview, onUpload }: UploadProps) => {
             position="relative"
             justifyContent="center"
             alignSelf="center"
-            zIndex={1}>
+            zIndex={1}
+            {...props}>
             <Stack w={170} h={170} borderRadius={300}>
               {(image ?? preview) ? (
                 <CloudinaryImage source={{ uri: image ?? preview }} style={styles.image} />
@@ -151,7 +151,7 @@ const Upload = ({ preview, onUpload }: UploadProps) => {
           justifyContent="space-around"
           paddingVertical={10}>
           <Pressable aria-label="Pick Image from Gallery" onPress={pickImage}>
-            <ImageMinus size={32} color={tokens.color.primary.val} />
+            <ImageMinus width={32} height={32} color={tokens.color.primary.val} />
           </Pressable>
 
           <Pressable aria-label="Take Picture" onPress={takePicture}>
@@ -172,7 +172,7 @@ const Upload = ({ preview, onUpload }: UploadProps) => {
           </Pressable>
 
           <Pressable aria-label="Toggle Camera Facing" onPress={toggleFacing}>
-            <RotateCcw size={32} color={tokens.color.primary.val} />
+            <RotateCcw width={32} height={32} color={tokens.color.primary.val} />
           </Pressable>
         </XStack>
       </AlertDialog>

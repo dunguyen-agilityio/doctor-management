@@ -8,23 +8,22 @@ import { X } from '@icons'
 
 import { ModalRef } from '@app/types/modal'
 
-interface ModalProps extends DialogProps {
+export interface ModalProps extends DialogContentProps, Omit<DialogProps, 'children'> {
   closeButtonShown?: boolean
-  contentProps?: DialogContentProps
   ref?: React.Ref<ModalRef>
 }
 
 const Modal = ({
   children,
   closeButtonShown,
-  contentProps,
   ref,
+  open: defaultOpen,
   ...props
 }: React.PropsWithChildren<ModalProps>) => {
   const [open, setOpen] = useModal(ref)
 
   return (
-    <Dialog modal open={open} onOpenChange={setOpen} {...props}>
+    <Dialog modal open={open || defaultOpen} onOpenChange={setOpen}>
       <Dialog.Portal>
         <Dialog.Overlay
           testID="overlay"
@@ -43,6 +42,7 @@ const Modal = ({
         />
 
         <Dialog.Content
+          role="dialog"
           testID="content"
           padding={0}
           width={WINDOW_SIZE.width - 48}
@@ -63,12 +63,22 @@ const Modal = ({
           ]}
           enterStyle={{ x: 0, y: -20, opacity: 0 }}
           exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
-          {...contentProps}>
+          {...props}>
           {children}
           {closeButtonShown && (
             <Unspaced>
               <Dialog.Close asChild>
-                <Button position="absolute" top="$md" right="$md" size="$5" circular icon={X} />
+                <Button
+                  position="absolute"
+                  top="$md"
+                  right="$md"
+                  size="$5"
+                  circular
+                  icon={X}
+                  aria-label="Close the dialog"
+                  accessibilityHint="Closes the cancellation dialog without making changes"
+                  role="button"
+                />
               </Dialog.Close>
             </Unspaced>
           )}

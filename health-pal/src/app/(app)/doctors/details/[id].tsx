@@ -40,22 +40,26 @@ import { useFavoritesStore } from '@app/stores/favorite'
 import { formatDoctor } from '@app/utils/doctor'
 import { formatReview } from '@app/utils/review'
 
+import { tokens } from '@/tamagui.config'
+
 const Details = () => {
   const params = useLocalSearchParams<{ id: string }>()
   const { data, isLoading, error, refetch } = useDoctor(params.id)
+  const doctor = data ? formatDoctor(data) : null
+
   const { mutate: removeFavorite, isPending: removeFavPending } = useRemoveFavorite(
     FAVORITE_TYPES.DOCTOR,
-    data?.name || '',
+    doctor?.name || '',
   )
 
   const { mutate: addFavorite, isPending: addFavPending } = useAddFavorite(
     FAVORITE_TYPES.DOCTOR,
-    data?.name || '',
+    doctor?.name || '',
   )
 
   const confirmRef = useRef<ModalRef>(null)
 
-  const doctorId = data?.id
+  const doctorId = doctor?.id
 
   const favoriteId = useFavoritesStore((state) =>
     doctorId ? state.favoriteDoctors[doctorId] : undefined,
@@ -63,7 +67,7 @@ const Details = () => {
 
   if (isLoading) return <LoadingIndicator />
 
-  if (!data || error) {
+  if (!doctor || !data || error) {
     return (
       <ErrorState
         title="Doctor Not Available"
@@ -73,7 +77,10 @@ const Details = () => {
     )
   }
 
-  const { bio, documentId, name, id, summary, reviews } = data
+  const { bio, documentId, name, id } = doctor
+
+  const { reviews, summary } = data
+  const { experience, patients, rating, reviews: reviewCounter } = summary
 
   const handleFavorite = (e: GestureResponderEvent) => {
     e.preventDefault()
@@ -113,6 +120,13 @@ const Details = () => {
         disabledStyle={{ backgroundColor: '$shadow1' }}
         onPress={handleFavorite}
         disabled={addFavPending || removeFavPending}
+        aria-label={favoriteId ? `Remove ${name} from favorites` : `Add ${name} to favorites`}
+        accessibilityHint={
+          favoriteId
+            ? 'Removes this doctor from your favorites'
+            : 'Adds this doctor to your favorites'
+        }
+        role="button"
       />
     )
   }
@@ -134,18 +148,14 @@ const Details = () => {
       />
       <YStack flex={1} gap={16}>
         <YStack gap={16} flex={1} paddingHorizontal={24}>
-          <DoctorCard {...formatDoctor(data)} showReview={false} />
+          <DoctorCard {...doctor} showReview={false} />
           <XStack justifyContent="space-between">
-            <Stat
-              title="patients"
-              value={`${summary?.patients.toLocaleString()}+`}
-              icon={<TwoUser />}
-            />
-            <Stat title="experience" value={`${summary?.experience}+`} icon={<Medal />} />
-            <Stat title="rating" value={summary?.rating} icon={<Star />} />
+            <Stat title="patients" value={`${patients.toLocaleString()}+`} icon={<TwoUser />} />
+            <Stat title="experience" value={`${experience}+`} icon={<Medal />} />
+            <Stat title="rating" value={rating} icon={<Star fill={tokens.color.primary.val} />} />
             <Stat
               title="reviews"
-              value={`${summary?.reviews.toLocaleString()}+`}
+              value={`${reviewCounter.toLocaleString()}+`}
               icon={<Messages />}
             />
           </XStack>
@@ -185,7 +195,7 @@ const Details = () => {
         </XStack>
       </YStack>
       <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
-        <DoctorCard {...formatDoctor(data)} />
+        <DoctorCard {...doctor} />
       </RemoveFavoriteModal>
     </>
   )

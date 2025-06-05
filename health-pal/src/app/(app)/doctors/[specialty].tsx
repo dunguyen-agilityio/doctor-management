@@ -43,7 +43,7 @@ const DoctorListScreen = () => {
           onChangeText={handleChangeQuery}
           ref={searchRef}
           tabIndex={0}
-          aria-describedby="Enter a name to filter doctors"
+          accessibilityHint="Enter a name to filter doctors"
           aria-label="Search for doctors by name"
         />
       </YStack>

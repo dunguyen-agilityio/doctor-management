@@ -1,6 +1,6 @@
 import { GestureResponderEvent } from 'react-native'
 
-import { Stack, StackProps, TextProps } from 'tamagui'
+import { Button, StackProps, TextProps } from 'tamagui'
 
 import { Text } from '@app/components/common'
 
@@ -64,9 +64,9 @@ const Chip = ({
   }
 
   return (
-    <Stack {...container({ active })} {...props} onPress={handlePress}>
+    <Button {...container({ active })} {...props} onPress={handlePress}>
       {content}
-    </Stack>
+    </Button>
   )
 }
 

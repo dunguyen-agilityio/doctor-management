@@ -44,16 +44,44 @@ const TAB_OPTIONS: Record<TAB_ROUTES, TabsProps> = {
   [TAB_ROUTES.HOME]: {
     header: renderHomeHeader,
     headerShadowVisible: false,
-    tabBarIcon: ({ focused }) => <TabIcon name={TAB_ROUTES.HOME} focused={focused} />,
+    tabBarIcon: ({ focused }) => (
+      <TabIcon
+        name={TAB_ROUTES.HOME}
+        focused={focused}
+        aria-label="Home tab"
+        accessibilityHint="Navigates to the home screen with doctor search and specialties"
+      />
+    ),
   },
   [TAB_ROUTES.FAVORITE]: {
-    tabBarIcon: ({ focused }) => <TabIcon name={TAB_ROUTES.FAVORITE} focused={focused} />,
+    tabBarIcon: ({ focused }) => (
+      <TabIcon
+        name={TAB_ROUTES.FAVORITE}
+        focused={focused}
+        aria-label="Favorites tab"
+        accessibilityHint="Navigates to your favorite doctors and hospitals"
+      />
+    ),
   },
   [TAB_ROUTES.BOOKINGS]: {
-    tabBarIcon: ({ focused }) => <TabIcon name={TAB_ROUTES.BOOKINGS} focused={focused} />,
+    tabBarIcon: ({ focused }) => (
+      <TabIcon
+        name={TAB_ROUTES.BOOKINGS}
+        focused={focused}
+        aria-label="Bookings tab"
+        accessibilityHint="Navigates to your upcoming and past bookings"
+      />
+    ),
   },
   [TAB_ROUTES.PROFILE]: {
-    tabBarIcon: ({ focused }) => <TabIcon name={TAB_ROUTES.PROFILE} focused={focused} />,
+    tabBarIcon: ({ focused }) => (
+      <TabIcon
+        name={TAB_ROUTES.PROFILE}
+        focused={focused}
+        aria-label="Profile tab"
+        accessibilityHint="Navigates to your user profile and settings"
+      />
+    ),
   },
 }
 
@@ -71,7 +99,7 @@ const screenOptions: BottomTabNavigationOptions = {
   tabBarStyle: styles.tabBarStyle,
   tabBarItemStyle: styles.tabBarItemStyle,
   tabBarButton: renderBabBarButton,
-  header: ({ navigation, route }) => <Header title={TITLES[route.name as TAB_ROUTES]} />,
+  header: ({ route }) => <Header title={TITLES[route.name as TAB_ROUTES]} />,
 }
 
 export default function TabLayout() {

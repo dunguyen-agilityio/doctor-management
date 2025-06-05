@@ -68,6 +68,9 @@ const SignupForm = ({
               errorMessage={error?.message}
               onEdited={handleEndEditName}
               returnKeyType="next"
+              aria-label="Full Name"
+              accessibilityHint="Enter your full name"
+              accessibilityRole="text"
             />
           )}
         />
@@ -91,6 +94,10 @@ const SignupForm = ({
               ref={emailRef}
               onEdited={handleEndEditEmail}
               returnKeyType="next"
+              textContentType="emailAddress"
+              aria-label="Your Email"
+              accessibilityHint="Enter your email address"
+              accessibilityRole="text"
             />
           )}
         />
@@ -115,11 +122,20 @@ const SignupForm = ({
               errorMessage={error?.message}
               ref={passwordRef}
               returnKeyType="done"
+              aria-label="Password"
+              accessibilityHint="Enter your password"
+              accessibilityRole="text"
             />
           )}
         />
       </YStack>
-      <Button onPress={handleSubmit(handleSignup)}>Create Account</Button>
+      <Button
+        onPress={handleSubmit(handleSignup)}
+        role="button"
+        aria-label="Create Account"
+        accessibilityHint="Submits the form to create a new account">
+        Create Account
+      </Button>
     </YStack>
   )
 }

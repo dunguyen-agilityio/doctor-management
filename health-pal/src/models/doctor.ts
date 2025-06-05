@@ -20,7 +20,7 @@ export class Doctor extends User {
   }
 }
 
-export type TDoctorCard = Pick<TDoctorData, 'name' | 'documentId' | 'rating' | 'id'> & {
+export type TDoctorCard = Pick<TDoctorData, 'name' | 'documentId' | 'rating' | 'id' | 'bio'> & {
   avatar: string
   specialty: string
   address: string

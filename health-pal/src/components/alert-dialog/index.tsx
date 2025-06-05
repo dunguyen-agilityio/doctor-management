@@ -70,7 +70,7 @@ const CustomAlertDialog = ({
           paddingHorizontal={20}
           paddingVertical={12}
           aria-labelledby="alert-dialog-title"
-          aria-describedby={description ? 'alert-dialog-description' : undefined}
+          accessibilityHint={description ? 'alert-dialog-description' : undefined}
           gap={12}
           {...contentProps}>
           {title && (

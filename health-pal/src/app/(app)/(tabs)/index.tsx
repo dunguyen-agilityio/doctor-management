@@ -4,14 +4,17 @@ import { ScrollView } from 'tamagui'
 
 import { SearchInput, SessionHeader, XStack, YStack } from '@app/components'
 
-import { DoctorBanner, NearbyMedicalCenters, Specialties } from '@app/ui/home'
+import { DoctorBanner, HorizontalHospitalList, Specialties } from '@app/ui/home'
 
 const Home = () => {
   return (
     <ScrollView
       backgroundColor="$white"
       showsVerticalScrollIndicator={false}
-      showsHorizontalScrollIndicator={false}>
+      showsHorizontalScrollIndicator={false}
+      accessibilityLabel="Home screen"
+      accessibilityHint="Browse doctors, specialties, and medical centers"
+      role="main">
       <YStack gap="$md" overflow="visible">
         <XStack px="$md">
           <Link
@@ -23,7 +26,7 @@ const Home = () => {
               },
             }}
             tabIndex={0}
-            aria-describedby="Opens the doctor list search screen"
+            accessibilityHint="Opens the doctor list search screen"
             aria-label="Navigate to doctor list search"
             role="link">
             <SearchInput
@@ -43,8 +46,8 @@ const Home = () => {
                 href={{ pathname: '/doctors/[specialty]', params: { specialty: 'all' } }}
                 tabIndex={0}
                 role="link"
-                aria-label="Find a doctor"
-                aria-describedby="Navigates to the doctor list screen">
+                aria-label="View all specialties"
+                accessibilityHint="Navigates to the doctor list with all specialties">
                 {children}
               </Link>
             )}
@@ -60,13 +63,17 @@ const Home = () => {
                   href="/hospitals"
                   tabIndex={0}
                   role="link"
-                  aria-label="Find a hospital"
-                  aria-describedby="Navigates to the hospital list screen">
+                  aria-label="View all medical centers"
+                  accessibilityHint="Navigates to the doctor list with medical center filter'">
                   {children}
                 </Link>
               )}
             />
-            <NearbyMedicalCenters />
+            <HorizontalHospitalList
+              accessibilityLabel="Nearby medical centers"
+              accessibilityHint="List of hospitals near your location"
+              accessibilityRole="list"
+            />
           </YStack>
         </YStack>
       </YStack>

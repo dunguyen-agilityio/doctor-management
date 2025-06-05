@@ -55,7 +55,10 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
   }
 
   return (
-    <FormKeyboardAvoidingView>
+    <FormKeyboardAvoidingView
+      aria-label="Profile form"
+      accessibilityHint="Enter your profile information"
+      role="form">
       <YStack gap={24} paddingHorizontal={24} flex={1}>
         <YStack gap={20}>
           <XStack justifyContent="center">
@@ -64,6 +67,9 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
               name="avatar"
               render={({ field: { onChange } }) => (
                 <Upload
+                  aria-label="Upload profile picture"
+                  accessibilityHint="Opens image picker to update your profile picture"
+                  role="button"
                   onUpload={async (image: string) => {
                     const { error, data } = await uploadToStrapi(image, APP_TOKEN)
 
@@ -110,6 +116,9 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                 errorMessage={error?.message}
                 textContentType="name"
                 editable={editable}
+                aria-label="Full name"
+                accessibilityHint="Enter your full name for your profile"
+                accessibilityRole="text"
               />
             )}
           />
@@ -130,11 +139,13 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                 returnKeyType="next"
                 ref={nicknameRef}
                 onEdited={(isChanged) => {
-                  console.log('isChanged', isChanged)
                   if (isChanged) emailRef?.current?.focus()
                 }}
                 onChangeText={onChange}
                 errorMessage={error?.message}
+                aria-label="Nickname"
+                accessibilityHint="Enter your nickname for your profile"
+                accessibilityRole="text"
               />
             )}
           />
@@ -156,6 +167,9 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                 onChangeText={onChange}
                 errorMessage={error?.message}
                 editable={editable}
+                aria-label="Email address"
+                accessibilityHint="Enter your email address for your profile"
+                accessibilityRole="text"
               />
             )}
           />
@@ -175,6 +189,9 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                 }}
                 datePickerProps={{ maxDate: new Date() }}
                 errorMessage={error?.message}
+                aria-label="Date of birth"
+                accessibilityHint="Select your date of birth for your profile"
+                accessibilityRole="text"
               />
             )}
           />
@@ -193,11 +210,18 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                 value={value ?? ''}
                 errorMessage={error?.message}
                 native
+                aria-label="Gender"
+                accessibilityHint="Select your gender for your profile"
               />
             )}
           />
         </YStack>
-        <Button onPress={handleSubmit(handleSubmitProfile)}>Save</Button>
+        <Button
+          onPress={handleSubmit(handleSubmitProfile)}
+          aria-label="Save profile"
+          accessibilityHint="Submits your profile information">
+          Save
+        </Button>
       </YStack>
     </FormKeyboardAvoidingView>
   )

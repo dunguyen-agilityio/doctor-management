@@ -1,3 +1,5 @@
+import { StackProps } from 'tamagui'
+
 import { Button, Heading, Text, YStack } from '@app/components/common'
 
 import { Ban } from '@icons'
@@ -8,7 +10,7 @@ type EmptyStateProps = {
   icon?: React.ReactNode
   actionLabel?: string
   onAction?: () => void
-}
+} & StackProps
 
 const Empty = ({
   title = 'No Data',
@@ -16,9 +18,16 @@ const Empty = ({
   icon,
   actionLabel,
   onAction,
+  ...props
 }: EmptyStateProps) => {
   return (
-    <YStack gap={8} alignItems="center" justifyContent="center" height={400}>
+    <YStack
+      gap={8}
+      alignItems="center"
+      justifyContent="center"
+      height={400}
+      role="alert"
+      {...props}>
       {icon || <Ban color="$gray10" />}
       <Heading size="extraLarge" fontWeight="600">
         {title}

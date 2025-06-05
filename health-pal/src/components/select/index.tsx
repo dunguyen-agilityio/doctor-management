@@ -13,9 +13,18 @@ interface CustomSelectProps extends SelectProps {
   items: { name: string }[]
   placeholder?: string
   errorMessage?: string
+  accessibilityHint?: string
+  accessibilityLabel?: string
 }
 
-const CustomSelect = ({ items, errorMessage, placeholder, ...props }: CustomSelectProps) => {
+const CustomSelect = ({
+  items,
+  errorMessage,
+  placeholder,
+  accessibilityHint,
+  accessibilityLabel,
+  ...props
+}: CustomSelectProps) => {
   return (
     <YStack gap="$sm" flex={1}>
       <Select disablePreventBodyScroll {...props}>
@@ -23,8 +32,12 @@ const CustomSelect = ({ items, errorMessage, placeholder, ...props }: CustomSele
           testID="trigger"
           iconAfter={ChevronDown}
           height={48}
+          aria-label={accessibilityLabel}
+          accessibilityHint={accessibilityHint}
           borderColor={errorMessage && 'red'}
-          borderWidth={1}>
+          borderWidth={1}
+          role="combobox"
+          borderRadius={8}>
           <Select.Value
             opacity={1}
             placeholder={placeholder}
@@ -34,7 +47,10 @@ const CustomSelect = ({ items, errorMessage, placeholder, ...props }: CustomSele
           />
         </Select.Trigger>
         <Adapt when="maxMd" platform="touch">
-          <SheetModal>
+          <SheetModal
+            aria-label={`Select ${placeholder?.toLowerCase() || 'option'}`}
+            accessibilityHint={`Choose from a list of ${placeholder?.toLowerCase() || 'options'}`}
+            role="dialog">
             <Adapt.Contents />
           </SheetModal>
         </Adapt>
@@ -47,7 +63,7 @@ const CustomSelect = ({ items, errorMessage, placeholder, ...props }: CustomSele
             width="100%"
             height="$3">
             <YStack zIndex={10}>
-              <ChevronUp size={20} />
+              <ChevronUp width={20} />
             </YStack>
             <LinearGradient
               start={[0, 0]}
@@ -73,7 +89,7 @@ const CustomSelect = ({ items, errorMessage, placeholder, ...props }: CustomSele
                       <Select.Item index={i} key={item.name} value={item.name}>
                         <Select.ItemText>{item.name}</Select.ItemText>
                         <Select.ItemIndicator marginLeft="auto">
-                          <Check size={16} />
+                          <Check width={16} />
                         </Select.ItemIndicator>
                       </Select.Item>
                     )
@@ -90,7 +106,7 @@ const CustomSelect = ({ items, errorMessage, placeholder, ...props }: CustomSele
             width="100%"
             height="$3">
             <YStack zIndex={10}>
-              <ChevronDown size={20} />
+              <ChevronDown width={20} />
             </YStack>
             <LinearGradient
               start={[0, 0]}

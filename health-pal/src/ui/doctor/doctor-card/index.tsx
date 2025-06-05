@@ -21,7 +21,7 @@ import { useFavoritesStore } from '@app/stores/favorite'
 
 interface DoctorCardProps extends TDoctorCard {
   showReview?: boolean
-  wrapper?: (props: React.PropsWithChildren<{ id: string }>) => React.ReactNode
+  wrapper?: (props: React.PropsWithChildren<{ id: string; name: string }>) => React.ReactNode
 }
 
 const DoctorCard = ({
@@ -29,8 +29,8 @@ const DoctorCard = ({
   name,
   specialty,
   address,
-  reviewCounter = 0,
-  rating = 0,
+  reviewCounter,
+  rating,
   documentId,
   showReview = true,
   id,
@@ -89,6 +89,9 @@ const DoctorCard = ({
         <CloudinaryImage
           source={{ uri: avatar }}
           style={{ width: 110, height: 110, borderRadius: 12 }}
+          tabIndex={0}
+          aria-label={`Image of ${name}`}
+          role="img"
         />
       </Card.Header>
       <Card.Footer flex={1} paddingVertical={0} marginVertical={0}>
@@ -103,6 +106,14 @@ const DoctorCard = ({
             position="absolute"
             zIndex={1000}
             onPress={handleFavorite}
+            tabIndex={0}
+            aria-label={favoriteId ? `Remove ${name} from favorites` : `Add ${name} to favorites`}
+            accessibilityHint={
+              favoriteId
+                ? 'Removes this doctor from your favorites'
+                : 'Adds this doctor to your favorites'
+            }
+            role="button"
           />
         )}
         <YStack paddingRight={12} flex={1}>
@@ -123,7 +134,7 @@ const DoctorCard = ({
           </YStack>
           {showReview && (
             <XStack alignItems="center">
-              <Stars color="#feb052" stars={rating} max={1} flexDirection="row-reverse" size={15} />
+              <Stars stars={rating} max={1} flexDirection="row-reverse" size={15} />
               <Separator vertical marginHorizontal={8} height={13} />
               <Text size="extraSmall">{`${reviewCounter} Reviews`}</Text>
             </XStack>
@@ -145,7 +156,11 @@ const DoctorCard = ({
   )
 
   if (wrapper) {
-    return <Container id={documentId}>{content}</Container>
+    return (
+      <Container id={documentId} name={name}>
+        {content}
+      </Container>
+    )
   }
 
   return content

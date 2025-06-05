@@ -27,11 +27,18 @@ const DoctorList = ({ page = 1, ...props }: DoctorListProps) => {
 
   const Wrapper = ({
     id,
+    name,
     children,
   }: React.PropsWithChildren<{
     id: string
+    name: string
   }>) => (
-    <Link testID="doctor-link" href={{ pathname: '/doctors/details/[id]', params: { id } }}>
+    <Link
+      testID="doctor-link"
+      accessibilityLabel={`View doctors at ${name}`}
+      accessibilityHint="Shows this doctor in the doctor list"
+      role="link"
+      href={{ pathname: '/doctors/details/[id]', params: { id } }}>
       {children}
     </Link>
   )

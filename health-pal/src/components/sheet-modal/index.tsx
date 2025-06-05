@@ -1,20 +1,15 @@
-import { Sheet, SheetProps } from '@tamagui/sheet'
-import { YStackProps } from 'tamagui'
+import { Sheet } from '@tamagui/sheet'
+import { StackProps } from 'tamagui'
 
 import { useModal } from '@app/hooks/use-modal'
 
 import { ModalRef } from '@app/types/modal'
 
-interface SheetModalProps extends SheetProps {
+interface SheetModalProps extends StackProps {
   ref?: React.RefObject<ModalRef | null>
-  frameProps?: YStackProps
 }
 
-const SheetModal = ({
-  ref,
-  children,
-  frameProps = {},
-}: React.PropsWithChildren<SheetModalProps>) => {
+const SheetModal = ({ ref, children, ...props }: React.PropsWithChildren<SheetModalProps>) => {
   const [open, setOpen] = useModal(ref)
 
   return (
@@ -38,9 +33,10 @@ const SheetModal = ({
         padding={24}
         height={200}
         gap="$md"
+        role="dialog"
         borderTopLeftRadius={34}
         borderTopRightRadius={34}
-        {...frameProps}>
+        {...props}>
         <Sheet.ScrollView>{children}</Sheet.ScrollView>
       </Sheet.Frame>
     </Sheet>

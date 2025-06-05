@@ -27,7 +27,7 @@ const HospitalScreen = () => {
           onChangeText={handleChangeQuery}
           ref={searchRef}
           tabIndex={0}
-          aria-describedby="Enter a name to filter hospitals"
+          accessibilityHint="Enter a name to filter hospitals"
           aria-label="Search for hospitals by name"
           role="searchbox"
         />

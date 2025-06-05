@@ -14,7 +14,7 @@ type Props = {
 
 const CreateAccountSuccessModal = ({ ref }: Readonly<Props>) => {
   return (
-    <Modal ref={ref}>
+    <Modal ref={ref} aria-label="Account created successfully">
       <YStack alignItems="center" paddingHorizontal={42} gap={32} paddingVertical={32}>
         <YStack
           h={130}
@@ -33,7 +33,7 @@ const CreateAccountSuccessModal = ({ ref }: Readonly<Props>) => {
         <Text size="small" color="$gray10" textAlign="center">
           Your account is ready to use. You will be redirected to the Home Page in a few seconds…
         </Text>
-        <LoadingIndicator />
+        <LoadingIndicator aria-label="Redirecting, please wait" />
       </YStack>
     </Modal>
   )

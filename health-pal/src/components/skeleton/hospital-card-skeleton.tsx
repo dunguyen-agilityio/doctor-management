@@ -27,11 +27,11 @@ const HospitalCardSkeleton = ({ ...props }: CardProps) => {
         </XStack>
         <Separator backgroundColor="$grey200" />
         <XStack justifyContent="space-between">
-          <XStack alignItems="center" gap="$sm">
-            <LineLoader width={120} height={16} />
+          <XStack alignItems="center" width="45%" gap="$sm">
+            <LineLoader width="100%" height={16} />
           </XStack>
-          <XStack alignItems="center" gap="$sm">
-            <LineLoader width={120} height={16} />
+          <XStack alignItems="center" width="45%" gap="$sm">
+            <LineLoader width="100%" height={16} />
           </XStack>
         </XStack>
       </Card.Footer>

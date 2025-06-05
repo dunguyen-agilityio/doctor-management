@@ -2,7 +2,7 @@ import { memo } from 'react'
 
 import { SvgProps } from 'react-native-svg'
 
-import { Stack } from 'tamagui'
+import { Stack, StackProps } from 'tamagui'
 
 import {
   CalendarFill,
@@ -40,29 +40,35 @@ type RouteTabIcon = {
   ) => React.JSX.Element
 }
 
-const TabIcon = ({ focused, name }: { focused: boolean; name: TAB_ROUTES }) => {
+interface TabIconProps extends StackProps {
+  focused: boolean
+  name: TAB_ROUTES
+}
+
+const TabIcon = ({ focused, name, ...props }: TabIconProps) => {
   const Icon = TAB_ICON[`${name}_${focused}`]
 
-  if (focused) {
-    return (
-      <Stack
-        testID={`${name}-wrapper`}
-        backgroundColor="$grey100"
-        height={48}
-        width={48}
-        borderRadius={36}
-        alignItems="center"
-        justifyContent="center">
-        <Icon
-          stroke={tokens.color.grey400.val}
-          testID={`${name}-fill`}
-          fill={tokens.color.grey600.val}
-        />
-      </Stack>
-    )
-  }
-
-  return <Icon testID={`${name}-outline`} />
+  return (
+    <Stack
+      testID={`${name}-wrapper`}
+      backgroundColor={focused ? '$grey100' : 'transparent'}
+      height={48}
+      width={48}
+      padding={0}
+      borderRadius={36}
+      alignItems="center"
+      justifyContent="center"
+      role="button"
+      {...props}>
+      <Icon
+        {...(focused && {
+          stroke: tokens.color.grey400.val,
+          fill: tokens.color.grey600.val,
+        })}
+        testID={`${name}-${focused ? 'fill' : 'outline'}`}
+      />
+    </Stack>
+  )
 }
 
 export default memo(TabIcon)

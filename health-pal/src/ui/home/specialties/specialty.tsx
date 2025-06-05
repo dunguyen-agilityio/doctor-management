@@ -21,7 +21,7 @@ const Specialty = ({ icon: Icon, name, color, value }: TSpecialty) => {
       }}
       tabIndex={0}
       aria-label={`View doctors specializing in ${name}`}
-      aria-describedby="Navigates to a list of doctors for this specialty"
+      accessibilityHint="Navigates to a list of doctors for this specialty"
       role="link">
       <YStack maxWidth={62} h={84} gap={4}>
         <Stack

@@ -42,17 +42,25 @@ const BookingCard = ({
   const { type = BOOKING_TABS.UPCOMING } = props
 
   const renderAction = () => {
-    const ACTIONS: Record<BOOKING_TABS, { title: string; action: () => void }[]> = {
+    const ACTIONS: Record<
+      BOOKING_TABS,
+      { title: string; action: () => void; ariaLabel: string; ariaHint: string }[]
+    > = {
       [BOOKING_TABS.CANCELED]: [],
       [BOOKING_TABS.COMPLETED]: [
         {
           title: 'Re-Book',
           action: () => router.navigate({ pathname: '/(app)/booking', params: { doctorId } }),
+          ariaLabel: `Re-book appointment with ${doctorName}`,
+          ariaHint:
+            'Navigates to the booking screen to schedule a new appointment with this doctor',
         },
         {
           title: 'Add Review',
           action: () =>
             router.navigate({ pathname: '/(app)/doctors/details/[id]', params: { id: doctorId } }),
+          ariaLabel: `Add a review for ${doctorName}`,
+          ariaHint: 'Navigates to the review screen to submit feedback for this doctor',
         },
       ],
       [BOOKING_TABS.UPCOMING]: [
@@ -61,6 +69,8 @@ const BookingCard = ({
           action: () => {
             cancelBookRef.current?.open()
           },
+          ariaLabel: `Cancel booking with ${doctorName} on ${date} at ${time}`,
+          ariaHint: 'Opens a confirmation dialog to cancel this appointment',
         },
         {
           title: 'Reschedule',
@@ -69,6 +79,9 @@ const BookingCard = ({
               pathname: '/(app)/booking',
               params: { doctorId, bookingId: documentId, date, time },
             }),
+          ariaLabel: `Reschedule booking with ${doctorName}`,
+          ariaHint:
+            'Navigates to the booking screen to change the date or time of this appointment',
         },
       ],
     }
@@ -81,10 +94,21 @@ const BookingCard = ({
 
     return (
       <XStack marginTop={10} gap={10}>
-        <Button variant="secondary" sizeButton="sm" flex={1} onPress={action1.action}>
+        <Button
+          variant="secondary"
+          sizeButton="sm"
+          flex={1}
+          onPress={action1.action}
+          aria-label={action1.ariaLabel}
+          accessibilityHint={action1.ariaHint}>
           {action1.title}
         </Button>
-        <Button flex={1} sizeButton="sm" onPress={action2.action}>
+        <Button
+          flex={1}
+          sizeButton="sm"
+          onPress={action2.action}
+          aria-label={action2.ariaLabel}
+          accessibilityHint={action2.ariaHint}>
           {action2.title}
         </Button>
       </XStack>
@@ -103,7 +127,8 @@ const BookingCard = ({
         shadowRadius={6}
         elevation={3}
         padding={10}
-        marginBottom={10}>
+        marginBottom={10}
+        aria-label={`Booking with ${doctorName}`}>
         <Card.Header>
           <Heading fontSize={14}>
             {date} - {time}
