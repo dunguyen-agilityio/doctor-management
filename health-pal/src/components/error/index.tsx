@@ -1,4 +1,4 @@
-import { StackProps } from 'tamagui'
+import { Stack, StackProps } from 'tamagui'
 
 import { Button, Heading, Text, YStack } from '@app/components/common'
 
@@ -17,8 +17,16 @@ const ErrorState = ({
   ...props
 }: ErrorStateProps) => {
   return (
-    <YStack gap={12} alignItems="center" justifyContent="center" role="alert" flex={1} {...props}>
-      <XCircle color="$red10" />
+    <YStack
+      gap={22}
+      alignItems="center"
+      paddingHorizontal={48}
+      justifyContent="center"
+      role="alert"
+      {...props}>
+      <Stack backgroundColor="$red10" borderRadius={80}>
+        <XCircle color="$red10" />
+      </Stack>
       <Heading size="extraLarge" fontWeight="600" color="$red">
         {title}
       </Heading>
@@ -26,7 +34,11 @@ const ErrorState = ({
         {message}
       </Text>
       {onRetry && (
-        <Button onPress={onRetry} accessibilityHint="Retries loading" aria-label="Retry">
+        <Button
+          onPress={onRetry}
+          accessibilityHint="Retries loading"
+          width="100%"
+          aria-label="Retry">
           Retry
         </Button>
       )}

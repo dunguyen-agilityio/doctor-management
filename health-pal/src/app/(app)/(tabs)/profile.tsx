@@ -100,7 +100,7 @@ const Profile = () => {
           aria-label="Edit profile"
           title="Edit Profile"
           accessibilityHint="Navigates to the profile information screen"
-          role="button"
+          role="listitem"
         />
         <Separator marginVertical={12} />
         <ListItem
@@ -109,7 +109,7 @@ const Profile = () => {
           title="Favorite"
           aria-label="Favorites"
           accessibilityHint="Navigates to the favorite screen with doctors and hospitals"
-          role="button"
+          role="listitem"
         />
         <Separator marginVertical={12} />
         <ListItemUpcoming
@@ -117,6 +117,7 @@ const Profile = () => {
           title="Notifications"
           aria-label="Notifications"
           accessibilityHint="This feature is coming soon"
+          role="listitem"
         />
         <Separator marginVertical={12} />
         <ListItemUpcoming
@@ -124,6 +125,7 @@ const Profile = () => {
           title="Settings"
           aria-label="Settings"
           accessibilityHint="This feature is coming soon"
+          role="listitem"
         />
         <Separator marginVertical={12} />
         <ListItemUpcoming
@@ -131,6 +133,7 @@ const Profile = () => {
           title="Help and Support"
           aria-label="Help and Support"
           accessibilityHint="This feature is coming soon"
+          role="listitem"
         />
         <Separator marginVertical={12} />
         <ListItemUpcoming
@@ -138,6 +141,7 @@ const Profile = () => {
           title="Terms and Conditions"
           aria-label="Terms and Conditions"
           accessibilityHint="This feature is coming soon"
+          role="listitem"
         />
         <Separator marginVertical={12} />
         <ListItem
@@ -145,6 +149,7 @@ const Profile = () => {
           title="Log Out"
           onPress={handleLogout}
           aria-label="Log out"
+          role="listitem"
           accessibilityHint="Opens a dialog to confirm logging out"
         />
       </YStack>

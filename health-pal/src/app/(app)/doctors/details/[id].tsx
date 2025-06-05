@@ -44,7 +44,7 @@ import { tokens } from '@/tamagui.config'
 
 const Details = () => {
   const params = useLocalSearchParams<{ id: string }>()
-  const { data, isLoading, error, refetch } = useDoctor(params.id)
+  const { data, isLoading, error, isFetching, refetch } = useDoctor(params.id)
   const doctor = data ? formatDoctor(data) : null
 
   const { mutate: removeFavorite, isPending: removeFavPending } = useRemoveFavorite(
@@ -65,15 +65,24 @@ const Details = () => {
     doctorId ? state.favoriteDoctors[doctorId] : undefined,
   )
 
-  if (isLoading) return <LoadingIndicator />
+  if (isLoading || isFetching)
+    return (
+      <YStack flex={1}>
+        <LoadingIndicator />
+      </YStack>
+    )
 
   if (!doctor || !data || error) {
     return (
-      <ErrorState
-        title="Doctor Not Available"
-        message="The doctor you're looking for no longer exists or is unavailable."
-        onRetry={refetch}
-      />
+      <YStack flex={1} paddingTop="45%">
+        <ErrorState
+          title="Doctor Not Available"
+          message="The doctor you're looking for no longer exists or is unavailable."
+          onRetry={async () => {
+            await refetch()
+          }}
+        />
+      </YStack>
     )
   }
 

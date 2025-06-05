@@ -36,9 +36,11 @@ const LoadingIndicator = ({ fullScreen, ...props }: LoadingIndicatorProps) => {
       flex={1}
       role="status"
       {...props}>
-      <Animated.View style={{ transform: [{ rotate: spin }] }}>
-        <LoaderIcon testID="loader-icon" />
-      </Animated.View>
+      <Stack height={60} alignItems="center" justifyContent="center">
+        <Animated.View style={{ transform: [{ rotate: spin }] }}>
+          <LoaderIcon testID="loader-icon" />
+        </Animated.View>
+      </Stack>
     </Stack>
   )
 

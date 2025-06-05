@@ -23,7 +23,7 @@ const Modal = ({
   const [open, setOpen] = useModal(ref)
 
   return (
-    <Dialog modal open={open || defaultOpen} onOpenChange={setOpen}>
+    <Dialog defaultOpen={defaultOpen} modal open={open} onOpenChange={setOpen}>
       <Dialog.Portal>
         <Dialog.Overlay
           testID="overlay"
