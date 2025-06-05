@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Image as ExpoImage } from 'expo-image'
+import { Image as ExpoImage, ImageProps } from 'expo-image'
 
 import { Spinner, View } from 'tamagui'
 
@@ -8,7 +8,7 @@ import { PLACEHOLDER_IMAGE } from '@app/constants/image'
 
 import { getOptimizedUrl } from '@app/utils/image'
 
-interface CloudinaryImageProps {
+interface CloudinaryImageProps extends Omit<ImageProps, 'source' | 'style'> {
   source: { uri?: string } | number
   style: React.ComponentProps<typeof View>['style']
   placeholder?: { uri?: string } | number

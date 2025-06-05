@@ -22,10 +22,14 @@ const HospitalScreen = () => {
     <YStack gap="$md" flex={1}>
       <YStack paddingHorizontal={24} maxHeight={40}>
         <SearchInput
-          placeholder="Search doctor..."
+          placeholder="Search hospital..."
           value={query}
           onChangeText={handleChangeQuery}
           ref={searchRef}
+          tabIndex={0}
+          aria-describedby="Enter a name to filter hospitals"
+          aria-label="Search for hospitals by name"
+          role="searchbox"
         />
       </YStack>
       <HospitalContainer query={query} />

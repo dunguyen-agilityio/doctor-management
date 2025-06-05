@@ -21,8 +21,17 @@ const Home = () => {
                 specialty: 'all',
                 searching: 'true',
               },
-            }}>
-            <SearchInput width="100%" placeholder="Search doctor..." editable={false} />
+            }}
+            tabIndex={0}
+            aria-describedby="Opens the doctor list search screen"
+            aria-label="Navigate to doctor list search"
+            role="link">
+            <SearchInput
+              width="100%"
+              placeholder="Search doctor..."
+              pointerEvents="none"
+              editable={false}
+            />
           </Link>
         </XStack>
         <DoctorBanner />
@@ -30,7 +39,12 @@ const Home = () => {
           <SessionHeader
             title="Categories"
             seeAllWrapper={({ children }) => (
-              <Link href={{ pathname: '/doctors/[specialty]', params: { specialty: 'all' } }}>
+              <Link
+                href={{ pathname: '/doctors/[specialty]', params: { specialty: 'all' } }}
+                tabIndex={0}
+                role="link"
+                aria-label="Find a doctor"
+                aria-describedby="Navigates to the doctor list screen">
                 {children}
               </Link>
             )}
@@ -41,7 +55,16 @@ const Home = () => {
           <YStack gap={10} marginTop={16}>
             <SessionHeader
               title="Nearby Medical Centers"
-              seeAllWrapper={({ children }) => <Link href={'/hospitals'}>{children}</Link>}
+              seeAllWrapper={({ children }) => (
+                <Link
+                  href="/hospitals"
+                  tabIndex={0}
+                  role="link"
+                  aria-label="Find a hospital"
+                  aria-describedby="Navigates to the hospital list screen">
+                  {children}
+                </Link>
+              )}
             />
             <NearbyMedicalCenters />
           </YStack>
