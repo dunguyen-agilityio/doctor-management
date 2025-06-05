@@ -31,12 +31,21 @@ const MultipleSelectSpecialty = ({
   }
 
   return (
-    <ScrollView horizontal style={{ flexGrow: 0 }} showsHorizontalScrollIndicator={false}>
+    <ScrollView
+      horizontal
+      style={{ flexGrow: 0 }}
+      showsHorizontalScrollIndicator={false}
+      accessibilityLabel="Specialty filters"
+      accessibilityHint="Select specialties to filter doctors"
+      accessibilityRole="list">
       <Chip
         marginLeft={24}
         onSelect={handleSelect}
         value="all"
-        active={defaultValues.includes('all')}>
+        active={defaultValues.includes('all')}
+        aria-label="All specialties chip"
+        accessibilityHint="Toggles selection of all specialties filter"
+        role="checkbox">
         All
       </Chip>
       {SPECIALTY_LIST.map(({ name, value }, index) => (
@@ -46,7 +55,10 @@ const MultipleSelectSpecialty = ({
           value={value}
           active={defaultValues.includes(value)}
           marginLeft={8}
-          marginRight={index === SPECIALTY_LIST.length - 1 ? 24 : 0}>
+          marginRight={index === SPECIALTY_LIST.length - 1 ? 24 : 0}
+          aria-label={`${name} chip`}
+          accessibilityHint={`Toggles selection of ${name.toLowerCase()} filter`}
+          role="checkbox">
           {name}
         </Chip>
       ))}

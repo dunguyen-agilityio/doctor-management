@@ -55,6 +55,9 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
                 placeholder="Your Email"
                 errorMessage={error?.message}
                 textContentType="emailAddress"
+                aria-label="Your Email"
+                accessibilityHint="Enter your email address"
+                accessibilityRole="text"
                 autoCapitalize="none"
                 returnKeyType="next"
                 onEdited={(isChanged) => {
@@ -77,11 +80,19 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
               ref={passwordRef}
               errorMessage={error?.message}
               returnKeyType="done"
+              aria-label="Password"
+              accessibilityHint="Enter your password"
+              accessibilityRole="text"
             />
           )}
         />
       </YStack>
-      <Button onPress={handleSubmit(handleLogin)} disabled={disabled} marginTop={24}>
+      <Button
+        onPress={handleSubmit(handleLogin)}
+        disabled={disabled}
+        marginTop={24}
+        aria-label="Sign in"
+        accessibilityHint="Submits your login credentials">
         Sign in
       </Button>
     </YStack>

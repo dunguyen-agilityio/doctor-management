@@ -29,7 +29,10 @@ const Header = ({
           variant="icon"
           paddingHorizontal={0}
           onPress={onBack}
-          width={24}>
+          width={24}
+          aria-label="Back button"
+          accessibilityHint="Returns to the previous screen"
+          role="button">
           <BackIcon />
         </Button>
       )}

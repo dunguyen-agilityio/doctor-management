@@ -5,7 +5,7 @@ import { keyExtractor } from '@app/utils/list'
 
 import HospitalCard from '../hospital-card'
 
-interface HospitalProps extends Omit<FlashListProps<Hospital>, 'renderItem'> {
+export interface HospitalProps extends Omit<FlashListProps<Hospital>, 'renderItem'> {
   renderItem?: FlashListProps<Hospital>['renderItem']
 }
 

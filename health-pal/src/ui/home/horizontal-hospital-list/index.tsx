@@ -7,17 +7,17 @@ import { ErrorState } from '@app/components'
 import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
 
 import HospitalCard from '@app/ui/hospital/hospital-card'
-import HospitalList from '@app/ui/hospital/hospital-list'
+import HospitalList, { HospitalProps } from '@app/ui/hospital/hospital-list'
 
 const ItemSeparatorComponent = () => <Stack width={16} />
 
-const NearbyMedicalCenters = () => {
+const HorizontalHospitalList = (props: Partial<HospitalProps>) => {
   const { data, isLoading, error, refetch } = useHospitals()
 
   const { isLoading: isFavLoading } = useFavoriteHospitals()
 
   if (isLoading || isFavLoading) {
-    return <HospitalListSkeleton horizontal count={2} />
+    return <HospitalListSkeleton horizontal count={2} marginBottom={16} />
   }
 
   if (error || !data) {
@@ -26,6 +26,9 @@ const NearbyMedicalCenters = () => {
         title="Error Loading Favorites"
         message={`We couldn't load your favorite Hospital. Please try again.`}
         onRetry={refetch}
+        aria-label="Error loading nearby hospitals"
+        accessibilityHint="Retry loading the hospital list"
+        role="alert"
       />
     )
   }
@@ -34,6 +37,7 @@ const NearbyMedicalCenters = () => {
 
   return (
     <HospitalList
+      {...props}
       ItemSeparatorComponent={ItemSeparatorComponent}
       horizontal
       data={hospitals}
@@ -44,6 +48,7 @@ const NearbyMedicalCenters = () => {
           marginLeft={index === 0 ? 24 : 0}
           width={232}
           marginRight={index === hospitals.length - 1 ? 24 : 0}
+          marginBottom={16}
           {...item}
         />
       )}
@@ -51,4 +56,4 @@ const NearbyMedicalCenters = () => {
   )
 }
 
-export default NearbyMedicalCenters
+export default HorizontalHospitalList

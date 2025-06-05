@@ -51,8 +51,8 @@ const FavoriteButton = ({
 
   return (
     <Button
-      testID="favorite-button"
       {...VARIANT_STYLE[type]}
+      testID="favorite-button"
       width={size}
       height={size}
       variant="icon"

@@ -56,12 +56,17 @@ const SignIn = () => {
   }
 
   return (
-    <FormKeyboardAvoidingView>
+    <FormKeyboardAvoidingView
+      aria-label="Sign in form"
+      accessibilityHint="Sign in to your account"
+      role="form">
       <YStack flex={1} gap={23} paddingHorizontal={24} paddingTop={32}>
         <Logo />
         <YStack alignItems="center" gap="$sm">
-          <Heading size="extraLarge">Hi, Welcome back!</Heading>
-          <Text size="small" color="$grey500">
+          <Heading size="extraLarge" aria-label="Welcome back">
+            Hi, Welcome back!
+          </Heading>
+          <Text size="small" color="$grey500" aria-label="We are here to help you">
             We are here to help you!
           </Text>
         </YStack>
@@ -74,25 +79,40 @@ const SignIn = () => {
         </XStack>
 
         <YStack gap={16}>
-          <ButtonWithUpcoming variant="outlined">
+          <ButtonWithUpcoming
+            variant="outlined"
+            aria-label="Sign in with Google"
+            accessibilityHint="Signs in using your Google account">
             <Google />
             Continue with Google
           </ButtonWithUpcoming>
-          <ButtonWithUpcoming variant="outlined">
+          <ButtonWithUpcoming
+            variant="outlined"
+            aria-label="Sign in with Facebook"
+            accessibilityHint="Signs in using your Facebook account">
             <Facebook />
             Continue with Facebook
           </ButtonWithUpcoming>
         </YStack>
         <YStack alignItems="center" gap={23}>
-          <ButtonWithUpcoming variant="outlined" borderWidth={0}>
+          <ButtonWithUpcoming
+            variant="outlined"
+            borderWidth={0}
+            aria-label="Forgot password"
+            accessibilityHint="Navigates to password recovery">
             <Text color="blue" size="small">
               Forgot password?
             </Text>
           </ButtonWithUpcoming>
 
           <XStack gap={2}>
-            <Text size="small">Don&apos;t have an account yet?</Text>
-            <Link href="/sign-up">
+            <Text size="small" aria-label="Don't have an account yet">
+              Don&apos;t have an account yet?
+            </Text>
+            <Link
+              href="/sign-up"
+              aria-label="Sign up"
+              accessibilityHint="Navigates to the sign up screen">
               <Text color="blue" size="small">
                 Sign up
               </Text>

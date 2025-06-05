@@ -79,28 +79,79 @@ const Profile = () => {
   return (
     <YStack gap={16} flex={1} paddingHorizontal={24}>
       <YStack alignItems="center">
-        <Upload preview={avatar?.url} onUpload={handleUpload} />
-        <Text marginTop={12} size="medium" fontWeight="700">
-          {name ?? username}
+        <Upload
+          preview={avatar?.url}
+          onUpload={handleUpload}
+          aria-label="Upload profile picture"
+          accessibilityHint="Upload profile picture"
+          role="button"
+        />
+        <Text marginTop={12} size="medium" aria-label={name} fontWeight="700">
+          {name}
         </Text>
-        <Text size="small" color="$grey500">
+        <Text size="small" aria-label={email} color="$grey500">
           {email}
         </Text>
       </YStack>
       <YStack flex={1}>
-        <ListItem onPress={handleNavigateProfileInfo} icon={UserEditIcon} title="Edit Profile" />
+        <ListItem
+          onPress={handleNavigateProfileInfo}
+          icon={UserEditIcon}
+          aria-label="Edit profile"
+          title="Edit Profile"
+          accessibilityHint="Navigates to the profile information screen"
+          role="listitem"
+        />
         <Separator marginVertical={12} />
-        <ListItem onPress={handleNavigateFavorite} icon={HeartOutline} title="Favorite" />
+        <ListItem
+          onPress={handleNavigateFavorite}
+          icon={HeartOutline}
+          title="Favorite"
+          aria-label="Favorites"
+          accessibilityHint="Navigates to the favorite screen with doctors and hospitals"
+          role="listitem"
+        />
         <Separator marginVertical={12} />
-        <ListItemUpcoming icon={NotificationOutline} title="Notifications" />
+        <ListItemUpcoming
+          icon={NotificationOutline}
+          title="Notifications"
+          aria-label="Notifications"
+          accessibilityHint="This feature is coming soon"
+          role="listitem"
+        />
         <Separator marginVertical={12} />
-        <ListItemUpcoming icon={SettingIcon} title="Settings" />
+        <ListItemUpcoming
+          icon={SettingIcon}
+          title="Settings"
+          aria-label="Settings"
+          accessibilityHint="This feature is coming soon"
+          role="listitem"
+        />
         <Separator marginVertical={12} />
-        <ListItemUpcoming icon={MessageQuestion} title="Help and Support" />
+        <ListItemUpcoming
+          icon={MessageQuestion}
+          title="Help and Support"
+          aria-label="Help and Support"
+          accessibilityHint="This feature is coming soon"
+          role="listitem"
+        />
         <Separator marginVertical={12} />
-        <ListItemUpcoming icon={SecuritySafe} title="Terms and Conditions" />
+        <ListItemUpcoming
+          icon={SecuritySafe}
+          title="Terms and Conditions"
+          aria-label="Terms and Conditions"
+          accessibilityHint="This feature is coming soon"
+          role="listitem"
+        />
         <Separator marginVertical={12} />
-        <ListItem icon={LogoutIcon} title="Log Out" onPress={handleLogout} />
+        <ListItem
+          icon={LogoutIcon}
+          title="Log Out"
+          onPress={handleLogout}
+          aria-label="Log out"
+          role="listitem"
+          accessibilityHint="Opens a dialog to confirm logging out"
+        />
       </YStack>
       <LogoutModal ref={logoutRef} />
     </YStack>

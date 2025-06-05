@@ -13,9 +13,9 @@ export const getDoctors = async ({ filters = [], ...params }: StrapiParams) => {
   const searchParams = buildStrapiQuery({
     ...params,
     filters: [
-      { key: DoctorQueryKey.doctor, query: '*' },
+      { key: DoctorQueryKey.avatar, query: '*' },
       { key: DoctorQueryKey.hospital, query: '*' },
-      { key: DoctorQueryKey.specialty, query: '*' },
+      { key: DoctorQueryKey.specialty, query: 'name' },
       ...filters,
     ],
   })
@@ -29,9 +29,9 @@ export const getDoctors = async ({ filters = [], ...params }: StrapiParams) => {
 export const getDoctor = async (id: string) => {
   const searchParams = buildStrapiQuery({
     filters: [
-      { key: DoctorQueryKey.doctor, query: '*' },
-      { key: DoctorQueryKey.hospital, query: '*' },
-      { key: DoctorQueryKey.specialty, query: '*' },
+      { key: DoctorQueryKey.avatar, query: '*' },
+      { key: DoctorQueryKey.address, query: 'address' },
+      { key: DoctorQueryKey.specialty, query: 'name' },
     ],
   })
 

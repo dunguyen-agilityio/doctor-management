@@ -12,7 +12,13 @@ const HospitalListSkeleton = ({
   count?: number
 } & StackProps) => {
   return (
-    <Stack flexDirection={horizontal ? 'row' : 'column'} gap={gap} {...props}>
+    <Stack
+      flexDirection={horizontal ? 'row' : 'column'}
+      gap={gap}
+      aria-label="Loading hospitals"
+      accessibilityHint="Hospital list is currently being loaded"
+      role="progressbar"
+      {...props}>
       {[...Array(count).keys()].map((v, idx) => (
         <HospitalCardSkeleton
           marginLeft={horizontal ? (idx === 0 ? 24 : 0) : undefined}

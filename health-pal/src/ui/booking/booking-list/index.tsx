@@ -8,7 +8,7 @@ import { BOOKING_EMPTY } from '@app/constants'
 
 import useMediaQuery from '@app/hooks/use-media-query'
 
-import { Empty, ErrorState, XStack } from '@app/components'
+import { Empty, ErrorState } from '@app/components'
 import BookingListSkeleton from '@app/components/skeleton/booking-list-skeleton'
 
 import { getBookings } from '@app/services/booking'
@@ -31,8 +31,6 @@ const bookingPromises: Record<BOOKING_TABS, () => Promise<StrapiPagination<Booki
     getBookings({ filters: [{ key: BookingKey.type, query: BOOKING_TABS.UPCOMING }] }),
 }
 
-const ItemSeparatorComponent = () => <XStack height={10} />
-
 const BookingList = ({ type }: { type: BOOKING_TABS }) => {
   const { width } = useMediaQuery({ full: true, width: 342, px: 24 })
 
@@ -48,20 +46,37 @@ const BookingList = ({ type }: { type: BOOKING_TABS }) => {
   }
 
   if (error || !data) {
-    return <ErrorState message={error?.message ?? 'Failed to fetch!'} onRetry={refetch} />
+    return (
+      <ErrorState
+        message={error?.message ?? 'Failed to fetch!'}
+        aria-label="Error loading bookings"
+        accessibilityHint="Failed to load bookings, press retry to try again"
+        onRetry={refetch}
+      />
+    )
   }
 
-  const ListEmptyComponent = <Empty {...BOOKING_EMPTY[type]} />
+  const ListEmptyComponent = (
+    <Empty
+      {...BOOKING_EMPTY[type]}
+      aria-label={`No ${type.toLowerCase()} bookings`}
+      accessibilityHint={`No ${type.toLowerCase()} bookings available`}
+    />
+  )
 
   return (
     <FlashList
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       data={data.data}
-      ItemSeparatorComponent={ItemSeparatorComponent}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.contentContainerStyle}
       ListEmptyComponent={ListEmptyComponent}
       estimatedItemSize={width}
+      aria-label={`${type} bookings list`}
+      accessibilityHint={`List of ${type.toLowerCase()} bookings`}
+      role="list"
     />
   )
 }

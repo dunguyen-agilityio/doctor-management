@@ -34,10 +34,13 @@ const LoadingIndicator = ({ fullScreen, ...props }: LoadingIndicatorProps) => {
       width="100%"
       testID="loading-indicator"
       flex={1}
+      role="status"
       {...props}>
-      <Animated.View style={{ transform: [{ rotate: spin }] }}>
-        <LoaderIcon testID="loader-icon" />
-      </Animated.View>
+      <Stack height={60} alignItems="center" justifyContent="center">
+        <Animated.View style={{ transform: [{ rotate: spin }] }}>
+          <LoaderIcon testID="loader-icon" />
+        </Animated.View>
+      </Stack>
     </Stack>
   )
 
@@ -46,12 +49,10 @@ const LoadingIndicator = ({ fullScreen, ...props }: LoadingIndicatorProps) => {
   return (
     <Modal
       open
-      contentProps={{
-        elevation: 0,
-        backgroundColor: 'transparent',
-        alignContent: 'center',
-        justifyContent: 'center',
-      }}>
+      elevation={0}
+      backgroundColor="transparent"
+      alignContent="center"
+      justifyContent="center">
       {spinner}
     </Modal>
   )

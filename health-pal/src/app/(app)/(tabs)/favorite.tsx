@@ -24,21 +24,28 @@ const Favorite = () => {
       borderColor="$borderColor"
       backgroundColor="$white"
       value={type}
-      onValueChange={handleChangeTab}>
+      onValueChange={handleChangeTab}
+      role="tablist">
       <Tabs.List
         disablePassBorderRadius="bottom"
-        aria-label="Manage your account"
         borderBottomColor="$grey200"
         justifyContent="space-between"
         paddingHorizontal={28}
-        borderBottomWidth={1}>
+        borderBottomWidth={1}
+        role="tablist"
+        tabIndex={0}
+        aria-label="Favorite tabs"
+        accessibilityHint="Select between favorite doctors and hospitals">
         {Object.values(FAVORITE_TYPES).map((value) => (
           <Tabs.Tab
             pressStyle={{ backgroundColor: 'transparent' }}
             {...TAB_DEFAULT_PROPS}
             maxWidth={150}
             key={value}
-            value={value}>
+            value={value}
+            tabIndex={0}
+            aria-label={`${value}s tab`}
+            accessibilityHint={`Shows your favorite ${value.toLowerCase()}s`}>
             <TabsTab title={`${value}s`} active={type === value} />
           </Tabs.Tab>
         ))}

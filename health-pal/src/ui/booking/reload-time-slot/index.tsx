@@ -23,7 +23,7 @@ const ReloadTimeSlotConfirmModal = ({ ref, onReload }: Props) => {
   }
 
   return (
-    <Modal ref={ref} contentProps={{ minHeight: 200 }}>
+    <Modal ref={ref} minHeight={200}>
       <YStack padding={16} gap={16} alignItems="center" flex={1}>
         <Heading size="extraLarge">Time Slot Unavailable</Heading>
         <Text size="small">

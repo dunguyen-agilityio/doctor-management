@@ -4,6 +4,7 @@ import { useAppLoading } from '@app/hooks'
 import { useRequireAuth } from '@app/hooks/use-require-auth'
 
 import { Button, Heading, Modal, Text, YStack } from '@app/components'
+import { ModalProps } from '@app/components/common/modal'
 
 import { updateBooking } from '@app/services/booking'
 
@@ -17,11 +18,11 @@ import { queryClient } from '@app/react-query.config'
 
 export type CancelBookingParams = Pick<TBookingCard, 'date' | 'documentId' | 'time' | 'doctorName'>
 
-interface Props extends CancelBookingParams {
+interface Props extends CancelBookingParams, ModalProps {
   ref: React.RefObject<ModalRef | null>
 }
 
-const CancelBookingModal = ({ ref, date, doctorName, documentId, time }: Props) => {
+const CancelBookingModal = ({ ref, date, doctorName, documentId, time, ...props }: Props) => {
   const { jwt } = useRequireAuth().session
   const setAppLoading = useAppLoading()
 
@@ -55,7 +56,11 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, time }: Props) 
   }
 
   return (
-    <Modal ref={ref}>
+    <Modal
+      ref={ref}
+      aria-label={`Confirm cancellation of booking with ${doctorName} on ${date} at ${time}`}
+      accessibilityHint="Dialog to confirm or keep this appointment"
+      {...props}>
       <YStack alignItems="center" paddingHorizontal={42} gap={32} paddingVertical={32}>
         <YStack
           height={100}
@@ -64,7 +69,7 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, time }: Props) 
           backgroundColor="#e0f7f9"
           alignItems="center"
           justifyContent="center">
-          <CheckCircle color="$teal" size={50} />
+          <CheckCircle color="$teal" />
         </YStack>
 
         <Heading size="extraLarge">Confirm Cancellation</Heading>
@@ -82,13 +87,22 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, time }: Props) 
         </Text>
 
         <YStack gap={10} width="100%">
-          <Button onPress={handleCancelBooking}>Yes, Cancel</Button>
+          <Button
+            onPress={handleCancelBooking}
+            aria-label={`Confirm cancellation of appointment with ${doctorName}`}
+            role="button"
+            accessibilityHint="Cancels the appointment and navigates to cancelled bookings">
+            Yes, Cancel
+          </Button>
           <Button
             variant="secondary"
             backgroundColor="transparent"
             color="$teal"
             borderWidth={0}
-            onPress={handleClose}>
+            onPress={handleClose}
+            aria-label={`Keep appointment with ${doctorName}`}
+            accessibilityHint="Closes the dialog and keeps the appointment"
+            role="button">
             No, Keep Appointment
           </Button>
         </YStack>

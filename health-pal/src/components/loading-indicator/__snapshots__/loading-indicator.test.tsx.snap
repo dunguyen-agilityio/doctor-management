@@ -71,7 +71,7 @@ exports[`LoadingIndicator matches snapshot with modal 1`] = `
       testID="overlay"
     />
     <View
-      aria-describedby="description-:rt:"
+      accessibilityHint="description-:rt:"
       aria-labelledby="title-:rt:"
       collapsable={false}
       id="content-:rt:"

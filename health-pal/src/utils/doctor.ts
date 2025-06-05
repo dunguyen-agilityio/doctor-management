@@ -4,9 +4,10 @@ export const formatDoctor = ({
   clinic,
   specialty,
   users_permissions_user,
-  rating,
+  rating = 2.4,
   documentId,
   id,
+  bio,
 }: TDoctorData): TDoctorCard => {
   const { avatar, name } = users_permissions_user
 
@@ -17,7 +18,8 @@ export const formatDoctor = ({
     specialty: specialty.name,
     documentId,
     id,
-    reviewCounter: 0,
+    reviewCounter: 100,
     rating,
+    bio,
   }
 }

@@ -20,12 +20,14 @@ import { ModalRef } from '@app/types/modal'
 import { Hospital } from '@app/models/hospital'
 import { useFavoritesStore } from '@app/stores/favorite'
 
-interface HospitalCardProps extends Hospital {
+type HospitalExtend = {
   marginLeft?: number
   marginRight?: number
   marginBottom?: number
   width?: ViewProps['width']
 }
+
+type HospitalCardProps = Hospital & HospitalExtend
 
 const HospitalCard = ({
   image = require('@/assets/images/banner01.webp'),
@@ -35,9 +37,11 @@ const HospitalCard = ({
   reviewCounter = 23,
   type = 'Hospital',
   id,
-  marginLeft = 0,
-  marginRight = 0,
   width = 'auto',
+  marginBottom,
+  marginLeft,
+  marginRight,
+  ...props
 }: HospitalCardProps) => {
   const favoriteId = useFavoritesStore((state) => state.favoriteHospitals[id])
 
@@ -69,7 +73,7 @@ const HospitalCard = ({
     removeFavorite(favoriteId)
   }
 
-  const card = (
+  const renderCard = (extend: HospitalExtend) => (
     <Card
       elevate
       bordered
@@ -77,12 +81,12 @@ const HospitalCard = ({
       overflow="hidden"
       elevation={3}
       shadowColor="$black"
-      marginLeft={marginLeft}
-      marginRight={marginRight}
       disabled={!addFavPending || removeFavPending}
       disabledStyle={{ opacity: 0.8 }}
       width={width}
-      shadowOffset={{ width: 4, height: 4 }}>
+      shadowOffset={{ width: 4, height: 4 }}
+      {...props}
+      {...extend}>
       <Card.Header padding={0}>
         <CloudinaryImage
           source={{ uri: image?.url }}
@@ -101,8 +105,9 @@ const HospitalCard = ({
           position="absolute"
           testID="favorite-button"
           onPress={handleFavorite}
+          tabIndex={0}
           aria-label={favoriteId ? `Remove ${name} from favorites` : `Add ${name} to favorites`}
-          aria-describedby={
+          accessibilityHint={
             favoriteId
               ? 'Removes this hospital from your favorites'
               : 'Adds this hospital to your favorites'
@@ -147,9 +152,9 @@ const HospitalCard = ({
 
   const content = (
     <>
-      {card}
+      {renderCard({ width, marginBottom, marginLeft, marginRight })}
       <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
-        {card}
+        {renderCard({ width: 'auto' })}
       </RemoveFavoriteModal>
     </>
   )
