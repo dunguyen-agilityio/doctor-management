@@ -14,7 +14,7 @@ import { FAVORITE_TYPES } from '@app/types/favorite'
 
 import HospitalList from '../hospital-list'
 
-const ItemSeparatorComponent = () => <Stack height={12} />
+const ItemSeparatorComponent = () => <Stack height={10} />
 
 const HospitalContainer = ({ query }: { query: string }) => {
   const {

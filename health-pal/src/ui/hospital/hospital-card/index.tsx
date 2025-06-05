@@ -77,7 +77,6 @@ const HospitalCard = ({
       overflow="hidden"
       elevation={3}
       shadowColor="$black"
-      marginBottom={16}
       marginLeft={marginLeft}
       marginRight={marginRight}
       disabled={!addFavPending || removeFavPending}
@@ -85,7 +84,13 @@ const HospitalCard = ({
       width={width}
       shadowOffset={{ width: 4, height: 4 }}>
       <Card.Header padding={0}>
-        <CloudinaryImage source={{ uri: image?.url }} style={{ height: 120 }} />
+        <CloudinaryImage
+          source={{ uri: image?.url }}
+          style={{ height: 120 }}
+          tabIndex={0}
+          aria-label={`Image of ${name}`}
+          role="img"
+        />
         <FavoriteButton
           favoriteId={favoriteId}
           itemId={id}
@@ -96,10 +101,17 @@ const HospitalCard = ({
           position="absolute"
           testID="favorite-button"
           onPress={handleFavorite}
+          aria-label={favoriteId ? `Remove ${name} from favorites` : `Add ${name} to favorites`}
+          aria-describedby={
+            favoriteId
+              ? 'Removes this hospital from your favorites'
+              : 'Adds this hospital to your favorites'
+          }
+          role="button"
         />
       </Card.Header>
 
-      <Card.Footer padding={12} paddingTop={8} gap="$sm" flexDirection="column">
+      <Card.Footer padding={12} paddingTop={8} gap="$sm" flexDirection="column" tabIndex={0}>
         <Heading size="small" numberOfLines={1}>
           {name}
         </Heading>

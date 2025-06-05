@@ -3,8 +3,7 @@ import { TextInput } from 'react-native'
 
 import { SvgProps } from 'react-native-svg'
 
-import { IconProps } from '@tamagui/helpers-icon'
-import { InputProps, Input as TamaguiInput, XStack, YStack, styled } from 'tamagui'
+import { InputProps, Stack, Input as TamaguiInput, XStack, YStack, styled } from 'tamagui'
 
 import { ButtonProps } from '../button'
 import { Text } from '../text'
@@ -49,9 +48,7 @@ export const CustomTamaguiInput = styled(TamaguiInput, {
   defaultVariants: { variant: 'flat' },
 })
 
-type IconComponent =
-  | ((propsIn: IconProps) => React.ReactElement)
-  | ((propsIn: SvgProps) => React.ReactElement)
+type IconComponent = (propsIn: SvgProps) => React.ReactElement
 
 interface CustomInputProps extends Omit<Parameters<typeof CustomTamaguiInput>[0], 'onBlur'> {
   leftIcon?: IconComponent | null
@@ -95,7 +92,9 @@ export const Input = ({
     <YStack gap="$sm" width="100%">
       <XStack alignItems="center">
         {hasLeftIcon ? (
-          <LeftIcon testID="left-icon" position="absolute" zIndex={200} left={16} size={16} />
+          <Stack position="absolute" zIndex={200} left={16}>
+            <LeftIcon testID="left-icon" />
+          </Stack>
         ) : null}
         <CustomTamaguiInput
           ref={ref}
@@ -122,7 +121,7 @@ export const Input = ({
             position="absolute"
             zIndex={200}
             right={16}>
-            <RightIcon size={16} />
+            <RightIcon />
           </RightButton>
         ) : null}
       </XStack>

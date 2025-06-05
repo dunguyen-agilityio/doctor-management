@@ -20,6 +20,7 @@ const SearchInput = ({ onChangeText, value, ...props }: InputProps) => {
       returnKeyType="search"
       clearButtonMode="always"
       onChangeText={debounce(handleSearch, 500)}
+      role="searchbox"
       {...props}
     />
   )
