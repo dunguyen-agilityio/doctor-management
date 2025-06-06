@@ -26,7 +26,7 @@ const QuitAppConfirmModal = ({ ref }: { ref?: React.RefObject<ModalRef | null> }
           backgroundColor="#e0f7f9"
           alignItems="center"
           justifyContent="center">
-          <CheckCircle color="$teal" size={50} />
+          <CheckCircle color="$teal" width={50} />
         </YStack>
 
         <Heading size="extraLarge">Confirm Quit</Heading>

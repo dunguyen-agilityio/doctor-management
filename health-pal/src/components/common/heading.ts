@@ -1,6 +1,6 @@
 import { Text as TamaguiText, styled } from 'tamagui'
 
-export const Heading = styled(TamaguiText, {
+const Heading = styled(TamaguiText, {
   fontFamily: '$heading',
   fontWeight: '700',
   color: '$primary',
@@ -26,3 +26,5 @@ export const Heading = styled(TamaguiText, {
   } as const,
   defaultVariants: { size: 'medium' },
 })
+
+export default Heading

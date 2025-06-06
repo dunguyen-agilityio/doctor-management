@@ -45,9 +45,7 @@ const DoctorContainer = ({ query, specialty }: DoctorContainerProps) => {
     )
   }
 
-  const { data: doctors, meta } = data
-
-  const currentPage = meta.pagination.page ?? 1
+  const { data: doctors } = data
 
   const ListFooterComponent = hasNextPage ? (
     <YStack paddingVertical={8}>
@@ -73,7 +71,6 @@ const DoctorContainer = ({ query, specialty }: DoctorContainerProps) => {
         <Text size="medium" fontWeight="700">{`${data?.meta.pagination.total ?? 0} founds`}</Text>
       </XStack>
       <DoctorList
-        page={currentPage}
         data={doctors}
         onEndReached={onEndReached}
         ListFooterComponent={ListFooterComponent}

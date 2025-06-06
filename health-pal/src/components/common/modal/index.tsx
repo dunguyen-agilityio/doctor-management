@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import { Button, Dialog, DialogContentProps, DialogProps, Unspaced } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
@@ -22,8 +24,14 @@ const Modal = ({
 }: React.PropsWithChildren<ModalProps>) => {
   const [open, setOpen] = useModal(ref)
 
+  useEffect(() => {
+    if (defaultOpen) {
+      setOpen(true)
+    }
+  }, [defaultOpen, setOpen])
+
   return (
-    <Dialog defaultOpen={defaultOpen} modal open={open} onOpenChange={setOpen}>
+    <Dialog modal open={open} onOpenChange={setOpen}>
       <Dialog.Portal>
         <Dialog.Overlay
           testID="overlay"

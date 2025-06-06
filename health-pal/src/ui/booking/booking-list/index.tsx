@@ -3,6 +3,7 @@ import { FlashList } from '@shopify/flash-list'
 import { StyleSheet } from 'react-native'
 
 import { useQuery } from '@tanstack/react-query'
+import dayjs from 'dayjs'
 
 import { BOOKING_EMPTY } from '@app/constants'
 
@@ -26,8 +27,22 @@ const bookingPromises: Record<BOOKING_TABS, () => Promise<StrapiPagination<Booki
     getBookings({ filters: [{ key: BookingKey.type, query: BOOKING_TABS.CANCELED }] }),
   [BOOKING_TABS.COMPLETED]: () =>
     getBookings({ filters: [{ key: BookingKey.type, query: BOOKING_TABS.COMPLETED }] }),
-  [BOOKING_TABS.UPCOMING]: () =>
-    getBookings({ filters: [{ key: BookingKey.type, query: BOOKING_TABS.UPCOMING }] }),
+  [BOOKING_TABS.UPCOMING]: () => {
+    const now = dayjs()
+    return getBookings({
+      filters: [
+        { key: BookingKey.type, query: BOOKING_TABS.UPCOMING },
+        {
+          key: 'filters[date][$gte]',
+          query: now.format('YYYY-MM-DD'),
+        },
+        {
+          key: 'filters[time][$gt]',
+          query: now.format('HH:mm:ss.SSS'),
+        },
+      ],
+    })
+  },
 }
 
 const BookingList = ({ type }: { type: BOOKING_TABS }) => {

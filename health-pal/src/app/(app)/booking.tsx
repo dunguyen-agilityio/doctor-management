@@ -3,7 +3,8 @@ import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import dayjs from 'dayjs'
-import { useLocalSearchParams } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
+import { DateType } from 'react-native-ui-datepicker'
 
 import { useAppLoading } from '@app/hooks'
 import { useRequireAuth } from '@app/hooks/use-require-auth'
@@ -16,9 +17,8 @@ import ReloadTimeSlotConfirmModal from '@app/ui/booking/reload-time-slot'
 
 import { addBooking, getBookingAvailable, updateBooking } from '@app/services/booking'
 
-import { BOOKING_TABS, BookingForm, ModalRef } from '@app/types'
+import { BookingForm, ModalRef } from '@app/types'
 
-import { queryClient } from '@app/react-query.config'
 import { getDefaultDate } from '@app/utils/date'
 
 type BookingScreenParams = {
@@ -49,7 +49,8 @@ const Booking = () => {
   const methods = useForm<BookingForm>({
     defaultValues: { time: timeParam, date: defaultDate, documentId: bookingIdParam },
   })
-  const { control, formState, getValues, setValue, handleSubmit } = methods
+
+  const { control, formState, getValues, setValue, handleSubmit, watch } = methods
 
   const getAvailable = useCallback(
     async (date = getDefaultDate()) => {
@@ -66,9 +67,11 @@ const Booking = () => {
     [doctId, setAppLoading, setValue],
   )
 
+  const date = watch('date')
+
   useEffect(() => {
-    getAvailable()
-  }, [getAvailable])
+    getAvailable(dayjs(date))
+  }, [getAvailable, date])
 
   const onSubmit = async ({ date, doctor, time, documentId }: BookingForm) => {
     if (jwt) {
@@ -87,14 +90,12 @@ const Booking = () => {
       const { data } = await action(payload, jwt)
 
       if (data) {
-        if (!documentId) {
-          setValue('documentId', data.documentId)
-        }
+        setValue('documentId', data.documentId)
         cancelConfirmRef.current?.open()
-        queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.UPCOMING] })
+        router.setParams({ ...params, time, date: formattedDate })
       } else {
         reloadTimeSlotConfirmRef.current?.open()
-        getAvailable()
+        await getAvailable()
       }
 
       setAppLoading(false)
@@ -103,10 +104,12 @@ const Booking = () => {
 
   const minDate = useMemo(() => getDefaultDate(), [])
 
+  const disabledDates = useCallback((date: DateType) => [0, 6].includes(dayjs(date).day()), [])
+
   const disabled =
     !formState.isDirty ||
     Object.keys(formState.errors).length > 1 ||
-    (getValues('time') === timeParam && dayjs(params.date).isSame(getValues('date')))
+    (getValues('time') === timeParam && dayjs(defaultDate).isSame(getValues('date'), 'date'))
 
   return (
     <YStack backgroundColor="$white" flex={1}>
@@ -126,7 +129,7 @@ const Booking = () => {
                   date={value}
                   minDate={minDate}
                   onChange={onChange}
-                  disabledDates={(date) => [0, 6].includes(dayjs(date).day())}
+                  disabledDates={disabledDates}
                 />
               )}
             />
@@ -136,12 +139,13 @@ const Booking = () => {
             control={control}
             name="time"
             rules={{ required: 'Field is required!' }}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
+            render={({ field: { onChange, value } }) => (
               <BookingTime
                 available={available}
                 onChange={onChange}
                 value={value}
                 current={timeParam}
+                date={watch('date')}
               />
             )}
           />

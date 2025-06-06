@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { StyleSheet } from 'react-native'
 
 import DateTimePicker, { DateType } from 'react-native-ui-datepicker'
@@ -37,7 +38,7 @@ const DatePicker = ({ onChange, ...props }: DatePickerProps) => {
   )
 }
 
-export default DatePicker
+export default memo(DatePicker)
 
 const styles = StyleSheet.create({
   container: {
