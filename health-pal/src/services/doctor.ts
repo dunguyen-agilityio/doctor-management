@@ -1,5 +1,5 @@
 import { APP_TOKEN } from '@app/constants'
-import { DoctorQueryKey } from '@app/constants/doctor'
+import { DOCTOR_QUERY_KEY } from '@app/constants/doctor'
 
 import { StrapiPagination, StrapiParams } from '@app/types/strapi'
 
@@ -13,9 +13,9 @@ export const getDoctors = async ({ filters = [], ...params }: StrapiParams) => {
   const searchParams = buildStrapiQuery({
     ...params,
     filters: [
-      { key: DoctorQueryKey.avatar, query: '*' },
-      { key: DoctorQueryKey.hospital, query: '*' },
-      { key: DoctorQueryKey.specialty, query: 'name' },
+      { key: DOCTOR_QUERY_KEY.avatar, query: '*' },
+      { key: DOCTOR_QUERY_KEY.hospital, query: '*' },
+      { key: DOCTOR_QUERY_KEY.specialty, query: 'name' },
       ...filters,
     ],
   })
@@ -29,9 +29,9 @@ export const getDoctors = async ({ filters = [], ...params }: StrapiParams) => {
 export const getDoctor = async (id: string) => {
   const searchParams = buildStrapiQuery({
     filters: [
-      { key: DoctorQueryKey.avatar, query: '*' },
-      { key: DoctorQueryKey.address, query: 'address' },
-      { key: DoctorQueryKey.specialty, query: 'name' },
+      { key: DOCTOR_QUERY_KEY.avatar, query: '*' },
+      { key: DOCTOR_QUERY_KEY.address, query: 'address' },
+      { key: DOCTOR_QUERY_KEY.specialty, query: 'name' },
     ],
   })
 

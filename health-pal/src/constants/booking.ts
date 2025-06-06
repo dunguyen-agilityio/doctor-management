@@ -1,11 +1,11 @@
-export const BookingQueryKey = {
+export const BOOKING_QUERY_KEY = {
   hospital: 'populate[doctor][populate][clinic][fields]',
   patient: 'populate[patient][populate][users_permissions_user][populate][avatar][fields]',
   doctor: 'populate[doctor][populate][users_permissions_user][populate][avatar][fields]',
   specialty: 'populate[doctor][populate][specialty][fields]',
 }
 
-export const BookingMessages = {
+export const BOOKING_MESSAGE = {
   BOOKING_SUCCESS: 'Booking successfully created',
   BOOKING_ERROR: 'Failed to create booking',
   BOOKING_CANCEL_SUCCESS: 'Booking successfully cancelled',

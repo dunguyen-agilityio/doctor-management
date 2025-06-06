@@ -1,4 +1,4 @@
-import { FavoriteQueryKey } from '@app/constants/favorite'
+import { FAVORITE_QUERY_KEY } from '@app/constants/favorite'
 
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
@@ -56,15 +56,15 @@ export const fetchFavoritesByType = async <T extends FAVORITE_TYPES>(
         query: userId.toString(),
       },
       ...(type === FAVORITE_TYPES.HOSPITAL
-        ? [{ key: FavoriteQueryKey.hospital, query: 'url' }]
+        ? [{ key: FAVORITE_QUERY_KEY.hospital, query: 'url' }]
         : [
-            { key: FavoriteQueryKey.specialty, query: '*' },
+            { key: FAVORITE_QUERY_KEY.specialty, query: '*' },
             {
-              key: FavoriteQueryKey.doctor,
+              key: FAVORITE_QUERY_KEY.doctor,
               query: 'url',
             },
             {
-              key: FavoriteQueryKey.address,
+              key: FAVORITE_QUERY_KEY.address,
               query: 'address',
             },
           ]),
