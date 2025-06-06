@@ -35,7 +35,7 @@ const Profile = () => {
   const { session, setUser } = useSession()
   const toast = useToastController()
 
-  const { name, username, email, avatar, id: userId } = session?.user ?? {}
+  const { name, email, avatar, id: userId } = session?.user ?? {}
   const jwt = session?.jwt!
 
   const handleUpload = async (imageUri: string) => {

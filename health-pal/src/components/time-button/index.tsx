@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 import { Button, ButtonProps } from '@app/components/common'
 
 import { formatTime } from '@app/utils/date'
@@ -22,4 +24,4 @@ const TimeButton = ({ value, onSelect, ...props }: TimeButtonProps) => {
   )
 }
 
-export default TimeButton
+export default memo(TimeButton)

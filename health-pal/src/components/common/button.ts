@@ -16,7 +16,8 @@ export const Button = styled(TamaguiButton, {
         backgroundColor: '$primary',
         color: '$white',
         borderRadius: '$6',
-        pressStyle: { backgroundColor: '$primary', opacity: 0.85 },
+        pressStyle: { backgroundColor: '$primary' },
+        disabledStyle: { opacity: 0.75, backgroundColor: '$primary' },
         hoverStyle: { opacity: 0.85 },
       },
       secondary: {
@@ -24,6 +25,7 @@ export const Button = styled(TamaguiButton, {
         color: '$primary',
         borderRadius: '$6',
         pressStyle: { backgroundColor: '$grey200' },
+        disabledStyle: { opacity: 0.65, backgroundColor: '$grey200' },
         hoverStyle: { opacity: 0.85 },
       },
       outlined: {

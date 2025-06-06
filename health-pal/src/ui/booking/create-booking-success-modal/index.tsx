@@ -10,8 +10,10 @@ import Modal from '@app/components/common/modal'
 
 import { ShieldTick } from '@icons'
 
-import { BookingForm } from '@app/types/booking'
+import { BOOKING_TABS, BookingForm } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
+
+import { queryClient } from '@app/react-query.config'
 
 type Props = {
   ref?: React.RefObject<ModalRef | null>
@@ -25,6 +27,7 @@ export const CreateBookingSuccessModal = ({ ref }: Readonly<Props>) => {
   const formattedDate = date.format('YYYY-MM-DD')
 
   const handleDone = async () => {
+    await queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.UPCOMING] })
     router.replace('/(app)/(tabs)/bookings')
     ref?.current?.close()
   }

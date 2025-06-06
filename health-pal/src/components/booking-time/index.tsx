@@ -1,3 +1,8 @@
+import { StyleSheet } from 'react-native'
+
+import dayjs from 'dayjs'
+import { DateType } from 'react-native-ui-datepicker'
+
 import { Heading, Text, XStack, YStack } from '@app/components/common'
 
 import TimeButton from '../time-button'
@@ -17,19 +22,23 @@ const TIMES = [
   '17:30:00',
 ]
 
-const BookingTime = ({
-  errorMessage,
-  onChange,
-  value,
-  available,
-  current,
-}: {
+interface BookingTimeProps {
   errorMessage?: string
   onChange: (value: string) => void
   available: Record<string, boolean>
   value?: string
   current?: string
-}) => {
+  date: DateType
+}
+
+const BookingTime = ({
+  errorMessage,
+  onChange,
+  value,
+  available,
+  date,
+  current,
+}: BookingTimeProps) => {
   return (
     <YStack gap={8}>
       <XStack justifyContent="space-between" alignItems="center">
@@ -41,20 +50,33 @@ const BookingTime = ({
         )}
       </XStack>
       <XStack justifyContent="space-between" gap={14} flexWrap="wrap">
-        {TIMES.map((time) => (
-          <TimeButton
-            value={time}
-            key={time}
-            onSelect={onChange}
-            disabled={!available[time] && current !== time}
-            color={value === time ? '$white' : '$primary'}
-            backgroundColor={value === time ? '$primary' : '$grey50'}
-            disabledStyle={{ opacity: 0.5, backgroundColor: '$grey300' }}
-          />
-        ))}
+        {TIMES.map((time) => {
+          let clone = dayjs(date)
+          let [hour, minute] = time.split(':')
+          clone = clone.set('hour', parseInt(hour))
+          clone = clone.set('minute', parseInt(minute))
+
+          const disabled = (!available[time] && current !== time) || clone.isBefore(dayjs(), 'hour')
+
+          return (
+            <TimeButton
+              value={time}
+              key={time}
+              onSelect={onChange}
+              disabled={disabled}
+              color={value === time ? '$white' : '$primary'}
+              backgroundColor={value === time ? '$primary' : '$grey50'}
+              disabledStyle={styles.disabledStyle}
+            />
+          )
+        })}
       </XStack>
     </YStack>
   )
 }
 
 export default BookingTime
+
+const styles = StyleSheet.create({
+  disabledStyle: { opacity: 0.5, backgroundColor: '$grey300' },
+})
