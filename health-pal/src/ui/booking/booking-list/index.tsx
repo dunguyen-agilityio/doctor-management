@@ -6,8 +6,6 @@ import { useQuery } from '@tanstack/react-query'
 
 import { BOOKING_EMPTY } from '@app/constants'
 
-import useMediaQuery from '@app/hooks/use-media-query'
-
 import { Empty, ErrorState } from '@app/components'
 import BookingListSkeleton from '@app/components/skeleton/booking-list-skeleton'
 
@@ -19,6 +17,7 @@ import { StrapiPagination } from '@app/types/strapi'
 import { BookingData, BookingKey } from '@app/models/booking'
 import { formatBooking } from '@app/utils/booking'
 import { keyExtractor } from '@app/utils/list'
+import { getMediaQuery } from '@app/utils/media-query'
 
 import BookingCard from '../booking-card'
 
@@ -32,7 +31,7 @@ const bookingPromises: Record<BOOKING_TABS, () => Promise<StrapiPagination<Booki
 }
 
 const BookingList = ({ type }: { type: BOOKING_TABS }) => {
-  const { width } = useMediaQuery({ full: true, width: 342, px: 24 })
+  const { width } = getMediaQuery({ full: true, width: 342, px: 24 })
 
   const { isLoading, isFetching, data, error, refetch } = useQuery({
     queryKey: ['bookings', type],

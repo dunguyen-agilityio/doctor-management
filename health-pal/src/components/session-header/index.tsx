@@ -12,7 +12,7 @@ const SessionHeader = ({ title, seeAllWrapper: Wrapper = Fragment }: SessionHead
     <XStack justifyContent="space-between" paddingHorizontal="$md">
       <Heading testID="heading">{title}</Heading>
       <Wrapper>
-        <Text>See all</Text>
+        <Text>See All</Text>
       </Wrapper>
     </XStack>
   )

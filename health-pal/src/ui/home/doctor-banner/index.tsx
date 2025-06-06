@@ -7,11 +7,10 @@ import { XStack, YStack } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
 
-import useMediaQuery from '@app/hooks/use-media-query'
-
 import { TDoctorBanner } from '@app/types/doctor'
 
 import { DOCTOR_BANNER } from '@app/mocks/doctor'
+import { getMediaQuery } from '@app/utils/media-query'
 
 import DoctorBannerCard from './doctor-banner-card'
 
@@ -26,7 +25,7 @@ const DoctorBanner = () => {
     })
   }
 
-  const { height, width } = useMediaQuery({ height: 163, full: true })
+  const { height, width } = getMediaQuery({ height: 163, full: true })
 
   const renderItem = ({ item, index }: { item: TDoctorBanner; index: number }) => (
     <DoctorBannerCard {...item} key={index} width={width} height={height} />

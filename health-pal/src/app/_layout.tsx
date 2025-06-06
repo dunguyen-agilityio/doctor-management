@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react'
 import { DevSettings } from 'react-native'
 
-import {
-  Inter_400Regular,
-  Inter_500Medium,
-  Inter_600SemiBold,
-  Inter_700Bold,
-} from '@expo-google-fonts/inter'
 import { useFonts } from 'expo-font'
 import { Slot } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
@@ -40,10 +34,10 @@ export default function RootLayout() {
   const { hydrate } = useAuthStore()
 
   const [loaded] = useFonts({
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
+    Inter_400Regular: require('@/assets/fonts/Inter_18pt-Regular.ttf'),
+    Inter_500Medium: require('@/assets/fonts/Inter_18pt-Medium.ttf'),
+    Inter_600SemiBold: require('@/assets/fonts/Inter_18pt-SemiBold.ttf'),
+    Inter_700Bold: require('@/assets/fonts/Inter_18pt-Bold.ttf'),
   })
 
   useEffect(() => {

@@ -157,7 +157,7 @@ const Details = () => {
       />
       <YStack flex={1} gap={16}>
         <YStack gap={16} flex={1} paddingHorizontal={24}>
-          <DoctorCard {...doctor} showReview={false} />
+          <DoctorCard {...doctor} actionable={false} showReview={false} />
           <XStack justifyContent="space-between">
             <Stat title="patients" value={`${patients.toLocaleString()}+`} icon={<TwoUser />} />
             <Stat title="experience" value={`${experience}+`} icon={<Medal />} />
@@ -203,9 +203,11 @@ const Details = () => {
           </Button>
         </XStack>
       </YStack>
-      <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
-        <DoctorCard {...doctor} />
-      </RemoveFavoriteModal>
+      {favoriteId && (
+        <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
+          <DoctorCard actionable={false} {...doctor} />
+        </RemoveFavoriteModal>
+      )}
     </>
   )
 }
