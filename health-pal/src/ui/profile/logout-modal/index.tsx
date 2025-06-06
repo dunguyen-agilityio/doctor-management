@@ -1,3 +1,5 @@
+import { router } from 'expo-router'
+
 import { Separator } from 'tamagui'
 
 import { useSession } from '@app/hooks/use-session'
@@ -11,8 +13,9 @@ import { queryClient } from '@app/react-query.config'
 const LogoutModal = ({ ref }: { ref: React.RefObject<ModalRef | null> }) => {
   const { signOut } = useSession()
 
-  const handleLogout = () => {
-    signOut()
+  const handleLogout = async () => {
+    await signOut()
+    router.replace('/(auth)/login')
     queryClient.clear()
   }
 

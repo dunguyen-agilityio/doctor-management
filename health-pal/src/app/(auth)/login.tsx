@@ -1,4 +1,4 @@
-import { Link, Redirect, router } from 'expo-router'
+import { Link, router } from 'expo-router'
 
 import { useToastController } from '@tamagui/toast'
 
@@ -23,7 +23,7 @@ import { Facebook, Google, Logo } from '@icons'
 import { AuthCredentials } from '@app/types'
 
 const SignIn = () => {
-  const { signIn, session } = useSession()
+  const { signIn } = useSession()
   const setAppLoading = useAppLoading()
   const toast = useToastController()
 
@@ -49,10 +49,6 @@ const SignIn = () => {
     }
 
     setAppLoading(false)
-  }
-
-  if (session && !session?.jwt) {
-    return <Redirect href="/profile-info" />
   }
 
   return (

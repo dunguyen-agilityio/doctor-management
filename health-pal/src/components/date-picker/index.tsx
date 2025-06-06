@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     width: 36,
     height: 30,
+    lineHeight: 30,
   },
   disabled_label: {
     color: tokens.color.grey500.val,

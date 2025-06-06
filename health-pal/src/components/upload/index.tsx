@@ -124,9 +124,9 @@ const Upload = ({ preview, onUpload, ...props }: UploadProps) => {
             <Button
               variant="icon"
               position="absolute"
-              right={34}
+              right={10}
               padding={0}
-              bottom={27}
+              bottom={20}
               aria-label="Edit Image"
               onPress={handleOpenCamera}>
               <EditIcon />
