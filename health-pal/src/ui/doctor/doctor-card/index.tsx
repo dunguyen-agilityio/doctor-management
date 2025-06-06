@@ -1,5 +1,7 @@
-import { Fragment, memo, useRef } from 'react'
+import { memo, useRef } from 'react'
 import { GestureResponderEvent } from 'react-native'
+
+import { Link } from 'expo-router'
 
 import { Card, Separator, XStack, YStack } from 'tamagui'
 
@@ -21,7 +23,7 @@ import { useFavoritesStore } from '@app/stores/favorite'
 
 interface DoctorCardProps extends TDoctorCard {
   showReview?: boolean
-  wrapper?: (props: React.PropsWithChildren<{ id: string; name: string }>) => React.ReactNode
+  actionable?: boolean
 }
 
 const DoctorCard = ({
@@ -31,10 +33,10 @@ const DoctorCard = ({
   address,
   reviewCounter,
   rating,
-  documentId,
   showReview = true,
   id,
-  wrapper,
+  actionable = true,
+  documentId,
 }: DoctorCardProps) => {
   const { mutate: removeFavorite, isPending: removeFavPending } = useRemoveFavorite(
     FAVORITE_TYPES.DOCTOR,
@@ -144,26 +146,29 @@ const DoctorCard = ({
     </Card>
   )
 
-  const Container = wrapper ?? Fragment
-
-  const content = (
-    <>
+  const content = actionable ? (
+    <Link
+      testID="doctor-link"
+      accessibilityLabel={`View doctors at ${name}`}
+      accessibilityHint="Shows this doctor in the doctor list"
+      role="link"
+      href={{ pathname: '/doctors/details/[id]', params: { id: documentId } }}>
       {card}
-      <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
-        {card}
-      </RemoveFavoriteModal>
-    </>
+    </Link>
+  ) : (
+    card
   )
 
-  if (wrapper) {
-    return (
-      <Container id={documentId} name={name}>
-        {content}
-      </Container>
-    )
-  }
-
-  return content
+  return (
+    <>
+      {content}
+      {favoriteId && (
+        <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
+          {card}
+        </RemoveFavoriteModal>
+      )}
+    </>
+  )
 }
 
 export default memo(DoctorCard)

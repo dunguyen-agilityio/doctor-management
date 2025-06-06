@@ -10,7 +10,7 @@ interface StarsProps extends StackProps {
   size?: number
 }
 
-const Stars = ({ stars, max = stars, ...otherProps }: StarsProps) => {
+const Stars = ({ stars, size = 12, max = stars, ...otherProps }: StarsProps) => {
   return (
     <XStack alignItems="center" testID="stars" gap="$sm" {...otherProps}>
       <Text testID="stars-text" fontWeight="600" size="extraSmall">
@@ -18,7 +18,7 @@ const Stars = ({ stars, max = stars, ...otherProps }: StarsProps) => {
       </Text>
       <XStack alignItems="center" gap={2}>
         {[...new Array(Math.floor(max)).keys()].map((value) => (
-          <Star testID={`star-${value}`} width={12} height={12} key={value} />
+          <Star testID={`star-${value}`} width={size} height={size} key={value} />
         ))}
       </XStack>
     </XStack>

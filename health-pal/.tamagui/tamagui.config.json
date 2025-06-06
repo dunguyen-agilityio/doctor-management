@@ -27813,6 +27813,13 @@
           "name": "c-gray",
           "val": "#292d32",
           "variable": ""
+        },
+        "yellow": {
+          "isVar": true,
+          "key": "$yellow",
+          "name": "c-yellow",
+          "val": "#ffd700",
+          "variable": ""
         }
       }
     },
@@ -27975,6 +27982,7 @@
         "orange": "#f5ad7e",
         "black": "#000",
         "gray": "#292d32",
+        "yellow": "#ffd700",
         "bg": "#ffffff",
         "id": "light"
       }
@@ -28323,6 +28331,13 @@
         "key": "$gray",
         "name": "c-gray",
         "val": "#292d32",
+        "variable": ""
+      },
+      "$color.yellow": {
+        "isVar": true,
+        "key": "$yellow",
+        "name": "c-yellow",
+        "val": "#ffd700",
         "variable": ""
       }
     },

@@ -5,12 +5,13 @@ import { Spinner, Stack, View } from 'tamagui'
 import { FAVORITE_EMPTY } from '@app/constants'
 
 import useHospitals from '@app/hooks/use-hospitals'
-import useMediaQuery from '@app/hooks/use-media-query'
 
 import { Empty, ErrorState, LoadingIndicator, YStack } from '@app/components'
 import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
 
 import { FAVORITE_TYPES } from '@app/types/favorite'
+
+import { getMediaQuery } from '@app/utils/media-query'
 
 import HospitalList from '../hospital-list'
 
@@ -28,7 +29,7 @@ const HospitalContainer = ({ query }: { query: string }) => {
     hasNextPage,
   } = useHospitals(query)
 
-  const { height } = useMediaQuery({ px: 24, height: 256, full: true })
+  const { height } = getMediaQuery({ px: 24, height: 256, full: true })
 
   if (isLoading) {
     return <HospitalListSkeleton />

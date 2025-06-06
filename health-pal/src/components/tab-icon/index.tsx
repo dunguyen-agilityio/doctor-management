@@ -7,13 +7,13 @@ import { Stack, StackProps } from 'tamagui'
 import {
   CalendarFill,
   CalendarOutline,
-  HeartFill,
   HeartOutline,
   HomeFill,
   HomeOutline,
   ProfileFill,
   ProfileOutline,
 } from '@icons'
+import Heart from '@icons/heart'
 
 import { TAB_ROUTES } from '@app/types/route'
 
@@ -26,7 +26,7 @@ const TAB_ICON = {
   [`${TAB_ROUTES.PROFILE}_false`]: ProfileOutline,
   [`${TAB_ROUTES.BOOKINGS}_true`]: CalendarFill,
   [`${TAB_ROUTES.BOOKINGS}_false`]: CalendarOutline,
-  [`${TAB_ROUTES.FAVORITE}_true`]: HeartFill,
+  [`${TAB_ROUTES.FAVORITE}_true`]: Heart,
   [`${TAB_ROUTES.FAVORITE}_false`]: HeartOutline,
 } satisfies RouteTabIcon
 

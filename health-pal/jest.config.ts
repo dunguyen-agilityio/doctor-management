@@ -1,0 +1,22 @@
+import type { Config } from 'jest'
+
+const config: Config = {
+  preset: 'jest-expo',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts', '@testing-library/jest-native/extend-expect'],
+  setupFiles: ['<rootDir>/jest.setup.ts'],
+  transformIgnorePatterns: [
+    'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|tamagui|@tamagui|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg)',
+  ],
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.test.{ts,tsx}',
+    '!src/**/mocks/**',
+    '!src/**/types/**',
+    '!src/**/theme/**',
+    '!src/**/models/**',
+    '!src/**/icons/**',
+  ],
+}
+
+export default config

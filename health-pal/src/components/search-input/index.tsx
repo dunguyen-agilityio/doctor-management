@@ -2,7 +2,7 @@ import { debounce } from 'tamagui'
 
 import Search from '@icons/search'
 
-import { CustomTamaguiInput as Input, InputProps } from '../common'
+import { Input, InputProps } from '../common'
 
 const SearchInput = ({ onChangeText, value, ...props }: InputProps) => {
   const handleSearch = (value: string) => {

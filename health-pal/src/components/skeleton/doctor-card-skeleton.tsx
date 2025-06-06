@@ -1,6 +1,6 @@
 import { Card, Separator, XStack, YStack } from 'tamagui'
 
-import useMediaQuery from '@app/hooks/use-media-query'
+import { getMediaQuery } from '@app/utils/media-query'
 
 import { LineLoader } from './line-loader'
 import { MediaLoader } from './media-loader'
@@ -10,7 +10,7 @@ interface DoctorCardSkeletonProps {
 }
 
 const DoctorCardSkeleton = ({ showReview = true }: DoctorCardSkeletonProps) => {
-  const { height } = useMediaQuery({ height: 133, full: true })
+  const { height } = getMediaQuery({ height: 133, full: true })
 
   return (
     <Card

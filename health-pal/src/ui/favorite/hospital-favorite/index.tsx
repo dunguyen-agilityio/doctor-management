@@ -5,7 +5,6 @@ import { Stack } from 'tamagui'
 import { FAVORITE_EMPTY } from '@app/constants'
 
 import { useFavoriteHospitals } from '@app/hooks/use-favorite'
-import useMediaQuery from '@app/hooks/use-media-query'
 
 import { Empty, ErrorState } from '@app/components'
 import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
@@ -15,11 +14,12 @@ import HospitalList from '@app/ui/hospital/hospital-list'
 import { FAVORITE_TYPES } from '@app/types/favorite'
 
 import { keyExtractor } from '@app/utils/list'
+import { getMediaQuery } from '@app/utils/media-query'
 
 const ItemSeparatorComponent = () => <Stack height={12} />
 
 const HospitalFavorite = () => {
-  const { height } = useMediaQuery({ px: 24, height: 256, full: true })
+  const { height } = getMediaQuery({ px: 24, height: 256, full: true })
   const { data: hospitals, isLoading, error, refetch } = useFavoriteHospitals()
 
   if ((!isLoading && !hospitals) || error) {
