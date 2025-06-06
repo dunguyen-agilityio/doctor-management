@@ -9,6 +9,8 @@ import { APP_TOKEN } from '@app/constants'
 import { VALIDATIONS_MESSAGE } from '@app/constants/message'
 import { EMAIL_REGEX } from '@app/constants/regex'
 
+import { useAppLoading } from '@app/hooks'
+
 import {
   Button,
   DateInput,
@@ -35,6 +37,8 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
   const nicknameRef = useRef<TextInput>(null)
   const emailRef = useRef<TextInput>(null)
   const toast = useToastController()
+
+  const setAppLoading = useAppLoading()
 
   const { control, handleSubmit, setError, setValue } = useForm<UserProfileData>({
     defaultValues: {
@@ -71,6 +75,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                   accessibilityHint="Opens image picker to update your profile picture"
                   role="button"
                   onUpload={async (image: string) => {
+                    setAppLoading(true)
                     const { error, data } = await uploadToStrapi(image, APP_TOKEN)
 
                     if (error) {
@@ -79,6 +84,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                         duration: 3000,
                         type: 'error',
                       })
+                      setAppLoading(false)
                       return
                     }
 
@@ -87,6 +93,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                     onChange(id)
                     setValue('avatarUrl', url)
                     nameRef.current?.focus()
+                    setAppLoading(false)
                   }}
                   preview={defaultData?.avatarUrl}
                 />

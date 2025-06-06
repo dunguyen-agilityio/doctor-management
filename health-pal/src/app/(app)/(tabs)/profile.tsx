@@ -5,6 +5,7 @@ import { router } from 'expo-router'
 import { useToastController } from '@tamagui/toast'
 import { Separator } from 'tamagui'
 
+import { useAppLoading } from '@app/hooks'
 import { useSession } from '@app/hooks/use-session'
 
 import { ListItem, Text, Upload, YStack } from '@app/components'
@@ -34,12 +35,14 @@ const Profile = () => {
   const logoutRef = useRef<ModalRef>(null)
   const { session, setUser } = useSession()
   const toast = useToastController()
+  const setAppLoading = useAppLoading()
 
   const { name, email, avatar, id: userId } = session?.user ?? {}
   const jwt = session?.jwt!
 
   const handleUpload = async (imageUri: string) => {
     if (!session) return
+    setAppLoading(true)
 
     const { error, data } = await uploadToStrapi(imageUri, jwt)
 
@@ -49,6 +52,7 @@ const Profile = () => {
         duration: 3000,
         type: 'error',
       })
+      setAppLoading(false)
       return
     }
 
@@ -62,6 +66,7 @@ const Profile = () => {
       duration: 3000,
       type: 'success',
     })
+    setAppLoading(false)
   }
 
   const handleLogout = () => {

@@ -8,8 +8,8 @@ import { setStorageItemAsync } from '@app/utils/storage'
 type AuthState = {
   session: Session | null
   isLoading: boolean
-  signIn: (session: Session) => void
-  signOut: () => void
+  signIn: (session: Session) => Promise<void>
+  signOut: () => Promise<void>
   setUser: (user: User) => void
   hydrate: () => Promise<void>
 }
@@ -17,13 +17,13 @@ type AuthState = {
 export const useAuthStore = create<AuthState>((set) => ({
   session: null,
   isLoading: true,
-  signIn: (session: Session) => {
+  signIn: async (session: Session) => {
     set({ session, isLoading: false })
-    setStorageItemAsync('session', JSON.stringify(session))
+    await setStorageItemAsync('session', JSON.stringify(session))
   },
-  signOut: () => {
+  signOut: async () => {
     set({ session: null, isLoading: false })
-    setStorageItemAsync('session', null)
+    await setStorageItemAsync('session', null)
   },
   setUser: (user: User) =>
     set((state) => {
