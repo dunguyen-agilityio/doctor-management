@@ -1,4 +1,4 @@
-export const DoctorQueryKey = {
+export const DOCTOR_QUERY_KEY = {
   hospital: 'populate[clinic][populate]',
   avatar: 'populate[users_permissions_user][populate][avatar][populate]',
   specialty: 'populate[specialty][fields]',
@@ -7,7 +7,7 @@ export const DoctorQueryKey = {
   address: 'populate[clinic][fields]',
 }
 
-export const DoctorMessages = {
+export const DOCTOR_MESSAGE = {
   DOCTOR_ERROR: 'Failed to get doctor',
   DOCTOR_LIST_ERROR: 'Failed to get doctors list',
   DOCTOR_LIST_EMPTY: 'No doctors found',

@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-import { DoctorQueryKey } from '@app/constants/doctor'
+import { DOCTOR_QUERY_KEY } from '@app/constants/doctor'
 
 import { getDoctors } from '@app/services/doctor'
 
@@ -15,14 +15,14 @@ const useDoctors = (query: string, specialty: string[]) => {
     const filters = specialties
       .filter((item) => item !== 'all')
       .map((value) => ({
-        key: DoctorQueryKey.filterSpecialty,
+        key: DOCTOR_QUERY_KEY.filterSpecialty,
         query: value,
       }))
 
     filters.push({ key: 'sort', query: 'id:asc' })
 
     if (query) {
-      filters.push({ key: DoctorQueryKey.query, query })
+      filters.push({ key: DOCTOR_QUERY_KEY.query, query })
     }
 
     const response = await getDoctors({

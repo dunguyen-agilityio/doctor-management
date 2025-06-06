@@ -1,11 +1,11 @@
-export const FavoriteQueryKey = {
+export const FAVORITE_QUERY_KEY = {
   doctor: 'populate[doctor][populate][users_permissions_user][populate][avatar][fields]',
   specialty: 'populate[doctor][populate][specialty][fields]',
   hospital: 'populate[hospital][populate][image][fields]',
   address: 'populate[doctor][populate][clinic][fields]',
 }
 
-export const FavoriteMessages = {
+export const FAVORITE_MESSAGE = {
   FAVORITE_ERROR: 'Failed to get favorite',
   FAVORITE_LIST_ERROR: 'Failed to get favorites list',
   FAVORITE_LIST_EMPTY: 'No favorites found',
