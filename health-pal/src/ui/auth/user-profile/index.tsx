@@ -26,6 +26,8 @@ import { uploadToStrapi } from '@app/services/upload-image'
 
 import { UserProfileData } from '@app/types'
 
+import { getMaxDate } from '@app/utils/date'
+
 interface UserProfileFormProps {
   defaultData?: Partial<UserProfileData>
   onSubmit: (data: UserProfileData) => Promise<void>
@@ -57,6 +59,8 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
     if (Keyboard.isVisible()) Keyboard.dismiss()
     await onSubmit(data)
   }
+
+  const maxDate = getMaxDate()
 
   return (
     <FormKeyboardAvoidingView
@@ -194,7 +198,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                   onChange(value)
                   setError('dateOfBirth', {})
                 }}
-                datePickerProps={{ maxDate: new Date() }}
+                datePickerProps={{ maxDate }}
                 errorMessage={error?.message}
                 aria-label="Date of birth"
                 accessibilityHint="Select your date of birth for your profile"

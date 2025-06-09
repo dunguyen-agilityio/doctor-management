@@ -112,9 +112,10 @@ const Upload = ({ preview, onUpload, ...props }: UploadProps) => {
             position="relative"
             justifyContent="center"
             alignSelf="center"
+            padding={0}
             zIndex={1}
             {...props}>
-            <Stack w={170} h={170} borderRadius={300}>
+            <Stack w={170} h={170} borderRadius={300} alignItems="center" justifyContent="center">
               {(image ?? preview) ? (
                 <CloudinaryImage source={{ uri: image ?? preview }} style={styles.image} />
               ) : (
@@ -124,9 +125,9 @@ const Upload = ({ preview, onUpload, ...props }: UploadProps) => {
             <Button
               variant="icon"
               position="absolute"
-              right={10}
+              right={30}
               padding={0}
-              bottom={20}
+              bottom={30}
               aria-label="Edit Image"
               onPress={handleOpenCamera}>
               <EditIcon />

@@ -61,14 +61,17 @@ const BookingTime = ({
           const disabled =
             (!available[time] && current !== time) || clone.isBefore(dayjs(), 'minutes')
 
+          const backgroundColor = !disabled && value === time ? '$primary' : '$grey50'
+          const color = !disabled && value === time ? '$white' : '$primary'
+
           return (
             <TimeButton
               value={time}
               key={time}
               onSelect={onChange}
               disabled={disabled}
-              color={value === time ? '$white' : '$primary'}
-              backgroundColor={value === time ? '$primary' : '$grey50'}
+              color={color}
+              backgroundColor={backgroundColor}
               disabledStyle={styles.disabledStyle}
             />
           )

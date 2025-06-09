@@ -43,7 +43,7 @@ export default memo(DatePicker)
 const styles = StyleSheet.create({
   container: {
     width: WINDOW_SIZE.width - 24 * 2,
-    height: 272,
+    minHeight: 272,
     alignSelf: 'center',
     backgroundColor: tokens.color.grey50.val,
     borderRadius: 12,

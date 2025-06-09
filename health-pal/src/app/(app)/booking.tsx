@@ -128,7 +128,10 @@ const Booking = () => {
                 <DatePicker
                   date={value}
                   minDate={minDate}
-                  onChange={onChange}
+                  onChange={(value) => {
+                    onChange(value)
+                    setValue('time', '')
+                  }}
                   disabledDates={disabledDates}
                 />
               )}
