@@ -52,11 +52,14 @@ const BookingTime = ({
       <XStack justifyContent="space-between" gap={14} flexWrap="wrap">
         {TIMES.map((time) => {
           let clone = dayjs(date)
+          clone = clone.set('hours', dayjs().get('hours'))
+          clone = clone.set('minutes', dayjs().get('minutes'))
           let [hour, minute] = time.split(':')
           clone = clone.set('hour', parseInt(hour))
           clone = clone.set('minute', parseInt(minute))
 
-          const disabled = (!available[time] && current !== time) || clone.isBefore(dayjs(), 'hour')
+          const disabled =
+            (!available[time] && current !== time) || clone.isBefore(dayjs(), 'minutes')
 
           return (
             <TimeButton

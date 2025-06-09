@@ -101,12 +101,11 @@ export const Input = ({
           flex={1}
           {...(errorMessage && { borderColor: 'red', focusStyle: { borderColor: 'red' } })}
           {...props}
-          value={value}
           onFocus={(e) => {
             valueRef.current = value
             onFocus?.(e)
           }}
-          defaultValue={defaultValue}
+          defaultValue={value}
           onEndEditing={(e) => {
             onEdited?.(e.nativeEvent.text !== valueRef.current)
             onEndEditing?.(e)

@@ -1,3 +1,5 @@
+import { useCallback } from 'react'
+
 import { debounce } from 'tamagui'
 
 import Search from '@icons/search'
@@ -19,7 +21,7 @@ const SearchInput = ({ onChangeText, value, ...props }: InputProps) => {
       keyboardType="web-search"
       returnKeyType="search"
       clearButtonMode="always"
-      onChangeText={debounce(handleSearch, 500)}
+      onChangeText={useCallback(debounce(handleSearch, 500), [])}
       role="searchbox"
       {...props}
     />
