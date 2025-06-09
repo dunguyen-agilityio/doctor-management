@@ -22,7 +22,7 @@ interface SignupFormProps {
 
 const SignupForm = ({
   onSubmit,
-  defaultValues = { email: 'test+demo@asnet.com', name: 'test+demo', password: '12345@Abc' },
+  defaultValues = { email: '', name: '', password: '' },
 }: SignupFormProps) => {
   const emailRef = useRef<TextInput>(null)
   const passwordRef = useRef<TextInput>(null)

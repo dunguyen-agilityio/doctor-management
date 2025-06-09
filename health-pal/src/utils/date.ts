@@ -16,3 +16,9 @@ export const getDefaultDate = () => {
 
   return now
 }
+
+export const getMaxDate = (years = 18) => {
+  let maxDate = dayjs()
+  maxDate = maxDate.set('years', maxDate.get('year') - years)
+  return maxDate
+}
