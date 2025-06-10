@@ -38,100 +38,100 @@ exports[`SearchInput renders Input with correct props and Search icon 1`] = `
     <View
       style={[]}
     >
-      <RNSVGSvgView
-        align="xMidYMid"
-        bbHeight="24"
-        bbWidth="24"
-        fill="none"
-        focusable={false}
-        height="24"
-        left={16}
-        meetOrSlice={0}
-        minX={0}
-        minY={0}
-        position="absolute"
-        size={16}
-        style={
-          [
-            {
-              "backgroundColor": "transparent",
-              "borderWidth": 0,
-            },
-            {
-              "flex": 0,
-              "height": 24,
-              "width": 24,
-            },
-          ]
-        }
-        testID="left-icon"
-        vbHeight={24}
-        vbWidth={24}
-        width="24"
-        zIndex={200}
+      <View
+        style={[]}
       >
-        <RNSVGGroup
-          fill={null}
-          propList={
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight="24"
+          bbWidth="24"
+          fill="none"
+          focusable={false}
+          height="24"
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
             [
-              "fill",
+              {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              {
+                "flex": 0,
+                "height": 24,
+                "width": 24,
+              },
             ]
           }
+          testID="left-icon"
+          vbHeight={24}
+          vbWidth={24}
+          width="24"
         >
-          <RNSVGPath
-            d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
-            fill={
-              {
-                "payload": 4278190080,
-                "type": 0,
-              }
-            }
+          <RNSVGGroup
+            fill={null}
             propList={
               [
-                "stroke",
-                "strokeWidth",
-                "strokeLinecap",
-                "strokeLinejoin",
+                "fill",
               ]
             }
-            stroke={
-              {
-                "payload": 4288455599,
-                "type": 0,
+          >
+            <RNSVGPath
+              d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
               }
-            }
-            strokeLinecap={1}
-            strokeLinejoin={1}
-            strokeWidth="1.5"
-          />
-          <RNSVGPath
-            d="M22 22L20 20"
-            fill={
-              {
-                "payload": 4278190080,
-                "type": 0,
+              propList={
+                [
+                  "stroke",
+                  "strokeWidth",
+                  "strokeLinecap",
+                  "strokeLinejoin",
+                ]
               }
-            }
-            propList={
-              [
-                "stroke",
-                "strokeWidth",
-                "strokeLinecap",
-                "strokeLinejoin",
-              ]
-            }
-            stroke={
-              {
-                "payload": 4288455599,
-                "type": 0,
+              stroke={
+                {
+                  "payload": 4288455599,
+                  "type": 0,
+                }
               }
-            }
-            strokeLinecap={1}
-            strokeLinejoin={1}
-            strokeWidth="1.5"
-          />
-        </RNSVGGroup>
-      </RNSVGSvgView>
+              strokeLinecap={1}
+              strokeLinejoin={1}
+              strokeWidth="1.5"
+            />
+            <RNSVGPath
+              d="M22 22L20 20"
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+              propList={
+                [
+                  "stroke",
+                  "strokeWidth",
+                  "strokeLinecap",
+                  "strokeLinejoin",
+                ]
+              }
+              stroke={
+                {
+                  "payload": 4288455599,
+                  "type": 0,
+                }
+              }
+              strokeLinecap={1}
+              strokeLinejoin={1}
+              strokeWidth="1.5"
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
       <TextInput
         clearButtonMode="always"
         enterKeyHint="search"
@@ -145,6 +145,7 @@ exports[`SearchInput renders Input with correct props and Search icon 1`] = `
         placeholder="Search..."
         placeholderTextColor="#9ca3af"
         returnKeyType="search"
+        role="searchbox"
         style={
           {
             "backgroundColor": "#f3f4f6",

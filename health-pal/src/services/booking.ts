@@ -35,13 +35,15 @@ export const getBookings = async ({ filters = [], ...params }: StrapiParams) => 
   return response
 }
 
+type BookingParams = Omit<BookingForm, 'date'> & { date?: string }
+
 export const updateBooking = async (
-  { documentId, ...rest }: BookingForm,
+  { documentId, ...formData }: BookingParams,
   jwt: string,
 ): Promise<APIResponse<Booking>> => {
   try {
     const response = await apiClient.put<{ data: Booking }>(`bookings/${documentId}`, {
-      body: { data: rest },
+      body: { data: formData },
       jwt,
     })
     return response
@@ -57,7 +59,7 @@ export const updateBooking = async (
 }
 
 export const addBooking = async (
-  formData: BookingForm,
+  formData: BookingParams,
   jwt: string,
 ): Promise<APIResponse<Booking>> => {
   try {
@@ -67,13 +69,23 @@ export const addBooking = async (
     })
     return response
   } catch (error) {
+    let status = 500
     let message = BOOKING_MESSAGE.BOOKING_ERROR
 
     if (error instanceof Error) {
+      if (
+        typeof error.cause === 'object' &&
+        error.cause !== null &&
+        'status' in error.cause &&
+        typeof error.cause.status === 'number'
+      ) {
+        status = error.cause.status ?? 500
+      }
+
       message = error.message
     }
 
-    return { error: { message } }
+    return { error: { message, code: status } }
   }
 }
 

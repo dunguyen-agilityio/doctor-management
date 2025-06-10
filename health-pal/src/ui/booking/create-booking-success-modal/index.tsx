@@ -14,6 +14,7 @@ import { BOOKING_TABS, BookingForm } from '@app/types/booking'
 import { ModalRef } from '@app/types/modal'
 
 import { queryClient } from '@app/react-query.config'
+import { formatShortTime } from '@app/utils/date'
 
 type Props = {
   ref?: React.RefObject<ModalRef | null>
@@ -21,10 +22,10 @@ type Props = {
 
 export const CreateBookingSuccessModal = ({ ref }: Readonly<Props>) => {
   const { watch } = useFormContext<BookingForm>()
-  const time = watch('time')
 
   const date = dayjs(watch('date'))
   const formattedDate = date.format('YYYY-MM-DD')
+  const formattedTime = formatShortTime(date)
 
   const handleDone = async () => {
     await queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.UPCOMING] })
@@ -54,7 +55,7 @@ export const CreateBookingSuccessModal = ({ ref }: Readonly<Props>) => {
         </Heading>
 
         <Text size="small" color="$gray10" textAlign="center" maxWidth={252}>
-          {`Your appointment with Dr. David Patel is confirmed for ${formattedDate}, at ${time}.`}
+          {`Your appointment with Dr. David Patel is confirmed for ${formattedDate}, at ${formattedTime}.`}
         </Text>
         <YStack width={'100%'} gap={18}>
           <Button onPress={handleDone}>Done</Button>

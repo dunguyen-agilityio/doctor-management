@@ -38,103 +38,78 @@ exports[`Input matches snapshot with icon 1`] = `
     <View
       style={[]}
     >
-      <RNSVGSvgView
-        align="xMidYMid"
-        bbHeight={24}
-        bbWidth={24}
-        fill="none"
-        focusable={false}
-        height={24}
-        meetOrSlice={0}
-        minX={0}
-        minY={0}
-        stroke="#1c2a3a"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        style={
-          [
-            {
-              "backgroundColor": "transparent",
-              "borderWidth": 0,
-            },
-            {},
-            {
-              "flex": 0,
-              "height": 24,
-              "width": 24,
-            },
-          ]
-        }
-        testID="mock-icon"
-        vbHeight={24}
-        vbWidth={24}
-        width={24}
+      <View
+        style={[]}
       >
-        <RNSVGGroup
-          fill={null}
-          propList={
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight="24"
+          bbWidth="24"
+          fill="none"
+          focusable={false}
+          height="24"
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          style={
             [
-              "fill",
-              "stroke",
-              "strokeWidth",
-              "strokeLinecap",
-              "strokeLinejoin",
+              {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              {
+                "flex": 0,
+                "height": 24,
+                "width": 24,
+              },
             ]
           }
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
-          strokeLinecap={1}
-          strokeLinejoin={1}
-          strokeWidth="2"
+          testID="mock-icon"
+          vbHeight={24}
+          vbWidth={24}
+          width="24"
         >
-          <RNSVGPath
-            d="M18 6 6 18"
-            fill={
-              {
-                "payload": 4278190080,
-                "type": 0,
-              }
-            }
+          <RNSVGGroup
+            fill={null}
             propList={
               [
+                "fill",
                 "stroke",
               ]
             }
             stroke={
               {
-                "payload": 4280035898,
-                "type": 0,
+                "type": 2,
               }
             }
-          />
-          <RNSVGPath
-            d="m6 6 12 12"
-            fill={
-              {
-                "payload": 4278190080,
-                "type": 0,
+          >
+            <RNSVGPath
+              d="M18 6 6 18"
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
               }
-            }
-            propList={
-              [
-                "stroke",
-              ]
-            }
-            stroke={
-              {
-                "payload": 4280035898,
-                "type": 0,
+            />
+            <RNSVGPath
+              d="m6 6 12 12"
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
               }
-            }
-          />
-        </RNSVGGroup>
-      </RNSVGSvgView>
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
       <TextInput
+        defaultValue="test"
         focusVisibleStyle={{}}
         focusable={true}
         onBlur={[Function]}
@@ -172,7 +147,6 @@ exports[`Input matches snapshot with icon 1`] = `
             "position": "relative",
           }
         }
-        value="test"
       />
     </View>
   </View>,
@@ -218,6 +192,7 @@ exports[`Input matches snapshot without icon 1`] = `
       style={[]}
     >
       <TextInput
+        defaultValue="test"
         focusVisibleStyle={{}}
         focusable={true}
         onBlur={[Function]}
@@ -254,7 +229,6 @@ exports[`Input matches snapshot without icon 1`] = `
             "paddingTop": 12,
           }
         }
-        value="test"
       />
     </View>
   </View>,

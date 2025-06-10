@@ -1,7 +1,7 @@
 import { BookingData } from '@app/models/booking'
 
 export const formatBooking = ({ doctor, date, documentId, id, time, type }: BookingData) => {
-  const { users_permissions_user, clinic, documentId: doctorId } = doctor
+  const { users_permissions_user, clinic, documentId: doctorDocId, id: doctorId } = doctor
 
   return {
     date,
@@ -14,5 +14,6 @@ export const formatBooking = ({ doctor, date, documentId, id, time, type }: Book
     address: clinic.address,
     specialty: doctor.specialty.name,
     doctorId,
+    doctorDocId,
   }
 }

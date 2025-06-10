@@ -1,15 +1,18 @@
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 
+import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { router, useLocalSearchParams } from 'expo-router'
 import { DateType } from 'react-native-ui-datepicker'
 
+import { useToastController } from '@tamagui/toast'
+
 import { useAppLoading } from '@app/hooks'
 import { useRequireAuth } from '@app/hooks/use-require-auth'
 
-import { Button, DatePicker, Heading, YStack } from '@app/components'
+import { Button, DatePicker, Heading, LoadingIndicator, YStack } from '@app/components'
 import BookingTime from '@app/components/booking-time'
 
 import { CreateBookingSuccessModal } from '@app/ui/booking/create-booking-success-modal'
@@ -19,103 +22,105 @@ import { addBooking, getBookingAvailable, updateBooking } from '@app/services/bo
 
 import { BookingForm, ModalRef } from '@app/types'
 
-import { getDefaultDate } from '@app/utils/date'
+import { queryClient } from '@app/react-query.config'
+import { formatShortTime, getDateSkippingWeekend, splitTime } from '@app/utils/date'
 
 type BookingScreenParams = {
   doctorId: string
+  doctorDocId: string
   bookingId: string
   date: string
-  time: string
 }
 
 const Booking = () => {
   const setAppLoading = useAppLoading()
   const { session } = useRequireAuth()
-  const [available, setAvailable] = useState<Record<string, boolean>>({})
   const params = useLocalSearchParams<BookingScreenParams>()
 
-  const cancelConfirmRef = useRef<ModalRef>(null)
+  const createBookingRef = useRef<ModalRef>(null)
   const reloadTimeSlotConfirmRef = useRef<ModalRef>(null)
+  const toast = useToastController()
 
   const { jwt } = session
 
-  const {
-    doctorId: doctId,
-    bookingId: bookingIdParam,
-    date: defaultDate = getDefaultDate(),
-    time: timeParam = '',
-  } = params
+  const { bookingId, doctorId: doctorIdParam, doctorDocId, date: dateParam } = params
+
+  const defaultDate = dayjs(dateParam).isValid() ? dayjs(dateParam) : getDateSkippingWeekend()
 
   const methods = useForm<BookingForm>({
-    defaultValues: { time: timeParam, date: defaultDate, documentId: bookingIdParam },
+    defaultValues: {
+      date: defaultDate.isValid() ? defaultDate : getDateSkippingWeekend(),
+      documentId: bookingId,
+      doctor: parseInt(doctorIdParam, 10),
+    },
   })
 
   const { control, formState, getValues, setValue, handleSubmit, watch } = methods
 
-  const getAvailable = useCallback(
-    async (date = getDefaultDate()) => {
-      const formattedDate = date.format('YYYY-MM-DD')
+  const dateString = watch('date').format('YYYY-MM-DD')
+  const defaultTime = defaultDate ? formatShortTime(defaultDate) : null
 
-      if (formattedDate) {
-        setAppLoading(true)
-        const { available, doctorId } = await getBookingAvailable(doctId, formattedDate)
-        setAvailable(available)
-        setValue('doctor', doctorId)
-        setAppLoading(false)
-      }
-    },
-    [doctId, setAppLoading, setValue],
-  )
+  const { data, isLoading, isFetching, refetch } = useQuery({
+    queryKey: ['bookingAvailable', doctorDocId, dateString],
+    queryFn: () => getBookingAvailable(doctorDocId, dateString),
+  })
 
-  const date = watch('date')
+  const loading = isLoading || isFetching
 
-  useEffect(() => {
-    getAvailable(dayjs(date))
-  }, [getAvailable, date])
-
-  const onSubmit = async ({ date, doctor, time, documentId }: BookingForm) => {
+  const onSubmit = async ({ date, doctor, documentId }: BookingForm) => {
     if (jwt) {
       setAppLoading(true)
-      const formattedDate = dayjs(date).format('YYYY-MM-DD')
+      const formattedDate = date.toISOString()
 
       const payload = {
         doctor,
-        time,
         date: formattedDate,
         ...(documentId && { documentId }),
       }
 
       const action = documentId ? updateBooking : addBooking
 
-      const { data } = await action(payload, jwt)
+      const { data, error } = await action(payload, jwt)
 
       if (data) {
         setValue('documentId', data.documentId)
-        cancelConfirmRef.current?.open()
-        router.setParams({ ...params, time, date: formattedDate })
+
+        router.setParams({ ...params, date: formattedDate })
+        await queryClient.invalidateQueries({
+          queryKey: ['bookingAvailable', doctorDocId, dateString],
+        })
+        createBookingRef.current?.open()
+      } else if (error.code === 400) {
+        toast.show(`${documentId ? 'Update' : 'Create'} Failed`, {
+          message: error.message,
+          duration: 3000,
+          type: 'error',
+        })
       } else {
         reloadTimeSlotConfirmRef.current?.open()
-        await getAvailable()
       }
 
       setAppLoading(false)
     }
   }
 
-  const minDate = useMemo(() => getDefaultDate(), [])
+  const minDate = useMemo(() => getDateSkippingWeekend(), [])
 
   const disabledDates = useCallback((date: DateType) => [0, 6].includes(dayjs(date).day()), [])
 
   const disabled =
     !formState.isDirty ||
     Object.keys(formState.errors).length > 1 ||
-    (getValues('time') === timeParam && dayjs(defaultDate).isSame(getValues('date'), 'date'))
+    (!!dateParam && dayjs(defaultDate).isSame(getValues('date'), 'hour'))
+
+  const available = data?.available ?? {}
 
   return (
     <YStack backgroundColor="$white" flex={1}>
+      {loading && <LoadingIndicator fullScreen />}
       <FormProvider {...methods}>
-        <ReloadTimeSlotConfirmModal ref={reloadTimeSlotConfirmRef} onReload={getAvailable} />
-        <CreateBookingSuccessModal ref={cancelConfirmRef} />
+        <ReloadTimeSlotConfirmModal ref={reloadTimeSlotConfirmRef} onReload={refetch} />
+        <CreateBookingSuccessModal ref={createBookingRef} />
       </FormProvider>
       <YStack justifyContent="space-between" flex={1}>
         <YStack flex={1} gap={32} paddingHorizontal={24}>
@@ -128,10 +133,7 @@ const Booking = () => {
                 <DatePicker
                   date={value}
                   minDate={minDate}
-                  onChange={(value) => {
-                    onChange(value)
-                    setValue('time', '')
-                  }}
+                  onChange={onChange}
                   disabledDates={disabledDates}
                 />
               )}
@@ -140,15 +142,26 @@ const Booking = () => {
 
           <Controller
             control={control}
-            name="time"
+            name="date"
             rules={{ required: 'Field is required!' }}
             render={({ field: { onChange, value } }) => (
               <BookingTime
-                available={available}
-                onChange={onChange}
-                value={value}
-                current={timeParam}
-                date={watch('date')}
+                onChange={(time) => {
+                  const { hour, minute } = splitTime(time)
+                  const newDate = dayjs(value).set('hour', hour).set('minute', minute)
+                  onChange(newDate)
+                }}
+                value={formatShortTime(value)}
+                disable={(time) => {
+                  const { hour, minute } = splitTime(time)
+                  let clone = dayjs(value)
+                  clone = clone.set('hour', hour).set('minute', minute)
+
+                  return (
+                    (available[time] === false && defaultTime !== time) ||
+                    clone.isBefore(dayjs(), 'minutes')
+                  )
+                }}
               />
             )}
           />

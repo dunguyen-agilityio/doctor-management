@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { StyleSheet } from 'react-native'
 
+import dayjs, { Dayjs } from 'dayjs'
 import DateTimePicker, { DateType } from 'react-native-ui-datepicker'
 
 import { WINDOW_SIZE } from '@app/constants'
@@ -12,12 +13,12 @@ import { tokens } from '@/tamagui.config'
 type DateTimePickerProps = Parameters<typeof DateTimePicker>[0]
 
 export type DatePickerProps = Omit<DateTimePickerProps, 'mode' | 'onChange'> & {
-  onChange?: (date: DateType) => void
+  onChange?: (date: Dayjs) => void
 }
 
 const DatePicker = ({ onChange, ...props }: DatePickerProps) => {
   const handleChange = ({ date }: { date: DateType }) => {
-    onChange?.(date)
+    onChange?.(dayjs(date))
   }
 
   return (

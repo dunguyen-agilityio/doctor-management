@@ -5,7 +5,7 @@ const config: Config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts', '@testing-library/jest-native/extend-expect'],
   setupFiles: ['<rootDir>/jest.setup.ts'],
   transformIgnorePatterns: [
-    'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|tamagui|@tamagui|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg)',
+    'node_modules/(?!((jest-)?react-native|jest-expo|lodash|@react-native(-community)?)|tamagui|@tamagui|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg)',
   ],
   collectCoverage: true,
   collectCoverageFrom: [
@@ -16,6 +16,7 @@ const config: Config = {
     '!src/**/theme/**',
     '!src/**/models/**',
     '!src/**/icons/**',
+    '!src/**/constants/**',
   ],
 }
 

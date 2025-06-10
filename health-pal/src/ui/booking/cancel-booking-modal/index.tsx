@@ -1,5 +1,7 @@
 import { router } from 'expo-router'
 
+import { useToastController } from '@tamagui/toast'
+
 import { useAppLoading } from '@app/hooks'
 import { useRequireAuth } from '@app/hooks/use-require-auth'
 
@@ -25,6 +27,7 @@ interface Props extends CancelBookingParams, ModalProps {
 const CancelBookingModal = ({ ref, date, doctorName, documentId, time, ...props }: Props) => {
   const { jwt } = useRequireAuth().session
   const setAppLoading = useAppLoading()
+  const toast = useToastController()
 
   const handleClose = () => {
     ref.current?.close()
@@ -49,7 +52,15 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, time, ...props 
         })
       }
     } catch (error) {
-      console.log('error', error)
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error cancelling booking:', error)
+      }
+
+      toast.show('Cancellation Failed', {
+        message: 'There was an error cancelling your booking. Please try again later.',
+        type: 'error',
+        duration: 3000,
+      })
     }
 
     setAppLoading(false)
