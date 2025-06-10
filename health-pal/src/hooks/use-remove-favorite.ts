@@ -12,12 +12,11 @@ import { useRequireAuth } from './use-require-auth'
 
 export const useRemoveFavorite = (type: FAVORITE_TYPES, itemName: string) => {
   const { session } = useRequireAuth()
-  const { jwt, user } = session
-  const { id: userId } = user
+  const { id: userId } = session.user
   const toast = useToastController()
 
   const handleMutation = (favoriteId: string) => {
-    return removeFavorite(favoriteId, jwt)
+    return removeFavorite(favoriteId)
   }
 
   return useMutation({

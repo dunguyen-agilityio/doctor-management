@@ -11,12 +11,12 @@ import { queryClient } from '@app/react-query.config'
 import { useRequireAuth } from './use-require-auth'
 
 export const useAddFavorite = (type: FAVORITE_TYPES, itemName: string) => {
-  const { jwt, user } = useRequireAuth().session
-  const { id: userId } = user
+  const { session } = useRequireAuth()
+  const { id: userId } = session.user
   const toast = useToastController()
 
   const handleMutation = (itemId: number) => {
-    return addFavorite({ itemId, type }, userId, jwt)
+    return addFavorite({ itemId, type }, userId)
   }
 
   return useMutation({

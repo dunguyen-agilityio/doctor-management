@@ -2,17 +2,17 @@ import { useEffect } from 'react'
 
 import { router } from 'expo-router'
 
-import { Session } from '@app/models/user'
+import { User } from '@app/models/user'
 import { useAuthStore } from '@app/stores/auth'
 
-export function useRequireAuth(redirectTo = '/login') {
-  const { session, isLoading, signIn, signOut, setUser } = useAuthStore()
+export const useRequireAuth = (redirectTo = '/login') => {
+  const { user, isAuthenticated, signIn, signOut, setUser } = useAuthStore()
 
   useEffect(() => {
-    if (!isLoading && !session?.jwt) {
+    if (!isAuthenticated || !user) {
       router.replace('/(auth)/login')
     }
-  }, [session, isLoading, redirectTo])
+  }, [isAuthenticated, redirectTo, user])
 
-  return { session: session as Session, isLoading, signIn, signOut, setUser }
+  return { session: { user: user as User, isAuthenticated }, signIn, signOut, setUser }
 }

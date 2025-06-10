@@ -3,7 +3,6 @@ import { router } from 'expo-router'
 import { useToastController } from '@tamagui/toast'
 
 import { useAppLoading } from '@app/hooks'
-import { useRequireAuth } from '@app/hooks/use-require-auth'
 
 import { Button, Heading, Modal, Text, YStack } from '@app/components'
 import { ModalProps } from '@app/components/common/modal'
@@ -25,7 +24,6 @@ interface Props extends CancelBookingParams, ModalProps {
 }
 
 const CancelBookingModal = ({ ref, date, doctorName, documentId, time, ...props }: Props) => {
-  const { jwt } = useRequireAuth().session
   const setAppLoading = useAppLoading()
   const toast = useToastController()
 
@@ -34,14 +32,12 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, time, ...props 
   }
 
   const handleCancelBooking = async () => {
-    if (!jwt) return
-
     try {
       setAppLoading(true)
 
       handleClose()
 
-      const response = await updateBooking({ documentId, type: BOOKING_TABS.CANCELED }, jwt)
+      const response = await updateBooking({ documentId, type: BOOKING_TABS.CANCELED })
 
       if (response.data) {
         await queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.CANCELED] })

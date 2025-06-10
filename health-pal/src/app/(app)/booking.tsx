@@ -10,7 +10,6 @@ import { DateType } from 'react-native-ui-datepicker'
 import { useToastController } from '@tamagui/toast'
 
 import { useAppLoading } from '@app/hooks'
-import { useRequireAuth } from '@app/hooks/use-require-auth'
 
 import { Button, DatePicker, Heading, LoadingIndicator, YStack } from '@app/components'
 import BookingTime from '@app/components/booking-time'
@@ -34,14 +33,11 @@ type BookingScreenParams = {
 
 const Booking = () => {
   const setAppLoading = useAppLoading()
-  const { session } = useRequireAuth()
   const params = useLocalSearchParams<BookingScreenParams>()
 
   const createBookingRef = useRef<ModalRef>(null)
   const reloadTimeSlotConfirmRef = useRef<ModalRef>(null)
   const toast = useToastController()
-
-  const { jwt } = session
 
   const { bookingId, doctorId: doctorIdParam, doctorDocId, date: dateParam } = params
 
@@ -68,40 +64,38 @@ const Booking = () => {
   const loading = isLoading || isFetching
 
   const onSubmit = async ({ date, doctor, documentId }: BookingForm) => {
-    if (jwt) {
-      setAppLoading(true)
-      const formattedDate = date.toISOString()
+    setAppLoading(true)
+    const formattedDate = date.toISOString()
 
-      const payload = {
-        doctor,
-        date: formattedDate,
-        ...(documentId && { documentId }),
-      }
-
-      const action = documentId ? updateBooking : addBooking
-
-      const { data, error } = await action(payload, jwt)
-
-      if (data) {
-        setValue('documentId', data.documentId)
-
-        router.setParams({ ...params, date: formattedDate })
-        await queryClient.invalidateQueries({
-          queryKey: ['bookingAvailable', doctorDocId, dateString],
-        })
-        createBookingRef.current?.open()
-      } else if (error.code === 400) {
-        toast.show(`${documentId ? 'Update' : 'Create'} Failed`, {
-          message: error.message,
-          duration: 3000,
-          type: 'error',
-        })
-      } else {
-        reloadTimeSlotConfirmRef.current?.open()
-      }
-
-      setAppLoading(false)
+    const payload = {
+      doctor,
+      date: formattedDate,
+      ...(documentId && { documentId }),
     }
+
+    const action = documentId ? updateBooking : addBooking
+
+    const { data, error } = await action(payload)
+
+    if (data) {
+      setValue('documentId', data.documentId)
+
+      router.setParams({ ...params, date: formattedDate })
+      await queryClient.invalidateQueries({
+        queryKey: ['bookingAvailable', doctorDocId, dateString],
+      })
+      createBookingRef.current?.open()
+    } else if (error.code === 400) {
+      toast.show(`${documentId ? 'Update' : 'Create'} Failed`, {
+        message: error.message,
+        duration: 3000,
+        type: 'error',
+      })
+    } else {
+      reloadTimeSlotConfirmRef.current?.open()
+    }
+
+    setAppLoading(false)
   }
 
   const minDate = useMemo(() => getDateSkippingWeekend(), [])

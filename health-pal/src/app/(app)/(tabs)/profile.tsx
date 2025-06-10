@@ -37,14 +37,13 @@ const Profile = () => {
   const toast = useToastController()
   const setAppLoading = useAppLoading()
 
-  const { name, email, avatar, id: userId } = session?.user ?? {}
-  const jwt = session?.jwt!
+  const { name, email, avatar, id: userId } = session.user ?? {}
 
   const handleUpload = async (imageUri: string) => {
     if (!session) return
     setAppLoading(true)
 
-    const { error, data } = await uploadToStrapi(imageUri, jwt)
+    const { error, data } = await uploadToStrapi(imageUri)
 
     if (error) {
       toast.show('Upload Failed', {
@@ -58,8 +57,8 @@ const Profile = () => {
 
     const { id, url } = data
 
-    await updateProfile({ id: userId!, avatar: id }, jwt)
-    setUser({ ...session.user, avatar: { id, url } })
+    await updateProfile({ id: userId!, avatar: id })
+    setUser({ avatar: { id, url } })
 
     toast.show('Upload Successful', {
       message: 'Avatar updated successfully',

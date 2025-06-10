@@ -4,7 +4,8 @@ import * as FileSystem from 'expo-file-system'
 
 import { API_ENDPOINT } from '@app/constants'
 
-export const uploadToStrapi = async (imageUri: string, jwt: string) => {
+export const uploadToStrapi = async (imageUri: string) => {
+  const jwt = process.env.EXPO_PUBLIC_APP_TOKEN ?? ''
   const adjustedUri = Platform.OS === 'ios' ? imageUri.replace('file://', '') : imageUri
   const response = await FileSystem.uploadAsync(`${API_ENDPOINT}/upload`, adjustedUri, {
     headers: {

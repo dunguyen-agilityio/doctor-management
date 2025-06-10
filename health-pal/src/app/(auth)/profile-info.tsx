@@ -21,8 +21,6 @@ const Profile = () => {
   const createSuccessModalRef = useRef<ModalRef>(null)
   const toast = useToastController()
 
-  const { jwt, user } = session ?? {}
-
   const {
     gender,
     nickname,
@@ -33,9 +31,9 @@ const Profile = () => {
     avatar,
     id: userId,
     password,
-  } = user ?? {}
+  } = session.user ?? {}
 
-  const isSignup = session && !session?.jwt
+  const isSignup = session.user && !session.isAuthenticated
 
   const handleSignup = async (formData: UserProfileData) => {
     createSuccessModalRef.current?.open()
@@ -64,10 +62,10 @@ const Profile = () => {
   }
 
   const handleEditProfile = async (formData: UserProfileData) => {
-    if (!userId || !jwt) return
+    if (!userId) return
 
     setAppLoading(true)
-    const { data, error } = await updateProfile({ ...formData, id: userId }, jwt)
+    const { data, error } = await updateProfile({ ...formData, id: userId })
 
     if (data) {
       setUser(data)

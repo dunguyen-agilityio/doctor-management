@@ -6,6 +6,7 @@ import { TDoctorData } from '@app/models/doctor'
 import { Hospital } from '@app/models/hospital'
 import { buildStrapiQuery } from '@app/utils/strapi'
 
+import { getJwt } from './auth'
 import { apiClient } from './http-client'
 
 export type TFavorite<T extends FAVORITE_TYPES> = {
@@ -16,7 +17,8 @@ export type TFavorite<T extends FAVORITE_TYPES> = {
   documentId: string
 }
 
-export const removeFavorite = async (id: string, jwt: string) => {
+export const removeFavorite = async (id: string) => {
+  const jwt = await getJwt()
   const response = await apiClient.delete(`favorites/${id}`, {
     jwt,
   })
@@ -27,8 +29,8 @@ export const removeFavorite = async (id: string, jwt: string) => {
 export const addFavorite = async (
   { itemId, type }: { itemId: number; type: FAVORITE_TYPES },
   userId: number,
-  jwt: string,
 ) => {
+  const jwt = await getJwt()
   const response = await apiClient.post('favorites', {
     jwt,
     body: {
@@ -43,11 +45,8 @@ export const addFavorite = async (
   return response
 }
 
-export const fetchFavoritesByType = async <T extends FAVORITE_TYPES>(
-  userId: number,
-  jwt: string,
-  type: T,
-) => {
+export const fetchFavoritesByType = async <T extends FAVORITE_TYPES>(userId: number, type: T) => {
+  const jwt = await getJwt()
   const searchParams = buildStrapiQuery({
     filters: [
       { key: 'filters[type][$eq]', query: type },

@@ -7,6 +7,7 @@ import { StrapiPagination, StrapiParams } from '@app/types/strapi'
 import { Booking, BookingData } from '@app/models/booking'
 import { buildStrapiQuery } from '@app/utils/strapi'
 
+import { getJwt } from './auth'
 import { APIResponse, apiClient } from './http-client'
 
 export const getBookings = async ({ filters = [], ...params }: StrapiParams) => {
@@ -37,11 +38,12 @@ export const getBookings = async ({ filters = [], ...params }: StrapiParams) => 
 
 type BookingParams = Omit<BookingForm, 'date'> & { date?: string }
 
-export const updateBooking = async (
-  { documentId, ...formData }: BookingParams,
-  jwt: string,
-): Promise<APIResponse<Booking>> => {
+export const updateBooking = async ({
+  documentId,
+  ...formData
+}: BookingParams): Promise<APIResponse<Booking>> => {
   try {
+    const jwt = await getJwt()
     const response = await apiClient.put<{ data: Booking }>(`bookings/${documentId}`, {
       body: { data: formData },
       jwt,
@@ -58,11 +60,9 @@ export const updateBooking = async (
   }
 }
 
-export const addBooking = async (
-  formData: BookingParams,
-  jwt: string,
-): Promise<APIResponse<Booking>> => {
+export const addBooking = async (formData: BookingParams): Promise<APIResponse<Booking>> => {
   try {
+    const jwt = await getJwt()
     const response = await apiClient.post<{ data: Booking }>('bookings', {
       body: { data: formData },
       jwt,
