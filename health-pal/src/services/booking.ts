@@ -10,7 +10,11 @@ import { buildStrapiQuery } from '@app/utils/strapi'
 import { getJwt } from './auth'
 import { APIResponse, apiClient } from './http-client'
 
-export const getBookings = async ({ filters = [], ...params }: StrapiParams) => {
+export const getBookings = async ({
+  filters = [],
+  userId,
+  ...params
+}: StrapiParams & { userId: number }) => {
   const searchParams = buildStrapiQuery({
     ...params,
     filters: [
@@ -25,6 +29,7 @@ export const getBookings = async ({ filters = [], ...params }: StrapiParams) => 
       },
       { key: BOOKING_QUERY_KEY.specialty, query: 'name' },
       { key: 'sort', query: 'updatedAt:desc' },
+      { key: 'filters[user][id][$eq]', query: String(userId) },
       ...filters,
     ],
   })

@@ -41,7 +41,10 @@ export const getProfile = async (jwt: string) => {
     })
 
     return response
-  } catch (_) {
+  } catch (error) {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('error', error)
+    }
     return null
   }
 }

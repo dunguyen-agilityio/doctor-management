@@ -1,33 +1,15 @@
-import { useRef } from 'react'
-
 import dayjs from 'dayjs'
-import { router } from 'expo-router'
 
 import { Card, Separator } from 'tamagui'
 
-import { Button, Heading, Text, XStack, YStack } from '@app/components'
+import { Heading, Text, XStack, YStack } from '@app/components'
 import CloudinaryImage from '@app/components/cloudinary-image'
 
-import CancelBookingModal from '@app/ui/booking/cancel-booking-modal'
-
 import { BOOKING_TABS } from '@app/types/booking'
-import { ModalRef } from '@app/types/modal'
 
-type TBookingCard = {
-  date: string
-  time: string
-  doctorName: string
-  doctorAvatar?: string
-  specialty: string
-  address: string
-  documentId: string
-  doctorId: number
-  doctorDocId: string
-}
+import { TBookingCard } from '@app/models/booking'
 
-interface BookingCardProps extends TBookingCard {
-  type?: BOOKING_TABS
-}
+import BookingAction from './booking-action'
 
 const BookingCard = ({
   date,
@@ -40,137 +22,58 @@ const BookingCard = ({
   doctorId,
   doctorDocId,
   ...props
-}: BookingCardProps) => {
-  const cancelBookRef = useRef<ModalRef>(null)
+}: TBookingCard) => {
   const { type = BOOKING_TABS.UPCOMING } = props
 
-  const renderAction = () => {
-    const ACTIONS: Record<
-      BOOKING_TABS,
-      { title: string; action: () => void; ariaLabel: string; ariaHint: string }[]
-    > = {
-      [BOOKING_TABS.CANCELED]: [],
-      [BOOKING_TABS.COMPLETED]: [
-        {
-          title: 'Re-Book',
-          action: () => router.navigate({ pathname: '/(app)/booking', params: { doctorId } }),
-          ariaLabel: `Re-book appointment with ${doctorName}`,
-          ariaHint:
-            'Navigates to the booking screen to schedule a new appointment with this doctor',
-        },
-        {
-          title: 'Add Review',
-          action: () =>
-            router.navigate({ pathname: '/(app)/doctors/details/[id]', params: { id: doctorId } }),
-          ariaLabel: `Add a review for ${doctorName}`,
-          ariaHint: 'Navigates to the review screen to submit feedback for this doctor',
-        },
-      ],
-      [BOOKING_TABS.UPCOMING]: [
-        {
-          title: 'Cancel',
-          action: () => {
-            cancelBookRef.current?.open()
-          },
-          ariaLabel: `Cancel booking with ${doctorName} on ${date} at ${time}`,
-          ariaHint: 'Opens a confirmation dialog to cancel this appointment',
-        },
-        {
-          title: 'Reschedule',
-          action: () =>
-            router.navigate({
-              pathname: '/(app)/booking',
-              params: { doctorId, doctorDocId, bookingId: documentId, date, time },
-            }),
-          ariaLabel: `Reschedule booking with ${doctorName}`,
-          ariaHint:
-            'Navigates to the booking screen to change the date or time of this appointment',
-        },
-      ],
-    }
-
-    const actions = ACTIONS[type]
-
-    if (actions.length < 1) return null
-
-    const [action1, action2] = actions
-
-    return (
-      <XStack marginTop={10} gap={10}>
-        <Button
-          variant="secondary"
-          sizeButton="sm"
-          flex={1}
-          onPress={action1.action}
-          aria-label={action1.ariaLabel}
-          accessibilityHint={action1.ariaHint}>
-          {action1.title}
-        </Button>
-        <Button
-          flex={1}
-          sizeButton="sm"
-          onPress={action2.action}
-          aria-label={action2.ariaLabel}
-          accessibilityHint={action2.ariaHint}>
-          {action2.title}
-        </Button>
-      </XStack>
-    )
-  }
-
   return (
-    <>
-      <Card
-        borderRadius={12}
-        borderWidth={0.5}
-        borderColor="$grey100"
-        backgroundColor="$white"
-        shadowColor="$black"
-        shadowOffset={{ width: 0, height: 4 }}
-        shadowOpacity={0.1}
-        shadowRadius={6}
-        elevation={3}
-        padding={10}
-        marginBottom={10}
-        aria-label={`Booking with ${doctorName}`}>
-        <Card.Header>
-          <Heading fontSize={14}>{dayjs(date).format('YYYY-MM-DD - HH:mm A')}</Heading>
-          <Separator marginVertical={12} />
-        </Card.Header>
+    <Card
+      borderRadius={12}
+      borderWidth={0.5}
+      borderColor="$grey100"
+      backgroundColor="$white"
+      shadowColor="$black"
+      shadowOffset={{ width: 0, height: 4 }}
+      shadowOpacity={0.1}
+      shadowRadius={6}
+      elevation={3}
+      padding={10}
+      marginBottom={10}
+      aria-label={`Booking with ${doctorName}`}>
+      <Card.Header>
+        <Heading fontSize={14}>{dayjs(date).format('YYYY-MM-DD - HH:mm A')}</Heading>
+        <Separator marginVertical={12} />
+      </Card.Header>
 
-        <Card.Footer>
-          <YStack flex={1}>
-            <XStack gap={10}>
-              <CloudinaryImage
-                source={{ uri: doctorAvatar }}
-                style={{ height: 109, width: 109, borderRadius: 8 }}
-              />
-              <YStack paddingVertical={14}>
-                <Text fontSize={16} fontWeight="bold">
-                  {doctorName}
-                </Text>
-                <Text fontSize={14} color="#6B7280">
-                  {specialty}
-                </Text>
-                <Text fontSize={12} color="#9CA3AF" numberOfLines={1} maxWidth={250}>
-                  {address}
-                </Text>
-              </YStack>
-            </XStack>
-            {renderAction()}
-          </YStack>
-        </Card.Footer>
-      </Card>
-      {props.type === BOOKING_TABS.UPCOMING && (
-        <CancelBookingModal
-          ref={cancelBookRef}
-          date={date}
-          doctorName={doctorName}
-          documentId={documentId}
-          time={time}
-        />
-      )}
-    </>
+      <Card.Footer>
+        <YStack flex={1}>
+          <XStack gap={10}>
+            <CloudinaryImage
+              source={{ uri: doctorAvatar }}
+              style={{ height: 109, width: 109, borderRadius: 8 }}
+            />
+            <YStack paddingVertical={14}>
+              <Text fontSize={16} fontWeight="bold">
+                {doctorName}
+              </Text>
+              <Text fontSize={14} color="#6B7280">
+                {specialty}
+              </Text>
+              <Text fontSize={12} color="#9CA3AF" numberOfLines={1} maxWidth={250}>
+                {address}
+              </Text>
+            </YStack>
+          </XStack>
+          <BookingAction
+            date={date}
+            doctorDocId={doctorDocId}
+            doctorId={doctorId}
+            doctorName={doctorName}
+            documentId={documentId}
+            type={type}
+          />
+        </YStack>
+      </Card.Footer>
+    </Card>
   )
 }
 

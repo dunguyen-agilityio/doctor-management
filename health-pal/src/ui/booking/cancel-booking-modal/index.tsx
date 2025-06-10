@@ -16,14 +16,15 @@ import { ModalRef } from '@app/types/modal'
 
 import { TBookingCard } from '@app/models/booking'
 import { queryClient } from '@app/react-query.config'
+import { formatDate } from '@app/utils/date'
 
-export type CancelBookingParams = Pick<TBookingCard, 'date' | 'documentId' | 'time' | 'doctorName'>
+export type CancelBookingParams = Pick<TBookingCard, 'date' | 'documentId' | 'doctorName'>
 
 interface Props extends CancelBookingParams, ModalProps {
   ref: React.RefObject<ModalRef | null>
 }
 
-const CancelBookingModal = ({ ref, date, doctorName, documentId, time, ...props }: Props) => {
+const CancelBookingModal = ({ ref, date, doctorName, documentId, ...props }: Props) => {
   const setAppLoading = useAppLoading()
   const toast = useToastController()
 
@@ -65,7 +66,7 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, time, ...props 
   return (
     <Modal
       ref={ref}
-      aria-label={`Confirm cancellation of booking with ${doctorName} on ${date} at ${time}`}
+      aria-label={`Confirm cancellation of booking with ${doctorName} on ${formatDate(date)}`}
       accessibilityHint="Dialog to confirm or keep this appointment"
       {...props}>
       <YStack alignItems="center" paddingHorizontal={42} gap={32} paddingVertical={32}>
