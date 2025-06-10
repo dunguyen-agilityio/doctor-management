@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { DevSettings } from 'react-native'
 
-import { useFonts } from 'expo-font'
+import { loadAsync } from 'expo-font'
 import { Slot } from 'expo-router'
+import { getItemAsync } from 'expo-secure-store'
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -12,15 +13,15 @@ import { ToastViewport } from '@tamagui/toast'
 
 import { PreventBackHandler, Toast } from '@app/components'
 
+import { getProfile } from '@app/services/auth'
+
 import Providers from '@app/providers'
 import { useAuthStore } from '@app/stores/auth'
 
 import { tokens } from '@/tamagui.config'
 
-// Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync()
 
-// Set the animation options. This is optional.
 SplashScreen.setOptions({
   duration: 1000,
   fade: true,
@@ -31,29 +32,42 @@ export default function RootLayout() {
     !!process.env.EXPO_PUBLIC_STORYBOOK_ENABLED,
   )
 
-  const { hydrate } = useAuthStore()
+  const { setUser, setIsAuthenticated } = useAuthStore()
 
-  const [loaded] = useFonts({
-    Inter_400Regular: require('@/assets/fonts/Inter_18pt-Regular.ttf'),
-    Inter_500Medium: require('@/assets/fonts/Inter_18pt-Medium.ttf'),
-    Inter_600SemiBold: require('@/assets/fonts/Inter_18pt-SemiBold.ttf'),
-    Inter_700Bold: require('@/assets/fonts/Inter_18pt-Bold.ttf'),
-  })
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    hydrate()
+    const initial = async () => {
+      setLoaded(false)
+      const jwt = await getItemAsync('session')
+      if (jwt) {
+        const profile = await getProfile(jwt)
+
+        if (profile) {
+          setUser(profile)
+          setIsAuthenticated(true)
+        }
+      }
+
+      await loadAsync({
+        Inter_400Regular: require('@/assets/fonts/Inter_18pt-Regular.ttf'),
+        Inter_500Medium: require('@/assets/fonts/Inter_18pt-Medium.ttf'),
+        Inter_600SemiBold: require('@/assets/fonts/Inter_18pt-SemiBold.ttf'),
+        Inter_700Bold: require('@/assets/fonts/Inter_18pt-Bold.ttf'),
+      })
+
+      SplashScreen.hide()
+      setLoaded(true)
+    }
+
+    initial()
+
     if (__DEV__) {
       DevSettings.addMenuItem('Toggle Storybook', () => {
         setStorybookEnabled((prev) => !prev)
       })
     }
-  }, [hydrate])
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hide()
-    }
-  }, [loaded])
+  }, [setIsAuthenticated, setUser])
 
   if (!loaded) {
     return null

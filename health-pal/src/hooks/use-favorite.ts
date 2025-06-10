@@ -9,13 +9,13 @@ import { useFavoritesStore } from '@app/stores/favorite'
 import { useRequireAuth } from './use-require-auth'
 
 export const useFavoriteDoctors = () => {
-  const { jwt, user } = useRequireAuth().session
-  const { id: userId } = user
+  const { session } = useRequireAuth()
+  const { id: userId } = session.user
   const setFavorite = useFavoritesStore((state) => state.setFavoriteDoctors)
 
   return useQuery({
     queryKey: ['favorites', FAVORITE_TYPES.DOCTOR, userId],
-    queryFn: () => fetchFavoritesByType(userId, jwt, FAVORITE_TYPES.DOCTOR),
+    queryFn: () => fetchFavoritesByType(userId, FAVORITE_TYPES.DOCTOR),
     staleTime: Infinity,
     select: (data) => {
       const byId = data.reduce(
@@ -31,14 +31,14 @@ export const useFavoriteDoctors = () => {
 }
 
 export const useFavoriteHospitals = () => {
-  const { jwt, user } = useRequireAuth().session
-  const { id: userId } = user
+  const { session } = useRequireAuth()
+  const { id: userId } = session.user
   const setFavorite = useFavoritesStore((state) => state.setFavoriteHospitals)
 
   return useQuery({
     queryKey: ['favorites', FAVORITE_TYPES.HOSPITAL, userId],
     staleTime: Infinity,
-    queryFn: () => fetchFavoritesByType(userId, jwt, FAVORITE_TYPES.HOSPITAL),
+    queryFn: () => fetchFavoritesByType(userId, FAVORITE_TYPES.HOSPITAL),
     select: (data) => {
       const byId = data.reduce(
         (prev, current) => ({ ...prev, [current.hospital.id]: current.documentId }),

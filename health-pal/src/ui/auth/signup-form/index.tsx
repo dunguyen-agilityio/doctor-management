@@ -8,9 +8,10 @@ import { YStack } from 'tamagui'
 import { VALIDATIONS_MESSAGE } from '@app/constants/message'
 import { EMAIL_REGEX } from '@app/constants/regex'
 
+import { PasswordInput } from '@app/components'
 import { Button, Input } from '@app/components/common'
 
-import { LockIcon, SmsIcon } from '@icons'
+import { SmsIcon } from '@icons'
 import User from '@icons/user'
 
 import { SignupData } from '@app/types'
@@ -112,12 +113,8 @@ const SignupForm = ({
             },
           }}
           render={({ field: { onChange, ...field }, fieldState: { error } }) => (
-            <Input
+            <PasswordInput
               {...field}
-              leftIcon={LockIcon}
-              placeholder="Password"
-              textContentType="password"
-              secureTextEntry
               onChangeText={onChange}
               errorMessage={error?.message}
               ref={passwordRef}

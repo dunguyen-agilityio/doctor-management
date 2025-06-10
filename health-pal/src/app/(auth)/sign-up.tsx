@@ -29,7 +29,7 @@ const SignUp = () => {
           We are here to help you!
         </Text>
       </YStack>
-      <SignupForm onSubmit={handleSignUp} defaultValues={session?.user} />
+      <SignupForm onSubmit={handleSignUp} defaultValues={session?.user ?? {}} />
       <XStack alignItems="center" gap="$md">
         <XStack borderColor="$grey200" borderWidth={1} h={1} flex={1} />
         <Text>or</Text>

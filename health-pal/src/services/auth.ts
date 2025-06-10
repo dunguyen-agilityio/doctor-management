@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import { getItemAsync } from 'expo-secure-store'
 
 import { AuthCredentials, UserProfileData } from '@app/types'
 
@@ -33,16 +34,16 @@ export const login = async ({
   }
 }
 
-export const getProfile = async (jwt?: string) => {
-  if (!jwt) {
+export const getProfile = async (jwt: string) => {
+  try {
+    const response = await apiClient.get<User>('users/me?populate[avatar][fields][1]=url', {
+      jwt,
+    })
+
+    return response
+  } catch (_) {
     return null
   }
-
-  const response = await apiClient.get<User>('users/me?populate[avatar][fields][1]=url', {
-    jwt,
-  })
-
-  return response
 }
 
 export const register = async ({
@@ -75,8 +76,9 @@ export const register = async ({
 
 export const updateProfile = async (
   formData: Partial<UserProfileData>,
-  jwt: string,
 ): Promise<APIResponse<User>> => {
+  const jwt = await getJwt()
+
   try {
     const { dateOfBirth, gender, id, avatarUrl: _, ...data } = formData
 
@@ -108,4 +110,14 @@ export const updateProfile = async (
 
     return { data: null, error: new Error(message) }
   }
+}
+
+export const getJwt = async (): Promise<string> => {
+  const jwt = await getItemAsync('session')
+
+  if (!jwt) {
+    throw new Error('JWT not found in secure storage')
+  }
+
+  return jwt
 }

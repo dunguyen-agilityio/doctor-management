@@ -1,43 +1,38 @@
 import { create } from 'zustand'
 
-import { getItemAsync } from 'expo-secure-store'
-
 import { Session, User } from '@app/models/user'
 import { setStorageItemAsync } from '@app/utils/storage'
 
 type AuthState = {
-  session: Session | null
-  isLoading: boolean
-  signIn: (session: Session) => Promise<void>
-  signOut: () => Promise<void>
-  setUser: (user: User) => void
-  hydrate: () => Promise<void>
+  user: Session['user'] | null
+  isAuthenticated?: boolean
+  signIn: (session: Session) => void
+  signOut: () => void
+  setUser: (user: Partial<Session['user']>) => void
+  setIsAuthenticated: (isAuthenticated: boolean) => void
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  session: null,
-  isLoading: true,
-  signIn: async (session: Session) => {
-    set({ session, isLoading: false })
-    await setStorageItemAsync('session', JSON.stringify(session))
+  user: null,
+
+  isAuthenticated: false,
+  signIn: ({ jwt, user }: Session) => {
+    set({ user, isAuthenticated: true })
+    setStorageItemAsync('session', jwt)
   },
-  signOut: async () => {
-    set({ session: null, isLoading: false })
-    await setStorageItemAsync('session', null)
+  signOut: () => {
+    set({ user: null, isAuthenticated: false })
+    setStorageItemAsync('session', null)
   },
-  setUser: (user: User) =>
-    set((state) => {
-      const newSession = { ...state.session, user } as Session
-      setStorageItemAsync('session', newSession ? JSON.stringify(newSession) : null)
-      return { session: newSession, isLoading: false }
+  setUser: (user: Partial<User>) =>
+    set((prev) => ({
+      user: {
+        ...prev.user,
+        ...user,
+      } as Session['user'],
+    })),
+  setIsAuthenticated: (isAuthenticated: boolean) =>
+    set({
+      isAuthenticated,
     }),
-  hydrate: async () => {
-    try {
-      const value = await getItemAsync('session')
-      set({ session: value ? JSON.parse(value) : null, isLoading: false })
-    } catch (error) {
-      console.error('Failed to hydrate session from SecureStore:', error)
-      set({ session: null, isLoading: false })
-    }
-  },
 }))

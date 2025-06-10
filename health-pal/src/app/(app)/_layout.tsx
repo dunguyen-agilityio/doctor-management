@@ -5,7 +5,6 @@ import { APP_TITLES } from '@app/constants/route'
 
 import { useSession } from '@app/hooks/use-session'
 
-import { LoadingIndicator } from '@app/components'
 import Header from '@app/components/header'
 
 import { APP_ROUTES } from '@app/types'
@@ -18,13 +17,9 @@ const screenOptions: NativeStackNavigationOptions = {
 }
 
 export default function AppLayout() {
-  const { session, isLoading } = useSession()
+  const { session } = useSession()
 
-  if (isLoading) {
-    return <LoadingIndicator />
-  }
-
-  if (!session?.jwt) {
+  if (!session.isAuthenticated) {
     return <Redirect href="/login" />
   }
 
