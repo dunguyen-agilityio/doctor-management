@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 import { AlertDialog, AlertDialogContentProps, AlertDialogProps, TamaguiElement } from 'tamagui'
 
 import { WINDOW_SIZE } from '@app/constants'
@@ -28,7 +30,7 @@ const CustomAlertDialog = ({
   actionTitle = 'OK',
   children,
   ref,
-  container: Container = ({ children }) => <>{children}</>,
+  container: Container = Fragment,
   trigger = <AlertDialog.Trigger asChild />,
   contentProps,
   ...props
@@ -73,36 +75,38 @@ const CustomAlertDialog = ({
           accessibilityHint={description ? 'alert-dialog-description' : undefined}
           gap={12}
           {...contentProps}>
-          {title && (
-            <AlertDialog.Title>
-              <Heading size="large">{title}</Heading>
-            </AlertDialog.Title>
-          )}
-          {description && (
-            <AlertDialog.Description>
-              <Text size="small">{description}</Text>
-            </AlertDialog.Description>
-          )}
-          {children}
-          <XStack gap={12} justifyContent="flex-end">
-            {cancelable && (
-              <AlertDialog.Cancel asChild>
-                <Button variant="secondary" aria-label="Cancel dialog" testID="cancel-button">
-                  Cancel
-                </Button>
-              </AlertDialog.Cancel>
+          <Container>
+            {title && (
+              <AlertDialog.Title>
+                <Heading size="large">{title}</Heading>
+              </AlertDialog.Title>
             )}
-            {onConfirm && (
-              <AlertDialog.Action asChild>
-                <Button
-                  onPress={onConfirm}
-                  aria-label={`${actionTitle} action`}
-                  testID="confirm-button">
-                  {actionTitle}
-                </Button>
-              </AlertDialog.Action>
+            {description && (
+              <AlertDialog.Description>
+                <Text size="small">{description}</Text>
+              </AlertDialog.Description>
             )}
-          </XStack>
+            {children}
+            <XStack gap={12} justifyContent="flex-end">
+              {cancelable && (
+                <AlertDialog.Cancel asChild>
+                  <Button variant="secondary" aria-label="Cancel dialog" testID="cancel-button">
+                    Cancel
+                  </Button>
+                </AlertDialog.Cancel>
+              )}
+              {onConfirm && (
+                <AlertDialog.Action asChild>
+                  <Button
+                    onPress={onConfirm}
+                    aria-label={`${actionTitle} action`}
+                    testID="confirm-button">
+                    {actionTitle}
+                  </Button>
+                </AlertDialog.Action>
+              )}
+            </XStack>
+          </Container>
         </AlertDialog.Content>
       </AlertDialog.Portal>
     </AlertDialog>

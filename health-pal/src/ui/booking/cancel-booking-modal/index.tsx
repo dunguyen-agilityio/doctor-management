@@ -16,7 +16,7 @@ import { ModalRef } from '@app/types/modal'
 
 import { TBookingCard } from '@app/models/booking'
 import { queryClient } from '@app/react-query.config'
-import { formatDate } from '@app/utils/date'
+import { formatDate, formatShortDate } from '@app/utils/date'
 
 export type CancelBookingParams = Pick<TBookingCard, 'date' | 'documentId' | 'doctorName'>
 
@@ -89,7 +89,7 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, ...props }: Pro
           </Text>{' '}
           on{' '}
           <Text size="small" fontWeight="700">
-            {date}
+            {formatShortDate(date)}
           </Text>
           ?
         </Text>

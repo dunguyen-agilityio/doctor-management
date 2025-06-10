@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 
 import { router } from 'expo-router'
 
-import { XStack } from 'tamagui'
+import { Separator, XStack } from 'tamagui'
 
 import { Button } from '@app/components'
 
@@ -84,7 +84,8 @@ const BookingAction = ({
           documentId={documentId}
         />
       )}
-      <XStack marginTop={10} gap={10}>
+      <Separator marginVertical={10} />
+      <XStack gap={10}>
         <Button
           variant="secondary"
           sizeButton="sm"

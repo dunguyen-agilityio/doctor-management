@@ -4,6 +4,7 @@ import { Pressable, StyleSheet } from 'react-native'
 import { CameraView, useCameraPermissions } from 'expo-camera'
 import { CameraType, launchImageLibraryAsync } from 'expo-image-picker'
 import * as Linking from 'expo-linking'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { Stack, StackProps, View, YStack } from 'tamagui'
 
@@ -101,9 +102,13 @@ const Upload = ({ preview, onUpload, ...props }: UploadProps) => {
         contentProps={{
           width: WINDOW_SIZE.width,
           height: '100%',
-          paddingTop: 32,
           paddingHorizontal: 8,
         }}
+        container={({ children }) => (
+          <SafeAreaView style={{ flex: 1, backgroundColor: tokens.color.white.val }}>
+            {children}
+          </SafeAreaView>
+        )}
         trigger={
           <Stack
             height={202}
