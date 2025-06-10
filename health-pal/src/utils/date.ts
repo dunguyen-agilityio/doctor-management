@@ -10,6 +10,10 @@ export const formatDate = (date: Dayjs) => {
   return dayjs(date).format('YYYY-MM-DD - HH:mm A')
 }
 
+export const formatShortDate = (date: Dayjs) => {
+  return dayjs(date).format('YYYY-MM-DD')
+}
+
 export const formatShortTime = (date?: Dayjs) => {
   if (!date?.isValid?.()) return ''
   return date.format('HH:mm') + ':00'
