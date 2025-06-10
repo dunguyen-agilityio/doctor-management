@@ -69,7 +69,7 @@ class APIClient {
       const error = json?.error as StrapiError
       const message = error.message ?? 'Error'
 
-      throw new Error(message)
+      throw new Error(message, { cause: error })
     }
 
     return json as T

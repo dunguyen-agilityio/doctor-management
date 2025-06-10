@@ -1,4 +1,4 @@
-import { DateType } from 'react-native-ui-datepicker'
+import { Dayjs } from 'dayjs'
 
 export enum BOOKING_TABS {
   UPCOMING = 'upcoming',
@@ -7,7 +7,7 @@ export enum BOOKING_TABS {
 }
 
 export type BookingForm = {
-  date?: DateType
+  date: Dayjs
   type?: BOOKING_TABS
   time?: string
   doctor?: number

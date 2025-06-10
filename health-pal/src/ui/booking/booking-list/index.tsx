@@ -34,11 +34,7 @@ const bookingPromises: Record<BOOKING_TABS, () => Promise<StrapiPagination<Booki
         { key: BookingKey.type, query: BOOKING_TABS.UPCOMING },
         {
           key: 'filters[date][$gte]',
-          query: now.format('YYYY-MM-DD'),
-        },
-        {
-          key: 'filters[time][$gt]',
-          query: now.format('HH:mm:ss.SSS'),
+          query: now.toISOString(),
         },
       ],
     })

@@ -111,7 +111,8 @@ const Details = () => {
     router.navigate({
       pathname: '/booking',
       params: {
-        doctorId: documentId,
+        doctorId: id,
+        doctorDocId: documentId,
       },
     })
   }

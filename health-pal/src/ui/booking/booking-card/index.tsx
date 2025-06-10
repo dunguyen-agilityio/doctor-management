@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 
+import dayjs from 'dayjs'
 import { router } from 'expo-router'
 
 import { Card, Separator } from 'tamagui'
@@ -20,7 +21,8 @@ type TBookingCard = {
   specialty: string
   address: string
   documentId: string
-  doctorId: string
+  doctorId: number
+  doctorDocId: string
 }
 
 interface BookingCardProps extends TBookingCard {
@@ -36,6 +38,7 @@ const BookingCard = ({
   address,
   documentId,
   doctorId,
+  doctorDocId,
   ...props
 }: BookingCardProps) => {
   const cancelBookRef = useRef<ModalRef>(null)
@@ -77,7 +80,7 @@ const BookingCard = ({
           action: () =>
             router.navigate({
               pathname: '/(app)/booking',
-              params: { doctorId, bookingId: documentId, date, time },
+              params: { doctorId, doctorDocId, bookingId: documentId, date, time },
             }),
           ariaLabel: `Reschedule booking with ${doctorName}`,
           ariaHint:
@@ -114,6 +117,7 @@ const BookingCard = ({
       </XStack>
     )
   }
+
   return (
     <>
       <Card
@@ -130,9 +134,7 @@ const BookingCard = ({
         marginBottom={10}
         aria-label={`Booking with ${doctorName}`}>
         <Card.Header>
-          <Heading fontSize={14}>
-            {date} - {time}
-          </Heading>
+          <Heading fontSize={14}>{dayjs(date).format('YYYY-MM-DD - HH:mm A')}</Heading>
           <Separator marginVertical={12} />
         </Card.Header>
 

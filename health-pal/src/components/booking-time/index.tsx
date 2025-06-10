@@ -1,44 +1,19 @@
 import { StyleSheet } from 'react-native'
 
-import dayjs from 'dayjs'
-import { DateType } from 'react-native-ui-datepicker'
+import { TIME_SLOTS } from '@app/constants/booking'
 
 import { Heading, Text, XStack, YStack } from '@app/components/common'
 
 import TimeButton from '../time-button'
 
-const TIMES = [
-  '09:00:00',
-  '09:30:00',
-  '10:00:00',
-  '10:30:00',
-  '11:00:00',
-  '11:30:00',
-  '15:00:00',
-  '15:30:00',
-  '16:00:00',
-  '16:30:00',
-  '17:00:00',
-  '17:30:00',
-]
-
 interface BookingTimeProps {
   errorMessage?: string
   onChange: (value: string) => void
-  available: Record<string, boolean>
   value?: string
-  current?: string
-  date: DateType
+  disable?: (time: string) => boolean
 }
 
-const BookingTime = ({
-  errorMessage,
-  onChange,
-  value,
-  available,
-  date,
-  current,
-}: BookingTimeProps) => {
+const BookingTime = ({ errorMessage, onChange, value, disable }: BookingTimeProps) => {
   return (
     <YStack gap={8}>
       <XStack justifyContent="space-between" alignItems="center">
@@ -50,16 +25,8 @@ const BookingTime = ({
         )}
       </XStack>
       <XStack justifyContent="space-between" gap={14} flexWrap="wrap">
-        {TIMES.map((time) => {
-          let clone = dayjs(date)
-          clone = clone.set('hours', dayjs().get('hours'))
-          clone = clone.set('minutes', dayjs().get('minutes'))
-          let [hour, minute] = time.split(':')
-          clone = clone.set('hour', parseInt(hour))
-          clone = clone.set('minute', parseInt(minute))
-
-          const disabled =
-            (!available[time] && current !== time) || clone.isBefore(dayjs(), 'minutes')
+        {TIME_SLOTS.map((time) => {
+          const disabled = disable?.(time)
 
           const backgroundColor = !disabled && value === time ? '$primary' : '$grey50'
           const color = !disabled && value === time ? '$white' : '$primary'
