@@ -10,6 +10,7 @@ import { DateType } from 'react-native-ui-datepicker'
 import { useToastController } from '@tamagui/toast'
 
 import { useAppLoading } from '@app/hooks'
+import { useRequireAuth } from '@app/hooks/use-require-auth'
 
 import { Button, DatePicker, Heading, LoadingIndicator, YStack } from '@app/components'
 import BookingTime from '@app/components/booking-time'
@@ -34,6 +35,8 @@ type BookingScreenParams = {
 const Booking = () => {
   const setAppLoading = useAppLoading()
   const params = useLocalSearchParams<BookingScreenParams>()
+  const { session } = useRequireAuth()
+  const { id: userId } = session.user
 
   const createBookingRef = useRef<ModalRef>(null)
   const reloadTimeSlotConfirmRef = useRef<ModalRef>(null)
@@ -70,6 +73,7 @@ const Booking = () => {
     const payload = {
       doctor,
       date: formattedDate,
+      user: userId,
       ...(documentId && { documentId }),
     }
 

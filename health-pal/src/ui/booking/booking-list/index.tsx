@@ -7,6 +7,8 @@ import dayjs from 'dayjs'
 
 import { BOOKING_EMPTY } from '@app/constants'
 
+import { useRequireAuth } from '@app/hooks/use-require-auth'
+
 import { Empty, ErrorState } from '@app/components'
 import BookingListSkeleton from '@app/components/skeleton/booking-list-skeleton'
 
@@ -22,26 +24,30 @@ import { getMediaQuery } from '@app/utils/media-query'
 
 import BookingCard from '../booking-card'
 
-const bookingPromises: Record<BOOKING_TABS, () => Promise<StrapiPagination<BookingData>>> = {
-  [BOOKING_TABS.CANCELED]: () =>
-    getBookings({ filters: [{ key: BookingKey.type, query: BOOKING_TABS.CANCELED }] }),
-  [BOOKING_TABS.COMPLETED]: () =>
-    getBookings({ filters: [{ key: BookingKey.type, query: BOOKING_TABS.COMPLETED }] }),
-  [BOOKING_TABS.UPCOMING]: () => {
-    const now = dayjs()
-    return getBookings({
-      filters: [
-        { key: BookingKey.type, query: BOOKING_TABS.UPCOMING },
-        {
-          key: 'filters[date][$gte]',
-          query: now.toISOString(),
-        },
-      ],
-    })
-  },
-}
-
 const BookingList = ({ type }: { type: BOOKING_TABS }) => {
+  const { session } = useRequireAuth()
+  const { id: userId } = session.user
+
+  const bookingPromises: Record<BOOKING_TABS, () => Promise<StrapiPagination<BookingData>>> = {
+    [BOOKING_TABS.CANCELED]: () =>
+      getBookings({ filters: [{ key: BookingKey.type, query: BOOKING_TABS.CANCELED }], userId }),
+    [BOOKING_TABS.COMPLETED]: () =>
+      getBookings({ filters: [{ key: BookingKey.type, query: BOOKING_TABS.COMPLETED }], userId }),
+    [BOOKING_TABS.UPCOMING]: () => {
+      const now = dayjs()
+      return getBookings({
+        filters: [
+          { key: BookingKey.type, query: BOOKING_TABS.UPCOMING },
+          {
+            key: 'filters[date][$gt]',
+            query: now.toISOString(),
+          },
+        ],
+        userId,
+      })
+    },
+  }
+
   const { width } = getMediaQuery({ full: true, width: 342, px: 24 })
 
   const { isLoading, isFetching, data, error, refetch } = useQuery({

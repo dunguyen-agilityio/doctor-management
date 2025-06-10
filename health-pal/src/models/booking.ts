@@ -1,3 +1,5 @@
+import { Dayjs } from 'dayjs'
+
 import { BOOKING_TABS } from '@app/types/booking'
 
 import { Doctor } from './doctor'
@@ -23,7 +25,7 @@ export type BookingData = Omit<Booking, 'doctor'> & {
 }
 
 export type TBookingCard = {
-  date: string
+  date: Dayjs
   documentId: string
   id: number
   time: string
@@ -32,7 +34,8 @@ export type TBookingCard = {
   doctorAvatar: string | undefined
   address: string
   specialty: string
-  doctorId: string
+  doctorId: number
+  doctorDocId: string
 }
 
 export const BookingKey = {

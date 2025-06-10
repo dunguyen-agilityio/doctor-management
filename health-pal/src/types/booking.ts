@@ -9,7 +9,7 @@ export enum BOOKING_TABS {
 export type BookingForm = {
   date: Dayjs
   type?: BOOKING_TABS
-  time?: string
   doctor?: number
   documentId?: string
+  patient?: number
 }
