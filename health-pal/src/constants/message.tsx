@@ -10,6 +10,7 @@ export const VALIDATIONS_MESSAGE = {
   REQUIRED_NAME: 'Name is required',
   REQUIRED_FIELD: (field: string) => `${field} is required`,
   MIN: (field: string, length = 6) => `${field} must be at least ${length} characters`,
+  DAY_OF_BIRTH: (old = 16) => `You must be at least ${old} years old`,
 }
 
 export const FAVORITE_EMPTY = {

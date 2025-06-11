@@ -8,7 +8,7 @@ const FormKeyboardAvoidingView = ({ children, ...props }: KeyboardAvoidingViewPr
       {...props}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{ flex: 1 }}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 50}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
         {children}
       </ScrollView>

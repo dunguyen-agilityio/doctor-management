@@ -127,7 +127,7 @@
 ## 7. Project Structure
 
 > ```text
-> /healthy-food
+> /health-pal
 > │── .husky/ # Git Hooks
 > │── assets/ # Images, Icons
 > |── .storybook/
