@@ -14,9 +14,9 @@ const LogoutModal = ({ ref }: { ref: React.RefObject<ModalRef | null> }) => {
   const { signOut } = useSession()
 
   const handleLogout = async () => {
-    signOut()
     router.replace('/(auth)/login')
     queryClient.clear()
+    signOut()
   }
 
   return (

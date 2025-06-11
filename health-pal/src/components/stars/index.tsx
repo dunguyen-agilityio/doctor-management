@@ -1,6 +1,6 @@
-import { StackProps } from 'tamagui'
+import { StackProps, XStack } from 'tamagui'
 
-import { Text, XStack } from '@app/components/common'
+import { Text } from '@app/components/common'
 
 import { Star } from '@icons'
 

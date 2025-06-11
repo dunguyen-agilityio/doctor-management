@@ -95,7 +95,9 @@ const SignIn = () => {
             variant="outlined"
             borderWidth={0}
             aria-label="Forgot password"
-            accessibilityHint="Navigates to password recovery">
+            accessibilityHint="Navigates to password recovery"
+            paddingVertical={0}
+            height={24}>
             <Text color="blue" size="small">
               Forgot password?
             </Text>

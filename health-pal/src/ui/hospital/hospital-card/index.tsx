@@ -153,9 +153,11 @@ const HospitalCard = ({
   const content = (
     <>
       {renderCard({ width, marginBottom, marginLeft, marginRight })}
-      <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
-        {renderCard({ width: 'auto' })}
-      </RemoveFavoriteModal>
+      {favoriteId && (
+        <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
+          {renderCard({ width: 'auto' })}
+        </RemoveFavoriteModal>
+      )}
     </>
   )
 
