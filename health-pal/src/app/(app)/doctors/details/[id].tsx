@@ -13,6 +13,7 @@ import { Stack, router, useLocalSearchParams } from 'expo-router'
 
 import { tokens } from '@tamagui.config'
 
+import { ROUTES } from '@/constants'
 import { APP_TITLES } from '@/constants/route'
 
 import { useAddFavorite } from '@/hooks/use-add-favorite'
@@ -108,7 +109,7 @@ const Details = () => {
 
   const navigateBooking = () => {
     router.navigate({
-      pathname: '/booking',
+      pathname: ROUTES.BOOKING,
       params: {
         doctorId: id,
         doctorDocId: documentId,

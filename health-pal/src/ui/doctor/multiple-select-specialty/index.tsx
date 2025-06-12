@@ -1,6 +1,6 @@
 import { ScrollView } from 'tamagui'
 
-import { SPECIALTY_LIST } from '@/constants/specialty'
+import { SPECIALTY_LIST } from '@/constants'
 
 import { Chip } from '@/components'
 

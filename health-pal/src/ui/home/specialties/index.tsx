@@ -1,4 +1,4 @@
-import { SPECIALTY_LIST } from '@/constants/specialty'
+import { SPECIALTY_LIST } from '@/constants'
 
 import { XStack, YStack } from '@/components'
 

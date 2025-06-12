@@ -7,6 +7,8 @@ import { router } from 'expo-router'
 
 import { YStack } from 'tamagui'
 
+import { ROUTES } from '@/constants'
+
 import { Button, Heading, Text } from '@/components/common'
 import Modal from '@/components/common/modal'
 
@@ -28,7 +30,7 @@ export const CreateBookingSuccessModal = ({ ref }: Readonly<Props>) => {
 
   const handleDone = async () => {
     await queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.UPCOMING] })
-    router.replace('/(app)/(tabs)/bookings')
+    router.replace(ROUTES.BOOKINGS)
     ref?.current?.close()
   }
 

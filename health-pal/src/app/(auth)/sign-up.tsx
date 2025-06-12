@@ -4,6 +4,8 @@ import { User } from '@/models/user'
 
 import { Link, router } from 'expo-router'
 
+import { ROUTES } from '@/constants'
+
 import { useSession } from '@/hooks/use-session'
 
 import { ButtonWithUpcoming, Heading, Text, XStack, YStack } from '@/components'
@@ -16,7 +18,7 @@ const SignUp = () => {
   const { setUser, session } = useSession()
   const handleSignUp = async (data: SignupData) => {
     setUser(data as unknown as User)
-    router.navigate('/profile-info')
+    router.navigate(ROUTES.PROFILE_INFO)
   }
 
   return (
@@ -47,7 +49,7 @@ const SignUp = () => {
       </YStack>
       <XStack gap={2} justifyContent="center">
         <Text size="small">Do you have an account?</Text>
-        <Link href="/login">
+        <Link href={ROUTES.LOGIN}>
           <Text color="blue" size="small">
             Sign in
           </Text>

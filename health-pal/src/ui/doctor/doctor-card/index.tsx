@@ -9,6 +9,8 @@ import { Link } from 'expo-router'
 
 import { Card, Separator, XStack, YStack } from 'tamagui'
 
+import { ROUTES } from '@/constants'
+
 import { useAddFavorite } from '@/hooks/use-add-favorite'
 import { useRemoveFavorite } from '@/hooks/use-remove-favorite'
 
@@ -151,7 +153,7 @@ const DoctorCard = ({
       accessibilityLabel={`View doctors at ${name}`}
       accessibilityHint="Shows this doctor in the doctor list"
       role="link"
-      href={{ pathname: '/doctors/details/[id]', params: { id: documentId } }}>
+      href={{ pathname: ROUTES.DOCTOR, params: { id: documentId } }}>
       {card}
     </Link>
   ) : (

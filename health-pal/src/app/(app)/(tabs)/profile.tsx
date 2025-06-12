@@ -15,6 +15,8 @@ import { router } from 'expo-router'
 import { useToastController } from '@tamagui/toast'
 import { Separator } from 'tamagui'
 
+import { ROUTES } from '@/constants'
+
 import { useAppLoading } from '@/hooks'
 import { useSession } from '@/hooks/use-session'
 
@@ -73,11 +75,11 @@ const Profile = () => {
   }
 
   const handleNavigateFavorite = () => {
-    router.navigate('/(app)/(tabs)/favorite')
+    router.navigate(ROUTES.FAVORITE)
   }
 
   const handleNavigateProfileInfo = () => {
-    router.navigate('/(auth)/profile-info?from=profile')
+    router.navigate(ROUTES.EDIT_PROFILE)
   }
 
   return (

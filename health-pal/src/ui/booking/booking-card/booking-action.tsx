@@ -7,6 +7,8 @@ import { router } from 'expo-router'
 
 import { Separator, XStack } from 'tamagui'
 
+import { ROUTES } from '@/constants'
+
 import { Button } from '@/components'
 
 import { BOOKING_TABS, ModalRef } from '@/types'
@@ -34,14 +36,13 @@ const BookingAction = ({
     [BOOKING_TABS.COMPLETED]: [
       {
         title: 'Re-Book',
-        action: () => router.navigate({ pathname: '/(app)/booking', params: { doctorId } }),
+        action: () => router.navigate({ pathname: ROUTES.BOOKING, params: { doctorId } }),
         ariaLabel: `Re-book appointment with ${doctorName}`,
         ariaHint: 'Navigates to the booking screen to schedule a new appointment with this doctor',
       },
       {
         title: 'Add Review',
-        action: () =>
-          router.navigate({ pathname: '/(app)/doctors/details/[id]', params: { id: doctorId } }),
+        action: () => router.navigate({ pathname: ROUTES.DOCTOR, params: { id: doctorId } }),
         ariaLabel: `Add a review for ${doctorName}`,
         ariaHint: 'Navigates to the review screen to submit feedback for this doctor',
       },
@@ -59,7 +60,7 @@ const BookingAction = ({
         title: 'Reschedule',
         action: () =>
           router.navigate({
-            pathname: '/(app)/booking',
+            pathname: ROUTES.BOOKING,
             params: { doctorId, doctorDocId, bookingId: documentId, date: date.toISOString() },
           }),
         ariaLabel: `Reschedule booking with ${doctorName}`,

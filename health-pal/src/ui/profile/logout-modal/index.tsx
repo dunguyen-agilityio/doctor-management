@@ -1,8 +1,8 @@
-import { queryClient } from '@react-query.config'
-
 import { router } from 'expo-router'
 
 import { Separator } from 'tamagui'
+
+import { ROUTES } from '@/constants'
 
 import { useSession } from '@/hooks/use-session'
 
@@ -10,11 +10,13 @@ import { Button, Heading, SheetModal, Text, XStack, YStack } from '@/components'
 
 import { ModalRef } from '@/types/modal'
 
+import { queryClient } from '@react-query.config'
+
 const LogoutModal = ({ ref }: { ref: React.RefObject<ModalRef | null> }) => {
   const { signOut } = useSession()
 
   const handleLogout = async () => {
-    router.replace('/(auth)/login')
+    router.replace(ROUTES.LOGIN)
     queryClient.clear()
     signOut()
   }
