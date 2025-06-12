@@ -10,17 +10,12 @@ type RequestOption = Omit<RequestInit, 'body'> & {
   jwt?: string
 }
 
-export type StrapiError = {
+type StrapiError = {
   details: { errors: string[] }
   message: string
   name: string
   status: number
 }
-
-type SuccessResponse<T> = { data: T; error?: null }
-type FailedResponse = { data?: null; error: { message: string; code?: number } }
-
-export type APIResponse<T> = SuccessResponse<T> | FailedResponse
 
 class APIClient {
   private static _apiClient: APIClient

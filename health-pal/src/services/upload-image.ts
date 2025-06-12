@@ -4,6 +4,14 @@ import * as FileSystem from 'expo-file-system'
 
 import { API_ENDPOINT } from '@/constants'
 
+type StrapiImageResponse = {
+  url: string
+  id: number
+  documentId: string
+  ext: string
+  name: string
+}
+
 export const uploadToStrapi = async (imageUri: string) => {
   const jwt = process.env.EXPO_PUBLIC_APP_TOKEN ?? ''
   const adjustedUri = Platform.OS === 'ios' ? imageUri.replace('file://', '') : imageUri
@@ -26,12 +34,4 @@ export const uploadToStrapi = async (imageUri: string) => {
   }
 
   return { error: { message: 'Uploaded image URL not found in response' }, data: null }
-}
-
-type StrapiImageResponse = {
-  url: string
-  id: number
-  documentId: string
-  ext: string
-  name: string
 }
