@@ -1,12 +1,12 @@
 import { BookingData } from '@/models/booking'
 
-import dayjs from 'dayjs'
+import { createDayjs } from './date'
 
 export const formatBooking = ({ doctor, date, documentId, id, time, type }: BookingData) => {
   const { users_permissions_user, clinic, documentId: doctorDocId, id: doctorId } = doctor
 
   return {
-    date: dayjs(date),
+    date: createDayjs(date),
     documentId,
     id,
     time,

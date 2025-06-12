@@ -1,6 +1,6 @@
 import { Session, User } from '@/models/user'
+import { createDayjs } from '@/utils/date'
 
-import dayjs from 'dayjs'
 import { getItemAsync } from 'expo-secure-store'
 
 import { APIResponse, AuthCredentials, UserProfileData } from '@/types'
@@ -59,7 +59,7 @@ export const register = async ({
     const response = await apiClient.post<Session>('auth/local/register', {
       body: {
         ...data,
-        dateOfBirth: dayjs(dateOfBirth).format('YYYY-MM-DD'),
+        dateOfBirth: createDayjs(dateOfBirth).format('YYYY-MM-DD'),
         gender: gender === 'Male',
         username: nickname,
       },
@@ -87,7 +87,7 @@ export const updateProfile = async (
 
     const payload = {
       ...data,
-      ...(dateOfBirth && { dateOfBirth: dayjs(dateOfBirth).format('YYYY-MM-DD') }),
+      ...(dateOfBirth && { dateOfBirth: createDayjs(dateOfBirth).format('YYYY-MM-DD') }),
       ...(gender !== undefined && { gender: gender === 'Male' }),
       username: data.nickname,
     }

@@ -1,9 +1,9 @@
 import { CalendarIcon } from '@/icons'
+import { createDayjs } from '@/utils/date'
 
 import { useImperativeHandle, useRef } from 'react'
 import { TextInput } from 'react-native'
 
-import dayjs from 'dayjs'
 import { DateType } from 'react-native-ui-datepicker'
 
 import { Button, InputProps, Popover } from 'tamagui'
@@ -47,7 +47,7 @@ const DateInput = ({
 
   const handleChange = (date: DateType) => {
     containerRef.current?.close()
-    onChangeValue?.(dayjs(date).toDate())
+    onChangeValue?.(createDayjs(date).toDate())
   }
 
   return (
@@ -71,7 +71,7 @@ const DateInput = ({
             ref={inputRef}
             leftIcon={CalendarIcon}
             textContentType="dateTime"
-            value={initialValue ? dayjs(initialValue).format('DD/MM/YYYY') : ''}
+            value={initialValue ? createDayjs(initialValue).format('DD/MM/YYYY') : ''}
             errorMessage={errorMessage}
             editable={false}
             pointerEvents="none"

@@ -1,7 +1,8 @@
+import { createDayjs } from '@/utils/date'
+
 import { View } from 'react-native'
 
 import type { Meta, StoryObj } from '@storybook/react'
-import dayjs from 'dayjs'
 
 import DatePicker from '.'
 
@@ -29,5 +30,5 @@ export const Default: Story = {
   args: {},
 }
 export const Defaultq: Story = {
-  args: { disabledDates: (date) => [0, 6].includes(dayjs(date).day()) },
+  args: { disabledDates: (date) => [0, 6].includes(createDayjs(date).day()) },
 }

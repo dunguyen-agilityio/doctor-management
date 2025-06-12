@@ -1,8 +1,7 @@
 import { ShieldTick } from '@/icons'
-import { formatShortTime } from '@/utils/date'
+import { createDayjs, formatShortTime } from '@/utils/date'
 import { useFormContext } from 'react-hook-form'
 
-import dayjs from 'dayjs'
 import { router } from 'expo-router'
 
 import { YStack } from 'tamagui'
@@ -24,7 +23,7 @@ type Props = {
 export const CreateBookingSuccessModal = ({ ref }: Readonly<Props>) => {
   const { watch } = useFormContext<BookingForm>()
 
-  const date = dayjs(watch('date'))
+  const date = createDayjs(watch('date'))
   const formattedDate = date.format('YYYY-MM-DD')
   const formattedTime = formatShortTime(date)
 
