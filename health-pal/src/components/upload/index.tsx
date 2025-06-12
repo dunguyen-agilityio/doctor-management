@@ -24,9 +24,10 @@ import CloudinaryImage from '../cloudinary-image'
 interface UploadProps extends StackProps {
   preview?: string
   onUpload?: (image: string) => Promise<void>
+  onOpenCamera?: () => void
 }
 
-const Upload = ({ preview, onUpload, ...props }: UploadProps) => {
+const Upload = ({ preview, onUpload, onOpenCamera, ...props }: UploadProps) => {
   const [permission, requestPermission] = useCameraPermissions()
   const ref = useRef<CameraView>(null)
   const [facing, setFacing] = useState<CameraType>(CameraType.back)
@@ -72,6 +73,7 @@ const Upload = ({ preview, onUpload, ...props }: UploadProps) => {
   }
 
   const handleOpenCamera = async () => {
+    onOpenCamera?.()
     const response = await requestPermission()
 
     if (!response.granted) {
@@ -143,7 +145,7 @@ const Upload = ({ preview, onUpload, ...props }: UploadProps) => {
           variant="icon"
           aria-label="Back"
           marginLeft={8}
-          onPressIn={handleBack}
+          onPress={handleBack}
           testID="back-button">
           <BackIcon />
         </Button>

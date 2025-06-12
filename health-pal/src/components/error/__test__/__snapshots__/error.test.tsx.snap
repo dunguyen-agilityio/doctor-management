@@ -33,135 +33,112 @@ exports[`ErrorState matches snapshot with custom title and message 1`] = `
     />
   </View>,
   <View
+    role="alert"
     style={
       {
         "alignItems": "center",
         "backgroundColor": "white",
-        "flex": 1,
         "flexDirection": "column",
-        "gap": 12,
+        "gap": 22,
         "justifyContent": "center",
+        "paddingLeft": 48,
+        "paddingRight": 48,
       }
     }
   >
-    <RNSVGSvgView
-      align="xMidYMid"
-      bbHeight={24}
-      bbWidth={24}
-      fill="none"
-      focusable={false}
-      height={24}
-      meetOrSlice={0}
-      minX={0}
-      minY={0}
-      stroke="hsl(358, 69.4%, 55.2%)"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      style={
-        [
-          {
-            "backgroundColor": "transparent",
-            "borderWidth": 0,
-          },
-          {
-            "color": "hsl(358, 69.4%, 55.2%)",
-          },
-          {
-            "flex": 0,
-            "height": 24,
-            "width": 24,
-          },
-        ]
-      }
-      vbHeight={24}
-      vbWidth={24}
-      width={24}
+    <View
+      style={[]}
     >
-      <RNSVGGroup
-        color="hsl(358, 69.4%, 55.2%)"
-        fill={null}
-        propList={
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="76"
+        bbWidth="76"
+        color="$red10"
+        fill="none"
+        focusable={false}
+        height="76"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
           [
-            "fill",
-            "stroke",
-            "strokeWidth",
-            "strokeLinecap",
-            "strokeLinejoin",
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 76,
+              "width": 76,
+            },
           ]
         }
-        stroke={
-          {
-            "payload": 4292623683,
-            "type": 0,
-          }
-        }
-        strokeLinecap={1}
-        strokeLinejoin={1}
-        strokeWidth="2"
+        vbHeight={76}
+        vbWidth={76}
+        width="76"
       >
-        <RNSVGPath
-          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
-            }
-          }
+        <RNSVGGroup
+          fill={null}
           propList={
             [
-              "stroke",
+              "fill",
             ]
           }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+        >
+          <RNSVGPath
+            clipRule={0}
+            d="M37.9998 9.50002C22.2597 9.50002 9.49984 22.2599 9.49984 38C9.49984 53.7401 22.2597 66.5 37.9998 66.5C53.74 66.5 66.4998 53.7401 66.4998 38C66.4998 22.2599 53.74 9.50002 37.9998 9.50002ZM3.1665 38C3.1665 18.7621 18.7619 3.16669 37.9998 3.16669C57.2378 3.16669 72.8332 18.7621 72.8332 38C72.8332 57.2379 57.2378 72.8334 37.9998 72.8334C18.7619 72.8334 3.1665 57.2379 3.1665 38Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-        <RNSVGPath
-          d="M12 9v4"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
             }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+          />
+          <RNSVGPath
+            clipRule={0}
+            d="M49.739 26.2609C50.9757 27.4975 50.9757 29.5025 49.739 30.7392L30.739 49.7392C29.5023 50.9759 27.4973 50.9759 26.2607 49.7392C25.024 48.5025 25.024 46.4975 26.2607 45.2609L45.2607 26.2609C46.4973 25.0242 48.5024 25.0242 49.739 26.2609Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-        <RNSVGPath
-          d="M12 17h.01"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
             }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+          />
+          <RNSVGPath
+            clipRule={0}
+            d="M26.2607 26.2609C27.4973 25.0242 29.5023 25.0242 30.739 26.2609L49.739 45.2609C50.9757 46.4975 50.9757 48.5025 49.739 49.7392C48.5024 50.9759 46.4973 50.9759 45.2607 49.7392L26.2607 30.7392C25.024 29.5025 25.024 27.4975 26.2607 26.2609Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-      </RNSVGGroup>
-    </RNSVGSvgView>
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
+            }
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
     <Text
       style={
         {
@@ -226,135 +203,112 @@ exports[`ErrorState matches snapshot with default props 1`] = `
     />
   </View>,
   <View
+    role="alert"
     style={
       {
         "alignItems": "center",
         "backgroundColor": "white",
-        "flex": 1,
         "flexDirection": "column",
-        "gap": 12,
+        "gap": 22,
         "justifyContent": "center",
+        "paddingLeft": 48,
+        "paddingRight": 48,
       }
     }
   >
-    <RNSVGSvgView
-      align="xMidYMid"
-      bbHeight={24}
-      bbWidth={24}
-      fill="none"
-      focusable={false}
-      height={24}
-      meetOrSlice={0}
-      minX={0}
-      minY={0}
-      stroke="hsl(358, 69.4%, 55.2%)"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      style={
-        [
-          {
-            "backgroundColor": "transparent",
-            "borderWidth": 0,
-          },
-          {
-            "color": "hsl(358, 69.4%, 55.2%)",
-          },
-          {
-            "flex": 0,
-            "height": 24,
-            "width": 24,
-          },
-        ]
-      }
-      vbHeight={24}
-      vbWidth={24}
-      width={24}
+    <View
+      style={[]}
     >
-      <RNSVGGroup
-        color="hsl(358, 69.4%, 55.2%)"
-        fill={null}
-        propList={
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="76"
+        bbWidth="76"
+        color="$red10"
+        fill="none"
+        focusable={false}
+        height="76"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
           [
-            "fill",
-            "stroke",
-            "strokeWidth",
-            "strokeLinecap",
-            "strokeLinejoin",
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 76,
+              "width": 76,
+            },
           ]
         }
-        stroke={
-          {
-            "payload": 4292623683,
-            "type": 0,
-          }
-        }
-        strokeLinecap={1}
-        strokeLinejoin={1}
-        strokeWidth="2"
+        vbHeight={76}
+        vbWidth={76}
+        width="76"
       >
-        <RNSVGPath
-          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
-            }
-          }
+        <RNSVGGroup
+          fill={null}
           propList={
             [
-              "stroke",
+              "fill",
             ]
           }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+        >
+          <RNSVGPath
+            clipRule={0}
+            d="M37.9998 9.50002C22.2597 9.50002 9.49984 22.2599 9.49984 38C9.49984 53.7401 22.2597 66.5 37.9998 66.5C53.74 66.5 66.4998 53.7401 66.4998 38C66.4998 22.2599 53.74 9.50002 37.9998 9.50002ZM3.1665 38C3.1665 18.7621 18.7619 3.16669 37.9998 3.16669C57.2378 3.16669 72.8332 18.7621 72.8332 38C72.8332 57.2379 57.2378 72.8334 37.9998 72.8334C18.7619 72.8334 3.1665 57.2379 3.1665 38Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-        <RNSVGPath
-          d="M12 9v4"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
             }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+          />
+          <RNSVGPath
+            clipRule={0}
+            d="M49.739 26.2609C50.9757 27.4975 50.9757 29.5025 49.739 30.7392L30.739 49.7392C29.5023 50.9759 27.4973 50.9759 26.2607 49.7392C25.024 48.5025 25.024 46.4975 26.2607 45.2609L45.2607 26.2609C46.4973 25.0242 48.5024 25.0242 49.739 26.2609Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-        <RNSVGPath
-          d="M12 17h.01"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
             }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+          />
+          <RNSVGPath
+            clipRule={0}
+            d="M26.2607 26.2609C27.4973 25.0242 29.5023 25.0242 30.739 26.2609L49.739 45.2609C50.9757 46.4975 50.9757 48.5025 49.739 49.7392C48.5024 50.9759 46.4973 50.9759 45.2607 49.7392L26.2607 30.7392C25.024 29.5025 25.024 27.4975 26.2607 26.2609Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-      </RNSVGGroup>
-    </RNSVGSvgView>
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
+            }
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
     <Text
       style={
         {
@@ -419,135 +373,112 @@ exports[`ErrorState matches snapshot with onRetry button 1`] = `
     />
   </View>,
   <View
+    role="alert"
     style={
       {
         "alignItems": "center",
         "backgroundColor": "white",
-        "flex": 1,
         "flexDirection": "column",
-        "gap": 12,
+        "gap": 22,
         "justifyContent": "center",
+        "paddingLeft": 48,
+        "paddingRight": 48,
       }
     }
   >
-    <RNSVGSvgView
-      align="xMidYMid"
-      bbHeight={24}
-      bbWidth={24}
-      fill="none"
-      focusable={false}
-      height={24}
-      meetOrSlice={0}
-      minX={0}
-      minY={0}
-      stroke="hsl(358, 69.4%, 55.2%)"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      style={
-        [
-          {
-            "backgroundColor": "transparent",
-            "borderWidth": 0,
-          },
-          {
-            "color": "hsl(358, 69.4%, 55.2%)",
-          },
-          {
-            "flex": 0,
-            "height": 24,
-            "width": 24,
-          },
-        ]
-      }
-      vbHeight={24}
-      vbWidth={24}
-      width={24}
+    <View
+      style={[]}
     >
-      <RNSVGGroup
-        color="hsl(358, 69.4%, 55.2%)"
-        fill={null}
-        propList={
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="76"
+        bbWidth="76"
+        color="$red10"
+        fill="none"
+        focusable={false}
+        height="76"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
           [
-            "fill",
-            "stroke",
-            "strokeWidth",
-            "strokeLinecap",
-            "strokeLinejoin",
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 76,
+              "width": 76,
+            },
           ]
         }
-        stroke={
-          {
-            "payload": 4292623683,
-            "type": 0,
-          }
-        }
-        strokeLinecap={1}
-        strokeLinejoin={1}
-        strokeWidth="2"
+        vbHeight={76}
+        vbWidth={76}
+        width="76"
       >
-        <RNSVGPath
-          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
-            }
-          }
+        <RNSVGGroup
+          fill={null}
           propList={
             [
-              "stroke",
+              "fill",
             ]
           }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+        >
+          <RNSVGPath
+            clipRule={0}
+            d="M37.9998 9.50002C22.2597 9.50002 9.49984 22.2599 9.49984 38C9.49984 53.7401 22.2597 66.5 37.9998 66.5C53.74 66.5 66.4998 53.7401 66.4998 38C66.4998 22.2599 53.74 9.50002 37.9998 9.50002ZM3.1665 38C3.1665 18.7621 18.7619 3.16669 37.9998 3.16669C57.2378 3.16669 72.8332 18.7621 72.8332 38C72.8332 57.2379 57.2378 72.8334 37.9998 72.8334C18.7619 72.8334 3.1665 57.2379 3.1665 38Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-        <RNSVGPath
-          d="M12 9v4"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
             }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+          />
+          <RNSVGPath
+            clipRule={0}
+            d="M49.739 26.2609C50.9757 27.4975 50.9757 29.5025 49.739 30.7392L30.739 49.7392C29.5023 50.9759 27.4973 50.9759 26.2607 49.7392C25.024 48.5025 25.024 46.4975 26.2607 45.2609L45.2607 26.2609C46.4973 25.0242 48.5024 25.0242 49.739 26.2609Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-        <RNSVGPath
-          d="M12 17h.01"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
             }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+          />
+          <RNSVGPath
+            clipRule={0}
+            d="M26.2607 26.2609C27.4973 25.0242 29.5023 25.0242 30.739 26.2609L49.739 45.2609C50.9757 46.4975 50.9757 48.5025 49.739 49.7392C48.5024 50.9759 46.4973 50.9759 45.2607 49.7392L26.2607 30.7392C25.024 29.5025 25.024 27.4975 26.2607 26.2609Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-      </RNSVGGroup>
-    </RNSVGSvgView>
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
+            }
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
     <Text
       style={
         {
@@ -576,6 +507,8 @@ exports[`ErrorState matches snapshot with onRetry button 1`] = `
       Something went wrong.
     </Text>
     <View
+      accessibilityHint="Retries loading"
+      aria-label="Retry"
       focusVisibleStyle={{}}
       focusable={true}
       onBlur={[Function]}
@@ -616,6 +549,7 @@ exports[`ErrorState matches snapshot with onRetry button 1`] = `
           "paddingLeft": 20,
           "paddingRight": 20,
           "paddingTop": 12,
+          "width": "100%",
         }
       }
     >
@@ -675,135 +609,112 @@ exports[`ErrorState matches snapshot without onRetry button 1`] = `
     />
   </View>,
   <View
+    role="alert"
     style={
       {
         "alignItems": "center",
         "backgroundColor": "white",
-        "flex": 1,
         "flexDirection": "column",
-        "gap": 12,
+        "gap": 22,
         "justifyContent": "center",
+        "paddingLeft": 48,
+        "paddingRight": 48,
       }
     }
   >
-    <RNSVGSvgView
-      align="xMidYMid"
-      bbHeight={24}
-      bbWidth={24}
-      fill="none"
-      focusable={false}
-      height={24}
-      meetOrSlice={0}
-      minX={0}
-      minY={0}
-      stroke="hsl(358, 69.4%, 55.2%)"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      style={
-        [
-          {
-            "backgroundColor": "transparent",
-            "borderWidth": 0,
-          },
-          {
-            "color": "hsl(358, 69.4%, 55.2%)",
-          },
-          {
-            "flex": 0,
-            "height": 24,
-            "width": 24,
-          },
-        ]
-      }
-      vbHeight={24}
-      vbWidth={24}
-      width={24}
+    <View
+      style={[]}
     >
-      <RNSVGGroup
-        color="hsl(358, 69.4%, 55.2%)"
-        fill={null}
-        propList={
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="76"
+        bbWidth="76"
+        color="$red10"
+        fill="none"
+        focusable={false}
+        height="76"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
           [
-            "fill",
-            "stroke",
-            "strokeWidth",
-            "strokeLinecap",
-            "strokeLinejoin",
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 76,
+              "width": 76,
+            },
           ]
         }
-        stroke={
-          {
-            "payload": 4292623683,
-            "type": 0,
-          }
-        }
-        strokeLinecap={1}
-        strokeLinejoin={1}
-        strokeWidth="2"
+        vbHeight={76}
+        vbWidth={76}
+        width="76"
       >
-        <RNSVGPath
-          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
-            }
-          }
+        <RNSVGGroup
+          fill={null}
           propList={
             [
-              "stroke",
+              "fill",
             ]
           }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+        >
+          <RNSVGPath
+            clipRule={0}
+            d="M37.9998 9.50002C22.2597 9.50002 9.49984 22.2599 9.49984 38C9.49984 53.7401 22.2597 66.5 37.9998 66.5C53.74 66.5 66.4998 53.7401 66.4998 38C66.4998 22.2599 53.74 9.50002 37.9998 9.50002ZM3.1665 38C3.1665 18.7621 18.7619 3.16669 37.9998 3.16669C57.2378 3.16669 72.8332 18.7621 72.8332 38C72.8332 57.2379 57.2378 72.8334 37.9998 72.8334C18.7619 72.8334 3.1665 57.2379 3.1665 38Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-        <RNSVGPath
-          d="M12 9v4"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
             }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+          />
+          <RNSVGPath
+            clipRule={0}
+            d="M49.739 26.2609C50.9757 27.4975 50.9757 29.5025 49.739 30.7392L30.739 49.7392C29.5023 50.9759 27.4973 50.9759 26.2607 49.7392C25.024 48.5025 25.024 46.4975 26.2607 45.2609L45.2607 26.2609C46.4973 25.0242 48.5024 25.0242 49.739 26.2609Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-        <RNSVGPath
-          d="M12 17h.01"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
             }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4292623683,
-              "type": 0,
+          />
+          <RNSVGPath
+            clipRule={0}
+            d="M26.2607 26.2609C27.4973 25.0242 29.5023 25.0242 30.739 26.2609L49.739 45.2609C50.9757 46.4975 50.9757 48.5025 49.739 49.7392C48.5024 50.9759 46.4973 50.9759 45.2607 49.7392L26.2607 30.7392C25.024 29.5025 25.024 27.4975 26.2607 26.2609Z"
+            fill={
+              {
+                "payload": 4294967295,
+                "type": 0,
+              }
             }
-          }
-        />
-      </RNSVGGroup>
-    </RNSVGSvgView>
+            fillRule={0}
+            propList={
+              [
+                "fill",
+                "fillRule",
+              ]
+            }
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
     <Text
       style={
         {

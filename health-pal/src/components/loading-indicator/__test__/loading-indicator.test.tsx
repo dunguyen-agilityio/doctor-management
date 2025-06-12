@@ -2,7 +2,7 @@ import { render, screen } from '@utils-test'
 
 // Adjust path
 
-import LoadingIndicator from '.'
+import LoadingIndicator from '../'
 
 describe('LoadingIndicator', () => {
   it('renders spinner without modal when fullScreen is false', () => {

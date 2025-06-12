@@ -33,6 +33,7 @@ exports[`Empty matches snapshot with custom icon, action label, and onAction 1`]
     />
   </View>,
   <View
+    role="alert"
     style={
       {
         "alignItems": "center",
@@ -46,25 +47,24 @@ exports[`Empty matches snapshot with custom icon, action label, and onAction 1`]
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight={24}
-      bbWidth={24}
+      bbHeight="24"
+      bbWidth="24"
       fill="none"
       focusable={false}
-      height={24}
+      height="24"
       meetOrSlice={0}
       minX={0}
       minY={0}
-      stroke="#1c2a3a"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
       style={
         [
           {
             "backgroundColor": "transparent",
             "borderWidth": 0,
           },
-          {},
           {
             "flex": 0,
             "height": 24,
@@ -75,7 +75,7 @@ exports[`Empty matches snapshot with custom icon, action label, and onAction 1`]
       testID="custom-icon"
       vbHeight={24}
       vbWidth={24}
-      width={24}
+      width="24"
     >
       <RNSVGGroup
         fill={null}
@@ -83,20 +83,13 @@ exports[`Empty matches snapshot with custom icon, action label, and onAction 1`]
           [
             "fill",
             "stroke",
-            "strokeWidth",
-            "strokeLinecap",
-            "strokeLinejoin",
           ]
         }
         stroke={
           {
-            "payload": 4280035898,
-            "type": 0,
+            "type": 2,
           }
         }
-        strokeLinecap={1}
-        strokeLinejoin={1}
-        strokeWidth="2"
       >
         <RNSVGPath
           d="M18 6 6 18"
@@ -106,34 +99,12 @@ exports[`Empty matches snapshot with custom icon, action label, and onAction 1`]
               "type": 0,
             }
           }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
         />
         <RNSVGPath
           d="m6 6 12 12"
           fill={
             {
               "payload": 4278190080,
-              "type": 0,
-            }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4280035898,
               "type": 0,
             }
           }
@@ -268,6 +239,7 @@ exports[`Empty matches snapshot with custom title and description 1`] = `
     />
   </View>,
   <View
+    role="alert"
     style={
       {
         "alignItems": "center",
@@ -281,15 +253,16 @@ exports[`Empty matches snapshot with custom title and description 1`] = `
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight={24}
-      bbWidth={24}
+      bbHeight="24"
+      bbWidth="24"
+      color="$gray10"
       fill="none"
       focusable={false}
-      height={24}
+      height="24"
       meetOrSlice={0}
       minX={0}
       minY={0}
-      stroke="#1c2a3a"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"
@@ -299,7 +272,6 @@ exports[`Empty matches snapshot with custom title and description 1`] = `
             "backgroundColor": "transparent",
             "borderWidth": 0,
           },
-          {},
           {
             "flex": 0,
             "height": 24,
@@ -309,7 +281,7 @@ exports[`Empty matches snapshot with custom title and description 1`] = `
       }
       vbHeight={24}
       vbWidth={24}
-      width={24}
+      width="24"
     >
       <RNSVGGroup
         fill={null}
@@ -324,101 +296,32 @@ exports[`Empty matches snapshot with custom title and description 1`] = `
         }
         stroke={
           {
-            "payload": 4280035898,
-            "type": 0,
+            "type": 2,
           }
         }
         strokeLinecap={1}
         strokeLinejoin={1}
         strokeWidth="2"
       >
-        <RNSVGPath
-          d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
-            }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
-        />
         <RNSVGCircle
-          cx="9"
-          cy="7"
+          cx="12"
+          cy="12"
           fill={
             {
               "payload": 4278190080,
               "type": 0,
             }
           }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          r="4"
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
+          r="10"
         />
-        <RNSVGLine
+        <RNSVGPath
+          d="m4.9 4.9 14.2 14.2"
           fill={
             {
               "payload": 4278190080,
               "type": 0,
             }
           }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
-          x1="17"
-          x2="22"
-          y1="8"
-          y2="13"
-        />
-        <RNSVGLine
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
-            }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
-          x1="22"
-          x2="17"
-          y1="8"
-          y2="13"
         />
       </RNSVGGroup>
     </RNSVGSvgView>
@@ -486,6 +389,7 @@ exports[`Empty matches snapshot with default props 1`] = `
     />
   </View>,
   <View
+    role="alert"
     style={
       {
         "alignItems": "center",
@@ -499,15 +403,16 @@ exports[`Empty matches snapshot with default props 1`] = `
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight={24}
-      bbWidth={24}
+      bbHeight="24"
+      bbWidth="24"
+      color="$gray10"
       fill="none"
       focusable={false}
-      height={24}
+      height="24"
       meetOrSlice={0}
       minX={0}
       minY={0}
-      stroke="#1c2a3a"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"
@@ -517,7 +422,6 @@ exports[`Empty matches snapshot with default props 1`] = `
             "backgroundColor": "transparent",
             "borderWidth": 0,
           },
-          {},
           {
             "flex": 0,
             "height": 24,
@@ -527,7 +431,7 @@ exports[`Empty matches snapshot with default props 1`] = `
       }
       vbHeight={24}
       vbWidth={24}
-      width={24}
+      width="24"
     >
       <RNSVGGroup
         fill={null}
@@ -542,101 +446,32 @@ exports[`Empty matches snapshot with default props 1`] = `
         }
         stroke={
           {
-            "payload": 4280035898,
-            "type": 0,
+            "type": 2,
           }
         }
         strokeLinecap={1}
         strokeLinejoin={1}
         strokeWidth="2"
       >
-        <RNSVGPath
-          d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
-            }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
-        />
         <RNSVGCircle
-          cx="9"
-          cy="7"
+          cx="12"
+          cy="12"
           fill={
             {
               "payload": 4278190080,
               "type": 0,
             }
           }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          r="4"
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
+          r="10"
         />
-        <RNSVGLine
+        <RNSVGPath
+          d="m4.9 4.9 14.2 14.2"
           fill={
             {
               "payload": 4278190080,
               "type": 0,
             }
           }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
-          x1="17"
-          x2="22"
-          y1="8"
-          y2="13"
-        />
-        <RNSVGLine
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
-            }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
-          x1="22"
-          x2="17"
-          y1="8"
-          y2="13"
         />
       </RNSVGGroup>
     </RNSVGSvgView>
@@ -690,6 +525,7 @@ exports[`Empty matches snapshot without description and action 1`] = `
     />
   </View>,
   <View
+    role="alert"
     style={
       {
         "alignItems": "center",
@@ -703,15 +539,16 @@ exports[`Empty matches snapshot without description and action 1`] = `
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight={24}
-      bbWidth={24}
+      bbHeight="24"
+      bbWidth="24"
+      color="$gray10"
       fill="none"
       focusable={false}
-      height={24}
+      height="24"
       meetOrSlice={0}
       minX={0}
       minY={0}
-      stroke="#1c2a3a"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"
@@ -721,7 +558,6 @@ exports[`Empty matches snapshot without description and action 1`] = `
             "backgroundColor": "transparent",
             "borderWidth": 0,
           },
-          {},
           {
             "flex": 0,
             "height": 24,
@@ -731,7 +567,7 @@ exports[`Empty matches snapshot without description and action 1`] = `
       }
       vbHeight={24}
       vbWidth={24}
-      width={24}
+      width="24"
     >
       <RNSVGGroup
         fill={null}
@@ -746,101 +582,32 @@ exports[`Empty matches snapshot without description and action 1`] = `
         }
         stroke={
           {
-            "payload": 4280035898,
-            "type": 0,
+            "type": 2,
           }
         }
         strokeLinecap={1}
         strokeLinejoin={1}
         strokeWidth="2"
       >
-        <RNSVGPath
-          d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
-            }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
-        />
         <RNSVGCircle
-          cx="9"
-          cy="7"
+          cx="12"
+          cy="12"
           fill={
             {
               "payload": 4278190080,
               "type": 0,
             }
           }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          r="4"
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
+          r="10"
         />
-        <RNSVGLine
+        <RNSVGPath
+          d="m4.9 4.9 14.2 14.2"
           fill={
             {
               "payload": 4278190080,
               "type": 0,
             }
           }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
-          x1="17"
-          x2="22"
-          y1="8"
-          y2="13"
-        />
-        <RNSVGLine
-          fill={
-            {
-              "payload": 4278190080,
-              "type": 0,
-            }
-          }
-          propList={
-            [
-              "stroke",
-            ]
-          }
-          stroke={
-            {
-              "payload": 4280035898,
-              "type": 0,
-            }
-          }
-          x1="22"
-          x2="17"
-          y1="8"
-          y2="13"
         />
       </RNSVGGroup>
     </RNSVGSvgView>

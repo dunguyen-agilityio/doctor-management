@@ -32,154 +32,484 @@ exports[`DoctorList matches snapshot with custom renderItem 1`] = `
       }
     />
   </View>,
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    collapsable={false}
-    contentContainerStyle={
+  <View
+    style={
       {
-        "paddingBottom": 8,
-        "paddingHorizontal": 24,
+        "flex": 1,
+        "minWidth": 702,
       }
     }
-    data={
-      [
-        {
-          "avatar": {
-            "id": 1,
-            "url": "https://picsum.photos/id/91/3504/2336",
-          },
-          "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          "clinic": {
-            "address": "123 Main St, Springfield, USA",
-            "description": "A premier healthcare facility offering top-tier services in Springfield.",
-            "doctors": [],
-            "documentId": "123e4567-e89b-12d3-a456-426614174000",
-            "id": 1,
-            "image": {
-              "alt": "Sunrise Hospital",
-              "id": 1,
-              "url": "https://picsum.photos/200",
-            },
-            "name": "Sunrise Hospital",
-            "rating": 4.2,
-            "reivewCouter": 300,
-            "reviews": [],
-            "type": "Clinic",
-          },
-          "dateOfBirth": 1980-01-01T00:00:00.000Z,
-          "documentId": "doc_001",
-          "email": "john.smith@example.com",
-          "favoriteId": "fav_001",
-          "gender": true,
-          "id": 1,
-          "name": "Dr. John Smith",
-          "nickname": "jdoe",
-          "rating": 4.8,
-          "reviewCounter": 5,
-          "reviews": [
-            {
-              "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
-              "documentId": "doc-1",
-              "id": 1,
-              "rating": 5,
-            },
-            {
-              "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
-              "documentId": "doc-2",
-              "id": 2,
-              "image": {
-                "testUri": "../../../assets/images/user01.png",
-              },
-              "name": "Emily Anderson",
-              "rating": 5,
-            },
-            {
-              "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
-              "documentId": "doc-3",
-              "id": 3,
-              "image": {
-                "testUri": "../../../assets/images/user01.png",
-              },
-              "name": "Emily Anderson",
-              "rating": 5,
-            },
-            {
-              "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
-              "documentId": "doc-4",
-              "id": 4,
-              "image": {
-                "testUri": "../../../assets/images/user01.png",
-              },
-              "name": "Emily Anderson",
-              "rating": 5,
-            },
-          ],
-          "specialty": {
-            "description": "Specialized in heart-related conditions and treatments.",
-            "doctors": [],
-            "documentId": "123e4567-e89b-12d3-a456-426614174000",
-            "id": 1,
-            "name": "Cardiology",
-          },
-          "username": "jdoe",
-          "users_permissions_user": {
-            "avatar": {
-              "id": 1,
-              "url": "https://example.com/avatar.jpg",
-            },
-            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            "dateOfBirth": 1990-01-01T00:00:00.000Z,
-            "documentId": "123e4567-e89b-12d3-a456-426614174000",
-            "email": "jdoe@example.com",
-            "gender": true,
-            "id": 1,
-            "name": "John Doe",
-            "nickname": "jdoe",
-            "username": "jdoe",
-          },
-        },
-      ]
-    }
-    getItem={[Function]}
-    getItemCount={[Function]}
-    handlerTag={2}
-    handlerType="NativeViewGestureHandler"
-    initialNumToRender={20}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onGestureHandlerEvent={[Function]}
-    onGestureHandlerStateChange={[Function]}
-    onLayout={[Function]}
-    onMomentumScrollBegin={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    renderScrollComponent={[Function]}
-    scrollEventThrottle={0.0001}
-    showsHorizontalScrollIndicator={false}
-    showsVerticalScrollIndicator={false}
-    stickyHeaderIndices={[]}
-    viewabilityConfigCallbackPairs={[]}
-    windowSize={5}
   >
-    <View>
-      <View
-        onFocusCapture={[Function]}
+    <View
+      style={
+        {
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <RCTScrollView
+        ItemSeparatorComponent={[Function]}
+        applyWindowCorrection={[Function]}
+        canChangeSize={true}
+        contentContainerStyle={
+          {
+            "backgroundColor": undefined,
+            "minHeight": 1,
+            "minWidth": 1,
+            "paddingLeft": 24,
+            "paddingRight": 24,
+          }
+        }
+        contentHeight={0}
+        contentWidth={0}
+        data={
+          [
+            {
+              "avatar": {
+                "id": 1,
+                "url": "https://picsum.photos/id/91/3504/2336",
+              },
+              "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "clinic": {
+                "address": "123 Main St, Springfield, USA",
+                "description": "A premier healthcare facility offering top-tier services in Springfield.",
+                "doctors": [],
+                "documentId": "123e4567-e89b-12d3-a456-426614174000",
+                "id": 1,
+                "image": {
+                  "alt": "Sunrise Hospital",
+                  "id": 1,
+                  "url": "https://picsum.photos/200",
+                },
+                "name": "Sunrise Hospital",
+                "rating": 4.2,
+                "reivewCouter": 300,
+                "reviews": [],
+                "type": "Clinic",
+              },
+              "dateOfBirth": 1980-01-01T00:00:00.000Z,
+              "documentId": "doc_001",
+              "email": "john.smith@example.com",
+              "favoriteId": "fav_001",
+              "gender": true,
+              "id": 1,
+              "name": "Dr. John Smith",
+              "nickname": "jdoe",
+              "rating": 4.8,
+              "reviewCounter": 5,
+              "reviews": [
+                {
+                  "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                  "documentId": "doc-1",
+                  "id": 1,
+                  "rating": 5,
+                },
+                {
+                  "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                  "documentId": "doc-2",
+                  "id": 2,
+                  "image": {
+                    "testUri": "../../../assets/images/user01.png",
+                  },
+                  "name": "Emily Anderson",
+                  "rating": 5,
+                },
+                {
+                  "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                  "documentId": "doc-3",
+                  "id": 3,
+                  "image": {
+                    "testUri": "../../../assets/images/user01.png",
+                  },
+                  "name": "Emily Anderson",
+                  "rating": 5,
+                },
+                {
+                  "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                  "documentId": "doc-4",
+                  "id": 4,
+                  "image": {
+                    "testUri": "../../../assets/images/user01.png",
+                  },
+                  "name": "Emily Anderson",
+                  "rating": 5,
+                },
+              ],
+              "specialty": {
+                "description": "Specialized in heart-related conditions and treatments.",
+                "doctors": [],
+                "documentId": "123e4567-e89b-12d3-a456-426614174000",
+                "id": 1,
+                "name": "Cardiology",
+              },
+              "username": "jdoe",
+              "users_permissions_user": {
+                "avatar": {
+                  "id": 1,
+                  "url": "https://example.com/avatar.jpg",
+                },
+                "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "dateOfBirth": 1990-01-01T00:00:00.000Z,
+                "documentId": "123e4567-e89b-12d3-a456-426614174000",
+                "email": "jdoe@example.com",
+                "gender": true,
+                "id": 1,
+                "name": "John Doe",
+                "nickname": "jdoe",
+                "username": "jdoe",
+              },
+            },
+          ]
+        }
+        dataProvider={
+          DataProvider {
+            "_data": [
+              {
+                "avatar": {
+                  "id": 1,
+                  "url": "https://picsum.photos/id/91/3504/2336",
+                },
+                "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "clinic": {
+                  "address": "123 Main St, Springfield, USA",
+                  "description": "A premier healthcare facility offering top-tier services in Springfield.",
+                  "doctors": [],
+                  "documentId": "123e4567-e89b-12d3-a456-426614174000",
+                  "id": 1,
+                  "image": {
+                    "alt": "Sunrise Hospital",
+                    "id": 1,
+                    "url": "https://picsum.photos/200",
+                  },
+                  "name": "Sunrise Hospital",
+                  "rating": 4.2,
+                  "reivewCouter": 300,
+                  "reviews": [],
+                  "type": "Clinic",
+                },
+                "dateOfBirth": 1980-01-01T00:00:00.000Z,
+                "documentId": "doc_001",
+                "email": "john.smith@example.com",
+                "favoriteId": "fav_001",
+                "gender": true,
+                "id": 1,
+                "name": "Dr. John Smith",
+                "nickname": "jdoe",
+                "rating": 4.8,
+                "reviewCounter": 5,
+                "reviews": [
+                  {
+                    "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                    "documentId": "doc-1",
+                    "id": 1,
+                    "rating": 5,
+                  },
+                  {
+                    "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                    "documentId": "doc-2",
+                    "id": 2,
+                    "image": {
+                      "testUri": "../../../assets/images/user01.png",
+                    },
+                    "name": "Emily Anderson",
+                    "rating": 5,
+                  },
+                  {
+                    "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                    "documentId": "doc-3",
+                    "id": 3,
+                    "image": {
+                      "testUri": "../../../assets/images/user01.png",
+                    },
+                    "name": "Emily Anderson",
+                    "rating": 5,
+                  },
+                  {
+                    "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                    "documentId": "doc-4",
+                    "id": 4,
+                    "image": {
+                      "testUri": "../../../assets/images/user01.png",
+                    },
+                    "name": "Emily Anderson",
+                    "rating": 5,
+                  },
+                ],
+                "specialty": {
+                  "description": "Specialized in heart-related conditions and treatments.",
+                  "doctors": [],
+                  "documentId": "123e4567-e89b-12d3-a456-426614174000",
+                  "id": 1,
+                  "name": "Cardiology",
+                },
+                "username": "jdoe",
+                "users_permissions_user": {
+                  "avatar": {
+                    "id": 1,
+                    "url": "https://example.com/avatar.jpg",
+                  },
+                  "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                  "dateOfBirth": 1990-01-01T00:00:00.000Z,
+                  "documentId": "123e4567-e89b-12d3-a456-426614174000",
+                  "email": "jdoe@example.com",
+                  "gender": true,
+                  "id": 1,
+                  "name": "John Doe",
+                  "nickname": "jdoe",
+                  "username": "jdoe",
+                },
+              },
+            ],
+            "_firstIndexToProcess": 0,
+            "_hasStableIds": true,
+            "_requiresDataChangeHandling": false,
+            "_size": 1,
+            "getStableId": [Function],
+            "rowHasChanged": [Function],
+          }
+        }
+        disableRecycling={false}
+        estimatedItemSize={133}
+        extendedState={{}}
+        externalScrollView={[Function]}
+        finalRenderAheadOffset={250}
+        forceNonDeterministicRendering={true}
+        horizontal={false}
+        initialOffset={0}
+        initialRenderIndex={0}
+        isHorizontal={false}
+        keyExtractor={[Function]}
+        layoutProvider={
+          GridLayoutProviderWithProps {
+            "_acceptableRelayoutDelta": 1,
+            "_getHeightOrWidth": [Function],
+            "_getLayoutTypeForIndex": [Function],
+            "_getSpan": [Function],
+            "_hasExpired": false,
+            "_maxSpan": 1,
+            "_setLayoutForType": [Function],
+            "_tempDim": {
+              "height": 0,
+              "width": 0,
+            },
+            "averageWindow": AverageWindow {
+              "currentAverage": 133,
+              "currentCount": 1,
+              "inputValues": [
+                133,
+              ],
+              "nextIndex": 1,
+            },
+            "defaultEstimatedItemSize": 100,
+            "layoutObject": {
+              "size": undefined,
+              "span": undefined,
+            },
+            "props": {
+              "ItemSeparatorComponent": [Function],
+              "contentContainerStyle": {
+                "paddingHorizontal": 24,
+                "paddingVertical": 8,
+              },
+              "data": [
+                {
+                  "avatar": {
+                    "id": 1,
+                    "url": "https://picsum.photos/id/91/3504/2336",
+                  },
+                  "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                  "clinic": {
+                    "address": "123 Main St, Springfield, USA",
+                    "description": "A premier healthcare facility offering top-tier services in Springfield.",
+                    "doctors": [],
+                    "documentId": "123e4567-e89b-12d3-a456-426614174000",
+                    "id": 1,
+                    "image": {
+                      "alt": "Sunrise Hospital",
+                      "id": 1,
+                      "url": "https://picsum.photos/200",
+                    },
+                    "name": "Sunrise Hospital",
+                    "rating": 4.2,
+                    "reivewCouter": 300,
+                    "reviews": [],
+                    "type": "Clinic",
+                  },
+                  "dateOfBirth": 1980-01-01T00:00:00.000Z,
+                  "documentId": "doc_001",
+                  "email": "john.smith@example.com",
+                  "favoriteId": "fav_001",
+                  "gender": true,
+                  "id": 1,
+                  "name": "Dr. John Smith",
+                  "nickname": "jdoe",
+                  "rating": 4.8,
+                  "reviewCounter": 5,
+                  "reviews": [
+                    {
+                      "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                      "documentId": "doc-1",
+                      "id": 1,
+                      "rating": 5,
+                    },
+                    {
+                      "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                      "documentId": "doc-2",
+                      "id": 2,
+                      "image": {
+                        "testUri": "../../../assets/images/user01.png",
+                      },
+                      "name": "Emily Anderson",
+                      "rating": 5,
+                    },
+                    {
+                      "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                      "documentId": "doc-3",
+                      "id": 3,
+                      "image": {
+                        "testUri": "../../../assets/images/user01.png",
+                      },
+                      "name": "Emily Anderson",
+                      "rating": 5,
+                    },
+                    {
+                      "comment": "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to",
+                      "documentId": "doc-4",
+                      "id": 4,
+                      "image": {
+                        "testUri": "../../../assets/images/user01.png",
+                      },
+                      "name": "Emily Anderson",
+                      "rating": 5,
+                    },
+                  ],
+                  "specialty": {
+                    "description": "Specialized in heart-related conditions and treatments.",
+                    "doctors": [],
+                    "documentId": "123e4567-e89b-12d3-a456-426614174000",
+                    "id": 1,
+                    "name": "Cardiology",
+                  },
+                  "username": "jdoe",
+                  "users_permissions_user": {
+                    "avatar": {
+                      "id": 1,
+                      "url": "https://example.com/avatar.jpg",
+                    },
+                    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "dateOfBirth": 1990-01-01T00:00:00.000Z,
+                    "documentId": "123e4567-e89b-12d3-a456-426614174000",
+                    "email": "jdoe@example.com",
+                    "gender": true,
+                    "id": 1,
+                    "name": "John Doe",
+                    "nickname": "jdoe",
+                    "username": "jdoe",
+                  },
+                },
+              ],
+              "estimatedItemSize": 133,
+              "keyExtractor": [Function],
+              "numColumns": 1,
+              "renderItem": [Function],
+              "showsHorizontalScrollIndicator": false,
+              "showsVerticalScrollIndicator": false,
+            },
+            "renderWindowInsets": {
+              "height": 0,
+              "width": -48,
+            },
+            "shouldRefreshWithAnchoring": true,
+          }
+        }
+        maxRenderAhead={750}
+        numColumns={1}
+        onEndReached={[Function]}
+        onEndReachedThreshold={0}
+        onEndReachedThresholdRelative={0}
+        onItemLayout={[Function]}
         onLayout={[Function]}
-        style={null}
+        onScroll={[Function]}
+        onScrollBeginDrag={[Function]}
+        onSizeChanged={[Function]}
+        onVisibleIndicesChanged={[Function]}
+        removeClippedSubviews={false}
+        renderAheadOffset={0}
+        renderAheadStep={250}
+        renderContentContainer={[Function]}
+        renderItem={[Function]}
+        renderItemContainer={[Function]}
+        rowRenderer={[Function]}
+        scrollEventThrottle={16}
+        scrollThrottle={16}
+        scrollViewProps={
+          {
+            "contentContainerStyle": {
+              "backgroundColor": undefined,
+              "minHeight": 1,
+              "minWidth": 1,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+            },
+            "onLayout": [Function],
+            "onScrollBeginDrag": [Function],
+            "refreshControl": undefined,
+            "style": {
+              "minHeight": 1,
+              "minWidth": 1,
+            },
+          }
+        }
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        style={
+          {
+            "minHeight": 1,
+            "minWidth": 1,
+          }
+        }
+        suppressBoundedSizeException={true}
+        windowCorrectionConfig={
+          {
+            "applyToInitialOffset": true,
+            "applyToItemScroll": true,
+            "value": {
+              "endCorrection": 0,
+              "startCorrection": 0,
+              "windowShift": -0,
+            },
+          }
+        }
       >
-        <View
-          testID="doctor-doc_001"
-        >
-          Dr. John Smith
+        <View>
+          <View
+            style={
+              {
+                "flexDirection": "column",
+              }
+            }
+          >
+            <AutoLayoutView
+              enableInstrumentation={false}
+              horizontal={false}
+              onBlankAreaEvent={[Function]}
+              onLayout={[Function]}
+              renderAheadOffset={0}
+              scrollOffset={0}
+              style={
+                {
+                  "height": 0,
+                  "width": 0,
+                }
+              }
+              windowSize={0}
+            />
+          </View>
         </View>
-      </View>
+      </RCTScrollView>
     </View>
-  </RCTScrollView>,
+  </View>,
 ]
 `;
 
@@ -215,43 +545,226 @@ exports[`DoctorList matches snapshot with empty data 1`] = `
       }
     />
   </View>,
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    collapsable={false}
-    contentContainerStyle={
+  <View
+    style={
       {
-        "paddingBottom": 8,
-        "paddingHorizontal": 24,
+        "flex": 1,
+        "minWidth": 702,
       }
     }
-    data={[]}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    handlerTag={1}
-    handlerType="NativeViewGestureHandler"
-    initialNumToRender={20}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onGestureHandlerEvent={[Function]}
-    onGestureHandlerStateChange={[Function]}
-    onLayout={[Function]}
-    onMomentumScrollBegin={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    renderScrollComponent={[Function]}
-    scrollEventThrottle={0.0001}
-    showsHorizontalScrollIndicator={false}
-    showsVerticalScrollIndicator={false}
-    stickyHeaderIndices={[]}
-    viewabilityConfigCallbackPairs={[]}
-    windowSize={5}
   >
-    <View />
-  </RCTScrollView>,
+    <View
+      style={
+        {
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <RCTScrollView
+        ItemSeparatorComponent={[Function]}
+        applyWindowCorrection={[Function]}
+        canChangeSize={true}
+        contentContainerStyle={
+          {
+            "backgroundColor": undefined,
+            "minHeight": 1,
+            "minWidth": 1,
+            "paddingLeft": 24,
+            "paddingRight": 24,
+          }
+        }
+        contentHeight={0}
+        contentWidth={0}
+        data={[]}
+        dataProvider={
+          DataProvider {
+            "_data": [],
+            "_firstIndexToProcess": 0,
+            "_hasStableIds": true,
+            "_requiresDataChangeHandling": false,
+            "_size": 0,
+            "getStableId": [Function],
+            "rowHasChanged": [Function],
+          }
+        }
+        disableRecycling={false}
+        estimatedItemSize={133}
+        extendedState={{}}
+        externalScrollView={[Function]}
+        finalRenderAheadOffset={250}
+        forceNonDeterministicRendering={true}
+        horizontal={false}
+        initialOffset={0}
+        initialRenderIndex={0}
+        isHorizontal={false}
+        keyExtractor={[Function]}
+        layoutProvider={
+          GridLayoutProviderWithProps {
+            "_acceptableRelayoutDelta": 1,
+            "_getHeightOrWidth": [Function],
+            "_getLayoutTypeForIndex": [Function],
+            "_getSpan": [Function],
+            "_hasExpired": false,
+            "_maxSpan": 1,
+            "_setLayoutForType": [Function],
+            "_tempDim": {
+              "height": 0,
+              "width": 0,
+            },
+            "averageWindow": AverageWindow {
+              "currentAverage": 133,
+              "currentCount": 1,
+              "inputValues": [
+                133,
+              ],
+              "nextIndex": 1,
+            },
+            "defaultEstimatedItemSize": 100,
+            "layoutObject": {
+              "size": undefined,
+              "span": undefined,
+            },
+            "props": {
+              "ItemSeparatorComponent": [Function],
+              "contentContainerStyle": {
+                "paddingHorizontal": 24,
+                "paddingVertical": 8,
+              },
+              "data": [],
+              "estimatedItemSize": 133,
+              "keyExtractor": [Function],
+              "numColumns": 1,
+              "renderItem": [Function],
+              "showsHorizontalScrollIndicator": false,
+              "showsVerticalScrollIndicator": false,
+            },
+            "renderWindowInsets": {
+              "height": 0,
+              "width": -48,
+            },
+            "shouldRefreshWithAnchoring": true,
+          }
+        }
+        maxRenderAhead={750}
+        numColumns={1}
+        onEndReached={[Function]}
+        onEndReachedThreshold={0}
+        onEndReachedThresholdRelative={0}
+        onItemLayout={[Function]}
+        onLayout={[Function]}
+        onScroll={[Function]}
+        onScrollBeginDrag={[Function]}
+        onSizeChanged={[Function]}
+        onVisibleIndicesChanged={[Function]}
+        removeClippedSubviews={false}
+        renderAheadOffset={0}
+        renderAheadStep={250}
+        renderContentContainer={[Function]}
+        renderItem={[Function]}
+        renderItemContainer={[Function]}
+        rowRenderer={[Function]}
+        scrollEventThrottle={16}
+        scrollThrottle={16}
+        scrollViewProps={
+          {
+            "contentContainerStyle": {
+              "backgroundColor": undefined,
+              "minHeight": 1,
+              "minWidth": 1,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+            },
+            "onLayout": [Function],
+            "onScrollBeginDrag": [Function],
+            "refreshControl": undefined,
+            "style": {
+              "minHeight": 1,
+              "minWidth": 1,
+            },
+          }
+        }
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        style={
+          {
+            "minHeight": 1,
+            "minWidth": 1,
+          }
+        }
+        suppressBoundedSizeException={true}
+        windowCorrectionConfig={
+          {
+            "applyToInitialOffset": true,
+            "applyToItemScroll": true,
+            "value": {
+              "endCorrection": 0,
+              "startCorrection": 0,
+              "windowShift": -0,
+            },
+          }
+        }
+      >
+        <View>
+          <View
+            style={
+              {
+                "flexDirection": "column",
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "paddingLeft": 24,
+                  "paddingTop": 8,
+                }
+              }
+            />
+            <View
+              style={
+                [
+                  undefined,
+                  undefined,
+                ]
+              }
+            />
+            <AutoLayoutView
+              enableInstrumentation={false}
+              horizontal={false}
+              onBlankAreaEvent={[Function]}
+              onLayout={[Function]}
+              renderAheadOffset={0}
+              scrollOffset={0}
+              style={
+                {
+                  "height": 0,
+                  "width": 0,
+                }
+              }
+              windowSize={0}
+            />
+            <CellContainer
+              index={-1}
+              style={
+                [
+                  undefined,
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                {
+                  "paddingBottom": 8,
+                  "paddingRight": 24,
+                }
+              }
+            />
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>,
 ]
 `;

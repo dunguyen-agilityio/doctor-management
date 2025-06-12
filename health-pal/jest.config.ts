@@ -11,6 +11,7 @@ const config: Config = {
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
     '!src/**/*.test.{ts,tsx}',
+    '!src/**/*.stories.{ts,tsx}',
     '!src/**/mocks/**',
     '!src/**/types/**',
     '!src/**/theme/**',
@@ -18,6 +19,7 @@ const config: Config = {
     '!src/**/icons/**',
     '!src/**/constants/**',
   ],
+  testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)', '!**/*.stories.[jt]s?(x)'],
 }
 
 export default config

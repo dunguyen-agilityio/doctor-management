@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useImperativeHandle, useRef } from 'react'
 import { TextInput } from 'react-native'
 
 import dayjs from 'dayjs'
@@ -12,8 +12,9 @@ import { CalendarIcon } from '@icons'
 
 import DatePicker, { DatePickerProps } from '../date-picker'
 
-interface DateInputProps extends Omit<InputProps, 'value'> {
+interface DateInputProps extends Omit<InputProps, 'value' | 'defaultValue'> {
   value?: Date | null
+  defaultValue?: Date | null
   ref?: React.Ref<TextInput | null>
   onChangeValue?: (value: Date) => void
   errorMessage?: string
@@ -24,29 +25,29 @@ const DateInput = ({
   errorMessage,
   onChangeValue,
   datePickerProps,
-  value: initialValue,
+  defaultValue,
+  value: initialValue = defaultValue,
+  ref,
   ...props
 }: DateInputProps) => {
-  const [value, setValue] = useState<DateType>()
+  const containerRef = useRef<Popover>(null)
   const inputRef = useRef<TextInput>(null)
 
-  const containerRef = useRef<Popover>(null)
-
-  useEffect(() => {
-    if (initialValue) {
-      setValue(initialValue)
-    }
-  }, [initialValue])
-
-  const handleOpenDatePicker = () => {
-    containerRef.current?.open()
-  }
+  useImperativeHandle(
+    ref,
+    () =>
+      ({
+        ...inputRef.current,
+        focus: () => {
+          inputRef.current?.focus()
+          containerRef.current?.open()
+        },
+      }) as TextInput,
+  )
 
   const handleChange = (date: DateType) => {
-    setValue(date)
     containerRef.current?.close()
     onChangeValue?.(dayjs(date).toDate())
-    inputRef.current?.blur()
   }
 
   return (
@@ -64,20 +65,18 @@ const DateInput = ({
         aria-label="Date picker"
         accessibilityHint="Select a date from the calendar"
         role="dialog">
-        <Button
-          onPress={handleOpenDatePicker}
-          padding={0}
-          aria-label="Select date"
-          accessibilityHint="Opens a date picker to choose a date">
+        <Button padding={0}>
           <Input
             {...props}
             ref={inputRef}
             leftIcon={CalendarIcon}
             textContentType="dateTime"
-            value={value ? dayjs(value).format('DD/MM/YYYY') : ''}
+            value={initialValue ? dayjs(initialValue).format('DD/MM/YYYY') : ''}
             errorMessage={errorMessage}
             editable={false}
             pointerEvents="none"
+            aria-label="Select date"
+            accessibilityHint="Opens a date picker to choose a date"
           />
         </Button>
       </Popover.Trigger>
@@ -95,7 +94,7 @@ const DateInput = ({
             },
           },
         ]}>
-        <DatePicker onChange={handleChange} date={value} {...datePickerProps} />
+        <DatePicker onChange={handleChange} date={initialValue} {...datePickerProps} />
       </Popover.Content>
     </Popover>
   )
