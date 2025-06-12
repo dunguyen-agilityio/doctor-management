@@ -1,4 +1,4 @@
-import { StrapiParams } from '@app/types/strapi'
+import { StrapiParams } from '@/types/strapi'
 
 export const buildStrapiQuery = ({ filters, pagination }: StrapiParams) => {
   const params = new URLSearchParams()

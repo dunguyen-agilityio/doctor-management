@@ -1,14 +1,14 @@
+import { X } from '@/icons'
+
 import { useEffect } from 'react'
 
 import { Button, Dialog, DialogContentProps, DialogProps, Unspaced } from 'tamagui'
 
-import { WINDOW_SIZE } from '@app/constants'
+import { WINDOW_SIZE } from '@/constants'
 
-import { useModal } from '@app/hooks/use-modal'
+import { useModal } from '@/hooks/use-modal'
 
-import { X } from '@icons'
-
-import { ModalRef } from '@app/types/modal'
+import { ModalRef } from '@/types/modal'
 
 export interface ModalProps extends DialogContentProps, Omit<DialogProps, 'children'> {
   closeButtonShown?: boolean

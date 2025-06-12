@@ -1,20 +1,3 @@
-import { useRef } from 'react'
-
-import { router } from 'expo-router'
-
-import { useToastController } from '@tamagui/toast'
-import { Separator } from 'tamagui'
-
-import { useAppLoading } from '@app/hooks'
-import { useSession } from '@app/hooks/use-session'
-
-import { ListItem, Text, Upload, YStack } from '@app/components'
-
-import LogoutModal from '@app/ui/profile/logout-modal'
-
-import { updateProfile } from '@app/services/auth'
-import { uploadToStrapi } from '@app/services/upload-image'
-
 import {
   HeartOutline,
   LogoutIcon,
@@ -23,11 +6,28 @@ import {
   SecuritySafe,
   SettingIcon,
   UserEditIcon,
-} from '@icons'
+} from '@/icons'
 
-import { withUpcomingFeature } from '@app/hocs/with-upcoming-feature'
+import { useRef } from 'react'
 
-import { ModalRef } from '@app/types/modal'
+import { router } from 'expo-router'
+
+import { useToastController } from '@tamagui/toast'
+import { Separator } from 'tamagui'
+
+import { useAppLoading } from '@/hooks'
+import { useSession } from '@/hooks/use-session'
+
+import { ListItem, Text, Upload, YStack } from '@/components'
+
+import LogoutModal from '@/ui/profile/logout-modal'
+
+import { updateProfile } from '@/services/auth'
+import { uploadToStrapi } from '@/services/upload-image'
+
+import { withUpcomingFeature } from '@/hocs/with-upcoming-feature'
+
+import { ModalRef } from '@/types/modal'
 
 const ListItemUpcoming = withUpcomingFeature(ListItem)
 

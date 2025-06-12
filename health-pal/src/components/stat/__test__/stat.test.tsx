@@ -1,8 +1,8 @@
 import { render, screen } from '@utils-test'
 
-import { Text } from '@app/components/common'
+import { tokens } from '@tamagui.config'
 
-import { tokens } from '@/tamagui.config'
+import { Text } from '@/components/common'
 
 import DoctorStat from '..'
 

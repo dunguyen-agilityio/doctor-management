@@ -1,4 +1,4 @@
-import { TImage } from '@app/types/image'
+import { TImage } from '@/types/image'
 
 import { Strapi } from './strapi'
 

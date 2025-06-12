@@ -7,9 +7,9 @@ import {
   Neurology,
   Pulmonology,
   Vaccination,
-} from '@icons'
+} from '@/icons'
 
-import { TSpecialty } from '@app/types/specialty'
+import { TSpecialty } from '@/types/specialty'
 
 export const SPECIALTY_LIST: TSpecialty[] = [
   { name: 'Dentistry', value: 'dentistry', icon: Dentistry, color: '#DC9497' },

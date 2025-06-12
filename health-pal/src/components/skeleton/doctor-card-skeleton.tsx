@@ -1,6 +1,6 @@
-import { Card, Separator, XStack, YStack } from 'tamagui'
+import { getMediaQuery } from '@/utils/media-query'
 
-import { getMediaQuery } from '@app/utils/media-query'
+import { Card, Separator, XStack, YStack } from 'tamagui'
 
 import { LineLoader } from './line-loader'
 import { MediaLoader } from './media-loader'

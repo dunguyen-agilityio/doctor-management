@@ -2,7 +2,7 @@ import { Platform } from 'react-native'
 
 import * as FileSystem from 'expo-file-system'
 
-import { API_ENDPOINT } from '@app/constants'
+import { API_ENDPOINT } from '@/constants'
 
 export const uploadToStrapi = async (imageUri: string) => {
   const jwt = process.env.EXPO_PUBLIC_APP_TOKEN ?? ''

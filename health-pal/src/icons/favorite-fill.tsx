@@ -1,6 +1,6 @@
 import Svg, { Path, SvgProps } from 'react-native-svg'
 
-import { tokens } from '@/tamagui.config'
+import { tokens } from '@tamagui.config'
 
 const FavoriteFill = ({
   fill = tokens.color.primary.val,

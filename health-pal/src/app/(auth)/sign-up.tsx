@@ -1,17 +1,16 @@
+import { Facebook, Google } from '@/icons'
+import Logo from '@/icons/logo'
+import { User } from '@/models/user'
+
 import { Link, router } from 'expo-router'
 
-import { useSession } from '@app/hooks/use-session'
+import { useSession } from '@/hooks/use-session'
 
-import { ButtonWithUpcoming, Heading, Text, XStack, YStack } from '@app/components'
+import { ButtonWithUpcoming, Heading, Text, XStack, YStack } from '@/components'
 
-import { SignupForm } from '@app/ui/auth'
+import { SignupForm } from '@/ui/auth'
 
-import { Facebook, Google } from '@icons'
-import Logo from '@icons/logo'
-
-import { SignupData } from '@app/types'
-
-import { User } from '@app/models/user'
+import { SignupData } from '@/types'
 
 const SignUp = () => {
   const { setUser, session } = useSession()

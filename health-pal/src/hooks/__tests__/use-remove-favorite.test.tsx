@@ -4,9 +4,9 @@ import { useMutation } from '@tanstack/react-query'
 
 import { useToastController } from '@tamagui/toast'
 
-import { removeFavorite } from '@app/services/favorite'
+import { removeFavorite } from '@/services/favorite'
 
-import { FAVORITE_TYPES } from '@app/types/favorite'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
 import { useRemoveFavorite } from '../use-remove-favorite'
 import { useSession } from '../use-session'
@@ -22,12 +22,12 @@ jest.mock('@tamagui/toast', () => ({
   useToastController: jest.fn(),
 }))
 
-jest.mock('@app/contexts', () => ({
-  ...jest.requireActual('@app/contexts'),
+jest.mock('@/contexts', () => ({
+  ...jest.requireActual('@/contexts'),
   useSession: jest.fn(),
 }))
 
-jest.mock('@app/services/favorite', () => ({
+jest.mock('@/services/favorite', () => ({
   removeFavorite: jest.fn(),
 }))
 

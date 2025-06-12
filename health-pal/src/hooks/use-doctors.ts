@@ -1,12 +1,12 @@
+import { TDoctorData } from '@/models/doctor'
+
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-import { DOCTOR_QUERY_KEY } from '@app/constants/doctor'
+import { DOCTOR_QUERY_KEY } from '@/constants/doctor'
 
-import { getDoctors } from '@app/services/doctor'
+import { getDoctors } from '@/services/doctor'
 
-import { StrapiPagination } from '@app/types/strapi'
-
-import { TDoctorData } from '@app/models/doctor'
+import { StrapiPagination } from '@/types/strapi'
 
 const useDoctors = (query: string, specialty: string[]) => {
   const getDoctorsPromise = async ({ pageParam = 1 }: { pageParam: number }) => {

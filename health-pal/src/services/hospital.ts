@@ -1,9 +1,9 @@
-import { APP_TOKEN } from '@app/constants'
+import { Hospital } from '@/models/hospital'
+import { buildStrapiQuery } from '@/utils/strapi'
 
-import { StrapiPagination, StrapiParams } from '@app/types/strapi'
+import { APP_TOKEN } from '@/constants'
 
-import { Hospital } from '@app/models/hospital'
-import { buildStrapiQuery } from '@app/utils/strapi'
+import { StrapiPagination, StrapiParams } from '@/types/strapi'
 
 import { apiClient } from './http-client'
 

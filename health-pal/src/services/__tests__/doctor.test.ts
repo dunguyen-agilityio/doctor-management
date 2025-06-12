@@ -1,10 +1,10 @@
 // __tests__/doctor.test.ts
-import { getDoctor, getDoctors } from '@app/services/doctor'
-import { apiClient } from '@app/services/http-client'
+import { MOCK_REVIEWS } from '@/mocks/review'
 
-import { MOCK_REVIEWS } from '@app/mocks/reivew'
+import { getDoctor, getDoctors } from '@/services/doctor'
+import { apiClient } from '@/services/http-client'
 
-jest.mock('@app/services/http-client', () => ({
+jest.mock('@/services/http-client', () => ({
   apiClient: {
     get: jest.fn(),
   },

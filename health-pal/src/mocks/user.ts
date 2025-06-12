@@ -1,4 +1,4 @@
-import { User } from '@app/models/user'
+import { User } from '@/models/user'
 
 export const MOCK_USER: User = {
   id: 1,

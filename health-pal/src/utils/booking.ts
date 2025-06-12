@@ -1,6 +1,6 @@
-import dayjs from 'dayjs'
+import { BookingData } from '@/models/booking'
 
-import { BookingData } from '@app/models/booking'
+import dayjs from 'dayjs'
 
 export const formatBooking = ({ doctor, date, documentId, id, time, type }: BookingData) => {
   const { users_permissions_user, clinic, documentId: doctorDocId, id: doctorId } = doctor

@@ -1,8 +1,8 @@
+import { Check, LockIcon } from '@/icons'
+
 import { View } from 'react-native'
 
 import type { Meta, StoryObj } from '@storybook/react'
-
-import { Check, LockIcon } from '@app/icons'
 
 import { Input } from '.'
 

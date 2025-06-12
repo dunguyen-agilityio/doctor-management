@@ -1,3 +1,5 @@
+import { ShieldTick } from '@/icons'
+import { formatShortTime } from '@/utils/date'
 import { useFormContext } from 'react-hook-form'
 
 import dayjs from 'dayjs'
@@ -5,16 +7,13 @@ import { router } from 'expo-router'
 
 import { YStack } from 'tamagui'
 
-import { Button, Heading, Text } from '@app/components/common'
-import Modal from '@app/components/common/modal'
+import { Button, Heading, Text } from '@/components/common'
+import Modal from '@/components/common/modal'
 
-import { ShieldTick } from '@icons'
+import { BOOKING_TABS, BookingForm } from '@/types/booking'
+import { ModalRef } from '@/types/modal'
 
-import { BOOKING_TABS, BookingForm } from '@app/types/booking'
-import { ModalRef } from '@app/types/modal'
-
-import { queryClient } from '@app/react-query.config'
-import { formatShortTime } from '@app/utils/date'
+import { queryClient } from '@react-query.config'
 
 type Props = {
   ref?: React.RefObject<ModalRef | null>

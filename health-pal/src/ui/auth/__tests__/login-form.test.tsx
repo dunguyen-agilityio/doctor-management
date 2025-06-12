@@ -2,9 +2,9 @@ import { act, fireEvent, render, screen, waitFor } from '@utils-test'
 
 import { Keyboard } from 'react-native'
 
-import { VALIDATIONS_MESSAGE } from '@app/constants'
+import { VALIDATIONS_MESSAGE } from '@/constants'
 
-import { queryClient } from '@app/react-query.config'
+import { queryClient } from '@react-query.config'
 
 import LoginForm from '../login-form'
 

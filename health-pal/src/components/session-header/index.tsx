@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 
-import { Heading, Text, XStack } from '@app/components/common'
+import { Heading, Text, XStack } from '@/components/common'
 
 interface SessionHeaderProps {
   title: string

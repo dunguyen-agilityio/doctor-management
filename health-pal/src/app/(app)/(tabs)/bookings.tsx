@@ -2,11 +2,11 @@ import { router, useLocalSearchParams } from 'expo-router'
 
 import { Separator, Tabs } from 'tamagui'
 
-import { TAB_DEFAULT_PROPS, TabsContent, TabsTab } from '@app/components'
+import { TAB_DEFAULT_PROPS, TabsContent, TabsTab } from '@/components'
 
-import BookingList from '@app/ui/booking/booking-list'
+import BookingList from '@/ui/booking/booking-list'
 
-import { BOOKING_TABS } from '@app/types/booking'
+import { BOOKING_TABS } from '@/types/booking'
 
 const Booking = () => {
   const { type = BOOKING_TABS.UPCOMING } = useLocalSearchParams<{ type?: BOOKING_TABS }>()

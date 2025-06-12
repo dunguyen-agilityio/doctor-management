@@ -1,10 +1,10 @@
-import { FAVORITE_QUERY_KEY } from '@app/constants/favorite'
+import { TDoctorData } from '@/models/doctor'
+import { Hospital } from '@/models/hospital'
+import { buildStrapiQuery } from '@/utils/strapi'
 
-import { FAVORITE_TYPES } from '@app/types/favorite'
+import { FAVORITE_QUERY_KEY } from '@/constants/favorite'
 
-import { TDoctorData } from '@app/models/doctor'
-import { Hospital } from '@app/models/hospital'
-import { buildStrapiQuery } from '@app/utils/strapi'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
 import { getJwt } from './auth'
 import { apiClient } from './http-client'

@@ -1,13 +1,13 @@
 import { Stack } from 'tamagui'
 
-import { useFavoriteHospitals } from '@app/hooks/use-favorite'
-import useHospitals from '@app/hooks/use-hospitals'
+import { useFavoriteHospitals } from '@/hooks/use-favorite'
+import useHospitals from '@/hooks/use-hospitals'
 
-import { ErrorState } from '@app/components'
-import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
+import { ErrorState } from '@/components'
+import HospitalListSkeleton from '@/components/skeleton/hospital-list-skeleton'
 
-import HospitalCard from '@app/ui/hospital/hospital-card'
-import HospitalList, { HospitalProps } from '@app/ui/hospital/hospital-list'
+import HospitalCard from '@/ui/hospital/hospital-card'
+import HospitalList, { HospitalProps } from '@/ui/hospital/hospital-list'
 
 const ItemSeparatorComponent = () => <Stack width={16} />
 

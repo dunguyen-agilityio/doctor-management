@@ -2,11 +2,11 @@ import { useMutation } from '@tanstack/react-query'
 
 import { useToastController } from '@tamagui/toast'
 
-import { removeFavorite } from '@app/services/favorite'
+import { removeFavorite } from '@/services/favorite'
 
-import { FAVORITE_TYPES } from '@app/types/favorite'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
-import { queryClient } from '@app/react-query.config'
+import { queryClient } from '@react-query.config'
 
 import { useRequireAuth } from './use-require-auth'
 

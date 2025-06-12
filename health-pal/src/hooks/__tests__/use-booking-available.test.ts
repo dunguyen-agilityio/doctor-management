@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@utils-test'
 
 import { useQuery } from '@tanstack/react-query'
 
-import { getBookingAvailable } from '@app/services/booking'
+import { getBookingAvailable } from '@/services/booking'
 
 import useBookingAvailable from '../use-booking-available'
 
@@ -12,7 +12,7 @@ jest.mock('@tanstack/react-query', () => ({
   useQuery: jest.fn(),
 }))
 
-jest.mock('@app/services/booking', () => ({
+jest.mock('@/services/booking', () => ({
   getBookingAvailable: jest.fn(),
 }))
 

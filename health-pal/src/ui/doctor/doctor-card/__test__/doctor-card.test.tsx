@@ -1,6 +1,5 @@
+import { TDoctorCard } from '@/models/doctor'
 import { render } from '@utils-test'
-
-import { TDoctorCard } from '@app/models/doctor'
 
 import DoctorCard from '..'
 

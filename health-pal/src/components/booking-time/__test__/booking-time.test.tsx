@@ -2,7 +2,7 @@ import { render } from '@utils-test'
 
 import dayjs from 'dayjs'
 
-import { TIME_SLOTS } from '@app/constants/booking'
+import { TIME_SLOTS } from '@/constants/booking'
 
 import BookingTime from '..'
 

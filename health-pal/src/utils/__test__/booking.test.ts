@@ -1,10 +1,10 @@
-import { BOOKING_TABS } from '@app/types'
+import { MOCK_BOOKING } from '@/mocks/booking'
 
-import { MOCK_BOOKING } from '@app/mocks/booking'
+import { BOOKING_TABS } from '@/types'
 
 import { formatBooking } from '../booking'
 
-jest.mock('@app/models/booking', () => ({
+jest.mock('@/models/booking', () => ({
   BookingData: jest.fn(),
   BOOKING_TABS: {
     UPCOMING: 'UPCOMING',

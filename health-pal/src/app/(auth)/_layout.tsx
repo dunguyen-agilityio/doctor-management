@@ -1,6 +1,6 @@
 import { RelativePathString, Stack, router } from 'expo-router'
 
-import Header from '@app/components/header'
+import Header from '@/components/header'
 
 const AuthLayout = () => {
   return (

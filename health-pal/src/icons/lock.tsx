@@ -1,6 +1,6 @@
 import Svg, { Path, SvgProps } from 'react-native-svg'
 
-import { tokens } from '@/tamagui.config'
+import { tokens } from '@tamagui.config'
 
 const Lock = ({ stroke = tokens.color.grey400.val, ...props }: SvgProps) => {
   return (

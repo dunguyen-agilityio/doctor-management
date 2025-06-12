@@ -1,7 +1,6 @@
+import { Session, User } from '@/models/user'
+import { setStorageItemAsync } from '@/utils/storage'
 import { create } from 'zustand'
-
-import { Session, User } from '@app/models/user'
-import { setStorageItemAsync } from '@app/utils/storage'
 
 type AuthState = {
   user: Session['user'] | null

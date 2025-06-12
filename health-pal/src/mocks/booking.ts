@@ -1,6 +1,6 @@
-import { BOOKING_TABS } from '@app/types/booking'
+import { BookingData } from '@/models/booking'
 
-import { BookingData } from '@app/models/booking'
+import { BOOKING_TABS } from '@/types/booking'
 
 import { MOCK_DOCTORS } from './doctor'
 import { MOCK_PATIENT } from './patient'

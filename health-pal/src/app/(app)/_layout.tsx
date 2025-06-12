@@ -1,13 +1,13 @@
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack'
 import { Redirect, Stack } from 'expo-router'
 
-import { APP_TITLES } from '@app/constants/route'
+import { APP_TITLES } from '@/constants/route'
 
-import { useSession } from '@app/hooks/use-session'
+import { useSession } from '@/hooks/use-session'
 
-import Header from '@app/components/header'
+import Header from '@/components/header'
 
-import { APP_ROUTES } from '@app/types'
+import { APP_ROUTES } from '@/types'
 
 const screenOptions: NativeStackNavigationOptions = {
   header: ({ navigation, route }) => {

@@ -2,14 +2,14 @@ import { Image } from 'expo-image'
 
 import { StackProps } from 'tamagui'
 
-import { Heading, Text, YStack } from '@app/components'
+import { Heading, Text, YStack } from '@/components'
 
-import { TDoctorBanner } from '@app/types/doctor'
+import { TDoctorBanner } from '@/types/doctor'
 
 const DoctorBannerCard = ({
   title,
   description,
-  image = require('@/assets/images/banner01.webp'),
+  image = require('@assets/images/banner01.webp'),
   ...props
 }: StackProps & TDoctorBanner) => {
   return (

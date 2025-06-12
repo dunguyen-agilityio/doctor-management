@@ -1,9 +1,9 @@
-import { TDoctorBanner } from '@app/types/doctor'
+import { TDoctorData } from '@/models/doctor'
 
-import { TDoctorData } from '@app/models/doctor'
+import { TDoctorBanner } from '@/types/doctor'
 
 import { MOCK_HOSPITALS } from './hospital'
-import { MOCK_REVIEWS } from './reivew'
+import { MOCK_REVIEWS } from './review'
 import { MOCK_SPECIALTY } from './specialty'
 import { MOCK_USER } from './user'
 

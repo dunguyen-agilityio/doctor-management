@@ -1,3 +1,4 @@
+import { formatShortTime, getDateSkippingWeekend, splitTime } from '@/utils/date'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 
 import { useCallback, useMemo, useRef } from 'react'
@@ -9,21 +10,20 @@ import { DateType } from 'react-native-ui-datepicker'
 
 import { useToastController } from '@tamagui/toast'
 
-import { useAppLoading } from '@app/hooks'
-import { useRequireAuth } from '@app/hooks/use-require-auth'
+import { useAppLoading } from '@/hooks'
+import { useRequireAuth } from '@/hooks/use-require-auth'
 
-import { Button, DatePicker, Heading, LoadingIndicator, YStack } from '@app/components'
-import BookingTime from '@app/components/booking-time'
+import { Button, DatePicker, Heading, LoadingIndicator, YStack } from '@/components'
+import BookingTime from '@/components/booking-time'
 
-import { CreateBookingSuccessModal } from '@app/ui/booking/create-booking-success-modal'
-import ReloadTimeSlotConfirmModal from '@app/ui/booking/reload-time-slot'
+import { CreateBookingSuccessModal } from '@/ui/booking/create-booking-success-modal'
+import ReloadTimeSlotConfirmModal from '@/ui/booking/reload-time-slot'
 
-import { addBooking, getBookingAvailable, updateBooking } from '@app/services/booking'
+import { addBooking, getBookingAvailable, updateBooking } from '@/services/booking'
 
-import { BookingForm, ModalRef } from '@app/types'
+import { BookingForm, ModalRef } from '@/types'
 
-import { queryClient } from '@app/react-query.config'
-import { formatShortTime, getDateSkippingWeekend, splitTime } from '@app/utils/date'
+import { queryClient } from '@react-query.config'
 
 type BookingScreenParams = {
   doctorId: string

@@ -1,10 +1,10 @@
+import { CheckCircle } from '@/icons'
+
 import { BackHandler } from 'react-native'
 
-import { Button, Heading, Modal, Text, YStack } from '@app/components/common'
+import { Button, Heading, Modal, Text, YStack } from '@/components/common'
 
-import { CheckCircle } from '@icons'
-
-import { ModalRef } from '@app/types/modal'
+import { ModalRef } from '@/types/modal'
 
 const QuitAppConfirmModal = ({ ref }: { ref?: React.RefObject<ModalRef | null> }) => {
   const handleCancelBooking = () => {

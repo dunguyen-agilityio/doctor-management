@@ -2,13 +2,13 @@ import { Fragment } from 'react'
 
 import { AlertDialog, AlertDialogContentProps, AlertDialogProps, TamaguiElement } from 'tamagui'
 
-import { WINDOW_SIZE } from '@app/constants'
+import { WINDOW_SIZE } from '@/constants'
 
-import { useModal } from '@app/hooks/use-modal'
+import { useModal } from '@/hooks/use-modal'
 
-import { Button, Heading, Text, XStack } from '@app/components/common'
+import { Button, Heading, Text, XStack } from '@/components/common'
 
-import { ModalRef } from '@app/types/modal'
+import { ModalRef } from '@/types/modal'
 
 interface CustomAlertDialogProps extends AlertDialogProps {
   title?: string

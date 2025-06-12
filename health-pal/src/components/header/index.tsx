@@ -1,8 +1,8 @@
+import { BackIcon } from '@/icons/index'
+
 import { TextProps, XStackProps } from 'tamagui'
 
-import { Button, Heading, XStack } from '@app/components/common'
-
-import { BackIcon } from '@icons/index'
+import { Button, Heading, XStack } from '@/components/common'
 
 interface HeaderProps extends XStackProps {
   title?: string

@@ -1,13 +1,23 @@
+import Medal from '@/icons/medal'
+import Messages from '@/icons/messages'
+import Star from '@/icons/star'
+import TwoUser from '@/icons/two-user'
+import { useFavoritesStore } from '@/stores/favorite'
+import { formatDoctor } from '@/utils/doctor'
+import { formatReview } from '@/utils/review'
+
 import { useRef } from 'react'
 import { GestureResponderEvent } from 'react-native'
 
 import { Stack, router, useLocalSearchParams } from 'expo-router'
 
-import { APP_TITLES } from '@app/constants/route'
+import { tokens } from '@tamagui.config'
 
-import { useAddFavorite } from '@app/hooks/use-add-favorite'
-import useDoctor from '@app/hooks/use-doctor'
-import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
+import { APP_TITLES } from '@/constants/route'
+
+import { useAddFavorite } from '@/hooks/use-add-favorite'
+import useDoctor from '@/hooks/use-doctor'
+import { useRemoveFavorite } from '@/hooks/use-remove-favorite'
 
 import {
   Button,
@@ -19,28 +29,17 @@ import {
   Text,
   XStack,
   YStack,
-} from '@app/components'
-import ErrorState from '@app/components/error'
-import Header from '@app/components/header'
+} from '@/components'
+import ErrorState from '@/components/error'
+import Header from '@/components/header'
 
-import DoctorCard from '@app/ui/doctor/doctor-card'
-import { FavoriteButton } from '@app/ui/favorite'
-import RemoveFavoriteModal from '@app/ui/favorite/remove-favorite-confirm-modal'
+import DoctorCard from '@/ui/doctor/doctor-card'
+import { FavoriteButton } from '@/ui/favorite'
+import RemoveFavoriteModal from '@/ui/favorite/remove-favorite-confirm-modal'
 
-import Medal from '@icons/medal'
-import Messages from '@icons/messages'
-import Star from '@icons/star'
-import TwoUser from '@icons/two-user'
-
-import { FAVORITE_TYPES } from '@app/types/favorite'
-import { ModalRef } from '@app/types/modal'
-import { APP_ROUTES } from '@app/types/route'
-
-import { useFavoritesStore } from '@app/stores/favorite'
-import { formatDoctor } from '@app/utils/doctor'
-import { formatReview } from '@app/utils/review'
-
-import { tokens } from '@/tamagui.config'
+import { FAVORITE_TYPES } from '@/types/favorite'
+import { ModalRef } from '@/types/modal'
+import { APP_ROUTES } from '@/types/route'
 
 const Details = () => {
   const params = useLocalSearchParams<{ id: string }>()

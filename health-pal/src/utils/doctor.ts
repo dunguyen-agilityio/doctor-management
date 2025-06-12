@@ -1,4 +1,4 @@
-import { TDoctorCard, TDoctorData } from '@app/models/doctor'
+import { TDoctorCard, TDoctorData } from '@/models/doctor'
 
 export const formatDoctor = ({
   clinic,

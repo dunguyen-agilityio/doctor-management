@@ -3,13 +3,12 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@theme/*": ["./src/theme/*"],
-      "@theme": ["./src/theme"],
       "@utils-test": ["./src/utils-test"],
-      "@icons/*": ["./src/icons/*"],
-      "@icons": ["./src/icons"],
-      "@app/*": ["./src/*"],
-      "@/*": ["./*"]
+      "@/*": ["./src/*"],
+      "@assets/*": ["./assets/*"],
+      "@react-query.config": ["./react-query.config"],
+      "@tamagui.config": ["./tamagui.config"],
+      "@storybook": ["./.storybook"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],

@@ -1,11 +1,11 @@
-import { APP_TOKEN } from '@app/constants'
-import { DOCTOR_QUERY_KEY } from '@app/constants/doctor'
+import { MOCK_REVIEWS } from '@/mocks/review'
+import { TDoctorData } from '@/models/doctor'
+import { buildStrapiQuery } from '@/utils/strapi'
 
-import { StrapiPagination, StrapiParams } from '@app/types/strapi'
+import { APP_TOKEN } from '@/constants'
+import { DOCTOR_QUERY_KEY } from '@/constants/doctor'
 
-import { MOCK_REVIEWS } from '@app/mocks/reivew'
-import { TDoctorData } from '@app/models/doctor'
-import { buildStrapiQuery } from '@app/utils/strapi'
+import { StrapiPagination, StrapiParams } from '@/types/strapi'
 
 import { apiClient } from './http-client'
 

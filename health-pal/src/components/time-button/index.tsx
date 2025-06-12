@@ -1,8 +1,8 @@
+import { formatTime } from '@/utils/date'
+
 import { memo } from 'react'
 
-import { Button, ButtonProps } from '@app/components/common'
-
-import { formatTime } from '@app/utils/date'
+import { Button, ButtonProps } from '@/components/common'
 
 interface TimeButtonProps extends ButtonProps {
   onSelect: (value: string) => void

@@ -1,13 +1,13 @@
 import { act, renderHook, waitFor } from '@utils-test'
 
-import { addFavorite } from '@app/services/favorite'
+import { addFavorite } from '@/services/favorite'
 
-import { FAVORITE_TYPES } from '@app/types/favorite'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
 import { useAddFavorite } from '../use-add-favorite'
 
 // Mocks
-jest.mock('@app/services/favorite', () => ({
+jest.mock('@/services/favorite', () => ({
   addFavorite: jest.fn(),
 }))
 

@@ -1,24 +1,23 @@
+import { Hospital as HospitalIcon, Routing } from '@/icons'
+import LocationOutline from '@/icons/location-outline'
+import { Hospital } from '@/models/hospital'
+import { useFavoritesStore } from '@/stores/favorite'
+
 import { useRef } from 'react'
 import { GestureResponderEvent } from 'react-native'
 
 import { Card, Separator, ViewProps, XStack } from 'tamagui'
 
-import { useAddFavorite } from '@app/hooks/use-add-favorite'
-import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
+import { useAddFavorite } from '@/hooks/use-add-favorite'
+import { useRemoveFavorite } from '@/hooks/use-remove-favorite'
 
-import { CloudinaryImage, Heading, Stars, Text } from '@app/components'
+import { CloudinaryImage, Heading, Stars, Text } from '@/components'
 
-import FavoriteButton from '@app/ui/favorite/favorite-button'
-import RemoveFavoriteModal from '@app/ui/favorite/remove-favorite-confirm-modal'
+import FavoriteButton from '@/ui/favorite/favorite-button'
+import RemoveFavoriteModal from '@/ui/favorite/remove-favorite-confirm-modal'
 
-import { Hospital as HospitalIcon, Routing } from '@icons'
-import LocationOutline from '@icons/location-outline'
-
-import { FAVORITE_TYPES } from '@app/types/favorite'
-import { ModalRef } from '@app/types/modal'
-
-import { Hospital } from '@app/models/hospital'
-import { useFavoritesStore } from '@app/stores/favorite'
+import { FAVORITE_TYPES } from '@/types/favorite'
+import { ModalRef } from '@/types/modal'
 
 type HospitalExtend = {
   marginLeft?: number
@@ -30,7 +29,7 @@ type HospitalExtend = {
 type HospitalCardProps = Hospital & HospitalExtend
 
 const HospitalCard = ({
-  image = require('@/assets/images/banner01.webp'),
+  image = require('@assets/images/banner01.webp'),
   address,
   name,
   rating = 4.2,

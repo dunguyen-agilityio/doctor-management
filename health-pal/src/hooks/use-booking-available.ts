@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { getBookingAvailable } from '@app/services/booking'
+import { getBookingAvailable } from '@/services/booking'
 
 const useBookingAvailable = (doctorId: string, date: string) => {
   const query = useQuery({

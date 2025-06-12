@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@utils-test'
 
 import { useQuery } from '@tanstack/react-query'
 
-import { getHospitals } from '@app/services/hospital'
+import { getHospitals } from '@/services/hospital'
 
 import useHospitals from '../use-hospitals'
 
@@ -12,7 +12,7 @@ jest.mock('@tanstack/react-query', () => ({
   useQuery: jest.fn(),
 }))
 
-jest.mock('@app/services/hospital', () => ({
+jest.mock('@/services/hospital', () => ({
   getHospitals: jest.fn(),
 }))
 

@@ -1,9 +1,9 @@
+import { Session, User } from '@/models/user'
+
 import dayjs from 'dayjs'
 import { getItemAsync } from 'expo-secure-store'
 
-import { AuthCredentials, UserProfileData } from '@app/types'
-
-import { Session, User } from '@app/models/user'
+import { AuthCredentials, UserProfileData } from '@/types'
 
 import { APIResponse, apiClient } from './http-client'
 

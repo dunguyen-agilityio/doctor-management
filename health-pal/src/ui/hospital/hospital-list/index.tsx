@@ -1,7 +1,6 @@
+import { Hospital } from '@/models/hospital'
+import { keyExtractor } from '@/utils/list'
 import { FlashList, FlashListProps } from '@shopify/flash-list'
-
-import { Hospital } from '@app/models/hospital'
-import { keyExtractor } from '@app/utils/list'
 
 import HospitalCard from '../hospital-card'
 

@@ -1,15 +1,14 @@
+import { TDoctorData } from '@/models/doctor'
+import { formatDoctor } from '@/utils/doctor'
+import { keyExtractor } from '@/utils/list'
+import { getMediaQuery } from '@/utils/media-query'
 import { FlashList, FlashListProps } from '@shopify/flash-list'
 
 import { StyleSheet } from 'react-native'
 
 import { Stack, View } from 'tamagui'
 
-import { WINDOW_SIZE } from '@app/constants'
-
-import { TDoctorData } from '@app/models/doctor'
-import { formatDoctor } from '@app/utils/doctor'
-import { keyExtractor } from '@app/utils/list'
-import { getMediaQuery } from '@app/utils/media-query'
+import { WINDOW_SIZE } from '@/constants'
 
 import DoctorCard from '../doctor-card'
 

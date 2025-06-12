@@ -1,7 +1,7 @@
-import { Ban, CalendarX } from '@icons'
+import { Ban, CalendarX } from '@/icons'
 
-import { BOOKING_TABS } from '@app/types/booking'
-import { FAVORITE_TYPES } from '@app/types/favorite'
+import { BOOKING_TABS } from '@/types/booking'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
 export const VALIDATIONS_MESSAGE = {
   INVALID_EMAIL: 'Invalid email format',

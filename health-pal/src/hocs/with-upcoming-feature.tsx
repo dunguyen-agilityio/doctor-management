@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import AlertDialog from '@app/components/alert-dialog'
+import AlertDialog from '@/components/alert-dialog'
 
 export const withUpcomingFeature = <P,>(WrappedComponent: React.ComponentType<P>) => {
   const WithUpcomingFeature = (props: P) => {

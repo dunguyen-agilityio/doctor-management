@@ -1,8 +1,8 @@
+import { Star } from '@/icons'
+
 import { StackProps, XStack } from 'tamagui'
 
-import { Text } from '@app/components/common'
-
-import { Star } from '@icons'
+import { Text } from '@/components/common'
 
 interface StarsProps extends StackProps {
   stars: number

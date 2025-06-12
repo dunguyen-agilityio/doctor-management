@@ -1,9 +1,11 @@
+import { Facebook, Google, Logo } from '@/icons'
+
 import { Link, router } from 'expo-router'
 
 import { useToastController } from '@tamagui/toast'
 
-import { useAppLoading } from '@app/hooks'
-import { useSession } from '@app/hooks/use-session'
+import { useAppLoading } from '@/hooks'
+import { useSession } from '@/hooks/use-session'
 
 import {
   ButtonWithUpcoming,
@@ -12,15 +14,13 @@ import {
   Text,
   XStack,
   YStack,
-} from '@app/components'
+} from '@/components'
 
-import { LoginForm } from '@app/ui/auth'
+import { LoginForm } from '@/ui/auth'
 
-import { login } from '@app/services/auth'
+import { login } from '@/services/auth'
 
-import { Facebook, Google, Logo } from '@icons'
-
-import { AuthCredentials } from '@app/types'
+import { AuthCredentials } from '@/types'
 
 const SignIn = () => {
   const { signIn } = useSession()

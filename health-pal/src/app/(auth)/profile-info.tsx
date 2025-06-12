@@ -4,16 +4,16 @@ import { router } from 'expo-router'
 
 import { useToastController } from '@tamagui/toast'
 
-import { useAppLoading } from '@app/hooks'
-import { useSession } from '@app/hooks/use-session'
+import { useAppLoading } from '@/hooks'
+import { useSession } from '@/hooks/use-session'
 
-import { CreateAccountSuccessModal } from '@app/ui/auth'
-import UserProfile from '@app/ui/auth/user-profile'
+import { CreateAccountSuccessModal } from '@/ui/auth'
+import UserProfile from '@/ui/auth/user-profile'
 
-import { register, updateProfile } from '@app/services/auth'
+import { register, updateProfile } from '@/services/auth'
 
-import { UserProfileData } from '@app/types'
-import { ModalRef } from '@app/types/modal'
+import { UserProfileData } from '@/types'
+import { ModalRef } from '@/types/modal'
 
 const Profile = () => {
   const setAppLoading = useAppLoading()

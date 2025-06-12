@@ -4,7 +4,7 @@ import { createRef } from 'react'
 
 import { Text } from 'tamagui'
 
-import { ModalRef } from '@app/types/modal'
+import { ModalRef } from '@/types/modal'
 
 import Modal from '..'
 

@@ -1,16 +1,15 @@
+import { MOCK_DOCTORS } from '@/mocks/doctor'
+// Adjust path
+import { TDoctorData } from '@/models/doctor'
 import { renderHook, waitFor } from '@utils-test'
 
 // Adjust path
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useLocalSearchParams } from 'expo-router'
 
-import { getDoctors } from '@app/services/doctor'
+import { getDoctors } from '@/services/doctor'
 
-import { StrapiPagination } from '@app/types/strapi'
-
-import { MOCK_DOCTORS } from '@app/mocks/doctor'
-// Adjust path
-import { TDoctorData } from '@app/models/doctor'
+import { StrapiPagination } from '@/types/strapi'
 
 import { useAppLoading } from '../use-app-loading'
 import useDoctors from '../use-doctors'
@@ -25,7 +24,7 @@ jest.mock('expo-router', () => ({
   useLocalSearchParams: jest.fn(),
 }))
 
-jest.mock('@app/services/doctor', () => ({
+jest.mock('@/services/doctor', () => ({
   getDoctors: jest.fn(),
 }))
 

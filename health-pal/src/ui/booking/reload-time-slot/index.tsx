@@ -1,11 +1,10 @@
+import { formatDate } from '@/utils/date'
 import { useFormContext } from 'react-hook-form'
 
-import { Button, Heading, Modal, Text, XStack, YStack } from '@app/components'
+import { Button, Heading, Modal, Text, XStack, YStack } from '@/components'
 
-import { BookingForm } from '@app/types/booking'
-import { ModalRef } from '@app/types/modal'
-
-import { formatDate } from '@app/utils/date'
+import { BookingForm } from '@/types/booking'
+import { ModalRef } from '@/types/modal'
 
 interface Props {
   ref: React.RefObject<ModalRef | null>

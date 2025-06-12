@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-import { getHospitals } from '@app/services/hospital'
+import { getHospitals } from '@/services/hospital'
 
 const useHospitals = (query = '') => {
   const queryResponse = useInfiniteQuery({

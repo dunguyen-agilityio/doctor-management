@@ -3,7 +3,7 @@ import { SvgProps } from 'react-native-svg'
 
 import { Stack } from 'tamagui'
 
-import { Text, YStack } from '@app/components'
+import { Text, YStack } from '@/components'
 
 type TSpecialty = {
   icon: (props: SvgProps) => React.JSX.Element

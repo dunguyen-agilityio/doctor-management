@@ -1,8 +1,8 @@
+import { Ban } from '@/icons'
+
 import { StackProps } from 'tamagui'
 
-import { Button, Heading, Text, YStack } from '@app/components/common'
-
-import { Ban } from '@icons'
+import { Button, Heading, Text, YStack } from '@/components/common'
 
 type EmptyStateProps = {
   title?: string

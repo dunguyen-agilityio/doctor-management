@@ -1,9 +1,9 @@
 import { Sheet } from '@tamagui/sheet'
 import { StackProps } from 'tamagui'
 
-import { useModal } from '@app/hooks/use-modal'
+import { useModal } from '@/hooks/use-modal'
 
-import { ModalRef } from '@app/types/modal'
+import { ModalRef } from '@/types/modal'
 
 interface SheetModalProps extends StackProps {
   ref?: React.RefObject<ModalRef | null>

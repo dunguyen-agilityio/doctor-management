@@ -1,6 +1,6 @@
 import { useImperativeHandle, useState } from 'react'
 
-import { ModalRef } from '@app/types/modal'
+import { ModalRef } from '@/types/modal'
 
 export const useModal = (ref?: React.Ref<ModalRef | null>) => {
   const [open, setOpen] = useState(false)

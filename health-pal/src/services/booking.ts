@@ -1,11 +1,11 @@
-import { APP_TOKEN } from '@app/constants'
-import { BOOKING_MESSAGE, BOOKING_QUERY_KEY } from '@app/constants/booking'
+import { Booking, BookingData } from '@/models/booking'
+import { buildStrapiQuery } from '@/utils/strapi'
 
-import { BookingForm } from '@app/types/booking'
-import { StrapiPagination, StrapiParams } from '@app/types/strapi'
+import { APP_TOKEN } from '@/constants'
+import { BOOKING_MESSAGE, BOOKING_QUERY_KEY } from '@/constants/booking'
 
-import { Booking, BookingData } from '@app/models/booking'
-import { buildStrapiQuery } from '@app/utils/strapi'
+import { BookingForm } from '@/types/booking'
+import { StrapiPagination, StrapiParams } from '@/types/strapi'
 
 import { getJwt } from './auth'
 import { APIResponse, apiClient } from './http-client'

@@ -1,4 +1,4 @@
-import { APP_ROUTES } from '@app/types/route'
+import { APP_ROUTES } from '@/types/route'
 
 export const APP_TITLES: Record<APP_ROUTES, string> = {
   [APP_ROUTES.DOCTOR_DETAILS]: 'Doctors Details',

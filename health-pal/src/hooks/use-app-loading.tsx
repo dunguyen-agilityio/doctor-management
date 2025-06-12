@@ -1,6 +1,6 @@
-import { useContext } from 'react'
+import { AppLoadingDispatchContext } from '@/contexts/app-loading'
 
-import { AppLoadingDispatchContext } from '@app/contexts/app-loading'
+import { useContext } from 'react'
 
 export const useAppLoading = () => {
   return useContext(AppLoadingDispatchContext)

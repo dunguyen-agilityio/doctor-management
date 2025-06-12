@@ -1,8 +1,8 @@
+import { Eye, EyeOff, LockIcon } from '@/icons'
+
 import React, { useState } from 'react'
 
-import { Button } from '@app/components/common/button'
-
-import { Eye, EyeOff, LockIcon } from '@icons'
+import { Button } from '@/components/common/button'
 
 import { Input, InputProps } from '../common'
 

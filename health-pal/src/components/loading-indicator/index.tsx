@@ -1,8 +1,8 @@
+import { LoaderIcon } from '@/icons'
+
 import { Animated, Easing } from 'react-native'
 
 import { Stack, StackProps } from 'tamagui'
-
-import { LoaderIcon } from '@icons'
 
 import Modal from '../common/modal'
 

@@ -1,4 +1,4 @@
-import { Review, ReviewData } from '@app/models/review'
+import { Review, ReviewData } from '@/models/review'
 
 export const formatReview = (data: Review): ReviewData => ({
   ...data,

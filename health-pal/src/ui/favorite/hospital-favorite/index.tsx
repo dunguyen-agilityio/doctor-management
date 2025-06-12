@@ -1,20 +1,20 @@
+import { keyExtractor } from '@/utils/list'
+import { getMediaQuery } from '@/utils/media-query'
+
 import { StyleSheet } from 'react-native'
 
 import { Stack } from 'tamagui'
 
-import { FAVORITE_EMPTY } from '@app/constants'
+import { FAVORITE_EMPTY } from '@/constants'
 
-import { useFavoriteHospitals } from '@app/hooks/use-favorite'
+import { useFavoriteHospitals } from '@/hooks/use-favorite'
 
-import { Empty, ErrorState } from '@app/components'
-import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
+import { Empty, ErrorState } from '@/components'
+import HospitalListSkeleton from '@/components/skeleton/hospital-list-skeleton'
 
-import HospitalList from '@app/ui/hospital/hospital-list'
+import HospitalList from '@/ui/hospital/hospital-list'
 
-import { FAVORITE_TYPES } from '@app/types/favorite'
-
-import { keyExtractor } from '@app/utils/list'
-import { getMediaQuery } from '@app/utils/media-query'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
 const ItemSeparatorComponent = () => <Stack height={12} />
 
