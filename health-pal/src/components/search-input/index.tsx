@@ -1,8 +1,8 @@
+import Search from '@/icons/search'
+
 import { useCallback } from 'react'
 
 import { debounce } from 'tamagui'
-
-import Search from '@icons/search'
 
 import { Input, InputProps } from '../common'
 

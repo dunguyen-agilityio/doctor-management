@@ -1,9 +1,3 @@
-import { memo } from 'react'
-
-import { SvgProps } from 'react-native-svg'
-
-import { Stack, StackProps } from 'tamagui'
-
 import {
   CalendarFill,
   CalendarOutline,
@@ -12,12 +6,17 @@ import {
   HomeOutline,
   ProfileFill,
   ProfileOutline,
-} from '@icons'
-import Heart from '@icons/heart'
+} from '@/icons'
+import Heart from '@/icons/heart'
 
-import { TAB_ROUTES } from '@app/types/route'
+import { memo } from 'react'
 
-import { tokens } from '@/tamagui.config'
+import { SvgProps } from 'react-native-svg'
+
+import { tokens } from '@tamagui.config'
+import { Stack, StackProps } from 'tamagui'
+
+import { TAB_ROUTES } from '@/types/route'
 
 const TAB_ICON = {
   [`${TAB_ROUTES.HOME}_true`]: HomeFill,

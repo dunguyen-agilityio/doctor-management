@@ -3,7 +3,7 @@ import { BackHandler } from 'react-native'
 
 import { usePathname } from 'expo-router'
 
-import { ModalRef } from '@app/types/modal'
+import { ModalRef } from '@/types/modal'
 
 import QuitAppConfirmModal from '../confirm-quit-modal'
 

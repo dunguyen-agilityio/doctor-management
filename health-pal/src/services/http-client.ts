@@ -1,4 +1,4 @@
-import { API_ENDPOINT } from '@app/constants/environment'
+import { API_ENDPOINT } from '@/constants/environment'
 
 type RequestOption = Omit<RequestInit, 'body'> & {
   body?: object

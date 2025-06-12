@@ -1,8 +1,8 @@
 import { render, screen } from '@utils-test'
 
-import { TAB_ROUTES } from '@app/types/route'
+import { tokens } from '@tamagui.config'
 
-import { tokens } from '@/tamagui.config'
+import { TAB_ROUTES } from '@/types/route'
 
 import TabIcon from '..'
 

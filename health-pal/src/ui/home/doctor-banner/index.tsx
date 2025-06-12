@@ -1,3 +1,6 @@
+import { DOCTOR_BANNER } from '@/mocks/doctor'
+import { getMediaQuery } from '@/utils/media-query'
+
 import { useRef } from 'react'
 
 import { useSharedValue } from 'react-native-reanimated'
@@ -5,12 +8,9 @@ import Carousel, { ICarouselInstance, Pagination } from 'react-native-reanimated
 
 import { XStack, YStack } from 'tamagui'
 
-import { WINDOW_SIZE } from '@app/constants'
+import { WINDOW_SIZE } from '@/constants'
 
-import { TDoctorBanner } from '@app/types/doctor'
-
-import { DOCTOR_BANNER } from '@app/mocks/doctor'
-import { getMediaQuery } from '@app/utils/media-query'
+import { TDoctorBanner } from '@/types/doctor'
 
 import DoctorBannerCard from './doctor-banner-card'
 

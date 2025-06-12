@@ -1,4 +1,4 @@
-import { Patient } from '@app/models/patient'
+import { Patient } from '@/models/patient'
 
 import { MOCK_USER } from './user'
 

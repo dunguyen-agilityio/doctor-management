@@ -1,11 +1,11 @@
+import { X } from '@/icons'
+
 import { Toast as TamaguiToast, useToastState } from '@tamagui/toast'
 import { ButtonIcon, TextProps, XStack } from 'tamagui'
 
-import { WINDOW_SIZE } from '@app/constants'
+import { WINDOW_SIZE } from '@/constants'
 
-import { Text, YStack } from '@app/components/common'
-
-import { X } from '@icons'
+import { Text, YStack } from '@/components/common'
 
 type ToastVariant = 'error' | 'success' | 'info'
 

@@ -1,3 +1,7 @@
+import LocationOutline from '@/icons/location-outline'
+import { TDoctorCard } from '@/models/doctor'
+import { useFavoritesStore } from '@/stores/favorite'
+
 import { memo, useRef } from 'react'
 import { GestureResponderEvent } from 'react-native'
 
@@ -5,21 +9,16 @@ import { Link } from 'expo-router'
 
 import { Card, Separator, XStack, YStack } from 'tamagui'
 
-import { useAddFavorite } from '@app/hooks/use-add-favorite'
-import { useRemoveFavorite } from '@app/hooks/use-remove-favorite'
+import { useAddFavorite } from '@/hooks/use-add-favorite'
+import { useRemoveFavorite } from '@/hooks/use-remove-favorite'
 
-import { CloudinaryImage, Heading, Stars, Text } from '@app/components'
+import { CloudinaryImage, Heading, Stars, Text } from '@/components'
 
-import FavoriteButton from '@app/ui/favorite/favorite-button'
-import RemoveFavoriteModal from '@app/ui/favorite/remove-favorite-confirm-modal'
+import FavoriteButton from '@/ui/favorite/favorite-button'
+import RemoveFavoriteModal from '@/ui/favorite/remove-favorite-confirm-modal'
 
-import LocationOutline from '@icons/location-outline'
-
-import { FAVORITE_TYPES } from '@app/types/favorite'
-import { ModalRef } from '@app/types/modal'
-
-import { TDoctorCard } from '@app/models/doctor'
-import { useFavoritesStore } from '@app/stores/favorite'
+import { FAVORITE_TYPES } from '@/types/favorite'
+import { ModalRef } from '@/types/modal'
 
 interface DoctorCardProps extends TDoctorCard {
   showReview?: boolean

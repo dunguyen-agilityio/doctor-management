@@ -1,8 +1,8 @@
 import { Separator, XStack, YStack } from 'tamagui'
 
-import { Button, Heading, SheetModal } from '@app/components'
+import { Button, Heading, SheetModal } from '@/components'
 
-import { ModalRef } from '@app/types/modal'
+import { ModalRef } from '@/types/modal'
 
 const RemoveFavoriteModal = ({
   ref,

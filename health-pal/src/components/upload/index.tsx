@@ -1,3 +1,5 @@
+import { AvatarIcon, BackIcon, EditIcon, ImageMinus, RotateCcw } from '@/icons'
+
 import { useRef, useState } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 
@@ -6,17 +8,14 @@ import { CameraType, launchImageLibraryAsync } from 'expo-image-picker'
 import * as Linking from 'expo-linking'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { tokens } from '@tamagui.config'
 import { Stack, StackProps, View, YStack } from 'tamagui'
 
-import { WINDOW_SIZE } from '@app/constants'
+import { WINDOW_SIZE } from '@/constants'
 
-import { Button, XStack } from '@app/components/common'
+import { Button, XStack } from '@/components/common'
 
-import { AvatarIcon, BackIcon, EditIcon, ImageMinus, RotateCcw } from '@icons'
-
-import { ModalRef } from '@app/types/modal'
-
-import { tokens } from '@/tamagui.config'
+import { ModalRef } from '@/types/modal'
 
 import AlertDialog from '../alert-dialog'
 import CloudinaryImage from '../cloudinary-image'

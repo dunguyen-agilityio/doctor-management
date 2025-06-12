@@ -1,4 +1,4 @@
-import { Review } from '@app/models/review'
+import { Review } from '@/models/review'
 
 export const MOCK_REVIEWS = [
   {
@@ -13,7 +13,7 @@ export const MOCK_REVIEWS = [
     rating: 5,
     comment:
       'Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to',
-    image: require('@/assets/images/user01.png'),
+    image: require('@assets/images/user01.png'),
     documentId: 'doc-2',
     id: 2,
   },
@@ -22,7 +22,7 @@ export const MOCK_REVIEWS = [
     rating: 5,
     comment:
       'Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to',
-    image: require('@/assets/images/user01.png'),
+    image: require('@assets/images/user01.png'),
     documentId: 'doc-3',
     id: 3,
   },
@@ -31,7 +31,7 @@ export const MOCK_REVIEWS = [
     rating: 5,
     comment:
       'Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to',
-    image: require('@/assets/images/user01.png'),
+    image: require('@assets/images/user01.png'),
     documentId: 'doc-4',
     id: 4,
   },

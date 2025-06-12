@@ -1,4 +1,4 @@
-import { StrapiParams } from '@app/types'
+import { StrapiParams } from '@/types'
 
 import { buildStrapiQuery } from '../strapi'
 

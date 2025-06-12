@@ -1,12 +1,12 @@
+import { ShieldTick } from '@/icons'
+
 import { YStack } from 'tamagui'
 
-import { Heading, Text } from '@app/components/common'
-import Modal from '@app/components/common/modal'
-import LoadingIndicator from '@app/components/loading-indicator'
+import { Heading, Text } from '@/components/common'
+import Modal from '@/components/common/modal'
+import LoadingIndicator from '@/components/loading-indicator'
 
-import { ShieldTick } from '@icons'
-
-import { ModalRef } from '@app/types/modal'
+import { ModalRef } from '@/types/modal'
 
 type Props = {
   ref?: React.Ref<ModalRef>

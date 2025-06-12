@@ -1,14 +1,14 @@
+import { ArrowLeft, ArrowRight } from '@/icons'
+
 import { memo } from 'react'
 import { StyleSheet } from 'react-native'
 
 import dayjs, { Dayjs } from 'dayjs'
 import DateTimePicker, { DateType } from 'react-native-ui-datepicker'
 
-import { WINDOW_SIZE } from '@app/constants'
+import { tokens } from '@tamagui.config'
 
-import { ArrowLeft, ArrowRight } from '@icons'
-
-import { tokens } from '@/tamagui.config'
+import { WINDOW_SIZE } from '@/constants'
 
 type DateTimePickerProps = Parameters<typeof DateTimePicker>[0]
 

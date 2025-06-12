@@ -1,13 +1,13 @@
+import { TBookingCard } from '@/models/booking'
+
 import dayjs from 'dayjs'
 
 import { Card, Separator } from 'tamagui'
 
-import { Heading, Text, XStack, YStack } from '@app/components'
-import CloudinaryImage from '@app/components/cloudinary-image'
+import { Heading, Text, XStack, YStack } from '@/components'
+import CloudinaryImage from '@/components/cloudinary-image'
 
-import { BOOKING_TABS } from '@app/types/booking'
-
-import { TBookingCard } from '@app/models/booking'
+import { BOOKING_TABS } from '@/types/booking'
 
 import BookingAction from './booking-action'
 

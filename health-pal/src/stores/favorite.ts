@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import { FAVORITE_TYPES } from '@app/types/favorite'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
 export type FavoriteItem = {
   itemId: number // ID of the doctor or hospital

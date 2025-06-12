@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react'
 
-import LoadingIndicator from '@app/components/loading-indicator'
+import LoadingIndicator from '@/components/loading-indicator'
 
 export const AppLoadingDispatchContext = createContext<
   React.Dispatch<React.SetStateAction<boolean>>

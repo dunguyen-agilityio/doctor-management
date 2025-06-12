@@ -1,3 +1,5 @@
+import { CalendarIcon } from '@/icons'
+
 import { useImperativeHandle, useRef } from 'react'
 import { TextInput } from 'react-native'
 
@@ -6,9 +8,7 @@ import { DateType } from 'react-native-ui-datepicker'
 
 import { Button, InputProps, Popover } from 'tamagui'
 
-import { Input } from '@app/components/common'
-
-import { CalendarIcon } from '@icons'
+import { Input } from '@/components/common'
 
 import DatePicker, { DatePickerProps } from '../date-picker'
 

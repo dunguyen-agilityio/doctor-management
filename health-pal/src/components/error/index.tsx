@@ -1,8 +1,8 @@
+import { XCircle } from '@/icons'
+
 import { Stack, StackProps } from 'tamagui'
 
-import { Button, Heading, Text, YStack } from '@app/components/common'
-
-import { XCircle } from '@icons'
+import { Button, Heading, Text, YStack } from '@/components/common'
 
 type ErrorStateProps = {
   title?: string

@@ -1,4 +1,4 @@
-import { Hospital } from '@app/models/hospital'
+import { Hospital } from '@/models/hospital'
 
 export const MOCK_HOSPITALS: Hospital[] = [
   {

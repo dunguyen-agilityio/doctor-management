@@ -2,9 +2,9 @@ import { Link } from 'expo-router'
 
 import { ScrollView } from 'tamagui'
 
-import { SearchInput, SessionHeader, XStack, YStack } from '@app/components'
+import { SearchInput, SessionHeader, XStack, YStack } from '@/components'
 
-import { DoctorBanner, HorizontalHospitalList, Specialties } from '@app/ui/home'
+import { DoctorBanner, HorizontalHospitalList, Specialties } from '@/ui/home'
 
 const Home = () => {
   return (

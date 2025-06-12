@@ -1,6 +1,6 @@
 import { Stack, StackProps } from 'tamagui'
 
-import { BOOKING_TABS } from '@app/types/booking'
+import { BOOKING_TABS } from '@/types/booking'
 
 import BookingCardSkeleton from './booking-card-skeleton'
 

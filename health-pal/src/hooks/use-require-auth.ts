@@ -1,9 +1,9 @@
+import { User } from '@/models/user'
+import { useAuthStore } from '@/stores/auth'
+
 import { useEffect } from 'react'
 
 import { router } from 'expo-router'
-
-import { User } from '@app/models/user'
-import { useAuthStore } from '@app/stores/auth'
 
 export const useRequireAuth = (redirectTo = '/login') => {
   const { user, isAuthenticated, signIn, signOut, setUser } = useAuthStore()

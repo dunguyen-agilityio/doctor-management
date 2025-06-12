@@ -1,3 +1,7 @@
+import { BookingData, BookingKey } from '@/models/booking'
+import { formatBooking } from '@/utils/booking'
+import { keyExtractor } from '@/utils/list'
+import { getMediaQuery } from '@/utils/media-query'
 import { FlashList } from '@shopify/flash-list'
 
 import { StyleSheet } from 'react-native'
@@ -5,22 +9,17 @@ import { StyleSheet } from 'react-native'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 
-import { BOOKING_EMPTY } from '@app/constants'
+import { BOOKING_EMPTY } from '@/constants'
 
-import { useRequireAuth } from '@app/hooks/use-require-auth'
+import { useRequireAuth } from '@/hooks/use-require-auth'
 
-import { Empty, ErrorState } from '@app/components'
-import BookingListSkeleton from '@app/components/skeleton/booking-list-skeleton'
+import { Empty, ErrorState } from '@/components'
+import BookingListSkeleton from '@/components/skeleton/booking-list-skeleton'
 
-import { getBookings } from '@app/services/booking'
+import { getBookings } from '@/services/booking'
 
-import { BOOKING_TABS } from '@app/types/booking'
-import { StrapiPagination } from '@app/types/strapi'
-
-import { BookingData, BookingKey } from '@app/models/booking'
-import { formatBooking } from '@app/utils/booking'
-import { keyExtractor } from '@app/utils/list'
-import { getMediaQuery } from '@app/utils/media-query'
+import { BOOKING_TABS } from '@/types/booking'
+import { StrapiPagination } from '@/types/strapi'
 
 import BookingCard from '../booking-card'
 

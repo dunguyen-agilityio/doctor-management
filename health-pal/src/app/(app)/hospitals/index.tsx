@@ -3,9 +3,9 @@ import { TextInput } from 'react-native'
 
 import { router, useLocalSearchParams } from 'expo-router'
 
-import { SearchInput, YStack } from '@app/components'
+import { SearchInput, YStack } from '@/components'
 
-import HospitalContainer from '@app/ui/hospital/hospital-container'
+import HospitalContainer from '@/ui/hospital/hospital-container'
 
 const HospitalScreen = () => {
   const { query = '' } = useLocalSearchParams<{

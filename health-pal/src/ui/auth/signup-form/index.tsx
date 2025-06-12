@@ -1,3 +1,5 @@
+import { SmsIcon } from '@/icons'
+import User from '@/icons/user'
 import { Controller, useForm } from 'react-hook-form'
 
 import { useRef } from 'react'
@@ -5,16 +7,13 @@ import { Keyboard, TextInput } from 'react-native'
 
 import { YStack } from 'tamagui'
 
-import { VALIDATIONS_MESSAGE } from '@app/constants/message'
-import { EMAIL_REGEX } from '@app/constants/regex'
+import { VALIDATIONS_MESSAGE } from '@/constants/message'
+import { EMAIL_REGEX } from '@/constants/regex'
 
-import { PasswordInput } from '@app/components'
-import { Button, Input } from '@app/components/common'
+import { PasswordInput } from '@/components'
+import { Button, Input } from '@/components/common'
 
-import { SmsIcon } from '@icons'
-import User from '@icons/user'
-
-import { SignupData } from '@app/types'
+import { SignupData } from '@/types'
 
 interface SignupFormProps {
   onSubmit: (data: SignupData) => Promise<void>

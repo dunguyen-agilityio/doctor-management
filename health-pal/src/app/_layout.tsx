@@ -1,3 +1,6 @@
+import Providers from '@/providers'
+import { useAuthStore } from '@/stores/auth'
+
 import { useEffect, useState } from 'react'
 import { DevSettings } from 'react-native'
 
@@ -9,16 +12,12 @@ import { StatusBar } from 'expo-status-bar'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { tokens } from '@tamagui.config'
 import { ToastViewport } from '@tamagui/toast'
 
-import { PreventBackHandler, Toast } from '@app/components'
+import { PreventBackHandler, Toast } from '@/components'
 
-import { getProfile } from '@app/services/auth'
-
-import Providers from '@app/providers'
-import { useAuthStore } from '@app/stores/auth'
-
-import { tokens } from '@/tamagui.config'
+import { getProfile } from '@/services/auth'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -50,10 +49,10 @@ export default function RootLayout() {
       }
 
       await loadAsync({
-        Inter_400Regular: require('@/assets/fonts/Inter_18pt-Regular.ttf'),
-        Inter_500Medium: require('@/assets/fonts/Inter_18pt-Medium.ttf'),
-        Inter_600SemiBold: require('@/assets/fonts/Inter_18pt-SemiBold.ttf'),
-        Inter_700Bold: require('@/assets/fonts/Inter_18pt-Bold.ttf'),
+        Inter_400Regular: require('@assets/fonts/Inter_18pt-Regular.ttf'),
+        Inter_500Medium: require('@assets/fonts/Inter_18pt-Medium.ttf'),
+        Inter_600SemiBold: require('@assets/fonts/Inter_18pt-SemiBold.ttf'),
+        Inter_700Bold: require('@assets/fonts/Inter_18pt-Bold.ttf'),
       })
 
       SplashScreen.hide()
@@ -76,7 +75,7 @@ export default function RootLayout() {
   const render = () => {
     if (__DEV__ && storybookEnabled) {
       // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const AppEntryPoint = require('@/.storybook').default
+      const AppEntryPoint = require('@storybook').default
       return <AppEntryPoint />
     }
 

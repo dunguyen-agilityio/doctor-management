@@ -1,9 +1,9 @@
-import { BOOKING_TABS } from '@app/types/booking'
+import { BOOKING_TABS } from '@/types/booking'
 
 import { addBooking, getBookingAvailable, getBookings, updateBooking } from '../booking'
 import { apiClient } from '../http-client'
 
-jest.mock('@app/services/http-client', () => ({
+jest.mock('@/services/http-client', () => ({
   apiClient: {
     get: jest.fn(),
     post: jest.fn(),

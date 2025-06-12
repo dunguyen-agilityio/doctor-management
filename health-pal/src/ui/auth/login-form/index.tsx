@@ -1,3 +1,4 @@
+import { SmsIcon } from '@/icons'
 import { Controller, useForm } from 'react-hook-form'
 
 import { useRef } from 'react'
@@ -5,14 +6,12 @@ import { Keyboard, TextInput } from 'react-native'
 
 import { YStack } from 'tamagui'
 
-import { EMAIL_REGEX } from '@app/constants'
-import { VALIDATIONS_MESSAGE } from '@app/constants/message'
+import { EMAIL_REGEX } from '@/constants'
+import { VALIDATIONS_MESSAGE } from '@/constants/message'
 
-import { Button, Input, PasswordInput } from '@app/components'
+import { Button, Input, PasswordInput } from '@/components'
 
-import { SmsIcon } from '@icons'
-
-import { AuthCredentials } from '@app/types'
+import { AuthCredentials } from '@/types'
 
 interface LoginFormProps {
   onSubmit: (data: AuthCredentials) => Promise<void>

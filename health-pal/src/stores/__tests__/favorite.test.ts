@@ -1,6 +1,6 @@
 import { act } from '@utils-test'
 
-import { FAVORITE_TYPES } from '@app/types/favorite'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
 import { FavoriteItem, useFavoritesStore } from '../favorite'
 

@@ -1,12 +1,12 @@
 import { render } from '@utils-test'
 
-import { TIME_SLOTS } from '@app/constants/booking'
+import { TIME_SLOTS } from '@/constants/booking'
 
-import { getBookingAvailable } from '@app/services/booking'
+import { getBookingAvailable } from '@/services/booking'
 
 import Booking from '../booking'
 
-jest.mock('@app/hooks/use-require-auth', () => ({
+jest.mock('@/hooks/use-require-auth', () => ({
   useRequireAuth: jest.fn().mockReturnValue({
     session: { jwt: 'fake-jwt-token' },
   }),
@@ -14,8 +14,8 @@ jest.mock('@app/hooks/use-require-auth', () => ({
 
 const available = TIME_SLOTS.reduce((prev, time) => ({ ...prev, [time]: true }), {})
 
-jest.mock('@app/services/booking', () => ({
-  ...jest.requireActual('@app/services/booking'),
+jest.mock('@/services/booking', () => ({
+  ...jest.requireActual('@/services/booking'),
   getBookingAvailable: jest.fn(),
 }))
 

@@ -1,22 +1,22 @@
+import { CheckCircle } from '@/icons'
+import { TBookingCard } from '@/models/booking'
+import { formatDate, formatShortDate } from '@/utils/date'
+
 import { router } from 'expo-router'
 
 import { useToastController } from '@tamagui/toast'
 
-import { useAppLoading } from '@app/hooks'
+import { useAppLoading } from '@/hooks'
 
-import { Button, Heading, Modal, Text, YStack } from '@app/components'
-import { ModalProps } from '@app/components/common/modal'
+import { Button, Heading, Modal, Text, YStack } from '@/components'
+import { ModalProps } from '@/components/common/modal'
 
-import { updateBooking } from '@app/services/booking'
+import { updateBooking } from '@/services/booking'
 
-import { CheckCircle } from '@icons'
+import { BOOKING_TABS } from '@/types/booking'
+import { ModalRef } from '@/types/modal'
 
-import { BOOKING_TABS } from '@app/types/booking'
-import { ModalRef } from '@app/types/modal'
-
-import { TBookingCard } from '@app/models/booking'
-import { queryClient } from '@app/react-query.config'
-import { formatDate, formatShortDate } from '@app/utils/date'
+import { queryClient } from '@react-query.config'
 
 export type CancelBookingParams = Pick<TBookingCard, 'date' | 'documentId' | 'doctorName'>
 

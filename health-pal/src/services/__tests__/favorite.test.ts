@@ -1,4 +1,4 @@
-import { FAVORITE_TYPES } from '@app/types/favorite'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
 import { addFavorite, fetchFavoritesByType, removeFavorite } from '../favorite'
 import { apiClient } from '../http-client'

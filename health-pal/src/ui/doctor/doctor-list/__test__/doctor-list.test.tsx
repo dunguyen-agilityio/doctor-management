@@ -1,6 +1,5 @@
+import { MOCK_DOCTORS } from '@/mocks/doctor'
 import { render } from '@utils-test'
-
-import { MOCK_DOCTORS } from '@app/mocks/doctor'
 
 import DoctorList from '..'
 

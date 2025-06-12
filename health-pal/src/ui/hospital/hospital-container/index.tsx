@@ -1,17 +1,17 @@
+import { getMediaQuery } from '@/utils/media-query'
+
 import { StyleSheet } from 'react-native'
 
 import { Spinner, Stack, View } from 'tamagui'
 
-import { FAVORITE_EMPTY } from '@app/constants'
+import { FAVORITE_EMPTY } from '@/constants'
 
-import useHospitals from '@app/hooks/use-hospitals'
+import useHospitals from '@/hooks/use-hospitals'
 
-import { Empty, ErrorState, LoadingIndicator, YStack } from '@app/components'
-import HospitalListSkeleton from '@app/components/skeleton/hospital-list-skeleton'
+import { Empty, ErrorState, LoadingIndicator, YStack } from '@/components'
+import HospitalListSkeleton from '@/components/skeleton/hospital-list-skeleton'
 
-import { FAVORITE_TYPES } from '@app/types/favorite'
-
-import { getMediaQuery } from '@app/utils/media-query'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
 import HospitalList from '../hospital-list'
 

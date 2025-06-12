@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native'
 
-import { TIME_SLOTS } from '@app/constants/booking'
+import { TIME_SLOTS } from '@/constants/booking'
 
-import { Heading, Text, XStack, YStack } from '@app/components/common'
+import { Heading, Text, XStack, YStack } from '@/components/common'
 
 import TimeButton from '../time-button'
 

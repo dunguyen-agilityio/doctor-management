@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { getDoctor } from '@app/services/doctor'
+import { getDoctor } from '@/services/doctor'
 
 const useDoctor = (docId: string) => {
   const queryResponse = useQuery({

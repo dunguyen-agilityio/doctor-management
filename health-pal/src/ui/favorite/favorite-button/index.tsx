@@ -1,11 +1,11 @@
-import { Button, ButtonProps } from '@app/components'
+import HeartFill from '@/icons/heart-fill'
+import HeartOutline from '@/icons/heart-outline'
 
-import HeartFill from '@icons/heart-fill'
-import HeartOutline from '@icons/heart-outline'
+import { tokens } from '@tamagui.config'
 
-import { FAVORITE_TYPES } from '@app/types/favorite'
+import { Button, ButtonProps } from '@/components'
 
-import { tokens } from '@/tamagui.config'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
 const VARIANT_STYLE = {
   [FAVORITE_TYPES.HOSPITAL]: {

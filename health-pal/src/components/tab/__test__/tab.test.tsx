@@ -1,10 +1,9 @@
 import { render, screen } from '@utils-test'
 
+import { tokens } from '@tamagui.config'
 import { Tabs } from 'tamagui'
 
-import { Heading, Text } from '@app/components/common'
-
-import { tokens } from '@/tamagui.config'
+import { Heading, Text } from '@/components/common'
 
 import { TabsContent, TabsTab } from '..'
 

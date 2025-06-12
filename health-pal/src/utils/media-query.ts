@@ -1,4 +1,4 @@
-import { WINDOW_SIZE } from '@app/constants'
+import { WINDOW_SIZE } from '@/constants'
 
 export type MediaQuery = {
   width?: number

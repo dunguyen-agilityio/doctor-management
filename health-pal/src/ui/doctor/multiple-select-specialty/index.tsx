@@ -1,8 +1,8 @@
 import { ScrollView } from 'tamagui'
 
-import { SPECIALTY_LIST } from '@app/constants/specialty'
+import { SPECIALTY_LIST } from '@/constants/specialty'
 
-import { Chip } from '@app/components'
+import { Chip } from '@/components'
 
 const MultipleSelectSpecialty = ({
   onChange,

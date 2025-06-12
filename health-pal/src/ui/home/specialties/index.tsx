@@ -1,6 +1,6 @@
-import { SPECIALTY_LIST } from '@app/constants/specialty'
+import { SPECIALTY_LIST } from '@/constants/specialty'
 
-import { XStack, YStack } from '@app/components'
+import { XStack, YStack } from '@/components'
 
 import Specialty from './specialty'
 

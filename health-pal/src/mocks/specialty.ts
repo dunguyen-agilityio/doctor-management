@@ -1,4 +1,4 @@
-import { Specialty } from '@app/models/specialty'
+import { Specialty } from '@/models/specialty'
 
 export const MOCK_SPECIALTY: Specialty = {
   id: 1,

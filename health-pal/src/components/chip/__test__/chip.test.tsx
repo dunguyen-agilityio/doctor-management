@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@utils-test'
 
-import { tokens } from '@/tamagui.config'
+import { tokens } from '@tamagui.config'
 
 import Chip from '..'
 

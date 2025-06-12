@@ -1,14 +1,14 @@
+import { ReviewData } from '@/models/review'
+
 import { StyleSheet } from 'react-native'
 
-import { Text, XStack, YStack } from '@app/components/common'
-
-import { ReviewData } from '@app/models/review'
+import { Text, XStack, YStack } from '@/components/common'
 
 import CloudinaryImage from '../cloudinary-image'
 import Stars from '../stars'
 
 const ReviewCard = ({ name, rating, comment, image }: ReviewData) => {
-  const avatar = image ? { uri: image } : require('@/assets/images/user01.png')
+  const avatar = image ? { uri: image } : require('@assets/images/user01.png')
 
   return (
     <YStack>

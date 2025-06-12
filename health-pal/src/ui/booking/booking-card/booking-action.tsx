@@ -1,15 +1,15 @@
+import { TBookingCard } from '@/models/booking'
+import { formatDate } from '@/utils/date'
+
 import React, { useRef } from 'react'
 
 import { router } from 'expo-router'
 
 import { Separator, XStack } from 'tamagui'
 
-import { Button } from '@app/components'
+import { Button } from '@/components'
 
-import { BOOKING_TABS, ModalRef } from '@app/types'
-
-import { TBookingCard } from '@app/models/booking'
-import { formatDate } from '@app/utils/date'
+import { BOOKING_TABS, ModalRef } from '@/types'
 
 import CancelBookingModal from '../cancel-booking-modal'
 

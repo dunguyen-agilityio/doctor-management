@@ -1,6 +1,6 @@
 import { Dayjs } from 'dayjs'
 
-import { BOOKING_TABS } from '@app/types/booking'
+import { BOOKING_TABS } from '@/types/booking'
 
 import { Doctor } from './doctor'
 import { Patient } from './patient'

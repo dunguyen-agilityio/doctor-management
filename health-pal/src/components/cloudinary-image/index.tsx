@@ -1,12 +1,12 @@
+import { getOptimizedUrl } from '@/utils/image'
+
 import { useState } from 'react'
 
 import { Image as ExpoImage, ImageProps } from 'expo-image'
 
 import { Spinner, View } from 'tamagui'
 
-import { PLACEHOLDER_IMAGE } from '@app/constants/image'
-
-import { getOptimizedUrl } from '@app/utils/image'
+import { PLACEHOLDER_IMAGE } from '@/constants/image'
 
 interface CloudinaryImageProps extends Omit<ImageProps, 'source' | 'style'> {
   source: { uri?: string } | number

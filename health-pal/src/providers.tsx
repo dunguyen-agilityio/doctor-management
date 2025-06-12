@@ -1,13 +1,12 @@
 import { DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { QueryClientProvider } from '@tanstack/react-query'
 
+import { tamaguiConfig } from '@tamagui.config'
 import { ToastProvider } from '@tamagui/toast'
 import { PortalProvider, TamaguiProvider } from 'tamagui'
 
-import { tamaguiConfig } from '@/tamagui.config'
-
+import { queryClient } from '../react-query.config'
 import { AppLoadingProvider } from './contexts'
-import { queryClient } from './react-query.config'
 
 const Providers = ({ children }: React.PropsWithChildren) => {
   return (

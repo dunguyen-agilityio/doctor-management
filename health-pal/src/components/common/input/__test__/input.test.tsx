@@ -1,6 +1,5 @@
+import { X } from '@/icons'
 import { fireEvent, render, screen } from '@utils-test'
-
-import { X } from '@icons'
 
 import { Input } from '..'
 

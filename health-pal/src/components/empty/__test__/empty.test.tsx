@@ -1,6 +1,5 @@
+import { X } from '@/icons'
 import { render } from '@utils-test'
-
-import { X } from '@icons'
 
 // Adjust path
 

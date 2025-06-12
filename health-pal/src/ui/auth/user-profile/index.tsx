@@ -1,3 +1,4 @@
+import { getMaxDate } from '@/utils/date'
 import { Controller, useForm } from 'react-hook-form'
 
 import { useRef } from 'react'
@@ -8,10 +9,10 @@ import dayjs from 'dayjs'
 import { useToastController } from '@tamagui/toast'
 import { debounce } from 'tamagui'
 
-import { VALIDATIONS_MESSAGE } from '@app/constants/message'
-import { EMAIL_REGEX } from '@app/constants/regex'
+import { VALIDATIONS_MESSAGE } from '@/constants/message'
+import { EMAIL_REGEX } from '@/constants/regex'
 
-import { useAppLoading } from '@app/hooks'
+import { useAppLoading } from '@/hooks'
 
 import {
   Button,
@@ -22,13 +23,11 @@ import {
   Upload,
   XStack,
   YStack,
-} from '@app/components'
+} from '@/components'
 
-import { uploadToStrapi } from '@app/services/upload-image'
+import { uploadToStrapi } from '@/services/upload-image'
 
-import { UserProfileData } from '@app/types'
-
-import { getMaxDate } from '@app/utils/date'
+import { UserProfileData } from '@/types'
 
 interface UserProfileFormProps {
   defaultData?: Partial<UserProfileData>

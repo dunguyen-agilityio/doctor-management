@@ -1,6 +1,5 @@
+import { MOCK_PATIENT } from '@/mocks/patient'
 import { render } from '@utils-test'
-
-import { MOCK_PATIENT } from '@app/mocks/patient'
 
 import ReviewCard from '..'
 

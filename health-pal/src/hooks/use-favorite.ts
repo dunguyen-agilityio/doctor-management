@@ -1,10 +1,10 @@
+import { useFavoritesStore } from '@/stores/favorite'
+
 import { useQuery } from '@tanstack/react-query'
 
-import { fetchFavoritesByType } from '@app/services/favorite'
+import { fetchFavoritesByType } from '@/services/favorite'
 
-import { FAVORITE_TYPES } from '@app/types/favorite'
-
-import { useFavoritesStore } from '@app/stores/favorite'
+import { FAVORITE_TYPES } from '@/types/favorite'
 
 import { useRequireAuth } from './use-require-auth'
 

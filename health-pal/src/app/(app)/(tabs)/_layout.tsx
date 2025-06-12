@@ -1,3 +1,4 @@
+import { NotificationIcon } from '@/icons'
 import { BottomTabBarButtonProps, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs'
 
 import { Pressable, StyleSheet } from 'react-native'
@@ -6,15 +7,13 @@ import { Href, Tabs } from 'expo-router'
 
 import { Stack } from 'tamagui'
 
-import { XStack } from '@app/components/common'
-import Header from '@app/components/header'
-import TabIcon from '@app/components/tab-icon'
+import { XStack } from '@/components/common'
+import Header from '@/components/header'
+import TabIcon from '@/components/tab-icon'
 
-import { NotificationIcon } from '@icons'
+import { withUpcomingFeature } from '@/hocs/with-upcoming-feature'
 
-import { withUpcomingFeature } from '@app/hocs/with-upcoming-feature'
-
-import { TAB_ROUTES } from '@app/types'
+import { TAB_ROUTES } from '@/types'
 
 const TITLES: Record<TAB_ROUTES, string> = {
   [TAB_ROUTES.FAVORITE]: 'Favorites',
