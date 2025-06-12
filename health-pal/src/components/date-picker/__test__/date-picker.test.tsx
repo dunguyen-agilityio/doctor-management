@@ -1,7 +1,6 @@
 // __tests__/DatePicker.test.tsx
+import { createDayjs } from '@/utils/date'
 import { act, fireEvent, render, screen } from '@utils-test'
-
-import dayjs from 'dayjs'
 
 // Adjust path to your DatePicker component
 
@@ -31,6 +30,6 @@ describe('DatePicker', () => {
 
     date.setDate(23)
 
-    expect(mockOnChange).toHaveBeenCalledWith(dayjs(date).toDate())
+    expect(mockOnChange).toHaveBeenCalledWith(createDayjs(date).toDate())
   })
 })

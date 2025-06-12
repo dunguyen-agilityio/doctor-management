@@ -1,5 +1,6 @@
 import { BookingData, BookingKey } from '@/models/booking'
 import { formatBooking } from '@/utils/booking'
+import { createDayjs } from '@/utils/date'
 import { keyExtractor } from '@/utils/list'
 import { getMediaQuery } from '@/utils/media-query'
 import { FlashList } from '@shopify/flash-list'
@@ -7,7 +8,6 @@ import { FlashList } from '@shopify/flash-list'
 import { StyleSheet } from 'react-native'
 
 import { useQuery } from '@tanstack/react-query'
-import dayjs from 'dayjs'
 
 import { BOOKING_EMPTY } from '@/constants'
 
@@ -33,7 +33,7 @@ const BookingList = ({ type }: { type: BOOKING_TABS }) => {
     [BOOKING_TABS.COMPLETED]: () =>
       getBookings({ filters: [{ key: BookingKey.type, query: BOOKING_TABS.COMPLETED }], userId }),
     [BOOKING_TABS.UPCOMING]: () => {
-      const now = dayjs()
+      const now = createDayjs()
       return getBookings({
         filters: [
           { key: BookingKey.type, query: BOOKING_TABS.UPCOMING },

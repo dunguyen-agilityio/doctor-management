@@ -1,6 +1,5 @@
 import { TBookingCard } from '@/models/booking'
-
-import dayjs from 'dayjs'
+import { formatDate } from '@/utils/date'
 
 import { Card, Separator } from 'tamagui'
 
@@ -40,7 +39,7 @@ const BookingCard = ({
       marginBottom={10}
       aria-label={`Booking with ${doctorName}`}>
       <Card.Header>
-        <Heading fontSize={14}>{dayjs(date).format('YYYY-MM-DD - HH:mm A')}</Heading>
+        <Heading fontSize={14}>{formatDate(date)}</Heading>
         <Separator marginVertical={12} />
       </Card.Header>
 
