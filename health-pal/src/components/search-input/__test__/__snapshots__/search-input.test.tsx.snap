@@ -140,7 +140,6 @@ exports[`SearchInput renders Input with correct props and Search icon 1`] = `
         keyboardType="web-search"
         onBlur={[Function]}
         onChangeText={[Function]}
-        onEndEditing={[Function]}
         onFocus={[Function]}
         placeholder="Search..."
         placeholderTextColor="#9ca3af"

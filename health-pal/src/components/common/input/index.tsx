@@ -1,4 +1,4 @@
-import { Fragment, useRef } from 'react'
+import { Fragment } from 'react'
 import { TextInput } from 'react-native'
 
 import { SvgProps } from 'react-native-svg'
@@ -50,16 +50,17 @@ export const CustomTamaguiInput = styled(TamaguiInput, {
 
 type IconComponent = (propsIn: SvgProps) => React.ReactElement
 
-interface CustomInputProps extends Omit<Parameters<typeof CustomTamaguiInput>[0], 'onBlur'> {
+type CustomInputProps = Parameters<typeof CustomTamaguiInput>[0]
+
+interface Props extends CustomInputProps {
   leftIcon?: IconComponent | null
   rightIcon?: IconComponent | null
   ref?: React.Ref<TextInput>
   errorMessage?: string
-  onEdited?: (isChanged: boolean) => void
   rightButton?: ({ children }: ButtonProps) => React.ReactNode
 }
 
-export type { CustomInputProps as InputProps }
+export type { Props as InputProps }
 
 const styleByIcon: Record<'true' | 'false', InputProps> = {
   true: {
@@ -75,18 +76,14 @@ export const Input = ({
   leftIcon: LeftIcon = null,
   rightIcon: RightIcon = null,
   errorMessage,
-  onFocus,
-  onEdited,
   ref,
-  onEndEditing,
   defaultValue,
   value = defaultValue,
   rightButton: RightButton = Fragment,
   ...props
-}: CustomInputProps) => {
+}: Props) => {
   const hasLeftIcon = LeftIcon !== null
   const hasRightIcon = RightIcon !== null
-  const valueRef = useRef(value)
 
   return (
     <YStack gap="$sm" width="100%">
@@ -101,15 +98,7 @@ export const Input = ({
           flex={1}
           {...(errorMessage && { borderColor: 'red', focusStyle: { borderColor: 'red' } })}
           {...props}
-          onFocus={(e) => {
-            valueRef.current = value
-            onFocus?.(e)
-          }}
           defaultValue={value}
-          onEndEditing={(e) => {
-            onEdited?.(e.nativeEvent.text !== valueRef.current)
-            onEndEditing?.(e)
-          }}
           {...styleByIcon[hasLeftIcon ? 'true' : 'false']}
         />
         {hasRightIcon ? (

@@ -77,17 +77,22 @@ exports[`Booking Time Component should render correctly 1`] = `
       }
     >
       <View
-        focusVisibleStyle={
-          {
-            "borderColor": "$background",
-          }
-        }
-        pointerEvents="none"
+        focusVisibleStyle={{}}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         role="button"
         style={
           {
             "alignItems": "center",
-            "backgroundColor": "#d1d5db",
+            "backgroundColor": "#f9fafb",
             "borderBottomColor": "transparent",
             "borderBottomLeftRadius": 8,
             "borderBottomRightRadius": 8,
@@ -107,7 +112,7 @@ exports[`Booking Time Component should render correctly 1`] = `
             "fontWeight": "500",
             "height": 48,
             "justifyContent": "center",
-            "opacity": 0.5,
+            "opacity": 1,
             "paddingBottom": 12,
             "paddingLeft": 20,
             "paddingRight": 20,
@@ -136,17 +141,22 @@ exports[`Booking Time Component should render correctly 1`] = `
         </Text>
       </View>
       <View
-        focusVisibleStyle={
-          {
-            "borderColor": "$background",
-          }
-        }
-        pointerEvents="none"
+        focusVisibleStyle={{}}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         role="button"
         style={
           {
             "alignItems": "center",
-            "backgroundColor": "#d1d5db",
+            "backgroundColor": "#f9fafb",
             "borderBottomColor": "transparent",
             "borderBottomLeftRadius": 8,
             "borderBottomRightRadius": 8,
@@ -166,7 +176,7 @@ exports[`Booking Time Component should render correctly 1`] = `
             "fontWeight": "500",
             "height": 48,
             "justifyContent": "center",
-            "opacity": 0.5,
+            "opacity": 1,
             "paddingBottom": 12,
             "paddingLeft": 20,
             "paddingRight": 20,
@@ -195,17 +205,22 @@ exports[`Booking Time Component should render correctly 1`] = `
         </Text>
       </View>
       <View
-        focusVisibleStyle={
-          {
-            "borderColor": "$background",
-          }
-        }
-        pointerEvents="none"
+        focusVisibleStyle={{}}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         role="button"
         style={
           {
             "alignItems": "center",
-            "backgroundColor": "#d1d5db",
+            "backgroundColor": "#f9fafb",
             "borderBottomColor": "transparent",
             "borderBottomLeftRadius": 8,
             "borderBottomRightRadius": 8,
@@ -225,7 +240,7 @@ exports[`Booking Time Component should render correctly 1`] = `
             "fontWeight": "500",
             "height": 48,
             "justifyContent": "center",
-            "opacity": 0.5,
+            "opacity": 1,
             "paddingBottom": 12,
             "paddingLeft": 20,
             "paddingRight": 20,
@@ -254,17 +269,22 @@ exports[`Booking Time Component should render correctly 1`] = `
         </Text>
       </View>
       <View
-        focusVisibleStyle={
-          {
-            "borderColor": "$background",
-          }
-        }
-        pointerEvents="none"
+        focusVisibleStyle={{}}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         role="button"
         style={
           {
             "alignItems": "center",
-            "backgroundColor": "#d1d5db",
+            "backgroundColor": "#f9fafb",
             "borderBottomColor": "transparent",
             "borderBottomLeftRadius": 8,
             "borderBottomRightRadius": 8,
@@ -284,7 +304,7 @@ exports[`Booking Time Component should render correctly 1`] = `
             "fontWeight": "500",
             "height": 48,
             "justifyContent": "center",
-            "opacity": 0.5,
+            "opacity": 1,
             "paddingBottom": 12,
             "paddingLeft": 20,
             "paddingRight": 20,
@@ -313,17 +333,22 @@ exports[`Booking Time Component should render correctly 1`] = `
         </Text>
       </View>
       <View
-        focusVisibleStyle={
-          {
-            "borderColor": "$background",
-          }
-        }
-        pointerEvents="none"
+        focusVisibleStyle={{}}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         role="button"
         style={
           {
             "alignItems": "center",
-            "backgroundColor": "#d1d5db",
+            "backgroundColor": "#f9fafb",
             "borderBottomColor": "transparent",
             "borderBottomLeftRadius": 8,
             "borderBottomRightRadius": 8,
@@ -343,7 +368,7 @@ exports[`Booking Time Component should render correctly 1`] = `
             "fontWeight": "500",
             "height": 48,
             "justifyContent": "center",
-            "opacity": 0.5,
+            "opacity": 1,
             "paddingBottom": 12,
             "paddingLeft": 20,
             "paddingRight": 20,
@@ -372,17 +397,22 @@ exports[`Booking Time Component should render correctly 1`] = `
         </Text>
       </View>
       <View
-        focusVisibleStyle={
-          {
-            "borderColor": "$background",
-          }
-        }
-        pointerEvents="none"
+        focusVisibleStyle={{}}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         role="button"
         style={
           {
             "alignItems": "center",
-            "backgroundColor": "#d1d5db",
+            "backgroundColor": "#f9fafb",
             "borderBottomColor": "transparent",
             "borderBottomLeftRadius": 8,
             "borderBottomRightRadius": 8,
@@ -402,7 +432,7 @@ exports[`Booking Time Component should render correctly 1`] = `
             "fontWeight": "500",
             "height": 48,
             "justifyContent": "center",
-            "opacity": 0.5,
+            "opacity": 1,
             "paddingBottom": 12,
             "paddingLeft": 20,
             "paddingRight": 20,

@@ -1,195 +1,195 @@
-import { act, fireEvent, render, waitFor } from '@utils-test'
+import { act, fireEvent, render } from '@utils-test'
 
 import React from 'react'
+import { Linking } from 'react-native'
 
-import * as expoCamera from 'expo-camera'
-import * as imagePicker from 'expo-image-picker'
-
-import { useToastController } from '@tamagui/toast'
-
-import { useAppLoading } from '@app/hooks'
-import { useSession } from '@app/hooks/use-session'
-
-import { uploadToStrapi } from '@app/services/upload-image'
+import * as Camera from 'expo-camera'
+import * as ImagePicker from 'expo-image-picker'
 
 import Upload from '..'
 
-// Mock modules
 jest.mock('expo-camera', () => ({
-  ...jest.requireActual('expo-camera'),
+  CameraView: jest.fn(({ ref, style, facing }) => null),
   useCameraPermissions: jest.fn(),
 }))
 jest.mock('expo-image-picker', () => ({
   ...jest.requireActual('expo-image-picker'),
   launchImageLibraryAsync: jest.fn(),
 }))
-jest.mock('@app/services/upload-image')
-jest.mock('@tamagui/toast', () => ({
-  ...jest.requireActual('@tamagui/toast'),
-  useToastController: jest.fn(),
-}))
-jest.mock('@app/contexts', () => ({
-  ...jest.requireActual('@app/contexts'),
-  useSession: jest.fn(),
-}))
-jest.mock('@app/hooks', () => ({
-  ...jest.requireActual('@app/hooks'),
-  useAppLoading: jest.fn(),
-}))
 
 describe('Upload component', () => {
-  const mockRequestPermission = jest.fn()
-  const mockShowToast = jest.fn()
-  const mockSetAppLoading = jest.fn()
   const mockOnUpload = jest.fn()
+  const mockOnOpenCamera = jest.fn()
 
   beforeEach(() => {
     jest.clearAllMocks()
-    ;(expoCamera.useCameraPermissions as jest.Mock).mockReturnValue([
-      { granted: true },
-      mockRequestPermission,
-    ])
-    ;(useToastController as jest.Mock).mockReturnValue({
-      show: mockShowToast,
-    })
-    ;(useAppLoading as jest.Mock).mockReturnValue(mockSetAppLoading)
-    ;(useSession as jest.Mock).mockReturnValue({
-      session: {
-        jwt: 'fake-jwt-token',
-      },
-    })
+    ;(Camera.useCameraPermissions as jest.Mock).mockReturnValue([{ granted: false }, jest.fn()])
   })
 
-  it('renders preview image when provided', async () => {
-    const { getByTestId } = render(<Upload preview="https://example.com/image.jpg" />)
-    const image = getByTestId('expo-image')
-    expect(image.props.source[0].uri).toBe('https://example.com/image.jpg')
+  it('renders empty view when permission is null', () => {
+    ;(Camera.useCameraPermissions as jest.Mock).mockReturnValue([null, jest.fn()])
+    const { queryByTestId } = render(<Upload />)
+    expect(queryByTestId('avatar-icon')).toBeNull()
   })
 
-  it('renders AvatarIcon when no image or preview', () => {
+  it('renders avatar icon when no image or preview is provided', () => {
+    ;(Camera.useCameraPermissions as jest.Mock).mockReturnValue([{ granted: true }, jest.fn()])
     const { getByTestId } = render(<Upload />)
     expect(getByTestId('avatar-icon')).toBeTruthy()
   })
 
-  it('requests camera permission on mount', () => {
-    render(<Upload />)
-    expect(mockRequestPermission).toHaveBeenCalled()
+  it('renders CloudinaryImage when preview is provided', () => {
+    const preview = 'https://example.com/image.jpg'
+    const { getByTestId } = render(<Upload preview={preview} />)
+    expect(getByTestId('cloudinary-image')).toBeTruthy()
   })
 
-  it('opens dialog when EditIcon pressed', async () => {
-    const { getByLabelText, getByTestId } = render(<Upload />)
-    const editBtn = getByLabelText('Edit Image')
-
-    fireEvent.press(editBtn)
-    await waitFor(() => {
-      expect(getByTestId('back-button')).toBeTruthy()
-    })
-  })
-
-  it('toggles camera facing when rotate pressed', () => {
-    const { getByLabelText } = render(<Upload />)
-    const editBtn = getByLabelText('Edit Image')
-    fireEvent.press(editBtn)
-
-    const toggleBtn = getByLabelText('Toggle Camera Facing')
-
-    // No direct way to read camera type, just test toggle called without error
-    fireEvent.press(toggleBtn)
-  })
-
-  it('calls onUpload when picking image from gallery', async () => {
-    const imageUri = 'file://image.jpg'
-    ;(imagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValue({
-      canceled: false,
-      assets: [{ uri: imageUri }],
-    })
-    ;(uploadToStrapi as jest.Mock).mockResolvedValue({
-      error: null,
-      data: { id: 1, url: imageUri },
-    })
-
-    const { getByLabelText } = render(<Upload onUpload={mockOnUpload} />)
-    fireEvent.press(getByLabelText('Edit Image'))
-
-    const pickBtn = getByLabelText('Pick Image from Gallery')
-    fireEvent.press(pickBtn)
-
-    await waitFor(() => {
-      expect(uploadToStrapi).toHaveBeenCalledWith(imageUri, 'fake-jwt-token')
-      expect(mockOnUpload).toHaveBeenCalledWith({ id: 1, url: imageUri })
-    })
-  })
-
-  it.skip('takes picture and calls onUpload', async () => {
-    const photoUri = 'file://photo.jpg'
-
-    const mockTakePictureAsync = jest.fn().mockResolvedValue({ uri: photoUri })
-
-    // Mock ref.current.takePictureAsync
-    jest.spyOn(React, 'useRef').mockImplementation(
-      () =>
-        ({
-          current: {
-            takePictureAsync: mockTakePictureAsync,
-          },
-        }) as any,
-    )
-    ;(uploadToStrapi as jest.Mock).mockResolvedValue({
-      error: null,
-      data: { id: 2, url: photoUri },
-    })
-
-    const { getByLabelText } = render(<Upload onUpload={mockOnUpload} />)
-    fireEvent.press(getByLabelText('Edit Image'))
-
-    const takeBtn = getByLabelText('Take Picture')
-    act(() => {
-      fireEvent.press(takeBtn)
-    })
-
-    await waitFor(() => {
-      expect(mockTakePictureAsync).toHaveBeenCalled()
-      expect(uploadToStrapi).toHaveBeenCalledWith(photoUri, 'fake-jwt-token')
-      expect(mockOnUpload).toHaveBeenCalledWith({ id: 2, url: photoUri })
-    })
-  })
-
-  it('shows alert dialog if permission not granted', async () => {
-    ;(expoCamera.useCameraPermissions as jest.Mock).mockReturnValue([
+  it('opens permission modal when camera permission is not granted', async () => {
+    const requestPermission = jest.fn().mockResolvedValue({ granted: false })
+    ;(Camera.useCameraPermissions as jest.Mock).mockReturnValue([
       { granted: false },
-      mockRequestPermission,
+      requestPermission,
     ])
+    const { getByLabelText } = render(<Upload onOpenCamera={mockOnOpenCamera} />)
 
-    const { getByText } = render(<Upload />)
-    await waitFor(() => {
-      expect(getByText('We need your permission to show the camera')).toBeTruthy()
+    await act(async () => {
+      fireEvent.press(getByLabelText('Edit Image'))
     })
+
+    expect(requestPermission).toHaveBeenCalled()
+    expect(mockOnOpenCamera).toHaveBeenCalled()
   })
 
-  it('shows toast on upload error', async () => {
-    const imageUri = 'file://image-error.jpg'
-    ;(imagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValue({
-      canceled: false,
-      assets: [{ uri: imageUri }],
-    })
-    ;(uploadToStrapi as jest.Mock).mockResolvedValue({
-      error: { message: 'Upload failed' },
-      data: null,
+  it('opens camera modal when permission is granted', async () => {
+    const requestPermission = jest.fn().mockResolvedValue({ granted: true })
+    ;(Camera.useCameraPermissions as jest.Mock).mockReturnValue([
+      { granted: true },
+      requestPermission,
+    ])
+    const { getByLabelText } = render(<Upload onOpenCamera={mockOnOpenCamera} />)
+
+    await act(async () => {
+      fireEvent.press(getByLabelText('Edit Image'))
     })
 
+    expect(requestPermission).toHaveBeenCalled()
+    expect(mockOnOpenCamera).toHaveBeenCalled()
+  })
+
+  it('toggles camera facing when rotate button is pressed', async () => {
+    ;(Camera.useCameraPermissions as jest.Mock).mockReturnValue([
+      { granted: true },
+      jest.fn().mockResolvedValue({ granted: true }),
+    ])
     const { getByLabelText } = render(<Upload />)
-    fireEvent.press(getByLabelText('Edit Image'))
 
-    fireEvent.press(getByLabelText('Pick Image from Gallery'))
-
-    await waitFor(() => {
-      expect(mockShowToast).toHaveBeenCalledWith(
-        'Upload Failed',
-        expect.objectContaining({
-          message: 'Upload failed',
-          type: 'error',
-        }),
-      )
+    await act(async () => {
+      fireEvent.press(getByLabelText('Edit Image'))
     })
+
+    expect(Camera.CameraView).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({ facing: 'back' }),
+      undefined,
+    )
+
+    const rotateButton = getByLabelText('Toggle Camera Facing')
+    await act(async () => {
+      fireEvent.press(rotateButton)
+    })
+
+    expect(Camera.CameraView).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({ facing: 'front' }),
+      undefined,
+    )
+  })
+
+  it('picks image from gallery and calls onUpload', async () => {
+    ;(Camera.useCameraPermissions as jest.Mock).mockReturnValue([
+      { granted: true },
+      jest.fn().mockResolvedValue({ granted: true }),
+    ])
+    const mockImage = { canceled: false, assets: [{ uri: 'file://image.jpg' }] }
+    ;(ImagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValue(mockImage)
+
+    const { getByLabelText } = render(<Upload onUpload={mockOnUpload} />)
+
+    await act(async () => {
+      fireEvent.press(getByLabelText('Edit Image'))
+    })
+
+    await act(async () => {
+      fireEvent.press(getByLabelText('Pick Image from Gallery'))
+    })
+
+    expect(ImagePicker.launchImageLibraryAsync).toHaveBeenCalledWith({
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    })
+    expect(mockOnUpload).toHaveBeenCalledWith('file://image.jpg')
+  })
+
+  it('takes picture and calls onUpload', async () => {
+    ;(Camera.useCameraPermissions as jest.Mock).mockReturnValue([
+      { granted: true },
+      jest.fn().mockResolvedValue({ granted: true }),
+    ])
+    const mockTakePicture = jest.fn().mockResolvedValue({ uri: 'file://photo.jpg' })
+    ;(Camera.CameraView as unknown as jest.Mock).mockImplementation(({ ref }) => {
+      ref.current = { takePictureAsync: mockTakePicture }
+      return null
+    })
+
+    const { getByLabelText } = render(<Upload onUpload={mockOnUpload} />)
+
+    await act(async () => {
+      fireEvent.press(getByLabelText('Edit Image'))
+    })
+
+    await act(async () => {
+      fireEvent.press(getByLabelText('Take Picture'))
+    })
+
+    expect(mockTakePicture).toHaveBeenCalled()
+    expect(mockOnUpload).toHaveBeenCalledWith('file://photo.jpg')
+  })
+
+  it('handles back button press', async () => {
+    ;(Camera.useCameraPermissions as jest.Mock).mockReturnValue([
+      { granted: true },
+      jest.fn().mockResolvedValue({ granted: true }),
+    ])
+    const { getByLabelText, getByTestId } = render(<Upload />)
+
+    await act(async () => {
+      fireEvent.press(getByLabelText('Edit Image'))
+    })
+
+    await act(async () => {
+      fireEvent.press(getByTestId('back-button'))
+    })
+
+    expect(getByTestId('avatar-icon')).toBeTruthy()
+  })
+
+  it('calls Linking.openSettings when permission modal confirms', async () => {
+    ;(Camera.useCameraPermissions as jest.Mock).mockReturnValue([
+      { granted: false },
+      jest.fn().mockResolvedValue({ granted: false }),
+    ])
+    const { getByLabelText, getByTestId } = render(<Upload />)
+
+    await act(async () => {
+      fireEvent.press(getByLabelText('Edit Image'))
+    })
+
+    await act(async () => {
+      fireEvent.press(getByTestId('confirm-button'))
+    })
+
+    expect(Linking.openSettings).toHaveBeenCalled()
   })
 })

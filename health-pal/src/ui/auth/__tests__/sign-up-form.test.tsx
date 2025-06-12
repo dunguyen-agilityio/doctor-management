@@ -1,10 +1,10 @@
+import { queryClient } from '@/react-query.config'
 import { act, fireEvent, render, screen, waitFor } from '@utils-test'
 
+import React from 'react'
 import { Keyboard } from 'react-native'
 
 import { VALIDATIONS_MESSAGE } from '@app/constants'
-
-import { queryClient } from '@app/react-query.config'
 
 import SignupForm from '../signup-form'
 

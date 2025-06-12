@@ -39,6 +39,7 @@ const CloudinaryImage: React.FC<CloudinaryImageProps> = ({
   return (
     <View overflow="hidden" style={style}>
       <ExpoImage
+        testID="cloudinary-image"
         style={{ width: '100%', height: '100%' }}
         source={error ? placeholder : optimizedSource}
         placeholder={placeholder}
