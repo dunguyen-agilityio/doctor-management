@@ -3,9 +3,9 @@ import { Session, User } from '@/models/user'
 import dayjs from 'dayjs'
 import { getItemAsync } from 'expo-secure-store'
 
-import { AuthCredentials, UserProfileData } from '@/types'
+import { APIResponse, AuthCredentials, UserProfileData } from '@/types'
 
-import { APIResponse, apiClient } from './http-client'
+import { apiClient } from './http-client'
 
 export const login = async ({
   email,

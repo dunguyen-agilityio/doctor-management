@@ -4,36 +4,27 @@ import { router } from 'expo-router'
 
 import { useToastController } from '@tamagui/toast'
 
+import { ROUTES } from '@/constants'
+
 import { useAppLoading } from '@/hooks'
 import { useSession } from '@/hooks/use-session'
 
 import { CreateAccountSuccessModal } from '@/ui/auth'
 import UserProfile from '@/ui/auth/user-profile'
 
-import { register, updateProfile } from '@/services/auth'
+import { register } from '@/services/auth'
 
 import { UserProfileData } from '@/types'
 import { ModalRef } from '@/types/modal'
 
 const Profile = () => {
   const setAppLoading = useAppLoading()
-  const { signIn, setUser, session } = useSession()
+  const { signIn, session } = useSession()
   const createSuccessModalRef = useRef<ModalRef>(null)
   const toast = useToastController()
 
-  const {
-    gender,
-    nickname,
-    dateOfBirth,
-    username,
-    name,
-    email,
-    avatar,
-    id: userId,
-    password,
-  } = session.user ?? {}
-
-  const isSignup = session.user && !session.isAuthenticated
+  const { gender, nickname, dateOfBirth, username, name, email, avatar, password } =
+    session.user ?? {}
 
   const handleSignup = async (formData: UserProfileData) => {
     createSuccessModalRef.current?.open()
@@ -47,7 +38,7 @@ const Profile = () => {
         duration: 3000,
       })
       setAppLoading(true)
-      router.replace('/(app)/(tabs)')
+      router.replace(ROUTES.HOME)
       signIn(data)
     } else {
       toast.show('Signup Failed', {
@@ -61,36 +52,11 @@ const Profile = () => {
     createSuccessModalRef.current?.close()
   }
 
-  const handleEditProfile = async (formData: UserProfileData) => {
-    if (!userId) return
-
-    setAppLoading(true)
-    const { data, error } = await updateProfile({ ...formData, id: userId })
-
-    if (data) {
-      setUser(data)
-      toast.show('Profile Updated', {
-        message: 'Profile updated successfully!',
-        type: 'success',
-        duration: 3000,
-      })
-      router.navigate('/(app)/(tabs)/profile')
-    } else {
-      toast.show('Profile Update Failed', {
-        message: error.message,
-        type: 'error',
-        duration: 3000,
-      })
-    }
-
-    setAppLoading(false)
-  }
-
   return (
     <>
-      {isSignup && <CreateAccountSuccessModal ref={createSuccessModalRef} />}
+      <CreateAccountSuccessModal ref={createSuccessModalRef} />
       <UserProfile
-        onSubmit={isSignup ? handleSignup : handleEditProfile}
+        onSubmit={handleSignup}
         defaultData={{
           dateOfBirth,
           name: name ?? username,
@@ -99,7 +65,7 @@ const Profile = () => {
           avatarUrl: avatar?.url,
           nickname,
         }}
-        editable={!isSignup}
+        editable
       />
     </>
   )

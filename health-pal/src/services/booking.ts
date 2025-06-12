@@ -5,10 +5,10 @@ import { APP_TOKEN } from '@/constants'
 import { BOOKING_MESSAGE, BOOKING_QUERY_KEY } from '@/constants/booking'
 
 import { BookingForm } from '@/types/booking'
-import { StrapiPagination, StrapiParams } from '@/types/strapi'
+import { APIResponse, StrapiPagination, StrapiParams } from '@/types/strapi'
 
 import { getJwt } from './auth'
-import { APIResponse, apiClient } from './http-client'
+import { apiClient } from './http-client'
 
 export const getBookings = async ({
   filters = [],

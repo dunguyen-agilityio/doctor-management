@@ -4,6 +4,8 @@ import { Link, router } from 'expo-router'
 
 import { useToastController } from '@tamagui/toast'
 
+import { ROUTES } from '@/constants'
+
 import { useAppLoading } from '@/hooks'
 import { useSession } from '@/hooks/use-session'
 
@@ -39,7 +41,7 @@ const SignIn = () => {
         duration: 3000,
       })
       signIn(data)
-      router.replace('/(app)/(tabs)')
+      router.replace(ROUTES.HOME)
     } else {
       toast.show('Login Failed', {
         message: error.message,
@@ -108,7 +110,7 @@ const SignIn = () => {
               Don&apos;t have an account yet?
             </Text>
             <Link
-              href="/sign-up"
+              href={ROUTES.SIGN_UP}
               aria-label="Sign up"
               accessibilityHint="Navigates to the sign up screen">
               <Text color="blue" size="small">

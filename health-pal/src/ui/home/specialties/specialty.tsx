@@ -3,6 +3,8 @@ import { SvgProps } from 'react-native-svg'
 
 import { Stack } from 'tamagui'
 
+import { ROUTES } from '@/constants'
+
 import { Text, YStack } from '@/components'
 
 type TSpecialty = {
@@ -16,7 +18,7 @@ const Specialty = ({ icon: Icon, name, color, value }: TSpecialty) => {
   return (
     <Link
       href={{
-        pathname: '/(app)/doctors/[specialty]',
+        pathname: ROUTES.DOCTORS,
         params: { specialty: value },
       }}
       tabIndex={0}

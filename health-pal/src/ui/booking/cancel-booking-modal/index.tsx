@@ -6,6 +6,8 @@ import { router } from 'expo-router'
 
 import { useToastController } from '@tamagui/toast'
 
+import { ROUTES } from '@/constants'
+
 import { useAppLoading } from '@/hooks'
 
 import { Button, Heading, Modal, Text, YStack } from '@/components'
@@ -44,7 +46,7 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, ...props }: Pro
         await queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.CANCELED] })
         await queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.UPCOMING] })
         router.navigate({
-          pathname: '/(app)/(tabs)/bookings',
+          pathname: ROUTES.BOOKINGS,
           params: { type: BOOKING_TABS.CANCELED },
         })
       }

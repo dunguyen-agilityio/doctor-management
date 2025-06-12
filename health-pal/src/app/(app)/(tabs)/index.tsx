@@ -2,6 +2,8 @@ import { Link } from 'expo-router'
 
 import { ScrollView } from 'tamagui'
 
+import { ROUTES } from '@/constants'
+
 import { SearchInput, SessionHeader, XStack, YStack } from '@/components'
 
 import { DoctorBanner, HorizontalHospitalList, Specialties } from '@/ui/home'
@@ -19,7 +21,7 @@ const Home = () => {
         <XStack px="$md">
           <Link
             href={{
-              pathname: '/(app)/doctors/[specialty]',
+              pathname: ROUTES.DOCTORS,
               params: {
                 specialty: 'all',
                 searching: 'true',
@@ -43,7 +45,7 @@ const Home = () => {
             title="Categories"
             seeAllWrapper={({ children }) => (
               <Link
-                href={{ pathname: '/doctors/[specialty]', params: { specialty: 'all' } }}
+                href={{ pathname: ROUTES.DOCTORS, params: { specialty: 'all' } }}
                 tabIndex={0}
                 role="link"
                 aria-label="View all specialties"
@@ -60,7 +62,7 @@ const Home = () => {
               title="Nearby Medical Centers"
               seeAllWrapper={({ children }) => (
                 <Link
-                  href="/hospitals"
+                  href={ROUTES.HOSPITAL}
                   tabIndex={0}
                   role="link"
                   aria-label="View all medical centers"

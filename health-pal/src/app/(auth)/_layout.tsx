@@ -1,6 +1,6 @@
-import { RelativePathString, Stack, router } from 'expo-router'
+import { Stack } from 'expo-router'
 
-import Header from '@/components/header'
+import { Header } from '@/components'
 
 const AuthLayout = () => {
   return (
@@ -12,19 +12,8 @@ const AuthLayout = () => {
         options={{
           headerShown: true,
           headerShadowVisible: false,
-          header: ({ route, navigation: { canGoBack, goBack } }) => {
-            const handleBack = () => {
-              if (route.params && 'from' in route.params) {
-                router.navigate(route.params.from as RelativePathString)
-                return
-              }
-
-              if (canGoBack()) goBack()
-
-              router.push('/sign-up')
-            }
-
-            return <Header title="Fill Your Profile" onBack={handleBack} />
+          header: ({ navigation }) => {
+            return <Header title="Fill Your Profile" onBack={navigation.goBack} />
           },
         }}
       />

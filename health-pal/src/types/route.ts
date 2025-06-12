@@ -7,6 +7,7 @@ export enum APP_ROUTES {
   BOOKING = 'booking',
   HOSPITALS = 'hospitals/index',
   HOSPITAL_DETAILS = 'hospitals/[id]',
+  EDIT_PROFILE = 'edit-profile',
 }
 
 export type AppParamList = {

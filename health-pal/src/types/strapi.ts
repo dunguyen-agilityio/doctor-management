@@ -20,3 +20,8 @@ export type StrapiPagination<T> = {
     }
   }
 }
+
+type SuccessResponse<T> = { data: T; error?: null }
+type FailedResponse = { data?: null; error: { message: string; code?: number } }
+
+export type APIResponse<T> = SuccessResponse<T> | FailedResponse
