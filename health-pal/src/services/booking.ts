@@ -34,8 +34,9 @@ export const getBookings = async ({
     ],
   })
 
+  const jwt = await getJwt()
   const response = await apiClient.get<StrapiPagination<BookingData>>(`bookings?${searchParams}`, {
-    jwt: APP_TOKEN,
+    jwt,
   })
 
   return response

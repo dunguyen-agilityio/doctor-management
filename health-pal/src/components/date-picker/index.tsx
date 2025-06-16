@@ -1,10 +1,9 @@
 import { ArrowLeft, ArrowRight } from '@/icons'
-import { createDayjs } from '@/utils/date'
 
 import { memo } from 'react'
 import { StyleSheet } from 'react-native'
 
-import { Dayjs } from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 import DateTimePicker, { DateType } from 'react-native-ui-datepicker'
 
 import { tokens } from '@tamagui.config'
@@ -19,7 +18,7 @@ export type DatePickerProps = Omit<DateTimePickerProps, 'mode' | 'onChange'> & {
 
 const DatePicker = ({ onChange, ...props }: DatePickerProps) => {
   const handleChange = ({ date }: { date: DateType }) => {
-    onChange?.(createDayjs(date))
+    onChange?.(dayjs(date))
   }
 
   return (

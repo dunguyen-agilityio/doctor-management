@@ -1,4 +1,4 @@
-import { createDayjs, formatShortTime, getDateSkippingWeekend, splitTime } from '@/utils/date'
+import { formatShortTime, getDateSkippingWeekend, splitTime } from '@/utils/date'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 
 import { useCallback, useMemo, useRef } from 'react'
@@ -44,7 +44,7 @@ const Booking = () => {
 
   const { bookingId, doctorId: doctorIdParam, doctorDocId, date: dateParam } = params
 
-  const parseDate = createDayjs(dateParam)
+  const parseDate = dayjs(dateParam)
   const defaultDate = parseDate.isValid() ? parseDate : getDateSkippingWeekend()
 
   const methods = useForm<BookingForm>({
@@ -147,18 +147,18 @@ const Booking = () => {
               <BookingTime
                 onChange={(time) => {
                   const { hour, minute } = splitTime(time)
-                  const newDate = createDayjs(value).set('hour', hour).set('minute', minute)
+                  const newDate = dayjs(value).set('hour', hour).set('minute', minute)
                   onChange(newDate)
                 }}
                 value={formatShortTime(value)}
                 disable={(time) => {
                   const { hour, minute } = splitTime(time)
-                  let clone = createDayjs(value)
+                  let clone = dayjs(value)
                   clone = clone.set('hour', hour).set('minute', minute)
 
                   return (
                     (available[time] === false && defaultTime !== time) ||
-                    clone.isBefore(createDayjs(), 'minutes')
+                    clone.isBefore(dayjs(), 'minutes')
                   )
                 }}
               />
