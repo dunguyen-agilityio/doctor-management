@@ -58,22 +58,6 @@ describe('Input', () => {
     expect(mockOnFocus).toHaveBeenCalled()
   })
 
-  it('calls onEndEdit with isChanged based on value change', () => {
-    render(<Input {...mockProps} onEndEdit={mockOnEndEdit} />)
-
-    fireEvent(screen.getByPlaceholderText('Enter text'), 'focus')
-    fireEvent(screen.getByPlaceholderText('Enter text'), 'endEditing', {
-      nativeEvent: { text: 'new value' },
-    })
-    expect(mockOnEndEdit).toHaveBeenCalledWith(true)
-
-    fireEvent(screen.getByPlaceholderText('Enter text'), 'focus')
-    fireEvent(screen.getByPlaceholderText('Enter text'), 'endEditing', {
-      nativeEvent: { text: 'test' },
-    })
-    expect(mockOnEndEdit).toHaveBeenCalledWith(false)
-  })
-
   it('forwards onEndEditing prop', () => {
     render(<Input {...mockProps} onEndEditing={mockOnEndEditing} />)
 

@@ -17,7 +17,7 @@ describe('SessionHeader', () => {
       color: '#1c2a3a',
     })
 
-    const seeAllText = screen.getByText('See all')
+    const seeAllText = screen.getByText('See All')
     expect(seeAllText).toHaveStyle({
       fontFamily: 'Inter_400Regular',
       fontSize: 16,
@@ -35,7 +35,7 @@ describe('SessionHeader', () => {
     expect(screen.getByTestId('heading')).toHaveTextContent('Past Sessions')
     const wrapper = screen.getByTestId('custom-wrapper')
     expect(wrapper).toBeTruthy()
-    const seeAllText = screen.getByText('See all')
+    const seeAllText = screen.getByText('See All')
     expect(seeAllText).toBeTruthy()
     expect(wrapper).toContainElement(seeAllText)
   })
@@ -44,6 +44,6 @@ describe('SessionHeader', () => {
     render(<SessionHeader title="" />)
 
     expect(screen.getByTestId('heading')).toHaveTextContent('')
-    expect(screen.getByText('See all')).toBeTruthy()
+    expect(screen.getByText('See All')).toBeTruthy()
   })
 })

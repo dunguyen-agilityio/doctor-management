@@ -1,8 +1,10 @@
-import { createDayjs, getMaxDate } from '@/utils/date'
+import { getMaxDate } from '@/utils/date'
 import { Controller, useForm } from 'react-hook-form'
 
 import { useRef } from 'react'
 import { Keyboard, TextInput } from 'react-native'
+
+import dayjs from 'dayjs'
 
 import { useToastController } from '@tamagui/toast'
 import { debounce } from 'tamagui'
@@ -70,7 +72,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
     watch('avatarUrl') !== defaultAvatar ||
     watch('name') !== defaultName ||
     defaultEmail !== watch('email') ||
-    !createDayjs(watch('dateOfBirth')).isSame(defaultDateOfBirth) ||
+    !dayjs(watch('dateOfBirth')).isSame(defaultDateOfBirth) ||
     watch('nickname') !== defaultNickname ||
     watch('gender') !== defaultGender
 
@@ -255,9 +257,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
               validate: (val) => {
                 if (val === null) return VALIDATIONS_MESSAGE.REQUIRED_FIELD('Date Of Birth')
                 const maxDate = getMaxDate(16)
-                return (
-                  createDayjs(val).isBefore(maxDate, 'day') || VALIDATIONS_MESSAGE.DAY_OF_BIRTH()
-                )
+                return dayjs(val).isBefore(maxDate, 'day') || VALIDATIONS_MESSAGE.DAY_OF_BIRTH()
               },
             }}
             render={({ field: { onChange, value, ...field }, fieldState: { error } }) => (
@@ -272,7 +272,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                 ref={(ref) => {
                   inputRefs.current[3] = ref
                 }}
-                datePickerProps={{ maxDate: createDayjs() }}
+                datePickerProps={{ maxDate: dayjs() }}
                 errorMessage={error?.message}
                 aria-label="Date of birth"
                 accessibilityHint="Select your date of birth for your profile"

@@ -109,6 +109,7 @@ exports[`ReviewCard matches snapshot 1`] = `
                 "width": "100%",
               }
             }
+            testID="cloudinary-image"
             transition={null}
             width="100%"
           />

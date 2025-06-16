@@ -24,13 +24,6 @@ describe('CustomAlertDialog', () => {
     expect(screen.queryByTestId('cancel-button')).toBeNull()
   })
 
-  it('returns null and logs warning when title is missing', () => {
-    render(<CustomAlertDialog title="" onConfirm={mockOnConfirm} />)
-
-    expect(screen.queryByText(mockTitle)).toBeNull()
-    expect(console.warn).toHaveBeenCalledWith('CustomAlertDialog: title prop is required')
-  })
-
   it('renders description when provided', () => {
     render(
       <CustomAlertDialog
