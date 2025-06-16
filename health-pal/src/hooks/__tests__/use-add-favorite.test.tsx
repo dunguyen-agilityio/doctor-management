@@ -1,3 +1,4 @@
+import { MOCK_USER } from '@/mocks/user'
 import { act, renderHook, waitFor } from '@utils-test'
 
 import { addFavorite } from '@/services/favorite'
@@ -11,6 +12,12 @@ jest.mock('@/services/favorite', () => ({
   addFavorite: jest.fn(),
 }))
 
+jest.mock('@/hooks/use-require-auth', () => ({
+  useRequireAuth: jest.fn().mockReturnValue({
+    session: { user: MOCK_USER },
+  }),
+}))
+
 const mockShow = jest.fn()
 
 jest.mock('@tamagui/toast', () => ({
@@ -21,6 +28,10 @@ jest.mock('@tamagui/toast', () => ({
 }))
 
 describe('useAddFavorite', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('calls addFavorite and shows success toast', async () => {
     ;(addFavorite as jest.Mock).mockResolvedValueOnce({})
 
@@ -31,11 +42,7 @@ describe('useAddFavorite', () => {
     })
 
     await waitFor(() => {
-      expect(addFavorite).toHaveBeenCalledWith(
-        { itemId: 42, type: FAVORITE_TYPES.DOCTOR },
-        123,
-        'test-token',
-      )
+      expect(addFavorite).toHaveBeenCalledWith({ itemId: 42, type: FAVORITE_TYPES.DOCTOR }, 1)
       expect(mockShow).toHaveBeenCalledWith('Added to Favorites', {
         message: 'Doctor has been added to your favorites.',
         duration: 3000,
@@ -45,7 +52,7 @@ describe('useAddFavorite', () => {
   })
 
   it('shows error toast when mutation fails', async () => {
-    ;(addFavorite as jest.Mock).mockRejectedValueOnce(new Error('Failed'))
+    ;(addFavorite as jest.Mock).mockRejectedValue(new Error('Failed'))
 
     const { result } = renderHook(() => useAddFavorite(FAVORITE_TYPES.HOSPITAL, 'Hospital'))
 
@@ -55,7 +62,7 @@ describe('useAddFavorite', () => {
 
     await waitFor(() => {
       expect(mockShow).toHaveBeenCalledWith('Action Failed', {
-        message: 'Failed to remove favorite. Please try again.',
+        message: 'Failed to add favorite. Please try again.',
         duration: 3000,
         type: 'error',
       })

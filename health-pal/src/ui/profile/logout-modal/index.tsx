@@ -24,6 +24,7 @@ const LogoutModal = ({ ref }: { ref: React.RefObject<ModalRef | null> }) => {
   return (
     <SheetModal
       ref={ref}
+      testID="sheet-modal"
       aria-label="Logout confirmation"
       accessibilityHint="Dialog to confirm logging out of your account">
       <YStack width="100%">

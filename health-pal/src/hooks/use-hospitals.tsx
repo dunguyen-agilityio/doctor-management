@@ -2,10 +2,10 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 
 import { getHospitals } from '@/services/hospital'
 
-const useHospitals = (query = '') => {
+export const useHospitals = (query = '') => {
   const queryResponse = useInfiniteQuery({
     queryKey: ['hospitals', query],
-    queryFn: async ({ pageParam }) => {
+    queryFn: async ({ pageParam = 1 }) => {
       const filters = [{ key: 'sort', query: 'id:asc' }]
 
       if (query) {
@@ -45,5 +45,3 @@ const useHospitals = (query = '') => {
 
   return queryResponse
 }
-
-export default useHospitals

@@ -2,6 +2,7 @@ import { Review } from '@/models/review'
 
 export const MOCK_REVIEWS = [
   {
+    name: 'Emily Anderson',
     rating: 5,
     comment:
       'Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to',

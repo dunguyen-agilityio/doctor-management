@@ -5,6 +5,7 @@ export class Review extends Strapi {
   patient!: Patient
   rating!: number
   comment!: string
+  name!: string
 
   constructor(review: Review) {
     super(review)

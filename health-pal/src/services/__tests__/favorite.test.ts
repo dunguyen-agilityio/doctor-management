@@ -1,3 +1,5 @@
+import { getItemAsync } from 'expo-secure-store'
+
 import { FAVORITE_TYPES } from '@/types/favorite'
 
 import { addFavorite, fetchFavoritesByType, removeFavorite } from '../favorite'
@@ -11,9 +13,22 @@ jest.mock('../http-client', () => ({
   },
 }))
 
+jest.mock('expo-secure-store', () => ({
+  ...jest.requireActual('expo-secure-store'),
+  getItemAsync: jest.fn(),
+}))
+
 describe('Favorites API', () => {
   const jwt = 'mock_token'
   const userId = 1
+
+  beforeEach(() => {
+    ;(getItemAsync as jest.Mock).mockResolvedValueOnce(jwt)
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
 
   const mockDoctorFavorite = {
     id: 1,
@@ -38,7 +53,7 @@ describe('Favorites API', () => {
   it('fetches doctor favorites', async () => {
     ;(apiClient.get as jest.Mock).mockResolvedValueOnce({ data: [mockDoctorFavorite] })
 
-    const result = await fetchFavoritesByType(userId, jwt, FAVORITE_TYPES.DOCTOR)
+    const result = await fetchFavoritesByType(userId, FAVORITE_TYPES.DOCTOR)
 
     expect(apiClient.get).toHaveBeenCalled()
     expect(result).toEqual([mockDoctorFavorite])
@@ -47,7 +62,7 @@ describe('Favorites API', () => {
   it('fetches hospital favorites', async () => {
     ;(apiClient.get as jest.Mock).mockResolvedValueOnce({ data: [mockHospitalFavorite] })
 
-    const result = await fetchFavoritesByType(userId, jwt, FAVORITE_TYPES.HOSPITAL)
+    const result = await fetchFavoritesByType(userId, FAVORITE_TYPES.HOSPITAL)
 
     expect(apiClient.get).toHaveBeenCalled()
     expect(result).toEqual([mockHospitalFavorite])
@@ -76,7 +91,7 @@ describe('Favorites API', () => {
     const mockResponse = { success: true }
     ;(apiClient.delete as jest.Mock).mockResolvedValueOnce(mockResponse)
 
-    const result = await removeFavorite('123', jwt)
+    const result = await removeFavorite('123')
 
     expect(apiClient.delete).toHaveBeenCalledWith('favorites/123', { jwt })
     expect(result).toEqual(mockResponse)

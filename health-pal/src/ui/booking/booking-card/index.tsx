@@ -37,6 +37,7 @@ const BookingCard = ({
       elevation={3}
       padding={10}
       marginBottom={10}
+      testID="booking-card"
       aria-label={`Booking with ${doctorName}`}>
       <Card.Header>
         <Heading fontSize={14}>{formatDate(date)}</Heading>
@@ -54,10 +55,10 @@ const BookingCard = ({
               <Text fontSize={16} fontWeight="bold">
                 {doctorName}
               </Text>
-              <Text fontSize={14} color="#6B7280">
+              <Text fontSize={14} color="$grey500">
                 {specialty}
               </Text>
-              <Text fontSize={12} color="#9CA3AF" numberOfLines={1} maxWidth={250}>
+              <Text fontSize={12} color="$grey400" numberOfLines={1} maxWidth={250}>
                 {address}
               </Text>
             </YStack>

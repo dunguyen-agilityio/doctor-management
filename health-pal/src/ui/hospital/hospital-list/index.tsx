@@ -17,6 +17,7 @@ const HospitalList = ({ ...otherProps }: HospitalProps) => {
       keyExtractor={keyExtractor}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
+      testID="hospital-list"
       {...otherProps}
     />
   )

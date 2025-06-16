@@ -2,13 +2,14 @@ import { SmsIcon } from '@/icons'
 import User from '@/icons/user'
 import { Controller, useForm } from 'react-hook-form'
 
-import { useRef } from 'react'
-import { Keyboard, TextInput } from 'react-native'
+import { Keyboard } from 'react-native'
 
 import { YStack } from 'tamagui'
 
 import { VALIDATIONS_MESSAGE } from '@/constants/message'
 import { EMAIL_REGEX } from '@/constants/regex'
+
+import useAutoFocusField from '@/hooks/use-auto-focus-field'
 
 import { PasswordInput } from '@/components'
 import { Button, Input } from '@/components/common'
@@ -24,8 +25,7 @@ const SignupForm = ({
   onSubmit,
   defaultValues = { email: '', name: '', password: '' },
 }: SignupFormProps) => {
-  const emailRef = useRef<TextInput>(null)
-  const passwordRef = useRef<TextInput>(null)
+  const [inputRefs, handleField] = useAutoFocusField()
 
   const { control, handleSubmit } = useForm<SignupData>({
     defaultValues,
@@ -38,12 +38,8 @@ const SignupForm = ({
     await onSubmit(data)
   }
 
-  const handleEndEditName = (isChanged: boolean) => {
-    isChanged && emailRef?.current?.focus()
-  }
-
-  const handleEndEditEmail = (isChanged: boolean) => {
-    isChanged && passwordRef?.current?.focus()
+  const handleFocus = () => {
+    handleField({ event: 'FOCUS' })
   }
 
   return (
@@ -64,13 +60,17 @@ const SignupForm = ({
               {...field}
               leftIcon={User}
               placeholder="Your Name"
-              onChangeText={onChange}
               errorMessage={error?.message}
-              onEdited={handleEndEditName}
+              onSubmitEditing={() => {
+                handleField({ event: 'SUBMIT', next: 1 })
+              }}
+              onChangeText={onChange}
+              onFocus={handleFocus}
               returnKeyType="next"
               aria-label="Full Name"
               accessibilityHint="Enter your full name"
               accessibilityRole="text"
+              ref={(el) => void (inputRefs.current[0] = el)}
             />
           )}
         />
@@ -89,10 +89,13 @@ const SignupForm = ({
               {...field}
               leftIcon={SmsIcon}
               placeholder="Your Email"
-              onChangeText={onChange}
               errorMessage={error?.message}
-              ref={emailRef}
-              onEdited={handleEndEditEmail}
+              ref={(el) => void (inputRefs.current[1] = el)}
+              onSubmitEditing={() => {
+                handleField({ event: 'SUBMIT', next: 2 })
+              }}
+              onChangeText={onChange}
+              onFocus={handleFocus}
               returnKeyType="next"
               textContentType="emailAddress"
               aria-label="Your Email"
@@ -114,9 +117,11 @@ const SignupForm = ({
           render={({ field: { onChange, ...field }, fieldState: { error } }) => (
             <PasswordInput
               {...field}
-              onChangeText={onChange}
               errorMessage={error?.message}
-              ref={passwordRef}
+              ref={(el) => void (inputRefs.current[2] = el)}
+              onSubmitEditing={(e) => {}}
+              onChangeText={onChange}
+              onFocus={handleFocus}
               returnKeyType="done"
               aria-label="Password"
               accessibilityHint="Enter your password"

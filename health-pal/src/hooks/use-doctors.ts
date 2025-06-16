@@ -8,7 +8,7 @@ import { getDoctors } from '@/services/doctor'
 
 import { StrapiPagination } from '@/types/strapi'
 
-const useDoctors = (query: string, specialty: string[]) => {
+export const useDoctors = (query: string, specialty: string[]) => {
   const getDoctorsPromise = async ({ pageParam = 1 }: { pageParam: number }) => {
     const specialties = typeof specialty === 'string' ? [specialty] : specialty
 
@@ -65,5 +65,3 @@ const useDoctors = (query: string, specialty: string[]) => {
 
   return queryResponse
 }
-
-export default useDoctors

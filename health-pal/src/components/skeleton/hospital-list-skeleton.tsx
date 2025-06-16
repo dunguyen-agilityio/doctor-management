@@ -18,6 +18,7 @@ const HospitalListSkeleton = ({
       aria-label="Loading hospitals"
       accessibilityHint="Hospital list is currently being loaded"
       role="progressbar"
+      testID="hospital-skeleton"
       {...props}>
       {[...Array(count).keys()].map((v, idx) => (
         <HospitalCardSkeleton

@@ -1,15 +1,14 @@
 import { renderHook, waitFor } from '@utils-test'
 
-import { useQuery } from '@tanstack/react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 
 import { getHospitals } from '@/services/hospital'
 
-import useHospitals from '../use-hospitals'
+import { useHospitals } from '../use-hospitals'
 
-// Mock dependencies
 jest.mock('@tanstack/react-query', () => ({
   ...jest.requireActual('@tanstack/react-query'),
-  useQuery: jest.fn(),
+  useInfiniteQuery: jest.fn(),
 }))
 
 jest.mock('@/services/hospital', () => ({
@@ -30,17 +29,18 @@ describe('useHospitals', () => {
 
   beforeEach(() => {
     jest.clearAllMocks()
-    ;(useQuery as jest.Mock).mockReturnValue(mockQueryResponse)
+    ;(useInfiniteQuery as jest.Mock).mockReturnValue(mockQueryResponse)
     ;(getHospitals as jest.Mock).mockResolvedValue(mockHospitals)
   })
 
   it('calls useQuery with correct queryKey and queryFn', () => {
     renderHook(() => useHospitals())
 
-    expect(useQuery).toHaveBeenCalledWith({
-      queryKey: ['hospitals'],
-      queryFn: expect.any(Function),
-    })
+    expect(useInfiniteQuery).toHaveBeenCalledWith(
+      expect.objectContaining({
+        queryKey: ['hospitals', ''],
+      }),
+    )
   })
 
   it('returns query response from useQuery', () => {
@@ -51,7 +51,7 @@ describe('useHospitals', () => {
 
   it('queryFn calls getHospitals', async () => {
     let queryFn: () => Promise<any>
-    ;(useQuery as jest.Mock).mockImplementation(({ queryFn: fn }) => {
+    ;(useInfiniteQuery as jest.Mock).mockImplementation(({ queryFn: fn }) => {
       queryFn = fn
       return mockQueryResponse
     })
@@ -59,14 +59,14 @@ describe('useHospitals', () => {
     renderHook(() => useHospitals())
 
     await waitFor(async () => {
-      const result = await queryFn()
+      const result = await queryFn({ pageParam: 1 })
       expect(getHospitals).toHaveBeenCalled()
       expect(result).toEqual(mockHospitals)
     })
   })
 
   it('handles loading state', () => {
-    ;(useQuery as jest.Mock).mockReturnValue({
+    ;(useInfiniteQuery as jest.Mock).mockReturnValue({
       ...mockQueryResponse,
       isLoading: true,
       data: undefined,
@@ -80,7 +80,7 @@ describe('useHospitals', () => {
 
   it('handles error state', async () => {
     const error = new Error('Failed to fetch hospitals')
-    ;(useQuery as jest.Mock).mockReturnValue({
+    ;(useInfiniteQuery as jest.Mock).mockReturnValue({
       ...mockQueryResponse,
       isError: true,
       error,

@@ -42,7 +42,7 @@ const RemoveFavoriteModal = ({
             }}>
             Cancel
           </Button>
-          <Button fontWeight="700" flex={1} onPress={handleLogout}>
+          <Button fontWeight="700" flex={1} onPress={handleLogout} testID="remove-favorite-button">
             Yes, Remove
           </Button>
         </XStack>

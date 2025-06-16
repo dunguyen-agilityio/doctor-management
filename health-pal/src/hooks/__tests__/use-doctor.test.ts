@@ -7,7 +7,6 @@ import { getDoctor } from '@/services/doctor'
 
 import useDoctor from '../use-doctor'
 
-// Mock dependencies
 jest.mock('@tanstack/react-query', () => ({
   ...jest.requireActual('@tanstack/react-query'),
   useQuery: jest.fn(),

@@ -24,6 +24,7 @@ const DoctorList = ({ ...props }: DoctorListProps) => {
   return (
     <View minWidth={WINDOW_SIZE.width - 24 * 2} flex={1}>
       <FlashList
+        testID="doctor-list"
         renderItem={renderItem}
         contentContainerStyle={styles.contentContainerStyle}
         keyExtractor={keyExtractor}

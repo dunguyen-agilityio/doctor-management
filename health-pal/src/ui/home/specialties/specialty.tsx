@@ -21,6 +21,7 @@ const Specialty = ({ icon: Icon, name, color, value }: TSpecialty) => {
         pathname: ROUTES.DOCTORS,
         params: { specialty: value },
       }}
+      testID="specialty"
       tabIndex={0}
       aria-label={`View doctors specializing in ${name}`}
       accessibilityHint="Navigates to a list of doctors for this specialty"

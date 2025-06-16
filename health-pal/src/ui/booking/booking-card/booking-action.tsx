@@ -86,7 +86,7 @@ const BookingAction = ({
         />
       )}
       <Separator marginVertical={10} />
-      <XStack gap={10}>
+      <XStack gap={10} testID="booking-action">
         <Button
           variant="secondary"
           sizeButton="sm"

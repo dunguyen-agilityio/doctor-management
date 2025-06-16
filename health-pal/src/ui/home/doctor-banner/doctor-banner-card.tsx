@@ -22,7 +22,7 @@ const DoctorBannerCard = ({
       borderRadius={12}
       overflow="hidden"
       gap="$sm">
-      <Image source={image} style={{ position: 'absolute', inset: 0 }} />
+      <Image source={image} testID="banner-image" style={{ position: 'absolute', inset: 0 }} />
       <Heading color="$white">{title}</Heading>
       <Text size="extraSmall" color="$white" fontWeight="400">
         {description}

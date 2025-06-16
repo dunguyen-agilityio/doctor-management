@@ -1,3 +1,4 @@
+import { MOCK_USER } from '@/mocks/user'
 import { render } from '@utils-test'
 
 import { TIME_SLOTS } from '@/constants/booking'
@@ -8,7 +9,7 @@ import Booking from '../booking'
 
 jest.mock('@/hooks/use-require-auth', () => ({
   useRequireAuth: jest.fn().mockReturnValue({
-    session: { jwt: 'fake-jwt-token' },
+    session: { user: MOCK_USER },
   }),
 }))
 
@@ -21,9 +22,13 @@ jest.mock('@/services/booking', () => ({
 
 describe('Booking', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
     ;(getBookingAvailable as jest.Mock).mockResolvedValue({ available, doctorId: 'doctor-id' })
   })
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('should render correctly', () => {
     const { getByText } = render(<Booking />)
     expect(getByText('Select Date')).toBeTruthy()

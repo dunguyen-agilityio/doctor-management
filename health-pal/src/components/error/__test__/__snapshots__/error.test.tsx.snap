@@ -552,6 +552,7 @@ exports[`ErrorState matches snapshot with onRetry button 1`] = `
           "width": "100%",
         }
       }
+      testID="retry-button"
     >
       <Text
         lineBreakMode="clip"

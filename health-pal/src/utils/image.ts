@@ -1,12 +1,10 @@
-export const getOptimizedUrl = ({
-  quality,
-  uri,
-  width,
-}: {
+type Params = {
   uri?: string
   width?: number
   quality?: number
-}): string | undefined => {
+}
+
+export const getOptimizedUrl = ({ quality, uri, width }: Params): string | undefined => {
   if (!uri || typeof uri !== 'string') return uri
 
   // Check for Cloudinary domains

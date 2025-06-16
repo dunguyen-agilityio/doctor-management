@@ -68,6 +68,7 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, ...props }: Pro
   return (
     <Modal
       ref={ref}
+      testID="cancel-booking-modal"
       aria-label={`Confirm cancellation of booking with ${doctorName} on ${formatDate(date)}`}
       accessibilityHint="Dialog to confirm or keep this appointment"
       {...props}>
