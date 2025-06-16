@@ -1,10 +1,17 @@
 import { MOCK_DOCTORS } from '@/mocks/doctor'
+import { MOCK_USER } from '@/mocks/user'
 import { render } from '@utils-test'
 
 import DoctorList from '..'
 
+jest.mock('@/hooks/use-require-auth', () => ({
+  useRequireAuth: jest.fn().mockReturnValue({
+    session: { user: MOCK_USER },
+  }),
+}))
+
 describe('DoctorList', () => {
-  beforeEach(() => {
+  afterEach(() => {
     jest.clearAllMocks()
   })
 

@@ -4,9 +4,8 @@ import { Hospital } from '@/models/hospital'
 import { useFavoritesStore } from '@/stores/favorite'
 
 import { useRef } from 'react'
-import { GestureResponderEvent } from 'react-native'
 
-import { Card, Separator, ViewProps, XStack } from 'tamagui'
+import { Card, CardProps, Separator, ViewProps, XStack } from 'tamagui'
 
 import { useAddFavorite } from '@/hooks/use-add-favorite'
 import { useRemoveFavorite } from '@/hooks/use-remove-favorite'
@@ -26,7 +25,7 @@ type HospitalExtend = {
   width?: ViewProps['width']
 }
 
-type HospitalCardProps = Hospital & HospitalExtend
+type HospitalCardProps = Hospital & HospitalExtend & Omit<CardProps, 'id'>
 
 const HospitalCard = ({
   image = require('@assets/images/banner01.webp'),
@@ -56,9 +55,7 @@ const HospitalCard = ({
 
   const confirmRef = useRef<ModalRef>(null)
 
-  const handleFavorite = (e: GestureResponderEvent) => {
-    e.preventDefault()
-
+  const handleFavorite = () => {
     if (favoriteId) {
       confirmRef.current?.open()
       return
@@ -72,7 +69,7 @@ const HospitalCard = ({
     removeFavorite(favoriteId)
   }
 
-  const renderCard = (extend: HospitalExtend) => (
+  const renderCard = (extend: HospitalExtend, hasFavorite = false) => (
     <Card
       elevate
       bordered
@@ -80,6 +77,7 @@ const HospitalCard = ({
       overflow="hidden"
       elevation={3}
       shadowColor="$black"
+      testID="hospital-card"
       disabled={!addFavPending || removeFavPending}
       disabledStyle={{ opacity: 0.8 }}
       width={width}
@@ -102,15 +100,15 @@ const HospitalCard = ({
           top={6}
           right={6}
           position="absolute"
-          testID="favorite-button"
-          onPress={handleFavorite}
-          tabIndex={0}
-          aria-label={favoriteId ? `Remove ${name} from favorites` : `Add ${name} to favorites`}
-          accessibilityHint={
-            favoriteId
+          {...(hasFavorite && {
+            testID: 'favorite-button',
+            onPress: handleFavorite,
+            tabIndex: 0,
+            'aria-label': favoriteId ? `Remove ${name} from favorites` : `Add ${name} to favorites`,
+            accessibilityHint: favoriteId
               ? 'Removes this hospital from your favorites'
-              : 'Adds this hospital to your favorites'
-          }
+              : 'Adds this hospital to your favorites',
+          })}
           role="button"
         />
       </Card.Header>
@@ -151,7 +149,7 @@ const HospitalCard = ({
 
   const content = (
     <>
-      {renderCard({ width, marginBottom, marginLeft, marginRight })}
+      {renderCard({ width, marginBottom, marginLeft, marginRight }, true)}
       {favoriteId && (
         <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
           {renderCard({ width: 'auto' })}

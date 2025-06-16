@@ -45,6 +45,7 @@ export const getProfile = async (jwt: string) => {
     if (process.env.NODE_ENV === 'development') {
       console.log('error', error)
     }
+
     return null
   }
 }

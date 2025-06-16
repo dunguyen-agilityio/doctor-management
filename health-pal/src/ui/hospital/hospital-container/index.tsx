@@ -6,7 +6,7 @@ import { Spinner, Stack, View } from 'tamagui'
 
 import { FAVORITE_EMPTY } from '@/constants'
 
-import useHospitals from '@/hooks/use-hospitals'
+import { useHospitals } from '@/hooks/use-hospitals'
 
 import { Empty, ErrorState, LoadingIndicator, YStack } from '@/components'
 import HospitalListSkeleton from '@/components/skeleton/hospital-list-skeleton'
@@ -48,7 +48,7 @@ const HospitalContainer = ({ query }: { query: string }) => {
 
   const ListFooterComponent = hasNextPage ? (
     <YStack paddingVertical={8}>
-      <Spinner />
+      <Spinner testID="spinner" />
     </YStack>
   ) : null
 

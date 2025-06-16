@@ -1,3 +1,4 @@
+import { MOCK_USER } from '@/mocks/user'
 import { act, renderHook, waitFor } from '@utils-test'
 
 import { useMutation } from '@tanstack/react-query'
@@ -9,7 +10,6 @@ import { removeFavorite } from '@/services/favorite'
 import { FAVORITE_TYPES } from '@/types/favorite'
 
 import { useRemoveFavorite } from '../use-remove-favorite'
-import { useSession } from '../use-session'
 
 jest.mock('@tanstack/react-query', () => ({
   ...jest.requireActual('@tanstack/react-query'),
@@ -22,19 +22,17 @@ jest.mock('@tamagui/toast', () => ({
   useToastController: jest.fn(),
 }))
 
-jest.mock('@/contexts', () => ({
-  ...jest.requireActual('@/contexts'),
-  useSession: jest.fn(),
-}))
-
 jest.mock('@/services/favorite', () => ({
   removeFavorite: jest.fn(),
 }))
 
+jest.mock('@/hooks/use-require-auth', () => ({
+  useRequireAuth: jest.fn().mockReturnValue({
+    session: { user: MOCK_USER },
+  }),
+}))
+
 describe('useRemoveFavorite', () => {
-  const mockJwt = 'abc123'
-  const mockUser = { id: 'user1', name: 'John Doe', email: 'john@example.com' }
-  const mockSession = { jwt: mockJwt, user: mockUser }
   const mockType = FAVORITE_TYPES.DOCTOR
   const mockItemName = 'Dr. Smith'
   const mockFavoriteId = 'fav1'
@@ -42,11 +40,13 @@ describe('useRemoveFavorite', () => {
   const mockMutate = jest.fn()
 
   beforeEach(() => {
-    jest.clearAllMocks()
-    ;(useSession as jest.Mock).mockReturnValue({ session: mockSession })
     ;(useToastController as jest.Mock).mockReturnValue({ show: mockToastShow })
     ;(useMutation as jest.Mock).mockReturnValue({ mutate: mockMutate })
     ;(removeFavorite as jest.Mock).mockResolvedValue(undefined)
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
   it('returns mutation object from useMutation', () => {
@@ -73,7 +73,7 @@ describe('useRemoveFavorite', () => {
       await mutationFn!(mockFavoriteId)
     })
 
-    expect(removeFavorite).toHaveBeenCalledWith(mockFavoriteId, mockJwt)
+    expect(removeFavorite).toHaveBeenCalledWith(mockFavoriteId)
   })
 
   it('invalidates queries and shows success toast on success', async () => {
@@ -123,23 +123,5 @@ describe('useRemoveFavorite', () => {
         duration: 3000,
       })
     })
-  })
-
-  it('handles null session gracefully', () => {
-    ;(useSession as jest.Mock).mockReturnValue({ session: null })
-
-    const { result } = renderHook(() => useRemoveFavorite(mockType, mockItemName))
-
-    expect(useMutation).toHaveBeenCalledWith({
-      mutationFn: expect.any(Function),
-      onSuccess: expect.any(Function),
-      onError: expect.any(Function),
-    })
-
-    act(() => {
-      result.current.mutate(mockFavoriteId)
-    })
-
-    expect(removeFavorite).not.toHaveBeenCalled()
   })
 })

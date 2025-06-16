@@ -1,7 +1,7 @@
 import { Stack } from 'tamagui'
 
 import { useFavoriteHospitals } from '@/hooks/use-favorite'
-import useHospitals from '@/hooks/use-hospitals'
+import { useHospitals } from '@/hooks/use-hospitals'
 
 import { ErrorState } from '@/components'
 import HospitalListSkeleton from '@/components/skeleton/hospital-list-skeleton'

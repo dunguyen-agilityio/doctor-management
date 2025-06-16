@@ -12,7 +12,6 @@ jest.mock('expo-file-system', () => ({
 }))
 
 describe('uploadToStrapi', () => {
-  const mockJwt = 'mock_jwt'
   const mockUri = 'file:///mock/path/image.jpg'
   const mockEndpoint = 'https://mock-api.com'
 
@@ -38,10 +37,10 @@ describe('uploadToStrapi', () => {
 
     ;(FileSystem.uploadAsync as jest.Mock).mockResolvedValueOnce(mockResponse)
 
-    const result = await uploadToStrapi(mockUri, mockJwt)
+    const result = await uploadToStrapi(mockUri)
 
     expect(FileSystem.uploadAsync).toHaveBeenCalledWith(`${mockEndpoint}/upload`, mockUri, {
-      headers: { Authorization: `Bearer ${mockJwt}` },
+      headers: { Authorization: 'Bearer mock_token' },
       uploadType: 'MULTIPART',
       fieldName: 'files',
     })
@@ -76,7 +75,7 @@ describe('uploadToStrapi', () => {
 
     ;(FileSystem.uploadAsync as jest.Mock).mockResolvedValueOnce(mockResponse)
 
-    const result = await uploadToStrapi(mockUri, mockJwt)
+    const result = await uploadToStrapi(mockUri)
 
     expect(FileSystem.uploadAsync).toHaveBeenCalledWith(
       `${mockEndpoint}/upload`,
@@ -90,7 +89,7 @@ describe('uploadToStrapi', () => {
   it('should handle invalid or missing response body', async () => {
     ;(FileSystem.uploadAsync as jest.Mock).mockResolvedValueOnce({ body: null })
 
-    const result = await uploadToStrapi(mockUri, mockJwt)
+    const result = await uploadToStrapi(mockUri)
 
     expect(result.error?.message).toMatch(/Upload failed/)
     expect(result.data).toBeNull()
@@ -101,7 +100,7 @@ describe('uploadToStrapi', () => {
       body: JSON.stringify([{ id: 3, name: 'no-url.jpg' }]),
     })
 
-    const result = await uploadToStrapi(mockUri, mockJwt)
+    const result = await uploadToStrapi(mockUri)
 
     expect(result.error?.message).toMatch(/Uploaded image URL not found/)
     expect(result.data).toBeNull()

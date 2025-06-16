@@ -1,13 +1,14 @@
 import { SmsIcon } from '@/icons'
 import { Controller, useForm } from 'react-hook-form'
 
-import { useRef } from 'react'
-import { Keyboard, TextInput } from 'react-native'
+import { Keyboard } from 'react-native'
 
 import { YStack } from 'tamagui'
 
 import { EMAIL_REGEX } from '@/constants'
 import { VALIDATIONS_MESSAGE } from '@/constants/message'
+
+import useAutoFocusField from '@/hooks/use-auto-focus-field'
 
 import { Button, Input, PasswordInput } from '@/components'
 
@@ -18,12 +19,12 @@ interface LoginFormProps {
 }
 
 const LoginForm = ({ onSubmit }: LoginFormProps) => {
-  const passwordRef = useRef<TextInput>(null)
+  const [inputRefs, handleField] = useAutoFocusField()
 
   const { control, handleSubmit, formState } = useForm<AuthCredentials>({
     defaultValues: { email: '', password: '' },
     mode: 'onBlur',
-    reValidateMode: 'onChange',
+    reValidateMode: 'onSubmit',
   })
 
   const handleLogin = async (data: AuthCredentials) => {
@@ -34,6 +35,10 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
   const disabled =
     !!Object.keys(formState.errors).length ||
     !Object.values(formState.dirtyFields).every((value) => value)
+
+  const handleFocus = () => {
+    handleField({ event: 'FOCUS' })
+  }
 
   return (
     <YStack>
@@ -49,7 +54,6 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
             return (
               <Input
                 {...field}
-                onChangeText={onChange}
                 leftIcon={SmsIcon}
                 placeholder="Your Email"
                 errorMessage={error?.message}
@@ -59,11 +63,12 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
                 accessibilityRole="text"
                 autoCapitalize="none"
                 returnKeyType="next"
-                onEdited={(isChanged) => {
-                  if (isChanged) {
-                    passwordRef.current?.focus()
-                  }
+                ref={(el) => void (inputRefs.current[0] = el)}
+                onSubmitEditing={() => {
+                  handleField({ event: 'SUBMIT', next: 1 })
                 }}
+                onChangeText={onChange}
+                onFocus={handleFocus}
               />
             )
           }}
@@ -75,8 +80,9 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
           render={({ field: { onChange, ...field }, fieldState: { error } }) => (
             <PasswordInput
               {...field}
+              ref={(el) => void (inputRefs.current[1] = el)}
               onChangeText={onChange}
-              ref={passwordRef}
+              onFocus={handleFocus}
               errorMessage={error?.message}
               returnKeyType="done"
               aria-label="Password"

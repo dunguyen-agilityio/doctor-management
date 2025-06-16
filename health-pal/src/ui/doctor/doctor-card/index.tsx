@@ -3,7 +3,6 @@ import { TDoctorCard } from '@/models/doctor'
 import { useFavoritesStore } from '@/stores/favorite'
 
 import { memo, useRef } from 'react'
-import { GestureResponderEvent } from 'react-native'
 
 import { Link } from 'expo-router'
 
@@ -53,9 +52,7 @@ const DoctorCard = ({
 
   const confirmRef = useRef<ModalRef>(null)
 
-  const handleFavorite = (e: GestureResponderEvent) => {
-    e.preventDefault()
-
+  const handleFavorite = () => {
     if (favoriteId) {
       confirmRef.current?.open()
       return
@@ -69,7 +66,7 @@ const DoctorCard = ({
     removeFavorite(favoriteId)
   }
 
-  const card = (
+  const renderCard = (action = false) => (
     <Card
       elevate
       bordered
@@ -83,7 +80,6 @@ const DoctorCard = ({
       shadowColor="$black"
       shadowOffset={{ width: 4, height: 4 }}
       shadowOpacity={0.1}
-      disabled={removeFavPending || addFavPending}
       disabledStyle={{ opacity: 0.8 }}
       gap={12}
       shadowRadius={12}
@@ -108,14 +104,13 @@ const DoctorCard = ({
             right={6}
             position="absolute"
             zIndex={1000}
-            onPress={handleFavorite}
-            tabIndex={0}
-            aria-label={favoriteId ? `Remove ${name} from favorites` : `Add ${name} to favorites`}
-            accessibilityHint={
-              favoriteId
-                ? 'Removes this doctor from your favorites'
-                : 'Adds this doctor to your favorites'
-            }
+            {...(action && {
+              onPress: handleFavorite,
+              'aria-label': favoriteId
+                ? `Remove ${name} from favorites`
+                : `Add ${name} to favorites`,
+              tabIndex: 0,
+            })}
             role="button"
           />
         )}
@@ -153,11 +148,12 @@ const DoctorCard = ({
       accessibilityLabel={`View doctors at ${name}`}
       accessibilityHint="Shows this doctor in the doctor list"
       role="link"
+      disabled={removeFavPending || addFavPending}
       href={{ pathname: ROUTES.DOCTOR, params: { id: documentId } }}>
-      {card}
+      {renderCard(true)}
     </Link>
   ) : (
-    card
+    renderCard(true)
   )
 
   return (
@@ -165,7 +161,7 @@ const DoctorCard = ({
       {content}
       {favoriteId && (
         <RemoveFavoriteModal onConfirm={handleRemove} ref={confirmRef}>
-          {card}
+          {renderCard()}
         </RemoveFavoriteModal>
       )}
     </>

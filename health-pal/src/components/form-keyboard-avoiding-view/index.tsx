@@ -1,6 +1,8 @@
 import { KeyboardAvoidingView, KeyboardAvoidingViewProps, Platform } from 'react-native'
 
-import { ScrollView } from 'tamagui'
+import { ScrollView, YStack } from 'tamagui'
+
+import { WINDOW_SIZE } from '@/constants'
 
 const FormKeyboardAvoidingView = ({ children, ...props }: KeyboardAvoidingViewProps) => {
   return (
@@ -9,9 +11,11 @@ const FormKeyboardAvoidingView = ({ children, ...props }: KeyboardAvoidingViewPr
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{ flex: 1 }}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 50}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
-        {children}
-      </ScrollView>
+      <YStack height={WINDOW_SIZE.height}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
+          {children}
+        </ScrollView>
+      </YStack>
     </KeyboardAvoidingView>
   )
 }

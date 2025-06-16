@@ -1,3 +1,5 @@
+import { getItemAsync } from 'expo-secure-store'
+
 import { getProfile, login, register, updateProfile } from '../auth'
 import { apiClient } from '../http-client'
 
@@ -7,6 +9,11 @@ jest.mock('../http-client', () => ({
     get: jest.fn(),
     put: jest.fn(),
   },
+}))
+
+jest.mock('expo-secure-store', () => ({
+  ...jest.requireActual('expo-secure-store'),
+  getItemAsync: jest.fn(),
 }))
 
 describe('auth services', () => {
@@ -48,7 +55,9 @@ describe('auth services', () => {
     })
 
     it('should return null when no jwt', async () => {
-      const result = await getProfile()
+      ;(apiClient.get as jest.Mock).mockRejectedValueOnce(null)
+      const mockJwt = 'mock-jwt'
+      const result = await getProfile(mockJwt)
       expect(result).toBeNull()
     })
   })
@@ -93,32 +102,37 @@ describe('auth services', () => {
   })
 
   describe('updateProfile', () => {
+    beforeEach(() => {
+      ;(getItemAsync as jest.Mock).mockResolvedValueOnce('mock-jwt')
+    })
+
+    afterEach(() => {
+      jest.clearAllMocks()
+    })
+
     it('should return updated user profile on success', async () => {
       ;(apiClient.put as jest.Mock).mockResolvedValueOnce({})
       ;(apiClient.get as jest.Mock).mockResolvedValueOnce(mockUser)
 
-      const result = await updateProfile(
-        {
-          id: 1,
-          name: 'John Doe',
-          nickname: 'jdoe',
-          dateOfBirth: new Date('1990-01-01'),
-          gender: 'Male',
-          avatar: 1,
-          email: 'john@example.com',
-          password: 'password',
-        },
-        mockJwt,
-      )
+      const result = await updateProfile({
+        id: 1,
+        name: 'John Doe',
+        nickname: 'jdoe',
+        dateOfBirth: new Date('1990-01-01'),
+        gender: 'Male',
+        avatar: 1,
+        email: 'john@example.com',
+        password: 'password',
+      })
 
       expect(result.data).toEqual(mockUser)
       expect(result.error).toBeNull()
     })
 
     it('should return error on failure', async () => {
-      ;(apiClient.put as jest.Mock).mockRejectedValueOnce(new Error('Unauthorized'))
+      ;(apiClient.put as jest.Mock).mockRejectedValue(new Error('Unauthorized'))
 
-      const result = await updateProfile({ id: 1, nickname: 'jdoe' }, mockJwt)
+      const result = await updateProfile({ id: 1, nickname: 'jdoe' })
 
       expect(result.data).toBeNull()
       expect(result.error).toEqual(new Error('Unauthorized'))

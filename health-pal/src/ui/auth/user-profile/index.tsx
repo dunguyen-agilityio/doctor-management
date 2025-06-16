@@ -1,18 +1,17 @@
 import { getMaxDate } from '@/utils/date'
 import { Controller, useForm } from 'react-hook-form'
 
-import { useRef } from 'react'
-import { Keyboard, TextInput } from 'react-native'
+import { Keyboard } from 'react-native'
 
 import dayjs from 'dayjs'
 
 import { useToastController } from '@tamagui/toast'
-import { debounce } from 'tamagui'
 
 import { VALIDATIONS_MESSAGE } from '@/constants/message'
 import { EMAIL_REGEX } from '@/constants/regex'
 
 import { useAppLoading } from '@/hooks'
+import useAutoFocusField from '@/hooks/use-auto-focus-field'
 
 import {
   Button,
@@ -36,7 +35,7 @@ interface UserProfileFormProps {
 }
 
 const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) => {
-  const inputRefs = useRef<(TextInput | null)[]>([])
+  const [inputRefs, handleField] = useAutoFocusField()
   const toast = useToastController()
 
   const setAppLoading = useAppLoading()
@@ -59,6 +58,10 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
     await onSubmit(data)
   }
 
+  const handleFocus = () => {
+    handleField({ event: 'FOCUS' })
+  }
+
   const {
     avatarUrl: defaultAvatar,
     name: defaultName,
@@ -77,13 +80,6 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
     watch('gender') !== defaultGender
 
   const disabled = !isChanged || Object.keys(formState.errors).length > 1
-
-  const handle = debounce((e: 'SUBMIT' | 'FOCUS', next?: { index: number }) => {
-    if (e === 'SUBMIT' && next) {
-      const { index } = next
-      inputRefs.current[index]?.focus()
-    }
-  }, 100)
 
   return (
     <FormKeyboardAvoidingView
@@ -124,7 +120,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
 
                     onChange(id)
                     setValue('avatarUrl', url)
-                    handle('SUBMIT', { index: 0 })
+                    handleField({ event: 'SUBMIT', next: 0 })
                     setAppLoading(false)
                   }}
                   preview={defaultData?.avatarUrl}
@@ -146,19 +142,13 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
               <Input
                 {...field}
                 placeholder="Name"
-                ref={(el) => {
-                  inputRefs.current[0] = el
-                }}
+                ref={(el) => void (inputRefs.current[0] = el)}
                 returnKeyType="next"
                 onSubmitEditing={(e) => {
-                  handle('SUBMIT', { index: 1 })
+                  handleField({ event: 'SUBMIT', next: 1 })
                 }}
-                onEndEditing={(e) => {
-                  onChange(e.nativeEvent.text)
-                }}
-                onFocus={() => {
-                  handle('FOCUS')
-                }}
+                onEndEditing={({ nativeEvent: { text } }) => onChange(text)}
+                onFocus={handleFocus}
                 onChangeText={() => {
                   setError('name', {})
                 }}
@@ -187,21 +177,12 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                 {...field}
                 placeholder="Nickname"
                 returnKeyType="next"
-                onEndEditing={(e) => {
-                  onChange(e.nativeEvent.text)
-                }}
-                onFocus={() => {
-                  handle('FOCUS')
-                }}
-                onChangeText={() => {
-                  setError('nickname', {})
-                }}
-                ref={(el) => {
-                  inputRefs.current[1] = el
-                }}
+                onChangeText={onChange}
+                onFocus={handleFocus}
+                ref={(el) => void (inputRefs.current[1] = el)}
                 defaultValue={value}
                 onSubmitEditing={() => {
-                  handle('SUBMIT', { index: 2 })
+                  handleField({ event: 'SUBMIT', next: 2 })
                 }}
                 errorMessage={error?.message}
                 aria-label="Nickname"
@@ -224,21 +205,12 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
               <Input
                 {...field}
                 placeholder="Email"
-                ref={(el) => {
-                  inputRefs.current[2] = el
-                }}
+                ref={(el) => void (inputRefs.current[2] = el)}
                 defaultValue={value}
-                onEndEditing={(e) => {
-                  onChange(e.nativeEvent.text)
-                }}
-                onFocus={() => {
-                  handle('FOCUS')
-                }}
-                onChangeText={() => {
-                  setError('email', {})
-                }}
+                onFocus={handleFocus}
+                onChangeText={onChange}
                 onSubmitEditing={() => {
-                  handle('SUBMIT', { index: 3 })
+                  handleField({ event: 'SUBMIT', next: 3 })
                 }}
                 errorMessage={error?.message}
                 editable={editable}
@@ -269,9 +241,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
                   setError('dateOfBirth', {})
                 }}
                 defaultValue={value}
-                ref={(ref) => {
-                  inputRefs.current[3] = ref
-                }}
+                ref={(el) => void (inputRefs.current[3] = el)}
                 datePickerProps={{ maxDate: dayjs() }}
                 errorMessage={error?.message}
                 aria-label="Date of birth"

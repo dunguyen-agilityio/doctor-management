@@ -1,12 +1,13 @@
 import { act, fireEvent, render, screen, waitFor } from '@utils-test'
 
+import React from 'react'
 import { Keyboard } from 'react-native'
 
 import { VALIDATIONS_MESSAGE } from '@/constants'
 
 import { queryClient } from '@react-query.config'
 
-import LoginForm from '../login-form'
+import LoginForm from '..'
 
 describe('LoginForm', () => {
   const mockOnSubmit = jest.fn()
@@ -68,21 +69,6 @@ describe('LoginForm', () => {
         email: 'test@example.com',
         password: 'password123',
       })
-    })
-  })
-
-  it.skip('focuses password input after email input on valid submission', async () => {
-    const passwordInputRef = { current: { focus: jest.fn() } }
-    jest.spyOn(React, 'useRef').mockReturnValue(passwordInputRef)
-
-    render(<LoginForm onSubmit={mockOnSubmit} />)
-
-    const emailInput = screen.getByPlaceholderText('Your Email')
-    fireEvent.changeText(emailInput, 'test@example.com')
-    fireEvent(emailInput, 'submitEditing')
-
-    await waitFor(() => {
-      expect(passwordInputRef.current.focus).toHaveBeenCalled()
     })
   })
 })

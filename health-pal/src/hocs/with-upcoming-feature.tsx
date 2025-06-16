@@ -20,6 +20,7 @@ export const withUpcomingFeature = <P,>(WrappedComponent: React.ComponentType<P>
           title="Coming Soon 🚧"
           description="This feature is under development. Please check back later!"
           onConfirm={() => setOpen(false)}
+          contentProps={{ testID: 'alert-dialog-upcoming' }}
         />
       </>
     )

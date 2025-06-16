@@ -11,7 +11,11 @@ const DoctorListSkeleton = ({
   count?: number
 } & StackProps) => {
   return (
-    <Stack flexDirection={horizontal ? 'row' : 'column'} gap={gap} paddingHorizontal="$md">
+    <Stack
+      testID="doctor-list-skeleton"
+      flexDirection={horizontal ? 'row' : 'column'}
+      gap={gap}
+      paddingHorizontal="$md">
       {[...Array(count).keys()].map((v) => (
         <DoctorCardSkeleton key={v} />
       ))}

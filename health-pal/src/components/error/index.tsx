@@ -38,6 +38,7 @@ const ErrorState = ({
           onPress={onRetry}
           accessibilityHint="Retries loading"
           width="100%"
+          testID="retry-button"
           aria-label="Retry">
           Retry
         </Button>

@@ -13,6 +13,7 @@
     "eas:dev": "eas build --platform android --profile development --local",
     "eas:prod": "eas build --platform android --profile preview2 --local",
     "test": "jest --coverage=false --changedSince=origin/feat/doctor-management",
+    "test:cov": "jest --coverage=true --changedSince=origin/feat/doctor-management",
     "test:w": "jest --watch --coverage=false --changedSince=origin/feat/doctor-management",
     "testDebug": "jest -o --watch --coverage=false",
     "testFinal": "jest",
@@ -23,7 +24,7 @@
     "analyze:android": "source-map-explorer 'dis/_expo/static/js/android/*.js' 'dist/_expo/static/js/android/*.js.map'"
   },
   "dependencies": {
-    "@shopify/flash-list": "1.7.6",
+    "@shopify/flash-list": "^2.0.0-rc.8",
     "@tamagui/config": "^1.126.12",
     "@tamagui/toast": "^1.126.12",
     "@tanstack/react-query": "^5.76.1",

@@ -13,7 +13,7 @@ const BookingListSkeleton = ({
   type: BOOKING_TABS
 } & StackProps) => {
   return (
-    <Stack flexDirection="column" paddingHorizontal={24} {...props}>
+    <Stack testID="booking-list-skeleton" flexDirection="column" paddingHorizontal={24} {...props}>
       {[...Array(count).keys()].map((v) => (
         <BookingCardSkeleton key={v} type={type} />
       ))}

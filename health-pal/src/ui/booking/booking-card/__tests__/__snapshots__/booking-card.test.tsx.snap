@@ -1,0 +1,407 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookingCard matches snapshot 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <View
+    aria-label="Booking with Dr. John Doe"
+    style={
+      {
+        "backgroundColor": "#ffffff",
+        "borderBottomColor": "#f3f4f6",
+        "borderBottomLeftRadius": 12,
+        "borderBottomRightRadius": 12,
+        "borderBottomWidth": 0.5,
+        "borderLeftColor": "#f3f4f6",
+        "borderLeftWidth": 0.5,
+        "borderRightColor": "#f3f4f6",
+        "borderRightWidth": 0.5,
+        "borderStyle": "solid",
+        "borderTopColor": "#f3f4f6",
+        "borderTopLeftRadius": 12,
+        "borderTopRightRadius": 12,
+        "borderTopWidth": 0.5,
+        "flexDirection": "column",
+        "marginBottom": 10,
+        "paddingBottom": 10,
+        "paddingLeft": 10,
+        "paddingRight": 10,
+        "paddingTop": 10,
+        "position": "relative",
+        "shadowColor": "rgb(0,0,0)",
+        "shadowOffset": {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.0392156862745098,
+        "shadowRadius": 4,
+      }
+    }
+    testID="booking-card"
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "transparent",
+          "flexDirection": "column",
+          "marginBottom": "auto",
+          "paddingBottom": 8,
+          "paddingLeft": 8,
+          "paddingRight": 8,
+          "paddingTop": 8,
+          "zIndex": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#1c2a3a",
+            "fontFamily": "Inter_700Bold",
+            "fontSize": 14,
+            "lineHeight": 24,
+          }
+        }
+        suppressHighlighting={true}
+      >
+        2025-07-01 - 00:00 AM
+      </Text>
+      <View
+        style={[]}
+      />
+    </View>
+    <View
+      style={
+        {
+          "backgroundColor": "transparent",
+          "flexDirection": "row",
+          "marginBottom": 0,
+          "marginTop": "auto",
+          "zIndex": 5,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "white",
+              "flexDirection": "row",
+              "gap": 10,
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "borderRadius": 8,
+                "height": 109,
+                "overflow": "hidden",
+                "width": 109,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoImage
+              cachePolicy="disk"
+              containerViewRef={"[React.ref]"}
+              contentFit="cover"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height="100%"
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadEnd={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={
+                [
+                  {
+                    "height": 16,
+                    "uri": "blurhash:/LDPzx.00%5B93GrBXnp0McR5X9NHn%23",
+                    "width": 16,
+                  },
+                ]
+              }
+              source={
+                [
+                  {
+                    "uri": "https://example.com/avatar.jpg",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+              testID="cloudinary-image"
+              transition={null}
+              width="100%"
+            />
+            <View
+              style={
+                {
+                  "flexDirection": "column",
+                  "left": "50%",
+                  "position": "absolute",
+                  "top": "50%",
+                  "transform": [
+                    {
+                      "translateX": -12,
+                    },
+                    {
+                      "translateY": -12,
+                    },
+                  ],
+                }
+              }
+            >
+              <ActivityIndicator
+                color="#1c64f2"
+                size="small"
+              />
+            </View>
+          </View>
+          <View
+            style={
+              {
+                "backgroundColor": "white",
+                "flexDirection": "column",
+                "paddingBottom": 14,
+                "paddingTop": 14,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#1c2a3a",
+                  "fontFamily": "System",
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                  "lineHeight": 24,
+                }
+              }
+              suppressHighlighting={true}
+            >
+              Dr. John Doe
+            </Text>
+            <Text
+              style={
+                {
+                  "color": "#6b7280",
+                  "fontFamily": "Inter_400Regular",
+                  "fontSize": 14,
+                  "lineHeight": 24,
+                }
+              }
+              suppressHighlighting={true}
+            >
+              Cardiology
+            </Text>
+            <Text
+              numberOfLines={1}
+              style={
+                {
+                  "color": "#9ca3af",
+                  "fontFamily": "Inter_400Regular",
+                  "fontSize": 12,
+                  "lineHeight": 24,
+                  "maxWidth": 250,
+                }
+              }
+              suppressHighlighting={true}
+            >
+              123 Main St, City
+            </Text>
+          </View>
+        </View>
+        <View
+          style={[]}
+        />
+        <View
+          style={
+            {
+              "flexDirection": "row",
+              "gap": 10,
+            }
+          }
+          testID="booking-action"
+        >
+          <View
+            accessibilityHint="Opens a confirmation dialog to cancel this appointment"
+            aria-label="Cancel booking with Dr. John Doe on 2025-07-01 - 00:00 AM"
+            focusVisibleStyle={{}}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="button"
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#e5e7eb",
+                "borderBottomColor": "transparent",
+                "borderBottomLeftRadius": 60,
+                "borderBottomRightRadius": 60,
+                "borderBottomWidth": 1,
+                "borderLeftColor": "transparent",
+                "borderLeftWidth": 1,
+                "borderRightColor": "transparent",
+                "borderRightWidth": 1,
+                "borderStyle": "solid",
+                "borderTopColor": "transparent",
+                "borderTopLeftRadius": 60,
+                "borderTopRightRadius": 60,
+                "borderTopWidth": 1,
+                "color": "#1c2a3a",
+                "flex": 1,
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "fontWeight": "500",
+                "height": 37,
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+              }
+            }
+          >
+            <Text
+              lineBreakMode="clip"
+              numberOfLines={1}
+              style={
+                {
+                  "color": "#1c2a3a",
+                  "flexGrow": 0,
+                  "flexShrink": 1,
+                  "fontFamily": "Inter_500Medium",
+                  "fontSize": 14,
+                  "lineHeight": 21,
+                  "userSelect": "none",
+                }
+              }
+              suppressHighlighting={true}
+            >
+              Cancel
+            </Text>
+          </View>
+          <View
+            accessibilityHint="Navigates to the booking screen to change the date or time of this appointment"
+            aria-label="Reschedule booking with Dr. John Doe"
+            focusVisibleStyle={{}}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="button"
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1c2a3a",
+                "borderBottomColor": "transparent",
+                "borderBottomLeftRadius": 60,
+                "borderBottomRightRadius": 60,
+                "borderBottomWidth": 1,
+                "borderLeftColor": "transparent",
+                "borderLeftWidth": 1,
+                "borderRightColor": "transparent",
+                "borderRightWidth": 1,
+                "borderStyle": "solid",
+                "borderTopColor": "transparent",
+                "borderTopLeftRadius": 60,
+                "borderTopRightRadius": 60,
+                "borderTopWidth": 1,
+                "color": "#ffffff",
+                "flex": 1,
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "fontWeight": "500",
+                "height": 37,
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+              }
+            }
+          >
+            <Text
+              lineBreakMode="clip"
+              numberOfLines={1}
+              style={
+                {
+                  "color": "#ffffff",
+                  "flexGrow": 0,
+                  "flexShrink": 1,
+                  "fontFamily": "Inter_500Medium",
+                  "fontSize": 14,
+                  "lineHeight": 21,
+                  "userSelect": "none",
+                }
+              }
+              suppressHighlighting={true}
+            >
+              Reschedule
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>,
+]
+`;

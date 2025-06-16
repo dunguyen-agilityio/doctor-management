@@ -7,7 +7,7 @@ import { VALIDATIONS_MESSAGE } from '@/constants'
 
 import { queryClient } from '@react-query.config'
 
-import SignupForm from '../signup-form'
+import SignupForm from '..'
 
 describe('SignupForm', () => {
   const mockOnSubmit = jest.fn()
@@ -101,52 +101,12 @@ describe('SignupForm', () => {
     })
   })
 
-  it.skip('focuses email input after valid name submission', async () => {
-    const emailInputRef = { current: { focus: jest.fn() } }
-    jest.spyOn(React, 'useRef').mockImplementation((initialValue) => {
-      if (initialValue === null && !jest.isMockFunction(initialValue?.focus)) {
-        return emailInputRef
-      }
-      return { current: initialValue }
-    })
-
-    render(<SignupForm onSubmit={mockOnSubmit} />)
-
-    const nameInput = screen.getByPlaceholderText('Your Name')
-    fireEvent.changeText(nameInput, 'John Doe')
-    fireEvent(nameInput, 'submitEditing')
-
-    await waitFor(() => {
-      expect(emailInputRef.current.focus).toHaveBeenCalled()
-    })
-  })
-
-  it.skip('focuses password input after valid email submission', async () => {
-    const passwordInputRef = { current: { focus: jest.fn() } }
-    jest.spyOn(React, 'useRef').mockImplementation((initialValue) => {
-      if (initialValue === null && !jest.isMockFunction(initialValue?.focus)) {
-        return passwordInputRef
-      }
-      return { current: initialValue }
-    })
-
-    render(<SignupForm onSubmit={mockOnSubmit} />)
-
-    const emailInput = screen.getByPlaceholderText('Your Email')
-    fireEvent.changeText(emailInput, 'test@example.com')
-    fireEvent(emailInput, 'submitEditing')
-
-    await waitFor(() => {
-      expect(passwordInputRef.current.focus).toHaveBeenCalled()
-    })
-  })
-
   it('handles default values correctly', () => {
     const defaultValues = { name: 'Jane Doe', email: 'jane@example.com', password: '' }
     render(<SignupForm onSubmit={mockOnSubmit} defaultValues={defaultValues} />)
 
-    expect(screen.getByPlaceholderText('Your Name')).toHaveProp('value', 'Jane Doe')
-    expect(screen.getByPlaceholderText('Your Email')).toHaveProp('value', 'jane@example.com')
-    expect(screen.getByPlaceholderText('Password')).toHaveProp('value', '')
+    expect(screen.getByPlaceholderText('Your Name')).toHaveProp('defaultValue', 'Jane Doe')
+    expect(screen.getByPlaceholderText('Your Email')).toHaveProp('defaultValue', 'jane@example.com')
+    expect(screen.getByPlaceholderText('Password')).toHaveProp('defaultValue', '')
   })
 })

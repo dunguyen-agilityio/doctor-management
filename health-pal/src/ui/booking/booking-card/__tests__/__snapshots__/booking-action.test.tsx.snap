@@ -1,0 +1,744 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookingAction matches snapshot for COMPLETED type 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <View
+    style={[]}
+  />,
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "gap": 10,
+      }
+    }
+    testID="booking-action"
+  >
+    <View
+      accessibilityHint="Navigates to the booking screen to schedule a new appointment with this doctor"
+      aria-label="Re-book appointment with Dr. John Doe"
+      focusVisibleStyle={{}}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      role="button"
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#e5e7eb",
+          "borderBottomColor": "transparent",
+          "borderBottomLeftRadius": 60,
+          "borderBottomRightRadius": 60,
+          "borderBottomWidth": 1,
+          "borderLeftColor": "transparent",
+          "borderLeftWidth": 1,
+          "borderRightColor": "transparent",
+          "borderRightWidth": 1,
+          "borderStyle": "solid",
+          "borderTopColor": "transparent",
+          "borderTopLeftRadius": 60,
+          "borderTopRightRadius": 60,
+          "borderTopWidth": 1,
+          "color": "#1c2a3a",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "fontWeight": "500",
+          "height": 37,
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingLeft": 8,
+          "paddingRight": 8,
+        }
+      }
+    >
+      <Text
+        lineBreakMode="clip"
+        numberOfLines={1}
+        style={
+          {
+            "color": "#1c2a3a",
+            "flexGrow": 0,
+            "flexShrink": 1,
+            "fontFamily": "Inter_500Medium",
+            "fontSize": 14,
+            "lineHeight": 21,
+            "userSelect": "none",
+          }
+        }
+        suppressHighlighting={true}
+      >
+        Re-Book
+      </Text>
+    </View>
+    <View
+      accessibilityHint="Navigates to the review screen to submit feedback for this doctor"
+      aria-label="Add a review for Dr. John Doe"
+      focusVisibleStyle={{}}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      role="button"
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#1c2a3a",
+          "borderBottomColor": "transparent",
+          "borderBottomLeftRadius": 60,
+          "borderBottomRightRadius": 60,
+          "borderBottomWidth": 1,
+          "borderLeftColor": "transparent",
+          "borderLeftWidth": 1,
+          "borderRightColor": "transparent",
+          "borderRightWidth": 1,
+          "borderStyle": "solid",
+          "borderTopColor": "transparent",
+          "borderTopLeftRadius": 60,
+          "borderTopRightRadius": 60,
+          "borderTopWidth": 1,
+          "color": "#ffffff",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "fontWeight": "500",
+          "height": 37,
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingLeft": 8,
+          "paddingRight": 8,
+        }
+      }
+    >
+      <Text
+        lineBreakMode="clip"
+        numberOfLines={1}
+        style={
+          {
+            "color": "#ffffff",
+            "flexGrow": 0,
+            "flexShrink": 1,
+            "fontFamily": "Inter_500Medium",
+            "fontSize": 14,
+            "lineHeight": 21,
+            "userSelect": "none",
+          }
+        }
+        suppressHighlighting={true}
+      >
+        Add Review
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`BookingAction matches snapshot for UPCOMING type 1`] = `
+[
+  <View
+    aria-label="Notifications (F8)"
+    pointerEvents="box-none"
+    role="region"
+    style={
+      {
+        "bottom": 0,
+        "flexDirection": "column",
+        "left": 0,
+        "maxWidth": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100000,
+      }
+    }
+    tabIndex={-1}
+  >
+    <View
+      focusable={false}
+      pointerEvents="box-none"
+      style={
+        {
+          "flexDirection": "column",
+          "maxWidth": "100%",
+          "position": "absolute",
+        }
+      }
+    />
+  </View>,
+  <View
+    style={[]}
+  />,
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "gap": 10,
+      }
+    }
+    testID="booking-action"
+  >
+    <View
+      accessibilityHint="Opens a confirmation dialog to cancel this appointment"
+      aria-label="Cancel booking with Dr. John Doe on 2025-07-01 - 00:00 AM"
+      focusVisibleStyle={{}}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      role="button"
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#e5e7eb",
+          "borderBottomColor": "transparent",
+          "borderBottomLeftRadius": 60,
+          "borderBottomRightRadius": 60,
+          "borderBottomWidth": 1,
+          "borderLeftColor": "transparent",
+          "borderLeftWidth": 1,
+          "borderRightColor": "transparent",
+          "borderRightWidth": 1,
+          "borderStyle": "solid",
+          "borderTopColor": "transparent",
+          "borderTopLeftRadius": 60,
+          "borderTopRightRadius": 60,
+          "borderTopWidth": 1,
+          "color": "#1c2a3a",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "fontWeight": "500",
+          "height": 37,
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingLeft": 8,
+          "paddingRight": 8,
+        }
+      }
+    >
+      <Text
+        lineBreakMode="clip"
+        numberOfLines={1}
+        style={
+          {
+            "color": "#1c2a3a",
+            "flexGrow": 0,
+            "flexShrink": 1,
+            "fontFamily": "Inter_500Medium",
+            "fontSize": 14,
+            "lineHeight": 21,
+            "userSelect": "none",
+          }
+        }
+        suppressHighlighting={true}
+      >
+        Cancel
+      </Text>
+    </View>
+    <View
+      accessibilityHint="Navigates to the booking screen to change the date or time of this appointment"
+      aria-label="Reschedule booking with Dr. John Doe"
+      focusVisibleStyle={{}}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      role="button"
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#1c2a3a",
+          "borderBottomColor": "transparent",
+          "borderBottomLeftRadius": 60,
+          "borderBottomRightRadius": 60,
+          "borderBottomWidth": 1,
+          "borderLeftColor": "transparent",
+          "borderLeftWidth": 1,
+          "borderRightColor": "transparent",
+          "borderRightWidth": 1,
+          "borderStyle": "solid",
+          "borderTopColor": "transparent",
+          "borderTopLeftRadius": 60,
+          "borderTopRightRadius": 60,
+          "borderTopWidth": 1,
+          "color": "#ffffff",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "fontWeight": "500",
+          "height": 37,
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingLeft": 8,
+          "paddingRight": 8,
+        }
+      }
+    >
+      <Text
+        lineBreakMode="clip"
+        numberOfLines={1}
+        style={
+          {
+            "color": "#ffffff",
+            "flexGrow": 0,
+            "flexShrink": 1,
+            "fontFamily": "Inter_500Medium",
+            "fontSize": 14,
+            "lineHeight": 21,
+            "userSelect": "none",
+          }
+        }
+        suppressHighlighting={true}
+      >
+        Reschedule
+      </Text>
+    </View>
+  </View>,
+  <View
+    pointerEvents="auto"
+    style={
+      {
+        "alignItems": "center",
+        "bottom": 0,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <View
+      collapsable={false}
+      pointerEvents="auto"
+      style={
+        {
+          "backgroundColor": "rgba(0,0,0,0.16)",
+          "bottom": 0,
+          "flexDirection": "column",
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "transform": [
+            {
+              "scale": 0.95,
+            },
+          ],
+          "zIndex": 99999,
+        }
+      }
+      testID="overlay"
+    />
+    <View
+      accessibilityHint="Dialog to confirm or keep this appointment"
+      aria-describedby="description-:r6t:"
+      aria-label="Confirm cancellation of booking with Dr. John Doe on 2025-07-01 - 00:00 AM"
+      aria-labelledby="title-:r6t:"
+      collapsable={false}
+      id="content-:r6t:"
+      role="dialog"
+      style={
+        {
+          "backgroundColor": "hsla(0, 0%, 100%, 1)",
+          "borderBottomLeftRadius": 16,
+          "borderBottomRightRadius": 16,
+          "borderTopLeftRadius": 16,
+          "borderTopRightRadius": 16,
+          "flexDirection": "column",
+          "minHeight": 667,
+          "opacity": 0,
+          "overflow": "hidden",
+          "paddingBottom": 0,
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "position": "relative",
+          "shadowColor": "rgb(255,255,255)",
+          "shadowOffset": {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0.0392156862745098,
+          "shadowRadius": 10,
+          "transform": [
+            {
+              "translateY": -20,
+            },
+            {
+              "translateX": 0,
+            },
+            {
+              "scale": 1,
+            },
+          ],
+          "width": 702,
+          "zIndex": 100000,
+        }
+      }
+      testID="cancel-booking-modal"
+    >
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flexDirection": "column",
+            "gap": 32,
+            "paddingBottom": 32,
+            "paddingLeft": 42,
+            "paddingRight": 42,
+            "paddingTop": 32,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#e0f7f9",
+              "borderBottomLeftRadius": 100,
+              "borderBottomRightRadius": 100,
+              "borderTopLeftRadius": 100,
+              "borderTopRightRadius": 100,
+              "flexDirection": "column",
+              "height": 100,
+              "justifyContent": "center",
+              "width": 100,
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight="24"
+            bbWidth="24"
+            color="$teal"
+            fill="none"
+            focusable={false}
+            height="24"
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width="24"
+          >
+            <RNSVGGroup
+              fill={null}
+              propList={
+                [
+                  "fill",
+                  "stroke",
+                  "strokeWidth",
+                  "strokeLinecap",
+                  "strokeLinejoin",
+                ]
+              }
+              stroke={
+                {
+                  "type": 2,
+                }
+              }
+              strokeLinecap={1}
+              strokeLinejoin={1}
+              strokeWidth="2"
+            >
+              <RNSVGPath
+                d="M22 11.08V12a10 10 0 1 1-5.93-9.14"
+                fill={
+                  {
+                    "payload": 4278190080,
+                    "type": 0,
+                  }
+                }
+              />
+              <RNSVGPath
+                d="M22 4 12 14.01 9 11.01"
+                fill={
+                  {
+                    "payload": 4278190080,
+                    "type": 0,
+                  }
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          style={
+            {
+              "color": "#1c2a3a",
+              "fontFamily": "Inter_700Bold",
+              "fontSize": 20,
+              "lineHeight": 30,
+            }
+          }
+          suppressHighlighting={true}
+        >
+          Confirm Cancellation
+        </Text>
+        <Text
+          style={
+            {
+              "color": "#1c2a3a",
+              "fontFamily": "Inter_400Regular",
+              "fontSize": 14,
+              "lineHeight": 21,
+              "textAlign": "center",
+            }
+          }
+          suppressHighlighting={true}
+        >
+          Are you sure you want to cancel your appointment with
+           
+          <Text
+            style={
+              {
+                "color": "#1c2a3a",
+                "fontFamily": "Inter_700Bold",
+                "fontSize": 14,
+                "lineHeight": 21,
+              }
+            }
+            suppressHighlighting={true}
+          >
+            Dr. John Doe
+          </Text>
+           
+          on
+           
+          <Text
+            style={
+              {
+                "color": "#1c2a3a",
+                "fontFamily": "Inter_700Bold",
+                "fontSize": 14,
+                "lineHeight": 21,
+              }
+            }
+            suppressHighlighting={true}
+          >
+            2025-07-01
+          </Text>
+          ?
+        </Text>
+        <View
+          style={
+            {
+              "backgroundColor": "white",
+              "flexDirection": "column",
+              "gap": 10,
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            accessibilityHint="Cancels the appointment and navigates to cancelled bookings"
+            aria-label="Confirm cancellation of appointment with Dr. John Doe"
+            focusVisibleStyle={{}}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="button"
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1c2a3a",
+                "borderBottomColor": "transparent",
+                "borderBottomLeftRadius": 60,
+                "borderBottomRightRadius": 60,
+                "borderBottomWidth": 1,
+                "borderLeftColor": "transparent",
+                "borderLeftWidth": 1,
+                "borderRightColor": "transparent",
+                "borderRightWidth": 1,
+                "borderStyle": "solid",
+                "borderTopColor": "transparent",
+                "borderTopLeftRadius": 60,
+                "borderTopRightRadius": 60,
+                "borderTopWidth": 1,
+                "color": "#ffffff",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "fontWeight": "500",
+                "height": 48,
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 12,
+                "paddingLeft": 20,
+                "paddingRight": 20,
+                "paddingTop": 12,
+              }
+            }
+          >
+            <Text
+              lineBreakMode="clip"
+              numberOfLines={1}
+              style={
+                {
+                  "color": "#ffffff",
+                  "flexGrow": 0,
+                  "flexShrink": 1,
+                  "fontFamily": "Inter_500Medium",
+                  "fontSize": 14,
+                  "lineHeight": 21,
+                  "userSelect": "none",
+                }
+              }
+              suppressHighlighting={true}
+            >
+              Yes, Cancel
+            </Text>
+          </View>
+          <View
+            accessibilityHint="Closes the dialog and keeps the appointment"
+            aria-label="Keep appointment with Dr. John Doe"
+            focusVisibleStyle={{}}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="button"
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderBottomColor": "transparent",
+                "borderBottomLeftRadius": 60,
+                "borderBottomRightRadius": 60,
+                "borderBottomWidth": 0,
+                "borderLeftColor": "transparent",
+                "borderLeftWidth": 0,
+                "borderRightColor": "transparent",
+                "borderRightWidth": 0,
+                "borderStyle": "solid",
+                "borderTopColor": "transparent",
+                "borderTopLeftRadius": 60,
+                "borderTopRightRadius": 60,
+                "borderTopWidth": 0,
+                "color": "#4d9b91",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "fontWeight": "500",
+                "height": 48,
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 12,
+                "paddingLeft": 20,
+                "paddingRight": 20,
+                "paddingTop": 12,
+              }
+            }
+          >
+            <Text
+              lineBreakMode="clip"
+              numberOfLines={1}
+              style={
+                {
+                  "color": "#4d9b91",
+                  "flexGrow": 0,
+                  "flexShrink": 1,
+                  "fontFamily": "Inter_500Medium",
+                  "fontSize": 14,
+                  "lineHeight": 21,
+                  "userSelect": "none",
+                }
+              }
+              suppressHighlighting={true}
+            >
+              No, Keep Appointment
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>,
+]
+`;

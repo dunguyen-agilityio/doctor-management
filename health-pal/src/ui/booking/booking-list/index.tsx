@@ -9,7 +9,9 @@ import { StyleSheet } from 'react-native'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 
-import { BOOKING_EMPTY } from '@/constants'
+import { View } from 'tamagui'
+
+import { BOOKING_EMPTY, WINDOW_SIZE } from '@/constants'
 
 import { useRequireAuth } from '@/hooks/use-require-auth'
 
@@ -80,19 +82,21 @@ const BookingList = ({ type }: { type: BOOKING_TABS }) => {
   )
 
   return (
-    <FlashList
-      renderItem={renderItem}
-      keyExtractor={keyExtractor}
-      data={data.data}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.contentContainerStyle}
-      ListEmptyComponent={ListEmptyComponent}
-      estimatedItemSize={width}
-      aria-label={`${type} bookings list`}
-      accessibilityHint={`List of ${type.toLowerCase()} bookings`}
-      role="list"
-    />
+    <View minWidth={WINDOW_SIZE.width - 24 * 2} flex={1}>
+      <FlashList
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        data={data.data}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.contentContainerStyle}
+        ListEmptyComponent={ListEmptyComponent}
+        estimatedItemSize={width}
+        aria-label={`${type} bookings list`}
+        accessibilityHint={`List of ${type.toLowerCase()} bookings`}
+        role="list"
+      />
+    </View>
   )
 }
 

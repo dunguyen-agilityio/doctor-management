@@ -1,6 +1,6 @@
 import { Spinner, YStack } from 'tamagui'
 
-import useDoctors from '@/hooks/use-doctors'
+import { useDoctors } from '@/hooks/use-doctors'
 import { useFavoriteDoctors } from '@/hooks/use-favorite'
 
 import { Empty, ErrorState, LoadingIndicator, Text, XStack } from '@/components'
@@ -49,7 +49,7 @@ const DoctorContainer = ({ query, specialty }: DoctorContainerProps) => {
 
   const ListFooterComponent = hasNextPage ? (
     <YStack paddingVertical={8}>
-      <Spinner />
+      <Spinner testID="spinner" />
     </YStack>
   ) : null
 
