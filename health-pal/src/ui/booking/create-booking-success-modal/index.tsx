@@ -1,5 +1,4 @@
 import { ShieldTick } from '@/icons'
-import { formatShortTime } from '@/utils/date'
 import { useFormContext } from 'react-hook-form'
 
 import dayjs from 'dayjs'
@@ -25,8 +24,8 @@ export const CreateBookingSuccessModal = ({ ref, ...props }: Readonly<Props>) =>
   const { watch } = useFormContext<BookingForm>()
 
   const date = dayjs(watch('date'))
+  const time = watch('time')
   const formattedDate = date.format('YYYY-MM-DD')
-  const formattedTime = formatShortTime(date)
 
   const handleDone = async () => {
     await queryClient.invalidateQueries({ queryKey: ['bookings', BOOKING_TABS.UPCOMING] })
@@ -56,7 +55,7 @@ export const CreateBookingSuccessModal = ({ ref, ...props }: Readonly<Props>) =>
         </Heading>
 
         <Text size="small" color="$gray10" textAlign="center" maxWidth={252}>
-          {`Your appointment with Dr. David Patel is confirmed for ${formattedDate}, at ${formattedTime}.`}
+          {`Your appointment with Dr. David Patel is confirmed for ${formattedDate}, at ${time}.`}
         </Text>
         <YStack width={'100%'} gap={18}>
           <Button onPress={handleDone}>Done</Button>

@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getBookingAvailable } from '@/services/booking'
 
-import useBookingAvailable from '../use-booking-available'
+import { useBookingAvailable } from '../use-booking-available'
 
 // Mock dependencies
 jest.mock('@tanstack/react-query', () => ({
