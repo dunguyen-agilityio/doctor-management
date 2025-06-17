@@ -27,6 +27,7 @@ const DoctorFavorite = () => {
         title="Error Loading Favorites"
         message={`We couldn't load your favorite Doctor. Please try again.`}
         onRetry={refetch}
+        aria-label="Error Loading Favorites"
       />
     )
   }

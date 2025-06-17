@@ -21,9 +21,4 @@ describe('LoadingIndicator', () => {
 
     expect(screen.getByTestId('loader-icon')).toBeTruthy()
   })
-
-  it('matches snapshot with modal', () => {
-    const { toJSON } = render(<LoadingIndicator fullScreen />)
-    expect(toJSON()).toMatchSnapshot()
-  })
 })

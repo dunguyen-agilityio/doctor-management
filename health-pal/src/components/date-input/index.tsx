@@ -67,7 +67,6 @@ const DateInput = ({
         role="dialog">
         <Button padding={0}>
           <Input
-            {...props}
             ref={inputRef}
             leftIcon={CalendarIcon}
             textContentType="dateTime"
@@ -76,7 +75,9 @@ const DateInput = ({
             editable={false}
             pointerEvents="none"
             aria-label="Select date"
+            testID="trigger-input"
             accessibilityHint="Opens a date picker to choose a date"
+            {...props}
           />
         </Button>
       </Popover.Trigger>

@@ -6,7 +6,12 @@ import { Button, Heading, Modal, Text, YStack } from '@/components/common'
 
 import { ModalRef } from '@/types/modal'
 
-const QuitAppConfirmModal = ({ ref }: { ref?: React.RefObject<ModalRef | null> }) => {
+import { ModalProps } from '../common/modal'
+
+const QuitAppConfirmModal = ({
+  ref,
+  ...props
+}: { ref?: React.RefObject<ModalRef | null> } & ModalProps) => {
   const handleCancelBooking = () => {
     ref?.current?.close()
     BackHandler.exitApp()
@@ -17,7 +22,7 @@ const QuitAppConfirmModal = ({ ref }: { ref?: React.RefObject<ModalRef | null> }
   }
 
   return (
-    <Modal ref={ref} closeButtonShown>
+    <Modal ref={ref} closeButtonShown {...props}>
       <YStack alignItems="center" paddingHorizontal={42} gap={32} paddingVertical={32}>
         <YStack
           height={100}

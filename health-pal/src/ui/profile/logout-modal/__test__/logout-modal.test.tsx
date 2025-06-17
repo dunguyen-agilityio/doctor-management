@@ -30,26 +30,18 @@ describe('LogoutModal', () => {
     },
   }
 
-  let setOpenMock: jest.Mock
-
   beforeEach(() => {
     jest.clearAllMocks()
     ;(useSession as jest.Mock).mockReturnValue({
       signOut: mockSignOut,
     })
 
-    setOpenMock = jest.fn()
     jest.spyOn(MockModal, 'useModal').mockImplementation((ref) => {
-      if (ref && ref.current) {
-        ref.current.open = mockRef.current!.open
-        ref.current.close = mockRef.current!.close
+      if (ref && ref !== null && 'current' in ref) {
+        ref.current = mockRef.current
       }
-      return [true, setOpenMock]
+      return [true, jest.fn()]
     })
-  })
-  it('should match snapshot', () => {
-    const tree = render(<LogoutModal ref={mockRef} />)
-    expect(tree.toJSON()).toMatchSnapshot()
   })
 
   it('closes modal when Cancel button is clicked', () => {

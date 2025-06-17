@@ -33,6 +33,7 @@ exports[`ErrorState matches snapshot with custom title and message 1`] = `
     />
   </View>,
   <View
+    aria-label="Error state"
     role="alert"
     style={
       {
@@ -203,6 +204,7 @@ exports[`ErrorState matches snapshot with default props 1`] = `
     />
   </View>,
   <View
+    aria-label="Error state"
     role="alert"
     style={
       {
@@ -373,6 +375,7 @@ exports[`ErrorState matches snapshot with onRetry button 1`] = `
     />
   </View>,
   <View
+    aria-label="Error state"
     role="alert"
     style={
       {
@@ -610,6 +613,7 @@ exports[`ErrorState matches snapshot without onRetry button 1`] = `
     />
   </View>,
   <View
+    aria-label="Error state"
     role="alert"
     style={
       {

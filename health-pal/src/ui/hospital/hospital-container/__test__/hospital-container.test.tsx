@@ -28,6 +28,14 @@ describe('HospitalContainer', () => {
     expect(screen.getByTestId('hospital-skeleton')).toBeTruthy()
   })
 
+  it('shows loading on fetching', () => {
+    mockUseHospitals.mockReturnValue({ isFetching: true, isFetchingNextPage: false })
+
+    render(<HospitalContainer query={mockQuery} />)
+
+    expect(screen.getByTestId('loading-indicator')).toBeTruthy()
+  })
+
   it('shows error message on error state', () => {
     mockUseHospitals.mockReturnValue({ error: true, isFetching: false })
 
@@ -52,7 +60,12 @@ describe('HospitalContainer', () => {
   it('renders HospitalList with valid data', () => {
     mockUseHospitals.mockReturnValue({
       isLoading: false,
-      data: { data: [{ id: 1, name: 'City Hospital' }] },
+      data: {
+        data: [
+          { id: 1, name: 'City Hospital' },
+          { id: 2, name: 'City Hospital' },
+        ],
+      },
       isFetching: false,
       hasNextPage: false,
       fetchNextPage: jest.fn(),

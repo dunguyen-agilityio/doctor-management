@@ -85,7 +85,7 @@ exports[`CreateAccountSuccessModal matches snapshot when open 1`] = `
           "borderTopLeftRadius": 16,
           "borderTopRightRadius": 16,
           "flexDirection": "column",
-          "minHeight": 667,
+          "minHeight": 406,
           "opacity": 0,
           "overflow": "hidden",
           "paddingBottom": 0,
@@ -111,7 +111,7 @@ exports[`CreateAccountSuccessModal matches snapshot when open 1`] = `
               "scale": 1,
             },
           ],
-          "width": 702,
+          "width": 327,
           "zIndex": 100000,
         }
       }

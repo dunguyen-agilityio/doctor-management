@@ -75,6 +75,7 @@ exports[`DoctorCard matches snapshot 1`] = `
           "shadowRadius": 4,
         }
       }
+      testID="doctor-card"
     >
       <View
         style={
@@ -258,6 +259,7 @@ exports[`DoctorCard matches snapshot 1`] = `
                 },
               ]
             }
+            testID="heart-outline"
             vbHeight={18}
             vbWidth={20}
             width={15}

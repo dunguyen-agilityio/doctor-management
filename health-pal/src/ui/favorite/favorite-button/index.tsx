@@ -44,9 +44,9 @@ const FavoriteButton = ({
   ...props
 }: FavoriteButtonProps) => {
   const renderIcon = () => {
-    if (favoriteId) return <HeartFill fill={color} width={size} height={size} />
+    if (favoriteId) return <HeartFill fill={color} width={size} height={size} testID="heart-fill" />
 
-    return <HeartOutline stroke={color} width={size} height={size} />
+    return <HeartOutline stroke={color} width={size} height={size} testID="heart-outline" />
   }
 
   return (

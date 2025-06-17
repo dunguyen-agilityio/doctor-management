@@ -3,11 +3,18 @@ import { act, fireEvent, render, screen, waitFor } from '@utils-test'
 import React from 'react'
 import { Keyboard } from 'react-native'
 
+import { debounce } from 'tamagui'
+
 import { VALIDATIONS_MESSAGE } from '@/constants'
 
 import { queryClient } from '@react-query.config'
 
 import LoginForm from '..'
+
+jest.mock('tamagui', () => ({
+  ...jest.requireActual('tamagui'),
+  debounce: jest.fn(),
+}))
 
 describe('LoginForm', () => {
   const mockOnSubmit = jest.fn()
@@ -23,6 +30,30 @@ describe('LoginForm', () => {
     expect(screen.getByPlaceholderText('Your Email')).toBeTruthy()
     expect(screen.getByPlaceholderText('Password')).toBeTruthy()
     expect(screen.getByText('Sign in')).toBeTruthy()
+  })
+
+  it('mock handle next field when submit', async () => {
+    const mockHandle = jest.fn()
+    ;(debounce as jest.Mock).mockReturnValue(mockHandle)
+    const { getByLabelText } = render(<LoginForm onSubmit={mockOnSubmit} />)
+
+    fireEvent(getByLabelText('Your Email'), 'onSubmitEditing')
+
+    await waitFor(() => {
+      expect(mockHandle).toHaveBeenNthCalledWith(1, { event: 'SUBMIT', next: 1 })
+    })
+  })
+
+  it('mock handle next field when focus', async () => {
+    const mockHandle = jest.fn()
+    ;(debounce as jest.Mock).mockReturnValue(mockHandle)
+    const { getByLabelText } = render(<LoginForm onSubmit={mockOnSubmit} />)
+
+    fireEvent(getByLabelText('Password'), 'onFocus')
+
+    await waitFor(() => {
+      expect(mockHandle).toHaveBeenNthCalledWith(1, { event: 'FOCUS' })
+    })
   })
 
   it('shows validation errors for empty fields', async () => {

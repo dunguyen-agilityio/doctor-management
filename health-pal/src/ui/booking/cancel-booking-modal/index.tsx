@@ -37,9 +37,7 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, ...props }: Pro
   const handleCancelBooking = async () => {
     try {
       setAppLoading(true)
-
       handleClose()
-
       const response = await updateBooking({ documentId, type: BOOKING_TABS.CANCELED })
 
       if (response.data) {
@@ -51,7 +49,7 @@ const CancelBookingModal = ({ ref, date, doctorName, documentId, ...props }: Pro
         })
       }
     } catch (error) {
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env.NODE_ENV !== 'production') {
         console.error('Error cancelling booking:', error)
       }
 

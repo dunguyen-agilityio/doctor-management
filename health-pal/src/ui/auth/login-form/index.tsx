@@ -8,7 +8,7 @@ import { YStack } from 'tamagui'
 import { EMAIL_REGEX } from '@/constants'
 import { VALIDATIONS_MESSAGE } from '@/constants/message'
 
-import useAutoFocusField from '@/hooks/use-auto-focus-field'
+import { useAutoFocusField } from '@/hooks/use-auto-focus-field'
 
 import { Button, Input, PasswordInput } from '@/components'
 

@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@utils-test'
 import DoctorBanner from '..'
 
 describe('DoctorBanner', () => {
-  it.skip('renders all doctor banners', () => {
+  it('renders all doctor banners', () => {
     render(<DoctorBanner />)
 
     DOCTOR_BANNER.forEach((item) => {
@@ -13,7 +13,7 @@ describe('DoctorBanner', () => {
     })
   })
 
-  it.skip('renders pagination dots', () => {
+  it('renders pagination dots', () => {
     render(<DoctorBanner />)
     expect(screen.getByTestId('pagination')).toBeTruthy()
     DOCTOR_BANNER.forEach((_, i) => {
@@ -21,14 +21,11 @@ describe('DoctorBanner', () => {
     })
   })
 
-  it.skip('handles pagination dot click', () => {
+  it('handles pagination dot click', () => {
     render(<DoctorBanner />)
 
     const firstDot = screen.getByTestId('dot-0')
     fireEvent.press(firstDot)
-
-    // No scrollTo assertion here since the scrollTo is a ref method.
-    // You can spy on it if needed (see below).
     expect(firstDot).toBeTruthy()
   })
 })

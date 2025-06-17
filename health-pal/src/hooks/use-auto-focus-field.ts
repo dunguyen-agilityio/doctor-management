@@ -8,7 +8,7 @@ type HandleParams = {
   next?: number
 }
 
-const useAutoFocusField = (): [
+export const useAutoFocusField = (): [
   React.RefObject<(TextInput | null)[]>,
   (params: HandleParams) => void,
 ] => {
@@ -22,5 +22,3 @@ const useAutoFocusField = (): [
 
   return [inputRefs, handle]
 }
-
-export default useAutoFocusField

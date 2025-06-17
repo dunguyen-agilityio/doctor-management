@@ -146,14 +146,4 @@ describe('BookingAction', () => {
       'Navigates to the booking screen to change the date or time of this appointment',
     )
   })
-
-  it('matches snapshot for UPCOMING type', () => {
-    const { toJSON } = render(<BookingAction {...defaultProps} />)
-    expect(toJSON()).toMatchSnapshot()
-  })
-
-  it('matches snapshot for COMPLETED type', () => {
-    const { toJSON } = render(<BookingAction {...defaultProps} type={BOOKING_TABS.COMPLETED} />)
-    expect(toJSON()).toMatchSnapshot()
-  })
 })

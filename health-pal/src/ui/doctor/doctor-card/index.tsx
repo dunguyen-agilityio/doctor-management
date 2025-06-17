@@ -83,7 +83,8 @@ const DoctorCard = ({
       disabledStyle={{ opacity: 0.8 }}
       gap={12}
       shadowRadius={12}
-      elevation={3}>
+      elevation={3}
+      testID="doctor-card">
       <Card.Header padding={0}>
         <CloudinaryImage
           source={{ uri: avatar }}
