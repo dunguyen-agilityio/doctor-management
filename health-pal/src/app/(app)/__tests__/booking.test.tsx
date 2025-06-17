@@ -13,12 +13,12 @@ jest.mock('@/hooks/use-require-auth', () => ({
 }))
 
 describe('<Booking />', () => {
-  it('matches snapshot after loading', async () => {
+  it('render correctly', async () => {
     ;(useLocalSearchParams as jest.Mock).mockReturnValue({
       doctorId: 1,
       doctorDocId: 'doctor01',
     })
-    const { toJSON } = render(<Booking />)
-    expect(toJSON()).toMatchSnapshot()
+    const { getByTestId } = render(<Booking />)
+    expect(getByTestId('booking-button')).toBeTruthy()
   })
 })

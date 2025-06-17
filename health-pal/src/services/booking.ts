@@ -106,12 +106,13 @@ export const getBookingAvailable = async (docId: string, date: string) => {
     ],
   })
 
-  const response = await apiClient.get<{ available: Record<string, boolean>; doctorId: number }>(
-    `booking-available?${searchParams}`,
-    {
-      jwt: APP_TOKEN,
-    },
-  )
+  const response = await apiClient.get<{
+    available: Record<string, boolean>
+    doctorId: number
+    dates: string[]
+  }>(`booking-available?${searchParams}`, {
+    jwt: APP_TOKEN,
+  })
 
   return response
 }

@@ -5,10 +5,13 @@ import { useCallback, useMemo, useRef } from 'react'
 
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
+import 'dayjs/plugin/utc'
 import { router, useLocalSearchParams } from 'expo-router'
 import { DateType } from 'react-native-ui-datepicker'
 
 import { useToastController } from '@tamagui/toast'
+
+import { TIME_SLOTS } from '@/constants/booking'
 
 import { useAppLoading } from '@/hooks'
 import { useRequireAuth } from '@/hooks/use-require-auth'
@@ -60,16 +63,34 @@ const Booking = () => {
   const dateString = watch('date').format('YYYY-MM-DD')
   const defaultTime = defaultDate ? formatShortTime(defaultDate) : null
 
-  const { data, isLoading, isFetching, refetch } = useQuery({
+  const {
+    data: available = {},
+    isLoading,
+    isFetching,
+    refetch,
+  } = useQuery({
     queryKey: ['bookingAvailable', doctorDocId, dateString],
-    queryFn: () => getBookingAvailable(doctorDocId, dateString),
+    queryFn: async () => {
+      const { dates } = await getBookingAvailable(doctorDocId, dateString)
+
+      const times = dates.map((date) => formatShortTime(dayjs(date)))
+      let available: Record<string, boolean>
+      available = TIME_SLOTS.reduce(
+        (prev, current) => ({ ...prev, [current]: !times.includes(current) }),
+        {},
+      )
+
+      return available
+    },
   })
 
   const loading = isLoading || isFetching
 
-  const onSubmit = async ({ date, doctor, documentId }: BookingForm) => {
+  const onSubmit = async ({ date, time, doctor, documentId }: BookingForm) => {
     setAppLoading(true)
-    const formattedDate = date.toISOString()
+    const { hour, minute } = splitTime(time)
+    const newDate = dayjs(date).set('hour', hour).set('minute', minute)
+    const formattedDate = newDate.toISOString()
 
     const payload = {
       doctor,
@@ -112,8 +133,6 @@ const Booking = () => {
     Object.keys(formState.errors).length > 1 ||
     (!!dateParam && dayjs(defaultDate).isSame(getValues('date'), 'hour'))
 
-  const available = data?.available ?? {}
-
   return (
     <YStack backgroundColor="$white" flex={1}>
       {loading && <LoadingIndicator fullScreen />}
@@ -141,28 +160,27 @@ const Booking = () => {
 
           <Controller
             control={control}
-            name="date"
+            name="time"
             rules={{ required: 'Field is required!' }}
-            render={({ field: { onChange, value } }) => (
-              <BookingTime
-                onChange={(time) => {
-                  const { hour, minute } = splitTime(time)
-                  const newDate = dayjs(value).set('hour', hour).set('minute', minute)
-                  onChange(newDate)
-                }}
-                value={formatShortTime(value)}
-                disable={(time) => {
-                  const { hour, minute } = splitTime(time)
-                  let clone = dayjs(value)
-                  clone = clone.set('hour', hour).set('minute', minute)
+            render={({ field: { onChange, value } }) => {
+              return (
+                <BookingTime
+                  onChange={onChange}
+                  value={value}
+                  disable={(time) => {
+                    const date = getValues('date')
+                    const { hour, minute } = splitTime(time)
+                    let clone = dayjs(date)
+                    clone = clone.set('hour', hour).set('minute', minute)
 
-                  return (
-                    (available[time] === false && defaultTime !== time) ||
-                    clone.isBefore(dayjs(), 'minutes')
-                  )
-                }}
-              />
-            )}
+                    return (
+                      (available[time] === false && defaultTime !== time) ||
+                      clone.isBefore(dayjs(), 'minutes')
+                    )
+                  }}
+                />
+              )
+            }}
           />
         </YStack>
         <YStack
@@ -172,7 +190,11 @@ const Booking = () => {
           width="100%"
           borderTopColor="$grey200"
           borderTopWidth={0.5}>
-          <Button flex={1} onPress={handleSubmit(onSubmit)} disabled={disabled}>
+          <Button
+            flex={1}
+            onPress={handleSubmit(onSubmit)}
+            disabled={disabled}
+            testID="booking-button">
             Confirm
           </Button>
         </YStack>

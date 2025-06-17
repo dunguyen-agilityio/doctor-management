@@ -12,4 +12,5 @@ export type BookingForm = {
   doctor?: number
   documentId?: string
   patient?: number
+  time?: string
 }

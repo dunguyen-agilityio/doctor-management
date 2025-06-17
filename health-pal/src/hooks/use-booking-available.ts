@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getBookingAvailable } from '@/services/booking'
 
-const useBookingAvailable = (doctorId: string, date: string) => {
+export const useBookingAvailable = (doctorId: string, date: string) => {
   const query = useQuery({
     queryKey: ['booking-available', doctorId, date],
     queryFn: () => getBookingAvailable(doctorId, date),
@@ -10,5 +10,3 @@ const useBookingAvailable = (doctorId: string, date: string) => {
 
   return query
 }
-
-export default useBookingAvailable
