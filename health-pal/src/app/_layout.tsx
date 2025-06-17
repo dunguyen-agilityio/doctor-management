@@ -15,6 +15,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { tokens } from '@tamagui.config'
 import { ToastViewport } from '@tamagui/toast'
 
+import { useAppLinking } from '@/hooks/use-app-linking'
+
 import { PreventBackHandler, Toast } from '@/components'
 
 import { getProfile } from '@/services/auth'
@@ -34,6 +36,8 @@ export default function RootLayout() {
   const { setUser, setIsAuthenticated } = useAuthStore()
 
   const [loaded, setLoaded] = useState(false)
+
+  useAppLinking()
 
   useEffect(() => {
     const initial = async () => {

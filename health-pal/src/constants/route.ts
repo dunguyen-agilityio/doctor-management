@@ -25,4 +25,5 @@ export const ROUTES = {
   DOCTOR: '/doctors/details/[id]',
   PROFILE: '/(app)/(tabs)/profile',
   EDIT_PROFILE: '/(app)/edit-profile',
+  NOT_FOUND: '/+not-found',
 } as const
