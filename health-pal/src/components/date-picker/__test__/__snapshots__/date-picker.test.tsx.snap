@@ -43,7 +43,7 @@ exports[`DatePicker renders match snapshot 1`] = `
         "minHeight": 272,
         "paddingHorizontal": 16,
         "paddingVertical": 4,
-        "width": 702,
+        "width": 327,
       }
     }
     testID="calendar"
@@ -1875,7 +1875,6 @@ exports[`DatePicker renders match snapshot 1`] = `
                 style={
                   {
                     "alignItems": "center",
-                    "backgroundColor": "transparent",
                     "flex": 1,
                     "justifyContent": "center",
                   }
@@ -1955,6 +1954,7 @@ exports[`DatePicker renders match snapshot 1`] = `
                 style={
                   {
                     "alignItems": "center",
+                    "backgroundColor": "transparent",
                     "flex": 1,
                     "justifyContent": "center",
                   }

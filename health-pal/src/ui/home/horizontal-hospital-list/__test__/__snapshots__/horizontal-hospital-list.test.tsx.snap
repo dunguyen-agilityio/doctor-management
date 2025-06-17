@@ -295,6 +295,7 @@ exports[`HorizontalHospitalList matches snapshot 1`] = `
                         },
                       ]
                     }
+                    testID="heart-outline"
                     vbHeight={18}
                     vbWidth={20}
                     width={15}
@@ -989,6 +990,7 @@ exports[`HorizontalHospitalList matches snapshot 1`] = `
                         },
                       ]
                     }
+                    testID="heart-outline"
                     vbHeight={18}
                     vbWidth={20}
                     width={15}
@@ -1683,6 +1685,7 @@ exports[`HorizontalHospitalList matches snapshot 1`] = `
                         },
                       ]
                     }
+                    testID="heart-outline"
                     vbHeight={18}
                     vbWidth={20}
                     width={15}

@@ -1,3 +1,4 @@
+import { MOCK_HOSPITALS } from '@/mocks/hospital'
 import { useFavoritesStore } from '@/stores/favorite'
 import { fireEvent, render, screen } from '@utils-test'
 
@@ -23,13 +24,13 @@ describe('HospitalCard', () => {
     },
   }
   const defaultProps = {
+    ...MOCK_HOSPITALS[0],
     id: 1,
-    image: { url: 'https://example.com/image.jpg' },
+    image: { url: 'https://example.com/image.jpg', id: 1 },
     name: 'City Hospital',
     address: '123 Main St, City',
     rating: 4.2,
     reviewCounter: 23,
-    type: 'Hospital',
     width: 'auto',
     marginBottom: 10,
     marginLeft: 5,
@@ -67,7 +68,6 @@ describe('HospitalCard', () => {
     expect(screen.getByText('City Hospital')).toBeTruthy()
     expect(screen.getByText('123 Main St, City')).toBeTruthy()
     expect(screen.getByText('(23 Reviews)')).toBeTruthy()
-    expect(screen.getByText('Hospital')).toBeTruthy()
     expect(screen.getByText('2.5 km/40min')).toBeTruthy()
     expect(screen.getByTestId('location-icon')).toBeTruthy()
     expect(screen.getByTestId('routing-icon')).toBeTruthy()

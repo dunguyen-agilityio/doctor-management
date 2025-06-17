@@ -1,40 +1,23 @@
 import { MOCK_USER } from '@/mocks/user'
 import { render } from '@utils-test'
 
-import { TIME_SLOTS } from '@/constants/booking'
-
-import { getBookingAvailable } from '@/services/booking'
+import { useLocalSearchParams } from 'expo-router'
 
 import Booking from '../booking'
 
+jest.mock('expo-router')
 jest.mock('@/hooks/use-require-auth', () => ({
   useRequireAuth: jest.fn().mockReturnValue({
     session: { user: MOCK_USER },
   }),
 }))
 
-const available = TIME_SLOTS.reduce((prev, time) => ({ ...prev, [time]: true }), {})
-
-jest.mock('@/services/booking', () => ({
-  ...jest.requireActual('@/services/booking'),
-  getBookingAvailable: jest.fn(),
-}))
-
-describe('Booking', () => {
-  beforeEach(() => {
-    ;(getBookingAvailable as jest.Mock).mockResolvedValue({ available, doctorId: 'doctor-id' })
-  })
-
-  afterEach(() => {
-    jest.clearAllMocks()
-  })
-
-  it('should render correctly', () => {
-    const { getByText } = render(<Booking />)
-    expect(getByText('Select Date')).toBeTruthy()
-  })
-
-  it('should render correctly', () => {
+describe('<Booking />', () => {
+  it('matches snapshot after loading', async () => {
+    ;(useLocalSearchParams as jest.Mock).mockReturnValue({
+      doctorId: 1,
+      doctorDocId: 'doctor01',
+    })
     const { toJSON } = render(<Booking />)
     expect(toJSON()).toMatchSnapshot()
   })

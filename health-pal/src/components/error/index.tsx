@@ -23,6 +23,7 @@ const ErrorState = ({
       paddingHorizontal={48}
       justifyContent="center"
       role="alert"
+      aria-label="Error state"
       {...props}>
       <Stack backgroundColor="$red10" borderRadius={80}>
         <XCircle color="$red10" />

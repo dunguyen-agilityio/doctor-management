@@ -9,6 +9,8 @@ import { ROUTES } from '@/constants'
 import { useAppLoading } from '@/hooks'
 import { useSession } from '@/hooks/use-session'
 
+import { FormKeyboardAvoidingView } from '@/components'
+
 import { CreateAccountSuccessModal } from '@/ui/auth'
 import UserProfile from '@/ui/auth/user-profile'
 
@@ -53,7 +55,7 @@ const Profile = () => {
   }
 
   return (
-    <>
+    <FormKeyboardAvoidingView>
       <CreateAccountSuccessModal ref={createSuccessModalRef} />
       <UserProfile
         onSubmit={handleSignup}
@@ -67,7 +69,7 @@ const Profile = () => {
         }}
         editable
       />
-    </>
+    </FormKeyboardAvoidingView>
   )
 }
 

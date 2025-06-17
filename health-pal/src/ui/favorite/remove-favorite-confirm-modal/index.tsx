@@ -12,7 +12,7 @@ const RemoveFavoriteModal = ({
   ref: React.RefObject<ModalRef | null>
   onConfirm: () => void
 }>) => {
-  const handleLogout = () => {
+  const handleRemove = () => {
     onConfirm()
   }
 
@@ -42,7 +42,7 @@ const RemoveFavoriteModal = ({
             }}>
             Cancel
           </Button>
-          <Button fontWeight="700" flex={1} onPress={handleLogout} testID="remove-favorite-button">
+          <Button fontWeight="700" flex={1} onPress={handleRemove} testID="remove-favorite-button">
             Yes, Remove
           </Button>
         </XStack>

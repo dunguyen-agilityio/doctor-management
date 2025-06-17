@@ -36,7 +36,7 @@ exports[`BookingList matches snapshot 1`] = `
     style={
       {
         "flex": 1,
-        "minWidth": 702,
+        "minWidth": 327,
       }
     }
   >
@@ -59,7 +59,7 @@ exports[`BookingList matches snapshot 1`] = `
             "paddingHorizontal": 24,
           }
         }
-        estimatedItemSize={702}
+        estimatedItemSize={327}
         keyExtractor={[Function]}
         maintainVisibleContentPosition={
           {

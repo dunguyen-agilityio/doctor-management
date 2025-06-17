@@ -10,18 +10,18 @@ import { YStack } from 'tamagui'
 import { ROUTES } from '@/constants'
 
 import { Button, Heading, Text } from '@/components/common'
-import Modal from '@/components/common/modal'
+import Modal, { ModalProps } from '@/components/common/modal'
 
 import { BOOKING_TABS, BookingForm } from '@/types/booking'
 import { ModalRef } from '@/types/modal'
 
 import { queryClient } from '@react-query.config'
 
-type Props = {
+interface Props extends ModalProps {
   ref?: React.RefObject<ModalRef | null>
 }
 
-export const CreateBookingSuccessModal = ({ ref }: Readonly<Props>) => {
+export const CreateBookingSuccessModal = ({ ref, ...props }: Readonly<Props>) => {
   const { watch } = useFormContext<BookingForm>()
 
   const date = dayjs(watch('date'))
@@ -39,7 +39,7 @@ export const CreateBookingSuccessModal = ({ ref }: Readonly<Props>) => {
   }
 
   return (
-    <Modal ref={ref}>
+    <Modal ref={ref} {...props}>
       <YStack alignItems="center" paddingHorizontal={48} gap={32} paddingVertical={32}>
         <YStack
           h={130}

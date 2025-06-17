@@ -7,6 +7,8 @@ import { ROUTES } from '@/constants'
 import { useAppLoading } from '@/hooks'
 import { useRequireAuth } from '@/hooks/use-require-auth'
 
+import { FormKeyboardAvoidingView } from '@/components'
+
 import UserProfile from '@/ui/auth/user-profile'
 
 import { updateProfile } from '@/services/auth'
@@ -47,18 +49,20 @@ const EditProfile = () => {
   }
 
   return (
-    <UserProfile
-      onSubmit={handleEditProfile}
-      defaultData={{
-        dateOfBirth,
-        name: name ?? username,
-        email,
-        gender: gender ? 'Male' : 'Female',
-        avatarUrl: avatar?.url,
-        nickname,
-      }}
-      editable={!isSignup}
-    />
+    <FormKeyboardAvoidingView>
+      <UserProfile
+        onSubmit={handleEditProfile}
+        defaultData={{
+          dateOfBirth,
+          name: name ?? username,
+          email,
+          gender: gender ? 'Male' : 'Female',
+          avatarUrl: avatar?.url,
+          nickname,
+        }}
+        editable={!isSignup}
+      />
+    </FormKeyboardAvoidingView>
   )
 }
 

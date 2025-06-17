@@ -25,20 +25,24 @@ describe('useHospitals', () => {
     isLoading: false,
     isError: false,
     error: null,
+    fetchNextPage: jest.fn(),
   }
 
   beforeEach(() => {
-    jest.clearAllMocks()
     ;(useInfiniteQuery as jest.Mock).mockReturnValue(mockQueryResponse)
     ;(getHospitals as jest.Mock).mockResolvedValue(mockHospitals)
   })
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('calls useQuery with correct queryKey and queryFn', () => {
-    renderHook(() => useHospitals())
+    renderHook(() => useHospitals('qu'))
 
     expect(useInfiniteQuery).toHaveBeenCalledWith(
       expect.objectContaining({
-        queryKey: ['hospitals', ''],
+        queryKey: ['hospitals', 'qu'],
       }),
     )
   })
@@ -51,17 +55,83 @@ describe('useHospitals', () => {
 
   it('queryFn calls getHospitals', async () => {
     let queryFn: () => Promise<any>
-    ;(useInfiniteQuery as jest.Mock).mockImplementation(({ queryFn: fn }) => {
-      queryFn = fn
-      return mockQueryResponse
-    })
+    ;(useInfiniteQuery as jest.Mock).mockImplementation(
+      ({ queryFn: fn, getNextPageParam: getNextPage, getPreviousPageParam: getPreviousPage }) => {
+        queryFn = fn
+        return mockQueryResponse
+      },
+    )
 
-    renderHook(() => useHospitals())
+    renderHook(() => useHospitals('qu'))
 
     await waitFor(async () => {
       const result = await queryFn({ pageParam: 1 })
       expect(getHospitals).toHaveBeenCalled()
       expect(result).toEqual(mockHospitals)
+    })
+  })
+
+  it('queryFn calls getHospitals', async () => {
+    let queryFn: (param: { pageParam: number }) => Promise<any>
+    let getNextPageParam: jest.Mock
+    ;(useInfiniteQuery as jest.Mock).mockImplementation(
+      ({ queryFn: fn, getNextPageParam: getNextPage, getPreviousPageParam: getPreviousPage }) => {
+        queryFn = fn
+        getNextPageParam = getNextPage
+        return mockQueryResponse
+      },
+    )
+
+    renderHook(() => useHospitals('qu'))
+
+    await waitFor(() => {
+      queryFn({
+        pageParam: getNextPageParam({
+          meta: {
+            pagination: {
+              page: 1,
+              pageCount: 10,
+            },
+          },
+        }),
+      })
+      expect(getHospitals).toHaveBeenCalledWith(
+        expect.objectContaining({
+          pagination: { page: 2, pageSize: 10 },
+        }),
+      )
+    })
+  })
+
+  it('queryFn calls getHospitals', async () => {
+    let queryFn: (param: { pageParam: number }) => Promise<any>
+    let getPreviousPageParam: jest.Mock
+    ;(useInfiniteQuery as jest.Mock).mockImplementation(
+      ({ queryFn: fn, getNextPageParam: getNextPage, getPreviousPageParam: getPreviousPage }) => {
+        queryFn = fn
+        getPreviousPageParam = getPreviousPage
+        return mockQueryResponse
+      },
+    )
+
+    renderHook(() => useHospitals('qu'))
+
+    await waitFor(() => {
+      queryFn({
+        pageParam: getPreviousPageParam({
+          meta: {
+            pagination: {
+              page: 3,
+              pageCount: 10,
+            },
+          },
+        }),
+      })
+      expect(getHospitals).toHaveBeenCalledWith(
+        expect.objectContaining({
+          pagination: { page: 2, pageSize: 10 },
+        }),
+      )
     })
   })
 
