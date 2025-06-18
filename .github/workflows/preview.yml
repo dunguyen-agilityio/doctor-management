@@ -40,3 +40,13 @@ jobs:
         with:
           command: eas update --auto
           working-directory: ./health-pal
+
+      - name: Build Android app
+        run: eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk
+        working-directory: ./health-pal
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release
+          path: ${{ github.workspace }}/app-release.apk
+          working-directory: ./health-pal
