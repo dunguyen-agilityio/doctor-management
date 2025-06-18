@@ -1,0 +1,42 @@
+name: Setup Environment
+description: Setup Node, Bun, and EAS CLI
+inputs:
+    node-version:
+        description: "Node.js version to use"
+        required: true
+    bun-version:
+        description: "Bun version to install"
+        required: false
+        default: "latest"
+    working-directory:
+        description: "Working directory for the project"
+        required: true
+
+runs:
+    using: "composite"
+    steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+
+        - name: Setup Bun
+          uses: oven-sh/setup-bun@v1
+          with:
+              bun-version: ${{ inputs.bun-version }}
+
+        - name: Setup EAS
+          uses: expo/expo-github-action@v8
+          with:
+              eas-version: latest
+              token: ${{ secrets.EXPO_TOKEN }}
+
+        - name: Cache node modules
+          uses: actions/cache@v4
+          id: cache-node-modules
+          with:
+              path: ~/.bun/install/cache
+              key: bun-${{ hashFiles('${{ inputs.working-directory }}/bun.lockb') }}
+
+        - name: Install dependencies if cache not present
+          run: bun install --frozen-lockfile
+          shell: bash
+          if: steps.cache-node-modules.outputs.cache-hit != 'true'
