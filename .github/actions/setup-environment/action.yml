@@ -11,6 +11,9 @@ inputs:
     working-directory:
         description: "Working directory for the project"
         required: true
+    expo-token:
+        required: true
+        description: "Expo token"
 
 runs:
     using: "composite"
@@ -27,7 +30,7 @@ runs:
           uses: expo/expo-github-action@v8
           with:
               eas-version: latest
-              token: ${{ secrets.EXPO_TOKEN }}
+              token: ${{ inputs.expo-token }}
 
         - name: Cache node modules
           uses: actions/cache@v4
