@@ -51,7 +51,7 @@ jobs:
               id: cache-node-modules
               with:
                   path: ~/.bun/install/cache
-                  key: bun-${{ hashFiles('bun.lockb') }}
+                  key: bun-${{ hashFiles('${{ inputs.working-directory }}/bun.lockb') }}
 
             - name: Install dependencies if cache not present
               run: bun install --frozen-lockfile
