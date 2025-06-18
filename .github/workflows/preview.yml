@@ -24,7 +24,7 @@ jobs:
                   fi
 
             - name: Setup Environment
-              uses: ./.github/actions/setup-environment.yml
+              uses: ./.github/workflows/setup-environment.yml
               with:
                   node-version: "20.x"
                   bun-version: "latest"
@@ -38,7 +38,7 @@ jobs:
     build-apk:
         name: Build APK
         needs: update
-        uses: ./.github/actions/build-apk.yml
+        uses: ./.github/workflows/build-apk.yml
         with:
             node-version: "20.x"
             bun-version: "latest"
