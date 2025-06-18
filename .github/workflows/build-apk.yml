@@ -42,6 +42,7 @@ jobs:
                   node-version: ${{ inputs.node-version }}
                   bun-version: ${{ inputs.bun-version }}
                   working-directory: ${{ inputs.working-directory }}
+                  expo-token: ${{ secrets.EXPO_TOKEN }}
 
             - name: Build Android app
               run: eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk
