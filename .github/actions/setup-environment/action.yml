@@ -39,7 +39,7 @@ runs:
               path: |
                   ~/.bun/install/cache
                   ${{ inputs.working-directory }}/node_modules
-              key: bun-${{ hashFiles(inputs.working-directory + '/bun.lockb') }}
+              key: bun-${{ hashFiles(format('{0}/bun.lockb', inputs.working-directory)) }}
 
         - name: Install dependencies if cache not present
           run: bun install --frozen-lockfile
