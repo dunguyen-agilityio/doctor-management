@@ -33,6 +33,9 @@ jobs:
             run:
                 working-directory: ${{ inputs.working-directory }}
         steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
             - name: Setup Environment
               uses: ./.github/workflows/setup-environment.yml
               with:

@@ -23,6 +23,9 @@ jobs:
                     exit 1
                   fi
 
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
             - name: Setup Environment
               uses: ./.github/workflows/setup-environment.yml
               with:
