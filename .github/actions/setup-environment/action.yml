@@ -36,7 +36,8 @@ runs:
           uses: actions/cache@v4
           id: cache-node-modules
           with:
-              path: ~/.bun/install/cache
+              path: |
+                  ~/.bun/install/cache
                   ${{ inputs.working-directory }}/node_modules
               key: bun-${{ hashFiles(inputs.working-directory + '/bun.lockb') }}
 
