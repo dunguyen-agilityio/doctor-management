@@ -37,7 +37,7 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Setup Environment
-              uses: ./.github/workflows/setup-environment
+              uses: ./.github/actions/setup-environment
               with:
                   node-version: ${{ inputs.node-version }}
                   bun-version: ${{ inputs.bun-version }}
