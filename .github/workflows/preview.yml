@@ -1,7 +1,5 @@
 name: preview
-on: 
-    pull_request:
-        branches: [feat/doctor-appointment]  
+on: pull_request
 
 jobs:
   update:
@@ -25,7 +23,6 @@ jobs:
         uses: oven-sh/setup-bun@v1
         with:
             bun-version: latest
-            working-directory: ./health-pal
 
       - name: Setup EAS
         uses: expo/expo-github-action@v8
