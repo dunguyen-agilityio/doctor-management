@@ -1,5 +1,9 @@
 name: preview
-on: pull_request
+on: 
+    pull_request:
+        types: [opened, synchronize, reopened]
+        branches: [feat/doctor-appointment]
+    workflow_dispatch:
 
 jobs:
   build:
@@ -52,6 +56,9 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+    defaults:
+      run:
+        working-directory: ./health-pal
     steps:
       - name: Check for EXPO_TOKEN
         run: |
@@ -60,27 +67,26 @@ jobs:
             exit 1
           fi
 
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Setup Environment
+        uses: ./.github/workflows/setup-environment.yml
         with:
-            bun-version: latest
-
-      - name: Setup EAS
-        uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-          working-directory: ./health-pal
-
-      - name: Install dependencies
-        run: bun install
-        working-directory: ./health-pal
+          node-version: '20.x'
+          bun-version: 'latest'
 
       - name: Create preview
         uses: expo/expo-github-action/preview@v8
         with:
           command: eas update --auto
-          working-directory: ./health-pal
+
+
+  build-apk:
+    name: Build APK
+    needs: update
+    uses: ./.github/workflows/build-apk.yml
+    with:
+      node-version: '20.x'
+      bun-version: 'latest'
+      working-directory: './health-pal'
+    secrets:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      API_URL: ${{ secrets.API_URL }}

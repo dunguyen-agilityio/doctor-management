@@ -1,0 +1,67 @@
+name: Build APK
+on: 
+    workflow_call:
+     inputs:
+      node-version:
+        description: 'Node.js version to use'
+        required: true
+        type: string
+      bun-version:
+        description: 'Bun version to install'
+        required: false
+        type: string
+        default: 'latest'
+      working-directory:
+        description: 'Working directory for the project'
+        required: true
+        type: string
+     secrets:
+      EXPO_TOKEN:
+        description: 'Expo token for EAS authentication'
+        required: true
+
+jobs:
+  setup:
+    name: Setup Environment
+    runs-on: ubuntu-latest
+    permissions:
+        contents: read
+        pull-requests: write
+
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+    
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+            bun-version: latest
+
+      - name: Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        id: cache-node-modules
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ hashFiles('bun.lockb') }}
+
+
+      - name: Install dependencies if cache not present
+        run: bun install --frozen-lockfile
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+
+      - name: Check for EXPO_TOKEN
+        run: |
+          if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+            echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
+            exit 1
+          fi
