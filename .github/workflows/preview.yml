@@ -54,4 +54,6 @@ jobs:
             working-directory: ./health-pal
         secrets:
             EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-            API_URL: ${{ secrets.API_URL }}
+            EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN}}
+            EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT}}
+            EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN}}
