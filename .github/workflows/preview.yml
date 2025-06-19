@@ -59,7 +59,7 @@ jobs:
 
     build-apk:
         name: Build APK
-        needs: update
+        # needs: update
         uses: ./.github/workflows/build-apk.yml
 
         with:
