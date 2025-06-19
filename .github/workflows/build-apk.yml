@@ -19,6 +19,15 @@ on:
             EXPO_TOKEN:
                 description: "Expo token for EAS authentication"
                 required: true
+            EXPO_PUBLIC_APP_TOKEN:
+                description: "Expo token for EAS authentication"
+                required: true
+            EXPO_PUBLIC_API_ENDPOINT:
+                description: "Expo token for EAS authentication"
+                required: true
+            EXPO_PUBLIC_CLOUDINARY_DOMAIN:
+                description: "Expo token for EAS authentication"
+                required: true
 
 jobs:
     build:
