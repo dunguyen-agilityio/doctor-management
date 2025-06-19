@@ -12,7 +12,8 @@
       }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {}
     },
     "preview2": {
       "android": {

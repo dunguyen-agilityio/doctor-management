@@ -17,7 +17,7 @@ jobs:
                 working-directory: .
         steps:
             - name: Init
-              run: echo hello word!
+              run: echo Hello Word!
 
     # update:
     #     name: EAS Update
