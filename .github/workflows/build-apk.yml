@@ -38,6 +38,12 @@ jobs:
         defaults:
             run:
                 working-directory: ${{ inputs.working-directory }}
+
+        env:
+            EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN}}
+            EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT}}
+            EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN}}
+
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
@@ -52,11 +58,6 @@ jobs:
 
             - name: Build Android app
               run: eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk
-              env:
-                  EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN}}
-                  EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT}}
-                  EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN}}
-                  EAS_BUILD: false
 
             - name: Upload APK artifact
               uses: actions/upload-artifact@v4
