@@ -15,13 +15,6 @@ on:
                 description: "Working directory for the project"
                 required: true
                 type: string
-        secrets:
-            EXPO_TOKEN:
-                description: "Expo token for EAS authentication"
-                required: true
-            API_URL:
-                description: "API URL for the app"
-                required: false
 
 jobs:
     build:
