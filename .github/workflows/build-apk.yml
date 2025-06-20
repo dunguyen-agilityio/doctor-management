@@ -50,6 +50,24 @@ jobs:
                   working-directory: ${{ inputs.working-directory }}
                   expo-token: ${{ secrets.EXPO_TOKEN }}
 
+            - name: Validate environment variables
+              run: |
+                  if [ -z "$EXPO_PUBLIC_API_ENDPOINT" ]; then
+                      echo "Error: EXPO_PUBLIC_API_ENDPOINT is not set"
+                      exit 1
+                  fi
+                  if [ -z "$EXPO_PUBLIC_APP_TOKEN" ]; then
+                      echo "Error: EXPO_PUBLIC_APP_TOKEN is not set"
+                      exit 1
+                  fi
+                  if [ -z "$EXPO_PUBLIC_CLOUDINARY_DOMAIN" ]; then
+                      echo "Error: EXPO_PUBLIC_CLOUDINARY_DOMAIN is not set"
+                      exit 1
+                  fi
+              env:
+                  EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
             - name: Build Android app
               run: eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk
               env:
