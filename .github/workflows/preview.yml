@@ -6,9 +6,42 @@ on:
     workflow_dispatch:
 
 jobs:
+    check-env:
+        name: Check Environment
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        steps:
+            - name: Check for Environment
+              shell: bash
+              run: |
+                  if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+                  echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
+                  exit 1
+                  fi
+                  if [ -z "$EXPO_PUBLIC_API_ENDPOINT" ]; then
+                    echo "Error: EXPO_PUBLIC_API_ENDPOINT is not set"
+                    exit 1
+                  fi
+                  if [ -z "$EXPO_PUBLIC_APP_TOKEN" ]; then
+                    echo "Error: EXPO_PUBLIC_APP_TOKEN is not set"
+                    exit 1
+                  fi
+                  if [ -z "$EXPO_PUBLIC_CLOUDINARY_DOMAIN" ]; then
+                    echo "Error: EXPO_PUBLIC_CLOUDINARY_DOMAIN is not set"
+                    exit 1
+                  fi
+
+              env:
+                  EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+                  EXPO_TOKEN: ${{secrets.EXPO_TOKEN}}
+
     update:
         name: EAS Update
         runs-on: ubuntu-latest
+        needs: check-env
         permissions:
             contents: read
             pull-requests: write
@@ -16,12 +49,15 @@ jobs:
             run:
                 working-directory: .
         steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
             - name: Setup Environment
               uses: ./.github/actions/setup-environment
               with:
-                  node-version: "20.x"
-                  bun-version: "latest"
-                  working-directory: ./health-pal
+                  node-version: ${{ inputs.node-version }}
+                  bun-version: ${{ inputs.bun-version }}
+                  working-directory: ${{ inputs.working-directory }}
                   expo-token: ${{ secrets.EXPO_TOKEN }}
 
             - name: Create preview
@@ -36,6 +72,7 @@ jobs:
 
     build-apk:
         name: Build APK
+        needs: check-env
         uses: ./.github/workflows/build-apk.yml
 
         with:

@@ -18,27 +18,10 @@ inputs:
 runs:
     using: "composite"
     steps:
-        - name: Check for EXPO_TOKEN
-          shell: bash
-          run: |
-              if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
-              echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
-              exit 1
-              fi
-        - name: Checkout repository
-          uses: actions/checkout@v4
-
         - name: Setup Bun
           uses: oven-sh/setup-bun@v1
           with:
               bun-version: ${{ inputs.bun-version }}
-
-        - name: Setup EAS
-          uses: expo/expo-github-action@v8
-          with:
-              eas-version: latest
-              token: ${{ inputs.expo-token }}
-              working-directory: ${{ inputs.working-directory }}
 
         - name: Cache node modules
           uses: actions/cache@v4
@@ -54,3 +37,10 @@ runs:
           shell: bash
           working-directory: ${{ inputs.working-directory }}
           if: steps.cache-node-modules.outputs.cache-hit != 'true'
+
+        - name: Setup EAS
+          uses: expo/expo-github-action@v8
+          with:
+              eas-version: latest
+              token: ${{ inputs.expo-token }}
+              working-directory: ${{ inputs.working-directory }}
