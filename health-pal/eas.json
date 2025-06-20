@@ -15,7 +15,7 @@
       "distribution": "internal"
     },
     "preview2": {
-      "environment": "preview",
+      "environment": "production",
       "android": {
         "gradleCommand": ":app:assembleRelease",
         "buildType": "apk"
