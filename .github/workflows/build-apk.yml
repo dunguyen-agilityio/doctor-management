@@ -20,13 +20,13 @@ on:
                 description: "Expo token for EAS authentication"
                 required: true
             EXPO_PUBLIC_APP_TOKEN:
-                description: "Expo token for EAS authentication"
+                description: "Expo app token for configuration"
                 required: true
             EXPO_PUBLIC_API_ENDPOINT:
-                description: "Expo token for EAS authentication"
+                description: "API endpoint for the app"
                 required: true
             EXPO_PUBLIC_CLOUDINARY_DOMAIN:
-                description: "Expo token for EAS authentication"
+                description: "Cloudinary domain for media"
                 required: true
 
 jobs:
@@ -34,7 +34,8 @@ jobs:
         runs-on: ubuntu-latest
         permissions:
             contents: read
-
+            pull-requests: write
+        timeout-minutes: 30
         defaults:
             run:
                 working-directory: ${{ inputs.working-directory }}
@@ -42,7 +43,7 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
 
-            - name: Setup Environment
+            - name: Setup environment
               uses: ./.github/actions/setup-environment
               with:
                   node-version: ${{ inputs.node-version }}
@@ -53,12 +54,37 @@ jobs:
             - name: Build Android app
               run: eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk
               env:
-                  EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN}}
-                  EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT}}
-                  EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN}}
+                  EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
 
             - name: Upload APK artifact
               uses: actions/upload-artifact@v4
               with:
                   name: app-release
                   path: ${{ github.workspace }}/app-release.apk
+                  retention-days: 7
+
+            - name: Post PR comment on success
+              if: success() && github.event_name == 'pull_request'
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      github.rest.issues.createComment({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number: context.issue.number,
+                        body: '✅ APK build completed successfully! Check the artifacts for the APK.'
+                      })
+
+            - name: Post PR comment on failure
+              if: failure() && github.event_name == 'pull_request'
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      github.rest.issues.createComment({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number: context.issue.number,
+                        body: '❌ APK build failed. Please check the workflow logs for details.'
+                      })

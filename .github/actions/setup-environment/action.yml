@@ -1,5 +1,5 @@
 name: Setup Environment
-description: Setup Node, Bun, and EAS CLI
+description: Sets up Node.js, Bun, and EAS CLI for Expo projects
 inputs:
     node-version:
         description: "Node.js version to use"
@@ -12,8 +12,8 @@ inputs:
         description: "Working directory for the project"
         required: true
     expo-token:
+        description: "Expo token for EAS authentication"
         required: true
-        description: "Expo token"
 
 runs:
     using: "composite"
@@ -23,20 +23,22 @@ runs:
           with:
               bun-version: ${{ inputs.bun-version }}
 
-        - name: Cache node modules
+        - name: Cache dependencies
           uses: actions/cache@v4
-          id: cache-node-modules
+          id: cache-dependencies
           with:
               path: |
                   ~/.bun/install/cache
                   ${{ inputs.working-directory }}/node_modules
-              key: bun-${{ hashFiles(format('{0}/bun.lockb', inputs.working-directory)) }}
+              key: bun-${{ runner.os }}-${{ inputs.node-version }}-${{ hashFiles(format('{0}/bun.lockb', inputs.working-directory)) }}
+              restore-keys: |
+                  bun-${{ runner.os }}-${{ inputs.node-version }}-
 
-        - name: Install dependencies if cache not present
+        - name: Install dependencies
           run: bun install --frozen-lockfile
           shell: bash
           working-directory: ${{ inputs.working-directory }}
-          if: steps.cache-node-modules.outputs.cache-hit != 'true'
+          if: steps.cache-dependencies.outputs.cache-hit != 'true'
 
         - name: Setup EAS
           uses: expo/expo-github-action@v8
