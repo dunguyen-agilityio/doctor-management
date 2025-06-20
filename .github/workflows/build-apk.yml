@@ -15,6 +15,12 @@ on:
                 description: "Working directory for the project"
                 required: true
                 type: string
+            build-type:
+                description: "Build type: 'local' or 'remote' (cloud)"
+                required: false
+                type: string
+                default: "local"
+
         secrets:
             EXPO_TOKEN:
                 description: "Expo token for EAS authentication"
@@ -50,15 +56,22 @@ jobs:
                   bun-version: ${{ inputs.bun-version }}
                   working-directory: ${{ inputs.working-directory }}
                   expo-token: ${{ secrets.EXPO_TOKEN }}
+                  build-type: ${{ inputs.build-type }}
 
             - name: Build Android app
-              run: eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk
+              run: |
+                  if [ "${{ inputs.build-type }}" = "local" ]; then
+                    eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk
+                  else
+                    eas build --platform android --profile preview2 --non-interactive --no-wait
+                  fi
               env:
                   EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
                   EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
                   EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
 
             - name: Upload APK artifact
+              if: inputs.build-type == 'local'
               uses: actions/upload-artifact@v4
               with:
                   name: app-release
@@ -66,7 +79,7 @@ jobs:
                   retention-days: 7
 
             - name: Post PR comment on success
-              if: success() && github.event_name == 'pull_request'
+              if: success() && github.event_name == 'pull_request' && inputs.build-type == 'local'
               uses: actions/github-script@v7
               with:
                   script: |
@@ -78,7 +91,7 @@ jobs:
                       })
 
             - name: Post PR comment on failure
-              if: failure() && github.event_name == 'pull_request'
+              if: failure() && github.event_name == 'pull_request' && inputs.build-type == 'local'
               uses: actions/github-script@v7
               with:
                   script: |

@@ -96,35 +96,19 @@ jobs:
                       })
 
     build-apk:
-        name: Build APK
+        name: Build APK (${{ matrix.build-type }})
         needs: check-env
         uses: ./.github/workflows/build-apk.yml
+        strategy:
+            matrix:
+                build-type: [local, remote]
         with:
             node-version: "20.x"
             bun-version: "latest"
             working-directory: ./health-pal
+            build-type: ${{ matrix.build-type }}
         secrets:
             EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
             EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
             EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
             EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
-
-    eas-build:
-        name: EAS Build
-        needs: check-env
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-
-            - name: Setup environment
-              uses: ./.github/actions/setup-environment
-              with:
-                  node-version: "20.x"
-                  bun-version: "latest"
-                  working-directory: ./health-pal
-                  expo-token: ${{ secrets.EXPO_TOKEN }}
-
-            - name: Build on EAS
-              run: eas build --platform android --profile preview2 --non-interactive --no-wait
-              working-directory: ./health-pal

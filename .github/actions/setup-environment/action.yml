@@ -14,6 +14,10 @@ inputs:
     expo-token:
         description: "Expo token for EAS authentication"
         required: true
+    build-type:
+        description: "Build type: 'local' or 'remote' (cloud)"
+        required: false
+        default: "local"
 
 runs:
     using: "composite"
@@ -24,6 +28,7 @@ runs:
               bun-version: ${{ inputs.bun-version }}
 
         - name: Cache dependencies
+          if: inputs.build-type == 'local'
           uses: actions/cache@v4
           id: cache-dependencies
           with:
