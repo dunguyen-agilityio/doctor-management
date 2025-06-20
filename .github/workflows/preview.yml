@@ -143,3 +143,4 @@ jobs:
 
             - name: Build on EAS
               run: eas build --platform android --profile preview2 --non-interactive --no-wait
+              working-directory: ./health-pal
