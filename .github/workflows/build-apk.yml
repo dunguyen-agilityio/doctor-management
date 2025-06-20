@@ -39,9 +39,6 @@ jobs:
             run:
                 working-directory: ${{ inputs.working-directory }}
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-
             - name: Setup Environment
               uses: ./.github/actions/setup-environment
               with:
@@ -68,6 +65,7 @@ jobs:
                   EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
                   EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
                   EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+
             - name: Build Android app
               run: eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk
               env:
