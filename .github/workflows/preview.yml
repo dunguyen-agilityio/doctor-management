@@ -55,9 +55,9 @@ jobs:
             - name: Setup Environment
               uses: ./.github/actions/setup-environment
               with:
-                  node-version: ${{ inputs.node-version }}
-                  bun-version: ${{ inputs.bun-version }}
-                  working-directory: ${{ inputs.working-directory }}
+                  node-version: "20.x"
+                  bun-version: "latest"
+                  working-directory: ./health-pal
                   expo-token: ${{ secrets.EXPO_TOKEN }}
 
             - name: Create preview
