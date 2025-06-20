@@ -16,9 +16,6 @@
     },
     "preview2": {
       "environment": "preview",
-      "env": {
-        "ANDROID_NDK_HOME": "28.0.12433566"
-      },
       "android": {
         "gradleCommand": ":app:assembleRelease",
         "buildType": "apk"
