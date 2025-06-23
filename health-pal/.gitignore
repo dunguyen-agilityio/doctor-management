@@ -42,3 +42,5 @@ android/
 # EAS
 *.aab
 *.apk
+
+.tamagui/
