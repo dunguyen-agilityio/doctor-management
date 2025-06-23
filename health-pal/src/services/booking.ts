@@ -96,6 +96,7 @@ export const addBooking = async (formData: BookingParams): Promise<APIResponse<B
 }
 
 export const getBookingAvailable = async (docId: string, date: string) => {
+  const jwt = await getJwt()
   const searchParams = buildStrapiQuery({
     filters: [
       { key: 'docId', query: docId },
@@ -111,7 +112,7 @@ export const getBookingAvailable = async (docId: string, date: string) => {
     doctorId: number
     dates: string[]
   }>(`booking-available?${searchParams}`, {
-    jwt: APP_TOKEN,
+    jwt,
   })
 
   return response
