@@ -22,7 +22,11 @@
       }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "cache": {
+        "key": "v1-cache",
+        "paths": ["node_modules", "android/.gradle", "android/build", ".expo", ".tamagui"]
+      }
     }
   },
   "submit": {
