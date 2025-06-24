@@ -46,5 +46,6 @@ runs:
           uses: expo/expo-github-action@v8
           with:
               eas-version: latest
+              expo-version: latest
               token: ${{ inputs.expo-token }}
               working-directory: ${{ inputs.working-directory }}
