@@ -65,6 +65,7 @@ jobs:
                   path: |
                       ~/.gradle/caches
                       ~/.gradle/wrapper
+                      ${{ inputs.working-directory }}/android
                   key: gradle-${{ runner.os }}-${{ hashFiles('${{ inputs.working-directory }}/**/*.gradle*', '${{ inputs.working-directory }}/**/gradle-wrapper.properties') }}
                   restore-keys: |
                       gradle-${{ runner.os }}-
