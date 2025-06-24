@@ -32,7 +32,7 @@ runs:
           uses: actions/cache@v4
           id: cache-dependencies
           with:
-              path: node_modules
+              path: health-pal/node_modules
               key: ${{ runner.os }}-node-${{ hashFiles('health-pal/yarn.lock') }}
               restore-keys: |
                   ${{ runner.os }}-node-
