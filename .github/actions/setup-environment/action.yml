@@ -22,25 +22,23 @@ inputs:
 runs:
     using: "composite"
     steps:
-        - name: Setup Bun
-          uses: oven-sh/setup-bun@v1
+        - name: Setup Node
+          uses: actions/setup-node@v4
           with:
-              bun-version: ${{ inputs.bun-version }}
+              node-version: 22.x
+              cache: yarn
 
         - name: Cache dependencies
-          if: inputs.build-type == 'local'
           uses: actions/cache@v4
           id: cache-dependencies
           with:
-              path: |
-                  ~/.bun/install/cache
-                  ${{ inputs.working-directory }}/node_modules
-              key: bun-${{ runner.os }}-${{ inputs.node-version }}-${{ hashFiles(format('{0}/bun.lockb', inputs.working-directory)) }}
+              path: node_modules
+              key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
               restore-keys: |
-                  bun-${{ runner.os }}-${{ inputs.node-version }}-
+                  ${{ runner.os }}-node-
 
         - name: Install dependencies
-          run: bun install --frozen-lockfile
+          run: yarn install --frozen-lockfile
           shell: bash
           working-directory: ${{ inputs.working-directory }}
           if: steps.cache-dependencies.outputs.cache-hit != 'true'
