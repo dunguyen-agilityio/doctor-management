@@ -65,18 +65,9 @@ jobs:
                   path: |
                       ~/.gradle/caches
                       ~/.gradle/wrapper
-                  key: gradle-${{ runner.os }}-${{ hashFiles('${{ inputs.working-directory }}/**/*.gradle*') }}
+                  key: gradle-${{ runner.os }}-${{ hashFiles('${{ inputs.working-directory }}/**/*.gradle*', '${{ inputs.working-directory }}/**/gradle-wrapper.properties') }}
                   restore-keys: |
                       gradle-${{ runner.os }}-
-
-            - name: Cache Android Build
-              if: github.event_name == 'pull_request' && inputs.build-type == 'local'
-              uses: actions/cache@v4
-              with:
-                  path: ${{ inputs.working-directory }}/android/build
-                  key: android-build-${{ runner.os }}-${{ github.sha }}
-                  restore-keys: |
-                      android-build-${{ runner.os }}-
 
             - name: Build Android app
               run: |
