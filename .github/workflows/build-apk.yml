@@ -58,6 +58,25 @@ jobs:
                   expo-token: ${{ secrets.EXPO_TOKEN }}
                   build-type: ${{ inputs.build-type }}
 
+            - name: Cache Android Gradle
+              uses: actions/cache@v4
+              with:
+                  path: |
+                      ~/.gradle/caches
+                      ~/.gradle/wrapper
+                      ${{ inputs.working-directory }}/android/.gradle
+                  key: gradle-${{ runner.os }}-${{ hashFiles('${{ inputs.working-directory }}/**/*.gradle*', '${{ inputs.working-directory }}/**/gradle-wrapper.properties') }}
+                  restore-keys: |
+                      gradle-${{ runner.os }}-
+
+            - name: Cache Android Build
+              uses: actions/cache@v4
+              with:
+                  path: ${{ inputs.working-directory }}/android/build
+                  key: android-build-${{ runner.os }}-${{ github.sha }}
+                  restore-keys: |
+                      android-build-${{ runner.os }}-
+
             - name: Build Android app
               run: |
                   if [ "${{ inputs.build-type }}" = "local" ]; then
