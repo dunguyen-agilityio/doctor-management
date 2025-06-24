@@ -33,9 +33,9 @@ runs:
           id: cache-dependencies
           with:
               path: health-pal/node_modules
-              key: ${{ runner.os }}-node-${{ hashFiles('health-pal/yarn.lock') }}
+              key: ${{ runner.os }}-yarn-${{ hashFiles('health-pal/yarn.lock') }}
               restore-keys: |
-                  ${{ runner.os }}-node-
+                  ${{ runner.os }}-yarn-
 
         - name: Install dependencies
           run: yarn install --frozen-lockfile
