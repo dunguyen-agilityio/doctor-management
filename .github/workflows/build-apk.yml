@@ -59,19 +59,18 @@ jobs:
                   build-type: ${{ inputs.build-type }}
 
             - name: Cache Android Gradle
-              if: success() && github.event_name == 'pull_request' && inputs.build-type == 'local'
+              if: github.event_name == 'pull_request' && inputs.build-type == 'local'
               uses: actions/cache@v4
               with:
                   path: |
                       ~/.gradle/caches
                       ~/.gradle/wrapper
-                      ${{ inputs.working-directory }}/android/.gradle
-                  key: gradle-${{ runner.os }}-${{ hashFiles('${{ inputs.working-directory }}/**/*.gradle*', '${{ inputs.working-directory }}/**/gradle-wrapper.properties') }}
+                  key: gradle-${{ runner.os }}-${{ hashFiles('${{ inputs.working-directory }}/**/*.gradle*') }}
                   restore-keys: |
                       gradle-${{ runner.os }}-
 
             - name: Cache Android Build
-              if: success() && github.event_name == 'pull_request' && inputs.build-type == 'local'
+              if: github.event_name == 'pull_request' && inputs.build-type == 'local'
               uses: actions/cache@v4
               with:
                   path: ${{ inputs.working-directory }}/android/build
