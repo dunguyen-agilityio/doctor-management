@@ -1,5 +1,5 @@
 #!/bin/bash
-CACHE_DIR="~/cache"
+CACHE_DIR="$HOME/cache"
 PROJECT_DIR="$PWD"
 
 if [ -d "$CACHE_DIR/node_modules" ]; then
