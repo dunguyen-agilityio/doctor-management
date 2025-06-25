@@ -1,19 +1,19 @@
 name: Setup Environment
-description: Sets up Node.js, Bun, and EAS CLI for Expo projects
+description: Sets up Node.js, Yarn, and EAS CLI for Expo projects
+
 inputs:
     node-version:
         description: "Node.js version to use"
         required: true
-    bun-version:
-        description: "Bun version to install"
-        required: false
-        default: "latest"
+
     working-directory:
         description: "Working directory for the project"
         required: true
+
     expo-token:
         description: "Expo token for EAS authentication"
         required: true
+
     build-type:
         description: "Build type: 'local' or 'remote' (cloud)"
         required: false
@@ -22,25 +22,25 @@ inputs:
 runs:
     using: "composite"
     steps:
-        - name: Setup Bun
-          uses: oven-sh/setup-bun@v1
+        - name: Setup Node.js
+          uses: actions/setup-node@v4
           with:
-              bun-version: ${{ inputs.bun-version }}
+              node-version: ${{ inputs.node-version }}
+              cache: yarn
+              cache-dependency-path: ${{ inputs.working-directory }}/yarn.lock
 
-        - name: Cache dependencies
+        - name: Cache node_modules
           if: inputs.build-type == 'local'
           uses: actions/cache@v4
           id: cache-dependencies
           with:
-              path: |
-                  ~/.bun/install/cache
-                  ${{ inputs.working-directory }}/node_modules
-              key: bun-${{ runner.os }}-${{ inputs.node-version }}-${{ hashFiles(format('{0}/bun.lockb', inputs.working-directory)) }}
+              path: ${{ inputs.working-directory }}/node_modules
+              key: yarn-${{ runner.os }}-${{ inputs.node-version }}-${{ hashFiles(format('{0}/yarn.lock', inputs.working-directory)) }}
               restore-keys: |
-                  bun-${{ runner.os }}-${{ inputs.node-version }}-
+                  yarn-${{ runner.os }}-${{ inputs.node-version }}-
 
         - name: Install dependencies
-          run: bun install --frozen-lockfile
+          run: yarn install --frozen-lockfile
           shell: bash
           working-directory: ${{ inputs.working-directory }}
           if: steps.cache-dependencies.outputs.cache-hit != 'true'

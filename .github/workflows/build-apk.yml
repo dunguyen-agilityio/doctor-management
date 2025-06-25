@@ -53,7 +53,6 @@ jobs:
               uses: ./.github/actions/setup-environment
               with:
                   node-version: ${{ inputs.node-version }}
-                  bun-version: ${{ inputs.bun-version }}
                   working-directory: ${{ inputs.working-directory }}
                   expo-token: ${{ secrets.EXPO_TOKEN }}
                   build-type: ${{ inputs.build-type }}
@@ -63,15 +62,36 @@ jobs:
                   if [ "${{ inputs.build-type }}" = "local" ]; then
                     eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk
                   else
-                    eas build --platform android --profile preview2 --non-interactive --no-wait
+                    eas build --platform android --profile preview2 --non-interactive --wait
                   fi
               env:
                   EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
                   EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
                   EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
 
+            - name: Get Latest Build Info (JSON)
+              if: inputs.build-type == 'remote'
+              id: latest-build
+              run: |
+                  BUILD_JSON=$(eas build:list --platform android --limit 1 --status=finished --json)
+                  echo "build_json=$BUILD_JSON" >> "$GITHUB_OUTPUT      "
+
+            - name: Extract APK URL
+              if: inputs.build-type == 'remote'
+              id: extract-url
+              run: |
+                  echo "${{ steps.latest-build.outputs.build_json }}" > build.json
+                  APK_URL=$(jq -r '.[0].artifacts.buildUrl // .[0].artifacts.apk' build.json)
+                  echo "APK_URL=$APK_URL" >> $GITHUB_ENV
+                  echo "apk_url=$APK_URL" >> "$GITHUB_OUTPUT"
+
+            - name: Download APK
+              if: inputs.build-type == 'remote'
+              run: |
+                  curl -L "$APK_URL" -o app-release.apk
+                  ls -lh app-release.apk
+
             - name: Upload APK artifact
-              if: inputs.build-type == 'local'
               uses: actions/upload-artifact@v4
               with:
                   name: app-release
@@ -79,7 +99,7 @@ jobs:
                   retention-days: 7
 
             - name: Post PR comment on success
-              if: success() && github.event_name == 'pull_request' && inputs.build-type == 'local'
+              if: success() && github.event_name == 'pull_request'
               uses: actions/github-script@v7
               with:
                   script: |
@@ -87,11 +107,11 @@ jobs:
                         owner: context.repo.owner,
                         repo: context.repo.repo,
                         issue_number: context.issue.number,
-                        body: '✅ APK build completed successfully! Check the artifacts for the APK.'
+                        body: '✅ APK build completed successfully! Check the artifacts for the APK. (${{ inputs.build-type }})'
                       })
 
             - name: Post PR comment on failure
-              if: failure() && github.event_name == 'pull_request' && inputs.build-type == 'local'
+              if: failure() && github.event_name == 'pull_request'
               uses: actions/github-script@v7
               with:
                   script: |
@@ -99,5 +119,5 @@ jobs:
                         owner: context.repo.owner,
                         repo: context.repo.repo,
                         issue_number: context.issue.number,
-                        body: '❌ APK build failed. Please check the workflow logs for details.'
+                        body: '❌ APK build failed. Please check the workflow logs for details. (${{ inputs.build-type }})'
                       })
