@@ -43,7 +43,7 @@ jobs:
                         owner: context.repo.owner,
                         repo: context.repo.repo,
                         issue_number: context.issue.number,
-                        body: '✅ APK build completed successfully! Check the artifacts for the APK. (${{ inputs.build-type }})'
+                        body: '✅ APK build completed successfully! Check the artifacts for the APK.'
                       })
 
             - name: Post PR comment on failure
@@ -55,5 +55,5 @@ jobs:
                         owner: context.repo.owner,
                         repo: context.repo.repo,
                         issue_number: context.issue.number,
-                        body: '❌ APK build failed. Please check the workflow logs for details. (${{ inputs.build-type }})'
+                        body: '❌ APK build failed. Please check the workflow logs for details.'
                       })
