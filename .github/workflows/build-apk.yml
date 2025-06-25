@@ -58,18 +58,6 @@ jobs:
                   expo-token: ${{ secrets.EXPO_TOKEN }}
                   build-type: ${{ inputs.build-type }}
 
-            - name: Cache Android Gradle
-              if: github.event_name == 'pull_request' && inputs.build-type == 'local'
-              uses: actions/cache@v4
-              with:
-                  path: |
-                      ~/.gradle/caches
-                      ~/.gradle/wrapper
-                      ${{ inputs.working-directory }}/android
-                  key: gradle-${{ runner.os }}-${{ hashFiles('${{ inputs.working-directory }}/**/*.gradle*', '${{ inputs.working-directory }}/**/gradle-wrapper.properties') }}
-                  restore-keys: |
-                      gradle-${{ runner.os }}-
-
             - name: Build Android app
               run: |
                   if [ "${{ inputs.build-type }}" = "local" ]; then
