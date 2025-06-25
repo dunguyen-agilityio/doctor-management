@@ -14,6 +14,8 @@ jobs:
               with:
                   node-version: 20.x
                   cache: yarn
+                  cache-dependency-path: ${{ inputs.working-directory }}/yarn.lock
+                  working-directory: ./health-pal
 
             - name: 🏗 Setup EAS
               uses: expo/expo-github-action@v8
@@ -23,9 +25,11 @@ jobs:
 
             - name: 📦 Install dependencies
               run: yarn install
+              working-directory: ./health-pal
 
             - name: 🚀 Build app
               run: eas build --platform android --profile preview --local --output ${{ github.workspace }}/app-release.apk  --non-interactive
+              working-directory: ./health-pal
               env:
                   EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
                   EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
