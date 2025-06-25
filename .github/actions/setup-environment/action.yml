@@ -14,11 +14,6 @@ inputs:
         description: "Expo token for EAS authentication"
         required: true
 
-    build-type:
-        description: "Build type: 'local' or 'remote' (cloud)"
-        required: false
-        default: "local"
-
 runs:
     using: "composite"
     steps:
@@ -26,8 +21,6 @@ runs:
           uses: actions/setup-node@v4
           with:
               node-version: ${{ inputs.node-version }}
-              cache: yarn
-              working-directory: ${{ inputs.working-directory }}
 
         - name: Setup EAS
           uses: expo/expo-github-action@v8
