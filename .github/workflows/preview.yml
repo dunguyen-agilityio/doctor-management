@@ -1,54 +1,11 @@
-name: Preview
-on:
-    pull_request:
-        types: [opened, synchronize, reopened]
-        branches: [origin/feat/doctor-appointment]
-    workflow_dispatch:
-
-concurrency:
-    group: preview-${{ github.event.pull_request.number || github.run_id }}
-    cancel-in-progress: true
-
+on: [pull_request]
 permissions:
     contents: read
     pull-requests: write
-
 jobs:
-    check-env:
-        name: Validate Secrets
+    preview:
         runs-on: ubuntu-latest
-        permissions:
-            contents: read
-        timeout-minutes: 5
-        steps:
-            - name: Validate secrets
-              run: |
-                  errors=()
-                  [ -z "${EXPO_TOKEN}" ] && errors+=("EXPO_TOKEN is not set. Learn more: https://docs.expo.dev/eas-update/github-actions")
-                  [ -z "${EXPO_PUBLIC_API_ENDPOINT}" ] && errors+=("EXPO_PUBLIC_API_ENDPOINT is not set")
-                  [ -z "${EXPO_PUBLIC_APP_TOKEN}" ] && errors+=("EXPO_PUBLIC_APP_TOKEN is not set")
-                  [ -z "${EXPO_PUBLIC_CLOUDINARY_DOMAIN}" ] && errors+=("EXPO_PUBLIC_CLOUDINARY_DOMAIN is not set")
-                  if [ ${#errors[@]} -gt 0 ]; then
-                    printf "Error: %s\n" "${errors[@]}"
-                    exit 1
-                  fi
-              env:
-                  EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-                  EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
-                  EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
-                  EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
-
-    update:
-        name: EAS Update
-        needs: check-env
-        runs-on: ubuntu-latest
-        permissions:
-            contents: read
-            pull-requests: write
         timeout-minutes: 15
-        defaults:
-            run:
-                working-directory: .
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
@@ -67,7 +24,7 @@ jobs:
                   EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
                   EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
               with:
-                  command: eas update --auto
+                  command: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
                   working-directory: ./health-pal
 
             - name: Post PR comment on success
@@ -93,20 +50,3 @@ jobs:
                         issue_number: context.issue.number,
                         body: '❌ EAS Update failed. Please check the workflow logs for details.'
                       })
-
-    build-apk:
-        name: Build APK (${{ matrix.build-type }})
-        needs: check-env
-        uses: ./.github/workflows/build-apk.yml
-        strategy:
-            matrix:
-                build-type: [local, remote]
-        with:
-            node-version: "20.x"
-            working-directory: ./health-pal
-            build-type: ${{ matrix.build-type }}
-        secrets:
-            EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-            EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
-            EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
-            EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
