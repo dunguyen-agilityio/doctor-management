@@ -1,7 +1,7 @@
 on:
     pull_request:
         branches:
-            - dev
+            - development
             - staging
 permissions:
     contents: read
@@ -10,7 +10,7 @@ jobs:
     check-lint:
         runs-on: ubuntu-latest
         timeout-minutes: 15
-        if: github.base_ref == 'dev'
+        if: github.base_ref == 'development'
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
@@ -42,41 +42,30 @@ jobs:
               working-directory: ./health-pal
               run: yarn test
 
-    build-apk-development:
+    build-apk:
         runs-on: ubuntu-latest
-        if: github.base_ref == 'dev'
+        if: matrix.environment == github.base_ref
+        strategy:
+            matrix:
+                environment: [development, staging]
         timeout-minutes: 60
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+                  expo-token: ${{ secrets.EXPO_TOKEN }}
 
             - name: Build APK
               uses: ./.github/actions/build
               with:
                   node-version: "20.x"
                   working-directory: ./health-pal
-                  expo-token: ${{ secrets.EXPO_TOKEN }}
-                  environment: "development"
-                  build-type: "local"
-                  expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
-                  expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
-                  expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
-
-    build-apk-staging:
-        runs-on: ubuntu-latest
-        if: github.base_ref == 'staging'
-        timeout-minutes: 60
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-
-            - name: Build APK
-              uses: ./.github/actions/build
-              with:
-                  node-version: "20.x"
-                  working-directory: ./health-pal
-                  expo-token: ${{ secrets.EXPO_TOKEN }}
-                  environment: "staging"
+                  environment: ${{ matrix.environment }}
                   build-type: "local"
                   expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
                   expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
