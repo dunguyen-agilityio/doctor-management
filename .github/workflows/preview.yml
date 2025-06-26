@@ -1,8 +1,9 @@
 on:
     pull_request:
         branches:
-            - development
-            - staging
+            - dev
+            - stag
+            - main
 permissions:
     contents: read
     pull-requests: write
@@ -10,7 +11,7 @@ jobs:
     check-lint:
         runs-on: ubuntu-latest
         timeout-minutes: 15
-        if: github.base_ref == 'development'
+        if: github.base_ref == 'dev' && github.event_name == 'pull_request'
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
@@ -27,6 +28,7 @@ jobs:
 
     check-unit-test:
         runs-on: ubuntu-latest
+        if: (github.base_ref == 'dev' || github.base_ref == 'stag') && github.event_name == 'pull_request'
         timeout-minutes: 15
         steps:
             - name: Checkout repository
@@ -41,13 +43,66 @@ jobs:
             - name: Run unit test
               working-directory: ./health-pal
               run: yarn test
+    preview:
+        runs-on: ubuntu-latest
+        if: github.event_name == 'pull_request'
+        steps:
+            - name: 🏗 Setup repo
+              uses: actions/checkout@v4
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+                  expo-token: ${{ secrets.EXPO_TOKEN }}
+
+            - name: Create EAS preview
+              uses: expo/expo-github-action/preview@v8
+              env:
+                  EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+              with:
+                  command: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
+                  working-directory: ./health-pal
+
+            - name: Post PR comment on success
+              if: success()
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      github.rest.issues.createComment({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number: context.issue.number,
+                        body: ':white_check_mark: EAS Update completed successfully! Preview is ready.'
+                      })
+
+            - name: Post PR comment on failure
+              if: failure()
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      github.rest.issues.createComment({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number: context.issue.number,
+                        body: ':x: EAS Update failed. Please check the workflow logs for details.'
 
     build-apk:
         runs-on: ubuntu-latest
-        if: matrix.environment == github.base_ref
+        needs: [check-lint, check-unit-test]
         strategy:
             matrix:
-                environment: [development, staging]
+                environment: [development, staging, production]
+                exclude:
+                    - environment: development
+                      when: github.base_ref != 'dev'
+                    - environment: staging
+                      when: github.base_ref != 'stag'
+                    - environment: production
+                      when: github.base_ref != 'main'
         timeout-minutes: 60
         steps:
             - name: Checkout repository
@@ -66,7 +121,6 @@ jobs:
                   node-version: "20.x"
                   working-directory: ./health-pal
                   environment: ${{ matrix.environment }}
-                  build-type: "local"
                   expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
                   expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
                   expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}

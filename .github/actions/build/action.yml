@@ -11,9 +11,6 @@ inputs:
     environment:
         description: "Build environment: 'development', 'staging', or 'production'"
         required: true
-    build-type:
-        description: "Build type: 'local' or 'remote' (cloud)"
-        required: true
     expo-public-app-token:
         description: "Expo public app token for the application"
         required: false
@@ -30,7 +27,7 @@ runs:
         - name: 🚀 Build app
           shell: bash
           run: |
-              if [ "${{ inputs.build-type }}" = "remote" ]; then
+              if [ "${{ inputs.environment }}" = "production" ]; then
                 eas build --platform android --profile production --non-interactive
               else
                 eas build --platform android --profile ${{ inputs.environment }} --local --output ${{ github.workspace }}/app-release.apk --non-interactive
