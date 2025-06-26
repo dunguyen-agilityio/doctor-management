@@ -1,9 +1,33 @@
-on: [pull_request]
+on:
+    pull_request:
+        branches:
+            - dev
+            - staging
 permissions:
     contents: read
     pull-requests: write
 jobs:
-    preview:
+    check-lint:
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+        if: github.base_ref == 'dev'
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+
+            - name: Run lint
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+              run: yarn lint
+
+    check-unit-test:
         runs-on: ubuntu-latest
         timeout-minutes: 15
         steps:
@@ -15,38 +39,31 @@ jobs:
               with:
                   node-version: "20.x"
                   working-directory: ./health-pal
-                  expo-token: ${{ secrets.EXPO_TOKEN }}
 
-            - name: Create EAS preview
-              uses: expo/expo-github-action/preview@v8
-              env:
-                  EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
-                  EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
-                  EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+            - name: Run unit test
               with:
-                  command: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
+                  node-version: "20.x"
                   working-directory: ./health-pal
+              run: yarn test
 
-            - name: Post PR comment on success
-              if: success()
-              uses: actions/github-script@v7
-              with:
-                  script: |
-                      github.rest.issues.createComment({
-                        owner: context.repo.owner,
-                        repo: context.repo.repo,
-                        issue_number: context.issue.number,
-                        body: '✅ EAS Update completed successfully! Preview is ready.'
-                      })
+    build-apk:
+        runs-on: ubuntu-latest
+        timeout-minutes: 60
+        strategy:
+            matrix:
+                environment: [development, staging]
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-            - name: Post PR comment on failure
-              if: failure()
-              uses: actions/github-script@v7
+            - name: Build APK
+              uses: ./.github/actions/build
               with:
-                  script: |
-                      github.rest.issues.createComment({
-                        owner: context.repo.owner,
-                        repo: context.repo.repo,
-                        issue_number: context.issue.number,
-                        body: '❌ EAS Update failed. Please check the workflow logs for details.'
-                      })
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+                  expo-token: ${{ secrets.EXPO_TOKEN }}
+                  environment: ${{ matrix.environment }}
+                  build-type: "local"
+                  expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}

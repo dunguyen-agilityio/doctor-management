@@ -13,7 +13,6 @@ describe('Input', () => {
   }
   const mockErrorMessage = 'Invalid input'
   const mockOnFocus = jest.fn()
-  const mockOnEndEdit = jest.fn()
   const mockOnEndEditing = jest.fn()
 
   beforeEach(() => {

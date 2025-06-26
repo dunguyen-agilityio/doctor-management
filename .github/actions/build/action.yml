@@ -1,0 +1,73 @@
+name: Build Android App
+description: Build Android APK for dev/staging or AAB for production using EAS
+
+inputs:
+    node-version:
+        description: "Node.js version to use"
+        required: true
+    working-directory:
+        description: "Working directory for the project"
+        required: true
+    environment:
+        description: "Build environment: 'development', 'staging', or 'production'"
+        required: true
+    build-type:
+        description: "Build type: 'local' or 'remote' (cloud)"
+        required: true
+    expo-public-app-token:
+        description: "Expo public app token for the application"
+        required: false
+    expo-public-api-endpoint:
+        description: "Expo public API endpoint for the application"
+        required: false
+    expo-public-cloudinary-domain:
+        description: "Cloudinary domain for the application"
+        required: false
+
+runs:
+    using: "composite"
+    steps:
+        - name: 🚀 Build app
+          shell: bash
+          run: |
+              if [ "${{ inputs.build-type }}" = "remote" ]; then
+                eas build --platform android --profile production --non-interactive
+              else
+                eas build --platform android --profile ${{ inputs.environment }} --local --output ${{ github.workspace }}/app-release.apk --non-interactive
+              fi
+          working-directory: ${{ inputs.working-directory }}
+          env:
+              EXPO_PUBLIC_APP_TOKEN: ${{ inputs.EXPO_PUBLIC_APP_TOKEN }}
+              EXPO_PUBLIC_API_ENDPOINT: ${{ inputs.EXPO_PUBLIC_API_ENDPOINT }}
+              EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ inputs.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+
+        - name: Upload artifact
+          uses: actions/upload-artifact@v4
+          with:
+              name: app-release-${{ inputs.environment }}
+              path: ${{ github.workspace }}/app-release.${{ inputs.environment == 'production' && 'aab' || 'apk' }}
+              retention-days: 7
+
+        - name: Post PR comment on success
+          if: success() && github.event_name == 'pull_request'
+          uses: actions/github-script@v7
+          with:
+              script: |
+                  github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: context.issue.number,
+                    body: '✅ ${{ inputs.environment }} build completed successfully! Check the artifacts for the ${{ inputs.environment == 'production' && 'AAB' || 'APK' }}.'
+                  })
+
+        - name: Post PR comment on failure
+          if: failure() && github.event_name == 'pull_request'
+          uses: actions/github-script@v7
+          with:
+              script: |
+                  github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: context.issue.number,
+                    body: '❌ ${{ inputs.environment }} build failed. Please check the workflow logs for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+                  })
