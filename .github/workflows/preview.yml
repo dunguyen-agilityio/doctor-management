@@ -46,6 +46,7 @@ jobs:
     preview:
         runs-on: ubuntu-latest
         if: github.event_name == 'pull_request'
+        needs: [check-lint, check-unit-test]
         environment: github.base_ref == 'dev' && 'Development' || "Staging"
         steps:
             - name: 🏗 Setup repo
@@ -94,6 +95,7 @@ jobs:
     build-apk-development:
         runs-on: ubuntu-latest
         if: github.base_ref == 'dev'
+        needs: [check-lint, check-unit-test]
         timeout-minutes: 60
         steps:
             - name: Checkout repository
@@ -119,6 +121,7 @@ jobs:
     build-apk-staging:
         runs-on: ubuntu-latest
         if: github.base_ref == 'stag'
+        needs: [check-unit-test]
         timeout-minutes: 60
         steps:
             - name: Checkout repository
