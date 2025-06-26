@@ -22,9 +22,7 @@ jobs:
                   working-directory: ./health-pal
 
             - name: Run lint
-              with:
-                  node-version: "20.x"
-                  working-directory: ./health-pal
+              working-directory: ./health-pal
               run: yarn lint
 
     check-unit-test:
@@ -41,9 +39,7 @@ jobs:
                   working-directory: ./health-pal
 
             - name: Run unit test
-              with:
-                  node-version: "20.x"
-                  working-directory: ./health-pal
+              working-directory: ./health-pal
               run: yarn test
 
     build-apk:
