@@ -22,7 +22,6 @@ runs:
           with:
               node-version: ${{ inputs.node-version }}
               cache: yarn
-              working-directory: ${{ inputs.working-directory }}
 
         - name: Setup EAS
           uses: expo/expo-github-action@v8
@@ -39,6 +38,7 @@ runs:
               key: ${{ runner.os }}-node-modules-${{ hashFiles(format('{0}/package.json', inputs.working-directory), format('{0}/yarn.lock', inputs.working-directory)) }}
               restore-keys: |
                   ${{ runner.os }}-node-modules-
+              working-directory: ${{ inputs.working-directory }}
 
         - name: Install dependencies
           run: yarn install
