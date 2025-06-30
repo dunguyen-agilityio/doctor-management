@@ -1,0 +1,83 @@
+on:
+    push:
+        branches:
+            - main
+            - stag
+permissions:
+    contents: read
+jobs:
+    check-unit-test:
+        runs-on: ubuntu-latest
+        if: github.base_ref == 'stag'
+        timeout-minutes: 15
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+
+            - name: Run unit test
+              working-directory: ./health-pal
+              run: yarn test
+
+    build_and_deploy_staging:
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/stag'
+        needs: [check-unit-test]
+        timeout-minutes: 60
+        environment: "Staging"
+        env:
+            EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+            EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+            EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+                  expo-token: ${{ secrets.EXPO_TOKEN }}
+
+            - name: 🚀 Build app
+              run: eas build --platform android --profile staging --local --output ${{ github.workspace }}/app-release.apk --non-interactive
+              working-directory: ./health-pal
+
+            - name: Publish OTA Update for Staging
+              run: eas update --auto --branch stag
+              working-directory: ./health-pal
+
+    build_and_deploy_production:
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/main'
+        timeout-minutes: 60
+        environment: "Production"
+        env:
+            EXPO_PUBLIC_APP_TOKEN: ${{ inputs.EXPO_PUBLIC_APP_TOKEN }}
+            EXPO_PUBLIC_API_ENDPOINT: ${{ inputs.EXPO_PUBLIC_API_ENDPOINT }}
+            EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ inputs.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+                  expo-token: ${{ secrets.EXPO_TOKEN }}
+
+            - name: 🚀 Build app
+              shell: bash
+              run: eas build --platform android --profile production --non-interactive
+              working-directory: ./health-pal
+
+            - name: Publish OTA Update for Production
+              run: eas update --auto --branch main
+              working-directory: ./health-pal
