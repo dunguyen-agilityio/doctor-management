@@ -277,8 +277,12 @@ jobs:
                   node-version: "20.x"
                   working-directory: ./health-pal
 
-            - name: EAS Login
-              run: eas login --token ${{ secrets.EAS_TOKEN }}
+            - name: Setup EAS
+              uses: expo/expo-github-action@v8
+              with:
+                  eas-version: latest
+                  token: ${{ secrets.EXPO_TOKEN }}
+                  working-directory: ./health-pal
 
             - name: Run OTA Update
               run: eas update --branch "${GITHUB_REF_NAME}" --channel production --message "Hotfix from ${GITHUB_REF_NAME}"
