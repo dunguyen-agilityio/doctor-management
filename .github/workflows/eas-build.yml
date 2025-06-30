@@ -134,6 +134,7 @@ jobs:
                   expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
                   expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
                   expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+                  token: ${{ secrets.EXPO_TOKEN }}
 
     build-staging:
         name: CI Build Staging
@@ -154,6 +155,7 @@ jobs:
                   expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
                   expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
                   expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+                  token: ${{ secrets.EXPO_TOKEN }}
 
     build-production:
         name: CI Build Production
@@ -174,6 +176,7 @@ jobs:
                   expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
                   expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
                   expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+                  token: ${{ secrets.EXPO_TOKEN }}
 
             # - name: Upload artifact
             #   uses: actions/upload-artifact@v4
