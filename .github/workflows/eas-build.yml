@@ -1,0 +1,135 @@
+name: EAS Build and Deploy
+
+on:
+    pull_request:
+        branches: [dev, stag, main]
+    push:
+        branches: [dev, stag, main, "hotfix/**"]
+        tags:
+            - "hotfix/**"
+
+jobs:
+    setup:
+        name: Setup Node
+        runs-on: ubuntu-latest
+        outputs:
+            node_version: ${{ steps.node.outputs.node }}
+        steps:
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20.x
+
+            - name: Cache node_modules
+              uses: actions/cache@v4
+              with:
+                  path: ./health-pal/node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles(format('{0}/package.json', './health-pal'), format('{0}/yarn.lock', './health-pal')) }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-modules-
+
+            - name: Install dependencies
+              run: yarn install
+              shell: bash
+              working-directory: ./health-pal
+
+    preview:
+        name: PR Preview
+        needs: setup
+        if: github.event_name == 'pull_request' && github.base_ref != 'main'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup EAS
+              uses: expo/expo-github-action@v8
+              with:
+                  eas-version: latest
+                  token: ${{ secrets.EXPO_TOKEN }}
+                  working-directory: ./health-pal
+
+            - name: Determine build profile
+              id: vars
+              run: |
+                  BRANCH="${GITHUB_REF#refs/heads/}"
+                  PROFILE=""
+                  case "$BRANCH" in
+                    dev) PROFILE="development" ;;
+                    stag) PROFILE="staging" ;;
+                    main) PROFILE="production" ;;
+                    *) PROFILE="preview" ;;
+                  esac
+                  echo "profile=$PROFILE" >> $GITHUB_OUTPUT
+
+            - name: Run EAS Preview
+              uses: expo/expo-github-action/preview@v8
+              with:
+                  working-directory: ./health-pal
+                  command: eas update --auto --channel ${{ steps.vars.outputs.profile }}
+              env:
+                  EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+
+            - name: Post PR comment
+              if: always()
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const buildStatus = ${{ job.status == 'success' }} ? '✅ Build completed successfully! Check artifacts for APK.' : '❌ Build failed. Check logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
+                      const easStatus = ${{ steps.eas-preview.outcome == 'success' }} ? '✅ EAS Update completed! Preview ready.' : '❌ EAS Update failed or skipped. Check logs.';
+                      github.rest.issues.createComment({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number: context.issue.number,
+                        body: `${buildStatus}\n${easStatus}`
+                      });
+
+    build:
+        name: CI Build
+        needs: setup
+        if: github.event_name == 'push'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup EAS
+              uses: expo/expo-github-action@v8
+              with:
+                  eas-version: latest
+                  token: ${{ secrets.EXPO_TOKEN }}
+                  working-directory: ./health-pal
+
+            - name: Determine build profile
+              id: vars
+              run: |
+                  BRANCH="${GITHUB_REF#refs/heads/}"
+                  PROFILE=""
+                  case "$BRANCH" in
+                    dev) PROFILE="development" ;;
+                    stag) PROFILE="staging" ;;
+                    main) PROFILE="production" ;;
+                    *) PROFILE="preview" ;;
+                  esac
+                  echo "profile=$PROFILE" >> $GITHUB_OUTPUT
+
+            - name: EAS Build
+              run: eas build --platform android --profile ${{ steps.vars.outputs.profile }} --non-interactive
+
+    deploy_hotfix:
+        name: Deploy OTA Update for Hotfix
+        needs: setup
+        if: startsWith(github.ref, 'refs/tags/hotfix/') || startsWith(github.ref, 'refs/heads/hotfix/')
+        runs-on: ubuntu-latest
+        environment: Production
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: EAS Login
+              run: eas login --token ${{ secrets.EAS_TOKEN }}
+
+            - name: Run OTA Update
+              run: eas update --branch main --channel production --message "Hotfix update from ${{ github.ref }}"
