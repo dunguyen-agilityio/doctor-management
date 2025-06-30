@@ -112,7 +112,7 @@ jobs:
     build:
         name: CI Build
         needs: [check-unit-test]
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.base_ref == 'dev')
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
@@ -146,6 +146,7 @@ jobs:
 
             - name: EAS Build
               run: eas build --platform android --profile ${{ steps.vars.outputs.profile }} --non-interactive
+              working-directory: ./health-pal
 
     deploy_hotfix:
         name: Deploy OTA Update for Hotfix
