@@ -8,6 +8,9 @@ inputs:
     working-directory:
         description: "Working directory for the project"
         required: true
+    token:
+        description: "EAS Token"
+        required: true
     environment:
         description: "Build environment: 'development', 'staging', or 'production'"
         required: true
@@ -34,7 +37,7 @@ runs:
           uses: expo/expo-github-action@v8
           with:
               eas-version: latest
-              token: ${{ secrets.EXPO_TOKEN }}
+              token: ${{ inputs.token }}
               working-directory: ./health-pal
 
         - name: 🚀 Build app
@@ -47,9 +50,9 @@ runs:
               fi
           working-directory: ${{ inputs.working-directory }}
           env:
-              EXPO_PUBLIC_APP_TOKEN: ${{ inputs.EXPO_PUBLIC_APP_TOKEN }}
-              EXPO_PUBLIC_API_ENDPOINT: ${{ inputs.EXPO_PUBLIC_API_ENDPOINT }}
-              EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ inputs.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+              EXPO_PUBLIC_APP_TOKEN: ${{ inputs.expo-public-app-token }}
+              EXPO_PUBLIC_API_ENDPOINT: ${{ inputs.expo-public-api-endpoint }}
+              EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ inputs.expo-public-cloudinary-domain }}
 
         - name: Upload artifact
           uses: actions/upload-artifact@v4
