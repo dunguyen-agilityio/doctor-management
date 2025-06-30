@@ -1,5 +1,6 @@
 on:
     pull_request:
+        types: [opened, synchronize, reopened]
         branches:
             - dev
 permissions:
@@ -72,56 +73,25 @@ jobs:
                   path: ${{ github.workspace }}/app-release.apk
                   retention-days: 7
 
-            - name: Post PR comment on success
-              if: success()
-              uses: actions/github-script@v7
-              with:
-                  script: |
-                      github.rest.issues.createComment({
-                        owner: context.repo.owner,
-                        repo: context.repo.repo,
-                        issue_number: context.issue.number,
-                        body: '✅ Development build completed successfully! Check the artifacts for the APK.'
-                      })
-
-            - name: Post PR comment on failure
-              if: failure()
-              uses: actions/github-script@v7
-              with:
-                  script: |
-                      github.rest.issues.createComment({
-                        owner: context.repo.owner,
-                        repo: context.repo.repo,
-                        issue_number: context.issue.number,
-                        body: '❌ Development build failed. Please check the workflow logs for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
-                      })
-
             - name: Create EAS preview
+              if: success()
+              id: eas-preview
               uses: expo/expo-github-action/preview@v8
               env:
                   EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
                   EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
                   EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
 
-            - name: Post PR comment on success
-              if: success()
+            - name: Post PR comment
+              if: always()
               uses: actions/github-script@v7
               with:
                   script: |
+                      const buildStatus = ${{ job.status == 'success' }} ? '✅ Build completed successfully! Check artifacts for APK.' : '❌ Build failed. Check logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
+                      const easStatus = ${{ steps.eas-preview.outcome == 'success' }} ? '✅ EAS Update completed! Preview ready.' : '❌ EAS Update failed or skipped. Check logs.';
                       github.rest.issues.createComment({
                         owner: context.repo.owner,
                         repo: context.repo.repo,
                         issue_number: context.issue.number,
-                        body: ':white_check_mark: EAS Update completed successfully! Preview is ready.'
-                      })
-
-            - name: Post PR comment on failure
-              if: failure()
-              uses: actions/github-script@v7
-              with:
-                  script: |
-                      github.rest.issues.createComment({
-                        owner: context.repo.owner,
-                        repo: context.repo.repo,
-                        issue_number: context.issue.number,
-                        body: ':x: EAS Update failed. Please check the workflow logs for details.'
+                        body: `${buildStatus}\n${easStatus}`
+                      });
