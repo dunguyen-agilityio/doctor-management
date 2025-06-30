@@ -12,7 +12,7 @@
     "lint": "expo lint",
     "eas:dev": "eas build --platform android --profile development --local",
     "eas:prod": "eas build --platform android --profile development --local",
-    "test": "jest --coverage=false",
+    "test": "jest --coverage=false --silent",
     "test:cov": "jest --coverage=true --changedSince=origin/feat/doctor-management",
     "test:w": "jest --watch --coverage=false --changedSince=origin/feat/doctor-management",
     "testDebug": "jest -o --watch --coverage=false",
