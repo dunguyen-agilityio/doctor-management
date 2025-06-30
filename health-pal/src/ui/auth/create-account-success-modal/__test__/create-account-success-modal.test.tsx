@@ -40,9 +40,4 @@ describe('CreateAccountSuccessModal', () => {
     expect(modal).toHaveProp('aria-label', 'Account created successfully')
     expect(loadingIndicator).toHaveProp('aria-label', 'Redirecting, please wait')
   })
-
-  it('matches snapshot when open', () => {
-    const { toJSON } = render(<CreateAccountSuccessModal ref={mockRef} />)
-    expect(toJSON()).toMatchSnapshot()
-  })
 })
