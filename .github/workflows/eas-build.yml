@@ -118,6 +118,9 @@ jobs:
         if: github.event_name == 'pull_request' && github.base_ref == 'dev'
         runs-on: ubuntu-latest
         environment: development
+        permissions:
+            issues: write
+            pull-requests: write
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
