@@ -145,7 +145,7 @@ jobs:
                   echo "profile=$PROFILE" >> $GITHUB_OUTPUT
 
             - name: EAS Build
-              run: eas build --platform android --profile ${{ steps.vars.outputs.profile }} --non-interactive
+              run: eas build --platform android --profile ${{ steps.vars.outputs.profile }} --local --non-interactive
               working-directory: ./health-pal
 
     deploy_hotfix:
