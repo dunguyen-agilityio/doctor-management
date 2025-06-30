@@ -153,7 +153,7 @@ jobs:
                   expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
 
     build-production:
-        name: CI Build Staging
+        name: CI Build Production
         needs: [check-unit-test]
         if: github.event_name == 'push' && github.base_ref == 'main'
         runs-on: ubuntu-latest
