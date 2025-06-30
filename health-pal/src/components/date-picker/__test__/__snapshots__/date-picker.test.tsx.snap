@@ -2665,7 +2665,6 @@ exports[`DatePicker renders match snapshot 1`] = `
                 style={
                   {
                     "alignItems": "center",
-                    "backgroundColor": "transparent",
                     "flex": 1,
                     "justifyContent": "center",
                   }
@@ -2982,6 +2981,7 @@ exports[`DatePicker renders match snapshot 1`] = `
                 style={
                   {
                     "alignItems": "center",
+                    "backgroundColor": "transparent",
                     "flex": 1,
                     "justifyContent": "center",
                   }

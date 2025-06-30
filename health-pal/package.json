@@ -98,5 +98,11 @@
   "private": true,
   "eslintConfig": {
     "extends": "universe/native"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint",
+      "prettier --write"
+    ]
   }
 }
