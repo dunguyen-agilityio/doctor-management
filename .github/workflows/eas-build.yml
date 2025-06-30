@@ -2,16 +2,16 @@ name: EAS Build and Deploy
 
 on:
     pull_request:
-        branches: [dev]
+        branches: [dev, stag, main]
     push:
-        branches: [stag, main, "hotfix/**"]
+        branches: ["hotfix/**"]
         tags:
             - "hotfix/**"
 
 jobs:
     check-lint:
         name: Check Lint
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.base_ref == 'dev'
         runs-on: ubuntu-latest
         timeout-minutes: 15
         steps:
@@ -139,7 +139,7 @@ jobs:
     build-staging:
         name: CI Build Staging
         needs: [check-unit-test]
-        if: github.event_name == 'push' && github.ref == 'refs/heads/stag'
+        if: github.event_name == 'pull_request' && github.base_ref == 'stag'
         runs-on: ubuntu-latest
         environment: staging
         steps:
@@ -160,7 +160,7 @@ jobs:
     build-production:
         name: CI Build Production
         needs: [check-unit-test]
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'pull_request' && github.base_ref == 'main'
         runs-on: ubuntu-latest
         environment: production
         steps:
