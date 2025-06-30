@@ -46,11 +46,78 @@ jobs:
               working-directory: ./health-pal
               run: yarn test
 
-    preview:
-        name: PR Preview
+    # preview:
+    #     name: PR Preview
+    #     needs: [check-lint, check-unit-test]
+    #     if: github.event_name == 'pull_request' && github.base_ref != 'main'
+    #     runs-on: ubuntu-latest
+    #     permissions:
+    #         issues: write
+    #         pull-requests: write
+    #     steps:
+    #         - name: Checkout repository
+    #           uses: actions/checkout@v4
+
+    #         - name: Setup environment
+    #           uses: ./.github/actions/setup-environment
+    #           with:
+    #               node-version: "20.x"
+    #               working-directory: ./health-pal
+
+    #         - name: Setup EAS
+    #           uses: expo/expo-github-action@v8
+    #           with:
+    #               eas-version: latest
+    #               token: ${{ secrets.EXPO_TOKEN }}
+    #               working-directory: ./health-pal
+    #               expo-version: latest
+
+    #         - name: Determine build profile
+    #           id: vars
+    #           run: |
+    #               BRANCH="${GITHUB_REF#refs/heads/}"
+    #               PROFILE=""
+    #               case "$BRANCH" in
+    #                 dev) PROFILE="development" ;;
+    #                 stag) PROFILE="staging" ;;
+    #                 main) PROFILE="production" ;;
+    #                 *) PROFILE="preview" ;;
+    #               esac
+    #               echo "profile=$PROFILE" >> $GITHUB_OUTPUT
+
+    #         - name: Run EAS Preview
+    #           uses: expo/expo-github-action/preview@v8
+    #           with:
+    #               working-directory: ./health-pal
+    #               command: eas update --auto --channel ${{ steps.vars.outputs.profile }}
+    #           env:
+    #               EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+    #               EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+    #               EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+
+    #         - name: Post PR comment for OTA
+    #           if: always()
+    #           uses: actions/github-script@v7
+    #           env:
+    #               EAS_STATUS: ${{ steps.eas_update.outcome }}
+    #           with:
+    #               script: |
+    #                   const updateStatus = process.env.EAS_STATUS === 'success'
+    #                     ? '✅ OTA Update (EAS) completed successfully! 🎉'
+    #                     : '❌ OTA Update failed. Please check logs.';
+
+    #                   github.rest.issues.createComment({
+    #                     owner: context.repo.owner,
+    #                     repo: context.repo.repo,
+    #                     issue_number: context.issue.number,
+    #                     body: updateStatus
+    #                   });
+    build-development:
+        name: CI Build Development
         needs: [check-lint, check-unit-test]
-        if: github.event_name == 'pull_request' && github.base_ref != 'main'
+        if: github.event_name == 'pull_request' && github.base_ref == 'dev'
         runs-on: ubuntu-latest
+        environment: development
         permissions:
             issues: write
             pull-requests: write
@@ -58,95 +125,142 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
 
-            - name: Setup environment
-              uses: ./.github/actions/setup-environment
+            - name: Build Development
+              uses: ./.github/actions/build
               with:
                   node-version: "20.x"
                   working-directory: ./health-pal
+                  environment: development
+                  expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
 
-            - name: Setup EAS
-              uses: expo/expo-github-action@v8
-              with:
-                  eas-version: latest
-                  token: ${{ secrets.EXPO_TOKEN }}
-                  working-directory: ./health-pal
-                  expo-version: latest
-
-            - name: Determine build profile
-              id: vars
-              run: |
-                  BRANCH="${GITHUB_REF#refs/heads/}"
-                  PROFILE=""
-                  case "$BRANCH" in
-                    dev) PROFILE="development" ;;
-                    stag) PROFILE="staging" ;;
-                    main) PROFILE="production" ;;
-                    *) PROFILE="preview" ;;
-                  esac
-                  echo "profile=$PROFILE" >> $GITHUB_OUTPUT
-
-            - name: Run EAS Preview
-              uses: expo/expo-github-action/preview@v8
-              with:
-                  working-directory: ./health-pal
-                  command: eas update --auto --channel ${{ steps.vars.outputs.profile }}
-              env:
-                  EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
-                  EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
-                  EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
-
-            - name: Post PR comment
-              if: always()
-              uses: actions/github-script@v7
-              with:
-                  script: |
-                      const buildStatus = ${{ job.status == 'success' }} ? '✅ Build completed successfully! Check artifacts for APK.' : '❌ Build failed. Check logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
-                      const easStatus = ${{ steps.eas-preview.outcome == 'success' }} ? '✅ EAS Update completed! Preview ready.' : '❌ EAS Update failed or skipped. Check logs.';
-                      github.rest.issues.createComment({
-                        owner: context.repo.owner,
-                        repo: context.repo.repo,
-                        issue_number: context.issue.number,
-                        body: `${buildStatus}\n${easStatus}`
-                      });
-
-    build:
-        name: CI Build
+    build-staging:
+        name: CI Build Staging
         needs: [check-unit-test]
-        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.base_ref == 'dev')
+        if: github.event_name == 'push' && github.base_ref == 'stag'
         runs-on: ubuntu-latest
+        environment: staging
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
 
-            - name: Setup environment
-              uses: ./.github/actions/setup-environment
+            - name: Build Staging
+              uses: ./.github/actions/build
               with:
                   node-version: "20.x"
                   working-directory: ./health-pal
+                  environment: staging
+                  expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
 
-            - name: Setup EAS
-              uses: expo/expo-github-action@v8
+    build-production:
+        name: CI Build Production
+        needs: [check-unit-test]
+        if: github.event_name == 'push' && github.base_ref == 'main'
+        runs-on: ubuntu-latest
+        environment: production
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Build Production
+              uses: ./.github/actions/build
               with:
-                  eas-version: latest
-                  token: ${{ secrets.EXPO_TOKEN }}
+                  node-version: "20.x"
                   working-directory: ./health-pal
+                  environment: production
+                  expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
 
-            - name: Determine build profile
-              id: vars
-              run: |
-                  BRANCH="${GITHUB_REF#refs/heads/}"
-                  PROFILE=""
-                  case "$BRANCH" in
-                    dev) PROFILE="development" ;;
-                    stag) PROFILE="staging" ;;
-                    main) PROFILE="production" ;;
-                    *) PROFILE="preview" ;;
-                  esac
-                  echo "profile=$PROFILE" >> $GITHUB_OUTPUT
+            # - name: Upload artifact
+            #   uses: actions/upload-artifact@v4
+            #   with:
+            #       name: app-release-${{ inputs.environment }}
+            #       path: ${{ github.workspace }}/app-release.${{ inputs.environment == 'production' && 'aab' || 'apk' }}
+            #       retention-days: 7
 
-            - name: EAS Build
-              run: eas build --platform android --profile ${{ steps.vars.outputs.profile }} --local --non-interactive
-              working-directory: ./health-pal
+            # - name: Post PR comment for OTA
+            #   if: always()
+            #   uses: actions/github-script@v7
+            #   env:
+            #       EAS_STATUS: ${{ steps.dev-build.outcome }}
+            #   with:
+            #       script: |
+            #           const buildStatus = process.env.EAS_STATUS === 'success'
+            #             ? '✅ Build completed successfully! 🎉'
+            #             : '❌ Build failed. Please check logs.';
+
+            #           github.rest.issues.createComment({
+            #             owner: context.repo.owner,
+            #             repo: context.repo.repo,
+            #             issue_number: context.issue.number,
+            #             body: buildStatus
+            #           });
+
+    # build-staging:
+    #     name: CI Build Staging
+    #     needs: [check-unit-test]
+    #     if: github.event_name == 'push' && github.base_ref == 'stag'
+    #     runs-on: ubuntu-latest
+    #     environment: staging
+    #     steps:
+    #         - name: Checkout repository
+    #           uses: actions/checkout@v4
+
+    #         - name: Setup environment
+    #           uses: ./.github/actions/setup-environment
+    #           with:
+    #               node-version: "20.x"
+    #               working-directory: ./health-pal
+
+    #         - name: Setup EAS
+    #           uses: expo/expo-github-action@v8
+    #           with:
+    #               eas-version: latest
+    #               token: ${{ secrets.EXPO_TOKEN }}
+    #               working-directory: ./health-pal
+
+    #         - name: EAS Build
+    #           run: eas build --platform android --profile staging --local --non-interactive
+    #           working-directory: ./health-pal
+    #           env:
+    #               EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+    #               EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+    #               EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+
+    # build-production:
+    #     name: CI Build Production
+    #     needs: [check-unit-test]
+    #     if: github.event_name == 'push' && github.base_ref == 'main'
+    #     runs-on: ubuntu-latest
+    #     environment: production
+    #     steps:
+    #         - name: Checkout repository
+    #           uses: actions/checkout@v4
+
+    #         - name: Setup environment
+    #           uses: ./.github/actions/setup-environment
+    #           with:
+    #               node-version: "20.x"
+    #               working-directory: ./health-pal
+
+    #         - name: Setup EAS
+    #           uses: expo/expo-github-action@v8
+    #           with:
+    #               eas-version: latest
+    #               token: ${{ secrets.EXPO_TOKEN }}
+    #               working-directory: ./health-pal
+
+    #         - name: EAS Build
+    #           run: eas build --platform android --profile production --local --non-interactive
+    #           working-directory: ./health-pal
+    #           env:
+    #               EXPO_PUBLIC_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+    #               EXPO_PUBLIC_API_ENDPOINT: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+    #               EXPO_PUBLIC_CLOUDINARY_DOMAIN: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
 
     deploy_hotfix:
         name: Deploy OTA Update for Hotfix
@@ -163,8 +277,12 @@ jobs:
                   node-version: "20.x"
                   working-directory: ./health-pal
 
-            - name: EAS Login
-              run: eas login --token ${{ secrets.EAS_TOKEN }}
+            - name: Setup EAS
+              uses: expo/expo-github-action@v8
+              with:
+                  eas-version: latest
+                  token: ${{ secrets.EXPO_TOKEN }}
+                  working-directory: ./health-pal
 
             - name: Run OTA Update
-              run: eas update --branch main --channel production --message "Hotfix update from ${{ github.ref }}"
+              run: eas update --branch "${GITHUB_REF_NAME}" --channel production --message "Hotfix from ${GITHUB_REF_NAME}"

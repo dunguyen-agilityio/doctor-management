@@ -24,6 +24,19 @@ inputs:
 runs:
     using: "composite"
     steps:
+        - name: Setup environment
+          uses: ./.github/actions/setup-environment
+          with:
+              node-version: ${{inputs.node-version}}
+              working-directory: ${{inputs.working-directory}}
+
+        - name: Setup EAS
+          uses: expo/expo-github-action@v8
+          with:
+              eas-version: latest
+              token: ${{ secrets.EXPO_TOKEN }}
+              working-directory: ./health-pal
+
         - name: 🚀 Build app
           shell: bash
           run: |
