@@ -2,9 +2,9 @@ name: EAS Build and Deploy
 
 on:
     pull_request:
-        branches: [dev, stag, main]
+        branches: [dev]
     push:
-        branches: [dev, stag, main, "hotfix/**"]
+        branches: [stag, main, "hotfix/**"]
         tags:
             - "hotfix/**"
 
