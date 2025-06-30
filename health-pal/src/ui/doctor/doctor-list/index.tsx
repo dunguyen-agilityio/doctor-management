@@ -12,7 +12,9 @@ import { WINDOW_SIZE } from '@/constants'
 
 import DoctorCard from '../doctor-card'
 
-interface DoctorListProps extends Omit<FlashListProps<TDoctorData>, 'renderItem'> {}
+interface DoctorListProps extends Omit<FlashListProps<TDoctorData>, 'renderItem'> {
+  renderItem?: FlashListProps<TDoctorData>['renderItem']
+}
 
 const DoctorList = ({ ...props }: DoctorListProps) => {
   const { height } = getMediaQuery({ height: 133, full: true })

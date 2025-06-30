@@ -11,14 +11,23 @@
     "ios": {
       "supportsTablet": true
     },
-    "platforms": ["android", "ios"],
+    "platforms": [
+      "android",
+      "ios"
+    ],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.dunguyenhuu.healthpal"
+      "package": "com.dunguyenhuu.healthpal",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "plugins": [
       [
@@ -109,6 +118,12 @@
         "projectId": "b109a290-d4a1-4303-9e7d-a2c665d095f6",
         "owner": "expo_training"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/b109a290-d4a1-4303-9e7d-a2c665d095f6"
     }
   }
 }

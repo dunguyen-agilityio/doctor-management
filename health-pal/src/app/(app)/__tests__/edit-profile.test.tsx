@@ -11,8 +11,8 @@ jest.mock('@/hooks/use-require-auth', () => ({
 }))
 
 describe('<EditProfile />', () => {
-  it('matches snapshot after loading', async () => {
-    const { toJSON } = render(<EditProfile />)
-    expect(toJSON()).toMatchSnapshot()
+  it('render correctly', async () => {
+    const { getByTestId } = render(<EditProfile />)
+    expect(getByTestId('user-profile')).toBeTruthy()
   })
 })

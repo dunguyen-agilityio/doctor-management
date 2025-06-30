@@ -10,10 +10,6 @@ inputs:
         description: "Working directory for the project"
         required: true
 
-    expo-token:
-        description: "Expo token for EAS authentication"
-        required: true
-
 runs:
     using: "composite"
     steps:
@@ -22,12 +18,13 @@ runs:
           with:
               node-version: ${{ inputs.node-version }}
 
-        - name: Setup EAS
-          uses: expo/expo-github-action@v8
+        - name: Cache node_modules
+          uses: actions/cache@v4
           with:
-              eas-version: latest
-              token: ${{ inputs.expo-token }}
-              working-directory: ${{ inputs.working-directory }}
+              path: ${{ inputs.working-directory }}/node_modules
+              key: ${{ runner.os }}-node-modules-${{ hashFiles(format('{0}/package.json', inputs.working-directory), format('{0}/yarn.lock', inputs.working-directory)) }}
+              restore-keys: |
+                  ${{ runner.os }}-node-modules-
 
         - name: Install dependencies
           run: yarn install

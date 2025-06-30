@@ -11,8 +11,8 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "eas:dev": "eas build --platform android --profile development --local",
-    "eas:prod": "eas build --platform android --profile preview2 --local",
-    "test": "jest --coverage=false --changedSince=origin/feat/doctor-management",
+    "eas:prod": "eas build --platform android --profile development --local",
+    "test": "jest --coverage=false --silent",
     "test:cov": "jest --coverage=true --changedSince=origin/feat/doctor-management",
     "test:w": "jest --watch --coverage=false --changedSince=origin/feat/doctor-management",
     "testDebug": "jest -o --watch --coverage=false",
@@ -42,6 +42,7 @@
     "expo-splash-screen": "~0.30.9",
     "expo-status-bar": "~2.2.3",
     "expo-system-ui": "~5.0.9",
+    "expo-updates": "~0.28.15",
     "react": "19.0.0",
     "react-content-loader": "^7.0.2",
     "react-hook-form": "^7.56.3",
@@ -67,8 +68,8 @@
     "@storybook/addon-ondevice-actions": "^8.6.2",
     "@storybook/addon-ondevice-controls": "^8.6.2",
     "@storybook/react-native": "^8.6.2",
-    "@tamagui/babel-plugin": "^1.126.14",
-    "@tamagui/metro-plugin": "^1.126.14",
+    "@tamagui/babel-plugin": "^1.126.12",
+    "@tamagui/metro-plugin": "^1.126.12",
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^13.2.0",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
@@ -98,5 +99,11 @@
   "private": true,
   "eslintConfig": {
     "extends": "universe/native"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint",
+      "prettier --write"
+    ]
   }
 }

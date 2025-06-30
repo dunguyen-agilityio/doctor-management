@@ -1,2 +1,2 @@
 cd health-pal
-pnpm build:debug
+yarn eas:prod
