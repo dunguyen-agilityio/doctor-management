@@ -3,6 +3,12 @@ on:
         branches:
             - main
             - stag
+    push:
+        tags:
+            - "v*"
+        branches:
+            - "hotfix/**"
+
 permissions:
     contents: read
 jobs:
