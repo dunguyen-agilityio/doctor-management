@@ -10,6 +10,7 @@ on:
 
 jobs:
     check-lint:
+        name: Check Lint
         runs-on: ubuntu-latest
         timeout-minutes: 15
         steps:
@@ -27,6 +28,7 @@ jobs:
               run: yarn lint
 
     check-unit-test:
+        name: Check Unit test
         runs-on: ubuntu-latest
         timeout-minutes: 15
         steps:
@@ -48,6 +50,9 @@ jobs:
         needs: [check-lint, check-unit-test]
         if: github.event_name == 'pull_request' && github.base_ref != 'main'
         runs-on: ubuntu-latest
+        permissions:
+            issues: write
+            pull-requests: write
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
@@ -64,6 +69,7 @@ jobs:
                   eas-version: latest
                   token: ${{ secrets.EXPO_TOKEN }}
                   working-directory: ./health-pal
+                  expo-version: latest
 
             - name: Determine build profile
               id: vars
