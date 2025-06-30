@@ -73,7 +73,7 @@ const UserProfile = ({ defaultData, editable, onSubmit }: UserProfileFormProps) 
   const disabled = !isChanged || Object.keys(formState.errors).length > 1
 
   return (
-    <YStack gap={24} paddingHorizontal={24} flex={1}>
+    <YStack gap={24} paddingHorizontal={24} flex={1} testID="user-profile">
       <YStack gap={20}>
         <XStack justifyContent="center">
           <Controller

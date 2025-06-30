@@ -1,13 +1,55 @@
-on: [pull_request]
+on:
+    pull_request:
+        branches:
+            - dev
+            - stag
+            - main
 permissions:
     contents: read
     pull-requests: write
 jobs:
-    preview:
+    check-lint:
         runs-on: ubuntu-latest
+        timeout-minutes: 15
+        if: github.base_ref == 'dev' && github.event_name == 'pull_request'
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+
+            - name: Run lint
+              working-directory: ./health-pal
+              run: yarn lint
+
+    check-unit-test:
+        runs-on: ubuntu-latest
+        if: (github.base_ref == 'dev' || github.base_ref == 'stag') && github.event_name == 'pull_request'
         timeout-minutes: 15
         steps:
             - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+
+            - name: Run unit test
+              working-directory: ./health-pal
+              run: yarn test
+    preview:
+        runs-on: ubuntu-latest
+        if: github.event_name == 'pull_request'
+        needs: [check-lint, check-unit-test]
+        environment: github.base_ref == 'dev' && 'Development' || "Staging"
+        steps:
+            - name: 🏗 Setup repo
               uses: actions/checkout@v4
 
             - name: Setup environment
@@ -36,7 +78,7 @@ jobs:
                         owner: context.repo.owner,
                         repo: context.repo.repo,
                         issue_number: context.issue.number,
-                        body: '✅ EAS Update completed successfully! Preview is ready.'
+                        body: ':white_check_mark: EAS Update completed successfully! Preview is ready.'
                       })
 
             - name: Post PR comment on failure
@@ -48,5 +90,81 @@ jobs:
                         owner: context.repo.owner,
                         repo: context.repo.repo,
                         issue_number: context.issue.number,
-                        body: '❌ EAS Update failed. Please check the workflow logs for details.'
-                      })
+                        body: ':x: EAS Update failed. Please check the workflow logs for details.'
+
+    build-apk-development:
+        runs-on: ubuntu-latest
+        if: github.base_ref == 'dev'
+        needs: [check-lint, check-unit-test]
+        timeout-minutes: 60
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+                  expo-token: ${{ secrets.EXPO_TOKEN }}
+
+            - name: Build APK
+              uses: ./.github/actions/build
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+                  environment: "development"
+                  expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+
+    build-apk-staging:
+        runs-on: ubuntu-latest
+        if: github.base_ref == 'stag'
+        needs: [check-unit-test]
+        timeout-minutes: 60
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+                  expo-token: ${{ secrets.EXPO_TOKEN }}
+
+            - name: Build APK
+              uses: ./.github/actions/build
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+                  environment: "staging"
+                  expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
+
+    build-aab:
+        runs-on: ubuntu-latest
+        if: github.base_ref == 'main'
+        timeout-minutes: 60
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+                  expo-token: ${{ secrets.EXPO_TOKEN }}
+
+            - name: Build APK
+              uses: ./.github/actions/build
+              with:
+                  node-version: "20.x"
+                  working-directory: ./health-pal
+                  environment: "production"
+                  expo-public-app-token: ${{ secrets.EXPO_PUBLIC_APP_TOKEN }}
+                  expo-public-api-endpoint: ${{ secrets.EXPO_PUBLIC_API_ENDPOINT }}
+                  expo-public-cloudinary-domain: ${{ secrets.EXPO_PUBLIC_CLOUDINARY_DOMAIN }}
